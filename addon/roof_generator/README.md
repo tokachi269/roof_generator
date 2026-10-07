@@ -1,19 +1,26 @@
 # Roof Generator
 
-Install this folder as a Blender 4.3+ addon (or install the ZIP), enable it,
-and open View3D → Sidebar → Roof. Select a filled planar footprint in Object Mode,
-choose Flat/Gable/Hip/Shed, pitch and eave offset, then press Generate roof.
-The result is one editable roof surface with UV layer, material and crease/part
-attributes. A footprint perimeter boundary is intentional; no walls/underside
-are included. Source hiding is optional; conversion is undoable.
+Install the ZIP as a Blender 4.3+ addon, enable **Roof Generator**, and open
+View3D → Sidebar → **Roof**. Select a filled planar footprint in Object Mode,
+choose Flat/Gable/Hip/Shed, pitch and eave offset, then press **Generate roof**.
 
-If Shapely is missing, open addon preferences and press Install Shapely (Internet).
-This requires host Python with pip; choose its executable if auto-detection fails.
-No network installation runs automatically. The wheel matches Blender's CPython
-and is installed locally with its license files. Source/Binary dependencies are
-not bundled in the portable ZIP. See THIRD_PARTY_NOTICES.md.
+The result is one editable roof surface with a UV layer, material and
+crease/part attributes. The surface has a perimeter boundary; walls and roof
+thickness are separate modeling tasks. Source visibility is configurable,
+and conversion supports Undo.
 
-This addon is GPL-3.0-or-later (see LICENSE) and contains no SGA21 optimizer,
-source data or historical utility modules. It uses an independently written
-parametric plane-envelope core. Geometry Nodes live generation is not provided;
-the supported UI is the explicit conversion button.
+## Dependencies
+
+NumPy is provided by Blender. To set up Shapely, open addon preferences and
+press **Install Shapely (Internet)**. This downloads a wheel matching Blender's
+CPython and installs it locally with its license files. Host Python with pip
+is required; set its executable in preferences if automatic detection fails.
+
+## License
+
+This addon is **GPL-3.0-or-later**. Commercial use is permitted under the GPL;
+distribution must satisfy its license and corresponding-source requirements.
+See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Repository documentation: [English](https://github.com/tokachi269/SGA21_roofOptimization/blob/main/README.md)
+| [日本語](https://github.com/tokachi269/SGA21_roofOptimization/blob/main/README.ja.md).

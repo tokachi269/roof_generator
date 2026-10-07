@@ -2,22 +2,20 @@
 
 This document fixes the implementation boundary for the Python and Blender port.
 
-## Independent final roof generator
+## Final roof generator
 
-The user-authorized footprint generator described in
-[ROOF_GENERATOR_DESIGN.md](ROOF_GENERATOR_DESIGN.md) is a separate pre-SGA21
+The footprint generator described in
+[ROOF_GENERATOR_DESIGN.md](ROOF_GENERATOR_DESIGN.md) implements a plane-envelope
 method. `roof_geometry`, `roof_parts`, `roof_planes`, `roof_connections` and
 `roof_features` decide topology; `roof_mesh` exports that topology; mandatory
-`roof_validation` observes invariants. These are not claims about the SGA21 paper.
-The generated surfaces are already planar and bypass the optimizer.
+`roof_validation` observes invariants. The generated surfaces are planar.
 
-The Blender mesh CLI opts into this method with `--roof-kind`; its default
-continues to require an authored primal graph or the existing explicit role path.
-The cell/residual implementation is isolated in `legacy_cell_preview` and is
-not a dependency of final generation. Restrictions below concern the authored
-paper-aligned optimizer and historical role/preview APIs; they do not restrict the
-independently specified final generator, which now resides in the GPL addon.
-See [license scope](../../LICENSING.md); the SGA21-derived port remains noncommercial.
+The Blender mesh CLI selects this method with `--roof-kind`; its default
+requires an authored primal graph or explicit edge roles.
+`legacy_cell_preview` provides cell-based research comparisons.
+The boundaries below apply to the SGA21 optimizer and role/preview APIs.
+The final generator resides in the GPL addon; the SGA21-derived port is licensed
+under CC BY-NC 4.0 for noncommercial use. See [license scope](../../LICENSING.md).
 
 ## Verified Sources of Truth
 - Paper-facing optimization input: a roof graph.

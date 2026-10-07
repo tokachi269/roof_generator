@@ -1,49 +1,54 @@
 # Roof Generator — Blender addon
 
-平面footprintを選択し、**変換ボタンで一体の編集可能な屋根meshを生成**するaddonです。
-concave・非直交形状、rectangle / parallelogram / trapezoid / convex quad、
-L/T/Uの複数part接続、flat / gable / hip / shedに対応します。
-棟・隅棟・谷はroof planeの交線から決まり、出力は通常のBlender meshです。
+English | [日本語](README.ja.md)
 
-## インストールと変換
+Convert a planar building footprint into one editable Blender roof mesh.
+The generator supports concave and oblique footprints, rectangles,
+parallelograms, trapezoids and general convex quadrilaterals. L/T/U footprints
+are assembled from connected RoofParts. Roof types are **flat, gable, hip and shed**;
+ridges, hips and valleys follow roof-plane intersections.
 
-1. [`packages/roof_generator-1.0.0.zip`](packages/roof_generator-1.0.0.zip) をDownload raw fileで保存します。
-2. Blender 4.3以降の **Edit → Preferences → Add-ons → Install from Disk** でZIPをインストールし、Roof Generatorを有効にします。
-3. 依存がない場合、addon設定の **Install Shapely (Internet)** を押します。pipを使えるホストPythonが必要です。自動検出できなければ **Host Python with pip** に実行ファイルを指定します。
-4. Object Modeで、面が張られた平面footprint meshを選択します。
-5. 3D Viewのサイドバー（Nキー）→ **Roof** で種別・勾配・軒高offsetを設定し、**Generate roof** を押します。
+## Installation and use
 
-変換はUndo対応です。入力は保持し、Hide source footprintで表示を切り替えられます。
-屋根のUVレイヤー・マテリアル・part/crease属性を生成し、通常のUV展開やmesh編集ができます。
-回転・移動・非一様scaleのApplyは不要です。出力は外周境界を持つ屋根表面で、壁や厚みは別です。
-実装した入口は変換ボタンです。Geometry Nodesによるライブ生成modifierは提供していません。
+1. Download [`roof_generator-1.0.0.zip`](packages/roof_generator-1.0.0.zip) using **Download raw file**.
+2. In Blender 4.3+, open **Edit → Preferences → Add-ons → Install from Disk**, select the ZIP and enable **Roof Generator**.
+3. In addon preferences, use **Install Shapely (Internet)** to set up Shapely when needed. This requires host Python with pip. Set **Host Python with pip** to its executable if automatic detection fails.
+4. In Object Mode, select a filled, planar footprint mesh.
+5. Open the 3D View sidebar (**N**) → **Roof**, choose the roof type, pitch and eave offset, then press **Generate roof**.
 
-ZIPはaddonソースだけを含み、元データやSGA21移植コード、OS別バイナリを含みません。
-依存のインストールは明示的にボタンを押した時だけ行います。Windows/LinuxのCPythonに合う
-Shapely wheelを取得し、付属のライセンスファイルも保持します。
+Conversion supports Undo and preserves the input object. **Hide source footprint**
+controls its visibility. The output is an ordinary mesh with a UV layer, material
+and part/crease attributes, ready for editing and UV unwrapping. Object rotation,
+translation and nonuniform scale are supported without applying transforms.
 
-## 構成と権利
+The generated mesh is a roof surface with an intentional perimeter boundary.
+Building walls and roof thickness are separate modeling tasks. Holes,
+self-intersecting or nonplanar footprints, exhausted decomposition searches,
+and unsupported height-step connections produce an explicit error.
 
-| 場所 | 役割・ライセンス |
+## Licenses
+
+| Component | License and conditions |
 | --- | --- |
-| [`addon/roof_generator/`](addon/roof_generator/) | 新規実装のgeometry・Blender addon。GPL-3.0-or-later |
-| [`packages/`](packages/) | ソースと同期したインストール用ZIP |
-| [`python/`](python/README.md) | build、tests、CLI、SGA21由来の非商用research port |
-| [`python/docs/`](python/docs/) | 設計・先行研究・移植の対応関係 |
-| [`reference/README.md`](reference/README.md) | 元リポジトリ・論文への外部参照のみ |
-| `python/out/`、`dist/` | 検証結果・build出力（Git管理対象外） |
+| Blender addon and footprint geometry | **GPL-3.0-or-later**. Commercial use is permitted under the GPL; distribution must satisfy its license and source requirements. |
+| SGA21-derived Python research port | **CC BY-NC 4.0**. Noncommercial use only, with attribution, a license link and an indication of modifications. |
+| Runtime dependencies | NumPy and Shapely: BSD-3-Clause; GEOS: LGPL-2.1. |
 
-**元のMATLAB・UI・dataset・旧utilityファイルとコピーfixtureは削除済み**です。
-履歴はtokachi269のnoreply表記による独立したrootから構成しています。履歴の変更によって、
-SGA21由来の移植部分の権利条件が消えるわけではありません。
+See [LICENSING.md](LICENSING.md) for file scope, attribution and full license texts,
+and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md) for dependency conditions.
 
-[LICENSING.md](LICENSING.md) がファイル別の権利範囲を定義します。
-**addonの新規実装はGPL、SGA21由来のresearch portはCC BY-NC 4.0を維持**しています。
-商用利用・再ライセンスについてSGA21著者の別途許可は取得していません。
-addon ZIPはそのresearch portを含まず、依存もしません。新規addonと移植部分を
-一括してMIT/GPL扱いにはしていません。
+## Repository layout
 
-## 検証・開発
+| Path | Purpose |
+| --- | --- |
+| [`addon/roof_generator/`](addon/roof_generator/) | Blender UI, footprint geometry and mesh output |
+| [`packages/`](packages/) | Installable addon ZIP |
+| [`python/`](python/README.md) | Build tools, tests, CLI and SGA21 research port |
+| [`python/docs/`](python/docs/) | Generator design and paper alignment |
+| [`reference/`](reference/README.md) | Source and research references |
+| `python/out/`, `dist/` | Generated validation and build artifacts |
+
+## Development and validation
 
 ```bash
 python -m pip install -r python/requirements.txt
@@ -52,10 +57,12 @@ python python/build_addon.py
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
 ```
 
-90件の自動テストと、ZIPを実際にインストールしたBlenderで16必須ケース・4種別・
-UV/material・transform・unsupported時のscene不変・登録解除/再登録を確認しています。
-実行検証はLinuxのBlender 4.3.2です。WindowsのBlender実行は未検証です。
-詳細は [設計書](python/docs/ROOF_GENERATOR_DESIGN.md) と [Python手順](python/README.md) を参照してください。
+Validation covers 90 tests, 16 final-mesh acceptance scenarios, all four roof
+types, UV/material editing, object transforms, failure without scene mutation,
+and addon registration. Representative L/T/U, oblique and residential roofs
+are also rendered for visual inspection. CI runs core tests and ZIP checks on
+Windows/Linux with Python 3.11/3.13, plus installed-addon tests in Linux Blender
+4.3.2. Blender execution is currently validated on Linux.
 
-穴付きfootprint、自己交差、非平面入力、探索上限超過、未設計の垂直段差接続などは
-unsupportedとして失敗します。壊れたmeshへのfallbackは行いません。
+See the [generator design](python/docs/ROOF_GENERATOR_DESIGN.md) and
+[Python guide](python/README.md) for details.

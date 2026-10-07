@@ -1,18 +1,19 @@
 # Footprint → editable Blender roof
 
-## Scope and observed baseline
+## Scope and architecture
 
-Baseline: `develop` at `eb84407b6afe8a9f394bdfbbda1993b4a166b87f`.
-Before edits, `python -m unittest python.tests.test_roof_core`
-passes all 79 tests. Direct generation rejects a trapezoid, a general convex
-quadrilateral, and an oblique concave L outline. There is no hip primitive.
+The generator produces an editable planar roof surface from a simple footprint,
+including convex quadrilaterals and concave, oblique multi-part outlines.
+Roof types are flat, gable, hip and shed.
 
 Current routes:
 
+- Planar footprint → `addon/roof_generator/core` → RoofParts / roof-plane
+  connections → validated mesh → Blender conversion operator.
 - Authored primal/dual graph → `roof_pipeline` / `roof_runner` → SGA21 BFGS →
   `blender_adapter.MeshSpec` → `blender_import_roof_result.create_mesh_object`.
 - Boundary roles → `roof_topology_generator` single rectangle/parallelogram →
-  `roof_topology_adapter` → comparison meshes. This remains compatible.
+  `roof_topology_adapter` → comparison meshes.
 - Preset preview → orthogonal frame → coordinate-level cells → greedy rectangles
   → `build_orthogonal_gable_roof_graph` → comparison meshes. This is legacy only.
 
@@ -21,13 +22,12 @@ other cell corners, midpoints and centers. Its internal edges are not intersecti
 of roof planes. Triangles can hide incompatible slopes; the topology depends on
 coordinate levels, lacks a RoofPart adjacency/connection model, does not identify
 valleys/hips, and cannot generalize to oblique concave or tapered quads. It is
-isolated for regression, never used by the final generator.
+available as a legacy research preview.
 
 ## Research and decisions
 
-Primary papers were read, including their algorithm sections (not just abstracts).
-The following are concise comparisons; the implementation below is our bounded
-plane-envelope method, not a claim to reproduce these papers.
+The following comparison identifies the partition, primitive and connection
+choices used by the bounded plane-envelope method.
 
 | Source | Partition / evaluation | Primitive / connection / ridge, hip, valley | Decision |
 | --- | --- | --- | --- |
@@ -35,19 +35,17 @@ plane-envelope method, not a claim to reproduce these papers.
 | [Laycock & Day 2003](https://www.sthu.org/misc/SKRW14/papers/LaycockDay_2003_AutomaticallyGeneratingRoofModelsBuildingFootprints.pdf), §§6–7 | Rectilinear reflex rays; grow/merge rectangles from skeleton lines. | Hip from inward skeleton and supporting-edge distance; gable changes end slopes; merges roofs. | Adopt supporting-edge planes and reflex candidates. Do not port midpoint skeleton editing or rectilinear-only partitioning. |
 | [Sugihara & Hayashi 2006](https://www.jstage.jst.go.jp/article/journalac2003/15/0/15_0_67/_pdf), §3; [2007](https://www.jstage.jst.go.jp/article/journalac2003/16/0/16_0_309/_pdf), §3 | RL expression identifies reflex cuts; select branches with good aspect ratios to avoid strips and excessive subdivision. | Rectangular roof solids, Boolean assembly; narrower roofs extend toward wider roofs. | Adopt reflex cuts and explicit aspect objective. Reject RL shape cases, right-angle rectification and rectangle-only primitives. |
 | [Kelly & Wonka 2011](https://www.peterwonka.net/Publications/pdfs/2011.TOG.Kelly.ProceduralExtrusions.TechreportVersion.final.pdf), §4 | Input plan plus per-edge profiles, rather than optimizing a quad partition. | Sweep direction planes; events change active-plan topology; halfedges assemble planar faces, including holes; ridge arcs arise at plane events. | Adopt plane-defined geometry and shared topology. Full event machinery for negative offsets, dormers and profiles is beyond the four requested roof types. |
-| [twak/campskeleton](https://github.com/twak/campskeleton), [twak/siteplan](https://github.com/twak/siteplan) | Weighted skeleton / procedural plan and profile editing, not a minimal architectural-part partition solver. | Java robust event processing and direction planes; siteplan adds profile events and shell editing. | Checked source repositories, README and licenses: Apache-2.0. JVM/Maven and Java GUI/runtime complicate Blender packaging, including Windows. No runtime dependency here. |
+| [twak/campskeleton](https://github.com/twak/campskeleton), [twak/siteplan](https://github.com/twak/siteplan) | Weighted skeleton / procedural plan and profile editing, not a minimal architectural-part partition solver. | Java robust event processing and direction planes; siteplan adds profile events and shell editing. | Apache-2.0. JVM/Maven and Java GUI/runtime requirements complicate Blender packaging, including Windows. |
 | [CGAL skeleton](https://doc.cgal.org/latest/Straight_skeleton_2/index.html), [partition](https://doc.cgal.org/latest/Partition_2/index.html) | Optimal convex partition or approximation (not constrained to architectural quads); inward edge events / positive weights. | Skeleton regions belong to source edges; event arcs lift onto roof planes. | Strong optional future backend. Full concave skeleton is not equivalent to a global minimum of infinite edge planes. Avoid silently approximating it that way. C++ bindings, ABI/builds and GPL/commercial package licensing need separate distribution work. |
 
 GEOS/Shapely is used for polygon split, overlay, union, noding and constrained
 triangulation. Shapely 2.1.2 has BSD licensing; its GEOS wheel libraries are LGPL
 and dynamically loaded. Windows x64 and Linux wheels are available for the
-supported CPython versions. Install using the Python bundled with Blender, not a
-random system Python. Pin the version in `requirements-roof.txt`; `install_roof_dependencies.py`
-queries the local Blender CPython and installs a matching wheel in ignored
-`.roof-deps/cpNNN`, without requiring pip inside Blender. Ship this installer and
-requirements rather than platform binaries in the source repository. No JVM or CGAL compilation is needed. Missing dependency raises a
-clear installation error. GEOS remains responsible for polygon robustness; we
-implement only the bounded architectural selection and affine plane clipping.
+supported CPython versions. `requirements-roof.txt` pins Shapely 2.1.2.
+The addon preferences and `install_roof_dependencies.py` use host Python with pip
+to install a wheel matching Blender's CPython under `.roof-deps/cpNNN`.
+GEOS handles polygon robustness; the generator implements bounded architectural
+selection and affine plane clipping.
 
 ## Geometry and RoofPart
 
@@ -136,32 +134,30 @@ requires exactly one perimeter matching the footprint and two oppositely directe
 incidences per internal edge. This distinguishes intended eaves/gable ends from
 holes or nonmanifold junctions.
 
-The SGA21 objective and authored graph path remain unchanged. The new generator
-already creates planar faces and does not run BFGS by default. An optimization
+The SGA21 layer optimizes the embedding of an authored roof graph. The footprint
+generator creates planar faces directly. An optimization
 adapter can consume the determined graph, but may not choose topology or repair
-an invalid connector. The old preview remains clearly legacy/deprecated.
+an invalid connector. The cell preview is a legacy research tool.
 
-## Acceptance and completion evidence
+## Acceptance validation
 
-Add named final-mesh fixtures for all 16 requested scenarios: rectangle gable,
+Named final-mesh fixtures cover all 16 acceptance scenarios: rectangle gable,
 hip, shed; rotated rectangle; parallelogram; trapezoid; general convex quad; L,
 T, U; rotated L; oblique L/T; unequal-width join; terminating ridge; valley;
-residential multiple-reflex outline. Include dimensions resembling residential
-wings, not only unit grids. Flat and explicit part overrides also get coverage.
+residential multiple-reflex outline. Dimensions include residential wings.
+Flat and explicit part overrides also have coverage.
 
-For each validate indices, nonzero face areas, no duplicate faces/vertices,
+Each fixture validates indices, nonzero face areas, no duplicate faces/vertices,
 planarity, oriented edge/vertex manifoldness, no T-junctions, polygon projection
 coverage/overlap, a single perimeter, deterministic output, translation/rotation
 invariance, and equivalence after adding redundant collinear boundary vertices.
-Check expected part counts and geometric ridge/hip/valley presence as well as
+Checks cover expected part counts and geometric ridge/hip/valley presence as well as
 mesh metrics. Negative cases must raise unsupported without emitting a mesh.
 
-Run the existing 79-test suite. Blender smoke must call the real source-object
-entry and create all final mesh objects, use bmesh validation, UV unwrap and
-material assignment, exercise object transforms and gridded sources, save a
-reviewable .blend, and render representative L/T/U/oblique views for inspection.
-Numeric success alone is not completion. Record exact commands/results and
-remaining supported-domain limits in the README after implementation.
+The 79 optimizer/legacy tests cover the research path. Blender smoke calls the
+source-object entry, creates and validates the final meshes, unwraps UVs and
+assigns materials. It exercises object transforms and gridded sources, saves a
+reviewable .blend, and renders representative L/T/U/oblique views for inspection.
 
 ## Implemented numerical and deployment boundaries
 
@@ -176,9 +172,9 @@ degree-two export waypoints are removed only when all incident faces agree.
 The final Blender entry hides, but retains, the input footprint after successful
 import, including in renders. It makes no topology repairs. The standard mesh
 CLI delegates only for explicit `--roof-kind`; the paper-aligned default is
-unchanged. A local installer was executed successfully with the distro Blender's
-Python 3.13. Windows x64 wheels were verified on PyPI for 3.10–3.13, but Windows
-Blender itself was not available for execution in this Linux workspace.
+available. Windows x64 wheels support CPython 3.10–3.13.
+Blender execution is validated on Linux with Blender 4.3.2; CI covers the core and addon
+distribution on Windows/Linux with Python 3.11/3.13.
 
 The representative smoke renders include separately derived facade objects for
 context. Facades and render lights never enter the final roof mesh.
@@ -191,11 +187,11 @@ requires Object Mode, so no incomplete Edit Mode geometry/state is silently used
 
 ## Validated delivery
 
-The commands in the README were executed locally: 90 unit tests pass, including
-all 79 baseline tests. Blender 4.3.2 created, validated and UV-unwrapped all 16
+The validation suite contains 90 tests, including 79 optimizer/legacy tests.
+Blender 4.3.2 generates, validates and UV-unwraps all 16
 mandatory fixture meshes; transform, million-unit translation, gridded source
-and existing-CLI checks also pass. Invalid nonplanar input leaves the scene
-unchanged. Six final scenes were rendered and inspected: L, T, U, oblique L,
+and CLI checks pass. Invalid nonplanar input leaves the scene
+unchanged. Six rendered scenes cover L, T, U, oblique L,
 general quad and the residential four-part footprint.
 
 | Fixture | Parts | Final vertices | Final faces | Interior features |
@@ -225,20 +221,16 @@ representative scenes add separate walls/lights for visual review.
 
 ## Standalone addon delivery
 
-The canonical final-generation modules now live under `addon/roof_generator/core/`.
-The addon uses its own metric mesh projection and Blender output importer; it
-does not import the legacy SGA21 adapter or optimizer. Blender registration is
+The final-generation modules reside under `addon/roof_generator/core/`.
+The addon uses metric mesh projection and a Blender output importer. Registration is
 lazy so importing the geometry library outside Blender remains possible.
 The sidebar conversion operator exposes type/pitch/eave offset, colors and source
 visibility. Conversion is explicit and undoable, with no automatic handlers.
 The ZIP installer smoke exercises the actual registered operator on all 16
 fixtures, UV/material editability, transforms, failure without scene mutation,
-and disable/re-enable lifecycle. This is the requested conversion-button option;
-no live Geometry Nodes modifier is claimed.
+and disable/re-enable lifecycle.
 
-All original datasets, MATLAB/UI files and copied Fig.7 fixtures have been removed.
-The existing 79 optimizer/legacy regressions use a newly specified residential
-hip graph where input files are needed. Original source links remain in
-`reference/README.md` and the paper alignment guide. Own root commit metadata
-does not transfer ownership of SGA21-derived code; license scopes are explicit
-in `LICENSING.md`.
+Optimizer/legacy graph-input tests use the synthetic residential hip graph in
+`python/tests/fixtures/authored_hip/`. Source and research references are in
+`reference/README.md` and the paper alignment guide. Component licenses and
+conditions are defined in `LICENSING.md`.
