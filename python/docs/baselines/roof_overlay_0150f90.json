@@ -1,0 +1,261 @@
+{
+  "rectangle_gable": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "rectangle_hip": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "rectangle_shed": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "rotated_rectangle": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "parallelogram": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "trapezoid": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "general_convex_quad": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "orthogonal_L": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 1,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "orthogonal_T": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "orthogonal_U": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 2,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 6,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "rotated_L": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 7,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "oblique_L": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 10,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "unequal_width_join": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 2,
+    "difference_hole_areas": [
+      1.7026581967255483e-13,
+      1.7026579478785387e-13,
+      1.7026581967255483e-13
+    ],
+    "exposed_region_holes": 0
+  },
+  "terminating_ridge": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [
+      1.7405064730101396e-13,
+      1.7405064730101396e-13
+    ],
+    "exposed_region_holes": 0
+  },
+  "valley_join": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 0,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  },
+  "residential_multi_reflex": {
+    "completed_domains": [
+      {
+        "part": 0,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 1,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 2,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      },
+      {
+        "part": 3,
+        "geometry": "Polygon",
+        "nonconvex_area": 0.0
+      }
+    ],
+    "difference_multipolygons": 3,
+    "difference_hole_areas": [],
+    "exposed_region_holes": 0
+  }
+}
