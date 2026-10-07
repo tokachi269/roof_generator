@@ -8,7 +8,7 @@ Licenses apply by component as listed below. Full texts are available in
 | `addon/roof_generator/**` | **GPL-3.0-or-later**. Copyright tokachi269, 2026. |
 | `python/build_addon.py`, `python/blender_smoke_test_addon.py`, `python/tests/test_roof_acceptance.py`, `python/tests/fixtures/roof_acceptance.json` | **GPL-3.0-or-later**. Distribution and acceptance tooling. |
 | `python/tests/fixtures/authored_hip/**` | **GPL-3.0-or-later**. Synthetic hip-roof graph. |
-| `python/core/**`, `python/blender_adapter.py`, paper-aligned/legacy Python tooling and `python/tests/test_roof_core.py` | **CC BY-NC 4.0**. SGA21-derived research port and related tooling. |
+| `python/core/**`, `python/blender_adapter.py`, paper-aligned/legacy Python tooling and `python/tests/test_roof_core.py` | **CC BY-NC 4.0**. Research port based on Ren et al. (2021) and related tooling. |
 | Runtime dependencies | Their respective licenses in [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md). |
 
 ## GPL-3.0-or-later components
@@ -24,7 +24,7 @@ under the GPL. See the [full GPL text](LICENSES/GPL-3.0-or-later.txt).
 
 ## CC BY-NC 4.0 components
 
-The SGA21 research port implements primal/dual roof-graph processing,
+The roof-graph research port implements primal/dual graph processing,
 topology queries and planar embedding optimization in Python. It is an
 adaptation of the MATLAB implementation; its algorithm and implementation
 mapping is documented in [PAPER_ALIGNMENT.md](python/docs/PAPER_ALIGNMENT.md).
@@ -38,7 +38,7 @@ Attribution:
 
 - **Work:** [Intuitive and Efficient Roof Modeling for Reconstruction and Synthesis](https://arxiv.org/abs/2109.07683).
 - **Authors:** Jing Ren, Biao Zhang, Bojian Wu, Jianqiang Huang, Lubin Fan, Maks Ovsjanikov and Peter Wonka.
-- **Source:** [llorz/SGA21_roofOptimization](https://github.com/llorz/SGA21_roofOptimization), revision `e9bc3264b787a6cff41a6ed92e39a3e49f3a6e11`.
+- **Source:** [Reference implementation](https://github.com/llorz/SGA21_roofOptimization), revision `e9bc3264b787a6cff41a6ed92e39a3e49f3a6e11`.
 - **Source license and usage guidance:** [Project README](https://github.com/llorz/SGA21_roofOptimization/blob/e9bc3264b787a6cff41a6ed92e39a3e49f3a6e11/README.md).
 - **Adaptation:** Python graph parsing, primal/dual topology tools, SciPy BFGS optimization, research adapters and regression tests. Numerical differences are documented in the paper alignment guide.
 

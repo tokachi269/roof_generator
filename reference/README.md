@@ -1,6 +1,9 @@
 # References
 
-## SGA21
+## Intuitive and Efficient Roof Modeling for Reconstruction and Synthesis
+
+Ren et al. (2021), *ACM Transactions on Graphics*, 40(6).
+[DOI: 10.1145/3478513.3480494](https://doi.org/10.1145/3478513.3480494).
 
 - [Source repository](https://github.com/llorz/SGA21_roofOptimization)
 - [Source README, license and usage guidance](https://github.com/llorz/SGA21_roofOptimization/blob/e9bc3264b787a6cff41a6ed92e39a3e49f3a6e11/README.md)

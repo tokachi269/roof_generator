@@ -13,8 +13,8 @@ method. `roof_geometry`, `roof_parts`, `roof_planes`, `roof_connections` and
 The Blender mesh CLI selects this method with `--roof-kind`; its default
 requires an authored primal graph or explicit edge roles.
 `legacy_cell_preview` provides cell-based research comparisons.
-The boundaries below apply to the SGA21 optimizer and role/preview APIs.
-The final generator resides in the GPL addon; the SGA21-derived port is licensed
+The boundaries below apply to the paper-aligned optimizer and role/preview APIs.
+The final generator resides in the GPL addon; the research port is licensed
 under CC BY-NC 4.0 for noncommercial use. See [license scope](../../LICENSING.md).
 
 ## Verified Sources of Truth
@@ -76,10 +76,10 @@ under CC BY-NC 4.0 for noncommercial use. See [license scope](../../LICENSING.md
 	- When porting one, add its MATLAB anchor and a focused test in the same change.
 
 ## Current Non-Core Python Scope
-- [blender_adapter.py](../blender_adapter.py) is restricted to projection, validation, result packaging, and routing into explicitly requested pre-SGA21 topology generation for the narrow validated single-primitive edge-role cases and the preview-only residual cases (orthogonal flat decomposition and cell-based orthogonal gable generation).
+- [blender_adapter.py](../blender_adapter.py) is restricted to projection, validation, result packaging, and routing into explicitly requested pre-optimization topology generation for the narrow validated single-primitive edge-role cases and the preview-only residual cases (orthogonal flat decomposition and cell-based orthogonal gable generation).
 - [blender_generate_roof_from_mesh.py](../blender_generate_roof_from_mesh.py) and [blender_run_active_roof.py](../blender_run_active_roof.py) are Blender entry scripts, not paper topology generators.
 - Output mesh attributes such as `roof_role_i`, `roof_height`, `roof_group_i`, and `roof_region_i` are derived Blender-side convenience data for downstream tooling, not paper-native optimization semantics.
-- [core/roof_topology_generator.py](../core/roof_topology_generator.py) is kept solver-agnostic; the current SGA21-specific binding lives in [core/roof_topology_adapter.py](../core/roof_topology_adapter.py).
+- [core/roof_topology_generator.py](../core/roof_topology_generator.py) is kept solver-agnostic; the current paper-aligned binding lives in [core/roof_topology_adapter.py](../core/roof_topology_adapter.py).
 
 ## Verified Default Optimization Setup
 - MATLAB default path reference: [utils/construct_3D_roof_from_roof_graph.m](https://github.com/llorz/SGA21_roofOptimization/blob/e9bc3264b787a6cff41a6ed92e39a3e49f3a6e11/RoofOptimization/utils/construct_3D_roof_from_roof_graph.m).
@@ -108,15 +108,15 @@ under CC BY-NC 4.0 for noncommercial use. See [license scope](../../LICENSING.md
 ## What The Python Port Is Allowed To Do
 - Parse an explicit primal roof graph from `.verts/.faces` input.
 - Accept a planar Blender mesh only when that mesh already encodes a primal roof graph with interior roof vertices or ridges.
-- Accept an explicit boundary-edge role input on a single rectangle or oblique quad Blender outline and use a separate pre-SGA21 topology generator to construct a primal roof graph for the validated flat, gable, and shed cases.
-- Provide preview-only pre-SGA21 generation for residual orthogonal outlines in an outline-derived local frame (projected-axis alignment is not required): flat via rectangle decomposition, and gable via terminal-cap detection plus a conforming cell-based primal roof graph. Coplanar quads are retained and saddle sectors are triangulated. Both are explicitly requested preview conveniences, not paper semantics; an already-planar generated graph may bypass BFGS because the paper objective is already satisfied.
+- Accept an explicit boundary-edge role input on a single rectangle or oblique quad Blender outline and use a separate pre-optimization topology generator to construct a primal roof graph for the validated flat, gable, and shed cases.
+- Provide preview-only pre-optimization generation for residual orthogonal outlines in an outline-derived local frame (projected-axis alignment is not required): flat via rectangle decomposition, and gable via terminal-cap detection plus a conforming cell-based primal roof graph. Coplanar quads are retained and saddle sectors are triangulated. Both are explicitly requested preview conveniences, not paper semantics; an already-planar generated graph may bypass BFGS because the paper objective is already satisfied.
 - Reproduce the MATLAB optimization structure: choose roof vertices, build the optimization variables, and minimize the planarity metric plus any explicitly supported regularizer already present in the MATLAB code path.
 
 ## What The Python Port Must Not Do Without New Evidence
 - Infer roof topology automatically from a boundary-only polygon.
 - Map Blender-only editing flags to paper topology terms.
 - Introduce new topology labels or semantic edge roles that are not verified in the paper or MATLAB implementation.
-- Treat a convenience Blender entrance heuristic or a pre-SGA21 topology generator as if it were part of the paper method.
+- Treat a convenience Blender entrance heuristic or a pre-optimization topology generator as if it were part of the paper method.
 
 ## Required Change Checklist
 Before changing the Python or Blender implementation, verify all of the following.

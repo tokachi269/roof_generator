@@ -22,5 +22,5 @@ This addon is **GPL-3.0-or-later**. Commercial use is permitted under the GPL;
 distribution must satisfy its license and corresponding-source requirements.
 See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-Repository documentation: [English](https://github.com/tokachi269/SGA21_roofOptimization/blob/main/README.md)
-| [日本語](https://github.com/tokachi269/SGA21_roofOptimization/blob/main/README.ja.md).
+Repository documentation: [English](https://github.com/tokachi269/roof_generator/blob/main/README.md)
+| [日本語](https://github.com/tokachi269/roof_generator/blob/main/README.ja.md).

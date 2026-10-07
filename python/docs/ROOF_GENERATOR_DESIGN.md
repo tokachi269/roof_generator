@@ -10,7 +10,7 @@ Current routes:
 
 - Planar footprint → `addon/roof_generator/core` → RoofParts / roof-plane
   connections → validated mesh → Blender conversion operator.
-- Authored primal/dual graph → `roof_pipeline` / `roof_runner` → SGA21 BFGS →
+- Authored primal/dual graph → `roof_pipeline` / `roof_runner` → planarity BFGS →
   `blender_adapter.MeshSpec` → `blender_import_roof_result.create_mesh_object`.
 - Boundary roles → `roof_topology_generator` single rectangle/parallelogram →
   `roof_topology_adapter` → comparison meshes.
@@ -112,7 +112,7 @@ This is a documented roof interpretation, not recovery of an unknown real roof
 from footprint alone. Explicit part parameters permit other pitch/orientation
 choices. Reject connector arrangements that cannot produce a continuous surface.
 
-## Topology, mesh and SGA21 data flow
+## Topology, mesh and optimization data flow
 
 `Blender planar mesh → plane frame / boundary → normalized footprint → partition
 → RoofParts / adjacency → local plane patches → connected exposed patches
@@ -134,7 +134,7 @@ requires exactly one perimeter matching the footprint and two oppositely directe
 incidences per internal edge. This distinguishes intended eaves/gable ends from
 holes or nonmanifold junctions.
 
-The SGA21 layer optimizes the embedding of an authored roof graph. The footprint
+The research optimizer optimizes the embedding of an authored roof graph. The footprint
 generator creates planar faces directly. An optimization
 adapter can consume the determined graph, but may not choose topology or repair
 an invalid connector. The cell preview is a legacy research tool.

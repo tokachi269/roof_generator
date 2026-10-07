@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Final footprint-to-roof entry; independent of authored SGA21 optimization."""
+"""Generate a connected, validated roof mesh from a planar footprint."""
 
 from __future__ import annotations
 

@@ -31,7 +31,7 @@ and unsupported height-step connections produce an explicit error.
 | Component | License and conditions |
 | --- | --- |
 | Blender addon and footprint geometry | **GPL-3.0-or-later**. Commercial use is permitted under the GPL; distribution must satisfy its license and source requirements. |
-| SGA21-derived Python research port | **CC BY-NC 4.0**. Noncommercial use only, with attribution, a license link and an indication of modifications. |
+| Python research port ([Ren et al., 2021](https://arxiv.org/abs/2109.07683)) | **CC BY-NC 4.0**. Noncommercial use only, with attribution, a license link and an indication of modifications. |
 | Runtime dependencies | NumPy and Shapely: BSD-3-Clause; GEOS: LGPL-2.1. |
 
 See [LICENSING.md](LICENSING.md) for file scope, attribution and full license texts,
@@ -43,7 +43,7 @@ and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md) for depen
 | --- | --- |
 | [`addon/roof_generator/`](addon/roof_generator/) | Blender UI, footprint geometry and mesh output |
 | [`packages/`](packages/) | Installable addon ZIP |
-| [`python/`](python/README.md) | Build tools, tests, CLI and SGA21 research port |
+| [`python/`](python/README.md) | Build tools, tests, CLI and roof-graph research port |
 | [`python/docs/`](python/docs/) | Generator design and paper alignment |
 | [`reference/`](reference/README.md) | Source and research references |
 | `python/out/`, `dist/` | Generated validation and build artifacts |

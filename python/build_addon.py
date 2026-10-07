@@ -1,4 +1,4 @@
-"""Build a reproducible Blender addon ZIP, excluding optimizer/reference assets."""
+"""Build a reproducible Blender addon ZIP from package source."""
 
 import argparse
 import io

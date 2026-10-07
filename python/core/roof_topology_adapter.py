@@ -46,14 +46,14 @@ def solve_generated_roof_graph(
 
     outline_z_values = [roof_graph.z_hints.get(vertex_id, 0.0) for vertex_id in topology.outline_vertex_ids]
     if any(abs(z_value) > 1e-9 for z_value in outline_z_values):
-        raise UnsupportedTopologyError("current SGA21 adapter requires zero outline z hints")
+        raise UnsupportedTopologyError("planarity adapter requires zero outline z hints")
 
     roof_z_values = [roof_graph.z_hints.get(vertex_id) for vertex_id in topology.roof_vertex_ids]
     if any(z_value is None for z_value in roof_z_values):
-        raise UnsupportedTopologyError("current SGA21 adapter requires z hints for all roof vertices")
+        raise UnsupportedTopologyError("planarity adapter requires z hints for all roof vertices")
     roof_height = float(roof_z_values[0])
     if any(abs(float(z_value) - roof_height) > 1e-9 for z_value in roof_z_values[1:]):
-        raise UnsupportedTopologyError("current SGA21 adapter requires uniform roof-vertex z hints")
+        raise UnsupportedTopologyError("planarity adapter requires uniform roof-vertex z hints")
 
     if fixed_roof_vertex_id is None:
         fixed_candidates = tuple(sorted(vertex_id for vertex_id in topology.roof_vertex_ids if vertex_id in roof_graph.fixed_z_vertex_ids))

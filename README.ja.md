@@ -29,7 +29,7 @@ transformのApplyは不要です。
 | 対象 | ライセンスと条件 |
 | --- | --- |
 | Blender addon・footprint geometry | **GPL-3.0-or-later**。GPLの条件下で商用利用可能です。配布時はライセンスとソース提供に関する条件を満たす必要があります。 |
-| SGA21由来のPython研究用移植コード | **CC BY-NC 4.0**。非商用利用限定です。出典・ライセンスへのリンク・変更した旨の表示が必要です。 |
+| [Renら（2021）](https://arxiv.org/abs/2109.07683)の論文に基づくPython研究用移植コード | **CC BY-NC 4.0**。非商用利用限定です。出典・ライセンスへのリンク・変更した旨の表示が必要です。 |
 | 実行時の依存ライブラリ | NumPy・Shapely: BSD-3-Clause、GEOS: LGPL-2.1。 |
 
 ファイルごとの適用範囲・出典・ライセンス全文は [LICENSING.md](LICENSING.md)、
@@ -41,7 +41,7 @@ transformのApplyは不要です。
 | --- | --- |
 | [`addon/roof_generator/`](addon/roof_generator/) | Blender UI・footprint geometry・メッシュ出力 |
 | [`packages/`](packages/) | インストール用addon ZIP |
-| [`python/`](python/README.md) | build・tests・CLI・SGA21研究用移植コード |
+| [`python/`](python/README.md) | build・tests・CLI・屋根グラフの研究用移植コード |
 | [`python/docs/`](python/docs/) | generator設計・論文との対応関係 |
 | [`reference/`](reference/README.md) | ソース・研究への参照 |
 | `python/out/`、`dist/` | 検証結果・buildの生成物 |

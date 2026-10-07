@@ -1,4 +1,4 @@
-# Python development and SGA21 research port
+# Python development and roof-graph research port
 
 The Blender addon is documented in [the root README](../README.md).
 Its geometry source is `../addon/roof_generator/core/`, with mesh input and output
@@ -9,7 +9,8 @@ modules in the addon package. CLI conversion uses the same addon code.
 [LICENSING.md](../LICENSING.md) defines the file scope and conditions.
 The addon and its acceptance/build tooling are **GPL-3.0-or-later**, permitting
 commercial use under the GPL and subject to its distribution/source requirements.
-The SGA21-derived optimizer, topology port and research adapters are
+The research optimizer, topology port and adapters based on
+[Ren et al. (2021)](https://arxiv.org/abs/2109.07683) are
 **CC BY-NC 4.0**: noncommercial use only, with attribution, a license link and
 an indication of modifications.
 `tests/fixtures/authored_hip/` defines a synthetic hip-roof graph.
@@ -79,7 +80,7 @@ not register UI classes or require bpy until `register()` is invoked.
 `generate_roof` returns connected planar regions, RoofParts/adjacency/provenance,
 classified creases and a validated ordinary mesh. Part overrides remain available.
 
-## Noncommercial SGA21 optimizer CLI
+## Noncommercial research optimizer CLI
 
 ```bash
 python python/run_primal_roof.py python/tests/fixtures/authored_hip/sample --output python/out/authored_hip.json

@@ -9,7 +9,7 @@ bl_info = {
     "location": "View3D > Sidebar > Roof",
     "description": "Convert a planar footprint to an editable connected roof mesh",
     "category": "Object",
-    "doc_url": "https://github.com/tokachi269/SGA21_roofOptimization",
+    "doc_url": "https://github.com/tokachi269/roof_generator",
 }
 
 
