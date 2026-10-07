@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Install matching binary wheels locally, using a host Python with pip.
 
 python install_roof_dependencies.py --blender /path/to/blender

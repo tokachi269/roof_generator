@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 from __future__ import annotations
 
 from dataclasses import replace
@@ -9,7 +10,6 @@ import unittest
 import numpy as np
 from shapely.geometry import Polygon
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "addon"))
 
 from roof_generator.core.roof_building import generate_roof

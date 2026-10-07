@@ -6,23 +6,14 @@ The generator produces an editable planar roof surface from a simple footprint,
 including convex quadrilaterals and concave, oblique multi-part outlines.
 Roof types are flat, gable, hip and shed.
 
-Current routes:
+The addon conversion operator and footprint CLI both call
+`roof_generator.blender_output.generate_object`. It reads the planar mesh and
+calls `roof_generator.core.roof_building.generate_roof`, then exports its
+validated surface. Geometry has one implementation under `addon/roof_generator/core/`.
 
-- Planar footprint → `addon/roof_generator/core` → RoofParts / roof-plane
-  connections → validated mesh → Blender conversion operator.
-- Authored primal/dual graph → `roof_pipeline` / `roof_runner` → planarity BFGS →
-  `blender_adapter.MeshSpec` → `blender_import_roof_result.create_mesh_object`.
-- Boundary roles → `roof_topology_generator` single rectangle/parallelogram →
-  `roof_topology_adapter` → comparison meshes.
-- Preset preview → orthogonal frame → coordinate-level cells → greedy rectangles
-  → `build_orthogonal_gable_roof_graph` → comparison meshes. This is legacy only.
-
-The cell preview assigns zero to eave samples and the requested height to all
-other cell corners, midpoints and centers. Its internal edges are not intersections
-of roof planes. Triangles can hide incompatible slopes; the topology depends on
-coordinate levels, lacks a RoofPart adjacency/connection model, does not identify
-valleys/hips, and cannot generalize to oblique concave or tapered quads. It is
-available as a legacy research preview.
+Partitions follow footprint edge directions and reflex vertices. Ridge, hip and
+valley positions follow roof-plane intersections; architectural vertices are
+derived from this geometry. Tessellation only exports the determined topology.
 
 ## Research and decisions
 
@@ -112,7 +103,7 @@ This is a documented roof interpretation, not recovery of an unknown real roof
 from footprint alone. Explicit part parameters permit other pitch/orientation
 choices. Reject connector arrangements that cannot produce a continuous surface.
 
-## Topology, mesh and optimization data flow
+## Topology and mesh data flow
 
 `Blender planar mesh → plane frame / boundary → normalized footprint → partition
 → RoofParts / adjacency → local plane patches → connected exposed patches
@@ -134,10 +125,8 @@ requires exactly one perimeter matching the footprint and two oppositely directe
 incidences per internal edge. This distinguishes intended eaves/gable ends from
 holes or nonmanifold junctions.
 
-The research optimizer optimizes the embedding of an authored roof graph. The footprint
-generator creates planar faces directly. An optimization
-adapter can consume the determined graph, but may not choose topology or repair
-an invalid connector. The cell preview is a legacy research tool.
+The generator creates planar faces directly from affine roof planes and validates
+them before export.
 
 ## Acceptance validation
 
@@ -154,8 +143,8 @@ invariance, and equivalence after adding redundant collinear boundary vertices.
 Checks cover expected part counts and geometric ridge/hip/valley presence as well as
 mesh metrics. Negative cases must raise unsupported without emitting a mesh.
 
-The 79 optimizer/legacy tests cover the research path. Blender smoke calls the
-source-object entry, creates and validates the final meshes, unwraps UVs and
+Blender smoke calls the addon mesh API and the footprint CLI, creates and validates
+the final meshes, unwraps UVs and
 assigns materials. It exercises object transforms and gridded sources, saves a
 reviewable .blend, and renders representative L/T/U/oblique views for inspection.
 
@@ -170,9 +159,9 @@ come from incident roof planes; inconsistent heights fail validation. Straight
 degree-two export waypoints are removed only when all incident faces agree.
 
 The final Blender entry hides, but retains, the input footprint after successful
-import, including in renders. It makes no topology repairs. The standard mesh
-CLI delegates only for explicit `--roof-kind`; the paper-aligned default is
-available. Windows x64 wheels support CPython 3.10–3.13.
+import, including in renders. It makes no topology repairs. The footprint CLI
+uses the same conversion API with `--roof-type`, pitch and eave-height parameters.
+Windows x64 wheels support CPython 3.10–3.13.
 Blender execution is validated on Linux with Blender 4.3.2; CI covers the core and addon
 distribution on Windows/Linux with Python 3.11/3.13.
 
@@ -187,7 +176,8 @@ requires Object Mode, so no incomplete Edit Mode geometry/state is silently used
 
 ## Validated delivery
 
-The validation suite contains 90 tests, including 79 optimizer/legacy tests.
+The validation suite contains 11 acceptance tests covering the 16 fixtures,
+roof types, transforms, topology invariants and unsupported inputs.
 Blender 4.3.2 generates, validates and UV-unwraps all 16
 mandatory fixture meshes; transform, million-unit translation, gridded source
 and CLI checks pass. Invalid nonplanar input leaves the scene
@@ -230,7 +220,6 @@ The ZIP installer smoke exercises the actual registered operator on all 16
 fixtures, UV/material editability, transforms, failure without scene mutation,
 and disable/re-enable lifecycle.
 
-Optimizer/legacy graph-input tests use the synthetic residential hip graph in
-`python/tests/fixtures/authored_hip/`. Source and research references are in
-`reference/README.md` and the paper alignment guide. Component licenses and
-conditions are defined in `LICENSING.md`.
+Final-mesh inputs are defined in `python/tests/fixtures/roof_acceptance.json`.
+Source and research references are in `reference/README.md`. Project licenses
+and dependency conditions are defined in `LICENSING.md`.

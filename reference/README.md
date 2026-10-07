@@ -14,10 +14,10 @@ Ren et al. (2021), *ACM Transactions on Graphics*, 40(6).
 Authors: Jing Ren, Biao Zhang, Bojian Wu, Jianqiang Huang, Lubin Fan,
 Maks Ovsjanikov and Peter Wonka.
 
-The Python research port is licensed under **CC BY-NC 4.0** for noncommercial
-use with attribution. File scope and adaptation details are documented in
-[LICENSING.md](../LICENSING.md) and
-[PAPER_ALIGNMENT.md](../python/docs/PAPER_ALIGNMENT.md).
+The referenced implementation is licensed under **CC BY-NC 4.0**: noncommercial
+use only, with attribution, a license link and an indication of modifications.
+See the source README for its license and usage conditions, and the
+[CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
 
 ## Roof generation research
 

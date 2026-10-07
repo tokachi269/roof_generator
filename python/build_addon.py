@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Build a reproducible Blender addon ZIP from package source."""
 
 import argparse

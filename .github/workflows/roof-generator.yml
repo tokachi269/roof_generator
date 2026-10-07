@@ -2,9 +2,9 @@ name: Roof generator
 on:
   workflow_dispatch:
   push:
-    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSE', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
   pull_request:
-    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSE', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
 jobs:
   core-and-distribution:
     strategy:
@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install -r python/requirements.txt
-      - run: python -m unittest python.tests.test_roof_core python.tests.test_roof_acceptance
+      - run: python -m unittest discover -s python/tests
       - run: python python/build_addon.py --check --output packages/roof_generator-1.0.0.zip
       - run: python python/build_addon.py
       - uses: actions/upload-artifact@v4
@@ -46,8 +46,14 @@ jobs:
         env:
           BLENDER_USER_SCRIPTS: ${{ github.workspace }}/python/out/ci-addon-scripts
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip packages/roof_generator-1.0.0.zip
+      - name: Install source-addon dependency
+        run: python python/install_roof_dependencies.py --blender /tmp/roof-blender/blender
+      - name: Generate source meshes and exercise footprint CLI
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_roof.py -- --no-render --output-dir python/out/source-smoke
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: blender-addon-evidence
-          path: python/out/addon/
+          path: |
+            python/out/addon/
+            python/out/source-smoke/

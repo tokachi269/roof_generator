@@ -70,8 +70,7 @@ def generate_roof(
         decomposition = replace(decomposition, parts=parts)
         topology = connect(parts, footprint.polygon)
         mesh = tessellate(topology)
-        # Validation is mandatory before returning a mesh. No optimizer, preview
-        # fallback or Blender repair is allowed to mask a generator failure.
+        # Validate shared topology and planar surfaces before mesh export.
         validation = validate_mesh(mesh, footprint.polygon, tolerance=EPS * 20)
         world = RoofMesh(
             tuple(map(tuple, frame.lift(mesh.vertices))),

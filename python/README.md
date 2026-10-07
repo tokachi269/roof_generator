@@ -1,4 +1,4 @@
-# Python development and roof-graph research port
+# Python development
 
 The Blender addon is documented in [the root README](../README.md).
 Its geometry source is `../addon/roof_generator/core/`, with mesh input and output
@@ -7,13 +7,8 @@ modules in the addon package. CLI conversion uses the same addon code.
 ## Licenses
 
 [LICENSING.md](../LICENSING.md) defines the file scope and conditions.
-The addon and its acceptance/build tooling are **GPL-3.0-or-later**, permitting
+The source, CLI, tests and build tooling are **GPL-3.0-or-later**, permitting
 commercial use under the GPL and subject to its distribution/source requirements.
-The research optimizer, topology port and adapters based on
-[Ren et al. (2021)](https://arxiv.org/abs/2109.07683) are
-**CC BY-NC 4.0**: noncommercial use only, with attribution, a license link and
-an indication of modifications.
-`tests/fixtures/authored_hip/` defines a synthetic hip-roof graph.
 
 ## Core tests and build
 
@@ -21,7 +16,7 @@ Run from the repository root:
 
 ```bash
 python -m pip install -r python/requirements.txt
-python -m unittest python.tests.test_roof_core python.tests.test_roof_acceptance
+python -m unittest discover -s python/tests
 python python/build_addon.py
 ```
 
@@ -48,7 +43,7 @@ It saves `python/out/addon/addon_roofs.blend` and `report.json`. Use a disposabl
 Blender user profile when running the smoke. `BLENDER_USER_SCRIPTS` can isolate
 its installed-addon directory. It requires host Python with pip and network access
 for the explicit install-dependency test; pass `--host-python /path/to/python`.
-The source-object/render smoke also remains available:
+The source-object smoke validates the footprint CLI and renders representative roofs:
 
 ```bash
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_roof.py -- --output-dir python/out/acceptance
@@ -70,7 +65,7 @@ operation for the running Blender and its installed package path.
 ## Optional source CLI and core API
 
 ```bash
-blender building.blend --python python/blender_generate_roof_from_footprint.py -- --object-name Footprint --roof-kind gable --pitch 0.5
+blender building.blend --python python/blender_generate_roof_from_footprint.py -- --object-name Footprint --roof-type gable --pitch 0.5
 ```
 
 The geometry library also works outside Blender. Add `addon/` to your import path
@@ -80,13 +75,6 @@ not register UI classes or require bpy until `register()` is invoked.
 `generate_roof` returns connected planar regions, RoofParts/adjacency/provenance,
 classified creases and a validated ordinary mesh. Part overrides remain available.
 
-## Noncommercial research optimizer CLI
-
-```bash
-python python/run_primal_roof.py python/tests/fixtures/authored_hip/sample --output python/out/authored_hip.json
-```
-
-This optimizes the embedding of an explicitly specified roof graph. See
-[PAPER_ALIGNMENT.md](docs/PAPER_ALIGNMENT.md) for MATLAB anchors and approximation
-limits, and [ROOF_GENERATOR_DESIGN.md](docs/ROOF_GENERATOR_DESIGN.md) for the separate
-addon generator. Role/cell preview modules provide research comparisons.
+See [ROOF_GENERATOR_DESIGN.md](docs/ROOF_GENERATOR_DESIGN.md) for decomposition,
+plane connections, topology and acceptance validation, and
+[research references](../reference/README.md) for the source literature.

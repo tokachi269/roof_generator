@@ -10,7 +10,7 @@ import numpy as np
 from .mesh_frame import (
     MeshSpec,
     PlaneFrame,
-    project_planar_mesh_to_primal,
+    project_planar_mesh,
     lift_local_vertices_to_world,
 )
 from .core.roof_geometry import UnsupportedRoofError
@@ -37,7 +37,7 @@ def generate_footprint_mesh(
     mesh_origin=None,
 ):
     try:
-        xy, faces, frame = project_planar_mesh_to_primal(vertices, faces)
+        xy, faces, frame = project_planar_mesh(vertices, faces)
     except ValueError as exc:
         raise UnsupportedRoofError(str(exc)) from exc
     n = np.asarray(frame.axis_n)

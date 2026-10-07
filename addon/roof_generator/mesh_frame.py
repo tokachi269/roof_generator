@@ -23,7 +23,7 @@ class MeshSpec:
     face_int_attributes: dict = field(default_factory=dict)
 
 
-def project_planar_mesh_to_primal(vertices, faces, tolerance=1e-5):
+def project_planar_mesh(vertices, faces, tolerance=1e-5):
     points = np.asarray(vertices, dtype=float)
     if points.ndim != 2 or points.shape[1] != 3 or len(points) < 3:
         raise ValueError("footprint needs at least three finite 3D vertices")

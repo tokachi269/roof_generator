@@ -1,7 +1,8 @@
-"""Generate ONE editable final roof object from a filled planar footprint mesh.
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""Generate one editable roof object from a filled planar footprint mesh.
 
 Run in Blender's Text Editor (edit the constants) or use the CLI arguments.
-No cell preview, optimizer, comparison offsets or mesh repair are used.
+Uses the addon's validated roof generation and mesh output API.
 """
 
 from __future__ import annotations
@@ -12,15 +13,6 @@ from pathlib import Path
 import sys
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
-# Optional isolated wheel installation made by install_roof_dependencies.py.
-DEPENDENCIES = (
-    SCRIPT_DIR / ".roof-deps" / f"cp{sys.version_info.major}{sys.version_info.minor}"
-)
-if DEPENDENCIES.is_dir():
-    sys.path.insert(0, str(DEPENDENCIES))
-
 OBJECT_NAME = None
 ROOF_TYPE = "gable"
 PITCH = 0.5  # rise/run; tan(pitch angle)
@@ -31,7 +23,7 @@ DEBUG_PARTS = False
 ADDON_DIR = SCRIPT_DIR.parent / "addon"
 if str(ADDON_DIR) not in sys.path:
     sys.path.insert(0, str(ADDON_DIR))
-from roof_generator.blender_output import generate_object, FEATURE_CODES
+from roof_generator.blender_output import generate_object
 
 
 def main():
@@ -42,7 +34,7 @@ def main():
     parser.add_argument("--object-name", default=OBJECT_NAME)
     parser.add_argument("--mesh-name", default=None)
     parser.add_argument(
-        "--roof-kind", choices=["flat", "gable", "hip", "shed"], default=ROOF_TYPE
+        "--roof-type", choices=["flat", "gable", "hip", "shed"], default=ROOF_TYPE
     )
     parser.add_argument("--pitch", type=float, default=PITCH)
     parser.add_argument("--eave-height", type=float, default=EAVE_HEIGHT)
@@ -55,7 +47,7 @@ def main():
     )
     obj, result = generate_object(
         source,
-        roof_type=args.roof_kind,
+        roof_type=args.roof_type,
         pitch=args.pitch,
         eave_height=args.eave_height,
         mesh_name=args.mesh_name,

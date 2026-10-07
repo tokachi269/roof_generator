@@ -28,8 +28,7 @@ transformのApplyは不要です。
 
 | 対象 | ライセンスと条件 |
 | --- | --- |
-| Blender addon・footprint geometry | **GPL-3.0-or-later**。GPLの条件下で商用利用可能です。配布時はライセンスとソース提供に関する条件を満たす必要があります。 |
-| [Renら（2021）](https://arxiv.org/abs/2109.07683)の論文に基づくPython研究用移植コード | **CC BY-NC 4.0**。非商用利用限定です。出典・ライセンスへのリンク・変更した旨の表示が必要です。 |
+| Roof Generatorのソース・ツール・テスト | **GPL-3.0-or-later**。GPLの条件下で商用利用可能です。配布時はライセンスとソース提供に関する条件を満たす必要があります。 |
 | 実行時の依存ライブラリ | NumPy・Shapely: BSD-3-Clause、GEOS: LGPL-2.1。 |
 
 ファイルごとの適用範囲・出典・ライセンス全文は [LICENSING.md](LICENSING.md)、
@@ -41,8 +40,8 @@ transformのApplyは不要です。
 | --- | --- |
 | [`addon/roof_generator/`](addon/roof_generator/) | Blender UI・footprint geometry・メッシュ出力 |
 | [`packages/`](packages/) | インストール用addon ZIP |
-| [`python/`](python/README.md) | build・tests・CLI・屋根グラフの研究用移植コード |
-| [`python/docs/`](python/docs/) | generator設計・論文との対応関係 |
+| [`python/`](python/README.md) | build・tests・footprint CLI |
+| [`python/docs/`](python/docs/) | generator設計・先行研究との比較 |
 | [`reference/`](reference/README.md) | ソース・研究への参照 |
 | `python/out/`、`dist/` | 検証結果・buildの生成物 |
 
@@ -50,16 +49,16 @@ transformのApplyは不要です。
 
 ```bash
 python -m pip install -r python/requirements.txt
-python -m unittest python.tests.test_roof_core python.tests.test_roof_acceptance
+python -m unittest discover -s python/tests
 python python/build_addon.py
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
 ```
 
-検証対象は90件のテスト、最終メッシュまで生成する16ケース、4種別の屋根、
+検証対象は11件のacceptanceテスト、最終メッシュまで生成する16ケース、4種別の屋根、
 UV・マテリアル編集、transform、失敗時のscene不変、addonの登録処理です。
 L/T/U・非直交・住宅形状の代表ケースは、レンダリングでも確認しています。
 CIはWindows/LinuxのPython 3.11/3.13でcoreテストとZIPの一致確認を行い、
-LinuxのBlender 4.3.2でインストール済みaddonを検証します。
+LinuxのBlender 4.3.2でインストール済みaddonとfootprint CLIを検証します。
 Blenderの実行検証環境は現在Linuxです。
 
 詳細は [generator設計](python/docs/ROOF_GENERATOR_DESIGN.md) と

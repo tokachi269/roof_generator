@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Final mesh smoke, UV/material editability, saved scenes and review renders.
 
 blender -b --factory-startup --python-exit-code 1 --python <this script> -- --output-dir python/out/acceptance
@@ -6,21 +7,15 @@ blender -b --factory-startup --python-exit-code 1 --python <this script> -- --ou
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
 import json
-import math
 from pathlib import Path
 import sys
 import numpy as np
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
-DEPENDENCIES = (
-    SCRIPT_DIR / ".roof-deps" / f"cp{sys.version_info.major}{sys.version_info.minor}"
-)
-if DEPENDENCIES.is_dir():
-    sys.path.insert(0, str(DEPENDENCIES))
-from blender_generate_roof_from_footprint import generate_object
+sys.path.insert(0, str(SCRIPT_DIR.parent / "addon"))
+from roof_generator.blender_output import generate_object
 from roof_generator.core.roof_geometry import UnsupportedRoofError
 
 
@@ -272,13 +267,12 @@ def main():
         raise AssertionError("nonplanar source was accepted")
     assert set(bpy.data.objects) == before
     bpy.data.objects.remove(src, do_unlink=True)
-    # The same CLI entry used by existing users routes explicitly to final
-    # generation when --roof-kind is provided.
+    # Exercise the footprint CLI against an actual Blender mesh object.
     src = source_object(
         bpy, "cli_source", [(0, 0), (12, 0), (12, 6), (0, 6)], location=(160, 110, 4)
     )
     bpy.context.view_layer.objects.active = src
-    from blender_generate_roof_from_mesh import main as mesh_entry
+    from blender_generate_roof_from_footprint import main as footprint_entry
 
     saved = sys.argv[:]
     try:
@@ -287,16 +281,16 @@ def main():
             "--",
             "--object-name",
             src.name,
-            "--roof-kind",
+            "--roof-type",
             "hip",
             "--mesh-name",
             "cli_final_roof",
         ]
-        assert mesh_entry() == 0
+        assert footprint_entry() == 0
         validate_blender_object(bpy.data.objects["cli_final_roof"], (0, 0, 1))
     finally:
         sys.argv = saved
-    results.append({"name": "existing_cli_final_path", "status": "ok"})
+    results.append({"name": "footprint_cli", "status": "ok"})
     bpy.ops.wm.save_as_mainfile(filepath=str(out / "all_roofs.blend"))
     (out / "blender_report.json").write_text(json.dumps(results, indent=2) + "\n")
     if not args.no_render:

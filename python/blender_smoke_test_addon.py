@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Install the distribution ZIP and exercise the real conversion operator.
 
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
@@ -70,7 +71,6 @@ def main():
 
     installed = Path(roof_generator.__file__).resolve()
     assert "addons" in installed.parts
-    assert "core.roof_core" not in sys.modules
     prefs = bpy.context.preferences.addons["roof_generator"].preferences
     prefs.python_executable = args.host_python
     assert bpy.ops.roof_generator.install_dependency() == {"FINISHED"}
@@ -134,7 +134,6 @@ def main():
         assert "planar" in str(error)
     assert set(bpy.data.objects) == before
     bpy.data.objects.remove(invalid, do_unlink=True)
-    assert not any(name == "core" or name.startswith("core.") for name in sys.modules)
     bpy.ops.wm.save_as_mainfile(filepath=str(output / "addon_roofs.blend"))
     (output / "report.json").write_text(
         json.dumps(
@@ -144,7 +143,6 @@ def main():
                 "types": 4,
                 "transform": "ok",
                 "unsupported": "no scene mutation",
-                "legacy_imports": False,
             },
             indent=2,
         )
