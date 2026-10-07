@@ -116,7 +116,7 @@ class InstallDependency(bpy.types.Operator):
         except (OSError, subprocess.SubprocessError, ImportError, RuntimeError) as exc:
             self.report({"ERROR"}, str(exc))
             return {"CANCELLED"}
-        self.report({"INFO"}, "Shapely ready; select footprint and Generate roof")
+        self.report({"INFO"}, "Shapely ready; select footprints and Generate roofs")
         return {"FINISHED"}
 
 

@@ -5,11 +5,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cached_property
-from shapely.geometry import Polygon
 from .roof_features import RoofFeature
 from .roof_parts import RoofPart
 from .roof_planes import RoofPlane
 from .roof_graph import RoofGraph, build_graph
+from shapely.geometry import Polygon
 
 
 @dataclass(frozen=True)

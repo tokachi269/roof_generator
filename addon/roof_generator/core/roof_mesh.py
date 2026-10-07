@@ -6,7 +6,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from collections import defaultdict
 import numpy as np
-import shapely
 
 from .roof_geometry import (
     EPS,
@@ -14,8 +13,7 @@ from .roof_geometry import (
     clean_ring,
     polygon_pieces,
 )
-
-
+import shapely
 from .roof_features import classify_crease
 
 

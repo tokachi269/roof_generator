@@ -125,7 +125,7 @@ Recorded measurements: [baseline core](performance/core_9f96764.json),
 [current core](performance/core_3710561.json),
 [Blender individual roofs](performance/blender_3710561.json), and
 [city batches](performance/city_3710561.json). Current reports identify the clean
-measured code commit; later documentation commits do not change that code.
+measured code commit and the runtime versions.
 
 Reports record sample timings and the runtime versions. The city script also
 saves the two complete Blender scenes under `python/out/performance/`.

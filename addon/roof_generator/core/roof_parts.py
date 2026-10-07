@@ -7,8 +7,6 @@ from dataclasses import dataclass, replace
 from functools import lru_cache
 import itertools
 import numpy as np
-from shapely.geometry import Polygon, LineString
-from shapely.ops import unary_union
 
 from .roof_geometry import (
     EPS,
@@ -21,6 +19,8 @@ from .roof_geometry import (
     precise,
     inward_plane,
 )
+from shapely.geometry import Polygon, LineString
+from shapely.ops import unary_union
 
 from .roof_partition import partition_rings, partition_cost, cut_signature
 

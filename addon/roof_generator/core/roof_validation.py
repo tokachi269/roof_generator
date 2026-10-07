@@ -7,10 +7,9 @@ from collections import defaultdict, Counter
 from dataclasses import dataclass
 import itertools
 import numpy as np
+from .roof_geometry import UnsupportedRoofError
 from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
-
-from .roof_geometry import UnsupportedRoofError
 
 
 @dataclass(frozen=True)
