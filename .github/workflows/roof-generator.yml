@@ -1,9 +1,10 @@
 name: Roof generator
 on:
+  workflow_dispatch:
   push:
-    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.github/workflows/roof-generator.yml']
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
   pull_request:
-    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.github/workflows/roof-generator.yml']
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.gitattributes', '.github/workflows/roof-generator.yml']
 jobs:
   core-and-distribution:
     strategy:

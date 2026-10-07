@@ -4,4 +4,5 @@
 *.txt text eol=lf
 *.json text eol=lf
 *.yml text eol=lf
+LICENSE text eol=lf
 *.zip binary
