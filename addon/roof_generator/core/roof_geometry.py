@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 import math
 from pathlib import Path
 import sys
@@ -112,8 +113,29 @@ def clean_ring(points, eps=EPS):
     return tuple(tuple(float(y) for y in x) for x in p)
 
 
+@lru_cache(maxsize=4096)
+def polygon_ring(poly):
+    """Immutable normalized boundary facts, shared by geometric queries."""
+    return clean_ring(poly.exterior.coords)
+
+
+@lru_cache(maxsize=4096)
+def reflex_vertices(poly):
+    p = np.asarray(polygon_ring(poly))
+    return tuple(
+        i for i in range(len(p))
+        if cross(p[i] - p[i - 1], p[(i + 1) % len(p)] - p[i])
+        < -EPS * np.linalg.norm(p[i] - p[i - 1])
+    )
+
+
+def convex(poly):
+    return not reflex_vertices(poly)
+
+
+@lru_cache(maxsize=4096)
 def ring_key(poly):
-    points = clean_ring(poly.exterior.coords)
+    points = polygon_ring(poly)
     seq = tuple(tuple(round(v, 10) for v in p) for p in points)
     return min(seq[i:] + seq[:i] for i in range(len(seq)))
 
@@ -198,8 +220,9 @@ def normalize_footprint(vertices) -> Footprint:
     return Footprint(poly, tuple(source), Frame2D(tuple(p[ids[0]]), tuple(u), scale))
 
 
+@lru_cache(maxsize=4096)
 def properties(poly):
-    p = np.asarray(clean_ring(poly.exterior.coords))
+    p = np.asarray(polygon_ring(poly))
     edges = np.roll(p, -1, axis=0) - p
     dirs = edges / np.linalg.norm(edges, axis=1)[:, None]
     parallel = (
@@ -212,10 +235,7 @@ def properties(poly):
     rect = np.asarray(poly.minimum_rotated_rectangle.exterior.coords)[:4]
     lengths = np.linalg.norm(np.roll(rect, -1, axis=0) - rect, axis=1)
     return GeometryProperties(
-        all(
-            cross(edges[i - 1], edges[i]) >= -EPS * np.linalg.norm(edges[i - 1])
-            for i in range(len(p))
-        ),
+        convex(poly),
         parallel,
         bool(np.max(np.abs(np.sum(dirs * np.roll(dirs, -1, axis=0), axis=1))) <= EPS),
         float(max(lengths) / min(lengths)),

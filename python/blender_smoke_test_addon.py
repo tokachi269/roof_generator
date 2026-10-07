@@ -7,7 +7,6 @@ blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_
 import argparse
 import json
 from pathlib import Path
-import shutil
 import sys
 import bpy
 import bmesh
@@ -58,7 +57,7 @@ def main():
     argv = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
     parser = argparse.ArgumentParser()
     parser.add_argument("--zip", required=True)
-    parser.add_argument("--host-python", default=shutil.which("python3"))
+    parser.add_argument("--host-python", default="")
     parser.add_argument("--output-dir", default="python/out/addon")
     args = parser.parse_args(argv)
     output = Path(args.output_dir).resolve()

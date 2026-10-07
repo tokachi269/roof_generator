@@ -3,10 +3,10 @@
 
 from pathlib import Path
 import importlib.util
-import shutil
 import subprocess
 import sys
 import bpy
+from .dependencies import find_host_python
 from bpy.props import (
     BoolProperty,
     EnumProperty,
@@ -77,23 +77,16 @@ class InstallDependency(bpy.types.Operator):
     def execute(self, context):
         entry = context.preferences.addons.get(PACKAGE)
         selected = entry.preferences.python_executable if entry else ""
-        host = (
-            selected
-            or shutil.which("python3")
-            or shutil.which("python")
-            or shutil.which("py")
-        )
-        if not host or Path(host).resolve() == Path(bpy.app.binary_path).resolve():
-            self.report(
-                {"ERROR"}, "Set a host Python executable with pip in addon preferences"
-            )
-            return {"CANCELLED"}
         target = (
             Path(__file__).parent
             / ".roof-deps"
             / f"cp{sys.version_info.major}{sys.version_info.minor}"
         )
         try:
+            host = find_host_python(
+                bpy.path.abspath(selected) if selected else "",
+                blender_binary=bpy.app.binary_path,
+            )
             run = subprocess.run(
                 [
                     host,

@@ -15,6 +15,9 @@ NumPy is provided by Blender. To set up Shapely, open addon preferences and
 press **Install Shapely (Internet)**. This downloads a wheel matching Blender's
 CPython and installs it locally with its license files. Host Python with pip
 is required; set its executable in preferences if automatic detection fails.
+Automatic detection checks that each candidate can run pip, skipping unusable
+launchers such as Windows app execution aliases. An explicitly selected executable
+must pass the same check; failures report the selected path and pip error.
 
 ## License
 

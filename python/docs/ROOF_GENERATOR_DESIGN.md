@@ -72,6 +72,20 @@ raise unsupported if the bound is exhausted; do not fall back to greedy cells.
 Validate area coverage and disjoint interiors. Adjacency is positive-length shared
 boundary, including partial boundary overlaps, never a guessed nearest neighbor.
 
+Partitioning depends on the immutable normalized polygon, source-edge provenance,
+roof type and search limits. A bounded cache retains up to 256 such partitions.
+Pitch, eave height and explicit planes are applied from the current request;
+they do not trigger another partition search or reuse prior request parameters.
+Plane connections, mesh generation and validation still run for every request.
+
+Pure polygon facts (cleaned boundary, reflex vertices, cyclic signature and
+geometric properties) have bounded caches. Convexity queries do not compute a
+minimum-area bounding rectangle. Gable/shed searches reject triangle-producing
+cuts before full candidate validation. After solving one side of a cut, remaining
+part-count, aspect-ratio and cut-length lower bounds prune only branches that
+cannot improve the current lexicographic result. These optimizations retain the
+selection criteria and numerical tolerance; they do not simplify the footprint.
+
 ## Parametric roofs and connectors
 
 For a CCW edge, signed inward distance is affine. Hip uses all inward eave
