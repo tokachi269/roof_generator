@@ -27,6 +27,8 @@ def build(output, check=False):
                 date_time=(2020, 1, 1, 0, 0, 0),
             )
             item.compress_type = zipfile.ZIP_DEFLATED
+            # ZipInfo otherwise records the host OS (0 on Windows, 3 on Unix).
+            item.create_system = 3
             item.external_attr = 0o644 << 16
             archive.writestr(item, file.read_bytes())
     if check:
