@@ -2,11 +2,10 @@
 
 ## Scope and contract
 
-Milestone 1 observes the existing public `generate_roof` and Blender adapter.
-It does not change partition selection, roof support propagation, clipping,
-tessellation, validation, dependency installation or runtime imports. No new
-production abstraction or test-only state is introduced. The earlier uncommitted
-base-mesh Geometry Nodes feature is outside this milestone's commit.
+The harness observes the public `generate_roof` route and Blender output. It
+checks the indexed RoofGraph, affine embedding, final mesh and failure behavior.
+Independent analytic/topological proofs are primary; frozen semantic snapshots
+provide differential evidence across implementation changes.
 
 The preserved product contracts are: a finite simple planar footprint is
 normalized without turning oblique edges into orthogonal ones; its selected
@@ -73,7 +72,6 @@ From repository root, with the existing development requirements installed:
 python -m unittest discover -s python/tests -p test_roof_harness.py
 python python/roof_harness.py --reference python/tests/fixtures/roof_semantic_baseline.json
 python python/benchmark_roof.py --samples 11 --warmup 2 --profile python/out/harness/residential.pstats
-python python/audit_roof_overlay.py
 python -m unittest discover -s python/tests
 ```
 
@@ -87,7 +85,7 @@ Blender (use the actual installed executable):
 
 ```powershell
 blender -b --factory-startup --python-exit-code 1 --python python/blender_benchmark_roof.py -- --samples 11 --warmup 2
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip packages/roof_generator-1.0.0.zip --output-dir python/out/harness/addon
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip packages/roof_generator-1.1.0.zip --output-dir python/out/harness/addon
 ```
 
 The installed-addon smoke explicitly installs the existing dependency. Set
@@ -110,58 +108,29 @@ Profiler call counts are separate diagnostic evidence, never benchmark timings.
 
 Recorded reports are under [baselines/](baselines/). Absolute elapsed times are
 machine/run dependent; no speedup or 10ms goal is claimed by this milestone.
-The runtime graph remains:
+The current runtime is:
 
 ```text
-UI -> blender_output.generate_object -> mesh_input.generate_footprint_mesh
-  -> roof_building.generate_roof
+UI -> blender_output.generate_objects -> one evaluated-input snapshot
+  -> mesh_input.generate_footprint_mesh -> roof_building.generate_roof
      -> normalize_footprint
-     -> decompose -> recursive solve -> _candidate_cuts -> ray predicates/split
-     -> connect -> primitive/plane_patches -> clip/overlay -> region_features
-     -> tessellate -> boundary noding/welding/optional hole triangulation
-     -> validate_mesh -> topology/planarity + projection/perimeter overlay
+     -> decompose -> ring/chord search -> winning RoofParts/adjacency
+     -> connect -> support inequalities -> line intervals -> indexed RoofGraph
+     -> affine graph embedding -> n-gon/optional hole tessellation
+     -> validate_mesh -> topology/planarity + independent projection/perimeter checks
+  -> ordinary Blender mesh objects / UV / materials
 ```
 
-## Shapely classification and next boundary
+Candidate rings and support-line graphs use no polygon Boolean operations.
+Shapely remains for input validity, winning-part provenance/adjacency, independent
+mesh validation and constrained triangulation of holes. These checks remain
+active; a cache hit never bypasses the final validator.
 
-| Class | Existing responsibility | Assessment |
-| --- | --- | --- |
-| A: small geometry | signed area/cross, ring cleanup, convex/reflex, affine plane evaluation | Already self-computed; the input/return containers are still Shapely polygons. Extracting them again contributes little. |
-| A | normalized exterior provenance distance predicates; point-in-simple-polygon; ray/boundary hits; simple ring split at a known chord; convex half-plane clipping | Replaceable with small explicit numerical contracts. Current `clip` builds a half-plane polygon, then invokes generic intersection. Ray/split robustness near vertices and collinear boundaries needs differential coverage. |
-| B: algorithm/representation | recursive candidate `split` + union/symmetric-difference validation; part adjacency/source overlays | Use ordered rings and known chords/shared segments, preserving the current selection policy before attempting a different partition algorithm. |
-| B | completed support domains; all-pairs patch intersection/difference; by-plane union; continuity/features | Prefer convex pieces plus line/half-plane arrangements and shared topology. Do not build a general-purpose Boolean API. |
-| B | tessellation boundary unary_union noding and independent validation overlays; adapter source face union | Consume explicit shared planar topology and prove coverage/embedding with independent invariants. Validation must remain active throughout replacement. |
-| C: robust topology currently delegated to GEOS | disconnected intermediate visible regions, numerical slits, optional exposed holes and constrained hole triangulation | Existing representation needs robust handling, but the mandatory fixtures do **not** establish that a general Boolean engine is inherently necessary after a representation change. |
+Partition caches are keyed by normalized geometry, provenance, type and limits.
+Graph caches are keyed by geometry and relative plane constraints. Common
+positive vertical scaling and translation restore the current requested pitch,
+eave heights, explicit planes and part metadata. Invalid requests are checked
+before cache access. Different relative part constraints rebuild the graph.
 
-`audit_roof_overlay.py` observes all 16 mandatory fixtures. Every completed
-support domain in those cases is convex and no final exposed region has a hole.
-Intermediate `difference` returns MultiPolygons for L/U/rotated_L/oblique_L/
-unequal-width/residential cases. Unequal-width and terminating-ridge intermediate
-holes have normalized area about 1.7e-13: these are precision-sensitive artifacts,
-not evidence of intentional courtyard capability. Do not infer that hole export
-can be deleted: explicit plane/part overrides are broader than this audit, and
-the current tessellator has a real hole branch. Its necessity outside mandatory
-fixtures remains unproven. Retain it until the replacement has equivalent proof.
-
-The next most effective **cold-generation** boundary is `_candidate_cuts`: replace
-generic ray intersection/split with direct ray hits and splitting a simple ring
-at a known chord, while keeping the current recursive search/cost. The profile
-locates most decomposition time there. Risks: oblique rays, hits at vertices,
-collinear boundary overlap, winding/source identities, and slightly altered
-candidate endpoints changing the selected partition and ridge/valley layout.
-Primary topology/coverage proofs plus the entire semantic differential must
-guard that change. Merely minimizing rectangle count is insufficient.
-
-After that, `connect`'s visibility representation is the next runtime-removal
-boundary: it runs on every roof and dominates uncached downstream/warm work.
-Convex support domains in the observed cases make half-plane arrangements worth
-evaluating, but do not prove all accepted overrides will have convex domains.
-
-Milestone 2 is not implemented here: the cheap primitive owners already exist,
-and a cosmetic primitive extraction cannot remove the pervasive Polygon/
-overlay/noding/validation runtime dependency. The meaningful next cut spans
-candidate topology and its proof obligations; doing it as an unmeasured tiny
-primitive patch would conceal that scope. Milestone 3/connection redesign and
-runtime-dependency removal are deliberately not attempted. Shapely/GEOS, host
-pip installation UI and `.roof-deps` remain until all clean-install, acceptance,
-semantic, Blender and failure gates are satisfied.
+See [ROOF_GENERATOR_DESIGN.md](ROOF_GENERATOR_DESIGN.md) for the geometry contracts
+and [ROOF_PERFORMANCE.md](ROOF_PERFORMANCE.md) for current measured performance.

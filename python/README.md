@@ -22,17 +22,17 @@ python python/build_addon.py
 
 The ZIP contains the addon source, documentation and license text. Relative path
 ordering, timestamps and file metadata are fixed for reproducible Windows/Linux
-builds. The committed `packages/roof_generator-1.0.0.zip` must match the builder
+builds. The committed `packages/roof_generator-1.1.0.zip` must match the builder
 output. To refresh it:
 
 ```bash
-python python/build_addon.py --output packages/roof_generator-1.0.0.zip
+python python/build_addon.py --output packages/roof_generator-1.1.0.zip
 ```
 
 ## Actual installed-addon smoke
 
 ```bash
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.1.0.zip
 ```
 
 This installs the portable ZIP into Blender's user scripts, enables it, invokes
@@ -72,9 +72,25 @@ The geometry library also works outside Blender. Add `addon/` to your import pat
 and import `roof_generator.core.roof_building.generate_roof` and
 `roof_generator.core.roof_parts.RoofParameters`. Importing the addon package does
 not register UI classes or require bpy until `register()` is invoked.
-`generate_roof` returns connected planar regions, RoofParts/adjacency/provenance,
-classified creases and a validated ordinary mesh. Part overrides remain available.
+`generate_roof` returns the indexed XY RoofGraph, its constrained 3D embedding,
+RoofParts/adjacency/provenance, classified creases and a validated ordinary mesh. Part overrides remain available.
 
 See [ROOF_GENERATOR_DESIGN.md](docs/ROOF_GENERATOR_DESIGN.md) for decomposition,
 plane connections, topology and acceptance validation, and
 [research references](../reference/README.md) for the source literature.
+
+## Performance and city generation
+
+```bash
+python python/benchmark_roof.py --samples 11 --warmup 2
+python python/benchmark_city.py --buildings 1000
+blender -b --factory-startup --python-exit-code 1 --python python/benchmark_city.py -- --blender-objects --buildings 1000
+```
+
+The conversion button processes all selected footprint meshes in one batch.
+For scripted batches, pass `RoofRequest(source, RoofParameters(...))` instances
+to `roof_generator.blender_output.generate_objects`. Requests may have different
+roof types/pitches. The adapter evaluates inputs once and validates every roof
+before output. `generate_object` uses the same route for a single footprint.
+
+Measurements and limits: [ROOF_PERFORMANCE.md](docs/ROOF_PERFORMANCE.md).

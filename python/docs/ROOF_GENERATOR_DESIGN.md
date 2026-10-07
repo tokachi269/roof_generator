@@ -6,10 +6,12 @@ The generator produces an editable planar roof surface from a simple footprint,
 including convex quadrilaterals and concave, oblique multi-part outlines.
 Roof types are flat, gable, hip and shed.
 
-The addon conversion operator and footprint CLI both call
-`roof_generator.blender_output.generate_object`. It reads the planar mesh and
-calls `roof_generator.core.roof_building.generate_roof`, then exports its
-validated surface. Geometry has one implementation under `addon/roof_generator/core/`.
+The conversion operator sends selected footprints to
+`roof_generator.blender_output.generate_objects`. The single-object CLI uses
+`generate_object`, which delegates to the same batch route. It reads evaluated
+planar meshes once and calls `roof_generator.core.roof_building.generate_roof`
+for each input before exporting validated surfaces. Geometry has one
+implementation under `addon/roof_generator/core/`.
 
 Partitions follow footprint edge directions and reflex vertices. Ridge, hip and
 valley positions follow roof-plane intersections; architectural vertices are
@@ -18,7 +20,7 @@ derived from this geometry. Tessellation only exports the determined topology.
 ## Research and decisions
 
 The following comparison identifies the partition, primitive and connection
-choices used by the bounded plane-envelope method.
+choices used by the bounded roof-graph method.
 
 | Source | Partition / evaluation | Primitive / connection / ridge, hip, valley | Decision |
 | --- | --- | --- | --- |
@@ -29,14 +31,14 @@ choices used by the bounded plane-envelope method.
 | [twak/campskeleton](https://github.com/twak/campskeleton), [twak/siteplan](https://github.com/twak/siteplan) | Weighted skeleton / procedural plan and profile editing, not a minimal architectural-part partition solver. | Java robust event processing and direction planes; siteplan adds profile events and shell editing. | Apache-2.0. JVM/Maven and Java GUI/runtime requirements complicate Blender packaging, including Windows. |
 | [CGAL skeleton](https://doc.cgal.org/latest/Straight_skeleton_2/index.html), [partition](https://doc.cgal.org/latest/Partition_2/index.html) | Optimal convex partition or approximation (not constrained to architectural quads); inward edge events / positive weights. | Skeleton regions belong to source edges; event arcs lift onto roof planes. | Strong optional future backend. Full concave skeleton is not equivalent to a global minimum of infinite edge planes. Avoid silently approximating it that way. C++ bindings, ABI/builds and GPL/commercial package licensing need separate distribution work. |
 
-GEOS/Shapely is used for polygon split, overlay, union, noding and constrained
-triangulation. Shapely 2.1.2 has BSD licensing; its GEOS wheel libraries are LGPL
+GEOS/Shapely validates input/output geometry, records the winning partition's
+adjacency/provenance, and performs constrained triangulation for faces with holes. Shapely 2.1.2 has BSD licensing; its GEOS wheel libraries are LGPL
 and dynamically loaded. Windows x64 and Linux wheels are available for the
 supported CPython versions. `requirements-roof.txt` pins Shapely 2.1.2.
 The addon preferences and `install_roof_dependencies.py` use host Python with pip
 to install a wheel matching Blender's CPython under `.roof-deps/cpNNN`.
-GEOS handles polygon robustness; the generator implements bounded architectural
-selection and affine plane clipping.
+GEOS provides independent polygon validity/coverage checks. Part selection and
+roof graph construction use scalar ring, chord and line-interval calculations.
 
 ## Geometry and RoofPart
 
@@ -56,7 +58,9 @@ orthogonality and aspect ratio. There is no catch-all RESIDUAL primitive.
 
 At reflex vertices generate cuts from the original edge directions (both signs)
 and visible vertex diagonals. Shoot to the first boundary intersection and require
-an interior segment. Recursively enumerate valid splits until parts are convex
+an interior segment. Follow the two boundary arcs around a known chord using
+ordered coordinate tuples. Candidate exploration constructs no Polygon objects.
+Recursively enumerate these ring partitions until parts are convex
 triangles/quadrilaterals; gable requires quads, while flat/hip can use triangles.
 Select complete partitions lexicographically by:
 
@@ -69,14 +73,20 @@ Select complete partitions lexicographically by:
 No weighted sum. The optimum is among enumerated candidates, not a claim of the
 global minimum over every possible Steiner partition. Bound search complexity and
 raise unsupported if the bound is exhausted; do not fall back to greedy cells.
-Validate area coverage and disjoint interiors. Adjacency is positive-length shared
+Create polygons only for the winning rings, then validate their area coverage
+and disjoint interiors. Adjacency is positive-length shared
 boundary, including partial boundary overlaps, never a guessed nearest neighbor.
 
 Partitioning depends on the immutable normalized polygon, source-edge provenance,
 roof type and search limits. A bounded cache retains up to 256 such partitions.
 Pitch, eave height and explicit planes are applied from the current request;
 they do not trigger another partition search or reuse prior request parameters.
-Plane connections, mesh generation and validation still run for every request.
+The 2D graph has a separate bounded cache for roof shape. A common positive
+vertical scaling/translation preserves its XY topology, so uniform pitch and
+eave edits restore the requested face planes and embed the cached graph.
+Relative part pitches/heights, explicit planes, type and orientation participate
+in the shape key. Current parameters and source identities are always restored;
+full mesh validation runs on every request.
 
 Pure polygon facts (cleaned boundary, reflex vertices, cyclic signature and
 geometric properties) have bounded caches. Convexity queries do not compute a
@@ -104,14 +114,34 @@ physical eaves and lets a narrower roof terminate against the host's slope.
 Propagation through adjacency is to a fixed point. Keep partial exterior support
 edges; extensions are always clipped to the original building polygon.
 
-Compute each part's plane patches by affine inequalities. On overlapping domains,
-the exposed roof is the upper envelope of these lower-envelope solids, the roof
-analogue of a Boolean union. Remove concealed patches with polygon overlay using
-plane-plane equal-height lines. This produces valleys between crossing parts and
-hips/ridges within a part, without L/T/U generators. Coplanar patches are merged.
-Validate height continuity along every interior boundary. Incompatible requested
-height offsets, isolated vertical steps or connector configurations fail explicitly;
-we do not invent flashing/wall geometry or output an open broken surface.
+The exposed roof is the upper envelope of the parts' lower-envelope supports.
+Its graph is constructed directly in XY:
+
+1. Represent each solid's domain and active-face conditions as affine inequalities.
+2. Bound equal-height lines by the two active faces' domain/plane constraints.
+3. Intersect those line intervals with the footprint and subtract intervals where
+   another solid is higher. These are interval operations, not polygon Booleans.
+4. Include domain-transition lines to detect terminating roofs and height steps.
+5. Node surviving segments and exterior edges, share intersection vertices,
+   and walk angle-ordered halfedges to obtain face cycles.
+6. Remove construction edges separating the same plane and straight degree-two
+   waypoints. Keep all junctions and the face ownership/adjacency they determine.
+
+Each source edge carries its original footprint support line. Partial part edges
+use that same line, so near-collinear cleanup cannot create competing numerical
+eave lines. No L/T/U class or shape-dependent connection rule participates.
+
+`RoofGraph` stores XY vertices, outer/hole face cycles, associated face planes,
+owners and shared edges. It stays two-dimensional until `embed()` solves each
+vertex height from its incident affine face constraints. All incident heights
+must agree within tolerance. Unsupported height steps or inconsistent face
+cycles fail before Blender output. Requested pitch ratios/heights can affect the
+2D graph; topology is not claimed to be independent of those constraints.
+
+This direct embedding is sufficient for the four supported parametric roof
+families. Ren et al. (2021) optimizes an already specified graph when its embedding
+is unknown; no nonlinear planarity optimizer is required when the chosen support
+planes already determine a planar embedding.
 
 This is a documented roof interpretation, not recovery of an unknown real roof
 from footprint alone. Explicit part parameters permit other pitch/orientation
@@ -119,19 +149,18 @@ choices. Reject connector arrangements that cannot produce a continuous surface.
 
 ## Topology and mesh data flow
 
-`Blender planar mesh → plane frame / boundary → normalized footprint → partition
-→ RoofParts / adjacency → local plane patches → connected exposed patches
-→ RoofTopology (planar regions, loops, shared features) → mesh tessellation
-→ validated MeshSpec → one Blender mesh object`.
+`Blender planar mesh → plane frame / boundary → normalized ring → chord search
+→ RoofParts / adjacency / source support lines → 2D RoofGraph / face cycles
+→ affine 3D embedding → graph mesh export → mandatory validation
+→ one Blender mesh object per footprint`.
 
-Topology precedes triangulation. Ordinary simple planar regions become n-gons;
-regions with holes are tessellated separately using GEOS constrained Delaunay.
-`roof_features` classifies the connected region boundaries before tessellation.
-Node all resulting export boundaries and insert shared edge vertices before indexing.
-Weld only within numerical tolerance, reject unequal heights, classify shared
-crease edges by the adjacent planes (convex horizontal ridge / sloped hip;
-concave valley). Coplanar tessellation edges are not roof features. No debug lines,
-parts, caps or hidden faces are inserted into the final surface.
+The graph owns indexed connectivity; planar regions are derived from its cycles
+for analysis. Ordinary face cycles become n-gons directly. Faces with holes use
+GEOS constrained Delaunay only at mesh export. The exporter introduces no roof
+features or topology decisions. Creases are classified on shared graph edges by
+the incident planes: opposing/horizontal convex crease = ridge, other convex
+crease = hip, concave crease = valley. Coplanar tessellation edges have no roof
+feature. Debug lines, caps and hidden faces never enter the roof surface.
 
 A roof surface is a two-manifold **with one intentional perimeter boundary**.
 It is not a closed volume: no underside/building walls are requested. Validation
@@ -164,13 +193,12 @@ reviewable .blend, and renders representative L/T/U/oblique views for inspection
 
 ## Implemented numerical and deployment boundaries
 
-Intrinsic coordinates are divided by perimeter. Input/overlay arithmetic uses a
-`1e-11` precision grid; the final region overlay uses a common `2e-9` grid to
-collapse sub-tolerance slits before indexing. Vertex sharing uses four times that
-tolerance; mandatory validation bounds residuals at twenty times it. These are
-numerical precision allowances, not architectural scoring weights. Face heights
-come from incident roof planes; inconsistent heights fail validation. Straight
-degree-two export waypoints are removed only when all incident faces agree.
+Intrinsic coordinates are divided by perimeter. Input and winning-part arithmetic
+use a `1e-11` precision grid. Graph predicates use `2e-9` as numerical tolerance;
+node sharing uses four times it, and mandatory validation bounds residuals at
+twenty times it. These are numerical allowances, not architectural cost weights.
+Intersection nodes are shared before cycle construction. Heights come from
+incident support planes; inconsistent heights fail rather than being averaged.
 
 The final Blender entry hides, but retains, the input footprint after successful
 import, including in renders. It makes no topology repairs. The footprint CLI
@@ -190,7 +218,7 @@ requires Object Mode, so no incomplete Edit Mode geometry/state is silently used
 
 ## Validated delivery
 
-The validation suite contains 11 acceptance tests covering the 16 fixtures,
+The validation suite contains 30 tests covering the 16 fixtures,
 roof types, transforms, topology invariants and unsupported inputs.
 Blender 4.3.2 generates, validates and UV-unwraps all 16
 mandatory fixture meshes; transform, million-unit translation, gridded source
@@ -217,7 +245,7 @@ general quad and the residential four-part footprint.
 | valley_join | 2 | 10 | 4 | ridge: 2, hip: 2, valley: 1 |
 | residential_multi_reflex | 4 | 20 | 8 | ridge: 4, hip: 4, valley: 4 |
 
-Maximum measured float32 Blender face planarity error: `1.83e-07` world
+Maximum measured float32 Blender face planarity error: `4.25e-07` world
 units (smoke limit `2e-5`). Saved outputs are reproducible generated artifacts
 under ignored `python/out/acceptance`, not fixture-specific production
 geometry. `all_roofs.blend` holds the ordinary editable meshes; individual
@@ -228,7 +256,10 @@ representative scenes add separate walls/lights for visual review.
 The final-generation modules reside under `addon/roof_generator/core/`.
 The addon uses metric mesh projection and a Blender output importer. Registration is
 lazy so importing the geometry library outside Blender remains possible.
-The sidebar conversion operator exposes type/pitch/eave offset, colors and source
+The sidebar converts one or multiple selected footprints. A batch evaluates its
+inputs once and validates all requested roofs before changing the scene. Invalid
+input leaves object and visibility state unchanged. The operator exposes
+type/pitch/eave offset, colors and source
 visibility. Conversion is explicit and undoable, with no automatic handlers.
 The ZIP installer smoke exercises the actual registered operator on all 16
 fixtures, UV/material editability, transforms, failure without scene mutation,

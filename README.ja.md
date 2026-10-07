@@ -9,12 +9,14 @@ L/T/U型は複数のRoofPartを接続して生成します。屋根種別は
 
 ## インストールと使い方
 
-1. [`roof_generator-1.0.0.zip`](packages/roof_generator-1.0.0.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.1.0.zip`](packages/roof_generator-1.1.0.zip) を **Download raw file** で保存します。
 2. Blender 4.3以降の **Edit → Preferences → Add-ons → Install from Disk** でZIPを選び、**Roof Generator**を有効にします。
 3. Shapelyのセットアップが必要な場合、addon設定の **Install Shapely (Internet)** を押します。pipを使えるホストPythonが必要です。自動検出できなければ **Host Python with pip** に実行ファイルを指定します。
-4. Object Modeで、面が張られた平面footprintメッシュを選択します。
-5. 3D Viewのサイドバー（**N**）→ **Roof** で屋根種別・勾配・軒高offsetを設定し、**Generate roof** を押します。
+4. Object Modeで、面が張られた平面footprintメッシュを1つ以上選択します。
+5. 3D Viewのサイドバー（**N**）→ **Roof** で屋根種別・勾配・軒高offsetを設定し、**Generate roofs** を押します。
 
+選択したfootprintごとに1つの屋根objectを生成します。複数入力はまとめて評価し、
+対応外の入力があればsceneを変更する前にbatch全体を失敗させます。
 変換はUndoに対応し、入力オブジェクトを保持します。**Hide source footprint**で
 入力の表示を切り替えられます。出力はUVレイヤー・マテリアル・part/crease属性を持つ
 通常のメッシュで、編集やUV展開ができます。回転・移動・非一様scaleに対応し、
@@ -23,6 +25,13 @@ transformのApplyは不要です。
 生成するのは外周境界を持つ屋根表面です。建物の壁や屋根の厚みは別途モデリングします。
 穴付き・自己交差・非平面のfootprint、分解探索の上限超過、対応範囲外の垂直段差接続は、
 明示的なエラーになります。
+
+## 生成方式と速度
+
+境界の頂点列とcutでRoofPartを選び、支持線の拘束から2D RoofGraphを作り、
+そのface cycleを3Dへ埋め込みます。共通の勾配・軒高の変更ではgraphを再利用します。
+平面性・面の被覆・manifoldの検証は毎回実行します。
+初回・再生成・Blenderでの1,000棟の実測は [performance measurements](python/docs/ROOF_PERFORMANCE.md) を参照してください。
 
 ## ライセンス
 
@@ -51,10 +60,10 @@ transformのApplyは不要です。
 python -m pip install -r python/requirements.txt
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.1.0.zip
 ```
 
-検証対象は11件のacceptanceテスト、最終メッシュまで生成する16ケース、4種別の屋根、
+検証対象は30件のテスト、最終メッシュまで生成する16ケース、4種別の屋根、
 UV・マテリアル編集、transform、失敗時のscene不変、addonの登録処理です。
 L/T/U・非直交・住宅形状の代表ケースは、レンダリングでも確認しています。
 CIはWindows/LinuxのPython 3.11/3.13でcoreテストとZIPの一致確認を行い、

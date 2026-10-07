@@ -1,10 +1,10 @@
 # Roof Generator
 
 Install the ZIP as a Blender 4.3+ addon, enable **Roof Generator**, and open
-View3D → Sidebar → **Roof**. Select a filled planar footprint in Object Mode,
-choose Flat/Gable/Hip/Shed, pitch and eave offset, then press **Generate roof**.
+View3D → Sidebar → **Roof**. Select one or more filled planar footprints in Object Mode,
+choose Flat/Gable/Hip/Shed, pitch and eave offset, then press **Generate roofs**.
 
-The result is one editable roof surface with a UV layer, material and
+Each selected footprint produces one editable roof surface with a UV layer, material and
 crease/part attributes. The surface has a perimeter boundary; walls and roof
 thickness are separate modeling tasks. Source visibility is configurable,
 and conversion supports Undo.

@@ -7,9 +7,8 @@ from dataclasses import dataclass, replace
 from functools import lru_cache
 import itertools
 import numpy as np
-import shapely
-from shapely.geometry import Polygon, Point, LineString, MultiLineString
-from shapely.ops import split, unary_union
+from shapely.geometry import Polygon, LineString
+from shapely.ops import unary_union
 
 from .roof_geometry import (
     EPS,
@@ -17,14 +16,13 @@ from .roof_geometry import (
     Footprint,
     UnsupportedRoofError,
     polygon_ring,
-    reflex_vertices,
-    convex,
     ring_key,
     properties,
-    cross,
-    polygon_pieces,
     precise,
+    inward_plane,
 )
+
+from .roof_partition import partition_rings, partition_cost, cut_signature
 
 
 @dataclass(frozen=True)
@@ -43,6 +41,7 @@ class SourceEdge:
     footprint_edge: int
     original_edges: tuple[int, ...]
     segment: tuple[tuple[float, float], tuple[float, float]]
+    support_line: tuple[float, float, float]
 
 
 @dataclass(frozen=True)
@@ -85,120 +84,6 @@ def _line_pieces(geometry):
     return ()
 
 
-def _cut_signature(cut):
-    return tuple(sorted(tuple(round(float(x), 10) for x in p) for p in cut))
-
-
-def _partition_cost(polys, cuts, directions):
-    aspects = tuple(
-        sorted((round(properties(p).aspect_ratio, 8) for p in polys), reverse=True)
-    )
-    length = round(sum(np.linalg.norm(np.asarray(b) - a) for a, b in cuts), 10)
-    deviations = []
-    for a, b in cuts:
-        d = np.asarray(b) - a
-        d /= np.linalg.norm(d)
-        deviations.append(min(abs(cross(d, edge)) for edge in directions))
-    return (
-        len(polys),
-        aspects,
-        length,
-        round(sum(deviations), 10),
-        tuple(sorted(_cut_signature(c) for c in cuts)),
-        tuple(sorted(ring_key(p) for p in polys)),
-    )
-
-
-def _reflex_count(poly):
-    return len(reflex_vertices(poly))
-
-
-def _candidate_cuts(poly, directions, *, minimum_vertices=3):
-    p = np.asarray(polygon_ring(poly))
-    reflex = reflex_vertices(poly)
-    starts = reflex if reflex else list(range(len(p)))
-    cuts = {}
-    boundary = poly.boundary
-    interior = poly.buffer(EPS)
-    span = max(poly.bounds[2] - poly.bounds[0], poly.bounds[3] - poly.bounds[1])
-    for i in starts:
-        a = p[i]
-        triangle_edges = MultiLineString([
-            [p[(i + 1) % len(p)], p[(i + 2) % len(p)]],
-            [p[(i - 2) % len(p)], p[(i - 1) % len(p)]],
-        ]) if minimum_vertices == 4 else None
-        vectors = [sign * d for d in directions for sign in [-1, 1]]
-        vectors += [
-            p[j] - a
-            for j in range(len(p))
-            if j not in {i, (i - 1) % len(p), (i + 1) % len(p)}
-        ]
-        seen_directions = set()
-        for vector in vectors:
-            length = np.linalg.norm(vector)
-            if length <= EPS:
-                continue
-            direction = vector / length
-            # Repeated footprint edges and diagonals can produce exactly the
-            # same ray. Deduplicate before overlay/splitting, without merging
-            # nearly parallel directions or changing the candidate set.
-            key = tuple(direction)
-            if key in seen_directions:
-                continue
-            seen_directions.add(key)
-            if not poly.contains(Point(a + direction * EPS * 4)):
-                continue
-            ray = LineString([a, a + direction * span * 3])
-            hit = ray.intersection(boundary)
-            points = []
-            for g in shapely.get_parts(hit):
-                if g.geom_type == "Point":
-                    points.append(np.asarray(g.coords[0]))
-                elif g.geom_type == "LineString":
-                    points.extend(np.asarray(g.coords))
-            hits = [
-                (float(np.dot(x - a, direction)), x)
-                for x in points
-                if np.dot(x - a, direction) > EPS
-            ]
-            if not hits:
-                continue
-            _, b = min(hits, key=lambda x: x[0])
-            # A chord hitting either next-but-one boundary edge cuts off a
-            # triangle, which the gable/shed partition model rejects as a leaf.
-            if triangle_edges is not None and triangle_edges.covers(Point(b)):
-                continue
-            if not interior.covers(LineString([a, b])):
-                continue
-            cutter = LineString([a - direction * EPS * 4, b + direction * EPS * 4])
-            pieces = polygon_pieces(split(poly, cutter))
-            if len(pieces) != 2:
-                continue
-            rings = tuple(polygon_ring(piece) for piece in pieces)
-            if any(len(ring) < minimum_vertices for ring in rings):
-                continue
-            pieces = tuple(
-                precise(Polygon(ring)) for ring in rings
-            )
-            if any(
-                piece.geom_type != "Polygon"
-                or not piece.is_valid
-                or piece.area <= EPS**2
-                for piece in pieces
-            ):
-                continue
-            if reflex and sum(_reflex_count(piece) for piece in pieces) >= len(reflex):
-                continue
-            difference = unary_union(pieces).symmetric_difference(poly).area
-            if difference > EPS**2 * 100:
-                # Allow only overlay-scale error, not a footprint approximation.
-                if difference > GRID * 10:
-                    continue
-            key = _cut_signature((a, b))
-            cuts[key] = (tuple(map(tuple, (a, b))), pieces)
-    return tuple(cuts[key] for key in sorted(cuts))
-
-
 def decompose(
     footprint: Footprint,
     parameters=RoofParameters(),
@@ -233,90 +118,13 @@ def _partition(original, source_edges, roof_type, max_states, max_vertices):
         )
     edges = np.roll(p, -1, axis=0) - p
     directions = edges / np.linalg.norm(edges, axis=1)[:, None]
-    cache = {}
-    states = 0
-
-    @lru_cache(maxsize=4096)
-    def lower_bound(piece):
-        n = len(polygon_ring(piece))
-        if n == 3 and parameters.roof_type in {"gable", "shed"}:
-            return float("inf")
-        return (
-            1 if n <= 4 and convex(piece)
-            else max(2, (_reflex_count(piece) + 1) // 2 + 1)
-        )
-
-    def solve(poly):
-        nonlocal states
-        key = ring_key(poly)
-        if key in cache:
-            return cache[key]
-        states += 1
-        if states > max_states:
-            raise UnsupportedRoofError(
-                f"roof-part decomposition search exhausted {max_states} states"
-            )
-        vertices = polygon_ring(poly)
-        if len(vertices) <= 4 and convex(poly):
-            if len(vertices) == 3 and parameters.roof_type in {"gable", "shed"}:
-                cache[key] = None
-                return None
-            cache[key] = ((poly,), ())
-            return cache[key]
-        best, best_cost = None, None
-
-        candidates = _candidate_cuts(
-            poly,
-            directions,
-            minimum_vertices=4 if parameters.roof_type in {"gable", "shed"} else 3,
-        )
-        candidates = sorted(
-            candidates,
-            key=lambda c: (sum(lower_bound(x) for x in c[1]), _cut_signature(c[0])),
-        )
-        for cut, (a, b) in candidates:
-            bound = lower_bound(a) + lower_bound(b)
-            if not np.isfinite(bound) or (
-                best_cost is not None and bound > best_cost[0]
-            ):
-                continue
-            left = solve(a)
-            if left is None:
-                continue
-            if best_cost is not None:
-                minimum = len(left[0]) + lower_bound(b)
-                if minimum > best_cost[0]:
-                    continue
-                if minimum == best_cost[0]:
-                    # Every remaining part has aspect ratio >= 1 and every
-                    # remaining cut has nonnegative length. If even these
-                    # optimistic values lose, solving the right side cannot
-                    # improve the current lexicographic winner.
-                    known = _partition_cost(left[0], left[1] + (cut,), directions)
-                    aspects = tuple(sorted(
-                        known[1] + (1.0,) * int(lower_bound(b)), reverse=True,
-                    ))
-                    if aspects > best_cost[1] or (
-                        aspects == best_cost[1] and known[2] > best_cost[2]
-                    ):
-                        continue
-            right = solve(b)
-            if right is None:
-                continue
-            polys = left[0] + right[0]
-            cuts = left[1] + right[1] + (cut,)
-            cost = _partition_cost(polys, cuts, directions)
-            if best_cost is None or cost < best_cost:
-                best, best_cost = (polys, cuts), cost
-        cache[key] = best
-        return best
-
-    solution = solve(original)
-    if solution is None:
-        raise UnsupportedRoofError(
-            "no supported convex roof-part partition from footprint directions/reflex cuts"
-        )
-    polys, cuts = solution
+    rings, cuts, states = partition_rings(
+        polygon_ring(original),
+        tuple(tuple(float(v) for v in d) for d in directions),
+        parameters.roof_type,
+        max_states,
+    )
+    polys = tuple(precise(Polygon(ring)) for ring in rings)
 
     def canonical_polygon(poly):
         ring = polygon_ring(poly)
@@ -352,7 +160,11 @@ def _partition(original, source_edges, roof_type, max_states, max_vertices):
                     coords = tuple(map(tuple, line.coords))
                     part_sources.append(
                         SourceEdge(
-                            i, j, source_edges[j], (coords[0], coords[-1])
+                            i,
+                            j,
+                            source_edges[j],
+                            (coords[0], coords[-1]),
+                            inward_plane(p[j], p[(j + 1) % len(p)]),
                         )
                     )
         sources.append(tuple(part_sources))
@@ -372,7 +184,7 @@ def _partition(original, source_edges, roof_type, max_states, max_vertices):
     )
     return Decomposition(
         parts,
-        tuple(sorted(cuts, key=_cut_signature)),
-        _partition_cost(polys, cuts, directions),
+        tuple(sorted(cuts, key=cut_signature)),
+        partition_cost(tuple(polygon_ring(poly) for poly in polys), cuts, directions),
         states,
     )

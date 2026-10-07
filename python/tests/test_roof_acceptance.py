@@ -122,22 +122,23 @@ class RoofAcceptanceTests(unittest.TestCase):
         result = generate_roof([(0, 0), (8, 0), (2, 6)], RoofParameters("hip"))
         self.assertEqual(result.validation.features.get("hip"), 3)
         self.assertEqual(result.validation.features.get("ridge", 0), 0)
-        from roof_generator.core.roof_connections import RoofTopology, RoofRegion
+        from roof_generator.core.roof_connections import RoofTopology
+        from roof_generator.core.roof_graph import RoofGraph, GraphFace
         from roof_generator.core.roof_planes import RoofPlane
         from roof_generator.core.roof_mesh import tessellate
 
         outer = Polygon([(0, 0), (10, 0), (10, 10), (0, 10)])
-        inner = Polygon([(3, 3), (7, 3), (7, 7), (3, 7)])
         plane = RoofPlane((0.0, 0.0, 0.0), 0, None, 0.0)
-        topology = RoofTopology(
-            outer,
-            (),
+        graph = RoofGraph(
+            ((0, 0), (10, 0), (10, 10), (0, 10), (3, 3), (3, 7), (7, 7), (7, 3)),
             (
-                RoofRegion(outer.difference(inner), plane, (0,)),
-                RoofRegion(inner, plane, (0,)),
+                GraphFace((0, 1, 2, 3), ((4, 5, 6, 7),), plane, (0,)),
+                GraphFace((4, 7, 6, 5), (), plane, (0,)),
             ),
             (),
+            (),
         )
+        topology = RoofTopology(outer, (), graph, ())
         mesh = tessellate(topology)
         validate_mesh(mesh, outer)
         self.assertNotIn("ridge", mesh.edge_features.values())
@@ -260,6 +261,42 @@ class RoofAcceptanceTests(unittest.TestCase):
         self.assertTrue(result.roof.topology.features)
         # Roof semantics are present on topology before the tessellation layer.
         self.assertEqual({f.kind for f in result.roof.topology.features}, {"ridge"})
+
+    def test_graph_embedding_changes_heights_without_rebuilding_topology(self):
+        from roof_generator.core.roof_graph import _build_graph
+
+        p = next(
+            c["footprint"] for c in acceptance_cases() if c["name"] == "orthogonal_U"
+        )
+        first = generate_roof(p, RoofParameters(pitch=0.5))
+        before = _build_graph.cache_info().hits
+        second = generate_roof(p, RoofParameters(pitch=0.8, eave_height=2.0))
+        self.assertGreater(_build_graph.cache_info().hits, before)
+        self.assertEqual(first.topology.graph.vertices, second.topology.graph.vertices)
+        self.assertEqual(first.mesh.faces, second.mesh.faces)
+        np.testing.assert_allclose(
+            np.asarray(second.mesh.vertices)[:, 2],
+            np.asarray(first.mesh.vertices)[:, 2] * 1.6 + 2.0,
+        )
+        self.assertTrue(all(len(p) == 2 for p in second.topology.graph.vertices))
+        self.assertEqual(second.topology.graph.embed(), second.normalized_mesh.vertices)
+
+    def test_different_part_constraints_do_not_reuse_stale_embedding(self):
+        p = next(
+            c["footprint"] for c in acceptance_cases() if c["name"] == "orthogonal_T"
+        )
+        first = generate_roof(p)
+        changed = generate_roof(p, part_parameters={1: RoofParameters(pitch=0.8)})
+        self.assertNotEqual(first.mesh.vertices, changed.mesh.vertices)
+        for face in changed.topology.graph.faces:
+            for vertex in face.outer:
+                xy = changed.topology.graph.vertices[vertex]
+                z = changed.normalized_mesh.vertices[vertex][2]
+                self.assertAlmostEqual(z, face.plane.height(xy), places=7)
+        with self.assertRaises(UnsupportedRoofError):
+            generate_roof(
+                p, part_parameters={1: RoofParameters("flat", eave_height=10)}
+            )
 
     def test_validator_detects_corrupt_meshes(self):
         result = generate_roof(

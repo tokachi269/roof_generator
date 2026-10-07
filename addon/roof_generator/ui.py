@@ -122,9 +122,9 @@ class InstallDependency(bpy.types.Operator):
 
 class GenerateRoof(bpy.types.Operator):
     bl_idname = "roof_generator.generate"
-    bl_label = "Generate roof"
+    bl_label = "Generate roofs"
     bl_description = (
-        "Create one validated editable roof mesh from the selected planar footprint"
+        "Create one validated editable roof mesh per selected planar footprint"
     )
     bl_options = {"REGISTER", "UNDO"}
 
@@ -142,13 +142,25 @@ class GenerateRoof(bpy.types.Operator):
             return {"CANCELLED"}
         settings = context.scene.roof_generator
         try:
-            from .blender_output import generate_object
+            from .blender_output import generate_objects, RoofRequest
+            from .core.roof_parts import RoofParameters
 
-            obj, result = generate_object(
-                context.active_object,
-                roof_type=settings.roof_type,
-                pitch=settings.pitch,
-                eave_height=settings.eave_height,
+            sources = tuple(
+                sorted(
+                    (o for o in context.selected_objects if o.type == "MESH"),
+                    key=lambda o: o.name,
+                )
+            )
+            generated = generate_objects(
+                tuple(
+                    RoofRequest(
+                        source,
+                        RoofParameters(
+                            settings.roof_type, settings.pitch, settings.eave_height
+                        ),
+                    )
+                    for source in sources
+                ),
                 debug_parts=settings.debug_parts,
                 hide_source=settings.hide_source,
             )
@@ -157,7 +169,8 @@ class GenerateRoof(bpy.types.Operator):
             return {"CANCELLED"}
         self.report(
             {"INFO"},
-            f"{obj.name}: {len(result.roof.topology.parts)} parts, {len(obj.data.polygons)} planar faces",
+            f"{len(generated)} roofs: {sum(len(result.roof.topology.parts) for _, result in generated)} parts, "
+            f"{sum(len(obj.data.polygons) for obj, _ in generated)} planar faces",
         )
         return {"FINISHED"}
 

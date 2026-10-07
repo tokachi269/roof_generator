@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Install the distribution ZIP and exercise the real conversion operator.
 
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.1.0.zip
 """
 
 import argparse
@@ -122,9 +122,28 @@ def main():
     hint = np.linalg.inv(np.asarray(src.matrix_world)[:3, :3]).T @ [0, 0, 1]
     validate(obj, hint / np.linalg.norm(hint))
     assert max(abs(float(x)) for v in obj.data.vertices for x in v.co) < 100
+    batch_sources = [
+        source("batch_" + c["name"], c["footprint"], (i * 25, 180, 3.2))
+        for i, c in enumerate(fixtures[7:10] + [fixtures[11]])
+    ]
+    for src in batch_sources:
+        src.select_set(True)
+    assert bpy.ops.roof_generator.generate() == {"FINISHED"}
+    batch_outputs = tuple(bpy.context.selected_objects)
+    assert len(batch_outputs) == 4
+    assert (
+        all(src.hide_get() and src.hide_render for src in batch_sources)
+        == settings.hide_source
+    )
+    for obj in batch_outputs:
+        validate(obj)
     invalid = source("invalid", [(0, 0), (12, 0), (12, 6), (0, 6)])
     invalid.data.vertices[1].co.z = 2
     bpy.context.view_layer.update()
+    valid = source("a_batch_valid", [(0, 0), (12, 0), (12, 6), (0, 6)])
+    invalid.name = "z_batch_invalid"
+    invalid.select_set(True)
+    initial_visibility = [(obj.hide_get(), obj.hide_render) for obj in (valid, invalid)]
     before = set(bpy.data.objects)
     try:
         status = bpy.ops.roof_generator.generate()
@@ -132,6 +151,10 @@ def main():
     except RuntimeError as error:
         assert "planar" in str(error)
     assert set(bpy.data.objects) == before
+    assert initial_visibility == [
+        (obj.hide_get(), obj.hide_render) for obj in (valid, invalid)
+    ]
+    bpy.data.objects.remove(valid, do_unlink=True)
     bpy.data.objects.remove(invalid, do_unlink=True)
     bpy.ops.wm.save_as_mainfile(filepath=str(output / "addon_roofs.blend"))
     (output / "report.json").write_text(
@@ -140,6 +163,7 @@ def main():
                 "installed_addon": str(installed),
                 "fixtures": rows,
                 "types": 4,
+                "batch_roofs": 4,
                 "transform": "ok",
                 "unsupported": "no scene mutation",
             },

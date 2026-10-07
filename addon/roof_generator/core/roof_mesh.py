@@ -5,19 +5,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from collections import defaultdict
-import itertools
 import numpy as np
 import shapely
-from shapely.geometry import LineString
-from shapely.ops import unary_union
 
 from .roof_geometry import (
     EPS,
     UnsupportedRoofError,
     clean_ring,
     polygon_pieces,
-    precise,
-    ring_key,
 )
 
 
@@ -37,114 +32,41 @@ WELD = EPS * 4
 
 
 def tessellate(topology) -> RoofMesh:
-    surfaces = []
-    for region in topology.regions:
-        if region.polygon.interiors:
-            # Holes belong to the topology; constrained triangulation is solely
-            # a mesh export choice. Unconstrained Delaunay would bridge holes.
-            polygons = polygon_pieces(
-                shapely.constrained_delaunay_triangles(region.polygon)
-            )
-        else:
-            polygons = (region.polygon,)
-        for poly in sorted(polygons, key=ring_key):
-            surfaces.append((clean_ring(poly.exterior.coords, eps=WELD), region))
-    if not surfaces:
-        raise UnsupportedRoofError("roof topology contains no exposed surface")
-    # GEOS nodes all boundary crossings. Then weld only at tolerance and insert
-    # these shared points on every incident edge, including T-junctions from
-    # independent polygon clipping or constrained triangle export.
-    boundary = unary_union(
-        [precise(LineString(list(ring) + [ring[0]])) for ring, _ in surfaces]
-    )
-    points = np.asarray(shapely.get_coordinates(boundary))
-    points = np.vstack([points, np.asarray([p for ring, _ in surfaces for p in ring])])
-    points = sorted(set(map(tuple, points)))
-    unique = []
-    buckets = defaultdict(list)
-    for point in points:
-        cell = tuple(int(np.floor(x / WELD)) for x in point)
-        near = [
-            i
-            for delta in itertools.product([-1, 0, 1], repeat=2)
-            for i in buckets.get((cell[0] + delta[0], cell[1] + delta[1]), ())
-            if np.linalg.norm(np.asarray(unique[i]) - point) <= WELD
-        ]
-        if not near:
-            buckets[cell].append(len(unique))
-            unique.append(point)
-    xy = np.asarray(unique)
+    graph = topology.graph
+    vertices = graph.embed()
     faces, regions = [], []
-    for ring, region in surfaces:
-        face = []
-        for a, b in zip(ring, ring[1:] + ring[:1]):
-            a, b = np.asarray(a), np.asarray(b)
-            vector = b - a
-            length2 = np.dot(vector, vector)
-            if length2 <= EPS**2:
-                raise UnsupportedRoofError(
-                    "roof region has a tolerance-degenerate edge"
-                )
-            t = (xy - a) @ vector / length2
-            distances = np.linalg.norm((xy - a) - t[:, None] * vector, axis=1)
-            ids = np.nonzero(
-                (distances <= WELD)
-                & (t >= -WELD / np.sqrt(length2))
-                & (t < 1 - WELD / np.sqrt(length2))
-            )[0]
-            ids = sorted(ids, key=lambda i: (t[i], i))
-            for i in ids:
-                if not face or face[-1] != i:
-                    face.append(int(i))
-        if len(face) > 1 and face[0] == face[-1]:
-            face.pop()
-        if len(face) < 3 or len(set(face)) != len(face):
-            raise UnsupportedRoofError(
-                "roof region collapses during numerical vertex sharing"
+    for region in graph.faces:
+        if region.holes:
+            from shapely.geometry import Polygon
+
+            polygon = Polygon(
+                [graph.vertices[i] for i in region.outer],
+                [[graph.vertices[i] for i in hole] for hole in region.holes],
             )
-        start = min(range(len(face)), key=lambda i: face[i])
-        faces.append(tuple(face[start:] + face[:start]))
-        regions.append(region)
-    # Remove numerical waypoints on straight edges only when every incident
-    # face uses the same two neighbors. A ridge endpoint / junction has higher
-    # valence and is never removed by this operation.
-    neighbors = defaultdict(set)
-    for face in faces:
-        for a, b in zip(face, face[1:] + face[:1]):
-            neighbors[a].add(b)
-            neighbors[b].add(a)
-    removable = set()
-    for i, adjacent in neighbors.items():
-        if len(adjacent) != 2:
-            continue
-        a, b = sorted(adjacent)
-        vector = xy[b] - xy[a]
-        length2 = np.dot(vector, vector)
-        if length2 <= WELD**2:
-            continue
-        t = float(np.dot(xy[i] - xy[a], vector) / length2)
-        if 0 < t < 1 and np.linalg.norm(xy[i] - xy[a] - t * vector) <= WELD:
-            removable.add(i)
-    faces = [tuple(i for i in face if i not in removable) for face in faces]
-    if any(len(face) < 3 for face in faces):
-        raise UnsupportedRoofError("roof face collapses below numerical tolerance")
-    heights = defaultdict(list)
-    for face, region in zip(faces, regions):
-        for i in face:
-            heights[i].append(region.plane.height(xy[i]))
-    used = sorted(heights)
-    mapping = {old: new for new, old in enumerate(used)}
-    vertices = []
-    for i in used:
-        h = heights[i]
-        if max(h) - min(h) > EPS * 20:
-            raise UnsupportedRoofError(
-                "unequal roof plane heights at a shared intersection vertex"
-            )
-        # The chosen point lies on the first incident plane; other incident
-        # planes must agree within numerical tolerance, checked again below.
-        vertices.append((float(xy[i, 0]), float(xy[i, 1]), float(h[0])))
-    faces = [tuple(mapping[i] for i in face) for face in faces]
+            polygons = polygon_pieces(shapely.constrained_delaunay_triangles(polygon))
+            loops = []
+            for triangle in polygons:
+                loop = []
+                for p in clean_ring(triangle.exterior.coords):
+                    hits = [
+                        i
+                        for i, q in enumerate(graph.vertices)
+                        if np.linalg.norm(np.asarray(p) - q) <= WELD
+                    ]
+                    if len(hits) != 1:
+                        raise UnsupportedRoofError(
+                            "tessellation vertex is not a unique roof graph node"
+                        )
+                    loop.append(hits[0])
+                loops.append(tuple(loop))
+        else:
+            loops = (region.outer,)
+        for loop in loops:
+            if len(loop) < 3 or len(set(loop)) != len(loop):
+                raise UnsupportedRoofError("invalid roof graph face loop")
+            start = min(range(len(loop)), key=lambda i: loop[i])
+            faces.append(loop[start:] + loop[:start])
+            regions.append(region)
     order = sorted(range(len(faces)), key=lambda i: faces[i])
     faces = tuple(faces[i] for i in order)
     regions = [regions[i] for i in order]
@@ -162,7 +84,7 @@ def tessellate(topology) -> RoofMesh:
             kind = classify_crease(
                 regions[i].plane,
                 regions[j].plane,
-                (vertices[a][:2], vertices[b][:2]),
+                (graph.vertices[a], graph.vertices[b]),
                 topology.parts,
             )
             if kind is not None:
@@ -170,5 +92,5 @@ def tessellate(topology) -> RoofMesh:
         else:
             raise UnsupportedRoofError("more than two faces meet on a roof edge")
     return RoofMesh(
-        tuple(vertices), faces, tuple(region.part_ids for region in regions), features
+        vertices, faces, tuple(region.part_ids for region in regions), features
     )

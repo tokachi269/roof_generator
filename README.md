@@ -10,13 +10,15 @@ ridges, hips and valleys follow roof-plane intersections.
 
 ## Installation and use
 
-1. Download [`roof_generator-1.0.0.zip`](packages/roof_generator-1.0.0.zip) using **Download raw file**.
+1. Download [`roof_generator-1.1.0.zip`](packages/roof_generator-1.1.0.zip) using **Download raw file**.
 2. In Blender 4.3+, open **Edit → Preferences → Add-ons → Install from Disk**, select the ZIP and enable **Roof Generator**.
 3. In addon preferences, use **Install Shapely (Internet)** to set up Shapely when needed. This requires host Python with pip. Set **Host Python with pip** to its executable if automatic detection fails.
-4. In Object Mode, select a filled, planar footprint mesh.
-5. Open the 3D View sidebar (**N**) → **Roof**, choose the roof type, pitch and eave offset, then press **Generate roof**.
+4. In Object Mode, select one or more filled, planar footprint meshes.
+5. Open the 3D View sidebar (**N**) → **Roof**, choose the roof type, pitch and eave offset, then press **Generate roofs**.
 
-Conversion supports Undo and preserves the input object. **Hide source footprint**
+Each selected footprint produces one roof object. Batch conversion evaluates the
+inputs together; unsupported input fails the batch before changing the scene.
+Conversion supports Undo and preserves the input objects. **Hide source footprint**
 controls its visibility. The output is an ordinary mesh with a UV layer, material
 and part/crease attributes, ready for editing and UV unwrapping. Object rotation,
 translation and nonuniform scale are supported without applying transforms.
@@ -25,6 +27,14 @@ The generated mesh is a roof surface with an intentional perimeter boundary.
 Building walls and roof thickness are separate modeling tasks. Holes,
 self-intersecting or nonplanar footprints, exhausted decomposition searches,
 and unsupported height-step connections produce an explicit error.
+
+## Generation and performance
+
+The generator selects part boundaries as ordered rings and chords, builds a 2D
+RoofGraph from support-line constraints, and embeds its face cycles in 3D. Common
+pitch/eave changes reuse the graph. Face planarity, coverage and manifold checks
+run on every result. See the [performance measurements](python/docs/ROOF_PERFORMANCE.md)
+for first-build, edit and 1,000-building Blender timings.
 
 ## Licenses
 
@@ -53,10 +63,10 @@ and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md) for depen
 python -m pip install -r python/requirements.txt
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.1.0.zip
 ```
 
-Validation covers 11 acceptance tests, 16 final-mesh scenarios, all four roof
+Validation covers 30 tests, 16 final-mesh scenarios, all four roof
 types, UV/material editing, object transforms, failure without scene mutation,
 and addon registration. Representative L/T/U, oblique and residential roofs
 are also rendered for visual inspection. CI runs core tests and ZIP checks on

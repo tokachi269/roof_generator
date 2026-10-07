@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Metric polygon operations for the roof generator (GEOS owns overlay/noding)."""
+"""Footprint normalization, scalar geometry facts and independent polygon checks."""
 
 from __future__ import annotations
 
@@ -24,8 +24,6 @@ try:
         Polygon,
         MultiPolygon,
         GeometryCollection,
-        Point,
-        LineString,
     )
 
     if not hasattr(shapely, "orient_polygons") or not hasattr(
@@ -93,24 +91,34 @@ def signed_area(points):
 
 
 def clean_ring(points, eps=EPS):
-    p = [np.asarray(x, dtype=float) for x in points]
-    if len(p) > 1 and np.linalg.norm(p[0] - p[-1]) <= eps:
+    # Rings are small ordered coordinate sequences, not bulk numeric arrays.
+    # Scalar arithmetic avoids constructing arrays for every vertex predicate.
+    p = [(float(x[0]), float(x[1])) for x in points]
+    if len(p) > 1 and math.hypot(p[0][0] - p[-1][0], p[0][1] - p[-1][1]) <= eps:
         p.pop()
     while len(p) > 3:
         removed = False
-        for i in range(len(p)):
-            a, b = p[i] - p[i - 1], p[(i + 1) % len(p)] - p[i]
-            if np.linalg.norm(a) <= eps or (
-                abs(cross(a, b)) <= eps * np.linalg.norm(a) and np.dot(a, b) >= 0
+        for i, point in enumerate(p):
+            prev, nxt = p[i - 1], p[(i + 1) % len(p)]
+            ax, ay = point[0] - prev[0], point[1] - prev[1]
+            bx, by = nxt[0] - point[0], nxt[1] - point[1]
+            length = math.hypot(ax, ay)
+            if length <= eps or (
+                abs(ax * by - ay * bx) <= eps * length and ax * bx + ay * by >= 0
             ):
                 p.pop(i)
                 removed = True
                 break
         if not removed:
             break
-    if signed_area(p) < 0:
+    ox, oy = p[0]
+    area = sum(
+        (a[0] - ox) * (b[1] - oy) - (a[1] - oy) * (b[0] - ox)
+        for a, b in zip(p, p[1:] + p[:1])
+    )
+    if area < 0:
         p.reverse()
-    return tuple(tuple(float(y) for y in x) for x in p)
+    return tuple(p)
 
 
 @lru_cache(maxsize=4096)
@@ -121,12 +129,15 @@ def polygon_ring(poly):
 
 @lru_cache(maxsize=4096)
 def reflex_vertices(poly):
-    p = np.asarray(polygon_ring(poly))
-    return tuple(
-        i for i in range(len(p))
-        if cross(p[i] - p[i - 1], p[(i + 1) % len(p)] - p[i])
-        < -EPS * np.linalg.norm(p[i] - p[i - 1])
-    )
+    p = polygon_ring(poly)
+    result = []
+    for i, point in enumerate(p):
+        prev, nxt = p[i - 1], p[(i + 1) % len(p)]
+        ax, ay = point[0] - prev[0], point[1] - prev[1]
+        bx, by = nxt[0] - point[0], nxt[1] - point[1]
+        if ax * by - ay * bx < -EPS * math.hypot(ax, ay):
+            result.append(i)
+    return tuple(result)
 
 
 def convex(poly):
@@ -205,19 +216,35 @@ def normalize_footprint(vertices) -> Footprint:
     originals_local = (
         np.column_stack(((p - p[ids[0]]) @ u, (p - p[ids[0]]) @ v)) / scale
     )
-    source = []
-    for a, b in zip(local, np.roll(local, -1, axis=0)):
-        line = LineString([a, b])
-        matches = tuple(
-            i
-            for i in range(len(p))
-            if line.distance(Point(originals_local[i])) <= EPS
-            and line.distance(Point(originals_local[(i + 1) % len(p)])) <= EPS
-        )
-        if not matches:
-            raise UnsupportedRoofError("could not preserve source edge provenance")
-        source.append(matches)
+    # Match original segment endpoints in one array operation. Constructing a
+    # Point and running a GEOS distance query per endpoint is unnecessary here.
+    starts = local[:, None, :]
+    vectors = (np.roll(local, -1, axis=0) - local)[:, None, :]
+    relative = originals_local[None, :, :] - starts
+    lengths2 = np.sum(vectors * vectors, axis=2)
+    t = np.sum(relative * vectors, axis=2) / lengths2
+    residual = relative - np.clip(t, 0, 1)[:, :, None] * vectors
+    on_segment = np.sum(residual * residual, axis=2) <= EPS**2
+    matches = on_segment & np.roll(on_segment, -1, axis=1)
+    source = [tuple(int(i) for i in np.nonzero(row)[0]) for row in matches]
+    if any(not ids for ids in source):
+        raise UnsupportedRoofError("could not preserve source edge provenance")
     return Footprint(poly, tuple(source), Frame2D(tuple(p[ids[0]]), tuple(u), scale))
+
+
+@lru_cache(maxsize=4096)
+def bounding_aspect(ring):
+    # A convex polygon's minimum-area enclosing rectangle has a side parallel
+    # to a hull edge. Enumerate those orientations, with no geometry objects.
+    candidates = []
+    for a, b in zip(ring, ring[1:] + ring[:1]):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        length = math.hypot(dx, dy)
+        projections = [(p[0] * dx + p[1] * dy, p[1] * dx - p[0] * dy) for p in ring]
+        xs, ys = zip(*projections)
+        width, height = (max(xs) - min(xs)) / length, (max(ys) - min(ys)) / length
+        candidates.append((width * height, max(width, height) / min(width, height)))
+    return min(candidates)[1]
 
 
 @lru_cache(maxsize=4096)
@@ -232,13 +259,11 @@ def properties(poly):
             (i, i + 2) for i in range(2) if abs(cross(dirs[i], dirs[i + 2])) <= EPS
         )
     )
-    rect = np.asarray(poly.minimum_rotated_rectangle.exterior.coords)[:4]
-    lengths = np.linalg.norm(np.roll(rect, -1, axis=0) - rect, axis=1)
     return GeometryProperties(
         convex(poly),
         parallel,
         bool(np.max(np.abs(np.sum(dirs * np.roll(dirs, -1, axis=0), axis=1))) <= EPS),
-        float(max(lengths) / min(lengths)),
+        bounding_aspect(polygon_ring(poly)),
     )
 
 
@@ -255,44 +280,6 @@ def polygon_pieces(geometry):
 def precise(geometry):
     """Snap only arithmetic roundoff; never repair invalid inputs with buffer(0)."""
     return shapely.orient_polygons(shapely.set_precision(geometry, GRID))
-
-
-def clip(geometry, plane, limit=0.0):
-    """Intersect with a*x + b*y + c >= limit using a bounded halfplane."""
-    a, b, c = map(float, plane)
-    c -= limit
-    norm = math.hypot(a, b)
-    if norm <= GRID:
-        return geometry if c >= -GRID else Polygon()
-    a, b, c = a / norm, b / norm, c / norm
-    if geometry.is_empty:
-        return geometry
-    x0, y0, x1, y1 = geometry.bounds
-    padding = max(x1 - x0, y1 - y0, EPS) * 0.1 + EPS
-    ring = [
-        (x0 - padding, y0 - padding),
-        (x1 + padding, y0 - padding),
-        (x1 + padding, y1 + padding),
-        (x0 - padding, y1 + padding),
-    ]
-    output = []
-    for p, q in zip(ring, ring[1:] + ring[:1]):
-        dp, dq = a * p[0] + b * p[1] + c, a * q[0] + b * q[1] + c
-        if dp >= 0:
-            output.append(p)
-        if (dp >= 0) != (dq >= 0):
-            t = dp / (dp - dq)
-            output.append((p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])))
-    if len(output) < 3:
-        return Polygon()
-    halfplane = Polygon(np.round(np.asarray(output) / GRID) * GRID)
-    if halfplane.area <= EPS**2:
-        return Polygon()
-    if not halfplane.is_valid:
-        raise UnsupportedRoofError(
-            "degenerate plane intersection at numerical tolerance"
-        )
-    return precise(geometry.intersection(precise(halfplane)))
 
 
 def inward_plane(a, b):

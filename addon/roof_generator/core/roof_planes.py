@@ -1,22 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Convex-part roof solids and their exact affine plane patches."""
+"""Convex-part roof solids and their exact affine support planes."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
 import math
 import numpy as np
-from shapely.geometry import Polygon
 
 from .roof_geometry import (
     EPS,
-    GRID,
     UnsupportedRoofError,
-    clip,
     inward_plane,
     plane_value,
-    polygon_pieces,
-    precise,
 )
 from .roof_parts import RoofPart
 
@@ -37,17 +32,9 @@ class RoofPlane:
 
 
 @dataclass(frozen=True)
-class RoofPatch:
-    polygon: Polygon
-    plane: RoofPlane
-    part_id: int
-
-
-@dataclass(frozen=True)
 class RoofSolid:
     part: RoofPart
     planes: tuple[RoofPlane, ...]
-    domain: Polygon
 
 
 def primitive(part: RoofPart) -> RoofSolid:
@@ -114,7 +101,12 @@ def primitive(part: RoofPart) -> RoofSolid:
                 )
             edges = [edge]
         for edge in edges:
-            a, b, c = inward_plane(coords[edge], coords[(edge + 1) % len(coords)])
+            sources = [s for s in part.source_edges if s.part_edge == edge]
+            a, b, c = (
+                sources[0].support_line
+                if sources
+                else inward_plane(coords[edge], coords[(edge + 1) % len(coords)])
+            )
             definitions.append(
                 RoofPlane(
                     (
@@ -141,34 +133,7 @@ def primitive(part: RoofPart) -> RoofSolid:
             raise UnsupportedRoofError("gable eave planes do not define a ridge")
         direction = np.array([-delta[1], delta[0]]) / np.linalg.norm(delta)
         part = replace(part, ridge_orientation=tuple(direction))
-    solid = RoofSolid(part, tuple(definitions), part.footprint)
-    patches = plane_patches(solid)
-    if not patches or (
-        params.roof_type == "gable" and not params.planes and len(patches) != 2
-    ):
-        raise UnsupportedRoofError(
-            "the requested primitive does not have valid exposed roof faces"
-        )
-    return solid
-
-
-def plane_patches(solid: RoofSolid):
-    patches = []
-    # Each patch is obtained from min_j plane_j, not a triangulated height fan.
-    for i, plane in enumerate(solid.planes):
-        region = solid.domain
-        for j, other in enumerate(solid.planes):
-            if i == j:
-                continue
-            if plane.key == other.key:
-                if j < i:
-                    region = Polygon()
-                    break
-                continue
-            delta = tuple(b - a for a, b in zip(plane.coefficients, other.coefficients))
-            region = clip(region, delta)
-            if region.is_empty:
-                break
-        for poly in polygon_pieces(region):
-            patches.append(RoofPatch(precise(poly), plane, solid.part.id))
-    return tuple(patches)
+    # The convex primitive's edge support planes define its local faces.
+    # Equal-pitch hip and opposite-edge gable planes are exposed along their
+    # respective eaves; explicit affine planes have a nonempty min-envelope.
+    return RoofSolid(part, tuple(definitions))
