@@ -144,6 +144,37 @@ class RoofGraph:
                 raise UnsupportedGraphError("invalid vertex seed/cell provenance")
             if (i in perimeter) != (vertex.boundary is not None):
                 raise UnsupportedGraphError("boundary vertex ownership mismatch")
+            if vertex.boundary is not None:
+                p = vertex.boundary
+                if (
+                    not 0 <= p.edge < len(self.outline)
+                    or not math.isfinite(p.t)
+                    or not 0 <= p.t < 1
+                ):
+                    raise UnsupportedGraphError("invalid fixed boundary point")
+                a, b = (
+                    self.outline[p.edge],
+                    self.outline[(p.edge + 1) % len(self.outline)],
+                )
+                expected = tuple(a[k] + p.t * (b[k] - a[k]) for k in (0, 1))
+                if math.dist(vertex.seed, expected) > 2e-8:
+                    raise UnsupportedGraphError(
+                        "seed violates fixed footprint boundary"
+                    )
+            link = defaultdict(set)
+            for face in self.faces:
+                if i in face.loop:
+                    j = face.loop.index(i)
+                    a, b = face.loop[j - 1], face.loop[(j + 1) % len(face.loop)]
+                    link[a].add(b)
+                    link[b].add(a)
+            degrees = [len(adjacent) for adjacent in link.values()]
+            if (
+                not _connected(link)
+                or any(d not in (1, 2) for d in degrees)
+                or degrees.count(1) != (2 if i in perimeter else 0)
+            ):
+                raise UnsupportedGraphError("nonmanifold vertex link")
 
     def inspect(self):
         """Read the authoritative graph; do not derive semantics from geometry."""
