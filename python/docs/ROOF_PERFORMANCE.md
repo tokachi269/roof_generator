@@ -45,7 +45,7 @@ on every request, including cache hits. See
 ## Single-roof measurements
 
 Linux x86_64, CPython 3.12.14, NumPy 2.3.5, Shapely 2.1.2, GEOS 3.13.1.
-The comparison uses `9f96764` and the 1.1.0 generator on the same machine,
+The comparison uses `9f96764` and the clean 1.1.0 commit `3710561` on the same machine,
 with 11 measured samples and two warmups. Values are medians in milliseconds,
 including the full public generation API and its validators. Cold measurements
 clear every bounded geometry/partition/graph cache before each timed call.
@@ -53,13 +53,13 @@ Warm measurements retain the same footprint and roof constraints.
 
 | Footprint | Before cold | Current cold | Before warm | Current warm |
 | --- | ---: | ---: | ---: | ---: |
-| Rectangle gable | 9.72 | 4.79 | 7.18 | 2.00 |
-| L | 36.33 | 10.94 | 24.43 | 3.17 |
-| T | 39.03 | 11.98 | 20.84 | 3.37 |
-| U | 103.62 | 21.59 | 46.76 | 4.38 |
-| Residential, multiple reflex vertices | 586.42 | 59.02 | 65.62 | 5.81 |
-| Oblique L | 49.35 | 11.32 | 31.27 | 3.20 |
-| General convex quad | 10.01 | 4.92 | 7.85 | 2.00 |
+| Rectangle gable | 9.72 | 4.86 | 7.18 | 2.04 |
+| L | 36.33 | 11.09 | 24.43 | 3.31 |
+| T | 39.03 | 12.28 | 20.84 | 3.40 |
+| U | 103.62 | 22.00 | 46.76 | 4.45 |
+| Residential, multiple reflex vertices | 586.42 | 59.55 | 65.62 | 5.77 |
+| Oblique L | 49.35 | 11.17 | 31.27 | 3.30 |
+| General convex quad | 10.01 | 4.85 | 7.85 | 1.99 |
 
 Blender 4.3.2 measurements additionally include evaluated source mesh reads,
 object creation, UV layer, material and attribute creation. They use Blender's
@@ -67,10 +67,10 @@ CPython 3.13.5 / NumPy 2.2.4 and are separate from the core comparison:
 
 | Footprint | Cold ms | Warm ms |
 | --- | ---: | ---: |
-| Rectangle gable | 6.60 | 3.40 |
-| L | 13.73 | 4.89 |
-| U | 26.66 | 10.23 |
-| Residential, multiple reflex vertices | 89.24 | 8.61 |
+| Rectangle gable | 6.95 | 3.47 |
+| L | 14.77 | 5.48 |
+| U | 29.04 | 7.38 |
+| Residential, multiple reflex vertices | 76.89 | 8.22 |
 
 The semantic harness compares 27 cases against frozen geometric/semantic
 snapshots. All match; the 30-test suite covers the 16 mandatory final meshes and
@@ -88,8 +88,8 @@ Each mode starts with empty bounded caches and, in Blender, an empty scene.
 
 | Mode | Core, seconds | Blender objects, seconds |
 | --- | ---: | ---: |
-| Unique dimensions | 8.07 | 10.52 |
-| Repeated templates | 2.67 | 4.45 |
+| Unique dimensions | 8.02 | 10.42 |
+| Repeated templates | 2.80 | 4.57 |
 
 Blender timing includes constructing 1,000 source meshes and converting them to
 1,000 separate ordinary roof mesh objects with UVs, materials and attributes.
@@ -120,6 +120,12 @@ python python/benchmark_city.py --buildings 1000
 blender -b --factory-startup --python-exit-code 1 --python python/blender_benchmark_roof.py -- --samples 11 --warmup 2 --output python/out/performance/blender.json
 blender -b --factory-startup --python-exit-code 1 --python python/benchmark_city.py -- --blender-objects --buildings 1000
 ```
+
+Recorded measurements: [baseline core](performance/core_9f96764.json),
+[current core](performance/core_3710561.json),
+[Blender individual roofs](performance/blender_3710561.json), and
+[city batches](performance/city_3710561.json). Current reports identify the clean
+measured code commit; later documentation commits do not change that code.
 
 Reports record sample timings and the runtime versions. The city script also
 saves the two complete Blender scenes under `python/out/performance/`.
