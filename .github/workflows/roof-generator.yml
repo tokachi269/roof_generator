@@ -1,0 +1,52 @@
+name: Roof generator
+on:
+  push:
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.github/workflows/roof-generator.yml']
+  pull_request:
+    paths: ['addon/**', 'python/**', 'packages/**', 'LICENSES/**', 'LICENSING.md', '.github/workflows/roof-generator.yml']
+jobs:
+  core-and-distribution:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r python/requirements.txt
+      - run: python -m unittest python.tests.test_roof_core python.tests.test_roof_acceptance
+      - run: python python/build_addon.py --check --output packages/roof_generator-1.0.0.zip
+      - run: python python/build_addon.py
+      - uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
+        with:
+          name: roof-generator-addon
+          path: dist/roof_generator-1.0.0.zip
+  installed-blender-addon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Blender 4.3.2 runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libegl1 libgl1 libxkbcommon0 libsm6 libxfixes3 libxi6 libxxf86vm1
+          curl -fL https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz -o /tmp/blender.tar.xz
+          mkdir -p /tmp/roof-blender
+          tar -xJf /tmp/blender.tar.xz -C /tmp/roof-blender --strip-components=1
+      - run: python python/build_addon.py --check --output packages/roof_generator-1.0.0.zip
+      - name: Install ZIP, generate sixteen roofs, unwrap and validate
+        env:
+          BLENDER_USER_SCRIPTS: ${{ github.workspace }}/python/out/ci-addon-scripts
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip packages/roof_generator-1.0.0.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blender-addon-evidence
+          path: python/out/addon/

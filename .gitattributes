@@ -1,0 +1,7 @@
+# Reproducible source ZIPs on Windows and Linux.
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.zip binary

@@ -1,0 +1,81 @@
+"""Generate ONE editable final roof object from a filled planar footprint mesh.
+
+Run in Blender's Text Editor (edit the constants) or use the CLI arguments.
+No cell preview, optimizer, comparison offsets or mesh repair are used.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import sys
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+# Optional isolated wheel installation made by install_roof_dependencies.py.
+DEPENDENCIES = (
+    SCRIPT_DIR / ".roof-deps" / f"cp{sys.version_info.major}{sys.version_info.minor}"
+)
+if DEPENDENCIES.is_dir():
+    sys.path.insert(0, str(DEPENDENCIES))
+
+OBJECT_NAME = None
+ROOF_TYPE = "gable"
+PITCH = 0.5  # rise/run; tan(pitch angle)
+EAVE_HEIGHT = 0.0  # offset along footprint normal, in world units
+DEBUG_PARTS = False
+
+# The addon is the single owner of final Blender conversion.
+ADDON_DIR = SCRIPT_DIR.parent / "addon"
+if str(ADDON_DIR) not in sys.path:
+    sys.path.insert(0, str(ADDON_DIR))
+from roof_generator.blender_output import generate_object, FEATURE_CODES
+
+
+def main():
+    import bpy
+
+    argv = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--object-name", default=OBJECT_NAME)
+    parser.add_argument("--mesh-name", default=None)
+    parser.add_argument(
+        "--roof-kind", choices=["flat", "gable", "hip", "shed"], default=ROOF_TYPE
+    )
+    parser.add_argument("--pitch", type=float, default=PITCH)
+    parser.add_argument("--eave-height", type=float, default=EAVE_HEIGHT)
+    parser.add_argument("--debug-parts", action="store_true", default=DEBUG_PARTS)
+    args = parser.parse_args(argv)
+    source = (
+        bpy.data.objects.get(args.object_name)
+        if args.object_name
+        else bpy.context.active_object
+    )
+    obj, result = generate_object(
+        source,
+        roof_type=args.roof_kind,
+        pitch=args.pitch,
+        eave_height=args.eave_height,
+        mesh_name=args.mesh_name,
+        debug_parts=args.debug_parts,
+    )
+    print(
+        json.dumps(
+            {
+                "object": obj.name,
+                "vertices": len(obj.data.vertices),
+                "faces": len(obj.data.polygons),
+                "parts": len(result.roof.decomposition.parts),
+                "features": result.roof.validation.features,
+                "max_planarity_error_world": result.roof.validation.max_planarity_error
+                * result.roof.footprint.frame.scale,
+            }
+        )
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

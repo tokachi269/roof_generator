@@ -1,0 +1,5 @@
+# Host Python: core validation and the paper-aligned optimizer.
+# Blender installation uses requirements-roof.txt (NumPy is bundled).
+numpy
+scipy
+-r requirements-roof.txt
