@@ -11,13 +11,18 @@ def build(output, check=False):
     output = Path(output).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     files = sorted(
-        p
-        for p in source.rglob("*")
-        if p.is_file()
-        and not any(
-            x == "__pycache__" or x.startswith(".") for x in p.relative_to(source).parts
-        )
-        and (p.suffix in (".py", ".md") or p.name == "LICENSE")
+        (
+            p
+            for p in source.rglob("*")
+            if p.is_file()
+            and not any(
+                x == "__pycache__" or x.startswith(".")
+                for x in p.relative_to(source).parts
+            )
+            and (p.suffix in (".py", ".md") or p.name == "LICENSE")
+        ),
+        # WindowsPath ordering folds case; ZIP ordering must be platform independent.
+        key=lambda p: p.relative_to(source).as_posix(),
     )
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
