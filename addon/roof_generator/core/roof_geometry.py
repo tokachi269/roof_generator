@@ -41,6 +41,7 @@ except ImportError as exc:
 # numerical tolerance only: it never changes edge directions into right angles.
 GRID = 1e-11
 EPS = 2e-9
+STRAIGHT_COS = math.cos(math.radians(5))
 
 
 class UnsupportedRoofError(ValueError):
@@ -161,16 +162,20 @@ def normalize_footprint(vertices) -> Footprint:
             "footprint must be a simple positive-area loop without touching edges"
         )
     ids = list(range(len(p)))
-    if signed_area(centered) < 0:
+    clockwise = signed_area(centered) < 0
+    if clockwise:
         ids.reverse()
-    # Remove tolerance-collinear vertices, retaining source identity later by
-    # matching original edge segments, rather than shifting edge metadata.
+    # Input policy: turns of at most five degrees become a single edge.
+    # Carry the original edge chains explicitly; approximate chords do not
+    # coincide with the source segments and cannot be matched by distance.
+    source_chains = {i: [(i - 1) % len(p) if clockwise else i] for i in ids}
     while len(ids) > 3:
         removed = False
         for i in range(len(ids)):
             a = centered[ids[i]] - centered[ids[i - 1]]
             b = centered[ids[(i + 1) % len(ids)]] - centered[ids[i]]
-            if abs(cross(a, b)) <= EPS * np.linalg.norm(a) and np.dot(a, b) >= 0:
+            if np.dot(a, b) >= (STRAIGHT_COS - 1e-12) * np.linalg.norm(a) * np.linalg.norm(b):
+                source_chains[ids[i - 1]].extend(source_chains.pop(ids[i]))
                 ids.pop(i)
                 removed = True
                 break
@@ -202,22 +207,8 @@ def normalize_footprint(vertices) -> Footprint:
     poly = Polygon(local)
     if not poly.is_valid or not poly.exterior.is_ccw:
         raise UnsupportedRoofError("normalization cannot preserve a valid polygon")
-    originals_local = (
-        np.column_stack(((p - p[ids[0]]) @ u, (p - p[ids[0]]) @ v)) / scale
-    )
-    source = []
-    for a, b in zip(local, np.roll(local, -1, axis=0)):
-        line = LineString([a, b])
-        matches = tuple(
-            i
-            for i in range(len(p))
-            if line.distance(Point(originals_local[i])) <= EPS
-            and line.distance(Point(originals_local[(i + 1) % len(p)])) <= EPS
-        )
-        if not matches:
-            raise UnsupportedRoofError("could not preserve source edge provenance")
-        source.append(matches)
-    return Footprint(poly, tuple(source), Frame2D(tuple(p[ids[0]]), tuple(u), scale))
+    source = tuple(tuple(sorted(source_chains[i])) for i in ids)
+    return Footprint(poly, source, Frame2D(tuple(p[ids[0]]), tuple(u), scale))
 
 
 @lru_cache(maxsize=4096)

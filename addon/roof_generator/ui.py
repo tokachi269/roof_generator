@@ -180,16 +180,22 @@ class RoofPanel(bpy.types.Panel):
             layout.operator("roof_generator.install_dependency", icon="IMPORT")
 
 
-CLASSES = (RoofSettings, RoofPreferences, InstallDependency, GenerateRoof, RoofPanel)
+from .base_mesh import CLASSES as BASE_MESH_CLASSES
+
+CLASSES = (RoofSettings, RoofPreferences, InstallDependency, GenerateRoof, RoofPanel) + BASE_MESH_CLASSES
 
 
 def register():
     for cls in CLASSES:
         bpy.utils.register_class(cls)
     bpy.types.Scene.roof_generator = PointerProperty(type=RoofSettings)
+    from . import base_roof
+    base_roof.register()
 
 
 def unregister():
+    from . import base_roof
+    base_roof.unregister()
     del bpy.types.Scene.roof_generator
     for cls in reversed(CLASSES):
         bpy.utils.unregister_class(cls)
