@@ -86,7 +86,6 @@ def _candidate_id(architecture, composition, axes, identity):
 
 
 def _resolved_analysis(architecture, axes):
-    members = tuple(replace(m, axes=(axes[m.cell],)) for m in architecture.members)
     relations = []
     for relation in architecture.relations:
         assignment = tuple(axes[c] for c in relation.cells)
@@ -100,6 +99,9 @@ def _resolved_analysis(architecture, axes):
                 "no published implemented port operation for " + options[0].kind
             )
         relations.append(replace(relation, options=options))
+    # Reject undefined port relations before allocating a resolved member graph.
+    # This changes no rejection rule, order, candidate or incidence.
+    members = tuple(replace(m, axes=(axes[m.cell],)) for m in architecture.members)
     return Analysis(members, tuple(relations))
 
 

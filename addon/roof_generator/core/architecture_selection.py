@@ -2,6 +2,7 @@
 """Hu 3.3 terms, exact reflection components and honest uncertain recommendations."""
 
 from dataclasses import dataclass, asdict
+from bisect import bisect_left, bisect_right
 from .footprint import EPS
 from .architecture import analyze_parts, build_parts
 from .partition_candidates import CandidateSearch
@@ -65,16 +66,24 @@ def symmetry_clusters(analysis):
                 if box[2 + axis] - box[axis] > 4 * EPS:
                     halves[side].append((m.cell, tuple(box)))
         positive = halves[1]
+        # Exclude boxes whose first coordinate cannot meet the existing exact
+        # reflection tolerance. Keep original indices for deterministic matching.
+        positive_starts = sorted((box[0], j) for j, (_, box) in enumerate(positive))
         matched = {}
         for i, (cell, b) in enumerate(halves[0]):
             mirror = list(b)
             mirror[axis] = 2 * mid - b[2 + axis]
             mirror[2 + axis] = 2 * mid - b[axis]
+            # A wider coarse window absorbs arithmetic at a tolerance endpoint;
+            # the original 4*EPS test below remains the only acceptance rule.
+            lo = bisect_left(positive_starts, (mirror[0] - 8 * EPS, -1))
+            hi = bisect_right(positive_starts, (mirror[0] + 8 * EPS, len(positive)))
             j = next(
                 (
                     j
-                    for j, (_, q) in enumerate(positive)
-                    if max(abs(a - b) for a, b in zip(mirror, q)) <= 4 * EPS
+                    for j in sorted(j for _, j in positive_starts[lo:hi])
+                    if max(abs(a - b) for a, b in zip(mirror, positive[j][1]))
+                    <= 4 * EPS
                 ),
                 None,
             )

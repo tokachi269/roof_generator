@@ -33,6 +33,24 @@ class PartitionReuseProof(unittest.TestCase):
                     complete_cuts(fp, cert.selection, axes, boundary_hits=cache),
                 )
 
+    def test_reflection_index_matches_unfiltered_boxes(self):
+        from roof_generator.core.architecture import analyze_parts
+        from roof_generator.core.architecture_selection import symmetry_clusters
+
+        for name in ("orthogonal_U", "cross", "grid_14", "grid_20", "grid_40"):
+            search = candidates(analyze(fixture(name)["footprint"]))
+            for d in search.candidates:
+                analysis = analyze_parts(d)
+                indexed = symmetry_clusters(analysis)
+                with patch(
+                    "roof_generator.core.architecture_selection.bisect_left",
+                    return_value=0,
+                ), patch(
+                    "roof_generator.core.architecture_selection.bisect_right",
+                    side_effect=lambda index, *args: len(index),
+                ):
+                    self.assertEqual(indexed, symmetry_clusters(analysis))
+
     def test_indexed_noding_matches_unfiltered_segment_predicates(self):
         for name in ("orthogonal_U", "cross", "grid_14", "grid_20", "grid_40"):
             fp = analyze(fixture(name)["footprint"])
