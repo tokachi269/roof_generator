@@ -1,0 +1,125 @@
+{
+  "contract": "Exact measured source_sha remains in original reports; mapped revisions have byte-identical Git trees and differ only in ancestry.",
+  "revisions": [
+    {
+      "measured_revision": "f6a80944cf343b8eaf7aef1dba48d8536e5795dd",
+      "canonical_revision": "09c222491c47ec8bbaa37bf903777b4f4eb2c4ee",
+      "identical_tree": "9785f273cb85bad781f924a658bf45e7dc8a8ff4",
+      "subject": "Add staged multi-corpus support audit and frozen baseline"
+    },
+    {
+      "measured_revision": "8d0f9d31d166c7f26503ffb382049fa0194709f6",
+      "canonical_revision": "93ad1314bd248be76fd8ca2872f252a79afc3522",
+      "identical_tree": "c656a0ef1681f89e9f1f36931edd445e251d674e",
+      "subject": "Document covariance embedding objective and fixed-topology solver contract"
+    },
+    {
+      "measured_revision": "24b101284f4e978aefd9164d5fc6fc58af6d8ee1",
+      "canonical_revision": "26f187053b3cad1815999ef4b161ea9ccdbc0205",
+      "identical_tree": "ac54b5e675dd84b630f0135f7216429c9542b4a6",
+      "subject": "Solve fixed compound roof graphs with covariance embedding and explicit pitch constraints"
+    },
+    {
+      "measured_revision": "63bcc7b5abc57e64e5942402ff6832c9d9e95dcb",
+      "canonical_revision": "eaf6bcd8c43645d7af2b9491111a2c3812e98381",
+      "identical_tree": "4b48773cb4c9a60c4de14d56737180edd07063bc",
+      "subject": "Validate compound pitched roofs as editable Blender meshes"
+    },
+    {
+      "measured_revision": "736941118268bdafb3be0b31aada4945f0d3074a",
+      "canonical_revision": "b955db10f7357b4dee054b05140d109026230841",
+      "identical_tree": "1e0c20d05f659db6416fcdeea32a9a6f5593b5c9",
+      "subject": "Keep symmetry images within noding tolerance for Blender float coordinates"
+    },
+    {
+      "measured_revision": "f8c11cb766efe1e6f7a68b6c5194972442c9c601",
+      "canonical_revision": "873afe54e9cfce1d29875217633a6bdb8c69b5b4",
+      "identical_tree": "0c0bbd151d07cf4a92a0c2113bcbef1f6f2f333b",
+      "subject": "Define equal-pitch convex quad primitive and oblique compound boundary"
+    },
+    {
+      "measured_revision": "0323b9a314e4812bf9082d7bfe621027a43aac2a",
+      "canonical_revision": "0ddb731c4f3fb86764f6a85b8e2074c2359d81d9",
+      "identical_tree": "3df8813dcfb37fd6b61131a64a66ab60ad580ad8",
+      "subject": "Generate solved convex quadrilateral roofs through the canonical pipeline"
+    },
+    {
+      "measured_revision": "b6a5928300c583794afdd470dd9adcb6f9e53998",
+      "canonical_revision": "71ab533f1d56f3cf1f3bf70b969db2d56d7d48af",
+      "identical_tree": "6afaf69e963fe8f992c7c58fc8281b4654a71f50",
+      "subject": "Measure actual Blender conversion for core-valid corpus roofs"
+    },
+    {
+      "measured_revision": "75e7f5caab3c8d3efb7282752e79083dcb226d01",
+      "canonical_revision": "a2e5291ce1e76159dbb7e6ad93d6fba7dec57141",
+      "identical_tree": "6ad31211fbcac0fdbc2d791a963ff26ab52e5e8a",
+      "subject": "Check preserved skew in the adapter world frame"
+    },
+    {
+      "measured_revision": "cff507374a20cd3968d908f593b937f57c4fe833",
+      "canonical_revision": "73e0d3908dc5ae49aa3af88832de482c428f8c8b",
+      "identical_tree": "711c94c20302f64dac393d4f10b2f98a08107576",
+      "subject": "Classify relation blockers and define disjoint mixed attachment contract"
+    },
+    {
+      "measured_revision": "e5e04d029121d82cc61f48d7d085341390efb321",
+      "canonical_revision": "796d5c962277ff2d27580c2128e6b2cc395084fb",
+      "identical_tree": "a5b139048f5ee2ff8eca4a125ef9033ec3f40cb5",
+      "subject": "Apply published ranking after roof topology validity"
+    },
+    {
+      "measured_revision": "829d830d6ff577a8203188043ab332912c2d7541",
+      "canonical_revision": "dd6f10c9f0a0afc5f4641a651ca39829336ad824",
+      "identical_tree": "086b8f900a0388b668f21c45bb5c1acd8a9e5284",
+      "subject": "Compose separated terminal and middle branch ports simultaneously"
+    },
+    {
+      "measured_revision": "5e22d2682693b7b07950e066d300bd35f3c03394",
+      "canonical_revision": "c8da0a8421075e8e5f49052a01f7ca129db19798",
+      "identical_tree": "096422ddad144852cd51262aa7c75da49c2f6d51",
+      "subject": "Reuse exact cell corners and footprint-local exterior provenance"
+    },
+    {
+      "measured_revision": "1beca32f77a06d3826940b445a7615cb4674aaff",
+      "canonical_revision": "8efafe13ac1896a3e3bd4416913eba5657be512b",
+      "identical_tree": "3930f2242e63a1732daaac44d2b3efb485c1b0d0",
+      "subject": "Validate supporting eave lines and report covariance energy separately"
+    },
+    {
+      "measured_revision": "5f1702e14a3a78367982b6334b58120d714768f3",
+      "canonical_revision": "2f3ff2ff4211fe8cd9eb51632ce422fa01e8388e",
+      "identical_tree": "ab850ea696760a062ccf4d38bce0732c7cab1191",
+      "subject": "Record staged solved-mesh and actual Blender coverage across fixed corpora"
+    },
+    {
+      "measured_revision": "310214bbe7ff0dbe3d62756df05d3180f925da3b",
+      "canonical_revision": "ef3ea2467d9d246fd5e8833682e1aedcb0a70d9f",
+      "identical_tree": "2f98c3ceb92b3694e4234a37c61c5d887c07a151",
+      "subject": "Separate coordinate embedding from mesh validation in staged audit"
+    },
+    {
+      "measured_revision": "5ee66a0604c0b45a1d0476b007762668669e6909",
+      "canonical_revision": "303d088e8208a07f5c2915ddd7e3927699aa9845",
+      "identical_tree": "8307ed5173fb67644a5c801d3bfe55acee9e6160",
+      "subject": "Preserve partial graph existence while rejecting incomplete selection"
+    },
+    {
+      "measured_revision": "79dd9c3a67f8351b0ede3459050a6b6e16ab1dc5",
+      "canonical_revision": "45aafbfbc86f3457bf08daa0450f0cf11bbbe38a",
+      "identical_tree": "abf36087907c52007c3e1cc4c5d52af02ffc0676",
+      "subject": "Measure unchanged candidate families and separate nonlinear solve budget"
+    },
+    {
+      "measured_revision": "fcec05529def6abb5ba9641ec13c085b35450072",
+      "canonical_revision": "46f2aa423d5d7db3fa6910a3d4b077fe0a33fcc5",
+      "identical_tree": "e2e339ab682d0de917269be8459923e2bfea6cd6",
+      "subject": "Ship version 1.3 addon with compound and convex quad mesh smoke proofs"
+    },
+    {
+      "measured_revision": "7ce76cda3b05a9bdacfae813bc39cf65e8249d23",
+      "canonical_revision": "f4394d371da5652be1d40cafb5d87052f4a7a3ab",
+      "identical_tree": "2ba4da262126ce0bff60e4e7be80926ff2786208",
+      "subject": "Document current end-to-end coverage and remaining topology limits"
+    }
+  ]
+}

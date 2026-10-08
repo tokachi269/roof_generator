@@ -21,6 +21,8 @@ Every audit uses seed zero, without retrying another seed after a failed solve.
 Baseline and current aggregate results are stored separately, with source SHA
 and dirty-source metadata. Raw detailed diagnostics stream to compressed JSONL.
 Historical measurement files remain dated evidence, not current capability claims.
+Exact executed `source_sha` values map to the byte-identical canonical revisions
+in [measurement_revision_map.json](canonical/measurement_revision_map.json).
 
 ## Stage coverage
 
