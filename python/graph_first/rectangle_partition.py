@@ -209,6 +209,14 @@ class AtomicEdge:
 
 
 @dataclass(frozen=True)
+class PartitionCertificate:
+    reflex: tuple[int, ...]
+    selection: Selection
+    completions: tuple[Cut, ...]
+    minimum_cells: int
+
+
+@dataclass(frozen=True)
 class Subdivision:
     vertices: tuple[tuple[float, float], ...]
     faces: tuple[tuple[int, ...], ...]
@@ -216,6 +224,12 @@ class Subdivision:
     reflex: tuple[int, ...]
     selection: Selection
     completions: tuple[Cut, ...]
+
+    @property
+    def certificate(self):
+        return PartitionCertificate(
+            self.reflex, self.selection, self.completions, self.minimum_cells
+        )
 
     @property
     def minimum_cells(self):

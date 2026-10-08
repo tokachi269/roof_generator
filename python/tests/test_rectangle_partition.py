@@ -188,5 +188,50 @@ class SubdivisionTests(unittest.TestCase):
                 )
 
 
+class CellRecordTests(unittest.TestCase):
+    def test_generic_records_cover_provenance_and_every_shared_interval(self):
+        from collections import Counter
+        from python.graph_first.cells import minimum_decompose
+
+        for points, minimum in [(T, 2), (U, 3), (CROSS, 3)]:
+            fp = analyze(points)
+            d = minimum_decompose(fp)
+            self.assertEqual(len(d.cells), minimum)
+            self.assertEqual(d.certificate.minimum_cells, minimum)
+            incidence = Counter(
+                cut for c in d.cells for s in c.sides for cut in s.artificial
+            )
+            self.assertTrue(all(count == 2 for count in incidence.values()))
+            self.assertEqual(set(incidence), {a.interval for a in d.adjacency})
+            self.assertEqual(len(d.adjacency), len(incidence))
+            for a in d.adjacency:
+                for cell, side in zip(a.cells, a.sides):
+                    self.assertIn(a.interval, d.cells[cell].sides[side].artificial)
+            self.assertEqual(
+                {
+                    i
+                    for c in d.cells
+                    for s in c.sides
+                    for e in s.exterior
+                    for i in e.original_edges
+                },
+                set(range(len(points))),
+            )
+            self.assertTrue(
+                all(len(c.corners) == 4 and len(c.sides) == 4 for c in d.cells)
+            )
+
+    def test_generic_two_cell_partition_supplies_existing_terminal_graft(self):
+        from python.graph_first.cells import minimum_decompose
+        from python.graph_first.topology import compose
+        from python.tests.test_graph_first_cells import L
+        from python.tests.test_graph_first_connection import assert_terminal
+
+        fp = analyze(L)
+        d = minimum_decompose(fp)
+        self.assertEqual((len(d.cells), len(d.adjacency)), (2, 1))
+        assert_terminal(self, fp, compose(d))
+
+
 if __name__ == "__main__":
     unittest.main()
