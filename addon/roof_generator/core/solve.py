@@ -50,6 +50,39 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         elif v.role == "ridge_end":
             width = lengths[v.boundary.edge] if v.boundary is not None else min(lengths)
             heights[i] = eave_height + pitch * width / 2
+    for edge in graph.edges:
+        if (
+            edge.kind != "ridge"
+            or any(graph.vertices[v].boundary is not None for v in edge.vertices)
+            or all(v in heights for v in edge.vertices)
+        ):
+            continue
+        # A receiver with both end caps consumed has no exterior height anchor.
+        # Its declared opposite eaves fix the equal-pitch ridge rise to p*w/2.
+        # This supplies solve constraints; it changes no topology or final XY.
+        first, second = (graph.faces[f] for f in edge.faces)
+        if first.cells != second.cells or any(
+            len(f.eaves) != 1 for f in (first, second)
+        ):
+            raise UnsupportedRoofError(
+                "interior ridge lacks one declared receiving eave on each slope"
+            )
+        a, b = (graph.outline[f.eaves[0]] for f in (first, second))
+        directions = tuple(
+            sub(graph.outline[(f.eaves[0] + 1) % len(graph.outline)], origin)
+            for f, origin in ((first, a), (second, b))
+        )
+        size = math.hypot(*directions[0])
+        if abs(cross(*directions)) > 1e-8 * size * math.hypot(*directions[1]):
+            raise UnsupportedRoofError("interior ridge has nonparallel receiving eaves")
+        width = abs(cross(sub(b, a), directions[0])) / size
+        if width <= EPS:
+            raise UnsupportedRoofError("interior ridge has coincident receiving eaves")
+        height = eave_height + pitch * width / 2
+        for v in edge.vertices:
+            if v in heights and abs(heights[v] - height) > 4 * EPS:
+                raise UnsupportedRoofError("interior ridge height anchors conflict")
+            heights[v] = height
     interior_height = max(heights.values()) if heights else eave_height
     seeds = tuple(
         (*v.seed, heights.get(i, interior_height)) for i, v in enumerate(graph.vertices)

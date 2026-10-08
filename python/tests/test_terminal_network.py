@@ -121,6 +121,21 @@ class TerminalNetworkProof(unittest.TestCase):
             ),
             1,
         )
+        interior_ridge = next(
+            e
+            for e in graph.edges
+            if e.kind == "ridge"
+            and all(graph.vertices[v].boundary is None for v in e.vertices)
+        )
+        fixed = dict(candidate.geometry.fixed_z)
+        for v in interior_ridge.vertices:
+            self.assertAlmostEqual(
+                fixed[v] * candidate.architecture.decomposition.footprint.frame.scale,
+                0.5 * 5.2 / 2,
+                places=8,
+            )
+            self.assertNotIn(v, candidate.geometry.variable_z)
+            self.assertIn(v, candidate.geometry.variable_xy)
         self.assertEqual(len(graph.vertices) - len(graph.edges) + len(graph.faces), 1)
         self.assertEqual({i for f in graph.faces for i in f.cells}, {0, 1, 2})
         self.assertEqual(
