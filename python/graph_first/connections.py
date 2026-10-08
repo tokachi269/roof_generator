@@ -164,10 +164,6 @@ def plan(decomposition, primitives):
         raise UnsupportedGraphError(
             "middle attachment requires a narrower or equal-width branch"
         )
-    if len(relations) > 1 and any(r.equal_width for r in relations):
-        raise UnsupportedGraphError(
-            "multiple equal-width/cross junctions require a shared junction template"
-        )
     # Published extension is locally reusable for disjoint narrow slots only.
     # Require separation even on opposite eaves; interacting extensions and
     # combined corner templates are deliberately outside this proof.
@@ -184,6 +180,20 @@ def plan(decomposition, primitives):
         / size
     )
     slots = sorted(tuple(sorted(map(coordinate, r.shared))) for r in relations)
+    if len(relations) > 1 and any(r.equal_width for r in relations):
+        # Kada's compatible cross block: two opposite complete equal-width
+        # openings have the same longitudinal interval. They share ONE ridge
+        # junction, rather than two coincident independent T replacements.
+        if (
+            len(relations) == 2
+            and all(r.equal_width for r in relations)
+            and (relations[0].host_side - relations[1].host_side) % 4 == 2
+            and all(abs(a - b) <= 4 * EPS for a, b in zip(slots[0], slots[1]))
+        ):
+            return relations
+        raise UnsupportedGraphError(
+            "multiple equal-width attachments lack compatible opposite shared ports"
+        )
     if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])):
         raise UnsupportedGraphError(
             "branch attachment slots interact; no independent junction composition is proved"

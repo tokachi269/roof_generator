@@ -27,7 +27,9 @@ def rectangle_graph(footprint, roof_type="gable", *, shed_edge=None):
     )
 
 
-def _rectangle_graph(outline, source_edges, roof_type, *, shed_edge=None, cell=0):
+def _rectangle_graph(
+    outline, source_edges, roof_type, *, shed_edge=None, cell=0, ridge_axis=None
+):
     if not rectangle(outline):
         raise UnsupportedGraphError("rectangle primitive requires a rectangle")
     if roof_type not in {"gable", "hip", "shed", "flat"}:
@@ -52,6 +54,14 @@ def _rectangle_graph(outline, source_edges, roof_type, *, shed_edge=None, cell=0
             ),
         ),
     )
+    if ridge_axis is not None:
+        if ridge_axis not in (0, 1) or roof_type != "gable":
+            raise UnsupportedGraphError("ridge_axis selects a gable member axis")
+        base = next(
+            i
+            for i in range(4)
+            if abs(outline[(i + 1) % 4][ridge_axis] - outline[i][ridge_axis]) > EPS
+        )
     if shed_edge is not None:
         if (
             roof_type != "shed"
@@ -154,7 +164,7 @@ class Composition:
         }
 
 
-def cell_primitives(decomposition, roof_type="gable"):
+def cell_primitives(decomposition, roof_type="gable", *, axes=None):
     """Candidate primitive incidences; these are never a completed roof."""
     return tuple(
         _rectangle_graph(
@@ -167,21 +177,27 @@ def cell_primitives(decomposition, roof_type="gable"):
             ),
             roof_type,
             cell=cell.id,
+            ridge_axis=None if axes is None else axes[cell.id],
         )
         for cell in decomposition.cells
     )
 
 
-def compose(decomposition, roof_type="gable"):
+def compose(decomposition, roof_type="gable", *, axes=None):
     fp = decomposition.footprint
     if len(decomposition.cells) == 1:
-        g = rectangle_graph(fp, roof_type)
+        g = _rectangle_graph(
+            fp.vertices,
+            fp.source_edges,
+            roof_type,
+            ridge_axis=None if axes is None or roof_type != "gable" else axes[0],
+        )
         return Composition(g, (g,), ())
     if roof_type != "gable":
         raise UnsupportedGraphError(
             "multi-cell composition currently supports gable only"
         )
-    primitives = cell_primitives(decomposition)
+    primitives = cell_primitives(decomposition, axes=axes)
     relations = plan(decomposition, primitives)
     if len(relations) == 1 and relations[0].kind == "terminal":
         return _terminal(decomposition, primitives, relations[0])
@@ -230,6 +246,7 @@ def _middle(decomposition, primitives, relations):
     for cap in host_caps:
         maps[host][cap] = boundary_port(host, cap)
     joints = {}
+    shared_junction = None
     for relation in relations:
         branch, near = relation.branch, relation.branch_port
         far = next(
@@ -239,12 +256,17 @@ def _middle(decomposition, primitives, relations):
         )
         maps[branch] = dict(enumerate(decomposition.cells[branch].corners))
         maps[branch][far] = boundary_port(branch, far)
-        junction = len(seeds)
-        seeds.append((0, 0))
-        roles.append("junction")
+        if relation.equal_width and shared_junction is not None:
+            junction = shared_junction
+        else:
+            junction = len(seeds)
+            seeds.append((0, 0))
+            roles.append("junction")
+            if relation.equal_width:
+                shared_junction = junction
         joints[branch] = junction
         maps[branch][near] = junction
-    equal = [joints[r.branch] for r in relations if r.equal_width]
+    equal = list(dict.fromkeys(joints[r.branch] for r in relations if r.equal_width))
     side_relations = defaultdict(list)
     for relation in relations:
         side_relations[relation.host_side].append(relation)

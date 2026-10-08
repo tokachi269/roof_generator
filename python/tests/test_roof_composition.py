@@ -247,7 +247,7 @@ class AttachmentRelationTests(unittest.TestCase):
                 )
 
     def test_unrecognized_arrangements_are_not_completed_by_independent_gables(self):
-        for name in ("orthogonal_U", "cross", "residential_multi_reflex"):
+        for name in ("orthogonal_U", "residential_multi_reflex"):
             record = next(r for r in RECORDS if r["name"] == name)
             d = decompose(analyze(record["footprint"]))
             with self.subTest(name=name), self.assertRaises(UnsupportedGraphError):
@@ -372,7 +372,11 @@ class MultipleCompositionTests(unittest.TestCase):
     def test_inspection_does_not_mislabel_candidate_gables_as_a_final_roof(self):
         from python.inspect_roof_composition import inspect, svg
 
-        for name, status in (("orthogonal_T", "supported"), ("cross", "unsupported")):
+        for name, status in (
+            ("orthogonal_T", "supported"),
+            ("orthogonal_U", "unsupported"),
+            ("cross", "supported"),
+        ):
             record = next(r for r in RECORDS if r["name"] == name)
             result = inspect(record)
             self.assertEqual(result["status"], status)
@@ -520,8 +524,12 @@ class MultipleCompositionTests(unittest.TestCase):
             (6, 4),
             (0, 4),
         ]
-        with self.assertRaisesRegex(UnsupportedGraphError, "multiple equal-width"):
-            compose(decompose(analyze(cross)))
+        result = compose(decompose(analyze(cross)))
+        self.assertEqual(len(result.graph.faces), 8)
+        self.assertEqual(
+            Counter(e.kind for e in result.graph.edges if len(e.faces) == 2),
+            {"ridge": 4, "valley": 4},
+        )
         square_receiver = [
             (0, 0),
             (1, 0),
@@ -553,7 +561,7 @@ class MultipleCompositionTests(unittest.TestCase):
         for kind in ("hip", "shed", "flat"):
             with self.assertRaisesRegex(UnsupportedGraphError, "multi-cell"):
                 compose(decompose(analyze(points)), kind)
-        for name in ("cross", "orthogonal_U", "residential_multi_reflex"):
+        for name in ("orthogonal_U", "residential_multi_reflex"):
             raw = next(r["footprint"] for r in RECORDS if r["name"] == name)
             with self.assertRaises(UnsupportedGraphError):
                 compose(decompose(analyze(raw)))
