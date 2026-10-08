@@ -4,6 +4,7 @@
 from dataclasses import dataclass, asdict
 from .graph import BoundarySpan, UnsupportedGraphError
 from .cells import Decomposition
+from .footprint import EPS
 
 
 @dataclass(frozen=True)
@@ -75,6 +76,26 @@ class ArchitecturalPartGraph:
             raise UnsupportedGraphError("part IDs must be ordered and dense")
         if tuple(m.cell for m in self.members) != tuple(range(len(d.cells))):
             raise UnsupportedGraphError("architectural members must cover every cell")
+        for m in self.members:
+            pts = [d.vertices[v] for v in d.cells[m.cell].corners]
+            bounds = (
+                min(p[0] for p in pts),
+                min(p[1] for p in pts),
+                max(p[0] for p in pts),
+                max(p[1] for p in pts),
+            )
+            if any(abs(a - b) > 4 * EPS for a, b in zip(m.bounds, bounds)):
+                raise UnsupportedGraphError("member bounds differ from its cell")
+            sizes = bounds[2] - bounds[0], bounds[3] - bounds[1]
+            axes = (
+                (0, 1)
+                if abs(sizes[0] - sizes[1]) <= 4 * EPS
+                else (int(sizes[1] > sizes[0]),)
+            )
+            if m.axes != axes:
+                raise UnsupportedGraphError(
+                    "member axes differ from its geometric domain"
+                )
         owners = {c: p.id for p in self.parts for c in p.cells}
         for p in self.parts:
             boundary = set()
@@ -118,6 +139,13 @@ class ArchitecturalPartGraph:
         if {r.cells for r in self.relations} != pairs:
             raise UnsupportedGraphError("part relations lost cell adjacency")
         for r in self.relations:
+            expected = {
+                a.interval
+                for a in d.adjacency
+                if a.cells == r.cells and a.sides == r.sides
+            }
+            if set(r.intervals) != expected or len(r.intervals) != len(expected):
+                raise UnsupportedGraphError("relation lost shared interval provenance")
             if not r.options:
                 raise UnsupportedGraphError(
                     "unresolved contact needs an explicit option"
