@@ -2,7 +2,8 @@
 
 Starting SHA: `121533dd6f1152f1bd46d80493b00e7ea84d1783`.
 The current pipeline and capabilities are defined in [ARCHITECTURE.md](../../ARCHITECTURE.md).
-Measurements and smoke evidence for this series are recorded below.
+Measurements and smoke evidence for the migration series ending at `f3287e5` are recorded below.
+The subsequent [relation support evaluation](RELATION_TOPOLOGY_SUPPORT.md) records the current U capability and all-candidate rejection audit.
 
 ## Structural results
 

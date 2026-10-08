@@ -20,6 +20,12 @@ partitioning are unsupported. Holes, touching/self-intersecting boundaries,
 nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
 intentional perimeter boundary; walls and thickness are separate modeling tasks.
 
+Distinct receiver-end terminal attachments, including the U fixture, compose
+into one gable RoofGraph. The [support audit](python/docs/RELATION_TOPOLOGY_SUPPORT.md)
+reports all candidate rejection causes separately from final mesh capabilities.
+Parallel, offset/width-step continuation and partial-end contacts still require
+implemented topology operations.
+
 ## Installation and use
 
 1. Download [`roof_generator-1.2.0.zip`](packages/roof_generator-1.2.0.zip) with **Download raw file**.

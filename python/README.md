@@ -45,3 +45,17 @@ analytic planarity, frozen mesh/topology expectations, and Blender UV/material /
 transform / atomic failure. `benchmark_generation.py` reports attempts and
 unsupported counts separately; its exact-family fingerprints compare before
 and after performance changes.
+
+`audit_roof_support.py` separates the repeated six-fixture batch from 1000 unique
+seeded connected-grid outlines. Full assignment diagnostics are streamed to
+JSONL; summary incidence is nonexclusive. Sole known blockers censor downstream
+failure and are upper bounds, not guaranteed support gains. Example:
+
+```bash
+python python/audit_roof_support.py --corpus python/out/support/corpus.json --output python/out/support/audit.json --details python/out/support/details.jsonl
+```
+
+`inspect_roof.py --fixture orthogonal_U` inspects all canonical retained
+interpretations and the supported unified RoofGraph. `inspect_junctions.py`
+inspects one fixed minimum partition/orientation only, so its rejection is not a
+whole-footprint support verdict. See [relation audit and scope](docs/RELATION_TOPOLOGY_SUPPORT.md).

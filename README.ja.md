@@ -18,6 +18,11 @@ coreは最小矩形分割、建築的なpart解釈、検証済みのindexed Roof
 穴、接触・自己交差した境界、非平面入力、探索未完了も明示的に失敗します。
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
+異なるhost端へ付く複数terminalを一括接続でき、U fixtureも一体のgable RoofGraphになります。
+[対応率の集計](python/docs/RELATION_TOPOLOGY_SUPPORT.md)では、全candidateのreject理由と
+最終meshの対応範囲を分けて示しています。parallel、幅違い・軸ずれcontinuation、
+partial-endのtopology操作は未実装です。
+
 ## インストールと使い方
 
 1. [`roof_generator-1.2.0.zip`](packages/roof_generator-1.2.0.zip) を **Download raw file** で保存します。

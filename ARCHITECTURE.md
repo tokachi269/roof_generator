@@ -116,14 +116,24 @@ materialized candidate still attains the classical minimum rectangle certificate
 Analytic embedding supports rectangle gable/hip/shed/flat and a single concave
 flat face covering a hole-free orthogonal outline. Compound gable topology uses
 published member port replacement for terminal/middle/noninterfering narrow
-attachments and two opposite coincident equal-width ports. It does not flatten a
+attachments, simultaneous distinct receiver-end terminal replacements, and two
+opposite coincident equal-width ports. It does not flatten a
 concave compound part into one primitive or leave internal caps/cuts in the graph.
-U, residential and arbitrary grid gable arrangements may have no implemented valid
-topology; the retained architectural interpretation and rejection reasons remain
+The U fixture has one valid six-face compound graph. Residential and arbitrary
+grid arrangements may have no implemented valid topology; the retained architectural interpretation and rejection reasons remain
 inspectable. Multi-cell hip/shed and non-orthogonal partitioning are unsupported.
 
 A GeometryProblem provides fixed face cycles, boundary anchors, internal XY/Z
-variables and ridge directions. Its initializer is not a solved mesh or a
+variables and ridge directions. A receiver ridge with both exterior ports
+consumed receives its equal-pitch height anchor from the declared opposite eaves;
+its XY remains variable. Its initializer is not a solved mesh or a
 nonlinear convergence certificate. Nonlinear compound embedding, residual
 planarity validation and release of additional final mesh cases remain separate
 work. The adapter cannot repair or approximate those missing solves.
+
+Rejections carry structured stage/code/member information. All independent local
+relation blockers are reported for each assignment; downstream composition is
+not run after a blocked relation. Diagnostic histograms are nonexclusive. A
+building with valid alternatives may still have rejected assignments. The
+read-only support audit streams details and distinguishes unsupported input from
+incomplete-budget searches; it never interprets seed variation as missing rules.
