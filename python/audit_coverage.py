@@ -116,13 +116,16 @@ def inspect(record):
         row["issues"] = classify(pool)
         row["valid_graph_count"] = len(pool.valid)
         row["ambiguity"] = len(pool.valid) > 1
+        if pool.valid:
+            completed("RoofGraph")
+            completed("GeometryProblem")
         if not pool.complete or not pool.valid:
             row["incomplete_search"] = not pool.complete
             raise UnsupportedRoofError(pool.reason or "no valid topology")
-        completed("RoofGraph")
         selected = pool.select(0)
         row["selected_id"] = selected.id
-        completed("GeometryProblem")
+        row["timings_ms"]["seed"] = (time.perf_counter() - t) * 1000
+        t = time.perf_counter()
         owner = "solve"
         vertices = embed(selected.graph, selected.geometry)
         completed("solve")

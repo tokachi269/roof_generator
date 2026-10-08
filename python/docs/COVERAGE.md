@@ -8,8 +8,11 @@ oblique affine variants are stress inputs, not Euclidean equivalence tests.
 
 `audit_coverage.py` measures footprint validity, completed partition search,
 architectural interpretation, valid RoofGraph, GeometryProblem, solve and
-validated mesh separately. Blender is **unmeasured** in a CPython audit; actual
-conversion evidence is provided by the Blender smoke report. Unmeasured is not
+validated mesh separately. Partial valid graph existence is counted even when
+the search is incomplete; such a pool cannot select a seed or attempt solve.
+Blender is **unmeasured** in a CPython audit; actual
+conversion evidence is provided by `blender_audit_coverage.py` for every core-valid
+corpus mesh and by installed-addon smoke. Unmeasured is not
 an observed failure. The seed is fixed at zero. The audit does not retry a
 failed chosen candidate with another seed.
 
@@ -31,3 +34,9 @@ input/architectural contract. A relation string alone cannot establish C or F:
 local geometry distinguish interpretation from operation insufficiency.
 Downstream junction and solve failures are censored when an earlier relation
 rejects an assignment. Conditional sole blockers are not promised coverage gains.
+
+The separate `canonical/branch_network_inputs_v1.json.gz` (version 1, seed 69712)
+adds 100 dimension-randomized separated terminal/middle port networks. It is a
+targeted operation proof, not a replacement for unknown-grid stress. See
+[current end-to-end results](END_TO_END_EVALUATION.md) for all stage counts,
+actual Blender attempts, research boundaries and separate 2D/solver timings.

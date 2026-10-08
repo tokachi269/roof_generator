@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 import python
+from dataclasses import replace
 import gzip
 import json
 from pathlib import Path
@@ -56,6 +57,19 @@ class CoverageAuditTests(unittest.TestCase):
         self.assertTrue(row["success"]["solve"])
         self.assertFalse(row["success"]["mesh"])
         self.assertEqual(row["failure_owner"], "mesh")
+
+    def test_incomplete_search_does_not_hide_graph_existence_or_select_seed(self):
+        from roof_generator.core.generation import prepare_generation
+
+        raw = ((0, 0), (12, 0), (12, 6), (0, 6))
+        pool = replace(prepare_generation(raw).candidates, complete=False, reason="budget")
+        with patch("python.audit_coverage.build_candidates", return_value=pool):
+            row = inspect({"name": "incomplete", "footprint": raw})
+        self.assertTrue(row["success"]["RoofGraph"])
+        self.assertTrue(row["success"]["GeometryProblem"])
+        self.assertFalse(row["success"]["solve"])
+        self.assertNotIn("selected_id", row)
+        self.assertEqual(row["failure"]["code"], "incomplete_search")
 
     def test_supplemental_branch_network_inputs_are_frozen_and_simple(self):
         from python.branch_network_corpus import corpus
