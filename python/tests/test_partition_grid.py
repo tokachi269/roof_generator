@@ -214,6 +214,28 @@ class GeneratedPartitionTests(unittest.TestCase):
                 self.assertEqual(d, decompose(analyze(points)))
                 assert_partition(self, points, d, expected)
 
+    def test_interior_steiner_junction_is_noded_in_all_three_cell_boundaries(self):
+        case = next(c for c in FIXTURES if c["name"] == "interior_steiner")
+        fp = analyze(case["footprint"])
+        d = decompose(fp)
+        assert_partition(self, case["footprint"], d, 3)
+        nodes = [fp.frame.world_xy(p) for p in d.vertices]
+        joint = next(
+            i
+            for i, p in enumerate(nodes)
+            if np.linalg.norm(np.asarray(p) - [3, 1]) < 1e-8
+        )
+        self.assertGreaterEqual(joint, len(fp.vertices))
+        self.assertEqual(sum(joint in c.boundary for c in d.cells), 3)
+        self.assertEqual(
+            sum(joint in c.boundary and joint not in c.corners for c in d.cells), 1
+        )
+        self.assertEqual(len(d.adjacency), 3)
+        # Interior T junctions induce a cycle in the cell dual. Do not assume
+        # every valid hole-free partition's adjacency is a tree.
+        self.assertEqual({a.cells for a in d.adjacency}, {(0, 1), (0, 2), (1, 2)})
+        self.assertEqual(sum(joint in a.interval for a in d.adjacency), 3)
+
     def test_five_hundred_unknown_connected_grid_shapes(self):
         counts = Counter()
         for index, points in enumerate(generated()):
