@@ -1,5 +1,8 @@
 # Tools and verification
 
+The resolved end-state model, proof boundaries and remaining unsupported
+combinations are described in [roof-end authority](docs/ROOF_END_CONSTRAINTS.md).
+
 All tools use the distributable `roof_generator.core` under `addon/`.
 Runtime needs Python's standard library. `requirements.txt` declares development
 oracles only; Blender installs the ZIP without pip or external wheels.
@@ -15,6 +18,10 @@ python python/inspect_roof.py --fixture cross --seed 7 --output python/out/cross
 python python/benchmark_generation.py --output python/out/performance.json
 python python/benchmark_generation.py --samples 3 --warmup 1 --buildings 24 --output python/out/authority/performance.json
 python python/benchmark_roof_mesh.py --samples 3 --buildings 24 --output python/out/authority/mesh-performance.json
+python python/inspect_authority.py --inputs python/tests/fixtures/authority_inputs_v1.json --output python/out/authority/inspection.json
+python python/authority_diagrams.py --before python/out/authority/inspection-before.json --after python/out/authority/inspection-after.json --output-dir python/out/authority/diagrams
+python python/roof_gallery.py --before python/out/authority/blender-end-state-before --after python/out/authority/blender-end-state-final --output-dir python/docs/authority/end-state/gallery
+blender -b --factory-startup --python-exit-code 1 --python python/blender_authority_acceptance.py -- --zip packages/roof_generator-1.3.0.zip --inputs python/tests/fixtures/authority_inputs_v1.json --output-dir python/out/authority/blender
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.3.0.zip --output-dir python/out/addon
 ```
 
@@ -69,6 +76,7 @@ Staged fixed-corpus coverage and independent Blender conversion:
 ```bash
 python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --output python/out/coverage.json --details python/out/coverage.jsonl.gz
 blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-coverage.json
+blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --zip packages/roof_generator-1.3.0.zip --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-installed-coverage.json
 python python/benchmark_roof_mesh.py --output python/out/core-budget.json
 python python/profile_partitions.py --output python/out/partition-profile.json
 ```

@@ -70,6 +70,22 @@ def classify(pool):
                     "partition": r.partition,
                     "axes": r.axes,
                     "evidence": evidence,
+                    "architectural_scope": (
+                        "internal" if issue.code.startswith("internal_") else
+                        "inter_part" if issue.code.startswith("inter_part_") else "operation_applicability"
+                    ),
+                    "authority_classification": (
+                        "C_alternative_partition" if pool.valid and r.partition not in good else
+                        "unresolved_A_B_E" if issue.code.startswith("internal_") else
+                        "unresolved_B_D_E" if issue.stage == "relation" else "B_restricted_operation"
+                    ),
+                    "authority_evidence": (
+                        "Part grouping alone does not specify how this analytic relation becomes a roof; no junction-free continuation is proved"
+                        if issue.code.startswith("internal_") else
+                        "declared inter-Part contact; footprint-only grammar/ambiguity remains unresolved"
+                        if issue.stage == "relation" else
+                        "declared architecture exists but the proved operation applicability is not satisfied"
+                    ),
                 }
             )
     return result
@@ -111,10 +127,14 @@ def inspect(record):
             raise UnsupportedRoofError("no architectural interpretation")
         completed("architecture")
         row["interpretation_count"] = len(interpretation.retained)
+        row["architecturally_retained_candidate_count"] = len(interpretation.retained)
         owner = "topology"
         pool = build_candidates(interpretation)
         row["issues"] = classify(pool)
         row["valid_graph_count"] = len(pool.valid)
+        row["constructible_topology_candidate_count"] = len(pool.constructible)
+        row["architectural_preferred_assignment_count"] = len(pool.inspect_ranking()["architectural_preferred_assignments"])
+        row["architectural_assignment_count"] = len(pool.architectural)
         row["ambiguity"] = len(pool.valid) > 1
         if pool.valid:
             completed("RoofGraph")
@@ -197,9 +217,14 @@ def main():
                 records = records[: a.limit]
             counts, failures, reasons, issues, sole = (Counter() for _ in range(5))
             elapsed = 0.0
+            candidate_counts = Counter()
             for i, record in enumerate(records):
                 row = inspect(record)
                 row["corpus"] = category
+                candidate_counts.update({k: row.get(k, 0) for k in (
+                    "architecturally_retained_candidate_count", "constructible_topology_candidate_count",
+                    "architectural_preferred_assignment_count", "architectural_assignment_count",
+                )})
                 f.write(json.dumps(row, separators=(",", ":")) + "\n")
                 counts.update(k for k, v in row["success"].items() if v)
                 if row["failure_owner"]:
@@ -228,6 +253,7 @@ def main():
                 "conditional_sole_assignment_blocker": dict(sole),
                 "failure_reasons": dict(reasons),
                 "total_ms": elapsed,
+                "candidate_counts": dict(candidate_counts),
             }
             print(category, dict(counts), flush=True)
     a.output.parent.mkdir(parents=True, exist_ok=True)

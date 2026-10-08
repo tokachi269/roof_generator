@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100">
+<rect width="1440" height="1100" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#17212b">
+<text x="35" y="30">BEFORE: Minimum Cells / artificial cuts</text>
+<text x="515" y="30">BEFORE: ArchitecturalParts / declared relations</text>
+<text x="995" y="30">BEFORE: Final roof features / recorded causes</text>
+<polygon points="35.00,290.00 150.00,290.00 207.50,290.00 265.00,290.00 265.00,232.50 207.50,232.50 150.00,232.50 35.00,232.50" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="150.00" y="261.25">C0</text>
+<polygon points="515.00,290.00 630.00,290.00 687.50,290.00 745.00,290.00 745.00,232.50 687.50,232.50 630.00,232.50 515.00,232.50" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="630.00" y="261.25">C0/P0</text>
+<polygon points="150.00,405.00 207.50,405.00 207.50,290.00 150.00,290.00" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="178.75" y="347.50">C1</text>
+<polygon points="630.00,405.00 687.50,405.00 687.50,290.00 630.00,290.00" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="658.75" y="347.50">C1/P1</text>
+<polygon points="150.00,232.50 207.50,232.50 207.50,60.00 150.00,60.00" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="178.75" y="146.25">C2</text>
+<polygon points="630.00,232.50 687.50,232.50 687.50,60.00 630.00,60.00" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="658.75" y="146.25">C2/P2</text>
+<polyline points="207.50,290.00 150.00,290.00" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="207.50,232.50 150.00,232.50" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="630.00" y1="261.25" x2="658.75" y2="347.50" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="435">R0: C[0, 1] side_attachment (inter-part)</text>
+<line x1="630.00" y1="261.25" x2="658.75" y2="146.25" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="451">R1: C[0, 2] side_attachment (inter-part)</text>
+<polyline points="1167.50,290.00 1225.00,290.00" fill="none" stroke="#637283" stroke-width="3"><title>E0 eave</title></polyline>
+<polyline points="1167.50,290.00 1167.50,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E1 eave</title></polyline>
+<polyline points="1167.50,290.00 1138.75,261.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E2 valley (cause unrecorded)</title></polyline>
+<text x="1156.12" y="272.62">E2</text>
+<polyline points="1225.00,290.00 1225.00,261.25" fill="none" stroke="#637283" stroke-width="3"><title>E3 gable_end</title></polyline>
+<polyline points="1225.00,232.50 1167.50,232.50" fill="none" stroke="#637283" stroke-width="3"><title>E4 eave</title></polyline>
+<polyline points="1225.00,232.50 1225.00,261.25" fill="none" stroke="#637283" stroke-width="3"><title>E5 gable_end</title></polyline>
+<polyline points="1167.50,232.50 1167.50,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E6 eave</title></polyline>
+<polyline points="1167.50,232.50 1138.75,261.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E7 valley (cause unrecorded)</title></polyline>
+<text x="1156.12" y="243.88">E7</text>
+<polyline points="1167.50,60.00 1138.75,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E8 gable_end</title></polyline>
+<polyline points="1110.00,60.00 1110.00,232.50" fill="none" stroke="#637283" stroke-width="3"><title>E9 eave</title></polyline>
+<polyline points="1110.00,60.00 1138.75,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E10 gable_end</title></polyline>
+<polyline points="1110.00,232.50 995.00,232.50" fill="none" stroke="#637283" stroke-width="3"><title>E11 eave</title></polyline>
+<polyline points="1110.00,232.50 1138.75,261.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E12 valley (cause unrecorded)</title></polyline>
+<text x="1127.38" y="243.88">E12</text>
+<polyline points="995.00,232.50 995.00,261.25" fill="none" stroke="#637283" stroke-width="3"><title>E13 gable_end</title></polyline>
+<polyline points="995.00,290.00 1110.00,290.00" fill="none" stroke="#637283" stroke-width="3"><title>E14 eave</title></polyline>
+<polyline points="995.00,290.00 995.00,261.25" fill="none" stroke="#637283" stroke-width="3"><title>E15 gable_end</title></polyline>
+<polyline points="1110.00,290.00 1110.00,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E16 eave</title></polyline>
+<polyline points="1110.00,290.00 1138.75,261.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E17 valley (cause unrecorded)</title></polyline>
+<text x="1127.38" y="272.62">E17</text>
+<polyline points="1110.00,405.00 1138.75,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E18 gable_end</title></polyline>
+<polyline points="1167.50,405.00 1138.75,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E19 gable_end</title></polyline>
+<polyline points="1225.00,261.25 1138.75,261.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E20 ridge (cause unrecorded)</title></polyline>
+<text x="1184.88" y="258.25">E20</text>
+<polyline points="995.00,261.25 1138.75,261.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E21 ridge (cause unrecorded)</title></polyline>
+<text x="1069.88" y="258.25">E21</text>
+<polyline points="1138.75,405.00 1138.75,261.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E22 ridge (cause unrecorded)</title></polyline>
+<text x="1141.75" y="330.12">E22</text>
+<polyline points="1138.75,261.25 1138.75,60.00" fill="none" stroke="#cd2941" stroke-width="3"><title>E23 ridge (cause unrecorded)</title></polyline>
+<text x="1141.75" y="157.62">E23</text>
+<text x="995" y="420">E2 valley (cause unrecorded)</text>
+<text x="995" y="436">E7 valley (cause unrecorded)</text>
+<text x="995" y="452">E12 valley (cause unrecorded)</text>
+<text x="995" y="468">E17 valley (cause unrecorded)</text>
+<text x="995" y="484">E20 ridge (cause unrecorded)</text>
+<text x="995" y="500">E21 ridge (cause unrecorded)</text>
+<text x="35" y="520">actual installed operator preparation; roof XY is the solved embedding. Red ridge / blue valley / orange hip.</text>
+<text x="35" y="570">AFTER: Minimum Cells / artificial cuts</text>
+<text x="515" y="570">AFTER: ArchitecturalParts / declared relations</text>
+<text x="995" y="570">AFTER: Final roof features / recorded causes</text>
+<polygon points="35.00,830.00 150.00,830.00 207.50,830.00 265.00,830.00 265.00,772.50 207.50,772.50 150.00,772.50 35.00,772.50" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="150.00" y="801.25">C0</text>
+<polygon points="515.00,830.00 630.00,830.00 687.50,830.00 745.00,830.00 745.00,772.50 687.50,772.50 630.00,772.50 515.00,772.50" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="630.00" y="801.25">C0/P0</text>
+<polygon points="150.00,945.00 207.50,945.00 207.50,830.00 150.00,830.00" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="178.75" y="887.50">C1</text>
+<polygon points="630.00,945.00 687.50,945.00 687.50,830.00 630.00,830.00" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="658.75" y="887.50">C1/P1</text>
+<polygon points="150.00,772.50 207.50,772.50 207.50,600.00 150.00,600.00" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="178.75" y="686.25">C2</text>
+<polygon points="630.00,772.50 687.50,772.50 687.50,600.00 630.00,600.00" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="658.75" y="686.25">C2/P2</text>
+<polyline points="207.50,830.00 150.00,830.00" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="207.50,772.50 150.00,772.50" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="630.00" y1="801.25" x2="658.75" y2="887.50" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="975">R0: C[0, 1] side_attachment -&gt; extension (inter-part)</text>
+<line x1="630.00" y1="801.25" x2="658.75" y2="686.25" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="991">R1: C[0, 2] side_attachment -&gt; extension (inter-part)</text>
+<polyline points="1167.50,830.00 1225.00,830.00" fill="none" stroke="#637283" stroke-width="3"><title>E0 eave</title></polyline>
+<polyline points="1167.50,830.00 1167.50,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E1 eave</title></polyline>
+<polyline points="1167.50,830.00 1138.75,801.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E2 valley &lt;- middle R0 / P[0, 1]</title></polyline>
+<text x="1156.12" y="812.62">E2</text>
+<polyline points="1225.00,830.00 1225.00,801.25" fill="none" stroke="#637283" stroke-width="3"><title>E3 gable_end</title></polyline>
+<polyline points="1225.00,772.50 1167.50,772.50" fill="none" stroke="#637283" stroke-width="3"><title>E4 eave</title></polyline>
+<polyline points="1225.00,772.50 1225.00,801.25" fill="none" stroke="#637283" stroke-width="3"><title>E5 gable_end</title></polyline>
+<polyline points="1167.50,772.50 1167.50,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E6 eave</title></polyline>
+<polyline points="1167.50,772.50 1138.75,801.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E7 valley &lt;- middle R1 / P[0, 2]</title></polyline>
+<text x="1156.12" y="783.88">E7</text>
+<polyline points="1167.50,600.00 1138.75,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E8 gable_end</title></polyline>
+<polyline points="1110.00,600.00 1110.00,772.50" fill="none" stroke="#637283" stroke-width="3"><title>E9 eave</title></polyline>
+<polyline points="1110.00,600.00 1138.75,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E10 gable_end</title></polyline>
+<polyline points="1110.00,772.50 995.00,772.50" fill="none" stroke="#637283" stroke-width="3"><title>E11 eave</title></polyline>
+<polyline points="1110.00,772.50 1138.75,801.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E12 valley &lt;- middle R1 / P[0, 2]</title></polyline>
+<text x="1127.38" y="783.88">E12</text>
+<polyline points="995.00,772.50 995.00,801.25" fill="none" stroke="#637283" stroke-width="3"><title>E13 gable_end</title></polyline>
+<polyline points="995.00,830.00 1110.00,830.00" fill="none" stroke="#637283" stroke-width="3"><title>E14 eave</title></polyline>
+<polyline points="995.00,830.00 995.00,801.25" fill="none" stroke="#637283" stroke-width="3"><title>E15 gable_end</title></polyline>
+<polyline points="1110.00,830.00 1110.00,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E16 eave</title></polyline>
+<polyline points="1110.00,830.00 1138.75,801.25" fill="none" stroke="#1469c9" stroke-width="3"><title>E17 valley &lt;- middle R0 / P[0, 1]</title></polyline>
+<text x="1127.38" y="812.62">E17</text>
+<polyline points="1110.00,945.00 1138.75,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E18 gable_end</title></polyline>
+<polyline points="1167.50,945.00 1138.75,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E19 gable_end</title></polyline>
+<polyline points="1225.00,801.25 1138.75,801.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E20 ridge &lt;- member_axis C[0] / P[0]</title></polyline>
+<text x="1184.88" y="798.25">E20</text>
+<polyline points="995.00,801.25 1138.75,801.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E21 ridge &lt;- member_axis C[0] / P[0]</title></polyline>
+<text x="1069.88" y="798.25">E21</text>
+<polyline points="1138.75,945.00 1138.75,801.25" fill="none" stroke="#cd2941" stroke-width="3"><title>E22 ridge &lt;- middle R0 / P[0, 1]</title></polyline>
+<text x="1141.75" y="870.12">E22</text>
+<polyline points="1138.75,801.25 1138.75,600.00" fill="none" stroke="#cd2941" stroke-width="3"><title>E23 ridge &lt;- middle R1 / P[0, 2]</title></polyline>
+<text x="1141.75" y="697.62">E23</text>
+<text x="995" y="960">E2 valley &lt;- middle R0 / P[0, 1]</text>
+<text x="995" y="976">E7 valley &lt;- middle R1 / P[0, 2]</text>
+<text x="995" y="992">E12 valley &lt;- middle R1 / P[0, 2]</text>
+<text x="995" y="1008">E17 valley &lt;- middle R0 / P[0, 1]</text>
+<text x="995" y="1024">E20 ridge &lt;- member_axis C[0] / P[0]</text>
+<text x="995" y="1040">E21 ridge &lt;- member_axis C[0] / P[0]</text>
+<text x="35" y="1060">actual installed operator preparation; roof XY is the solved embedding. Red ridge / blue valley / orange hip.</text>
+</g></svg>

@@ -1,0 +1,18 @@
+{
+  "archives": [
+    "23c6df4a5b333992fc9561d2602fa845d38ac51f630386821eca8198f6cddbd1",
+    "0ac4e96eb508a55bc53f18309af7c7644c43b98de2b5a8de47b6cd189c3fb33e"
+  ],
+  "cases": [
+    "rectangle",
+    "orthogonal_L",
+    "narrow_corner_T",
+    "orthogonal_T",
+    "orthogonal_U",
+    "cross",
+    "many_cell_branch_network",
+    "unknown_supported",
+    "unknown_nonuniform",
+    "offset_rectangles_wide"
+  ]
+}

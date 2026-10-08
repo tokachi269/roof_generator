@@ -1,0 +1,92 @@
+{
+  "blender": "4.3.2",
+  "archive_sha256": "b10af05c00564a30aa029059ce2f51151008e17854d06c52d5bf476dcbd31941",
+  "addon_module": "python/out/authority/after-acceptance-scripts/addons/roof_generator/__init__.py",
+  "image_scope": "Blender camera render of installed operator output; colored overlay reads actual mesh edge attributes",
+  "cases": [
+    {
+      "name": "rectangle",
+      "status": "supported",
+      "image": "rectangle/meshes.png",
+      "candidate": "fe53756b8df3375ba36e5fc8f66e1d41",
+      "faces": 2
+    },
+    {
+      "name": "orthogonal_L",
+      "status": "supported",
+      "image": "orthogonal_L/meshes.png",
+      "candidate": "0458d0a003337ad359042b4888a1e3fc",
+      "faces": 4
+    },
+    {
+      "name": "orthogonal_T",
+      "status": "supported",
+      "image": "orthogonal_T/meshes.png",
+      "candidate": "05cfa3852790ac364c45a21a8ad1dc6d",
+      "faces": 4
+    },
+    {
+      "name": "orthogonal_U",
+      "status": "supported",
+      "image": "orthogonal_U/meshes.png",
+      "candidate": "9ff68928120fd0af41e8d1a17be7ec59",
+      "faces": 6
+    },
+    {
+      "name": "cross",
+      "status": "supported",
+      "image": "cross/meshes.png",
+      "candidate": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "faces": 8
+    },
+    {
+      "name": "s_like_unequal",
+      "status": "supported",
+      "image": "s_like_unequal/meshes.png",
+      "candidate": "d159d525703807e230513e1fa82e75a5",
+      "faces": 6
+    },
+    {
+      "name": "s_like_equal",
+      "status": "supported",
+      "image": "s_like_equal/meshes.png",
+      "candidate": "436f1dcd21b393b37faf91e956cb463a",
+      "faces": 6
+    },
+    {
+      "name": "s_like_nonuniform",
+      "status": "supported",
+      "image": "s_like_nonuniform/meshes.png",
+      "candidate": "585949d69ab9a1d29bcaa6367056caa5",
+      "faces": 6
+    },
+    {
+      "name": "s_mino",
+      "status": "unsupported",
+      "image": "s_mino/meshes.png",
+      "reason": "Error: s_mino_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no implemented architecture template for inter_part_parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "unknown_supported",
+      "status": "supported",
+      "image": "unknown_supported/meshes.png",
+      "candidate": "8ecaa0acc96fe3013c8c827b28c9d916",
+      "faces": 8
+    },
+    {
+      "name": "unknown_nonuniform",
+      "status": "unsupported",
+      "image": "unknown_nonuniform/meshes.png",
+      "reason": "Error: unknown_nonuniform_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no implemented architecture template for inter_part_parallel; no implemented architecture template for inter_part_partial_end\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "many_cell_branch_network",
+      "status": "supported",
+      "image": "many_cell_branch_network/meshes.png",
+      "candidate": "244ea775a6d3e2182b0f663b757b509c",
+      "faces": 10
+    }
+  ]
+}

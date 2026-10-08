@@ -1,0 +1,18 @@
+{
+  "name": "offset_rectangles_wide",
+  "before": {
+    "name": "offset_rectangles_wide",
+    "status": "unsupported",
+    "image": "offset_rectangles_wide/meshes.png",
+    "reason": "Error: offset_rectangles_wide_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for parallel\n",
+    "atomic_failure": true
+  },
+  "after": {
+    "name": "offset_rectangles_wide",
+    "status": "unsupported",
+    "image": "offset_rectangles_wide/meshes.png",
+    "reason": "Error: offset_rectangles_wide_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel\n",
+    "atomic_failure": true
+  },
+  "valleys": []
+}

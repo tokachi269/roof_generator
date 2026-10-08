@@ -2,6 +2,7 @@
 """Actually convert each core-valid corpus roof; unattempted != Blender failure."""
 
 import argparse
+import hashlib
 from collections import Counter
 import gzip
 import json
@@ -10,10 +11,8 @@ import sys
 import bpy
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "addon"), str(ROOT / "python")]
+sys.path.insert(0, str(ROOT / "python"))
 from blender_smoke_test import source, validate
-from roof_generator.blender_output import generate_objects, RoofRequest
-from roof_generator.core.generation import GenerationSettings
 
 
 def main():
@@ -22,7 +21,15 @@ def main():
     p.add_argument("--corpus", type=Path, required=True)
     p.add_argument("--details", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--zip", type=Path)
     a = p.parse_args(argv)
+    if a.zip:
+        assert bpy.ops.preferences.addon_install(filepath=str(a.zip.resolve()), overwrite=True) == {"FINISHED"}
+        assert bpy.ops.preferences.addon_enable(module="roof_generator") == {"FINISHED"}
+    else:
+        sys.path.insert(0, str(ROOT / "addon"))
+    from roof_generator.blender_output import generate_objects, RoofRequest
+    from roof_generator.core.generation import GenerationSettings
     corpus = json.loads(gzip.decompress(a.corpus.read_bytes()))["corpora"]
     inputs = {(c, r["name"]): r for c, records in corpus.items() for r in records}
     rows = []
@@ -62,6 +69,8 @@ def main():
     output = {
         "blender": bpy.app.version_string,
         "seed": 0,
+        "runtime_source": "installed ZIP" if a.zip else "source checkout",
+        "archive_sha256": hashlib.sha256(a.zip.read_bytes()).hexdigest() if a.zip else None,
         "corpora": {
             c: {
                 "attempted": attempts[c],

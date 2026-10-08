@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100">
+<rect width="1440" height="1100" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#17212b">
+<text x="35" y="30">BEFORE: Minimum Cells / artificial cuts</text>
+<text x="515" y="30">BEFORE: ArchitecturalParts / declared relations</text>
+<text x="995" y="30">BEFORE: Final roof features / recorded causes</text>
+<polygon points="35.00,405.00 207.50,405.00 207.50,60.00 35.00,60.00" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="121.25" y="232.50">C0</text>
+<polygon points="515.00,405.00 687.50,405.00 687.50,60.00 515.00,60.00" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="601.25" y="232.50">C0/P0</text>
+<polyline points="995.00,405.00 995.00,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E0 eave</title></polyline>
+<polyline points="995.00,405.00 1081.25,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E1 gable_end</title></polyline>
+<polyline points="1167.50,405.00 1167.50,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E2 eave</title></polyline>
+<polyline points="1167.50,405.00 1081.25,405.00" fill="none" stroke="#637283" stroke-width="3"><title>E3 gable_end</title></polyline>
+<polyline points="1167.50,60.00 1081.25,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E4 gable_end</title></polyline>
+<polyline points="995.00,60.00 1081.25,60.00" fill="none" stroke="#637283" stroke-width="3"><title>E5 gable_end</title></polyline>
+<polyline points="1081.25,60.00 1081.25,405.00" fill="none" stroke="#cd2941" stroke-width="3"><title>E6 ridge (cause unrecorded)</title></polyline>
+<text x="1084.25" y="229.50">E6</text>
+<text x="995" y="435">E6 ridge (cause unrecorded)</text>
+<text x="35" y="520">selected; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+<text x="35" y="570">AFTER: Minimum Cells / artificial cuts</text>
+<text x="515" y="570">AFTER: ArchitecturalParts / declared relations</text>
+<text x="995" y="570">AFTER: Final roof features / recorded causes</text>
+<polygon points="35.00,945.00 207.50,945.00 207.50,600.00 35.00,600.00" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="121.25" y="772.50">C0</text>
+<polygon points="515.00,945.00 687.50,945.00 687.50,600.00 515.00,600.00" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="601.25" y="772.50">C0/P0</text>
+<polyline points="995.00,945.00 995.00,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E0 eave</title></polyline>
+<polyline points="995.00,945.00 1081.25,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E1 gable_end</title></polyline>
+<polyline points="1167.50,945.00 1167.50,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E2 eave</title></polyline>
+<polyline points="1167.50,945.00 1081.25,945.00" fill="none" stroke="#637283" stroke-width="3"><title>E3 gable_end</title></polyline>
+<polyline points="1167.50,600.00 1081.25,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E4 gable_end</title></polyline>
+<polyline points="995.00,600.00 1081.25,600.00" fill="none" stroke="#637283" stroke-width="3"><title>E5 gable_end</title></polyline>
+<polyline points="1081.25,600.00 1081.25,945.00" fill="none" stroke="#cd2941" stroke-width="3"><title>E6 ridge &lt;- gable_template C[0] / P[0]</title></polyline>
+<text x="1084.25" y="769.50">E6</text>
+<text x="995" y="975">E6 ridge &lt;- gable_template C[0] / P[0]</text>
+<text x="35" y="1060">selected; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+</g></svg>

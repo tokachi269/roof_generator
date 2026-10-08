@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100">
+<rect width="1440" height="1100" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#17212b">
+<text x="35" y="30">BEFORE: Minimum Cells / artificial cuts</text>
+<text x="515" y="30">BEFORE: ArchitecturalParts / declared relations</text>
+<text x="995" y="30">BEFORE: Final roof features / recorded causes</text>
+<polygon points="35.00,405.00 93.49,405.00 93.49,380.15 35.00,380.15" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="64.24" y="392.57">C0</text>
+<polygon points="515.00,405.00 573.49,405.00 573.49,380.15 515.00,380.15" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="544.24" y="392.57">C0/P0</text>
+<polygon points="35.00,380.15 93.49,380.15 104.24,380.15 132.06,380.15 181.83,380.15 237.72,380.15 279.51,380.15 335.68,380.15 380.00,380.15 380.00,330.43 237.72,330.43 93.49,330.43 35.00,330.43" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="207.50" y="355.29">C1</text>
+<polygon points="515.00,380.15 573.49,380.15 584.24,380.15 612.06,380.15 661.83,380.15 717.72,380.15 759.51,380.15 815.68,380.15 860.00,380.15 860.00,330.43 717.72,330.43 573.49,330.43 515.00,330.43" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="687.50" y="355.29">C1/P1</text>
+<polygon points="93.49,330.43 237.72,330.43 237.72,276.64 93.49,276.64" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="165.60" y="303.53">C2</text>
+<polygon points="573.49,330.43 717.72,330.43 717.72,276.64 573.49,276.64" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="645.60" y="303.53">C2/P2</text>
+<polygon points="104.24,405.00 132.06,405.00 132.06,380.15 104.24,380.15" fill="#eddcf3" stroke="#99a5b1" stroke-width="1"/>
+<text x="118.15" y="392.57">C3</text>
+<polygon points="584.24,405.00 612.06,405.00 612.06,380.15 584.24,380.15" fill="#eddcf3" stroke="#99a5b1" stroke-width="1"/>
+<text x="598.15" y="392.57">C3/P3</text>
+<polygon points="181.83,405.00 237.72,405.00 237.72,380.15 181.83,380.15" fill="#faedbc" stroke="#99a5b1" stroke-width="1"/>
+<text x="209.78" y="392.57">C4</text>
+<polygon points="661.83,405.00 717.72,405.00 717.72,380.15 661.83,380.15" fill="#faedbc" stroke="#99a5b1" stroke-width="1"/>
+<text x="689.78" y="392.57">C4/P4</text>
+<polygon points="279.51,405.00 335.68,405.00 335.68,380.15 279.51,380.15" fill="#d4efea" stroke="#99a5b1" stroke-width="1"/>
+<text x="307.60" y="392.57">C5</text>
+<polygon points="759.51,405.00 815.68,405.00 815.68,380.15 759.51,380.15" fill="#d4efea" stroke="#99a5b1" stroke-width="1"/>
+<text x="787.60" y="392.57">C5/P5</text>
+<polyline points="93.49,380.15 35.00,380.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="104.24,380.15 132.06,380.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="181.83,380.15 237.72,380.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="279.51,380.15 335.68,380.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="237.72,330.43 93.49,330.43" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="544.24" y1="392.57" x2="687.50" y2="355.29" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="435">R0: C[0, 1] parallel (inter-part)</text>
+<line x1="687.50" y1="355.29" x2="645.60" y2="303.53" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="451">R1: C[1, 2] parallel (inter-part)</text>
+<line x1="687.50" y1="355.29" x2="598.15" y2="392.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="467">R2: C[1, 3] parallel (inter-part)</text>
+<line x1="687.50" y1="355.29" x2="689.78" y2="392.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="483">R3: C[1, 4] parallel (inter-part)</text>
+<line x1="687.50" y1="355.29" x2="787.60" y2="392.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="499">R4: C[1, 5] parallel (inter-part)</text>
+<text x="995" y="160">UNSUPPORTED: no final RoofGraph</text>
+<text x="35" y="520">first diagnostic partition; no selected roof; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+<text x="35" y="570">AFTER: Minimum Cells / artificial cuts</text>
+<text x="515" y="570">AFTER: ArchitecturalParts / declared relations</text>
+<text x="995" y="570">AFTER: Final roof features / recorded causes</text>
+<polygon points="35.00,945.00 93.49,945.00 93.49,920.15 35.00,920.15" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="64.24" y="932.57">C0</text>
+<polygon points="515.00,945.00 573.49,945.00 573.49,920.15 515.00,920.15" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="544.24" y="932.57">C0/P0</text>
+<polygon points="35.00,920.15 93.49,920.15 104.24,920.15 132.06,920.15 181.83,920.15 237.72,920.15 279.51,920.15 335.68,920.15 380.00,920.15 380.00,870.43 237.72,870.43 93.49,870.43 35.00,870.43" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="207.50" y="895.29">C1</text>
+<polygon points="515.00,920.15 573.49,920.15 584.24,920.15 612.06,920.15 661.83,920.15 717.72,920.15 759.51,920.15 815.68,920.15 860.00,920.15 860.00,870.43 717.72,870.43 573.49,870.43 515.00,870.43" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="687.50" y="895.29">C1/P1</text>
+<polygon points="93.49,870.43 237.72,870.43 237.72,816.64 93.49,816.64" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="165.60" y="843.53">C2</text>
+<polygon points="573.49,870.43 717.72,870.43 717.72,816.64 573.49,816.64" fill="#dcefd8" stroke="#99a5b1" stroke-width="1"/>
+<text x="645.60" y="843.53">C2/P2</text>
+<polygon points="104.24,945.00 132.06,945.00 132.06,920.15 104.24,920.15" fill="#eddcf3" stroke="#99a5b1" stroke-width="1"/>
+<text x="118.15" y="932.57">C3</text>
+<polygon points="584.24,945.00 612.06,945.00 612.06,920.15 584.24,920.15" fill="#eddcf3" stroke="#99a5b1" stroke-width="1"/>
+<text x="598.15" y="932.57">C3/P3</text>
+<polygon points="181.83,945.00 237.72,945.00 237.72,920.15 181.83,920.15" fill="#faedbc" stroke="#99a5b1" stroke-width="1"/>
+<text x="209.78" y="932.57">C4</text>
+<polygon points="661.83,945.00 717.72,945.00 717.72,920.15 661.83,920.15" fill="#faedbc" stroke="#99a5b1" stroke-width="1"/>
+<text x="689.78" y="932.57">C4/P4</text>
+<polygon points="279.51,945.00 335.68,945.00 335.68,920.15 279.51,920.15" fill="#d4efea" stroke="#99a5b1" stroke-width="1"/>
+<text x="307.60" y="932.57">C5</text>
+<polygon points="759.51,945.00 815.68,945.00 815.68,920.15 759.51,920.15" fill="#d4efea" stroke="#99a5b1" stroke-width="1"/>
+<text x="787.60" y="932.57">C5/P5</text>
+<polyline points="93.49,920.15 35.00,920.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="104.24,920.15 132.06,920.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="181.83,920.15 237.72,920.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="279.51,920.15 335.68,920.15" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="237.72,870.43 93.49,870.43" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="544.24" y1="932.57" x2="687.50" y2="895.29" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="975">R0: C[0, 1] parallel (inter-part)</text>
+<line x1="687.50" y1="895.29" x2="645.60" y2="843.53" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="991">R1: C[1, 2] parallel (inter-part)</text>
+<line x1="687.50" y1="895.29" x2="598.15" y2="932.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="1007">R2: C[1, 3] parallel (inter-part)</text>
+<line x1="687.50" y1="895.29" x2="689.78" y2="932.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="1023">R3: C[1, 4] parallel (inter-part)</text>
+<line x1="687.50" y1="895.29" x2="787.60" y2="932.57" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="1039">R4: C[1, 5] parallel (inter-part)</text>
+<text x="995" y="700">UNSUPPORTED: no final RoofGraph</text>
+<text x="35" y="1060">first diagnostic partition; no selected roof; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+</g></svg>

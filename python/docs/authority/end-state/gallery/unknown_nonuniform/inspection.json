@@ -1,0 +1,18 @@
+{
+  "name": "unknown_nonuniform",
+  "before": {
+    "name": "unknown_nonuniform",
+    "status": "unsupported",
+    "image": "unknown_nonuniform/meshes.png",
+    "reason": "Error: unknown_nonuniform_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for parallel; no published implemented port operation for partial_end\n",
+    "atomic_failure": true
+  },
+  "after": {
+    "name": "unknown_nonuniform",
+    "status": "unsupported",
+    "image": "unknown_nonuniform/meshes.png",
+    "reason": "Error: unknown_nonuniform_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel; no resolved roof-end combination for inter_part_partial_end\n",
+    "atomic_failure": true
+  },
+  "valleys": []
+}

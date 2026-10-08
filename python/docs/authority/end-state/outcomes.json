@@ -1,0 +1,26 @@
+{
+  "orthogonal_grid_stress": {
+    "unsupported": 980,
+    "supported": 3,
+    "incomplete": 17
+  },
+  "nonuniform_orthogonal": {
+    "unsupported": 150
+  },
+  "structured_orthogonal": {
+    "supported": 13,
+    "unsupported": 90
+  },
+  "convex_quadrilateral": {
+    "supported": 48
+  },
+  "structured_oblique": {
+    "unsupported": 43
+  },
+  "general_simple_polygon_probe": {
+    "unsupported": 40
+  },
+  "structured_branch_network": {
+    "supported": 100
+  }
+}

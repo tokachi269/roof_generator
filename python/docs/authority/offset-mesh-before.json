@@ -1,0 +1,50 @@
+{
+  "blender": "4.3.2",
+  "archive_sha256": "23c6df4a5b333992fc9561d2602fa845d38ac51f630386821eca8198f6cddbd1",
+  "addon_module": "python/out/authority/offset-mesh-before-scripts/addons/roof_generator/__init__.py",
+  "image_scope": "Blender camera render of installed operator output; colored overlay reads actual mesh edge attributes",
+  "cases": [
+    {
+      "name": "offset_rectangles_wide",
+      "status": "unsupported",
+      "image": "offset_rectangles_wide/meshes.png",
+      "reason": "Error: offset_rectangles_wide_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "offset_rectangles_tall",
+      "status": "unsupported",
+      "image": "offset_rectangles_tall/meshes.png",
+      "reason": "Error: offset_rectangles_tall_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for continuation\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "offset_rectangles_mixed",
+      "status": "unsupported",
+      "image": "offset_rectangles_mixed/meshes.png",
+      "reason": "Error: offset_rectangles_mixed_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for partial_end\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "offset_rectangles_wide_two_faces",
+      "status": "unsupported",
+      "image": "offset_rectangles_wide_two_faces/meshes.png",
+      "reason": "Error: offset_rectangles_wide_two_faces_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "offset_rectangles_tall_two_faces",
+      "status": "unsupported",
+      "image": "offset_rectangles_tall_two_faces/meshes.png",
+      "reason": "Error: offset_rectangles_tall_two_faces_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for continuation\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "offset_rectangles_mixed_two_faces",
+      "status": "unsupported",
+      "image": "offset_rectangles_mixed_two_faces/meshes.png",
+      "reason": "Error: offset_rectangles_mixed_two_faces_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no published implemented port operation for partial_end\n",
+      "atomic_failure": true
+    }
+  ]
+}

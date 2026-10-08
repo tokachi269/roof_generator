@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100">
+<rect width="1440" height="1100" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#17212b">
+<text x="35" y="30">BEFORE: Minimum Cells / artificial cuts</text>
+<text x="515" y="30">BEFORE: ArchitecturalParts / declared relations</text>
+<text x="995" y="30">BEFORE: Final roof features / recorded causes</text>
+<polygon points="35.00,405.00 293.75,405.00 293.75,275.62 121.25,275.62 35.00,275.62" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="164.38" y="340.31">C0</text>
+<polygon points="515.00,405.00 773.75,405.00 773.75,275.62 601.25,275.62 515.00,275.62" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="644.38" y="340.31">C0/P0</text>
+<polygon points="121.25,275.62 293.75,275.62 380.00,275.62 380.00,146.25 121.25,146.25" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="250.62" y="210.94">C1</text>
+<polygon points="601.25,275.62 773.75,275.62 860.00,275.62 860.00,146.25 601.25,146.25" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="730.62" y="210.94">C1/P1</text>
+<polyline points="293.75,275.62 121.25,275.62" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="644.38" y1="340.31" x2="730.62" y2="210.94" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="435">R0: C[0, 1] parallel (inter-part)</text>
+<text x="995" y="160">UNSUPPORTED: no final RoofGraph</text>
+<text x="35" y="520">first diagnostic partition; no selected roof; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+<text x="35" y="570">AFTER: Minimum Cells / artificial cuts</text>
+<text x="515" y="570">AFTER: ArchitecturalParts / declared relations</text>
+<text x="995" y="570">AFTER: Final roof features / recorded causes</text>
+<polygon points="35.00,945.00 293.75,945.00 293.75,815.62 121.25,815.62 35.00,815.62" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="164.38" y="880.31">C0</text>
+<polygon points="515.00,945.00 773.75,945.00 773.75,815.62 601.25,815.62 515.00,815.62" fill="#daeafa" stroke="#99a5b1" stroke-width="1"/>
+<text x="644.38" y="880.31">C0/P0</text>
+<polygon points="121.25,815.62 293.75,815.62 380.00,815.62 380.00,686.25 121.25,686.25" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="250.62" y="750.94">C1</text>
+<polygon points="601.25,815.62 773.75,815.62 860.00,815.62 860.00,686.25 601.25,686.25" fill="#f9e1d2" stroke="#99a5b1" stroke-width="1"/>
+<text x="730.62" y="750.94">C1/P1</text>
+<polyline points="293.75,815.62 121.25,815.62" fill="none" stroke="#283645" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="644.38" y1="880.31" x2="730.62" y2="750.94" stroke="#00867e" stroke-width="2"/>
+<text x="515" y="975">R0: C[0, 1] parallel (inter-part)</text>
+<text x="995" y="700">UNSUPPORTED: no final RoofGraph</text>
+<text x="35" y="1060">first diagnostic partition; no selected roof; roof XY is the topology initializer. Red ridge / blue valley / orange hip.</text>
+</g></svg>
