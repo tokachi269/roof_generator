@@ -41,19 +41,20 @@ class RoofMesh:
             points = tuple(self.vertices[i] for i in face.loop)
             if area(tuple(p[:2] for p in points)) <= EPS**2:
                 raise UnsupportedRoofError("mesh face has nonpositive projection")
-            a = tuple(points[1][k] - points[0][k] for k in range(3))
-            normal = None
-            for point in points[2:]:
-                b = tuple(point[k] - points[0][k] for k in range(3))
-                candidate = (
-                    a[1] * b[2] - a[2] * b[1],
-                    a[2] * b[0] - a[0] * b[2],
-                    a[0] * b[1] - a[1] * b[0],
+            # Oriented polygon normal, not the first fan triangle: a concave
+            # face can start at a reflex vertex while its cycle remains CCW.
+            offsets = tuple(
+                tuple(p[k] - points[0][k] for k in range(3)) for p in points
+            )
+            candidate = tuple(
+                sum(
+                    a[(k + 1) % 3] * b[(k + 2) % 3] - a[(k + 2) % 3] * b[(k + 1) % 3]
+                    for a, b in zip(offsets, offsets[1:] + offsets[:1])
                 )
-                size = math.sqrt(sum(v * v for v in candidate))
-                if size > EPS**2:
-                    normal = tuple(v / size for v in candidate)
-                    break
+                for k in range(3)
+            )
+            size = math.sqrt(sum(v * v for v in candidate))
+            normal = tuple(v / size for v in candidate) if size > EPS**2 else None
             if (
                 normal is None
                 or normal[2] <= 0

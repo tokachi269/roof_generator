@@ -180,6 +180,29 @@ def cell_primitives(decomposition, roof_type="gable", *, axes=None):
 
 def compose(decomposition, roof_type="gable", *, axes=None):
     fp = decomposition.footprint
+    if roof_type == "flat":
+        # Flat has one coplanar exterior cycle. Neither artificial cuts nor
+        # unresolved compound member axes can change its topology.
+        graph = make_graph(
+            fp.vertices,
+            fp.source_edges,
+            fp.vertices,
+            {i: BoundaryPoint(i, 0) for i in range(len(fp.vertices))},
+            ["corner"] * len(fp.vertices),
+            (
+                RoofFace(
+                    tuple(range(len(fp.vertices))),
+                    tuple(c.id for c in decomposition.cells),
+                    tuple(range(len(fp.vertices))),
+                ),
+            ),
+            {
+                _key(i, (i + 1) % len(fp.vertices)): "eave"
+                for i in range(len(fp.vertices))
+            },
+            "flat",
+        )
+        return Composition(graph, (), ())
     if len(decomposition.cells) == 1:
         g = _rectangle_graph(
             fp.vertices,

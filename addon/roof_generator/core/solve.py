@@ -134,3 +134,12 @@ def rectangle_vertices(graph, pitch=0.5, eave_height=0.0):
 
 def solve_rectangle(graph, pitch=0.5, eave_height=0.0):
     return RoofMesh(graph, rectangle_vertices(graph, pitch, eave_height))
+
+
+def solve_analytic(graph, pitch=0.5, eave_height=0.0):
+    """Fixed graph embedding: flat surface or one rectangle, no topology edits."""
+    if graph.roof_type == "flat":
+        if not math.isfinite(eave_height):
+            raise UnsupportedRoofError("finite eave height required")
+        return RoofMesh(graph, tuple((*v.seed, eave_height) for v in graph.vertices))
+    return solve_rectangle(graph, pitch, eave_height)

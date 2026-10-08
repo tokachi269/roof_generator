@@ -560,7 +560,7 @@ class MultipleCompositionTests(unittest.TestCase):
         ]
         with self.assertRaisesRegex(UnsupportedRoofError, "slots interact"):
             compose(decompose(analyze(overlapping_slots)))
-        for kind in ("hip", "shed", "flat"):
+        for kind in ("hip", "shed"):
             with self.assertRaisesRegex(UnsupportedRoofError, "multi-cell"):
                 compose(decompose(analyze(points)), kind)
         for name in ("orthogonal_U", "residential_multi_reflex"):

@@ -161,7 +161,7 @@ def retained_indices(search, evaluations):
 @dataclass(frozen=True)
 class Recommendation:
     search: CandidateSearch
-    policy: Policy
+    policy: Policy | None
     evaluations: tuple[Evaluation, ...]
     retained: tuple[tuple[int, ArchitecturalPartGraph], ...]
 
@@ -169,9 +169,12 @@ class Recommendation:
     def status(self):
         if not self.search.complete:
             return "incomplete"
-        if len(self.retained) > 1 or any(
-            self.evaluations[i].score[0] != self.evaluations[i].score[1]
-            for i, _ in self.retained
+        if len(self.retained) > 1 or (
+            self.evaluations
+            and any(
+                self.evaluations[i].score[0] != self.evaluations[i].score[1]
+                for i, _ in self.retained
+            )
         ):
             return "ambiguous"
         issues = self.retained[0][1].issues
@@ -183,7 +186,7 @@ class Recommendation:
         return {
             "status": self.status,
             "search": self.search.inspect(),
-            "policy": asdict(self.policy),
+            "policy": asdict(self.policy) if self.policy is not None else None,
             "evaluations": [asdict(e) for e in self.evaluations],
             "retained": [
                 {"candidate": i, "graph": g.inspect()} for i, g in self.retained
