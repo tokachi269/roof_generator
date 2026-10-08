@@ -10,8 +10,12 @@ import sys
 import time
 from unittest.mock import patch
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "addon"), str(ROOT / "python")]
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument("--code-root", type=Path, default=Path(__file__).resolve().parents[1])
+p.add_argument("--output", type=Path, required=True)
+a = p.parse_args()
+ROOT = a.code_root.resolve()
+sys.path[:0] = [str(ROOT / "addon"), str(Path(__file__).resolve().parent)]
 from roof_generator.core import partition_candidates as pc, partition, cells
 from roof_generator.core.footprint import analyze
 from inspect_architectural_parts import fixture
@@ -58,9 +62,15 @@ def profile():
             yield value
 
     # Inclusive times are labelled: parent stages contain their child costs.
-    with wrap(pc, "complete_cuts", "completion"), wrap(
+    with patch.object(pc, "maximum_sets", enumeration), wrap(
+        pc, "signature", "subdivision_signature"
+    ), wrap(pc.Symmetry, "apply", "symmetry_mapping"), wrap(
+        pc, "complete_cuts", "completion"
+    ), wrap(
         pc, "symmetries", "symmetry_detection"
-    ), wrap(pc, "_cut_signature", "cut_signature"), wrap(
+    ), wrap(
+        pc, "_cut_signature", "cut_signature"
+    ), wrap(
         pc, "subdivide", "subdivision_inclusive"
     ), wrap(
         pc, "from_subdivision", "cell_materialization_inclusive"
@@ -90,9 +100,6 @@ def profile():
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--output", type=Path, required=True)
-    a = p.parse_args()
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(profile(), indent=2) + "\n")
     profiler = cProfile.Profile()

@@ -1,0 +1,37 @@
+{
+  "input": "grid_40",
+  "vertices": 40,
+  "candidates": 48,
+  "work": 116,
+  "instrumented_total_ms": 206.75195199873997,
+  "inclusive_ms": {
+    "symmetry_mapping": 1.3054738883511163,
+    "symmetry_detection": 2.9968309972900897,
+    "completion": 36.360436999530066,
+    "cut_signature": 5.812489063828252,
+    "noding": 62.90584300586488,
+    "face_cycles": 28.948653969564475,
+    "subdivision_validation": 9.791303971724119,
+    "subdivision_inclusive": 105.49573401658563,
+    "provenance": 0.26754602004075423,
+    "provenance_validation": 2.9975699944770895,
+    "cell_materialization_inclusive": 42.43181300262222,
+    "subdivision_signature": 3.5137750091962516,
+    "MIS_enumeration": 0.21479300630744547
+  },
+  "calls": {
+    "symmetry_mapping": 320,
+    "symmetry_detection": 1,
+    "completion": 97,
+    "cut_signature": 97,
+    "noding": 48,
+    "face_cycles": 48,
+    "subdivision_validation": 48,
+    "subdivision_inclusive": 48,
+    "provenance": 54,
+    "provenance_validation": 48,
+    "cell_materialization_inclusive": 48,
+    "subdivision_signature": 48,
+    "MIS_enumeration": 6
+  }
+}
