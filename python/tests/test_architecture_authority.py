@@ -73,6 +73,21 @@ class ArchitectureAuthorityProof(unittest.TestCase):
             with self.assertRaises(UnsupportedRoofError):
                 pool.select(seed)
 
+    def test_architectural_preference_is_independent_of_available_operations(self):
+        from roof_generator.core.architecture_selection import recommend
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.footprint import analyze
+        from python.inspect_architectural_parts import fixture
+        interpretation = recommend(candidates(analyze(fixture("cross")["footprint"])), defer_ranking=True)
+        normal = topology_candidates.build_candidates(interpretation)
+        with patch.object(topology_candidates, "compose", side_effect=UnsupportedRoofError("operation unavailable")):
+            unavailable = topology_candidates.build_candidates(interpretation)
+        self.assertEqual(normal.architectural, unavailable.architectural)
+        self.assertEqual(normal.inspect_ranking()["architectural_preferred_assignments"], unavailable.inspect_ranking()["architectural_preferred_assignments"])
+        self.assertTrue(normal.constructible)
+        self.assertFalse(unavailable.constructible)
+        self.assertFalse(unavailable.valid)
+
 
 if __name__ == "__main__":
     unittest.main()

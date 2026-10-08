@@ -80,7 +80,10 @@ def resolve(architecture, axes):
                 issues=(GenerationIssue("relation", "unresolved_relation", relation.cells),),
             )
         relations.append(replace(relation, options=options))
-    return ResolvedArchitecture(architecture, tuple(axes), tuple(relations))
+    # Selected combinations determine compound membership here, at the
+    # architectural owner, before any topology template is considered.
+    selected = build_parts(architecture.decomposition, Analysis(architecture.members, tuple(relations)))
+    return ResolvedArchitecture(selected, tuple(axes), tuple(relations))
 
 
 def analyze_parts(d):

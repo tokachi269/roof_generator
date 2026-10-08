@@ -122,14 +122,15 @@ def _candidate_id(architecture, composition, axes, identity):
 def _validate(architecture, composition, geometry, axes):
     graph = composition.graph
     owners = {c: p.id for p in architecture.parts for c in p.cells}
-    relations = {r.cells: r for r in (resolve(architecture, axes).relations if axes else architecture.relations)}
+    relations = {r.cells: r for r in architecture.relations}
     for feature in composition.features:
         if feature.parts != tuple(sorted({owners[c] for c in feature.members})):
             raise UnsupportedRoofError("feature cause changes architectural part ownership")
         if feature.relation is not None:
             relation = relations.get(feature.relation)
             kind = "corner" if feature.operation == "terminal" else "side_attachment"
-            if relation is None or len(relation.options) != 1 or relation.options[0].kind != kind:
+            if (relation is None or len(relation.options) != 1 or relation.options[0].kind != kind
+                or relation.options[0].axes != tuple(axes[c] for c in relation.cells)):
                 raise UnsupportedRoofError("feature cause is absent from architectural relations")
             if not any(tuple(sorted((c.host, c.branch))) == feature.relation and c.kind == feature.operation for c in composition.connections):
                 raise UnsupportedRoofError("feature cause lacks its declared roof connection")
@@ -270,12 +271,12 @@ def build_candidates(
                 geometry = problem(
                     composition.graph, pitch, eave_height / d.footprint.frame.scale
                 )
-                stable_id = _candidate_id(architecture, composition, axes, identity)
+                stable_id = _candidate_id(resolved.architecture, composition, axes, identity)
                 stage = "graph_validation"
                 valid.setdefault(
                     stable_id,
                     TopologyCandidate(
-                        stable_id, architecture, axes, composition, geometry, score
+                        stable_id, resolved.architecture, axes, composition, geometry, score
                     ),
                 )
             except UnsupportedRoofError as exc:
