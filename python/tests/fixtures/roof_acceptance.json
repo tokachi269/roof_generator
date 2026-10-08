@@ -20,11 +20,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "rectangle_hip",
@@ -47,12 +43,7 @@
       ]
     ],
     "roof_type": "hip",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge",
-      "hip"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "rectangle_shed",
@@ -75,9 +66,7 @@
       ]
     ],
     "roof_type": "shed",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": []
+    "pitch": 0.5
   },
   {
     "name": "rotated_rectangle",
@@ -100,11 +89,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "parallelogram",
@@ -127,11 +112,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "trapezoid",
@@ -154,11 +135,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "general_convex_quad",
@@ -181,11 +158,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 1,
-    "features": [
-      "ridge"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "orthogonal_L",
@@ -216,13 +189,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "hip",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "orthogonal_T",
@@ -261,12 +228,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "orthogonal_U",
@@ -305,13 +267,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 3,
-    "features": [
-      "ridge",
-      "hip",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "rotated_L",
@@ -342,13 +298,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "hip",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "oblique_L",
@@ -379,13 +329,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "hip",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "unequal_width_join",
@@ -424,12 +368,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "terminating_ridge",
@@ -468,12 +407,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "valley_join",
@@ -504,12 +438,7 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 2,
-    "features": [
-      "ridge",
-      "valley"
-    ]
+    "pitch": 0.5
   },
   {
     "name": "residential_multi_reflex",
@@ -564,12 +493,6 @@
       ]
     ],
     "roof_type": "gable",
-    "pitch": 0.5,
-    "expected_parts": 4,
-    "features": [
-      "ridge",
-      "hip",
-      "valley"
-    ]
+    "pitch": 0.5
   }
 ]

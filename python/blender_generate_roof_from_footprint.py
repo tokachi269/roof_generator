@@ -39,7 +39,7 @@ def main():
     parser.add_argument("--pitch", type=float, default=PITCH)
     parser.add_argument("--eave-height", type=float, default=EAVE_HEIGHT)
     parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--debug-parts", action="store_true", default=DEBUG_PARTS)
+    parser.add_argument("--debug-cells", action="store_true", default=DEBUG_PARTS)
     args = parser.parse_args(argv)
     source = (
         bpy.data.objects.get(args.object_name)
@@ -53,7 +53,7 @@ def main():
         eave_height=args.eave_height,
         seed=args.seed,
         mesh_name=args.mesh_name,
-        debug_parts=args.debug_parts,
+        debug_cells=args.debug_cells,
     )
     print(
         json.dumps(

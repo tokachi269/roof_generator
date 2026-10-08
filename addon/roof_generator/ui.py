@@ -20,7 +20,7 @@ class RoofSettings(bpy.types.PropertyGroup):
     pitch: FloatProperty(name="Pitch", default=0.5, min=0.001, max=4)
     eave_height: FloatProperty(name="Eave offset", default=0)
     seed: IntProperty(name="Generation seed", default=0)
-    debug_parts: BoolProperty(name="Color source cells", default=False)
+    debug_cells: BoolProperty(name="Color source cells", default=False)
     hide_source: BoolProperty(name="Hide source footprint", default=True)
 
 
@@ -64,7 +64,7 @@ class GenerateRoof(bpy.types.Operator):
             )
             generated = generate_objects(
                 requests,
-                debug_parts=settings.debug_parts,
+                debug_cells=settings.debug_cells,
                 hide_source=settings.hide_source,
             )
         except (ValueError, RuntimeError) as exc:
@@ -91,7 +91,7 @@ class RoofPanel(bpy.types.Panel):
             "pitch",
             "eave_height",
             "seed",
-            "debug_parts",
+            "debug_cells",
             "hide_source",
         ):
             self.layout.prop(settings, key)

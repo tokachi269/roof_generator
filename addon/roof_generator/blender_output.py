@@ -23,7 +23,7 @@ def generate_object(
     eave_height=0,
     seed=0,
     mesh_name=None,
-    debug_parts=False,
+    debug_cells=False,
     hide_source=True,
 ):
     request = RoofRequest(
@@ -32,11 +32,11 @@ def generate_object(
         mesh_name,
     )
     return generate_objects(
-        (request,), debug_parts=debug_parts, hide_source=hide_source
+        (request,), debug_cells=debug_cells, hide_source=hide_source
     )[0]
 
 
-def generate_objects(requests, *, debug_parts=False, hide_source=True):
+def generate_objects(requests, *, debug_cells=False, hide_source=True):
     import bpy
 
     requests = tuple(requests)
@@ -58,7 +58,7 @@ def generate_objects(requests, *, debug_parts=False, hide_source=True):
     try:
         for (source, result), request in zip(prepared, requests):
             created.append(
-                (_create_mesh(source, result, request.settings, debug_parts), result)
+                (_create_mesh(source, result, request.settings, debug_cells), result)
             )
     except Exception:
         for obj, _ in created:
@@ -127,7 +127,7 @@ def _prepare(request, depsgraph):
     )
 
 
-def _create_mesh(source, result, settings, debug_parts):
+def _create_mesh(source, result, settings, debug_cells):
     import bpy
 
     spec = result.spec
@@ -149,7 +149,7 @@ def _create_mesh(source, result, settings, debug_parts):
             ]
         data.uv_layers.new(name="Roof UV")
         architecture = result.roof.generation.selected.architecture
-        count = len(architecture.members) if debug_parts else 1
+        count = len(architecture.members) if debug_cells else 1
         colors = (
             (0.55, 0.16, 0.08, 1),
             (0.16, 0.34, 0.55, 1),
@@ -160,12 +160,12 @@ def _create_mesh(source, result, settings, debug_parts):
             mat = bpy.data.materials.new(f"{spec.name}_material_{i}")
             materials.append(mat)
             mat.use_nodes = True
-            mat.diffuse_color = colors[i % len(colors)] if debug_parts else spec.color
+            mat.diffuse_color = colors[i % len(colors)] if debug_cells else spec.color
             mat.node_tree.nodes["Principled BSDF"].inputs[
                 "Base Color"
             ].default_value = mat.diffuse_color
             data.materials.append(mat)
-        if debug_parts:
+        if debug_cells:
             for face, owners in zip(data.polygons, result.roof.mesh.face_cells):
                 face.material_index = owners[0]
         obj = bpy.data.objects.new(spec.name, data)
