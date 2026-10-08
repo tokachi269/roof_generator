@@ -70,6 +70,16 @@ class NonlinearSolveTests(unittest.TestCase):
             with self.subTest(name=name):
                 self.check(fixture(name)["footprint"])
 
+    def test_reported_energy_excludes_pitch_and_regularization(self):
+        generation = prepare_generation(fixture("orthogonal_U")["footprint"])
+        embedding = optimize(generation.geometry_problem)
+        points = np.asarray(embedding.vertices)
+        expected = sum(
+            np.linalg.eigvalsh(np.cov(points[list(face)], rowvar=False))[0]
+            for face in generation.geometry_problem.faces
+        )
+        self.assertAlmostEqual(embedding.energy, expected, places=14)
+
     def test_independent_terminal_witness_matches_solved_heights_and_positions(self):
         from python.tests.test_terminal_network import witness
 

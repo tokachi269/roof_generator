@@ -141,10 +141,8 @@ def optimize(problem, *, tolerance=4e-9, max_iterations=240):
     def residuals(values, weight):
         vertices = unpack(values)
         result = []
-        normals = []
         for face in problem.faces:
-            normal, residual = covariance_plane([vertices[i] for i in face])
-            normals.append(normal)
+            _, residual = covariance_plane([vertices[i] for i in face])
             result.extend(r / math.sqrt(len(face) - 1) for r in residual)
         # A planar face with its declared eave and pitch satisfies this
         # point-to-plane constraint. Unlike fitting a normal to a temporarily
@@ -252,7 +250,11 @@ def optimize(problem, *, tolerance=4e-9, max_iterations=240):
     return Embedding(
         vertices,
         iterations,
-        sum(v * v for v in residuals(values, 0)),
+        sum(
+            sum(r * r for r in covariance_plane([vertices[i] for i in face])[1])
+            / (len(face) - 1)
+            for face in problem.faces
+        ),
         error,
         direction_error,
         slope_error,

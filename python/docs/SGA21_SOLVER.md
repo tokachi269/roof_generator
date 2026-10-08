@@ -58,15 +58,16 @@ alone permit a planar receiver whose ridge slides transversely and changes its
 pitch. `GeometryProblem.slope_constraints` now declares `(face, inward eave
 normal, pitch)`. The equation `dot(face_normal.xy, inward) + pitch*normal.z = 0`
 retains the requested slope. It is an additional user constraint of the kind
-allowed by Ren §4.2, not a replacement roof energy. A 0.1 perimeter-unit residual
-scale makes the dimensionless normal equation commensurate with distance
-residuals; **acceptance checks the unweighted equation independently**. Tests
-compare solved vertices against independently authored equal-pitch witnesses.
+allowed by Ren §4.2, not a replacement roof energy. Tests compare solved vertices
+against independently authored equal-pitch witnesses.
 
 The stored slope constraint also includes its fixed exterior eave XYZ origin.
 At a planar solution the normal equation above is equivalent to all face
 vertices satisfying `z-z_eave = pitch*dot(xy-xy_eave,inward)`. The optimizer uses
 these continuous signed-distance residuals alongside the covariance energy;
 this avoids a discontinuous best-fit normal at a nonplanar intermediate iterate.
+Acceptance checks the maximum absolute signed distance independently of the
+least-squares energy. `Embedding.energy` reports only the published covariance
+term, excluding pitch constraints and displacement regularization.
 No plane-plane intersection is computed. The eave origin, inward direction and
 pitch are supplied explicitly by GeometryProblem, never guessed inside solve.

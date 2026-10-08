@@ -109,6 +109,21 @@ class MixedAttachmentProof(unittest.TestCase):
             )
             self.assertEqual(actual, expected)
 
+    def test_two_consumed_receiver_ends_with_multiple_middle_ports(self):
+        from python.branch_network_corpus import corpus
+
+        raw = corpus()["corpora"]["structured_branch_network"][1]["footprint"]
+        r = generate_roof(raw)
+        self.assertEqual(len(r.mesh.faces), 10)
+        self.assertEqual(
+            Counter(e.kind for e in r.mesh.graph.edges if len(e.faces) == 2),
+            {"ridge": 5, "valley": 6, "hip": 4},
+        )
+        self.assertEqual(
+            Counter(c.kind for c in r.generation.selected.composition.connections),
+            {"terminal": 2, "middle": 2},
+        )
+
     def test_near_end_and_equal_width_middle_are_not_silently_spliced(self):
         # Some alternate partitions can have another justified interpretation;
         # inspect the explicit mixed operation, rather than assuming a shape

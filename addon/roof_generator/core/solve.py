@@ -79,6 +79,26 @@ class GeometryProblem:
                 raise UnsupportedRoofError("invalid explicit roof slope constraint")
 
 
+def _eave_line(graph, face):
+    if not face.eaves:
+        raise UnsupportedRoofError("pitched face lacks a declared exterior eave")
+    edge = face.eaves[0]
+    a, b = graph.outline[edge], graph.outline[(edge + 1) % len(graph.outline)]
+    vector = sub(b, a)
+    length = math.hypot(*vector)
+    for other in face.eaves[1:]:
+        c, d = graph.outline[other], graph.outline[(other + 1) % len(graph.outline)]
+        direction = sub(d, c)
+        if (
+            abs(cross(vector, direction)) > 1e-8 * length * math.hypot(*direction)
+            or abs(cross(vector, sub(c, a))) > 4 * EPS * length
+        ):
+            raise UnsupportedRoofError(
+                "pitched face eaves are not one collinear supporting line"
+            )
+    return a, vector
+
+
 def problem(graph, pitch=0.5, eave_height=0.0):
     """SGA21-ready variables and nonflat anchors; no topology/plane decisions."""
     if (
@@ -87,6 +107,9 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         or not math.isfinite(eave_height)
     ):
         raise UnsupportedRoofError("positive finite pitch and finite eave required")
+    if graph.roof_type != "flat":
+        for face in graph.faces:
+            _eave_line(graph, face)
     if graph.roof_type == "shed":
         eave = graph.faces[0].eaves[0]
         a, b = graph.outline[eave], graph.outline[(eave + 1) % len(graph.outline)]
@@ -222,9 +245,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
 def rectangle_vertices(graph, pitch=0.5, eave_height=0.0):
     """Exact rectangle geometry, consuming already selected connectivity."""
     if not rectangle(graph.outline) or any(f.cells != (0,) for f in graph.faces):
-        raise UnsupportedRoofError(
-            "analytic solve supports one rectangle only; compound pitched embedding is not implemented"
-        )
+        raise UnsupportedRoofError("exact primitive embedding requires one rectangle")
     if (
         not math.isfinite(pitch)
         or (graph.roof_type != "flat" and pitch <= 0)
