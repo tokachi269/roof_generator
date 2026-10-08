@@ -8,6 +8,83 @@ from .graph import UnsupportedGraphError
 from .footprint import sub, rectangle
 
 
+def ridge_seeds(outline, seeds, faces, locations, semantics):
+    """Laplacian initialization constrained to declared primitive ridge axes.
+
+    Unconstrained harmonic embedding is not safe for a concave fixed boundary.
+    Connectivity and all edge meanings are inputs, never initializer outputs.
+    """
+    adjacent = defaultdict(set)
+    incidence = defaultdict(list)
+    for fi, face in enumerate(faces):
+        for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
+            adjacent[a].add(b)
+            adjacent[b].add(a)
+            incidence[tuple(sorted((a, b)))].append(fi)
+    axes = defaultdict(list)
+    for edge, kind in semantics.items():
+        if kind != "ridge":
+            continue
+        cap = next((v for v in edge if v in locations), None)
+        if cap is None:
+            raise UnsupportedGraphError("initial ridge axis needs a boundary port")
+        joint = next(v for v in edge if v != cap)
+        face = faces[incidence[edge][0]]
+        eave = face.eaves[0]
+        direction = sub(outline[(eave + 1) % len(outline)], outline[eave])
+        size = math.hypot(*direction)
+        axes[joint].append((seeds[cap], tuple(v / size for v in direction)))
+    result = list(seeds)
+    lines = {}
+    for vertex in range(len(seeds)):
+        if vertex in locations:
+            continue
+        constraints = axes[vertex]
+        if len(constraints) == 1:
+            lines[vertex] = constraints[0]
+        elif len(constraints) == 2:
+            (a, d), (b, e) = constraints
+            det = d[0] * e[1] - d[1] * e[0]
+            if abs(det) < 1e-8:
+                raise UnsupportedGraphError(
+                    "coincident ridge axes need another initializer"
+                )
+            t = ((b[0] - a[0]) * e[1] - (b[1] - a[1]) * e[0]) / det
+            result[vertex] = (a[0] + t * d[0], a[1] + t * d[1])
+        else:
+            raise UnsupportedGraphError("junction lacks one or two declared ridge axes")
+    variables = sorted(lines)
+    lookup = {v: i for i, v in enumerate(variables)}
+    rows = []
+    for vertex in variables:
+        p, d = lines[vertex]
+        row = [0.0] * (len(variables) + 1)
+        row[lookup[vertex]] = len(adjacent[vertex])
+        for other in adjacent[vertex]:
+            if other in lines:
+                q, e = lines[other]
+                row[lookup[other]] -= sum(a * b for a, b in zip(d, e))
+            else:
+                q = result[other]
+            row[-1] += sum(a * b for a, b in zip(d, sub(q, p)))
+        rows.append(row)
+    for i in range(len(rows)):
+        pivot = max(range(i, len(rows)), key=lambda j: abs(rows[j][i]))
+        rows[i], rows[pivot] = rows[pivot], rows[i]
+        value = rows[i][i]
+        if abs(value) < 1e-12:
+            raise UnsupportedGraphError("singular ridge initialization")
+        rows[i] = [v / value for v in rows[i]]
+        for j in range(len(rows)):
+            if j != i:
+                value = rows[j][i]
+                rows[j] = [a - value * b for a, b in zip(rows[j], rows[i])]
+    for vertex, row in zip(variables, rows):
+        p, d = lines[vertex]
+        result[vertex] = tuple(p[k] + row[-1] * d[k] for k in (0, 1))
+    return tuple(result)
+
+
 def harmonic_seeds(seeds, faces, fixed):
     """Tutte/Laplacian initialization, after all graph incidences are selected."""
     adjacent = defaultdict(set)
@@ -54,6 +131,7 @@ class GeometryProblem:
     variable_xy: tuple[int, ...]
     variable_z: tuple[int, ...]
     fixed_z: tuple[tuple[int, float], ...]
+    ridge_directions: tuple[tuple[tuple[int, int], tuple[float, float]], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -102,12 +180,22 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     seeds = tuple(
         (*v.seed, heights.get(i, interior_height)) for i, v in enumerate(graph.vertices)
     )
+    directions = []
+    for edge in graph.edges:
+        if edge.kind == "ridge":
+            eave = graph.faces[edge.faces[0]].eaves[0]
+            vector = sub(
+                graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
+            )
+            size = math.hypot(*vector)
+            directions.append((edge.vertices, tuple(v / size for v in vector)))
     return GeometryProblem(
         seeds,
         tuple(f.loop for f in graph.faces),
         tuple(i for i, v in enumerate(graph.vertices) if v.boundary is None),
         tuple(i for i in range(len(graph.vertices)) if i not in heights),
         tuple(sorted(heights.items())),
+        tuple(directions),
     )
 
 

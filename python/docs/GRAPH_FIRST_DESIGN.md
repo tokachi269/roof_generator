@@ -82,8 +82,18 @@ degree-three junctions: the wider ridge and convex spoke attach to one vertex,
 the narrower ridge and valley to the other; a hip joins them. Refinement replaces
 one vertex in incident face cycles; it does not intersect roof planes. Width
 ordering is a genuine topology transition at equality, not a claim of topology
-invariance across every dimensional change. Initial XY is a disposable harmonic
-embedding, not the result of a height envelope or a final roof coordinate solve.
+invariance across every dimensional change. Initial XY is a disposable Laplacian
+embedding constrained to the declared primitive ridge directions, not the result
+of a height envelope or a final roof coordinate solve. An unconstrained harmonic
+embedding can send a connector outside a concave footprint; the independent
+seed-coverage proof protects that boundary. Ridge directions come from source
+eaves, not from the eventual optimized coordinates.
+
+Face cell IDs identify originating primitive faces. They do not claim the
+geometric visible-solid contributor semantics of the reference's `face_parts`.
+Every exterior segment retains its actual input-edge interval/provenance, and
+each shared junction retains both incident cells. This distinction is reported
+in the secondary comparison rather than forcing the contracts to agree.
 
 ## Proof and stop condition
 

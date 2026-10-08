@@ -227,21 +227,7 @@ def make_graph(
             first, second = locations.get(a), locations.get(b)
             if first is None or second is None:
                 raise UnsupportedGraphError("perimeter vertex has no boundary location")
-            candidates = []
-            for edge in range(len(outline)):
-                values = []
-                for p in (first, second):
-                    if p.edge == edge:
-                        values.append(p.t)
-                    elif p.edge == (edge + 1) % len(outline) and p.t == 0:
-                        values.append(1.0)
-                if len(values) == 2 and values[0] != values[1]:
-                    candidates.append(
-                        BoundarySpan(edge, tuple(sorted(values)), source_edges[edge])
-                    )
-            if len(candidates) != 1:
-                raise UnsupportedGraphError("ambiguous boundary segment ownership")
-            span = candidates[0]
+            span = boundary_span(outline, source_edges, first, second)
         edges.append(Edge((a, b), tuple(owners), semantics[a, b], span))
     vertices = tuple(
         Vertex(tuple(p), roles[i], locations.get(i), tuple(sorted(cells[i])))
@@ -255,3 +241,22 @@ def make_graph(
         tuple(edges),
         roof_type,
     )
+
+
+def boundary_span(outline, source_edges, first, second):
+    """Resolve declared boundary locations, never infer from roof geometry."""
+    candidates = []
+    for edge in range(len(outline)):
+        values = []
+        for p in (first, second):
+            if p.edge == edge:
+                values.append(p.t)
+            elif p.edge == (edge + 1) % len(outline) and p.t == 0:
+                values.append(1.0)
+        if len(values) == 2 and values[0] != values[1]:
+            candidates.append(
+                BoundarySpan(edge, tuple(sorted(values)), source_edges[edge])
+            )
+    if len(candidates) != 1:
+        raise UnsupportedGraphError("ambiguous boundary segment ownership")
+    return candidates[0]
