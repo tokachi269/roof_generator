@@ -35,9 +35,27 @@ def graph_signature(footprint, graph, rotation=np.eye(2), translation=np.zeros(2
         for e in graph.edges
     )
     faces = []
+    outline = (
+        np.asarray([footprint.frame.world_xy(p) for p in graph.outline]) - translation
+    ) @ rotation
     for f in graph.faces:
         ring = tuple(keys[i] for i in f.loop)
-        faces.append(min(ring[i:] + ring[:i] for i in range(len(ring))))
+        eaves = tuple(
+            sorted(
+                tuple(
+                    sorted(
+                        (
+                            tuple(np.round(outline[e], 6)),
+                            tuple(np.round(outline[(e + 1) % len(outline)], 6)),
+                        )
+                    )
+                )
+                for e in f.eaves
+            )
+        )
+        faces.append(
+            (min(ring[i:] + ring[:i] for i in range(len(ring))), f.cells, eaves)
+        )
     return sorted(keys), edge_keys, sorted(faces)
 
 
@@ -135,12 +153,29 @@ class RectangleGraphTests(unittest.TestCase):
         for a, b in zip(original, np.roll(original, -1, axis=0)):
             subdivided.extend((a, (a + b) / 2))
         variants.append((subdivided, np.eye(2), np.zeros(2)))
+
+        def graph_with_intent(fp, kind, rotation=np.eye(2), translation=np.zeros(2)):
+            # A rectangle has no inherent directed low eave. Supply the same
+            # physical shed direction rather than inventing it from winding.
+            low = None
+            if kind == "shed":
+                p = (
+                    np.asarray([fp.frame.world_xy(v) for v in fp.vertices])
+                    - translation
+                ) @ rotation
+                low = next(
+                    i
+                    for i in range(4)
+                    if abs(p[i][1]) < 1e-7 and abs(p[(i + 1) % 4][1]) < 1e-7
+                )
+            return rectangle_graph(fp, kind, shed_edge=low)
+
         for kind in ("gable", "hip", "shed", "flat"):
             f = analyze(original)
-            reference = graph_signature(f, rectangle_graph(f, kind))
+            reference = graph_signature(f, graph_with_intent(f, kind))
             for points, rotation, translation in variants:
                 fp = analyze(points)
-                g = rectangle_graph(fp, kind)
+                g = graph_with_intent(fp, kind, rotation, translation)
                 self.assertEqual(
                     graph_signature(fp, g, rotation, translation), reference
                 )

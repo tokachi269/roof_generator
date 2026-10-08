@@ -16,7 +16,7 @@ from shapely.ops import unary_union
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose, Cell, Side, Adjacency, Decomposition
 from python.graph_first.topology import compose
-from python.graph_first.geometry import problem, solve_rectangle
+from python.graph_first.geometry import problem, solve_rectangle, Mesh
 from python.graph_first.graph import UnsupportedGraphError, BoundarySpan
 from python.tests.test_graph_first_cells import L
 from python.tests.test_graph_first_rectangle import graph_signature
@@ -88,6 +88,35 @@ def assert_terminal(test, fp, composition):
 
 
 class TerminalCompositionTests(unittest.TestCase):
+    def test_long_similar_width_branches_have_an_interior_initial_embedding(self):
+        # An axis-constrained harmonic drawing alone crosses the re-entrant
+        # exterior edge for this residential proportion. Independent oracle.
+        outline = [
+            (0, 0),
+            (14.4, 0),
+            (14.4, 3.85),
+            (3.73, 3.85),
+            (3.73, 14.55),
+            (0, 14.55),
+        ]
+        f = analyze(outline)
+        g = compose(decompose(f)).graph
+        shape = Polygon(f.vertices)
+        polygons = [
+            Polygon([g.vertices[i].seed for i in face.loop]) for face in g.faces
+        ]
+        self.assertTrue(all(p.is_valid and p.area > 1e-10 for p in polygons))
+        self.assertLess(unary_union(polygons).symmetric_difference(shape).area, 1e-10)
+        self.assertLess(abs(sum(p.area for p in polygons) - shape.area), 1e-10)
+        self.assertTrue(
+            all(
+                shape.buffer(1e-10).covers(
+                    LineString([g.vertices[i].seed for i in e.vertices])
+                )
+                for e in g.edges
+            )
+        )
+
     def test_alternative_equal_count_partition_keeps_roof_incidence(self):
         # Independently authored other reflex extension of the same outline.
         # This tests composition, not the production partition selector.
@@ -147,7 +176,16 @@ class TerminalCompositionTests(unittest.TestCase):
             f, nodes, (host, branch), (Adjacency((0, 1), (2, 0), cut),), 2
         )
         graph = compose(alternate).graph
-        self.assertEqual(graph_signature(f, graph), graph_signature(f, default))
+
+        def incidence(g):
+            return abstract_signature(
+                [f.frame.world_xy(v.seed) for v in g.vertices],
+                tuple(face.loop for face in g.faces),
+                {e.vertices: e.kind for e in g.edges},
+            )
+
+        # Alternate partitions may assign different originating cell IDs.
+        self.assertEqual(incidence(graph), incidence(default))
 
     def test_unequal_width_terminal_graph_primary_and_seed_coverage(self):
         f = analyze(L)
@@ -230,6 +268,23 @@ class TerminalCompositionTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(UnsupportedGraphError, "awaits nonlinear solve"):
             solve_rectangle(g)
+        with self.assertRaisesRegex(UnsupportedGraphError, "nonplanar"):
+            Mesh(g, p.initial_vertices)
+        # A valid solver result is exported against exactly the same graph.
+        u = f.frame.direction
+        solved = tuple(
+            (
+                (x - f.frame.origin[0]) * u[0] / f.frame.scale
+                + (y - f.frame.origin[1]) * u[1] / f.frame.scale,
+                -(x - f.frame.origin[0]) * u[1] / f.frame.scale
+                + (y - f.frame.origin[1]) * u[0] / f.frame.scale,
+                z / f.frame.scale,
+            )
+            for x, y, z in vertices
+        )
+        mesh = Mesh(g, solved)
+        self.assertIs(mesh.graph, g)
+        self.assertEqual(mesh.faces, p.faces)
 
     def test_existing_semantic_harness_secondary_topology_comparison(self):
         f = analyze(L)

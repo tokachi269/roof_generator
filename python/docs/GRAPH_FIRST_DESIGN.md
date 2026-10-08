@@ -19,6 +19,9 @@ cells, mixed roof types and multi-attachment composition are not claimed.
 The graph stores no affine roof planes. Neither primitive composition nor mesh
 conversion recovers semantics from height comparisons. The solver may move
 allowed coordinates but cannot add faces/edges or change connection types.
+Mesh coordinates are validated against that same graph for fixed boundary,
+noncrossing footprint projection, distinct vertices, positive planar faces and
+consistent normals; export never repairs or substitutes connectivity.
 
 ## Research used in this evaluation
 
@@ -66,6 +69,11 @@ A gable rectangle has two slope-face cycles and a ridge connecting its two
 gable ports. Eave-pair selection uses actual exterior-edge presence, then side
 length; it does not depend on roof planes or pitch. Hip adds corner-to-ridge
 edges (a square uses one apex); flat/shed have a single face.
+Shed supports an explicit low-eave edge ID. A symmetric rectangle cannot define
+an inherent directed slope; metamorphic proofs supply the same physical low
+eave after each transform. The default tie-break is deterministic in the
+normalized frame, but does not promise a directional choice invariant under
+every permutation of an otherwise symmetric input.
 
 A terminal attachment requires a complete branch gable side matching a partial
 host eave side, perpendicular ridge directions, and exactly one end of the
@@ -85,9 +93,14 @@ ordering is a genuine topology transition at equality, not a claim of topology
 invariance across every dimensional change. Initial XY is a disposable Laplacian
 embedding constrained to the declared primitive ridge directions, not the result
 of a height envelope or a final roof coordinate solve. An unconstrained harmonic
-embedding can send a connector outside a concave footprint; the independent
-seed-coverage proof protects that boundary. Ridge directions come from source
-eaves, not from the eventual optimized coordinates.
+embedding can send a connector outside a concave footprint. Even an
+axis-constrained drawing can cross the re-entrant boundary for long arms with
+similar widths. A scalar drawing guard checks crossings, positive cycles and
+interior spokes. If needed, backtrack the same two junctions along their declared
+axes towards the common axis intersection; never emit the coincident limit.
+This changes only disposable initial XY, not topology, and fails explicitly if
+no nondegenerate drawing exists. Independent polygon coverage proofs test that
+guard. Ridge directions come from source eaves, not optimized coordinates.
 
 Face cell IDs identify originating primitive faces. They do not claim the
 geometric visible-solid contributor semantics of the reference's `face_parts`.
