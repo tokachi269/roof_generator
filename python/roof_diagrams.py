@@ -1,21 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Export cells, primitive/composed 2D graphs and the pre-solver geometry problem."""
+"""Read-only SVG observation of cell and indexed roof incidence."""
 
-import argparse
-from dataclasses import asdict
-import json
 from pathlib import Path
-import subprocess
 import sys
 from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "addon"))
-from roof_generator.core.footprint import analyze
-from roof_generator.core.cells import decompose
-from roof_generator.core.topology import compose
-from roof_generator.core.solve import problem
 
 
 def svg(decomposition, composition):
@@ -75,61 +67,3 @@ def svg(decomposition, composition):
         '<text x="40" y="505">Red: ridge; blue: valley; orange: hip. XY is an initializer, not solved roof geometry.</text></g></svg>'
     )
     return "\n".join(text) + "\n"
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    source = parser.add_mutually_exclusive_group(required=True)
-    source.add_argument(
-        "--fixture", help="Debug input from the acceptance fixture file"
-    )
-    source.add_argument(
-        "--input", type=Path, help="JSON with footprint, roof_type and optional pitch"
-    )
-    parser.add_argument("--roof-type", choices=("gable", "hip", "shed", "flat"))
-    parser.add_argument(
-        "--output", type=Path, default=ROOT / "python/out/graph-first/inspection.json"
-    )
-    args = parser.parse_args()
-    if args.fixture:
-        records = json.loads(
-            (ROOT / "python/tests/fixtures/roof_acceptance.json").read_text()
-        )
-        record = next((c for c in records if c["name"] == args.fixture), None)
-        if record is None:
-            parser.error("unknown debug fixture")
-    else:
-        record = json.loads(args.input.read_text())
-    fp = analyze(record["footprint"])
-    cells = decompose(fp)
-    composition = compose(cells, args.roof_type or record.get("roof_type", "gable"))
-    geometry = problem(composition.graph, record.get("pitch", 0.5))
-    document = {
-        "schema": 2,
-        "source_sha": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip(),
-        "input": record,
-        "frame": asdict(fp.frame),
-        "analysis": {
-            "vertices": fp.vertices,
-            "source_edges": fp.source_edges,
-            "directions": fp.directions,
-            "reflex": fp.reflex,
-            "parallel": fp.parallel,
-        },
-        "decomposition": cells.inspect(),
-        "composition": composition.inspect(),
-        "geometry_problem": asdict(geometry),
-        "solver_status": "pre-solver problem only",
-    }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(document, indent=2, allow_nan=False) + "\n")
-    args.output.with_suffix(".svg").write_text(svg(cells, composition))
-    print(
-        f"{args.output}: {len(cells.cells)} cells, {len(composition.graph.faces)} roof faces; no nonlinear solve"
-    )
-
-
-if __name__ == "__main__":
-    main()

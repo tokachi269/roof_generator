@@ -374,7 +374,7 @@ class MiddleCompositionTests(unittest.TestCase):
 
 class MultipleCompositionTests(unittest.TestCase):
     def test_inspection_does_not_mislabel_candidate_gables_as_a_final_roof(self):
-        from python.inspect_roof_composition import inspect, svg
+        from python.inspect_junctions import inspect, svg
 
         for name, status in (
             ("orthogonal_T", "supported"),
@@ -570,7 +570,7 @@ class MultipleCompositionTests(unittest.TestCase):
             with self.assertRaises(UnsupportedRoofError):
                 compose(decompose(analyze(raw)))
 
-    def test_middle_and_multiple_have_no_polygon_or_legacy_runtime_dependency(self):
+    def test_middle_and_multiple_use_stdlib_runtime(self):
         root = Path(__file__).resolve().parents[2]
         script = """
 import sys, importlib.abc, json
