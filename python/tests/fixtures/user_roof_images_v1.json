@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "seed": 0,
+  "scope": "Grid-ratio approximations of four user screenshots, not recovered source meshes or exact coordinates",
+  "inputs": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "image": "user-images/image-1.png",
+      "footprint": [[2,1],[7,1],[7,2],[6,2],[6,4],[8,4],[8,5],[7,5],[7,6],[0,6],[0,5],[2,5],[2,4],[0,4],[0,2],[2,2]],
+      "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "image": "user-images/image-2.png",
+      "footprint": [[2,0],[8,0],[8,3],[7,3],[7,6],[8,6],[8,8],[2,8],[2,6],[1,6],[1,3],[2,3]],
+      "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "image": "user-images/image-3.png",
+      "footprint": [[2,0],[7,0],[7,1],[8,1],[8,4],[6,4],[6,5],[0,5],[0,4],[2,4]],
+      "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "image": "user-images/image-4.png",
+      "footprint": [[0,0],[6,0],[6,3],[8,3],[8,6],[1,6],[1,3],[0,3]],
+      "coordinate_scope": "Bottom rectangle 6 by 3; top 7 by 3; top left shifted one grid unit"
+    }
+  ]
+}

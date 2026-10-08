@@ -2,8 +2,9 @@
 
 この報告の全corpus・性能の数値はproduction `449fe1d`の測定である。
 その後の[one-line適用範囲の修正](ROOF_END_CONSTRAINTS.md)では、ずれた短辺接触を
-端制約生成前に拒否した。更新後の全corpus再測定が終わるまで、以下の数値を
-最新revisionの測定結果とは扱わない。
+端制約生成前に拒否した。production `38657f6`の[全corpus再監査](authority/offset-end-gate/coverage-offset-end-gate.json)
+と[更新ZIPのBlender変換](authority/offset-end-gate/blender-coverage-offset-end-gate.json)が完了し、
+以下の成功数はすべて前段階と同じだった。診断コード・候補数・性能はrevisionごとの記録を参照する。
 
 適用範囲修正後は139 tests（79.678s）が成功した。更新ZIPの19入力を
 実operatorで検証し、前段階の成功11入力のcandidate IDはすべて同一だった。
@@ -15,9 +16,14 @@ offsetのtall入力は、後段のjunctionではなく端制約生成で拒否�
 と[更新ZIPのBlender変換](authority/offset-end-gate/blender-branch-offset-end-gate.json)が
 100/100。標準`inspect_roof.py`にも各候補と選択結果の端状態を記録する。
 
+最新の[supported / unsupported / incomplete集計](authority/offset-end-gate/outcomes.json)は、
+gridが3 / 980 / 17、nonuniformが0 / 150 / 0、structuredが13 / 90 / 0。
+`offset_continuation`を含む建物はgrid809件、nonuniform120件、structured41件で、
+他のblockerも併存し得る。これを809件の生成改善や新junction不足とは数えない。
+
 ArchitecturalPartを迂回してCell primitiveからrelationを再解釈する経路は、開始時のコードで実証した。現在はresolved architectureと全体の端制約をcompositionの入力にした。今回実装したのはgable要求のshared/T構成の制約と、狭いbranchのcorner-T extensionである。
 
-**報告された工場屋根の因果除去は未確認。** 「全valleyにrelationという由来があるから問題は確認できなかった」という結論は撤回する。provenanceは生成経路の記録であり、屋根への採用根拠を証明しない。
+**報告された工場屋根の因果除去は未確認。** 新たに届いた4画像の近似入力を旧生成経路`222037b`で再現し、矩形ごとの軒supportが共有長辺を高さ0の谷にする経路を確認した。[画像・旧経路の数値・現行版との比較](USER_FACTORY_ROOF_EVIDENCE.md)を別記した。開始canonical版と現行版はこの4入力を拒否するため、自然な一体屋根へ修正したとは扱わない。「全valleyにrelationという由来があるから問題は確認できなかった」という結論は撤回する。provenanceは生成経路の記録であり、屋根への採用根拠を証明しない。
 
 ## Authority audit
 
@@ -127,6 +133,12 @@ solver/optimization production codeは開始SHAから変更していない。候
 
 計測raw dataは[before](authority/end-state/mesh-performance-end-before-serial.json) / [after](authority/end-state/mesh-performance-end-after-serial.json)。候補評価・全体制約によるコスト増はそのまま報告する。永続cacheやspeedupのためのarchitecture変更は加えていない。端の組合せは有限だが組合せ的で、yield前の競合候補の探索budgetは今後の課題。
 
+production `38657f6`でも同じbenchmarkを再測定した
+([raw data](authority/offset-end-gate/mesh-performance-offset-end-gate.json))。
+core_totalの中央値はU362.18ms、Cross80.95ms、residential12.04ms、
+grid14 53.49ms、grid20 119.60ms、grid40 2721.01ms。
+U/Cross以外はunsupportedなので、後4値を完成meshの性能とは扱わない。
+
 ## Verification and commits
 
 - 開始production SHA: `0210d7900c3a4340ddd5b22e05a673926332bbc7`
@@ -142,3 +154,6 @@ solver/optimization production codeは開始SHAから変更していない。候
 - 最終evidence/package commitと作業treeの状態は対話の最終報告に記す。既存untracked `.serena/` と `.roof-deps/` は保存した。
 
 旧boundary-stage evidenceは`authority/manifest.json`、end-state後は[新manifest](authority/end-state/manifest.json)。rawのsource_shaが実行時の親checkout HEADを指すことがあるため、source stageとarchive hashを併記し、baseline snapshotのrevisionと混同しない。
+
+適用範囲修正後の[manifest](authority/offset-end-gate/manifest.json)には更新ZIPのhash、
+full auditのstage、JSONLのhashを記録した。旧版の数値や画像を現在の実測へ読み替えない。

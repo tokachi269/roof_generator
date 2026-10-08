@@ -1,0 +1,19 @@
+{
+  "production_sha": "38657f6f1b399248d1aabc3cedfd2c4322ed6f23",
+  "archive_sha256": "919748119766379d0fd2bc5f6b18a9249aa7e6e08476d3fc3a463e18a492e65c",
+  "revision_note": "Core audit launched from uncommitted full-end gate; its raw source_sha is enclosing HEAD, not the subsequent production commit. Offset-continuation diagnostics demonstrate the new gate was measured.",
+  "raw_details": {
+    "python/out/authority/coverage-offset-end-gate.jsonl.gz": "6e4b777e8cf2b8a12f159b8b9c675e11542b6880808eac73200748b028b0dbb7",
+    "python/out/authority/branch-offset-end-gate.jsonl.gz": "1fd8710ce51dd8b552bf6ad1062c0fb1d933e7e351f07b437c8e808cec3c39b6"
+  },
+  "files": {
+    "python/docs/authority/offset-end-gate/blender-branch-offset-end-gate.json": "4a297c36936bc2e9645e530750ca1dc001f0083fca0bf82f4600525188399bbe",
+    "python/docs/authority/offset-end-gate/blender-coverage-offset-end-gate.json": "1ccda059b8b1e48d7f8fc0af9177aa935ac38289b04e698c25f428d5b64334a8",
+    "python/docs/authority/offset-end-gate/branch-offset-end-gate.json": "9c0a638b5af2655f51e3f4ab882ce80dbaa4073fedc97890b91c589f6e745684",
+    "python/docs/authority/offset-end-gate/coverage-offset-end-gate.json": "dae548161e1ef1e9d731673c9eeced12fcae5cb15e7153fc1cb8613a5e261ec5",
+    "python/docs/authority/offset-end-gate/mesh-performance-offset-end-gate.json": "8d04d9446304ab9c63362f4453ee6403869b35616966ee224e90e40528318bf3",
+    "python/docs/authority/offset-end-gate/operator.json": "b054ab4ac9d87201d9670dd7aa505866e9db99edf6c6e67ab2db70f7fc1b1596",
+    "python/docs/authority/offset-end-gate/outcomes.json": "02ee417e965075f911db0eaf97417e60c4b2da8005d46ae5c94db53cc056aeca",
+    "python/docs/authority/offset-end-gate/verification.json": "cc3467e9cc40a0915842ea3fd75baa9e026b124b752368bdba7f163a01aa57e8"
+  }
+}

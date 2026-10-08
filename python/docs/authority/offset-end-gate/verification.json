@@ -9,7 +9,7 @@
   "operator_cases": 19,
   "supported": 11,
   "same_supported_ids_as_end_state_stage": true,
-  "full_corpus_reaudit": "running; prior coverage table remains specific to production 449fe1d",
+  "full_corpus_reaudit": "completed; production corresponds to 38657f6; raw enclosing HEAD at launch differs",
   "branch_corpus": {
     "inputs": 100,
     "RoofGraph": 100,
@@ -20,5 +20,32 @@
   "standard_inspection": {
     "gable_selected_end_state_matches_candidate": true,
     "flat_has_no_pitched_end_states": true
+  },
+  "production_sha": "38657f6f1b399248d1aabc3cedfd2c4322ed6f23",
+  "corpus_outcomes": {
+    "orthogonal_grid_stress": {
+      "unsupported": 980,
+      "supported": 3,
+      "incomplete": 17
+    },
+    "nonuniform_orthogonal": {
+      "unsupported": 150
+    },
+    "structured_orthogonal": {
+      "supported": 13,
+      "unsupported": 90
+    },
+    "convex_quadrilateral": {
+      "supported": 48
+    },
+    "structured_oblique": {
+      "unsupported": 43
+    },
+    "general_simple_polygon_probe": {
+      "unsupported": 40
+    },
+    "structured_branch_network": {
+      "supported": 100
+    }
   }
 }

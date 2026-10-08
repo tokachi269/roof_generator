@@ -1,0 +1,1561 @@
+{
+  "source_sha": "222037b23d396fb082ac00e24c0a1333221689d9",
+  "generation_scope": "historical core public API, default gable/pitch .5; not current runtime or proof of the user live version",
+  "cases": [
+    {
+      "input": {
+        "name": "user_image_1_four_staggered_bands",
+        "image": "user-images/image-1.png",
+        "footprint": [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+      },
+      "status": "supported",
+      "vertices": [
+        [
+          0.0,
+          6.0,
+          0.0
+        ],
+        [
+          7.0,
+          6.0,
+          0.0
+        ],
+        [
+          0.0,
+          5.5,
+          0.24999999999999997
+        ],
+        [
+          7.0,
+          5.5,
+          0.24999999999999997
+        ],
+        [
+          2.220446049250313e-16,
+          5.0,
+          0.0
+        ],
+        [
+          2.0,
+          5.0,
+          0.0
+        ],
+        [
+          7.0,
+          5.0,
+          0.0
+        ],
+        [
+          8.0,
+          5.0,
+          0.0
+        ],
+        [
+          2.0,
+          4.5,
+          0.24999999999999997
+        ],
+        [
+          8.0,
+          4.5,
+          0.24999999999999997
+        ],
+        [
+          2.220446049250313e-16,
+          4.0,
+          0.0
+        ],
+        [
+          2.0,
+          4.0,
+          0.0
+        ],
+        [
+          6.0,
+          4.0,
+          0.0
+        ],
+        [
+          8.0,
+          4.0,
+          0.0
+        ],
+        [
+          2.220446049250313e-16,
+          3.0,
+          0.5
+        ],
+        [
+          6.0,
+          3.0,
+          0.5
+        ],
+        [
+          2.220446049250313e-16,
+          2.0,
+          0.0
+        ],
+        [
+          2.0,
+          2.0,
+          0.0
+        ],
+        [
+          6.0,
+          2.0,
+          0.0
+        ],
+        [
+          7.0,
+          2.0,
+          0.0
+        ],
+        [
+          2.0,
+          1.5,
+          0.25
+        ],
+        [
+          7.0,
+          1.5,
+          0.25
+        ],
+        [
+          2.0,
+          1.0000000000000009,
+          2.220446049250313e-16
+        ],
+        [
+          7.0,
+          1.0000000000000004,
+          0.0
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          3
+        ],
+        [
+          5,
+          8,
+          9,
+          7,
+          6
+        ],
+        [
+          8,
+          11,
+          12,
+          13,
+          9
+        ],
+        [
+          10,
+          14,
+          15,
+          12,
+          11
+        ],
+        [
+          14,
+          16,
+          17,
+          18,
+          15
+        ],
+        [
+          17,
+          20,
+          21,
+          19,
+          18
+        ],
+        [
+          20,
+          22,
+          23,
+          21
+        ]
+      ],
+      "face_parts": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          3
+        ]
+      ],
+      "features": [
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            0,
+            2
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            1,
+            3
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            2,
+            4
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            5,
+            6
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            5,
+            8
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            7,
+            9
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            8,
+            11
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            9,
+            13
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            10,
+            14
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            11,
+            12
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            12,
+            13
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            12,
+            15
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            14,
+            15
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            14,
+            16
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            15,
+            18
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            16,
+            17
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            17,
+            18
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            17,
+            20
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            18,
+            19
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            19,
+            21
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            20,
+            21
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            20,
+            22
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            21,
+            23
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            22,
+            23
+          ],
+          "kind": "eave"
+        }
+      ],
+      "feature_counts": {
+        "eave": 8,
+        "gable_end": 16,
+        "ridge": 4,
+        "valley": 3
+      },
+      "part_count": 4,
+      "validation": {
+        "vertices": 24,
+        "faces": 8,
+        "edges": 31,
+        "boundary_edges": 24,
+        "max_planarity_error": 1.7657551528923982e-17,
+        "projected_area": 0.029296874999999997,
+        "features": {
+          "eave": 8,
+          "gable_end": 16,
+          "ridge": 4,
+          "valley": 3
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "user_image_2_three_staggered_bands",
+        "image": "user-images/image-2.png",
+        "footprint": [
+          [
+            2,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+      },
+      "status": "supported",
+      "vertices": [
+        [
+          1.0,
+          3.0,
+          0.0
+        ],
+        [
+          1.0,
+          4.5,
+          0.75
+        ],
+        [
+          1.0,
+          6.0,
+          0.0
+        ],
+        [
+          2.0,
+          0.0,
+          0.0
+        ],
+        [
+          2.0,
+          1.5,
+          0.75
+        ],
+        [
+          2.0,
+          3.0,
+          0.0
+        ],
+        [
+          2.0,
+          6.0,
+          0.0
+        ],
+        [
+          2.0,
+          7.0,
+          0.49999999999999994
+        ],
+        [
+          2.0,
+          8.0,
+          0.0
+        ],
+        [
+          7.0,
+          3.0,
+          0.0
+        ],
+        [
+          7.0,
+          4.5,
+          0.75
+        ],
+        [
+          7.0,
+          6.0,
+          0.0
+        ],
+        [
+          8.0,
+          0.0,
+          0.0
+        ],
+        [
+          8.0,
+          1.5,
+          0.75
+        ],
+        [
+          8.0,
+          3.0,
+          0.0
+        ],
+        [
+          8.0,
+          6.0,
+          0.0
+        ],
+        [
+          8.0,
+          7.0,
+          0.49999999999999994
+        ],
+        [
+          8.0,
+          8.0,
+          0.0
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          5,
+          9,
+          10,
+          1
+        ],
+        [
+          1,
+          10,
+          11,
+          6,
+          2
+        ],
+        [
+          3,
+          12,
+          13,
+          4
+        ],
+        [
+          4,
+          13,
+          14,
+          9,
+          5
+        ],
+        [
+          6,
+          11,
+          15,
+          16,
+          7
+        ],
+        [
+          7,
+          16,
+          17,
+          8
+        ]
+      ],
+      "face_parts": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "features": [
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            0,
+            5
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            1,
+            10
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            2,
+            6
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            3,
+            4
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            3,
+            12
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            4,
+            13
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            5,
+            9
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            6,
+            11
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            7,
+            8
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            7,
+            16
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            8,
+            17
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            9,
+            10
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            9,
+            14
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            11,
+            15
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            12,
+            13
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            13,
+            14
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            15,
+            16
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            16,
+            17
+          ],
+          "kind": "gable_end"
+        }
+      ],
+      "feature_counts": {
+        "gable_end": 12,
+        "eave": 6,
+        "ridge": 3,
+        "valley": 2
+      },
+      "part_count": 3,
+      "validation": {
+        "vertices": 18,
+        "faces": 6,
+        "edges": 23,
+        "boundary_edges": 18,
+        "max_planarity_error": 8.636989453844583e-18,
+        "projected_area": 0.046875,
+        "features": {
+          "gable_end": 12,
+          "eave": 6,
+          "ridge": 3,
+          "valley": 2
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "user_image_3_band_and_lower_corner",
+        "image": "user-images/image-3.png",
+        "footprint": [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+      },
+      "status": "supported",
+      "vertices": [
+        [
+          2.000000165480742e-11,
+          3.99999999988,
+          0.0
+        ],
+        [
+          2.000000165480742e-11,
+          4.49999999999,
+          0.250000000055
+        ],
+        [
+          2.000000165480742e-11,
+          5.0000000001,
+          0.0
+        ],
+        [
+          1.99999999994,
+          4.000000330961484e-11,
+          0.0
+        ],
+        [
+          1.99999999994,
+          3.99999999988,
+          0.0
+        ],
+        [
+          4.499999999969999,
+          1.4999999998499989,
+          1.2500000000149998
+        ],
+        [
+          4.49999999997,
+          4.000000330961484e-11,
+          1.250000000015
+        ],
+        [
+          5.50000000006,
+          2.49999999994,
+          0.74999999997
+        ],
+        [
+          6.00000000004,
+          3.99999999988,
+          0.0
+        ],
+        [
+          6.00000000004,
+          4.49999999999,
+          0.250000000055
+        ],
+        [
+          6.00000000004,
+          5.0000000001,
+          0.0
+        ],
+        [
+          7.0,
+          4.000000330961484e-11,
+          0.0
+        ],
+        [
+          7.0,
+          1.0,
+          0.0
+        ],
+        [
+          7.99999999996,
+          1.0,
+          0.0
+        ],
+        [
+          7.99999999996,
+          2.49999999994,
+          0.74999999997
+        ],
+        [
+          7.99999999996,
+          3.99999999988,
+          0.0
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          4,
+          8,
+          9,
+          1
+        ],
+        [
+          1,
+          9,
+          10,
+          2
+        ],
+        [
+          3,
+          6,
+          5,
+          4
+        ],
+        [
+          4,
+          5,
+          7,
+          14,
+          15,
+          8
+        ],
+        [
+          5,
+          6,
+          11,
+          12,
+          7
+        ],
+        [
+          7,
+          12,
+          13,
+          14
+        ]
+      ],
+      "face_parts": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "features": [
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            0,
+            4
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            1,
+            9
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            2,
+            10
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            3,
+            4
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "kind": "hip"
+        },
+        {
+          "vertices": [
+            4,
+            8
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            5,
+            6
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            5,
+            7
+          ],
+          "kind": "hip"
+        },
+        {
+          "vertices": [
+            6,
+            11
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            7,
+            12
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            7,
+            14
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            8,
+            15
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            9,
+            10
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            11,
+            12
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            12,
+            13
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            13,
+            14
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            14,
+            15
+          ],
+          "kind": "gable_end"
+        }
+      ],
+      "feature_counts": {
+        "gable_end": 8,
+        "eave": 6,
+        "ridge": 3,
+        "hip": 2,
+        "valley": 2
+      },
+      "part_count": 3,
+      "validation": {
+        "vertices": 16,
+        "faces": 6,
+        "edges": 21,
+        "boundary_edges": 14,
+        "max_planarity_error": 2.467782493664867e-16,
+        "projected_area": 0.042899408284822485,
+        "features": {
+          "gable_end": 8,
+          "eave": 6,
+          "ridge": 3,
+          "hip": 2,
+          "valley": 2
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "user_image_4_two_staggered_rectangles",
+        "image": "user-images/image-4.png",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "coordinate_scope": "Bottom rectangle 6 by 3; top 7 by 3; top left shifted one grid unit"
+      },
+      "status": "supported",
+      "vertices": [
+        [
+          7.999999999999999,
+          5.99999999992,
+          0.0
+        ],
+        [
+          7.999999999999999,
+          4.49999999996,
+          0.74999999998
+        ],
+        [
+          7.999999999999999,
+          3.0,
+          0.0
+        ],
+        [
+          5.99999999996,
+          3.0,
+          0.0
+        ],
+        [
+          5.99999999996,
+          1.50000000004,
+          0.74999999998
+        ],
+        [
+          5.99999999996,
+          8.000045070843953e-11,
+          1.942890293094024e-16
+        ],
+        [
+          1.0,
+          5.99999999992,
+          0.0
+        ],
+        [
+          1.0,
+          4.49999999996,
+          0.74999999998
+        ],
+        [
+          1.0,
+          3.0,
+          0.0
+        ],
+        [
+          1.2000012095114698e-10,
+          3.0,
+          0.0
+        ],
+        [
+          1.2000012095114698e-10,
+          1.50000000004,
+          0.74999999998
+        ],
+        [
+          1.2000012095114698e-10,
+          8.000000661922968e-11,
+          0.0
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          6,
+          7,
+          1
+        ],
+        [
+          1,
+          7,
+          8,
+          3,
+          2
+        ],
+        [
+          3,
+          8,
+          9,
+          10,
+          4
+        ],
+        [
+          4,
+          10,
+          11,
+          5
+        ]
+      ],
+      "face_parts": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "features": [
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            0,
+            6
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            1,
+            7
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            3,
+            4
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            3,
+            8
+          ],
+          "kind": "valley"
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            4,
+            10
+          ],
+          "kind": "ridge"
+        },
+        {
+          "vertices": [
+            5,
+            11
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            7,
+            8
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "kind": "eave"
+        },
+        {
+          "vertices": [
+            9,
+            10
+          ],
+          "kind": "gable_end"
+        },
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "kind": "gable_end"
+        }
+      ],
+      "feature_counts": {
+        "gable_end": 8,
+        "eave": 4,
+        "ridge": 2,
+        "valley": 1
+      },
+      "part_count": 2,
+      "validation": {
+        "vertices": 12,
+        "faces": 4,
+        "edges": 15,
+        "boundary_edges": 12,
+        "max_planarity_error": 1.3601998328501575e-17,
+        "projected_area": 0.049744897957244884,
+        "features": {
+          "gable_end": 8,
+          "eave": 4,
+          "ridge": 2,
+          "valley": 1
+        }
+      }
+    }
+  ]
+}

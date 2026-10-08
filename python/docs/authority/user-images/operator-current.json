@@ -1,0 +1,36 @@
+{
+  "blender": "4.3.2",
+  "archive_sha256": "919748119766379d0fd2bc5f6b18a9249aa7e6e08476d3fc3a463e18a492e65c",
+  "addon_module": "python/out/authority/user-images-current-scripts/addons/roof_generator/__init__.py",
+  "image_scope": "Blender camera render of installed operator output; colored overlay reads actual mesh edge attributes",
+  "cases": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "status": "unsupported",
+      "image": "user_image_1_four_staggered_bands/meshes.png",
+      "reason": "Error: user_image_1_four_staggered_bands_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "status": "unsupported",
+      "image": "user_image_2_three_staggered_bands/meshes.png",
+      "reason": "Error: user_image_2_three_staggered_bands_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "status": "unsupported",
+      "image": "user_image_3_band_and_lower_corner/meshes.png",
+      "reason": "Error: user_image_3_band_and_lower_corner_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel\n",
+      "atomic_failure": true
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "status": "unsupported",
+      "image": "user_image_4_two_staggered_rectangles/meshes.png",
+      "reason": "Error: user_image_4_two_staggered_rectangles_source: no selectable roof topology: all architectural assignments lack a valid implemented roof topology; no resolved roof-end combination for inter_part_parallel\n",
+      "atomic_failure": true
+    }
+  ]
+}

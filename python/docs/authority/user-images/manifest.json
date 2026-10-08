@@ -1,0 +1,51 @@
+{
+  "scope": "user screenshots and grid approximations; historical core transport renders; not user live module identity",
+  "historical_source_sha": "222037b23d396fb082ac00e24c0a1333221689d9",
+  "current_production_sha": "38657f6f1b399248d1aabc3cedfd2c4322ed6f23",
+  "historical_parallel_seam_witness": {
+    "image": 4,
+    "endpoints": [
+      [
+        5.99999999996,
+        3.0,
+        0.0
+      ],
+      [
+        1.0,
+        3.0,
+        0.0
+      ]
+    ],
+    "height_zero": true,
+    "validated_mesh": {
+      "vertices": 12,
+      "faces": 4,
+      "edges": 15,
+      "boundary_edges": 12,
+      "max_planarity_error": 1.3601998328501575e-17,
+      "projected_area": 0.049744897957244884,
+      "features": {
+        "gable_end": 8,
+        "eave": 4,
+        "ridge": 2,
+        "valley": 1
+      }
+    }
+  },
+  "fixture_sha256": "67629e70f854334970f4de6e9a6445306504ba06bf8321c53a38c71f66e8bbd2",
+  "files": {
+    "python/docs/authority/user-images/historical-core.json": "d8105d8b67e0eb24dead1ad8c0b5a02b968459f90a5e912ebfd5d599fd7792a4",
+    "python/docs/authority/user-images/historical-image-1.png": "8c4ef07a7be449be9f7f9e9eebc195dd200a85178042d19ccb44b6dcada1318e",
+    "python/docs/authority/user-images/historical-image-2.png": "66b1ef412dacc362fa7b4ebeec7b8b204a630cc7054932385e9ae69f12cc4a8f",
+    "python/docs/authority/user-images/historical-image-3.png": "6e9265270aed8544a82efee18137df7bb544e2529f0d0e00e81226d0e38db9c6",
+    "python/docs/authority/user-images/historical-image-4.png": "f69390338c0f07d6f25b735fefec0ac858635435205687f317394489b75ecc7c",
+    "python/docs/authority/user-images/image-1.png": "bc5f73c645a2395f60157bfb848528981865a44e5f6aed4bb9832666f346adf1",
+    "python/docs/authority/user-images/image-2.png": "b6a91d48253a397024b769c1bec3ba4406ccf98c2257e7658cfad31bfff9f379",
+    "python/docs/authority/user-images/image-3.png": "60072af4e27acbcb63aae3835e9b1df45a9c9ed0d1169dd2ef62d7dfd258458e",
+    "python/docs/authority/user-images/image-4.png": "b9978e499cbdff79d794aa8b70e56d4357747e777f6d3441b1db2cf88cba7ac4",
+    "python/docs/authority/user-images/inspection-baseline.json": "cc709aa346c382ea47df8ec7609909b510710e76a31af8d4c190057add655670",
+    "python/docs/authority/user-images/inspection-current.json": "76fec61bf1da2c0f785ab45b09e776032161623749917693b2b4f5121e1d2efe",
+    "python/docs/authority/user-images/operator-baseline.json": "6e93711694d3ebadb0caf53fcf9dee0c4afc7a3554967c14b47b20260ee313d4",
+    "python/docs/authority/user-images/operator-current.json": "1ac3538c3767d9377524063466489fe9753358ce40f4d438714b5fb61dfaa8fa"
+  }
+}
