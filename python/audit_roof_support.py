@@ -9,6 +9,7 @@ that implementing it will produce a valid roof. No meshes or solver are run.
 import argparse
 from collections import Counter
 from dataclasses import asdict
+import hashlib
 import json
 from pathlib import Path
 import platform
@@ -82,7 +83,9 @@ def summarize(rows):
         Counter() for _ in range(5)
     )
     sole, continuation, messages = Counter(), Counter(), Counter()
+    total_ms = 0.0
     for row, weight in rows:
+        total_ms += row["timings_ms"]["total"] * weight
         status[row["status"]] += weight
         seen = set()
         for rejected in row["rejected"]:
@@ -113,7 +116,7 @@ def summarize(rows):
         "conditional_sole_known_blocker_buildings": ordered(sole),
         "continuation_geometry_occurrences": ordered(continuation),
         "raw_rejection_messages": ordered(messages),
-        "total_ms": sum(row["timings_ms"]["total"] * w for row, w in rows),
+        "total_ms": total_ms,
     }
 
 
@@ -126,6 +129,10 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--details", type=Path, required=True)
     args = p.parse_args()
+    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    dirty = bool(
+        subprocess.check_output(["git", "status", "--porcelain"], text=True).strip()
+    )
     if args.corpus.exists():
         records = json.loads(args.corpus.read_text())
     else:
@@ -141,20 +148,27 @@ def main():
         args.corpus.parent.mkdir(parents=True, exist_ok=True)
         args.corpus.write_text(json.dumps(records, separators=(",", ":")) + "\n")
     fixtures = [inspect_record(dict(fixture(n), name=n)) for n in NAMES]
-    rows = []
+    vertex_histogram = Counter()
     args.details.parent.mkdir(parents=True, exist_ok=True)
     with args.details.open("w") as f:
-        for i, record in enumerate(records):
-            row = inspect_record(record)
-            rows.append(row)
-            f.write(json.dumps(row, separators=(",", ":")) + "\n")
-            if (i + 1) % 100 == 0:
-                print(f"audited {i + 1}/{len(records)}", flush=True)
+
+        def inspected():
+            for i, record in enumerate(records):
+                row = inspect_record(record)
+                f.write(json.dumps(row, separators=(",", ":")) + "\n")
+                vertex_histogram[row["vertices"]] += 1
+                if (i + 1) % 100 == 0:
+                    print(f"audited {i + 1}/{len(records)}", flush=True)
+                yield row, 1
+
+        # Fold statistics immediately; never retain all rejected assignments
+        # from the whole corpus in memory. Full details remain a streamed file.
+        unique_summary = summarize(inspected())
     weights = Counter(NAMES[i % len(NAMES)] for i in range(1000))
     data = {
-        "source_sha": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], text=True
-        ).strip(),
+        "source_sha": revision,
+        "source_dirty": dirty,
+        "corpus_sha256": hashlib.sha256(args.corpus.read_bytes()).hexdigest(),
         "python": platform.python_version(),
         "profiled": False,
         "scope": "2D RoofGraph + GeometryProblem; not solved meshes",
@@ -167,10 +181,8 @@ def main():
         "repeated_six_fixtures_1000": summarize(
             [(r, weights[r["name"]]) for r in fixtures]
         ),
-        "unique_generated_grid": summarize([(r, 1) for r in rows]),
-        "unknown_vertex_histogram": dict(
-            sorted(Counter(r["vertices"] for r in rows).items())
-        ),
+        "unique_generated_grid": unique_summary,
+        "unknown_vertex_histogram": dict(sorted(vertex_histogram.items())),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, indent=2) + "\n")
