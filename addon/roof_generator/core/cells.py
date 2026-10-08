@@ -83,11 +83,14 @@ def _validate_provenance(boundary_spans):
             )
 
 
-def from_subdivision(fp, subdivision: Subdivision):
+def from_subdivision(fp, subdivision: Subdivision, *, span_cache=None):
     """Convert a noded rectangular subdivision to roof-independent cell records."""
     nodes = subdivision.vertices
+    # Corner predicates belong to this subdivision, not each later consumer.
+    # Reuse their exact result for sorting and Cell construction.
+    geometric_rings = {ring: corners(ring, nodes) for ring in subdivision.faces}
     rings = tuple(
-        sorted(subdivision.faces, key=lambda f: _signature(corners(f, nodes), nodes))
+        sorted(subdivision.faces, key=lambda f: _signature(geometric_rings[f], nodes))
     )
     exterior = {e.vertices: e.boundary for e in subdivision.edges}
     owners = {e.vertices: [] for e in subdivision.edges}
@@ -97,8 +100,9 @@ def from_subdivision(fp, subdivision: Subdivision):
         start = min(
             range(len(ring)), key=lambda i: tuple(round(v, 10) for v in nodes[ring[i]])
         )
+        corner_ids = set(geometric_rings[ring])
         ring = ring[start:] + ring[:start]
-        geometric = corners(ring, nodes)
+        geometric = tuple(v for v in ring if v in corner_ids)
         sides = []
         for si, (a, b) in enumerate(zip(geometric, geometric[1:] + geometric[:1])):
             k = ring.index(a)
@@ -112,7 +116,15 @@ def from_subdivision(fp, subdivision: Subdivision):
                 if edge is None:
                     artificial.append(key)
                 else:
-                    span = _boundary_span(fp, nodes, u, v, edge)
+                    # Cache scope is one immutable footprint candidate family.
+                    # Exact coordinates, not incidental subdivision vertex IDs.
+                    key = (edge, nodes[u], nodes[v])
+                    if span_cache is None:
+                        span = _boundary_span(fp, nodes, u, v, edge)
+                    else:
+                        if key not in span_cache:
+                            span_cache[key] = _boundary_span(fp, nodes, u, v, edge)
+                        span = span_cache[key]
                     interval = span.interval
                     if spans and spans[-1].edge == edge:
                         prev = spans.pop()

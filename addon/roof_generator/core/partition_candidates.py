@@ -204,6 +204,7 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
     reason = None
     diagonal_ids = {tuple(sorted(d.endpoints)): i for i, d in enumerate(base.diagonals)}
     seen_cuts = set()
+    span_cache = {}  # exact provenance results for this immutable footprint
     boundary_hits = {}  # local to this immutable footprint, never persistent
 
     class BudgetExhausted(Exception):
@@ -223,7 +224,7 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
         if cut_key in seen_cuts:
             return True
         seen_cuts.add(cut_key)
-        d = from_subdivision(fp, subdivide(fp, selection, cuts))
+        d = from_subdivision(fp, subdivide(fp, selection, cuts), span_cache=span_cache)
         key = signature(d)
         if key not in pool and len(pool) >= max_candidates:
             reason = "minimum candidate budget exhausted; recommendation unavailable"

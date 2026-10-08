@@ -70,5 +70,30 @@ class PartitionReuseProof(unittest.TestCase):
                 self.assertEqual(indexed, unfiltered)
 
 
+from roof_generator.core import partition_candidates as pc
+from roof_generator.core.cells import from_subdivision
+
+
+class ReuseProof(unittest.TestCase):
+    def test_disabling_provenance_cache_preserves_every_candidate_byte_for_byte(self):
+        for name in (
+            "orthogonal_U",
+            "residential_multi_reflex",
+            "grid_14",
+            "grid_20",
+            "grid_40",
+        ):
+            fp = analyze(fixture(name)["footprint"])
+            expected = pc.candidates(fp)
+            with patch.object(
+                pc,
+                "from_subdivision",
+                lambda fp, s, **kw: from_subdivision(fp, s, span_cache=None),
+            ):
+                actual = pc.candidates(fp)
+            self.assertEqual(expected, actual)
+            self.assertEqual(expected.inspect(), actual.inspect())
+
+
 if __name__ == "__main__":
     unittest.main()
