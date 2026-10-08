@@ -1,0 +1,185 @@
+{
+  "source_sha": "bcc4213f692ee2982fc0886a58ec79a2ef5761e2",
+  "source_dirty": true,
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "generator_version": 1,
+  "seed": 382901,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "inputs": 1000,
+      "success": {
+        "footprint": 1000,
+        "partition": 1000,
+        "architecture": 1000,
+        "RoofGraph": 3,
+        "GeometryProblem": 3,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 997,
+        "solve": 3
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.parallel": 995,
+        "relation.partial_end": 802,
+        "relation.continuation": 802,
+        "junction.terminal_arrangement": 36,
+        "junction.host_arrangement": 16,
+        "junction.equal_width_ports": 2,
+        "junction.interacting_slots": 1,
+        "junction.branch_width": 1
+      },
+      "conditional_sole_partition_blocker": {
+        "relation.parallel": 667,
+        "junction.terminal_arrangement": 2,
+        "junction.equal_width_ports": 1,
+        "relation.continuation": 1
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 985,
+        "analytic solve supports one rectangle only; compound pitched embedding is not implemented": 3,
+        "topology axis-assignment budget exhausted": 12
+      },
+      "total_ms": 199793.68606904973
+    },
+    "nonuniform_orthogonal": {
+      "inputs": 150,
+      "success": {
+        "footprint": 150,
+        "partition": 150,
+        "architecture": 150,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 150
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.parallel": 145,
+        "relation.partial_end": 104,
+        "relation.continuation": 100,
+        "junction.terminal_arrangement": 1
+      },
+      "conditional_sole_partition_blocker": {
+        "relation.parallel": 34,
+        "junction.terminal_arrangement": 1,
+        "relation.continuation": 2
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 150
+      },
+      "total_ms": 16315.194956005143
+    },
+    "structured_orthogonal": {
+      "inputs": 103,
+      "success": {
+        "footprint": 103,
+        "partition": 103,
+        "architecture": 103,
+        "RoofGraph": 13,
+        "GeometryProblem": 13,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "solve": 13,
+        "topology": 90
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.parallel": 66,
+        "junction.branch_width": 7,
+        "junction.terminal_arrangement": 14,
+        "relation.partial_end": 34,
+        "relation.continuation": 33,
+        "junction.interacting_slots": 4,
+        "junction.host_arrangement": 9
+      },
+      "conditional_sole_partition_blocker": {
+        "relation.parallel": 32,
+        "junction.branch_width": 7,
+        "junction.terminal_arrangement": 11,
+        "junction.interacting_slots": 4,
+        "junction.host_arrangement": 9,
+        "relation.continuation": 1
+      },
+      "failure_reasons": {
+        "analytic solve supports one rectangle only; compound pitched embedding is not implemented": 13,
+        "all architectural assignments lack a valid implemented roof topology": 90
+      },
+      "total_ms": 2923.5458060138626
+    },
+    "convex_quadrilateral": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 48
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_partition_blocker": {},
+      "failure_reasons": {
+        "rectangle partition requires an orthogonal outline": 48
+      },
+      "total_ms": 3.630451003118651
+    },
+    "structured_oblique": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 43
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_partition_blocker": {},
+      "failure_reasons": {
+        "rectangle partition requires an orthogonal outline": 43
+      },
+      "total_ms": 5.811961007566424
+    },
+    "general_simple_polygon_probe": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 40
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_partition_blocker": {},
+      "failure_reasons": {
+        "rectangle partition requires an orthogonal outline": 40
+      },
+      "total_ms": 6.679349011392333
+    }
+  }
+}
