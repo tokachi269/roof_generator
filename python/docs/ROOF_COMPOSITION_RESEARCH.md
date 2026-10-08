@@ -113,6 +113,9 @@ result for those configurations; do not invent them during this task.
    branch transverse width must be less than host transverse width. Ambiguous
    roles, unequal slope/height policies, and unsupported arrangements fail.
    There is no new largest-area, centrality or weighted main-structure score.
+   Candidate primitives retain their explicit existing orientation policy;
+   this series does not silently rotate a square/fat receiver to make a failed
+   port match pass. Such configurations may need a declared architectural axis.
    In a terminal relation, `host` names the receiving geometric side, not
    necessarily the higher architectural roof: either primitive can be wider.
    The existing corner refinement preserves the wider ridge accordingly. The

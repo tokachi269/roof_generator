@@ -255,6 +255,40 @@ class AttachmentRelationTests(unittest.TestCase):
 
 
 class MiddleCompositionTests(unittest.TestCase):
+    def test_middle_T_matches_the_unchanged_frozen_semantic_reference(self):
+        record = REFERENCES[0]
+        points = np.array([record["points"][v][:2] for v in record["outline"]])
+        d = decompose(analyze(points))
+        graph = compose(d).graph
+        labels = assert_reference(self, record, d, graph)
+        baseline = json.loads(
+            (Path(__file__).parent / "fixtures/roof_semantic_baseline.json").read_text()
+        )["cases"]["orthogonal_T"]
+        perimeter = sum(
+            np.linalg.norm(a - b) for a, b in zip(points, np.roll(points, -1, axis=0))
+        )
+        old_labels = {}
+        for i, vertex in enumerate(baseline["vertices"]):
+            xy = np.array(vertex[:2]) * perimeter
+            matches = [
+                v
+                for v, p in record["points"].items()
+                if np.linalg.norm(xy - p[:2]) < 1e-6
+            ]
+            self.assertEqual(len(matches), 1)
+            old_labels[i] = matches[0]
+        self.assertEqual(
+            {
+                tuple(sorted(old_labels[i] for i in e["vertices"])): e["feature"]
+                for e in baseline["edge_features"]
+            },
+            {tuple(sorted(labels[i] for i in e.vertices)): e.kind for e in graph.edges},
+        )
+        self.assertEqual(
+            {cycle([old_labels[i] for i in f["loop"]]) for f in baseline["faces"]},
+            {cycle([labels[i] for i in f.loop]) for f in graph.faces},
+        )
+
     def test_published_middle_cycles_replace_the_internal_branch_cap(self):
         for record in REFERENCES[:3]:
             with self.subTest(name=record["name"]):
