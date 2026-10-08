@@ -7,7 +7,5 @@ python/out/
 
 Intuitive and Efficient Roof Modeling for Reconstruction and Synthesis.pdf
 misskey-play-debugger/
-# Platform/CPython-specific Blender wheels installed by the roof installer.
-addon/roof_generator/.roof-deps/
 
 dist/

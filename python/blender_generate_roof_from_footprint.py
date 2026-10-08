@@ -38,6 +38,7 @@ def main():
     )
     parser.add_argument("--pitch", type=float, default=PITCH)
     parser.add_argument("--eave-height", type=float, default=EAVE_HEIGHT)
+    parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--debug-parts", action="store_true", default=DEBUG_PARTS)
     args = parser.parse_args(argv)
     source = (
@@ -50,6 +51,7 @@ def main():
         roof_type=args.roof_type,
         pitch=args.pitch,
         eave_height=args.eave_height,
+        seed=args.seed,
         mesh_name=args.mesh_name,
         debug_parts=args.debug_parts,
     )
@@ -59,10 +61,12 @@ def main():
                 "object": obj.name,
                 "vertices": len(obj.data.vertices),
                 "faces": len(obj.data.polygons),
-                "parts": len(result.roof.decomposition.parts),
-                "features": result.roof.validation.features,
-                "max_planarity_error_world": result.roof.validation.max_planarity_error
-                * result.roof.footprint.frame.scale,
+                "candidate": result.roof.generation.selected.id,
+                "seed": args.seed,
+                "features": {
+                    kind: sum(e.kind == kind for e in result.roof.mesh.graph.edges)
+                    for kind in {e.kind for e in result.roof.mesh.graph.edges}
+                },
             }
         )
     )
