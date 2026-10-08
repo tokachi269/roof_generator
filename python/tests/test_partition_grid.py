@@ -9,14 +9,15 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+import python
 import unittest
 
 import numpy as np
 from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.errors import UnsupportedRoofError
 from python.tests.grid_footprints import generated
 from python.tests.test_rectangle_partition import oracle_diagonals
 
@@ -305,13 +306,14 @@ class GeneratedPartitionTests(unittest.TestCase):
     def test_runtime_is_roof_independent_and_without_third_party_imports(self):
         script = """import sys,builtins,json
 sys.path.insert(0,sys.argv[1])
+sys.path.insert(0,sys.argv[1] + "/addon")
 original=builtins.__import__
 def checked(name,*args,**kwargs):
- if name.startswith(('shapely','numpy','roof_generator','python.graph_first.topology','python.graph_first.geometry')):raise AssertionError('forbidden partition import: '+name)
+ if name.startswith(('shapely','numpy','roof_generator.core.roof_','roof_generator.core.topology','roof_generator.core.solve')):raise AssertionError('forbidden partition import: '+name)
  return original(name,*args,**kwargs)
 builtins.__import__=checked
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
 for c in json.load(open(sys.argv[2])):
  d=decompose(analyze(c['footprint']))
  assert len(d.cells)==c['minimum_cells']

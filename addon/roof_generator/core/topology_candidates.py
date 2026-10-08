@@ -7,8 +7,8 @@ import math
 from .errors import UnsupportedRoofError
 from .solve import problem
 from .initialization import _valid_drawing
-from .part_interpretation import Analysis
-from .part_selection import evaluate
+from .architecture import Analysis
+from .architecture_selection import evaluate
 from .seed import derive, choose, point_identity
 from .topology import compose
 

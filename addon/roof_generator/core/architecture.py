@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from itertools import product
 import math
 from .footprint import EPS, area
-from .parts import (
+from .architecture_models import (
     ArchitecturalMember,
     PartCombination,
     PartRelation,

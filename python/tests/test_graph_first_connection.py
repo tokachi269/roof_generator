@@ -8,18 +8,19 @@ from pathlib import Path
 import subprocess
 import sys
 from types import SimpleNamespace
+import python
 import unittest
 
 import numpy as np
 from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose, Cell, Side, Adjacency, Decomposition
-from python.graph_first.topology import compose
-from python.graph_first.solve import problem, solve_rectangle
-from python.graph_first.mesh import RoofMesh
-from python.graph_first.errors import UnsupportedRoofError
-from python.graph_first.provenance import BoundarySpan
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose, Cell, Side, Adjacency, Decomposition
+from roof_generator.core.topology import compose
+from roof_generator.core.solve import problem, solve_rectangle
+from roof_generator.core.mesh import RoofMesh
+from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.core.provenance import BoundarySpan
 from python.tests.test_graph_first_cells import L
 from python.tests.test_graph_first_rectangle import graph_signature
 from python.tests.test_roof_harness import assert_disk
@@ -396,15 +397,16 @@ class TerminalCompositionTests(unittest.TestCase):
     def test_new_L_route_runs_without_shapely_or_legacy(self):
         script = """import sys,builtins
 sys.path.insert(0,sys.argv[1])
+sys.path.insert(0,sys.argv[1] + "/addon")
 original=builtins.__import__
 def checked(name,*args,**kwargs):
- if name=="shapely" or name.startswith(("shapely.","roof_generator")):raise AssertionError("forbidden new-path import: "+name)
+ if name=="shapely" or name.startswith(("shapely.","numpy.","roof_generator.core.roof_")):raise AssertionError("forbidden new-path import: "+name)
  return original(name,*args,**kwargs)
 builtins.__import__=checked
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import compose
-from python.graph_first.solve import problem
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import compose
+from roof_generator.core.solve import problem
 g=compose(decompose(analyze(((0,0),(14.2,0),(14.2,5.6),(5.2,5.6),(5.2,12.8),(0,12.8))))).graph
 assert len(g.faces)==4 and len(problem(g).variable_xy)==2
 """

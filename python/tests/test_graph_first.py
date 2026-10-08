@@ -2,10 +2,11 @@
 """Primary topology/ownership proofs independent of any roof geometry solver."""
 
 from dataclasses import replace
+import python
 import unittest
-from python.graph_first.provenance import BoundaryPoint
-from python.graph_first.graph import RoofFace, make_graph
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.provenance import BoundaryPoint
+from roof_generator.core.graph import RoofFace, make_graph
+from roof_generator.core.errors import UnsupportedRoofError
 
 
 class GraphContractTests(unittest.TestCase):

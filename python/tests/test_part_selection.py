@@ -8,11 +8,12 @@ from pathlib import Path
 from dataclasses import replace
 import subprocess
 import sys
+import python
 import unittest
-from python.graph_first.footprint import analyze
-from python.graph_first.partition_candidates import candidates, signature
-from python.graph_first.part_interpretation import analyze_parts
-from python.graph_first.part_selection import recommend, Policy
+from roof_generator.core.footprint import analyze
+from roof_generator.core.partition_candidates import candidates, signature
+from roof_generator.core.architecture import analyze_parts
+from roof_generator.core.architecture_selection import recommend, Policy
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -241,14 +242,15 @@ class SelectionProof(unittest.TestCase):
         script = """
 import importlib.abc,sys
 sys.path.insert(0,sys.argv[1])
+sys.path.insert(0,sys.argv[1] + "/addon")
 class Block(importlib.abc.MetaPathFinder):
  def find_spec(self,name,path=None,target=None):
-  if name.split('.')[0] in {'shapely','numpy','roof_generator'} or name.endswith(('.topology','.geometry','.connections')):
+  if name.split('.')[0] in {'shapely','numpy'} or name.endswith(('.topology','.solve','.junctions')):
    raise ImportError('forbidden dependency '+name)
 sys.meta_path.insert(0,Block())
-from python.graph_first.footprint import analyze
-from python.graph_first.partition_candidates import candidates
-from python.graph_first.part_selection import recommend
+from roof_generator.core.footprint import analyze
+from roof_generator.core.partition_candidates import candidates
+from roof_generator.core.architecture_selection import recommend
 out=recommend(candidates(analyze(((0,0),(18,0),(18,12),(14,12),(14,6),(4,6),(4,12),(0,12)))))
 assert out.retained
 assert out.inspect()['roof_topology'] is None

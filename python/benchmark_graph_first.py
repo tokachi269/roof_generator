@@ -13,11 +13,12 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "addon"))
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import compose
-from python.graph_first.solve import problem, rectangle_vertices
-from python.graph_first.mesh import RoofMesh
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import compose
+from roof_generator.core.solve import problem, rectangle_vertices
+from roof_generator.core.mesh import RoofMesh
 
 
 def stats(samples):

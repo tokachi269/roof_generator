@@ -12,12 +12,13 @@ from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import compose, cell_primitives
-from python.graph_first.connections import attachments
-from python.graph_first.errors import UnsupportedRoofError
-from python.graph_first.solve import problem
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import compose, cell_primitives
+from roof_generator.core.junctions import attachments
+from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.core.solve import problem
 
 
 def inspect(record):

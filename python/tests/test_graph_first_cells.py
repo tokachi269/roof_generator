@@ -2,13 +2,14 @@
 """Independent cell geometry/provenance oracles; no roof candidate evaluation."""
 
 import math
+import python
 import unittest
 import numpy as np
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.errors import UnsupportedRoofError
 
 L = np.array([(0, 0), (14.2, 0), (14.2, 5.6), (5.2, 5.6), (5.2, 12.8), (0, 12.8)])
 

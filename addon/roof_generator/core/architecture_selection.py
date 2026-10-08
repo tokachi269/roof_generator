@@ -3,9 +3,9 @@
 
 from dataclasses import dataclass, asdict
 from .footprint import EPS
-from .part_interpretation import analyze_parts, build_parts
+from .architecture import analyze_parts, build_parts
 from .partition_candidates import CandidateSearch
-from .parts import ArchitecturalPartGraph
+from .architecture_models import ArchitecturalPartGraph
 
 
 @dataclass(frozen=True)

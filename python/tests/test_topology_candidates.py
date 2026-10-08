@@ -4,12 +4,13 @@
 from collections import Counter
 from dataclasses import replace
 import math
+import python
 import unittest
-from python.graph_first.footprint import analyze
-from python.graph_first.partition_candidates import candidates
-from python.graph_first.part_selection import recommend
-from python.graph_first.topology_candidates import build_candidates
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.footprint import analyze
+from roof_generator.core.partition_candidates import candidates
+from roof_generator.core.architecture_selection import recommend
+from roof_generator.core.topology_candidates import build_candidates
+from roof_generator.core.errors import UnsupportedRoofError
 from python.inspect_architectural_parts import fixture
 
 

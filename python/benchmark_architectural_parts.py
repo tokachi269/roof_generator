@@ -11,10 +11,11 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from python.graph_first.footprint import analyze
-from python.graph_first.partition_candidates import candidates
-from python.graph_first.part_interpretation import analyze_parts, build_parts
-from python.graph_first.part_selection import (
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.partition_candidates import candidates
+from roof_generator.core.architecture import analyze_parts, build_parts
+from roof_generator.core.architecture_selection import (
     evaluate,
     retained_indices,
     Policy,

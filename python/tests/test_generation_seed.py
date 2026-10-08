@@ -4,9 +4,10 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+import python
 import unittest
-from python.graph_first.seed import derive, choose, point_identity
-from python.graph_first.footprint import analyze
+from roof_generator.core.seed import derive, choose, point_identity
+from roof_generator.core.footprint import analyze
 
 
 class GenerationSeedProof(unittest.TestCase):
@@ -28,7 +29,7 @@ class GenerationSeedProof(unittest.TestCase):
 
     def test_cross_process_seed_digest_does_not_use_python_hash(self):
         root = Path(__file__).resolve().parents[2]
-        script = "import sys;sys.path.insert(0,sys.argv[1]);from python.graph_first.seed import derive;print(derive(-17,'square_axis','part-a'))"
+        script = "import sys;sys.path.insert(0,sys.argv[1]+'/addon');from roof_generator.core.seed import derive;print(derive(-17,'square_axis','part-a'))"
         for _ in range(2):
             r = subprocess.run(
                 [sys.executable, "-I", "-c", script, str(root)],

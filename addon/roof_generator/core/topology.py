@@ -9,7 +9,7 @@ from .provenance import BoundaryPoint
 from .graph import RoofFace, RoofGraph, make_graph, boundary_span
 from .errors import UnsupportedRoofError
 from .initialization import harmonic_seeds, ridge_seeds, middle_seeds
-from .connections import plan
+from .junctions import plan
 
 
 def _key(a, b):

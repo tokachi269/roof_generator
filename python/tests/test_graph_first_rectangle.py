@@ -8,14 +8,15 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+import python
 import unittest
 from types import SimpleNamespace
 
 import numpy as np
-from python.graph_first.footprint import analyze
-from python.graph_first.topology import rectangle_graph
-from python.graph_first.solve import solve_rectangle, problem
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.footprint import analyze
+from roof_generator.core.topology import rectangle_graph
+from roof_generator.core.solve import solve_rectangle, problem
+from roof_generator.core.errors import UnsupportedRoofError
 from python.tests.graph_first_reference import rectangle_snapshot
 from python.roof_harness import capture, differences
 from python.tests.test_roof_harness import assert_rectangle, assert_disk
@@ -186,14 +187,15 @@ class RectangleGraphTests(unittest.TestCase):
     def test_no_legacy_or_polygon_runtime_dependency_in_fresh_process(self):
         script = """import sys,builtins
 sys.path.insert(0,sys.argv[1])
+sys.path.insert(0,sys.argv[1] + "/addon")
 original=builtins.__import__
 def checked(name,*args,**kwargs):
- if name=="shapely" or name.startswith(("shapely.","roof_generator")):raise AssertionError("forbidden new-path import: "+name)
+ if name=="shapely" or name.startswith(("shapely.","numpy.","roof_generator.core.roof_")):raise AssertionError("forbidden new-path import: "+name)
  return original(name,*args,**kwargs)
 builtins.__import__=checked
-from python.graph_first.footprint import analyze
-from python.graph_first.topology import rectangle_graph
-from python.graph_first.solve import solve_rectangle
+from roof_generator.core.footprint import analyze
+from roof_generator.core.topology import rectangle_graph
+from roof_generator.core.solve import solve_rectangle
 for kind in ("gable","hip","shed","flat"):
  g=rectangle_graph(analyze(((0,0),(12,0),(12,6),(0,6))),kind)
  assert solve_rectangle(g).faces

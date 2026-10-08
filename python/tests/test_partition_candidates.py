@@ -6,11 +6,12 @@ import json
 import math
 from functools import lru_cache
 from pathlib import Path
+import python
 import unittest
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.partition_candidates import candidates, maximum_sets, signature
-from python.graph_first.rectangle_partition import Diagonal, Selection, maximum_matching
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.partition_candidates import candidates, maximum_sets, signature
+from roof_generator.core.partition import Diagonal, Selection, maximum_matching
 from python.tests.grid_footprints import outline as boundary
 
 

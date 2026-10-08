@@ -1,14 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+import python
 import unittest
 from dataclasses import replace
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.parts import (
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.architecture_models import (
     ArchitecturalPartGraph,
     ArchitecturalMember,
     ArchitecturalPart,
 )
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.errors import UnsupportedRoofError
 
 
 class PartContractProof(unittest.TestCase):
@@ -55,8 +56,8 @@ class PartContractProof(unittest.TestCase):
 
 class CompoundInterpretationProof(unittest.TestCase):
     def test_compound_boundary_and_roles_from_literal_two_corner_members(self):
-        from python.graph_first.partition_candidates import candidates
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.architecture import interpret
         from shapely.geometry import Polygon
 
         raw = ((0, 0), (18, 0), (18, 12), (14, 12), (14, 6), (4, 6), (4, 12), (0, 12))
@@ -92,8 +93,8 @@ class CompoundInterpretationProof(unittest.TestCase):
         )
 
     def test_literal_compound_corner_plus_middle_attachment(self):
-        from python.graph_first.partition_candidates import candidates
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.architecture import interpret
 
         # A complete horizontal receiver, one end branch, one middle branch.
         raw = (
@@ -121,8 +122,8 @@ class CompoundInterpretationProof(unittest.TestCase):
         self.assertEqual(sorted(c for p in g.parts for c in p.cells), [0, 1, 2])
 
     def test_adjacency_order_never_selects_a_different_group(self):
-        from python.graph_first.partition_candidates import candidates
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.architecture import interpret
 
         fp = analyze(
             ((0, 0), (18, 0), (18, 12), (14, 12), (14, 6), (4, 6), (4, 12), (0, 12))
@@ -135,8 +136,8 @@ class CompoundInterpretationProof(unittest.TestCase):
 
     def test_all_cells_and_exterior_are_kept_on_unknown_grid_inputs(self):
         from python.tests.grid_footprints import generated
-        from python.graph_first.partition_candidates import candidates
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.architecture import interpret
         from shapely.geometry import Polygon
         from shapely.ops import unary_union
 
@@ -180,7 +181,7 @@ class CompoundInterpretationProof(unittest.TestCase):
                     )
 
     def test_square_and_width_ambiguities_are_not_area_decisions(self):
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.architecture import interpret
 
         g = interpret(
             decompose(
@@ -208,7 +209,7 @@ class CompoundInterpretationProof(unittest.TestCase):
         self.assertTrue(all(o.main is None for r in g.relations for o in r.options))
 
     def test_mutating_a_member_geometry_or_relation_provenance_fails(self):
-        from python.graph_first.part_interpretation import interpret
+        from roof_generator.core.architecture import interpret
 
         g = interpret(
             decompose(analyze(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10))))

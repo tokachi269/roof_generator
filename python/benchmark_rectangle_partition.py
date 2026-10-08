@@ -13,9 +13,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose, from_subdivision
-from python.graph_first.rectangle_partition import (
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose, from_subdivision
+from roof_generator.core.partition import (
     good_diagonals,
     intersection_graph,
     maximum_matching,

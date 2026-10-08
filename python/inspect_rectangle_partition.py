@@ -10,8 +10,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
 
 
 def svg(d):

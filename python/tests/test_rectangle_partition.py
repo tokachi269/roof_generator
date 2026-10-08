@@ -2,10 +2,11 @@
 """Classical partition proof with independent geometry/combinatorial oracles."""
 
 from itertools import combinations
+import python
 import unittest
 from shapely.geometry import Polygon, LineString
-from python.graph_first.footprint import analyze
-from python.graph_first.rectangle_partition import (
+from roof_generator.core.footprint import analyze
+from roof_generator.core.partition import (
     good_diagonals,
     select_diagonals,
     maximum_matching,
@@ -191,7 +192,7 @@ class SubdivisionTests(unittest.TestCase):
 class CellRecordTests(unittest.TestCase):
     def test_generic_records_cover_provenance_and_every_shared_interval(self):
         from collections import Counter
-        from python.graph_first.cells import decompose
+        from roof_generator.core.cells import decompose
 
         for points, minimum in [(T, 2), (U, 3), (CROSS, 3)]:
             fp = analyze(points)
@@ -222,8 +223,8 @@ class CellRecordTests(unittest.TestCase):
             )
 
     def test_generic_two_cell_partition_supplies_existing_terminal_graft(self):
-        from python.graph_first.cells import decompose
-        from python.graph_first.topology import compose
+        from roof_generator.core.cells import decompose
+        from roof_generator.core.topology import compose
         from python.tests.test_graph_first_cells import L
         from python.tests.test_graph_first_connection import assert_terminal
 

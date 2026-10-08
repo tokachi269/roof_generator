@@ -4,7 +4,7 @@
 from dataclasses import dataclass, replace
 from itertools import product
 from .footprint import EPS
-from .rectangle_partition import (
+from .partition import (
     good_diagonals,
     select_diagonals,
     complete_cuts,

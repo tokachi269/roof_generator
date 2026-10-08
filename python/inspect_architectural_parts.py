@@ -12,10 +12,11 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.partition_candidates import candidates
-from python.graph_first.part_selection import recommend, Policy
+sys.path.insert(0, str(ROOT / "addon"))
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.partition_candidates import candidates
+from roof_generator.core.architecture_selection import recommend, Policy
 
 
 def fixture(name):

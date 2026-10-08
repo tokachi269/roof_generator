@@ -8,19 +8,20 @@ import subprocess
 import sys
 from pathlib import Path
 import json
+import python
 import unittest
 
 import numpy as np
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import _rectangle_graph, compose
-from python.graph_first.connections import plan
-from python.graph_first.errors import UnsupportedRoofError
-from python.graph_first.mesh import RoofMesh
-from python.graph_first.solve import problem
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import _rectangle_graph, compose
+from roof_generator.core.junctions import plan
+from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.core.mesh import RoofMesh
+from roof_generator.core.solve import problem
 from python.tests.composition_footprints import buildings
 
 RECORDS = json.loads(
@@ -572,14 +573,15 @@ class MultipleCompositionTests(unittest.TestCase):
         script = """
 import sys, importlib.abc, json
 sys.path.insert(0, sys.argv[1])
+sys.path.insert(0, sys.argv[1] + "/addon")
 class Block(importlib.abc.MetaPathFinder):
     def find_spec(self, name, path=None, target=None):
-        if name.split('.')[0] in {'numpy', 'shapely', 'roof_generator'}:
+        if name.split('.')[0] in {'numpy', 'shapely'}:
             raise RuntimeError('forbidden runtime dependency: ' + name)
 sys.meta_path.insert(0, Block())
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import compose
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import compose
 from pathlib import Path
 for r in json.loads((Path(sys.argv[1])/'python/tests/fixtures/roof_composition.json').read_text()):
     graph=compose(decompose(analyze([r['points'][v][:2] for v in r['outline']]))).graph

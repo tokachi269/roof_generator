@@ -2,13 +2,14 @@
 """Independent equal-width four-port witness, not generated plane topology."""
 
 from collections import Counter
+import python
 import unittest
-from python.graph_first.footprint import analyze
-from python.graph_first.cells import decompose
-from python.graph_first.topology import compose
-from python.graph_first.mesh import RoofMesh
-from python.graph_first.solve import problem
-from python.graph_first.initialization import _valid_drawing
+from roof_generator.core.footprint import analyze
+from roof_generator.core.cells import decompose
+from roof_generator.core.topology import compose
+from roof_generator.core.mesh import RoofMesh
+from roof_generator.core.solve import problem
+from roof_generator.core.initialization import _valid_drawing
 
 
 class SharedJunctionProof(unittest.TestCase):

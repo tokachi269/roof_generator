@@ -5,7 +5,7 @@ from dataclasses import dataclass, asdict
 from .footprint import EPS, sub, Footprint
 from .provenance import BoundarySpan
 from .errors import UnsupportedRoofError
-from .rectangle_partition import partition, Subdivision, PartitionCertificate, corners
+from .partition import partition, Subdivision, PartitionCertificate, corners
 
 
 @dataclass(frozen=True)

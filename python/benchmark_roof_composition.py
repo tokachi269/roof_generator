@@ -11,8 +11,9 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "addon"))
 from python.benchmark_graph_first import measure, stats
-from python.graph_first.errors import UnsupportedRoofError
+from roof_generator.core.errors import UnsupportedRoofError
 from python.tests.composition_footprints import buildings
 
 
