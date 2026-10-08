@@ -100,6 +100,7 @@ def inspect(record):
         completed("footprint")
         owner = "partition"
         search = candidates(fp)
+        row["incomplete_search"] = not search.complete
         if not search.complete or not search.candidates:
             raise UnsupportedRoofError(search.reason or "no complete partition")
         completed("partition")
@@ -114,6 +115,7 @@ def inspect(record):
         pool = build_candidates(interpretation)
         row["issues"] = classify(pool)
         row["valid_graph_count"] = len(pool.valid)
+        row["ambiguity"] = len(pool.valid) > 1
         if not pool.complete or not pool.valid:
             row["incomplete_search"] = not pool.complete
             raise UnsupportedRoofError(pool.reason or "no valid topology")
@@ -141,6 +143,32 @@ def inspect(record):
     except (UnsupportedRoofError, ValueError) as exc:
         row["failure_owner"] = owner
         row["reason"] = str(exc)
+        row["failure"] = {
+            "owner": owner,
+            "code": (
+                "incomplete_search"
+                if row.get("incomplete_search")
+                else (
+                    "unsupported_decomposition"
+                    if owner == "partition" and row["success"]["footprint"]
+                    else (
+                        "invalid_embedding"
+                        if owner in {"solve", "mesh"}
+                        else "no_valid_candidate"
+                    )
+                )
+            ),
+            "categories": (
+                ["D"]
+                if owner in {"solve", "mesh"}
+                else (
+                    ["F"]
+                    if owner in {"footprint", "partition"}
+                    else sorted({i["category"] for i in row["issues"]})
+                )
+            ),
+            "research_scope": "current algorithm/input contract; not a claim of geometric impossibility",
+        }
     row["timings_ms"]["total"] = (
         sum(row["timings_ms"].values()) + (time.perf_counter() - t) * 1000
     )

@@ -269,7 +269,7 @@ class TerminalCompositionTests(unittest.TestCase):
             tuple(v[:2] for v in vertices),
             tuple(f.frame.world_xy(v.seed) for v in g.vertices),
         )
-        with self.assertRaisesRegex(UnsupportedRoofError, "compound pitched embedding"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "requires one rectangle"):
             solve_analytic(g)
         with self.assertRaisesRegex(UnsupportedRoofError, "nonplanar"):
             RoofMesh(g, p.initial_vertices)

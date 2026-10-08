@@ -35,6 +35,8 @@ class CoverageAuditTests(unittest.TestCase):
         self.assertTrue(row["success"]["footprint"])
         self.assertFalse(row["success"]["partition"])
         self.assertEqual(row["failure_owner"], "partition")
+        self.assertEqual(row["failure"]["code"], "unsupported_decomposition")
+        self.assertEqual(row["failure"]["categories"], ["F"])
         self.assertFalse(row["Blender_measured"])
 
     def test_graph_is_not_final_mesh_support(self):
@@ -44,3 +46,15 @@ class CoverageAuditTests(unittest.TestCase):
         self.assertTrue(row["success"]["GeometryProblem"])
         self.assertTrue(row["success"]["mesh"])
         self.assertFalse(row["success"]["Blender"])
+
+    def test_supplemental_branch_network_inputs_are_frozen_and_simple(self):
+        from python.branch_network_corpus import corpus
+
+        p = Path(__file__).parents[1] / "docs/canonical/branch_network_inputs_v1.json.gz"
+        stored = json.loads(gzip.decompress(p.read_bytes()))
+        self.assertEqual(stored, json.loads(json.dumps(corpus())))
+        rows = stored["corpora"]["structured_branch_network"]
+        self.assertEqual(len(rows), 100)
+        for row in rows:
+            polygon = Polygon(row["footprint"])
+            self.assertTrue(polygon.is_valid and polygon.area > 0)

@@ -1,0 +1,713 @@
+{
+  "blender": "4.3.2",
+  "seed": 0,
+  "corpora": {
+    "structured_branch_network": {
+      "attempted": 100,
+      "success": 100,
+      "not_attempted": 0
+    }
+  },
+  "cases": [
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_000",
+      "success": true,
+      "faces": 8,
+      "candidate": "702010f46958400110f57032367335f0"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_001",
+      "success": true,
+      "faces": 10,
+      "candidate": "244ea775a6d3e2182b0f663b757b509c"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_002",
+      "success": true,
+      "faces": 8,
+      "candidate": "ac798e10f70477419baf8a21c9f614a9"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_003",
+      "success": true,
+      "faces": 10,
+      "candidate": "7eca3875fef75eab90a2687f814e0da5"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_004",
+      "success": true,
+      "faces": 8,
+      "candidate": "df7baa107a437c4a0501cde202300b1e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_005",
+      "success": true,
+      "faces": 10,
+      "candidate": "c9fe159de3bbdfd05e3db1a4b59c6192"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_006",
+      "success": true,
+      "faces": 8,
+      "candidate": "67c77f17ce27b806c73c92f37d430215"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_007",
+      "success": true,
+      "faces": 10,
+      "candidate": "50acd87ab41e4e25fc5f2efffb544108"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_008",
+      "success": true,
+      "faces": 8,
+      "candidate": "f63cc39c292c8fb08e1a61179b8a94d5"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_009",
+      "success": true,
+      "faces": 10,
+      "candidate": "2c90dec97ea06d49ca74114824172d85"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_010",
+      "success": true,
+      "faces": 8,
+      "candidate": "31811417a7a971589c6bc1f94fd8bf91"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_011",
+      "success": true,
+      "faces": 10,
+      "candidate": "4a5bd3e6d81d2ba88dad3af40fc86927"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_012",
+      "success": true,
+      "faces": 8,
+      "candidate": "98795279645bebf9e60cbfc9b223b01b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_013",
+      "success": true,
+      "faces": 10,
+      "candidate": "a59c8c71f093eec6e5f3579ba13066e7"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_014",
+      "success": true,
+      "faces": 8,
+      "candidate": "3f95cbe4d1de3379c6c86d2bcd9fdd89"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_015",
+      "success": true,
+      "faces": 10,
+      "candidate": "9d26f6d98e2b38cf98b3ad387a185c85"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_016",
+      "success": true,
+      "faces": 8,
+      "candidate": "45ad535e3fe13f32ba4d3054deb1a26a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_017",
+      "success": true,
+      "faces": 10,
+      "candidate": "10c614eeaab13abc40f2d82e192fe859"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_018",
+      "success": true,
+      "faces": 8,
+      "candidate": "b40c17ea8f3b06e4ceee187b284c4465"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_019",
+      "success": true,
+      "faces": 10,
+      "candidate": "8a57a63bab953300471690a78cf3c995"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_020",
+      "success": true,
+      "faces": 8,
+      "candidate": "8bab2090c5189b4779a23b6169cba377"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_021",
+      "success": true,
+      "faces": 10,
+      "candidate": "19e6bb4e5605c0aaaac0b3df9b3bff5a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_022",
+      "success": true,
+      "faces": 8,
+      "candidate": "8e5ceb10f117062827d37d969487b13a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_023",
+      "success": true,
+      "faces": 10,
+      "candidate": "dc5fbf14e46b5d7a65770adcff9df75c"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_024",
+      "success": true,
+      "faces": 8,
+      "candidate": "0856ea252072f3d1136747ecc2c22c34"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_025",
+      "success": true,
+      "faces": 10,
+      "candidate": "5b2ebff5d86877af4bbfad1ef6fa31a5"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_026",
+      "success": true,
+      "faces": 8,
+      "candidate": "8551ef6be2fbd8c790bca735ffbef254"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_027",
+      "success": true,
+      "faces": 10,
+      "candidate": "a1b8a5fdc7968e6af40df17892ce9835"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_028",
+      "success": true,
+      "faces": 8,
+      "candidate": "e5ec10668766dc9031094c8628ca91bd"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_029",
+      "success": true,
+      "faces": 10,
+      "candidate": "7ed2d76273a1771a21ad3d861fdf6547"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_030",
+      "success": true,
+      "faces": 8,
+      "candidate": "3fdceddd4d41281f2e53993b107c3a33"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_031",
+      "success": true,
+      "faces": 10,
+      "candidate": "d7fe954e5e2c4f5715748f28fb4d80ff"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_032",
+      "success": true,
+      "faces": 8,
+      "candidate": "bd09f7c314db78c24af351c169bbbe1f"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_033",
+      "success": true,
+      "faces": 10,
+      "candidate": "ef59b3da9b97345069a81657cfa7cbc4"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_034",
+      "success": true,
+      "faces": 8,
+      "candidate": "fad17ba8ad54c588a41082c02b920efe"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_035",
+      "success": true,
+      "faces": 10,
+      "candidate": "698708b57613557a37b8a6efd1b7297a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_036",
+      "success": true,
+      "faces": 8,
+      "candidate": "c1c947f469a2e2fdbde1bb9feeaeee74"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_037",
+      "success": true,
+      "faces": 10,
+      "candidate": "62151fdeb3de66439ae3cf64237e1272"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_038",
+      "success": true,
+      "faces": 8,
+      "candidate": "bafca0a3ea744d1646f3bdc05b193421"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_039",
+      "success": true,
+      "faces": 10,
+      "candidate": "9421ec68cedb52ffaf54ac8c5378345e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_040",
+      "success": true,
+      "faces": 8,
+      "candidate": "85e56f56809666c068c1cb829a97c250"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_041",
+      "success": true,
+      "faces": 10,
+      "candidate": "caab2d3cf692579c45e3e85831dabc5b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_042",
+      "success": true,
+      "faces": 8,
+      "candidate": "d52bf4dc5e28032cc60f997634a95cd5"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_043",
+      "success": true,
+      "faces": 10,
+      "candidate": "092db72088be9b6f3dd7407bb71233b7"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_044",
+      "success": true,
+      "faces": 8,
+      "candidate": "263e6a89e96f6c7e7cf560b866d7f0f0"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_045",
+      "success": true,
+      "faces": 10,
+      "candidate": "1c95c9ac263fe2848ae7ffd9d7fa6a80"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_046",
+      "success": true,
+      "faces": 8,
+      "candidate": "67f8b663ef551c2e2349462e2d1bf26a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_047",
+      "success": true,
+      "faces": 10,
+      "candidate": "34f377bab0ca61d7db0ea9794ad1b3d0"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_048",
+      "success": true,
+      "faces": 8,
+      "candidate": "f055f0930aae548fa3ba8057ef2ba49b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_049",
+      "success": true,
+      "faces": 10,
+      "candidate": "5bc287169e3cbc7c8185e3fc86f07189"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_050",
+      "success": true,
+      "faces": 8,
+      "candidate": "7edadc261e9808884034682f3b2155b8"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_051",
+      "success": true,
+      "faces": 10,
+      "candidate": "177fde1fc6dbf8cfebb866e10c7903a9"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_052",
+      "success": true,
+      "faces": 8,
+      "candidate": "f0b93fb33f6027fec33aeeb0e1449f4e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_053",
+      "success": true,
+      "faces": 10,
+      "candidate": "c64ef81c29045f77cfb75f425c5b1117"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_054",
+      "success": true,
+      "faces": 8,
+      "candidate": "b38b32a33eec6ffef3a6513b4cd853ab"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_055",
+      "success": true,
+      "faces": 10,
+      "candidate": "61bac6df080b461f4225f169bfb642ab"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_056",
+      "success": true,
+      "faces": 8,
+      "candidate": "cbeff6ac82bca9ea0afe6cc7ba9b6d49"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_057",
+      "success": true,
+      "faces": 10,
+      "candidate": "b3f8e5783615b881bbdf268337890e76"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_058",
+      "success": true,
+      "faces": 8,
+      "candidate": "e003e4221ebd028bbd8dfced6f65dd58"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_059",
+      "success": true,
+      "faces": 10,
+      "candidate": "173a3613283701fe0e0dd6b2dccdbaf1"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_060",
+      "success": true,
+      "faces": 8,
+      "candidate": "bc13711e7ac5ceeccbe24ed874e6dd21"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_061",
+      "success": true,
+      "faces": 10,
+      "candidate": "62daeeaf5e6ad85655dbdca312f2fc07"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_062",
+      "success": true,
+      "faces": 8,
+      "candidate": "0af58e4332709bd64952151831a4989e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_063",
+      "success": true,
+      "faces": 10,
+      "candidate": "942ac368739deeee2215d44428efc192"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_064",
+      "success": true,
+      "faces": 8,
+      "candidate": "0a28c158df18d8d45f5dfb3be3b8bc59"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_065",
+      "success": true,
+      "faces": 10,
+      "candidate": "4df215afeb6c99ea75557e90d2505e92"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_066",
+      "success": true,
+      "faces": 8,
+      "candidate": "4a88372e61a44025154f53b504dbc71b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_067",
+      "success": true,
+      "faces": 10,
+      "candidate": "12208ac9f60d649c1ad61b5d62157595"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_068",
+      "success": true,
+      "faces": 8,
+      "candidate": "ded6d6b95f3a5beb9fbd510eb720a882"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_069",
+      "success": true,
+      "faces": 10,
+      "candidate": "35e3517e864955615fcb1359e02c06b2"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_070",
+      "success": true,
+      "faces": 8,
+      "candidate": "9714a16114cead00c2665699e05669e3"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_071",
+      "success": true,
+      "faces": 10,
+      "candidate": "ec68a4d93e2a68cf2f303f8249e0b3ea"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_072",
+      "success": true,
+      "faces": 8,
+      "candidate": "46586ae5c81eb1a418502f63520f3130"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_073",
+      "success": true,
+      "faces": 10,
+      "candidate": "7d6e6cded432aab513b462948b02f73b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_074",
+      "success": true,
+      "faces": 8,
+      "candidate": "6f96d8cefbc3f9064c434509c32a463a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_075",
+      "success": true,
+      "faces": 10,
+      "candidate": "691327d30b505e99dcb8b6b6c4f7b0bc"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_076",
+      "success": true,
+      "faces": 8,
+      "candidate": "7bef7ed2f3b15f08c4abd8e4f23ae425"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_077",
+      "success": true,
+      "faces": 10,
+      "candidate": "2dbf97e28378f9d46e97b0b384822bef"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_078",
+      "success": true,
+      "faces": 8,
+      "candidate": "21bf586f66f28389c4412105919ca89c"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_079",
+      "success": true,
+      "faces": 10,
+      "candidate": "5bd746567d375ba729e46385d1d7e90e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_080",
+      "success": true,
+      "faces": 8,
+      "candidate": "f3f12c2404e21d20ac1091fa681cbd1d"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_081",
+      "success": true,
+      "faces": 10,
+      "candidate": "fab55c6ef96578d50f0bee50e52fc328"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_082",
+      "success": true,
+      "faces": 8,
+      "candidate": "04adeb593d71e540ebe3252e9df83b22"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_083",
+      "success": true,
+      "faces": 10,
+      "candidate": "8304ff9c1ea31aca83751b69ba4f6a7b"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_084",
+      "success": true,
+      "faces": 8,
+      "candidate": "4e24905f6841ac90eae7e92d640b5ecc"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_085",
+      "success": true,
+      "faces": 10,
+      "candidate": "c9d912d328917723ca6441f65b4c49cf"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_086",
+      "success": true,
+      "faces": 8,
+      "candidate": "32745d8b297801b15082688c4a36ac9f"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_087",
+      "success": true,
+      "faces": 10,
+      "candidate": "42bb34d9ec9af15be102eba6e5c79096"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_088",
+      "success": true,
+      "faces": 8,
+      "candidate": "ba9e2d603952695d779b14a785949e18"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_089",
+      "success": true,
+      "faces": 10,
+      "candidate": "1f0dd936b12192634333b45b30994932"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_090",
+      "success": true,
+      "faces": 8,
+      "candidate": "d4c52baea79ebc63e3cca729fc8d9bff"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_091",
+      "success": true,
+      "faces": 10,
+      "candidate": "52ca350df984a0f1dc05e990c27fee7e"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_092",
+      "success": true,
+      "faces": 8,
+      "candidate": "e40482783011daeb04bb637078616069"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_093",
+      "success": true,
+      "faces": 10,
+      "candidate": "7db8f23d7004dcb72a4db34b1758ba75"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_094",
+      "success": true,
+      "faces": 8,
+      "candidate": "ae6ab25e1d0867c3892980fce8f54f9a"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_095",
+      "success": true,
+      "faces": 10,
+      "candidate": "93f38dffdc12fa9dfd5c1d99fb8f0cd8"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_096",
+      "success": true,
+      "faces": 8,
+      "candidate": "8f33efcb9b147418fe1ceaa0618a4af2"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_097",
+      "success": true,
+      "faces": 10,
+      "candidate": "1bac36bf91986231162239cf3c9bc4c4"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_098",
+      "success": true,
+      "faces": 8,
+      "candidate": "2ba2507c0f627957b2473bf9cb42e85f"
+    },
+    {
+      "corpus": "structured_branch_network",
+      "name": "branch_network_099",
+      "success": true,
+      "faces": 10,
+      "candidate": "1fec7953fd6e729e6548a0184ec61b89"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "source_sha": "b6a5928300c583794afdd470dd9adcb6f9e53998",
+  "source_dirty": false,
+  "corpus_sha256": "2817415aabf47cc40fcfa00b7822ef4167b5bede31f65cb306aad9fa93d7f356",
+  "generator_version": 1,
+  "seed": 69712,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "structured_branch_network": {
+      "inputs": 100,
+      "success": {
+        "footprint": 100,
+        "partition": 100,
+        "architecture": 100,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 100
+      },
+      "issue_building_incidence_nonexclusive": {
+        "junction.host_arrangement": 100,
+        "junction.terminal_arrangement": 100
+      },
+      "conditional_sole_assignment_blocker": {
+        "junction.host_arrangement": 100,
+        "junction.terminal_arrangement": 100
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 100
+      },
+      "total_ms": 3642.4340560115525
+    }
+  }
+}
