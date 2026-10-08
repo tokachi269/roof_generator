@@ -5,7 +5,12 @@ from itertools import combinations
 import unittest
 from shapely.geometry import Polygon, LineString
 from python.graph_first.footprint import analyze
-from python.graph_first.rectangle_partition import good_diagonals
+from python.graph_first.rectangle_partition import (
+    good_diagonals,
+    select_diagonals,
+    maximum_matching,
+    independent_set,
+)
 
 CROSS = [
     (1, 0),
@@ -95,6 +100,44 @@ class DiagonalTests(unittest.TestCase):
         ]
         fp = analyze(points)
         self.assertEqual(len(good_diagonals(fp)), len(oracle_diagonals(points)[1]))
+
+
+class MatchingTests(unittest.TestCase):
+    def test_cross_shared_endpoints_are_conflicts(self):
+        f = analyze(CROSS)
+        s = select_diagonals(f, good_diagonals(f))
+        self.assertEqual(
+            (len(s.diagonals), len(s.conflicts), len(s.matching), len(s.selected)),
+            (4, 4, 2, 2),
+        )
+        # All four conflicts meet at original reflex endpoints, not at a proper
+        # interior crossing. Omitting closed endpoint conflicts breaks optimum.
+        self.assertTrue(
+            all(
+                set(s.diagonals[a].endpoints).intersection(s.diagonals[b].endpoints)
+                for a, b in s.conflicts
+            )
+        )
+
+    def test_all_three_by_three_graphs_match_exhaustive_independent_sets(self):
+        left = (0, 1, 2)
+        right = (3, 4, 5)
+        possible = tuple((a, b) for a in left for b in right)
+        for mask in range(1 << 9):
+            edges = tuple(e for i, e in enumerate(possible) if mask & (1 << i))
+            matching = maximum_matching(left, right, edges)
+            selected = independent_set(left, right, edges, matching)
+            # Independent exhaustive graph oracle, not augmenting paths.
+            best = max(
+                sum(bool(subset & (1 << i)) for i in range(6))
+                for subset in range(1 << 6)
+                if all(not (subset & (1 << a) and subset & (1 << b)) for a, b in edges)
+            )
+            self.assertEqual(len(selected), best)
+            self.assertEqual(len(matching), 6 - best)
+            self.assertEqual(len({a for a, b in matching}), len(matching))
+            self.assertEqual(len({b for a, b in matching}), len(matching))
+            self.assertTrue(all(e in edges for e in matching))
 
 
 if __name__ == "__main__":
