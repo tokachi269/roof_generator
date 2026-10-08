@@ -95,7 +95,17 @@ def _prepare(request, depsgraph):
     try:
         if mesh is None:
             raise UnsupportedRoofError("evaluated footprint has no mesh")
-        vertices = tuple(tuple(evaluated.matrix_world @ v.co) for v in mesh.vertices)
+        # Blender vectors store float32 results. Evaluate the affine transform
+        # in host doubles so translated/rotated corners do not gain independent
+        # coordinate rounding before the core's geometric normalization.
+        matrix = tuple(tuple(float(x) for x in row) for row in evaluated.matrix_world)
+        vertices = tuple(
+            tuple(
+                sum(matrix[k][j] * float(v.co[j]) for j in range(3)) + matrix[k][3]
+                for k in range(3)
+            )
+            for v in mesh.vertices
+        )
         faces = tuple(tuple(int(i) for i in f.vertices) for f in mesh.polygons)
         transform = evaluated.matrix_world.copy()
     finally:

@@ -52,6 +52,22 @@ class MeshAdapterProof(unittest.TestCase):
             self.assertGreaterEqual(x, -1e-7)
             self.assertLessEqual(x, 18 + 1e-7)
 
+    def test_core_absorbs_only_bounded_float32_transform_noise(self):
+        from roof_generator.core.footprint import analyze, EPS
+
+        raw = ((0, 0), (0.125, 0), (0.125 + 4.8e-9, 0.375), (4.8e-9, 0.375))
+        fp = analyze(raw)
+        self.assertTrue(fp.orthogonal)
+        for point in fp.vertices:
+            world = fp.frame.world_xy(point)
+            self.assertLessEqual(
+                min(math.dist(world, p) for p in raw), 4 * EPS * fp.frame.scale
+            )
+        skew = ((0, 0), (12, 0), (12.001, 6), (0.001, 6))
+        self.assertFalse(analyze(skew).orthogonal)
+        with self.assertRaises(UnsupportedRoofError):
+            generate_footprint_mesh(tuple((*p, 0) for p in skew), ((0, 1, 2, 3),))
+
     def test_invalid_source_meshes_fail_without_topology_repair(self):
         v = ((0, 0, 0), (8, 0, 0), (8, 4, 0), (0, 4, 0))
         for faces in (

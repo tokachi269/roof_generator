@@ -100,6 +100,36 @@ class Footprint:
     frame: Frame
 
 
+def _snap_rectilinear(vertices):
+    """Absorb bounded coordinate noise, without rectifying a building shape.
+
+    Blender transform matrices are float32. Cluster only coordinates separated
+    by at most 4*EPS in perimeter units, with bounded cluster diameter (no
+    transitive chaining). Keep the input if any edge is not nearly axis aligned
+    or if the resulting displacement exceeds the same numerical allowance.
+    """
+    tolerance = 4 * EPS
+    vectors = tuple(sub(b, a) for a, b in zip(vertices, vertices[1:] + vertices[:1]))
+    if any(min(abs(x), abs(y)) > 16 * ANGLE * math.hypot(x, y) for x, y in vectors):
+        return vertices
+    coordinates = []
+    for axis in (0, 1):
+        groups = []
+        for value in sorted({p[axis] for p in vertices}):
+            if not groups or value - groups[-1][0] > tolerance:
+                groups.append([value])
+            else:
+                groups[-1].append(value)
+        mapping = {x: sum(group) / len(group) for group in groups for x in group}
+        coordinates.append(tuple(mapping[p[axis]] for p in vertices))
+    snapped = tuple(zip(*coordinates))
+    if any(math.dist(a, b) > tolerance for a, b in zip(vertices, snapped)):
+        return vertices
+    if any(math.dist(a, b) <= EPS for a, b in zip(snapped, snapped[1:] + snapped[:1])):
+        return vertices
+    return snapped
+
+
 def analyze(points):
     try:
         raw = tuple(tuple(float(v) for v in p) for p in points)
@@ -172,6 +202,7 @@ def analyze(points):
         )
         for p in (raw[i] for i in ids)
     )
+    vertices = _snap_rectilinear(vertices)
     sources = []
     for a, b in zip(ids, ids[1:] + ids[:1]):
         current, originals = a, []
