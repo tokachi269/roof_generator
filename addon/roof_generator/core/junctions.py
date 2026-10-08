@@ -162,7 +162,7 @@ def plan(decomposition, primitives):
         )
     if not relations or any(r.kind != "middle" for r in relations):
         raise UnsupportedRoofError(
-            "no complete supported middle-attachment arrangement; terminal graft requires one attachment",
+            "no complete supported terminal/middle attachment arrangement",
             issues=(GenerationIssue("junction", "terminal_arrangement"),),
         )
     hosts = {r.host for r in relations}

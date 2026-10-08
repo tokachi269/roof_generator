@@ -10,6 +10,7 @@ import argparse
 from collections import Counter
 from dataclasses import asdict
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import platform
@@ -67,6 +68,8 @@ def inspect_record(record):
         "valid": len(pool.valid),
         "rejected": rejected,
         "complete": pool.complete,
+        "partition_complete": recommendation.search.complete,
+        "search_reason": None if pool.complete else pool.reason,
         "status": (
             "incomplete"
             if not pool.complete
@@ -134,7 +137,10 @@ def main():
         subprocess.check_output(["git", "status", "--porcelain"], text=True).strip()
     )
     if args.corpus.exists():
-        records = json.loads(args.corpus.read_text())
+        payload = args.corpus.read_bytes()
+        if args.corpus.suffix == ".gz":
+            payload = gzip.decompress(payload)
+        records = json.loads(payload)
     else:
         records = [
             {
@@ -146,7 +152,10 @@ def main():
             for i, raw in enumerate(generated(args.grid_count, args.seed))
         ]
         args.corpus.parent.mkdir(parents=True, exist_ok=True)
-        args.corpus.write_text(json.dumps(records, separators=(",", ":")) + "\n")
+        payload = (json.dumps(records, separators=(",", ":")) + "\n").encode()
+        args.corpus.write_bytes(
+            gzip.compress(payload, mtime=0) if args.corpus.suffix == ".gz" else payload
+        )
     fixtures = [inspect_record(dict(fixture(n), name=n)) for n in NAMES]
     vertex_histogram = Counter()
     args.details.parent.mkdir(parents=True, exist_ok=True)
@@ -168,7 +177,7 @@ def main():
     data = {
         "source_sha": revision,
         "source_dirty": dirty,
-        "corpus_sha256": hashlib.sha256(args.corpus.read_bytes()).hexdigest(),
+        "corpus_sha256": hashlib.sha256(payload).hexdigest(),
         "python": platform.python_version(),
         "profiled": False,
         "scope": "2D RoofGraph + GeometryProblem; not solved meshes",

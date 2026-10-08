@@ -4,6 +4,8 @@
 from collections import Counter
 from dataclasses import replace
 import math
+import json
+from pathlib import Path
 import python
 import unittest
 
@@ -87,6 +89,19 @@ def selected(raw, direction=(1, 0)):
 
 
 class TerminalNetworkProof(unittest.TestCase):
+    def test_existing_candidate_family_and_seed_choices_match_frozen_reference(self):
+        reference = json.loads(
+            (
+                Path(__file__).parent / "fixtures/seed_topology_reference.json"
+            ).read_text()
+        )
+        for name, expected in reference["cases"].items():
+            pool, _ = selected(fixture(name)["footprint"])
+            self.assertEqual(sorted(c.id for c in pool.valid), expected["valid"])
+            self.assertEqual(
+                {str(s): pool.select(s).id for s in range(16)}, expected["choices"]
+            )
+
     def test_original_U_is_one_graph_with_internal_receiver_ridge(self):
         pool, candidate = selected(fixture("orthogonal_U")["footprint"])
         graph = candidate.graph
