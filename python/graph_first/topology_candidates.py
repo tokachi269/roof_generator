@@ -1,0 +1,231 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""Architectural interpretations to validated indexed topology alternatives."""
+
+from dataclasses import dataclass, replace
+from itertools import product
+import math
+from .graph import UnsupportedGraphError
+from .geometry import problem, _valid_drawing
+from .part_interpretation import Analysis
+from .part_selection import evaluate
+from .seed import derive, choose, point_identity
+from .topology import compose
+
+
+@dataclass(frozen=True)
+class TopologyCandidate:
+    id: str
+    architecture: object
+    axes: tuple[int, ...]
+    composition: object
+    geometry: object
+    score: int
+
+    def __post_init__(self):
+        _validate(self.architecture, self.composition, self.geometry)
+
+    @property
+    def graph(self):
+        return self.composition.graph
+
+
+@dataclass(frozen=True)
+class Rejection:
+    partition: str
+    axes: tuple[int, ...]
+    reason: str
+
+
+@dataclass(frozen=True)
+class TopologyCandidates:
+    valid: tuple[TopologyCandidate, ...]
+    rejected: tuple[Rejection, ...]
+    complete: bool
+    reason: str | None = None
+
+    def select(self, seed=0):
+        if not self.complete or not self.valid:
+            detail = self.reason or "; ".join(sorted({r.reason for r in self.rejected}))
+            raise UnsupportedGraphError("no selectable roof topology: " + detail)
+        return choose(self.valid, seed, "roof_candidate", key=lambda c: c.id)
+
+
+def _cell_id(d, cell, identity):
+    return tuple(sorted(identity(d.vertices[v]) for v in cell.corners))
+
+
+def _candidate_id(architecture, composition, axes, identity):
+    d = architecture.decomposition
+    cells = tuple(_cell_id(d, c, identity) for c in d.cells)
+    graph = composition.graph
+    keys = tuple((identity(v.seed), v.role) for v in graph.vertices)
+    faces = []
+    for face in graph.faces:
+        ring = tuple(keys[i] for i in face.loop)
+        faces.append(
+            (
+                min(ring[i:] + ring[:i] for i in range(len(ring))),
+                tuple(sorted(cells[i] for i in face.cells)),
+            )
+        )
+    edges = tuple(
+        sorted(
+            (tuple(sorted(keys[i] for i in e.vertices)), e.kind) for e in graph.edges
+        )
+    )
+    groups = tuple(
+        sorted(tuple(sorted(cells[c] for c in p.cells)) for p in architecture.parts)
+    )
+    return derive(
+        0, "topology_id", (graph.roof_type, groups, tuple(sorted(faces)), edges)
+    )
+
+
+def _resolved_analysis(architecture, axes):
+    members = tuple(replace(m, axes=(axes[m.cell],)) for m in architecture.members)
+    relations = []
+    for relation in architecture.relations:
+        assignment = tuple(axes[c] for c in relation.cells)
+        options = tuple(o for o in relation.options if o.axes == assignment)
+        if len(options) != 1:
+            raise UnsupportedGraphError(
+                "member axis assignment does not resolve a unique local relation"
+            )
+        if options[0].kind in {"parallel", "partial_end", "continuation"}:
+            raise UnsupportedGraphError(
+                "no published implemented port operation for " + options[0].kind
+            )
+        relations.append(replace(relation, options=options))
+    return Analysis(members, tuple(relations))
+
+
+def _validate(architecture, composition, geometry):
+    graph = composition.graph
+    if set(c for f in graph.faces for c in f.cells) != {
+        m.cell for m in architecture.members
+    }:
+        raise UnsupportedGraphError("roof topology loses member provenance")
+    if geometry.faces != tuple(f.loop for f in graph.faces):
+        raise UnsupportedGraphError("geometry problem changes topology")
+    n = len(graph.vertices)
+    if len(geometry.initial_vertices) != n or any(
+        len(p) != 3 or not all(math.isfinite(x) for x in p)
+        for p in geometry.initial_vertices
+    ):
+        raise UnsupportedGraphError("geometry problem has invalid initial coordinates")
+    fixed = dict(geometry.fixed_z)
+    if set(fixed).intersection(geometry.variable_z) or set(fixed).union(
+        geometry.variable_z
+    ) != set(range(n)):
+        raise UnsupportedGraphError("geometry problem has incomplete height ownership")
+    locations = {i for i, v in enumerate(graph.vertices) if v.boundary is not None}
+    if set(geometry.variable_xy) != set(range(n)) - locations or any(
+        geometry.initial_vertices[i][:2] != graph.vertices[i].seed for i in locations
+    ):
+        raise UnsupportedGraphError("geometry problem moves fixed footprint ownership")
+    if not _valid_drawing(
+        graph.outline,
+        tuple(v.seed for v in graph.vertices),
+        graph.faces,
+        locations,
+        {e.vertices: e.kind for e in graph.edges},
+    ):
+        raise UnsupportedGraphError(
+            "roof graph has a crossing or zero-area initial drawing"
+        )
+    # Raw artificial partition segments are not roof edges. All final edges
+    # already have explicit roof semantics and boundary ownership in RoofGraph.
+    d = architecture.decomposition
+    cuts = {
+        frozenset(tuple(round(x, 10) for x in d.vertices[v]) for v in a.interval)
+        for a in d.adjacency
+    }
+    for e in graph.edges:
+        key = frozenset(
+            tuple(round(x, 10) for x in graph.vertices[v].seed) for v in e.vertices
+        )
+        if key in cuts:
+            raise UnsupportedGraphError("raw artificial cut leaked into roof topology")
+
+
+def build_candidates(
+    recommendation,
+    roof_type="gable",
+    *,
+    reference_direction=(1, 0),
+    pitch=0.5,
+    eave_height=0,
+    max_axis_assignments=4096
+):
+    """No unsupported combination ever reaches seeded selection.
+
+    Incidence operations inspect member ports of a compound unit, not its box.
+    Unresolved contacts reject only their assignment. Unfinished searches have
+    no winner. Successful 2D topology/problem conversion does not claim a solved
+    nonlinear embedding.
+    """
+    if max_axis_assignments < 1:
+        raise ValueError("axis-assignment budget must be positive")
+    if not recommendation.search.complete:
+        return TopologyCandidates((), (), False, recommendation.search.reason)
+    valid = {}
+    rejected = []
+    work = 0
+    for _, architecture in recommendation.retained:
+        d = architecture.decomposition
+        identity = point_identity(d.footprint, reference_direction)
+        partition_id = derive(
+            0, "partition_id", tuple(sorted(_cell_id(d, c, identity) for c in d.cells))
+        )
+        assignments = (
+            product(*(m.axes for m in architecture.members))
+            if roof_type == "gable"
+            else ((),)
+        )
+        for axes in assignments:
+            if work >= max_axis_assignments:
+                return TopologyCandidates(
+                    tuple(valid[k] for k in sorted(valid)),
+                    tuple(rejected),
+                    False,
+                    "topology axis-assignment budget exhausted",
+                )
+            work += 1
+            try:
+                if roof_type == "gable":
+                    resolved = _resolved_analysis(architecture, axes)
+                    evaluation = evaluate(d, resolved, recommendation.policy)
+                    if evaluation.score[0] != evaluation.score[1]:
+                        raise UnsupportedGraphError(
+                            "resolved axes still have an uncertain evaluation"
+                        )
+                    score = evaluation.score[0]
+                else:
+                    score = 0
+                composition = compose(d, roof_type, axes=axes or None)
+                geometry = problem(
+                    composition.graph, pitch, eave_height / d.footprint.frame.scale
+                )
+                stable_id = _candidate_id(architecture, composition, axes, identity)
+                valid.setdefault(
+                    stable_id,
+                    TopologyCandidate(
+                        stable_id, architecture, axes, composition, geometry, score
+                    ),
+                )
+            except UnsupportedGraphError as exc:
+                rejected.append(Rejection(partition_id, axes, str(exc)))
+    # Published terms are applied to fully resolved choices. No aesthetic score
+    # resolves ties; all equally ranked VALID alternatives remain seedable.
+    best = max((c.score for c in valid.values()), default=None)
+    retained = tuple(valid[k] for k in sorted(valid) if valid[k].score == best)
+    return TopologyCandidates(
+        retained,
+        tuple(rejected),
+        True,
+        (
+            None
+            if retained
+            else "all architectural assignments lack a valid implemented roof topology"
+        ),
+    )
