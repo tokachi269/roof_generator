@@ -9,5 +9,16 @@
   "operator_cases": 19,
   "supported": 11,
   "same_supported_ids_as_end_state_stage": true,
-  "full_corpus_reaudit": "running; prior coverage table remains specific to production 449fe1d"
+  "full_corpus_reaudit": "running; prior coverage table remains specific to production 449fe1d",
+  "branch_corpus": {
+    "inputs": 100,
+    "RoofGraph": 100,
+    "solve": 100,
+    "mesh": 100,
+    "Blender": 100
+  },
+  "standard_inspection": {
+    "gable_selected_end_state_matches_candidate": true,
+    "flat_has_no_pitched_end_states": true
+  }
 }

@@ -26,7 +26,9 @@ blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_
 ```
 
 `inspect_roof.py` reports all validated alternatives, rejected assignments,
-selected candidate and GeometryProblem. Its SVGs distinguish artificial cell
+selected candidate, its resolved end states, and GeometryProblem. Each gable
+candidate records the shared/extension choices before composition; flat roofs
+have no pitched-roof end configuration. Its SVGs distinguish artificial cell
 cuts and actual graph features. `inspect_junctions.py` is a developer-only
 inspection of individual port operations, not a second generation API.
 

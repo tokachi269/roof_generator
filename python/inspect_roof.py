@@ -39,6 +39,7 @@ def inspect(record, seed=0, roof_type="gable"):
                 "score": c.score,
                 "partition": c.architecture.decomposition.inspect(),
                 "architectural_parts": c.architecture.inspect(),
+                "resolved_ends": c.ends.inspect() if c.ends is not None else None,
                 "graph": c.graph.inspect(),
                 "composition": c.composition.inspect(),
                 "geometry_problem": asdict(c.geometry),
@@ -49,10 +50,12 @@ def inspect(record, seed=0, roof_type="gable"):
         "complete": pool.complete,
         "status": "unsupported",
         "selected": None,
+        "selected_ends": None,
     }
     try:
         selected = pool.select(seed)
-        output.update(status="geometry_problem", selected=selected.id)
+        output.update(status="geometry_problem", selected=selected.id,
+                      selected_ends=selected.ends.inspect() if selected.ends is not None else None)
     except UnsupportedRoofError as exc:
         output["reason"] = str(exc)
     return output, pool

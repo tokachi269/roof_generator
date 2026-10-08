@@ -11,6 +11,10 @@ offsetのtall入力は、後段のjunctionではなく端制約生成で拒否�
 [追加検証の記録](authority/offset-end-gate/verification.json)と
 [operator結果](authority/offset-end-gate/operator.json)は前段階の測定と分けて保存した。
 
+適用範囲修正後のbranch corpusは[core](authority/offset-end-gate/branch-offset-end-gate.json)
+と[更新ZIPのBlender変換](authority/offset-end-gate/blender-branch-offset-end-gate.json)が
+100/100。標準`inspect_roof.py`にも各候補と選択結果の端状態を記録する。
+
 ArchitecturalPartを迂回してCell primitiveからrelationを再解釈する経路は、開始時のコードで実証した。現在はresolved architectureと全体の端制約をcompositionの入力にした。今回実装したのはgable要求のshared/T構成の制約と、狭いbranchのcorner-T extensionである。
 
 **報告された工場屋根の因果除去は未確認。** 「全valleyにrelationという由来があるから問題は確認できなかった」という結論は撤回する。provenanceは生成経路の記録であり、屋根への採用根拠を証明しない。
