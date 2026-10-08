@@ -52,3 +52,9 @@ ZIP Blender conversions. This remains a separated-branch result, not general
 orthogonal coverage. [Core report](authority/eave-free/branch.json),
 [Blender report](authority/eave-free/blender-branch.json). The general corpus
 and serial benchmark are still pending.
+
+The four screenshot approximations were also attempted with this installed ZIP.
+All four remain unsupported at `inter_part_parallel`, with atomic scene failure.
+[Actual operator report](authority/eave-free/user-images-operator.json).
+This confirms that the new equal-width corner-T choice has not repaired their
+long-side aggregation; it must not be advertised as the factory-roof fix.
