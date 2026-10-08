@@ -4,7 +4,8 @@
 from dataclasses import dataclass
 from collections import defaultdict
 import math
-from .graph import RoofGraph, UnsupportedRoofError
+from .graph import RoofGraph
+from .errors import UnsupportedRoofError
 from .footprint import EPS, sub, rectangle, area, inside, on_segment, cross, _intersects
 
 

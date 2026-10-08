@@ -5,21 +5,22 @@ from dataclasses import dataclass, replace
 from itertools import product
 import math
 from .errors import UnsupportedRoofError
-from .solve import problem
+from .solve import problem, GeometryProblem
 from .initialization import _valid_drawing
 from .architecture import Analysis
 from .architecture_selection import evaluate
 from .seed import derive, choose, point_identity
-from .topology import compose
+from .topology import compose, Composition
+from .architecture_models import ArchitecturalPartGraph
 
 
 @dataclass(frozen=True)
 class TopologyCandidate:
     id: str
-    architecture: object
+    architecture: ArchitecturalPartGraph
     axes: tuple[int, ...]
-    composition: object
-    geometry: object
+    composition: Composition
+    geometry: GeometryProblem
     score: int
 
     def __post_init__(self):
@@ -46,7 +47,9 @@ class TopologyCandidates:
 
     def select(self, seed=0):
         if not self.complete or not self.valid:
-            detail = self.reason or "; ".join(sorted({r.reason for r in self.rejected}))
+            detail = "; ".join(
+                filter(None, (self.reason, *sorted({r.reason for r in self.rejected})))
+            )
             raise UnsupportedRoofError("no selectable roof topology: " + detail)
         return choose(self.valid, seed, "roof_candidate", key=lambda c: c.id)
 

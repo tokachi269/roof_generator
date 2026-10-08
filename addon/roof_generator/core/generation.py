@@ -3,12 +3,13 @@
 
 from dataclasses import dataclass
 import math
-from .footprint import analyze
+from .footprint import analyze, Footprint
 from .partition_candidates import candidates
 from .architecture import interpret
 from .architecture_selection import recommend, Recommendation, Policy
-from .topology_candidates import build_candidates
+from .topology_candidates import build_candidates, TopologyCandidate, TopologyCandidates
 from .solve import solve_analytic
+from .mesh import RoofMesh
 from .seed import derive
 
 
@@ -52,11 +53,11 @@ class GenerationSettings:
 
 @dataclass(frozen=True)
 class Generation:
-    footprint: object
+    footprint: Footprint
     settings: GenerationSettings
-    interpretation: object
-    candidates: object
-    selected: object
+    interpretation: Recommendation
+    candidates: TopologyCandidates
+    selected: TopologyCandidate
 
     @property
     def geometry_problem(self):
@@ -66,7 +67,7 @@ class Generation:
 @dataclass(frozen=True)
 class GeneratedRoof:
     generation: Generation
-    mesh: object
+    mesh: RoofMesh
 
 
 def prepare_generation(points, settings=GenerationSettings()):

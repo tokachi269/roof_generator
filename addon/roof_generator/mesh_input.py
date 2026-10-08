@@ -17,13 +17,13 @@ from .core.errors import UnsupportedRoofError
 from .core.footprint import analyze, area, EPS
 from .core.initialization import _valid_drawing
 from .core.graph import _connected
-from .core.generation import GenerationSettings, generate_roof
+from .core.generation import GenerationSettings, GeneratedRoof, generate_roof
 
 
 @dataclass(frozen=True)
 class FootprintMeshResult:
     spec: MeshSpec
-    roof: object
+    roof: GeneratedRoof
     frame: PlaneFrame
 
 
