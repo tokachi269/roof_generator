@@ -4,6 +4,8 @@
 from dataclasses import dataclass, asdict
 from .footprint import EPS
 from .part_interpretation import analyze_parts, build_parts
+from .partition_candidates import CandidateSearch
+from .parts import ArchitecturalPartGraph
 
 
 @dataclass(frozen=True)
@@ -158,10 +160,10 @@ def retained_indices(search, evaluations):
 
 @dataclass(frozen=True)
 class Recommendation:
-    search: object
+    search: CandidateSearch
     policy: Policy
     evaluations: tuple[Evaluation, ...]
-    retained: tuple  # (candidate index, ArchitecturalPartGraph)
+    retained: tuple[tuple[int, ArchitecturalPartGraph], ...]
 
     @property
     def status(self):
@@ -187,6 +189,7 @@ class Recommendation:
                 {"candidate": i, "graph": g.inspect()} for i, g in self.retained
             ],
             "semantically_unique": self.status == "interpreted",
+            "uniqueness_scope": "part relation model within the evaluated candidate family; no unique real roof is claimed",
             "roof_topology": None,
         }
 
