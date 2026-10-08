@@ -12,6 +12,7 @@ from .rectangle_partition import (
     Cut,
 )
 from .cells import from_subdivision
+from .graph import UnsupportedGraphError
 
 
 @dataclass(frozen=True)
@@ -106,6 +107,50 @@ class CandidateSearch:
     symmetries: tuple[Symmetry, ...]
     family: str = "both axes in canonical reflex order, plus footprint symmetry images"
 
+    @property
+    def symmetry_orbits(self):
+        """Actual candidate equivalence under footprint isometries, not roof choice."""
+        ids = {signature(d): i for i, d in enumerate(self.candidates)}
+        neighbors = {i: set() for i in ids.values()}
+        for i, d in enumerate(self.candidates):
+            for symmetry in self.symmetries:
+                image = tuple(
+                    sorted(
+                        tuple(
+                            sorted(
+                                tuple(
+                                    round(x, 10) for x in symmetry.apply(d.vertices[v])
+                                )
+                                for v in c.corners
+                            )
+                        )
+                        for c in d.cells
+                    )
+                )
+                j = ids.get(image)
+                if j is None:
+                    if self.complete:
+                        raise UnsupportedGraphError(
+                            "completed candidate family is not symmetry closed"
+                        )
+                else:
+                    neighbors[i].add(j)
+                    neighbors[j].add(i)
+        result = []
+        remaining = set(neighbors)
+        while remaining:
+            todo = [min(remaining)]
+            group = set()
+            while todo:
+                i = todo.pop()
+                if i in group:
+                    continue
+                group.add(i)
+                todo.extend(neighbors[i] - group)
+            remaining -= group
+            result.append(tuple(sorted(group)))
+        return tuple(result)
+
     def inspect(self):
         return {
             "candidate_count": len(self.candidates),
@@ -114,6 +159,7 @@ class CandidateSearch:
             "complete": self.complete,
             "reason": self.reason,
             "family": self.family,
+            "symmetry_orbits": self.symmetry_orbits,
             "symmetries": [
                 {"matrix": s.matrix, "vertices": s.vertices} for s in self.symmetries
             ],

@@ -83,6 +83,7 @@ class SelectionProof(unittest.TestCase):
         self.assertEqual(len(out.retained), 2)
         self.assertEqual(out.status, "ambiguous")
         main_axes = []
+        self.assertEqual(out.search.symmetry_orbits, ((0, 1),))
         for _, g in out.retained:
             non_square = [m for m in g.members if len(m.axes) == 1]
             self.assertEqual(len(non_square), 1)
