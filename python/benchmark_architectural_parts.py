@@ -25,7 +25,7 @@ from inspect_architectural_parts import fixture
 from measurements import stats
 
 
-def measure(record, policy):
+def measure(record, policy, *, defer_ranking=False):
     row = {}
     start = t = time.perf_counter()
     fp = analyze(record["footprint"])
@@ -43,7 +43,11 @@ def measure(record, policy):
     evaluations = tuple(
         evaluate(d, a, policy) for d, a in zip(search.candidates, analyses)
     )
-    indices = retained_indices(search, evaluations)
+    indices = (
+        tuple(range(len(search.candidates)))
+        if defer_ranking and search.complete
+        else retained_indices(search, evaluations)
+    )
     now = time.perf_counter()
     row["candidate_evaluation"] = (now - t) * 1000
     t = now

@@ -206,7 +206,7 @@ class Recommendation:
         }
 
 
-def recommend(search, policy=Policy()):
+def recommend(search, policy=Policy(), *, defer_ranking=False):
     if search.candidates and not search.candidates[0].footprint.orthogonal:
         # Hu's rectangular penalty terms do not rank arbitrary quadrilaterals.
         policy = None
@@ -226,6 +226,10 @@ def recommend(search, policy=Policy()):
     )
     retained = tuple(
         (i, build_parts(search.candidates[i], analyses[i]))
-        for i in retained_indices(search, evaluations)
+        for i in (
+            range(len(search.candidates))
+            if defer_ranking and search.complete
+            else retained_indices(search, evaluations)
+        )
     )
     return Recommendation(search, policy, evaluations, retained)

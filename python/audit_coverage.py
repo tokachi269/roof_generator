@@ -105,7 +105,7 @@ def inspect(record):
         completed("partition")
         row["partition_count"] = len(search.candidates)
         owner = "architecture"
-        interpretation = recommend(search, Policy())
+        interpretation = recommend(search, Policy(), defer_ranking=True)
         if not interpretation.retained:
             raise UnsupportedRoofError("no architectural interpretation")
         completed("architecture")

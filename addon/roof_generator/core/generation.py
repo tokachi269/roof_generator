@@ -81,7 +81,7 @@ def prepare_generation(points, settings=GenerationSettings()):
         if settings.roof_type == "flat"
         else Policy(metres_per_unit=settings.metres_per_unit)
     )
-    interpretation = recommend(search, policy)
+    interpretation = recommend(search, policy, defer_ranking=True)
     pool = build_candidates(
         interpretation,
         settings.roof_type,

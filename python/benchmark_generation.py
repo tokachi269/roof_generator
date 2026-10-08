@@ -33,7 +33,7 @@ NAMES = (
 
 def measure(record):
     start = time.perf_counter()
-    row, recommendation = measure_architecture(record, Policy())
+    row, recommendation = measure_architecture(record, Policy(), defer_ranking=True)
     t = time.perf_counter()
     pool = build_candidates(recommendation)
     row["roof_topology_candidates"] = (time.perf_counter() - t) * 1000

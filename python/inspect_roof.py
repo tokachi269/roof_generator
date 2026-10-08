@@ -21,7 +21,9 @@ from roof_diagrams import svg
 def inspect(record, seed=0, roof_type="gable"):
     fp = analyze(record["footprint"])
     search = candidates(fp)
-    interpretation = recommend(search, None if roof_type == "flat" else Policy())
+    interpretation = recommend(
+        search, None if roof_type == "flat" else Policy(), defer_ranking=True
+    )
     pool = build_candidates(interpretation, roof_type)
     output = {
         "input": record,
