@@ -38,7 +38,6 @@ class TopologyCandidateProof(unittest.TestCase):
                 1,
             )
         for name in (
-            "orthogonal_U",
             "residential_multi_reflex",
             "grid_14",
             "grid_20",

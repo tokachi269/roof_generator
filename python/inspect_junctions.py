@@ -1,5 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Inspect candidate ports and final junction graph; unsupported has no final graph."""
+"""Inspect ports on one fixed minimum partition, without candidate selection.
+
+For canonical support across all retained interpretations use inspect_roof.py.
+A rejected fixed partition does not imply the footprint has no valid candidate.
+"""
 
 import argparse
 from dataclasses import asdict
@@ -29,6 +33,7 @@ def inspect(record):
     candidates = attachments(d, primitives) if roof_type == "gable" else ()
     document = {
         "schema": 2,
+        "scope": "one fixed partition and primitive orientation, not canonical candidate support",
         "source_sha": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),

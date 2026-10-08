@@ -31,6 +31,7 @@ class RoofAcceptanceTests(unittest.TestCase):
         topology_supported = mesh_supported | {
             "orthogonal_L",
             "orthogonal_T",
+            "orthogonal_U",
             "rotated_L",
             "unequal_width_join",
             "terminating_ridge",

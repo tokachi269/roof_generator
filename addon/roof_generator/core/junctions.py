@@ -145,6 +145,21 @@ def plan(decomposition, primitives):
         relation = relations[0]
         if relation.kind == "terminal":
             return relations
+    if relations and all(r.kind == "terminal" for r in relations):
+        hosts = {r.host for r in relations}
+        branches = {r.branch for r in relations}
+        if (
+            len(hosts) == 1
+            and len(branches) == len(relations)
+            and not hosts.intersection(branches)
+            and hosts.union(branches) == {c.id for c in decomposition.cells}
+            and len({r.host_port for r in relations}) == len(relations)
+        ):
+            return relations
+        raise UnsupportedRoofError(
+            "terminal attachments need distinct receiver ends and exterior leaf branches",
+            issues=(GenerationIssue("junction", "terminal_arrangement"),),
+        )
     if not relations or any(r.kind != "middle" for r in relations):
         raise UnsupportedRoofError(
             "no complete supported middle-attachment arrangement; terminal graft requires one attachment",

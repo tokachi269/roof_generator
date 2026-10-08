@@ -42,32 +42,22 @@ def _valid_drawing(outline, seeds, faces, locations, semantics):
     return True
 
 
-def ridge_seeds(outline, seeds, faces, locations, semantics):
+def ridge_seeds(
+    outline, seeds, faces, locations, semantics, *, declared_axes, patches=()
+):
     """Laplacian initialization constrained to declared primitive ridge axes.
 
     Unconstrained harmonic embedding is not safe for a concave fixed boundary.
     Connectivity and all edge meanings are inputs, never initializer outputs.
     """
     adjacent = defaultdict(set)
-    incidence = defaultdict(list)
-    for fi, face in enumerate(faces):
+    for face in faces:
         for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
             adjacent[a].add(b)
             adjacent[b].add(a)
-            incidence[tuple(sorted((a, b)))].append(fi)
-    axes = defaultdict(list)
-    for edge, kind in semantics.items():
-        if kind != "ridge":
-            continue
-        cap = next((v for v in edge if v in locations), None)
-        if cap is None:
-            raise UnsupportedRoofError("initial ridge axis needs a boundary port")
-        joint = next(v for v in edge if v != cap)
-        face = faces[incidence[edge][0]]
-        eave = face.eaves[0]
-        direction = sub(outline[(eave + 1) % len(outline)], outline[eave])
-        size = math.hypot(*direction)
-        axes[joint].append((seeds[cap], tuple(v / size for v in direction)))
+    # Axes come from declared primitive ports, including an interior-to-interior
+    # receiver ridge. No boundary-port inference or metric semantics discovery.
+    axes = declared_axes
     result = list(seeds)
     lines = {}
     for vertex in range(len(seeds)):
@@ -117,24 +107,33 @@ def ridge_seeds(outline, seeds, faces, locations, semantics):
         p, d = lines[vertex]
         result[vertex] = tuple(p[k] + row[-1] * d[k] for k in (0, 1))
     if not _valid_drawing(outline, result, faces, locations, semantics):
-        # Backtrack only disposable XY, towards the two declared ridge axes'
+        # Backtrack only disposable XY, towards each local pair's declared ridge axes'
         # common point. That coincident limit is never emitted. This keeps the
         # graph, both axes and boundary fixed while finding a noncrossing seed.
-        if len(lines) != 2:
-            raise UnsupportedRoofError("ridge initializer has no interior drawing")
-        (p, d), (q, e) = lines.values()
-        det = cross(d, e)
-        if abs(det) < 1e-8:
-            raise UnsupportedRoofError("ridge initializer axes are parallel")
-        t = cross(sub(q, p), e) / det
-        common = tuple(p[k] + t * d[k] for k in (0, 1))
+        pairs = tuple(patches) or (tuple(lines),)
+        if any(len(pair) != 2 for pair in pairs) or {
+            v for pair in pairs for v in pair
+        } != set(lines):
+            raise UnsupportedRoofError(
+                "ridge initializer has no independent local patches"
+            )
+        targets = {}
+        for first, second in pairs:
+            (p, d), (q, e) = lines[first], lines[second]
+            det = cross(d, e)
+            if abs(det) < 1e-8:
+                raise UnsupportedRoofError("ridge initializer axes are parallel")
+            t = cross(sub(q, p), e) / det
+            common = tuple(p[k] + t * d[k] for k in (0, 1))
+            targets[first] = targets[second] = common
         original = tuple(result)
         fraction = 1.0
         while fraction > EPS:
             fraction /= 2
             for vertex in variables:
                 result[vertex] = tuple(
-                    common[k] + fraction * (original[vertex][k] - common[k])
+                    targets[vertex][k]
+                    + fraction * (original[vertex][k] - targets[vertex][k])
                     for k in (0, 1)
                 )
             if _valid_drawing(outline, result, faces, locations, semantics):

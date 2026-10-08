@@ -249,7 +249,7 @@ class AttachmentRelationTests(unittest.TestCase):
                 )
 
     def test_unrecognized_arrangements_are_not_completed_by_independent_gables(self):
-        for name in ("orthogonal_U", "residential_multi_reflex"):
+        for name in ("residential_multi_reflex",):
             record = next(r for r in RECORDS if r["name"] == name)
             d = decompose(analyze(record["footprint"]))
             with self.subTest(name=name), self.assertRaises(UnsupportedRoofError):
@@ -565,7 +565,7 @@ class MultipleCompositionTests(unittest.TestCase):
         for kind in ("hip", "shed"):
             with self.assertRaisesRegex(UnsupportedRoofError, "multi-cell"):
                 compose(decompose(analyze(points)), kind)
-        for name in ("orthogonal_U", "residential_multi_reflex"):
+        for name in ("residential_multi_reflex",):
             raw = next(r["footprint"] for r in RECORDS if r["name"] == name)
             with self.assertRaises(UnsupportedRoofError):
                 compose(decompose(analyze(raw)))

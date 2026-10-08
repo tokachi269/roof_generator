@@ -218,8 +218,8 @@ def compose(decomposition, roof_type="gable", *, axes=None, shed_edge=None):
         )
     primitives = cell_primitives(decomposition, axes=axes)
     relations = plan(decomposition, primitives)
-    if len(relations) == 1 and relations[0].kind == "terminal":
-        return _terminal(decomposition, primitives, relations[0])
+    if all(r.kind == "terminal" for r in relations):
+        return _terminals(decomposition, primitives, relations)
     return _middle(decomposition, primitives, relations)
 
 
@@ -393,75 +393,110 @@ def _middle(decomposition, primitives, relations):
     return Composition(graph, primitives, connections)
 
 
-def _terminal(decomposition, primitives, relation):
-    """The existing proved corner graft, driven by the published port relation."""
+def _terminals(decomposition, primitives, relations):
+    """Replace all distinct host-end corner ports simultaneously.
+
+    Published branch extension/shared-corner incidence, restricted by plan().
+    This rewrites the receiver's cycles once, not a sequence of pairwise roofs.
+    Initial XY is assigned only after every incidence and semantic is fixed.
+    """
     fp = decomposition.footprint
-    host, branch = relation.host, relation.branch
-    hs, bs = relation.host_side, relation.branch_side
-    hnear, bnear = relation.host_port, relation.branch_port
-    hfar = next(
-        i
-        for i, v in enumerate(primitives[host].vertices)
-        if v.role == "ridge_end" and i != hnear
-    )
-    bfar = next(
-        i
-        for i, v in enumerate(primitives[branch].vertices)
-        if v.role == "ridge_end" and i != bnear
-    )
+    host = relations[0].host
     hc = decomposition.cells[host]
-    cut_corner = next(iter(set(relation.shared).intersection(hc.sides[hs].vertices)))
-    reflex = next(i for i in relation.shared if i != cut_corner)
-    near_side = primitives[host].vertices[hnear].boundary.edge
-    outer = next(i for i in hc.sides[near_side].vertices if i != cut_corner)
     seeds = list(fp.vertices)
     roles = ["corner"] * len(seeds)
     locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
+    consumed = {(host, r.host_port) for r in relations} | {
+        (r.branch, r.branch_port) for r in relations
+    }
     ports = {}
-    for ci, local in ((host, hfar), (branch, bfar)):
-        p = primitives[ci].vertices[local].seed
-        candidates = [
-            i
-            for i, a in enumerate(fp.vertices)
-            if on_segment(p, a, fp.vertices[(i + 1) % len(fp.vertices)])
-        ]
-        if len(candidates) != 1:
-            raise UnsupportedRoofError(
-                "surviving gable port lacks one physical boundary"
-            )
-        edge = candidates[0]
-        a = fp.vertices[edge]
-        v = sub(fp.vertices[(edge + 1) % len(fp.vertices)], a)
-        t = sum(x * y for x, y in zip(sub(p, a), v)) / sum(x * x for x in v)
-        ports[ci] = len(seeds)
-        locations[len(seeds)] = BoundaryPoint(edge, t)
-        seeds.append(p)
-        roles.append("ridge_end")
-    junction = len(seeds)
-    seeds.append((0, 0))
-    roles.append("junction")
+    for ci, primitive in enumerate(primitives):
+        for local, vertex in enumerate(primitive.vertices):
+            if vertex.role != "ridge_end" or (ci, local) in consumed:
+                continue
+            p = vertex.seed
+            candidates = [
+                i
+                for i, a in enumerate(fp.vertices)
+                if on_segment(p, a, fp.vertices[(i + 1) % len(fp.vertices)])
+            ]
+            if len(candidates) != 1:
+                raise UnsupportedRoofError(
+                    "surviving gable port lacks one physical boundary"
+                )
+            edge = candidates[0]
+            a = fp.vertices[edge]
+            v = sub(fp.vertices[(edge + 1) % len(fp.vertices)], a)
+            t = sum(x * y for x, y in zip(sub(p, a), v)) / sum(x * x for x in v)
+            ports[ci, local] = len(seeds)
+            locations[len(seeds)] = BoundaryPoint(edge, t)
+            seeds.append(p)
+            roles.append("ridge_end")
+    patches = []
+    declared_axes = defaultdict(list)
+    corners = []
+    for r in relations:
+        cut = next(iter(set(r.shared).intersection(hc.sides[r.host_side].vertices)))
+        reflex = next(i for i in r.shared if i != cut)
+        near_side = primitives[host].vertices[r.host_port].boundary.edge
+        outer = next(i for i in hc.sides[near_side].vertices if i != cut)
+        high = len(seeds)
+        seeds.append((0, 0))
+        roles.append("junction")
+        low = high
+        wider = None
+        if not r.equal_width:
+            low = len(seeds)
+            seeds.append((0, 0))
+            roles.append("junction")
+            wider = host if r.host_width > r.branch_width else r.branch
+            patches.append((high, low))
+        host_joint = low if wider == r.branch else high
+        branch_joint = low if wider == host else high
+        # Start with shared-corner incidence; refine every unequal junction
+        # together below, using original cycle neighbors rather than edit order.
+        ports[host, r.host_port] = high
+        ports[r.branch, r.branch_port] = high
+        corners.append(
+            (r, cut, reflex, outer, high, low, host_joint, branch_joint, wider)
+        )
+        for ci, joint in ((host, host_joint), (r.branch, branch_joint)):
+            caps = [v.seed for v in primitives[ci].vertices if v.role == "ridge_end"]
+            vector = sub(caps[1], caps[0])
+            size = math.hypot(*vector)
+            declared_axes[joint].append((caps[0], tuple(x / size for x in vector)))
     faces = []
+    cuts = {cut for _, cut, *_ in corners}
+    by_branch = {r.branch: (cut, outer) for r, cut, _, outer, *_ in corners}
     for ci, primitive in enumerate(primitives):
         cell = decomposition.cells[ci]
-        near = hnear if ci == host else bnear
-        mapping = {i: node for i, node in enumerate(cell.corners)}
-        mapping.update({near: junction, (hfar if ci == host else bfar): ports[ci]})
+        mapping = dict(enumerate(cell.corners))
+        mapping.update({local: v for (owner, local), v in ports.items() if owner == ci})
         for face in primitive.faces:
             loop = []
             for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
-                if ci == host and a < 4 and mapping[a] == cut_corner:
-                    pass  # The chord's exterior hit is redundant after grafting.
-                elif ci == branch and a < 4 and mapping[a] == cut_corner:
-                    loop.append(outer)
+                node = mapping[a]
+                if ci == host and a < 4 and node in cuts:
+                    pass
+                elif ci in by_branch and a < 4 and node == by_branch[ci][0]:
+                    loop.append(by_branch[ci][1])
                 else:
-                    loop.append(mapping[a])
-                if (
-                    ci == host
-                    and a < 4
-                    and b < 4
-                    and {mapping[a], mapping[b]} == set(cell.sides[hs].vertices)
-                ):
-                    loop.append(reflex)
+                    loop.append(node)
+                if ci == host and a < 4 and b < 4:
+                    edge = {mapping[a], mapping[b]}
+                    inserts = [
+                        (r, reflex)
+                        for r, _, reflex, *_ in corners
+                        if edge == set(cell.sides[r.host_side].vertices)
+                    ]
+                    # At distinct ends of one side, order in that CCW side.
+                    start = decomposition.vertices[mapping[a]]
+                    inserts.sort(
+                        key=lambda pair: math.dist(
+                            start, decomposition.vertices[pair[1]]
+                        )
+                    )
+                    loop.extend(reflex for _, reflex in inserts)
             eaves = tuple(
                 sorted(
                     {
@@ -472,60 +507,64 @@ def _terminal(decomposition, primitives, relation):
                 )
             )
             faces.append(RoofFace(tuple(loop), (ci,), eaves))
-    widths = {
-        host: math.dist(
-            primitives[host].outline[primitives[host].vertices[hnear].boundary.edge],
-            primitives[host].outline[
-                (primitives[host].vertices[hnear].boundary.edge + 1) % 4
-            ],
-        ),
-        branch: math.dist(
-            primitives[branch].outline[bs], primitives[branch].outline[(bs + 1) % 4]
-        ),
-    }
-    meanings = {
-        _key(junction, ports[host]): "ridge",
-        _key(junction, ports[branch]): "ridge",
-        _key(junction, outer): "hip",
-        _key(junction, reflex): "valley",
-    }
-    wider = None
-    junctions = (junction,)
-    if abs(widths[host] - widths[branch]) > EPS * 4:
-        wider = max(widths, key=widths.get)
-        narrow = branch if wider == host else host
-        high, low = junction, junction + 1
-        seeds.append((0, 0))
-        roles.append("junction")
-        junctions = (high, low)
-        groups = {ports[wider]: high, outer: high, ports[narrow]: low, reflex: low}
-        refined = []
-        for face in faces:
-            i = face.loop.index(junction)
+    refinement = {}
+    for r, _, reflex, outer, high, low, hj, bj, _ in corners:
+        if high == low:
+            continue
+        hother = next(
+            ports[host, i]
+            for i, v in enumerate(primitives[host].vertices)
+            if v.role == "ridge_end" and i != r.host_port
+        )
+        bfar = next(
+            ports[r.branch, i]
+            for i, v in enumerate(primitives[r.branch].vertices)
+            if v.role == "ridge_end" and i != r.branch_port
+        )
+        refinement[high] = {hother: hj, outer: high, bfar: bj, reflex: low}
+    refined = []
+    for face in faces:
+        loop = []
+        for i, v in enumerate(face.loop):
+            if v not in refinement:
+                loop.append(v)
+                continue
             prev, nxt = face.loop[i - 1], face.loop[(i + 1) % len(face.loop)]
-            replacement = (
-                (groups[prev],)
-                if groups[prev] == groups[nxt]
-                else (groups[prev], groups[nxt])
+            groups = refinement[v]
+            first, second = groups[prev], groups[nxt]
+            loop.extend((first,) if first == second else (first, second))
+        refined.append(RoofFace(tuple(loop), face.cells, face.eaves))
+    faces = refined
+    host_ends = {
+        i: ports[host, i]
+        for i, v in enumerate(primitives[host].vertices)
+        if v.role == "ridge_end"
+    }
+    meanings = {}
+    connections = []
+    for r, _, reflex, outer, high, low, hj, bj, wider in corners:
+        host_ends[r.host_port] = hj
+        bfar = next(
+            ports[r.branch, i]
+            for i, v in enumerate(primitives[r.branch].vertices)
+            if v.role == "ridge_end" and i != r.branch_port
+        )
+        meanings[_key(bj, bfar)] = "ridge"
+        meanings[_key(high, outer)] = "hip"
+        meanings[_key(low, reflex)] = "valley"
+        if high != low:
+            meanings[_key(high, low)] = "hip"
+        connections.append(
+            RoofConnection(
+                host,
+                r.branch,
+                _key(*r.shared),
+                (r.host_port, r.branch_port),
+                (high,) if high == low else (high, low),
+                wider,
             )
-            refined.append(
-                RoofFace(
-                    face.loop[:i] + replacement + face.loop[i + 1 :],
-                    face.cells,
-                    face.eaves,
-                )
-            )
-        faces = refined
-        meanings = {
-            _key(groups[v], v): kind
-            for v, kind in (
-                (ports[host], "ridge"),
-                (ports[branch], "ridge"),
-                (outer, "hip"),
-                (reflex, "valley"),
-            )
-        }
-        meanings[high, low] = "hip"
+        )
+    meanings[_key(*host_ends.values())] = "ridge"
     incidence = defaultdict(list)
     for i, face in enumerate(faces):
         for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
@@ -538,21 +577,16 @@ def _terminal(decomposition, primitives, relation):
             meanings[a, b] = (
                 "eave" if span.edge in faces[owners[0]].eaves else "gable_end"
             )
-    seeds = ridge_seeds(fp.vertices, seeds, faces, locations, meanings)
+    seeds = ridge_seeds(
+        fp.vertices,
+        seeds,
+        faces,
+        locations,
+        meanings,
+        declared_axes=declared_axes,
+        patches=patches,
+    )
     graph = make_graph(
         fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"
     )
-    return Composition(
-        graph,
-        primitives,
-        (
-            RoofConnection(
-                host,
-                branch,
-                _key(*relation.shared),
-                (hnear, bnear),
-                junctions,
-                wider,
-            ),
-        ),
-    )
+    return Composition(graph, primitives, tuple(connections))
