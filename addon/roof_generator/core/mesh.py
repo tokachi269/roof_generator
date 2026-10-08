@@ -73,7 +73,7 @@ class RoofMesh:
         return tuple(f.loop for f in self.graph.faces)
 
     @property
-    def face_parts(self):
+    def face_cells(self):
         return tuple(f.cells for f in self.graph.faces)
 
     @property

@@ -57,7 +57,7 @@ def rectangle_snapshot(footprint, mesh):
     worldmesh = Record(
         vertices=tuple(footprint.frame.world_xyz(p) for p in mesh.vertices),
         faces=mesh.faces,
-        face_parts=mesh.face_parts,
+        face_parts=mesh.face_cells,
         edge_features=mesh.edge_features,
     )
     result = Record(

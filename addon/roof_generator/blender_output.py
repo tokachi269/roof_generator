@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Evaluate footprints once, validate all roofs, then create ordinary mesh objects."""
+"""Prepare all canonical meshes before mutating the Blender scene."""
 
 from dataclasses import dataclass
-import json
-from .core.roof_parts import RoofParameters
-import numpy as np
+from .core.generation import GenerationSettings
+from .core.errors import UnsupportedRoofError
 
 FEATURE_CODES = {"ridge": 1, "hip": 2, "valley": 3, "eave": 4, "gable_end": 5}
 
@@ -12,9 +11,8 @@ FEATURE_CODES = {"ridge": 1, "hip": 2, "valley": 3, "eave": 4, "gable_end": 5}
 @dataclass(frozen=True)
 class RoofRequest:
     source: object
-    parameters: RoofParameters = RoofParameters()
+    settings: GenerationSettings = GenerationSettings()
     mesh_name: str | None = None
-    part_parameters: dict | None = None
 
 
 def generate_object(
@@ -22,18 +20,16 @@ def generate_object(
     *,
     roof_type="gable",
     pitch=0.5,
-    eave_height=0.0,
+    eave_height=0,
+    seed=0,
     mesh_name=None,
     debug_parts=False,
-    part_parameters=None,
     hide_source=True,
 ):
-    """Convert one footprint using the same evaluated-input batch route."""
     request = RoofRequest(
         source_object,
-        RoofParameters(roof_type, pitch, eave_height),
+        GenerationSettings(roof_type, pitch, eave_height, seed),
         mesh_name,
-        part_parameters,
     )
     return generate_objects(
         (request,), debug_parts=debug_parts, hide_source=hide_source
@@ -41,47 +37,28 @@ def generate_object(
 
 
 def generate_objects(requests, *, debug_parts=False, hide_source=True):
-    """Evaluate a set of footprint/parameter requests before changing the scene."""
     import bpy
-    from .core.roof_geometry import UnsupportedRoofError
 
     requests = tuple(requests)
-    sources = tuple(request.source for request in requests)
-    if not sources or len({id(source) for source in sources}) != len(sources):
+    sources = tuple(r.source for r in requests)
+    if not sources or len({id(s) for s in sources}) != len(sources):
         raise UnsupportedRoofError("select distinct planar footprint objects")
     active = bpy.context.active_object
     depsgraph = bpy.context.evaluated_depsgraph_get()
     prepared = []
     for request in requests:
-        source = request.source
         try:
-            result = _prepare(
-                source,
-                depsgraph,
-                request.parameters,
-                request.mesh_name,
-                request.part_parameters,
-            )
+            result = _prepare(request, depsgraph)
         except UnsupportedRoofError as exc:
-            name = source.name if source is not None else "footprint"
-            raise UnsupportedRoofError(f"{name}: {exc}") from exc
-        prepared.append((source, result))
-    # Unsupported input fails before any scene objects/visibility are changed.
-    # Adding output meshes cannot trigger another input depsgraph evaluation.
+            raise UnsupportedRoofError(
+                f'{request.source.name if request.source else "footprint"}: {exc}'
+            ) from exc
+        prepared.append((request.source, result))
     created = []
     try:
         for (source, result), request in zip(prepared, requests):
             created.append(
-                (
-                    _create_mesh(
-                        source,
-                        result,
-                        request.parameters.roof_type,
-                        request.parameters.pitch,
-                        debug_parts,
-                    ),
-                    result,
-                )
+                (_create_mesh(source, result, request.settings, debug_parts), result)
             )
     except Exception:
         for obj, _ in created:
@@ -89,9 +66,9 @@ def generate_objects(requests, *, debug_parts=False, hide_source=True):
             materials = tuple(data.materials)
             bpy.data.objects.remove(obj, do_unlink=True)
             bpy.data.meshes.remove(data)
-            for material in materials:
-                if material.users == 0:
-                    bpy.data.materials.remove(material)
+            for mat in materials:
+                if mat.users == 0:
+                    bpy.data.materials.remove(mat)
         raise
     if hide_source:
         for source in sources:
@@ -101,48 +78,46 @@ def generate_objects(requests, *, debug_parts=False, hide_source=True):
         old.select_set(False)
     for obj, _ in created:
         obj.select_set(True)
-    active_index = next((i for i, source in enumerate(sources) if source == active), 0)
+    active_index = next((i for i, s in enumerate(sources) if s == active), 0)
     bpy.context.view_layer.objects.active = created[active_index][0]
     return tuple(created)
 
 
-def _prepare(source_object, depsgraph, parameters, mesh_name, part_parameters):
+def _prepare(request, depsgraph):
+    from mathutils import Vector
     from .mesh_input import generate_footprint_mesh
-    from .core.roof_geometry import UnsupportedRoofError
 
-    if source_object is None or source_object.type != "MESH":
-        raise UnsupportedRoofError("select a filled planar footprint mesh")
-    if source_object.mode != "OBJECT":
-        raise UnsupportedRoofError("switch the footprint to Object Mode")
-    # Always read the evaluated object. An evaluation error must not silently
-    # substitute unmodified input geometry.
-    evaluated = source_object.evaluated_get(depsgraph)
+    source = request.source
+    if source is None or source.type != "MESH" or source.mode != "OBJECT":
+        raise UnsupportedRoofError("select a filled planar footprint in Object Mode")
+    evaluated = source.evaluated_get(depsgraph)
     mesh = evaluated.to_mesh()
     try:
         if mesh is None:
             raise UnsupportedRoofError("evaluated footprint has no mesh")
-        transform = np.asarray(evaluated.matrix_world, dtype=float)
-        local = np.asarray([tuple(v.co) for v in mesh.vertices], dtype=float)
-        vertices = local @ transform[:3, :3].T + transform[:3, 3]
+        vertices = tuple(tuple(evaluated.matrix_world @ v.co) for v in mesh.vertices)
         faces = tuple(tuple(int(i) for i in f.vertices) for f in mesh.polygons)
+        transform = evaluated.matrix_world.copy()
     finally:
         evaluated.to_mesh_clear()
-    try:
-        hint = np.linalg.inv(transform[:3, :3]).T @ [0.0, 0.0, 1.0]
-    except np.linalg.LinAlgError as exc:
-        raise UnsupportedRoofError("source scale must be nonsingular") from exc
+    linear = transform.to_3x3()
+    if abs(linear.determinant()) < 1e-12:
+        raise UnsupportedRoofError("source scale must be nonsingular")
+    normal = linear.inverted().transposed() @ Vector((0, 0, 1))
+    direction = request.settings.reference_direction
+    reference = linear @ Vector((*direction, 0))
     return generate_footprint_mesh(
         vertices,
         faces,
-        parameters,
-        mesh_name=mesh_name or f"{source_object.name}_roof",
-        normal_hint=tuple(hint),
-        part_parameters=part_parameters,
-        mesh_origin=tuple(transform[:3, 3]),
+        request.settings,
+        mesh_name=request.mesh_name or f"{source.name}_roof",
+        normal_hint=tuple(normal),
+        reference_hint=tuple(reference),
+        mesh_origin=tuple(transform.translation),
     )
 
 
-def _create_mesh(source_object, result, roof_type, pitch, debug_parts):
+def _create_mesh(source, result, settings, debug_parts):
     import bpy
 
     spec = result.spec
@@ -156,21 +131,22 @@ def _create_mesh(source_object, result, roof_type, pitch, debug_parts):
             attribute = data.attributes.new(name, "INT", "FACE")
             for item, value in zip(attribute.data, values):
                 item.value = value
-        crease = data.attributes.new("roof_feature_i", "INT", "EDGE")
+        feature = data.attributes.new("roof_feature_i", "INT", "EDGE")
         for edge in data.edges:
             key = tuple(sorted(int(i) for i in edge.vertices))
-            crease.data[edge.index].value = FEATURE_CODES.get(
-                result.roof.mesh.edge_features.get(key), 0
-            )
+            feature.data[edge.index].value = FEATURE_CODES[
+                result.roof.mesh.edge_features[key]
+            ]
         data.uv_layers.new(name="Roof UV")
-        parts = result.roof.topology.parts
-        colors = [
+        architecture = result.roof.generation.selected.architecture
+        count = len(architecture.members) if debug_parts else 1
+        colors = (
             (0.55, 0.16, 0.08, 1),
             (0.16, 0.34, 0.55, 1),
             (0.28, 0.5, 0.23, 1),
             (0.58, 0.42, 0.13, 1),
-        ]
-        for i in range(len(parts) if debug_parts else 1):
+        )
+        for i in range(count):
             mat = bpy.data.materials.new(f"{spec.name}_material_{i}")
             materials.append(mat)
             mat.use_nodes = True
@@ -180,27 +156,15 @@ def _create_mesh(source_object, result, roof_type, pitch, debug_parts):
             ].default_value = mat.diffuse_color
             data.materials.append(mat)
         if debug_parts:
-            for face, owners in zip(data.polygons, result.roof.mesh.face_parts):
+            for face, owners in zip(data.polygons, result.roof.mesh.face_cells):
                 face.material_index = owners[0]
         obj = bpy.data.objects.new(spec.name, data)
         obj.location = spec.location
-        obj["roof_generator"] = "roof-graph-v1"
-        obj["roof_source"] = source_object.name
-        obj["roof_type"] = roof_type
-        obj["roof_pitch"] = pitch
-        obj["roof_parts"] = json.dumps(
-            [
-                {
-                    "id": p.id,
-                    "neighbors": [n.part_id for n in p.neighbors],
-                    "type": p.parameters.roof_type,
-                    "sources": [list(s.original_edges) for s in p.source_edges],
-                    "provenance": p.provenance,
-                }
-                for p in parts
-            ]
-        )
-        obj["roof_feature_codes"] = json.dumps(FEATURE_CODES)
+        obj["roof_source"] = source.name
+        obj["roof_type"] = settings.roof_type
+        obj["roof_pitch"] = settings.pitch
+        obj["roof_seed"] = str(settings.seed)
+        obj["roof_candidate_id"] = result.roof.generation.selected.id
         collection = bpy.data.collections.get("Generated roofs")
         if collection is None:
             collection = bpy.data.collections.new("Generated roofs")
@@ -210,8 +174,8 @@ def _create_mesh(source_object, result, roof_type, pitch, debug_parts):
         if obj is not None:
             bpy.data.objects.remove(obj, do_unlink=True)
         bpy.data.meshes.remove(data)
-        for material in materials:
-            if material.users == 0:
-                bpy.data.materials.remove(material)
+        for mat in materials:
+            if mat.users == 0:
+                bpy.data.materials.remove(mat)
         raise
     return obj

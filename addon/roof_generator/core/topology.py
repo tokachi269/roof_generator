@@ -178,7 +178,7 @@ def cell_primitives(decomposition, roof_type="gable", *, axes=None):
     )
 
 
-def compose(decomposition, roof_type="gable", *, axes=None):
+def compose(decomposition, roof_type="gable", *, axes=None, shed_edge=None):
     fp = decomposition.footprint
     if roof_type == "flat":
         # Flat has one coplanar exterior cycle. Neither artificial cuts nor
@@ -208,6 +208,7 @@ def compose(decomposition, roof_type="gable", *, axes=None):
             fp.vertices,
             fp.source_edges,
             roof_type,
+            shed_edge=shed_edge,
             ridge_axis=None if axes is None or roof_type != "gable" else axes[0],
         )
         return Composition(g, (g,), ())

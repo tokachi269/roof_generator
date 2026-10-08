@@ -203,7 +203,26 @@ def build_candidates(
                     score = evaluation.score[0]
                 else:
                     score = 0
-                composition = compose(d, roof_type, axes=axes or None)
+                shed_edge = None
+                if roof_type == "shed" and len(d.cells) == 1:
+                    # The declared reference frame fixes directional intent;
+                    # cyclic vertex order cannot reverse the low eave.
+                    u = reference_direction
+                    rise = (-u[1], u[0])
+                    world = tuple(
+                        d.footprint.frame.world_xy(p) for p in d.footprint.vertices
+                    )
+                    shed_edge = max(
+                        range(4),
+                        key=lambda i: (
+                            -(world[(i + 1) % 4][1] - world[i][1]) * rise[0]
+                            + (world[(i + 1) % 4][0] - world[i][0]) * rise[1]
+                        )
+                        / math.dist(world[i], world[(i + 1) % 4]),
+                    )
+                composition = compose(
+                    d, roof_type, axes=axes or None, shed_edge=shed_edge
+                )
                 geometry = problem(
                     composition.graph, pitch, eave_height / d.footprint.frame.scale
                 )
