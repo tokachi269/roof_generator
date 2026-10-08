@@ -163,21 +163,25 @@ def main():
     args = parser.parse_args()
     if args.fixture:
         cases = json.loads(
-            (ROOT / "python/tests/fixtures/rectangle_partition.json").read_text()
+            (ROOT / "python/tests/fixtures/rectangle_partition.json").read_text(
+                encoding="utf-8"
+            )
         )
         record = next((r for r in cases if r["name"] == args.fixture), None)
         if record is None:
             parser.error("unknown debug fixture")
     else:
-        record = json.loads(args.input.read_text())
+        record = json.loads(args.input.read_text(encoding="utf-8"))
         if isinstance(record, list):
             record = {"footprint": record}
     if args.roof_type:
         record["roof_type"] = args.roof_type
     document = inspect(record)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(document, indent=2, allow_nan=False) + "\n")
-    args.output.with_suffix(".svg").write_text(svg(document))
+    args.output.write_text(
+        json.dumps(document, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    args.output.with_suffix(".svg").write_text(svg(document), encoding="utf-8")
     print(f'{document["status"]}: {args.output}; no nonlinear solve')
     if document["status"] == "unsupported":
         print(document["reason"])

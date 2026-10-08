@@ -159,7 +159,9 @@ python python/benchmark_roof_composition.py --samples 101 --warmup 5 --buildings
 
 Read [the research reassessment](docs/ROOF_COMPOSITION_RESEARCH.md) for the
 published mechanisms, prior rejected junctions, Cell/port mapping and explicit
-adaptations. `Composition.connections` records applied operations. Inspection
+adaptations, and [the composition evaluation](docs/ROOF_COMPOSITION_EVALUATION.md)
+for actual graphs, diagrams, unsupported cases and stage performance.
+`Composition.connections` records applied operations. Inspection
 schema 2 has plural connections, replacing the prototype's single connection.
 The three-panel SVG separates cells/cuts/adjacency, primitive candidates and
 final retained ridge/valley/hip/junctions. Unsupported inspection writes an

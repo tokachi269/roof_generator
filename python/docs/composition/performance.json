@@ -1,0 +1,872 @@
+{
+  "source_sha": "4797dfc8b62f9602c93e05fb768982bca647cf41",
+  "source_dirty": false,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "samples": 101,
+  "warmup": 5,
+  "profiled": false,
+  "cache": "none",
+  "input_generation_timed": false,
+  "stage_harness": "unchanged benchmark_graph_first.measure",
+  "scope": "supported graph composition and geometry-problem export; no nonlinear solve/mesh",
+  "cases": {
+    "orthogonal_L": {
+      "status": "supported",
+      "input": {
+        "name": "orthogonal_L",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            14.2,
+            0
+          ],
+          [
+            14.2,
+            5.6
+          ],
+          [
+            5.2,
+            5.6
+          ],
+          [
+            5.2,
+            12.8
+          ],
+          [
+            0,
+            12.8
+          ]
+        ],
+        "minimum_cells": 2,
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        10,
+        13,
+        4
+      ],
+      "features": {
+        "eave": 4,
+        "gable_end": 4,
+        "hip": 2,
+        "valley": 1,
+        "ridge": 2
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.08726099986233748,
+          "p95_ms": 0.3536610001901863
+        },
+        "cell_decomposition": {
+          "median_ms": 0.4131989999223151,
+          "p95_ms": 0.7947939993755426
+        },
+        "roof_graph": {
+          "median_ms": 1.1572209996302263,
+          "p95_ms": 1.9200400001864182
+        },
+        "footprint_to_graph": {
+          "median_ms": 1.7451929998060223,
+          "p95_ms": 2.442908999910287
+        },
+        "geometry_problem": {
+          "median_ms": 0.01919999976962572,
+          "p95_ms": 0.059189999774389435
+        }
+      }
+    },
+    "orthogonal_T": {
+      "status": "supported",
+      "input": {
+        "name": "orthogonal_T",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            17.2,
+            0
+          ],
+          [
+            17.2,
+            5.8
+          ],
+          [
+            11,
+            5.8
+          ],
+          [
+            11,
+            14
+          ],
+          [
+            6.2,
+            14
+          ],
+          [
+            6.2,
+            5.8
+          ],
+          [
+            0,
+            5.8
+          ]
+        ],
+        "minimum_cells": 2,
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        12,
+        15,
+        4
+      ],
+      "features": {
+        "eave": 5,
+        "gable_end": 6,
+        "valley": 2,
+        "ridge": 2
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.1268070000151056,
+          "p95_ms": 0.3508649997456814
+        },
+        "cell_decomposition": {
+          "median_ms": 0.46014100007596426,
+          "p95_ms": 0.9391520006829523
+        },
+        "roof_graph": {
+          "median_ms": 1.25299699993775,
+          "p95_ms": 1.7242710000573425
+        },
+        "footprint_to_graph": {
+          "median_ms": 1.9655139994938509,
+          "p95_ms": 2.5614199994379305
+        },
+        "geometry_problem": {
+          "median_ms": 0.021062999621790368,
+          "p95_ms": 0.09592999958840664
+        }
+      }
+    },
+    "orthogonal_U": {
+      "status": "unsupported",
+      "reason": "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    },
+    "residential_multi_reflex": {
+      "status": "unsupported",
+      "reason": "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    },
+    "cross": {
+      "status": "unsupported",
+      "reason": "multiple equal-width/cross junctions require a shared junction template"
+    },
+    "middle_equal": {
+      "status": "supported",
+      "input": {
+        "name": "middle_equal",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        12,
+        16,
+        5
+      ],
+      "features": {
+        "eave": 5,
+        "gable_end": 6,
+        "valley": 2,
+        "ridge": 3
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.11859300047944998,
+          "p95_ms": 0.8706530006747926
+        },
+        "cell_decomposition": {
+          "median_ms": 0.5365669994716882,
+          "p95_ms": 1.6912090004552738
+        },
+        "roof_graph": {
+          "median_ms": 1.5508179994867533,
+          "p95_ms": 3.898519999893324
+        },
+        "footprint_to_graph": {
+          "median_ms": 2.3620510000910144,
+          "p95_ms": 5.197383999984595
+        },
+        "geometry_problem": {
+          "median_ms": 0.021547999494941905,
+          "p95_ms": 0.1494980006100377
+        }
+      }
+    },
+    "middle_offset": {
+      "status": "supported",
+      "input": {
+        "name": "middle_offset",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            20,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        12,
+        15,
+        4
+      ],
+      "features": {
+        "eave": 5,
+        "valley": 2,
+        "gable_end": 6,
+        "ridge": 2
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.11212900062673725,
+          "p95_ms": 0.567735000004177
+        },
+        "cell_decomposition": {
+          "median_ms": 0.4679909998230869,
+          "p95_ms": 0.9982760002458235
+        },
+        "roof_graph": {
+          "median_ms": 1.3549219993365114,
+          "p95_ms": 2.680089999557822
+        },
+        "footprint_to_graph": {
+          "median_ms": 2.0564289998219465,
+          "p95_ms": 3.5376879995965282
+        },
+        "geometry_problem": {
+          "median_ms": 0.020680000488937367,
+          "p95_ms": 0.06873199981782818
+        }
+      }
+    },
+    "multiple_disjoint_middle": {
+      "status": "supported",
+      "input": {
+        "name": "multiple_disjoint_middle",
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            8
+          ],
+          [
+            22,
+            8
+          ],
+          [
+            22,
+            14
+          ],
+          [
+            18,
+            14
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            16
+          ],
+          [
+            6,
+            16
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        18,
+        23,
+        6
+      ],
+      "features": {
+        "eave": 8,
+        "gable_end": 8,
+        "valley": 4,
+        "ridge": 3
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.19656399945233716,
+          "p95_ms": 0.5761760003224481
+        },
+        "cell_decomposition": {
+          "median_ms": 0.8272469995063148,
+          "p95_ms": 1.5174199998000404
+        },
+        "roof_graph": {
+          "median_ms": 2.2483920001832303,
+          "p95_ms": 3.467180999905395
+        },
+        "footprint_to_graph": {
+          "median_ms": 3.439154999796301,
+          "p95_ms": 4.692464999607182
+        },
+        "geometry_problem": {
+          "median_ms": 0.025272000129916705,
+          "p95_ms": 0.09650599986343877
+        }
+      }
+    },
+    "grid_14": {
+      "status": "unsupported",
+      "reason": "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    },
+    "grid_20": {
+      "status": "unsupported",
+      "reason": "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    },
+    "grid_40": {
+      "status": "unsupported",
+      "reason": "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    },
+    "grid_branches_20": {
+      "status": "supported",
+      "input": {
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            -3
+          ],
+          [
+            4,
+            -3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            -7
+          ],
+          [
+            16,
+            -7
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            19,
+            0
+          ],
+          [
+            19,
+            -10
+          ],
+          [
+            24,
+            -10
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            30,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            14
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "body": [
+          30,
+          6
+        ],
+        "branches": [
+          [
+            2,
+            4,
+            3,
+            -1
+          ],
+          [
+            5,
+            8,
+            8,
+            1
+          ],
+          [
+            12,
+            16,
+            7,
+            -1
+          ],
+          [
+            19,
+            24,
+            10,
+            -1
+          ]
+        ],
+        "name": "grid_branches_20",
+        "generator_seed": 4107,
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        30,
+        39,
+        10
+      ],
+      "features": {
+        "eave": 14,
+        "gable_end": 12,
+        "valley": 8,
+        "ridge": 5
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.48110499938047724,
+          "p95_ms": 1.0035059995061602
+        },
+        "cell_decomposition": {
+          "median_ms": 1.737073999720451,
+          "p95_ms": 2.863198999875749
+        },
+        "roof_graph": {
+          "median_ms": 4.308448000301723,
+          "p95_ms": 6.40019200000097
+        },
+        "footprint_to_graph": {
+          "median_ms": 6.618045000323036,
+          "p95_ms": 10.676384999896982
+        },
+        "geometry_problem": {
+          "median_ms": 0.031784999919182155,
+          "p95_ms": 0.12427900037437212
+        }
+      }
+    },
+    "grid_branches_40": {
+      "status": "supported",
+      "input": {
+        "footprint": [
+          [
+            0,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            9,
+            -6
+          ],
+          [
+            10,
+            -6
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            14,
+            -4
+          ],
+          [
+            16,
+            -4
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            18,
+            -5
+          ],
+          [
+            21,
+            -5
+          ],
+          [
+            21,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            -3
+          ],
+          [
+            25,
+            -3
+          ],
+          [
+            25,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            -8
+          ],
+          [
+            30,
+            -8
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            33,
+            0
+          ],
+          [
+            33,
+            -6
+          ],
+          [
+            34,
+            -6
+          ],
+          [
+            34,
+            0
+          ],
+          [
+            37,
+            0
+          ],
+          [
+            37,
+            -4
+          ],
+          [
+            39,
+            -4
+          ],
+          [
+            39,
+            0
+          ],
+          [
+            49,
+            0
+          ],
+          [
+            49,
+            4
+          ],
+          [
+            44,
+            4
+          ],
+          [
+            44,
+            7
+          ],
+          [
+            43,
+            7
+          ],
+          [
+            43,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "body": [
+          49,
+          4
+        ],
+        "branches": [
+          [
+            3,
+            6,
+            3,
+            1
+          ],
+          [
+            9,
+            10,
+            6,
+            -1
+          ],
+          [
+            14,
+            16,
+            4,
+            -1
+          ],
+          [
+            18,
+            21,
+            5,
+            -1
+          ],
+          [
+            24,
+            25,
+            3,
+            -1
+          ],
+          [
+            28,
+            30,
+            8,
+            -1
+          ],
+          [
+            33,
+            34,
+            6,
+            -1
+          ],
+          [
+            37,
+            39,
+            4,
+            -1
+          ],
+          [
+            43,
+            44,
+            3,
+            1
+          ]
+        ],
+        "name": "grid_branches_40",
+        "generator_seed": 4107,
+        "roof_type": "gable",
+        "pitch": 0.5
+      },
+      "vertices_edges_faces": [
+        60,
+        79,
+        20
+      ],
+      "features": {
+        "eave": 29,
+        "gable_end": 22,
+        "valley": 18,
+        "ridge": 10
+      },
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 1.438376999431057,
+          "p95_ms": 2.6315499999327585
+        },
+        "cell_decomposition": {
+          "median_ms": 5.120798000461946,
+          "p95_ms": 7.348641000135103
+        },
+        "roof_graph": {
+          "median_ms": 11.931822999940778,
+          "p95_ms": 15.544144000159577
+        },
+        "footprint_to_graph": {
+          "median_ms": 18.57447900056286,
+          "p95_ms": 24.204214999372198
+        },
+        "geometry_problem": {
+          "median_ms": 0.04762199932883959,
+          "p95_ms": 0.28208900039317086
+        }
+      }
+    }
+  },
+  "batch": {
+    "seed": 4107,
+    "buildings": 1000,
+    "distinct_footprints": 1000,
+    "domain": "longitudinal main rectangle plus separated narrower middle branches; excludes unresolved architecture",
+    "seconds_including_geometry_problem_and_timing": 9.230738747000032,
+    "stages": {
+      "footprint_analysis": {
+        "median_ms": 0.6240939997042005,
+        "p95_ms": 1.589145550087778
+      },
+      "cell_decomposition": {
+        "median_ms": 2.207389500199497,
+        "p95_ms": 5.127718449693929
+      },
+      "roof_graph": {
+        "median_ms": 5.309040499923867,
+        "p95_ms": 11.874875849616728
+      },
+      "footprint_to_graph": {
+        "median_ms": 8.171152499471646,
+        "p95_ms": 18.22590259948811
+      },
+      "geometry_problem": {
+        "median_ms": 0.03642800038505811,
+        "p95_ms": 0.12375669994071356
+      }
+    }
+  }
+}

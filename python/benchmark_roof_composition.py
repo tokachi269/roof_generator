@@ -18,7 +18,9 @@ from python.tests.composition_footprints import buildings
 
 def cases():
     partition = json.loads(
-        (ROOT / "python/tests/fixtures/rectangle_partition.json").read_text()
+        (ROOT / "python/tests/fixtures/rectangle_partition.json").read_text(
+            encoding="utf-8"
+        )
     )
     result = [
         r
@@ -33,7 +35,9 @@ def cases():
         }
     ]
     for r in json.loads(
-        (ROOT / "python/tests/fixtures/roof_composition.json").read_text()
+        (ROOT / "python/tests/fixtures/roof_composition.json").read_text(
+            encoding="utf-8"
+        )
     ):
         if r["name"] in {"middle_equal", "middle_offset", "multiple_disjoint_middle"}:
             result.append(
@@ -44,9 +48,11 @@ def cases():
             )
     for n in (14, 20, 40):
         result.append(
-            json.loads((ROOT / f"python/docs/partition/grid_{n}.json").read_text())[
-                "input"
-            ]
+            json.loads(
+                (ROOT / f"python/docs/partition/grid_{n}.json").read_text(
+                    encoding="utf-8"
+                )
+            )["input"]
         )
     generated = list(buildings())
     for n in (20, 40):
@@ -119,7 +125,9 @@ def main():
         "stages": {key: stats([r[key] for r in rows]) for key in rows[0]},
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
+    args.output.write_text(
+        json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     print(
         f"{args.output}: {len(pool)} distinct supported buildings, {elapsed:.3f}s; no nonlinear solve"
     )

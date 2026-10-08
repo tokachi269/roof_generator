@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="485" viewBox="0 0 1320 485">
+<rect width="1320" height="485" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#18212b">
+<text x="35" y="25">Cells / cuts / adjacency</text>
+<text x="475" y="25">Primitive ridge candidates / ports</text>
+<text x="915" y="25">Final RoofGraph / junctions (before solve)</text>
+<polygon points="35.000,232.500 100.000,232.500 100.000,200.000 100.000,167.500 35.000,167.500" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="100.000,395.000 132.500,395.000 132.500,362.500 100.000,362.500" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="100.000,297.500 132.500,297.500 132.500,200.000 100.000,200.000 100.000,232.500" fill="#e2f0dd" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="132.500,395.000 165.000,395.000 165.000,362.500 165.000,102.500 132.500,102.500 132.500,200.000 132.500,297.500 132.500,362.500" fill="#eee2f6" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="165.000,362.500 197.500,362.500 197.500,102.500 197.500,70.000 165.000,70.000 165.000,102.500" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="197.500,395.000 230.000,395.000 230.000,330.000 230.000,200.000 230.000,135.000 230.000,102.500 197.500,102.500 197.500,362.500" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="230.000,330.000 262.500,330.000 262.500,200.000 230.000,200.000" fill="#e2f0dd" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="230.000,135.000 295.000,135.000 295.000,102.500 230.000,102.500" fill="#eee2f6" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="262.500,362.500 295.000,362.500 295.000,200.000 295.000,167.500 262.500,167.500 262.500,200.000 262.500,330.000" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="295.000,362.500 327.500,362.500 327.500,297.500 327.500,265.000 327.500,232.500 327.500,200.000 295.000,200.000" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="327.500,297.500 360.000,297.500 360.000,265.000 327.500,265.000" fill="#e2f0dd" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="327.500,232.500 360.000,232.500 360.000,200.000 327.500,200.000" fill="#eee2f6" stroke="#8a94a0" stroke-width="1"/>
+<polyline points="165.000,362.500 165.000,102.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="148.750,248.750 181.250,216.250" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="197.500,362.500 197.500,102.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="181.250,216.250 213.750,248.750" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="230.000,330.000 230.000,200.000" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="213.750,248.750 246.250,265.000" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="262.500,330.000 262.500,200.000" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="246.250,265.000 278.750,265.000" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="327.500,297.500 327.500,265.000" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="311.250,281.250 343.750,281.250" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="327.500,232.500 327.500,200.000" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="311.250,281.250 343.750,216.250" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="295.000,200.000 295.000,362.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="278.750,265.000 311.250,281.250" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="230.000,135.000 230.000,102.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="213.750,248.750 262.500,118.750" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="132.500,200.000 132.500,297.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="116.250,248.750 148.750,248.750" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="100.000,200.000 100.000,232.500" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="67.500,200.000 116.250,248.750" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="132.500,362.500 132.500,395.000" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="116.250,378.750 148.750,248.750" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<text x="67.500" y="200.000">C0</text>
+<text x="116.250" y="378.750">C1</text>
+<text x="116.250" y="248.750">C2</text>
+<text x="148.750" y="248.750">C3</text>
+<text x="181.250" y="216.250">C4</text>
+<text x="213.750" y="248.750">C5</text>
+<text x="246.250" y="265.000">C6</text>
+<text x="262.500" y="118.750">C7</text>
+<text x="278.750" y="265.000">C8</text>
+<text x="311.250" y="281.250">C9</text>
+<text x="343.750" y="281.250">C10</text>
+<text x="343.750" y="216.250">C11</text>
+<polygon points="475.000,232.500 540.000,232.500 540.000,167.500 475.000,167.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="507.500,232.500 507.500,167.500" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="507.500" cy="232.500" r="3" fill="#b07d89"/>
+<circle cx="507.500" cy="167.500" r="3" fill="#b07d89"/>
+<polygon points="540.000,395.000 572.500,395.000 572.500,362.500 540.000,362.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="572.500,378.750 540.000,378.750" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="572.500" cy="378.750" r="3" fill="#b07d89"/>
+<circle cx="540.000" cy="378.750" r="3" fill="#b07d89"/>
+<polygon points="540.000,297.500 572.500,297.500 572.500,200.000 540.000,200.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="572.500,248.750 540.000,248.750" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="572.500" cy="248.750" r="3" fill="#b07d89"/>
+<circle cx="540.000" cy="248.750" r="3" fill="#b07d89"/>
+<polygon points="572.500,395.000 605.000,395.000 605.000,102.500 572.500,102.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="588.750,395.000 588.750,102.500" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="588.750" cy="395.000" r="3" fill="#b07d89"/>
+<circle cx="588.750" cy="102.500" r="3" fill="#b07d89"/>
+<polygon points="605.000,362.500 637.500,362.500 637.500,70.000 605.000,70.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="621.250,362.500 621.250,70.000" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="621.250" cy="362.500" r="3" fill="#b07d89"/>
+<circle cx="621.250" cy="70.000" r="3" fill="#b07d89"/>
+<polygon points="637.500,395.000 670.000,395.000 670.000,102.500 637.500,102.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="653.750,395.000 653.750,102.500" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="653.750" cy="395.000" r="3" fill="#b07d89"/>
+<circle cx="653.750" cy="102.500" r="3" fill="#b07d89"/>
+<polygon points="670.000,330.000 702.500,330.000 702.500,200.000 670.000,200.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="702.500,265.000 670.000,265.000" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="702.500" cy="265.000" r="3" fill="#b07d89"/>
+<circle cx="670.000" cy="265.000" r="3" fill="#b07d89"/>
+<polygon points="670.000,135.000 735.000,135.000 735.000,102.500 670.000,102.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="735.000,118.750 670.000,118.750" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="735.000" cy="118.750" r="3" fill="#b07d89"/>
+<circle cx="670.000" cy="118.750" r="3" fill="#b07d89"/>
+<polygon points="702.500,362.500 735.000,362.500 735.000,167.500 702.500,167.500" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="718.750,362.500 718.750,167.500" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="718.750" cy="362.500" r="3" fill="#b07d89"/>
+<circle cx="718.750" cy="167.500" r="3" fill="#b07d89"/>
+<polygon points="735.000,362.500 767.500,362.500 767.500,200.000 735.000,200.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="767.500,281.250 735.000,281.250" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="767.500" cy="281.250" r="3" fill="#b07d89"/>
+<circle cx="735.000" cy="281.250" r="3" fill="#b07d89"/>
+<polygon points="767.500,297.500 800.000,297.500 800.000,265.000 767.500,265.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="800.000,281.250 767.500,281.250" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="800.000" cy="281.250" r="3" fill="#b07d89"/>
+<circle cx="767.500" cy="281.250" r="3" fill="#b07d89"/>
+<polygon points="767.500,232.500 800.000,232.500 800.000,200.000 767.500,200.000" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="800.000,216.250 767.500,216.250" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="800.000" cy="216.250" r="3" fill="#b07d89"/>
+<circle cx="767.500" cy="216.250" r="3" fill="#b07d89"/>
+<text x="915" y="70" fill="#b82234">UNSUPPORTED — no final graph</text>
+<text x="915" y="100">no complete supported middle-attachment</text>
+<text x="915" y="120">arrangement; terminal graft requires one</text>
+<text x="915" y="140">attachment</text>
+<text x="35" y="447">Dashed gray: artificial cut; teal: cell adjacency. Dashed pink: candidates only.</text><text x="35" y="467">Final red: ridge; blue: valley; orange: hip; black: junction. XY is disposable initialization, not solved roof geometry.</text></g></svg>

@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="485" viewBox="0 0 1320 485">
+<rect width="1320" height="485" fill="white"/>
+<g font-family="sans-serif" font-size="13" fill="#18212b">
+<text x="35" y="25">Cells / cuts / adjacency</text>
+<text x="475" y="25">Primitive ridge candidates / ports</text>
+<text x="915" y="25">Final RoofGraph / junctions (before solve)</text>
+<polygon points="35.000,341.939 94.694,341.939 101.327,341.939 127.857,341.939 141.122,341.939 154.388,341.939 174.286,341.939 194.184,341.939 200.816,341.939 220.714,341.939 233.980,341.939 253.878,341.939 260.510,341.939 280.408,341.939 293.673,341.939 360.000,341.939 360.000,315.408 326.837,315.408 320.204,315.408 74.796,315.408 54.898,315.408 35.000,315.408" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="54.898,315.408 74.796,315.408 74.796,295.510 54.898,295.510" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="94.694,381.735 101.327,381.735 101.327,341.939 94.694,341.939" fill="#e2f0dd" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="127.857,368.469 141.122,368.469 141.122,341.939 127.857,341.939" fill="#eee2f6" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="154.388,375.102 174.286,375.102 174.286,341.939 154.388,341.939" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="194.184,361.837 200.816,361.837 200.816,341.939 194.184,341.939" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="220.714,395.000 233.980,395.000 233.980,341.939 220.714,341.939" fill="#e2f0dd" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="253.878,381.735 260.510,381.735 260.510,341.939 253.878,341.939" fill="#eee2f6" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="280.408,368.469 293.673,368.469 293.673,341.939 280.408,341.939" fill="#e0eefb" stroke="#8a94a0" stroke-width="1"/>
+<polygon points="320.204,315.408 326.837,315.408 326.837,295.510 320.204,295.510" fill="#f9e5d7" stroke="#8a94a0" stroke-width="1"/>
+<polyline points="200.816,341.939 194.184,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 197.500,351.888" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="220.714,341.939 233.980,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 227.347,368.469" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="253.878,341.939 260.510,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 257.194,361.837" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="280.408,341.939 293.673,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 287.041,355.204" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="326.837,315.408 320.204,315.408" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 323.520,305.459" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="74.796,315.408 54.898,315.408" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 64.847,305.459" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="94.694,341.939 101.327,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 98.010,361.837" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="127.857,341.939 141.122,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 134.490,355.204" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<polyline points="154.388,341.939 174.286,341.939" fill="none" stroke="#576474" stroke-width="2.5" stroke-dasharray="6,4"/>
+<polyline points="197.500,328.673 164.337,358.520" fill="none" stroke="#00918e" stroke-width="1.4"/>
+<text x="197.500" y="328.673">C0</text>
+<text x="64.847" y="305.459">C1</text>
+<text x="98.010" y="361.837">C2</text>
+<text x="134.490" y="355.204">C3</text>
+<text x="164.337" y="358.520">C4</text>
+<text x="197.500" y="351.888">C5</text>
+<text x="227.347" y="368.469">C6</text>
+<text x="257.194" y="361.837">C7</text>
+<text x="287.041" y="355.204">C8</text>
+<text x="323.520" y="305.459">C9</text>
+<polygon points="475.000,341.939 800.000,341.939 800.000,315.408 475.000,315.408" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="800.000,328.673 475.000,328.673" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="800.000" cy="328.673" r="3" fill="#b07d89"/>
+<circle cx="475.000" cy="328.673" r="3" fill="#b07d89"/>
+<polygon points="494.898,315.408 514.796,315.408 514.796,295.510 494.898,295.510" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="504.847,315.408 504.847,295.510" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="504.847" cy="315.408" r="3" fill="#b07d89"/>
+<circle cx="504.847" cy="295.510" r="3" fill="#b07d89"/>
+<polygon points="534.694,381.735 541.327,381.735 541.327,341.939 534.694,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="538.010,381.735 538.010,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="538.010" cy="381.735" r="3" fill="#b07d89"/>
+<circle cx="538.010" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="567.857,368.469 581.122,368.469 581.122,341.939 567.857,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="574.490,368.469 574.490,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="574.490" cy="368.469" r="3" fill="#b07d89"/>
+<circle cx="574.490" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="594.388,375.102 614.286,375.102 614.286,341.939 594.388,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="604.337,375.102 604.337,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="604.337" cy="375.102" r="3" fill="#b07d89"/>
+<circle cx="604.337" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="634.184,361.837 640.816,361.837 640.816,341.939 634.184,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="637.500,361.837 637.500,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="637.500" cy="361.837" r="3" fill="#b07d89"/>
+<circle cx="637.500" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="660.714,395.000 673.980,395.000 673.980,341.939 660.714,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="667.347,395.000 667.347,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="667.347" cy="395.000" r="3" fill="#b07d89"/>
+<circle cx="667.347" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="693.878,381.735 700.510,381.735 700.510,341.939 693.878,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="697.194,381.735 697.194,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="697.194" cy="381.735" r="3" fill="#b07d89"/>
+<circle cx="697.194" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="720.408,368.469 733.673,368.469 733.673,341.939 720.408,341.939" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="727.041,368.469 727.041,341.939" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="727.041" cy="368.469" r="3" fill="#b07d89"/>
+<circle cx="727.041" cy="341.939" r="3" fill="#b07d89"/>
+<polygon points="760.204,315.408 766.837,315.408 766.837,295.510 760.204,295.510" fill="none" stroke="#afb7bf" stroke-width="1"/>
+<polyline points="763.520,315.408 763.520,295.510" fill="none" stroke="#b07d89" stroke-width="2.5" stroke-dasharray="5,4"/>
+<circle cx="763.520" cy="315.408" r="3" fill="#b07d89"/>
+<circle cx="763.520" cy="295.510" r="3" fill="#b07d89"/>
+<polyline points="1074.184,361.837 1074.184,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (0, 39), faces (10,)</title></polyline>
+<polyline points="1074.184,361.837 1077.500,361.837" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (0, 48), faces (10,)</title></polyline>
+<polyline points="1080.816,361.837 1080.816,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (1, 2), faces (11,)</title></polyline>
+<polyline points="1080.816,361.837 1077.500,361.837" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (1, 48), faces (11,)</title></polyline>
+<polyline points="1080.816,341.939 1100.714,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (2, 3), faces (0,)</title></polyline>
+<polyline points="1080.816,341.939 1077.500,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (2, 49), faces (0, 11)</title></polyline>
+<polyline points="1100.714,341.939 1100.714,395.000" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (3, 4), faces (12,)</title></polyline>
+<polyline points="1100.714,341.939 1107.347,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (3, 51), faces (0, 12)</title></polyline>
+<polyline points="1100.714,395.000 1107.347,395.000" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (4, 50), faces (12,)</title></polyline>
+<polyline points="1113.980,395.000 1113.980,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (5, 6), faces (13,)</title></polyline>
+<polyline points="1113.980,395.000 1107.347,395.000" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (5, 50), faces (13,)</title></polyline>
+<polyline points="1113.980,341.939 1133.878,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (6, 7), faces (0,)</title></polyline>
+<polyline points="1113.980,341.939 1107.347,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (6, 51), faces (0, 13)</title></polyline>
+<polyline points="1133.878,341.939 1133.878,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (7, 8), faces (14,)</title></polyline>
+<polyline points="1133.878,341.939 1137.194,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (7, 53), faces (0, 14)</title></polyline>
+<polyline points="1133.878,381.735 1137.194,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (8, 52), faces (14,)</title></polyline>
+<polyline points="1140.510,381.735 1140.510,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (9, 10), faces (15,)</title></polyline>
+<polyline points="1140.510,381.735 1137.194,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (9, 52), faces (15,)</title></polyline>
+<polyline points="1140.510,341.939 1160.408,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (10, 11), faces (0,)</title></polyline>
+<polyline points="1140.510,341.939 1137.194,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (10, 53), faces (0, 15)</title></polyline>
+<polyline points="1160.408,341.939 1160.408,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (11, 12), faces (16,)</title></polyline>
+<polyline points="1160.408,341.939 1167.041,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (11, 55), faces (0, 16)</title></polyline>
+<polyline points="1160.408,368.469 1167.041,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (12, 54), faces (16,)</title></polyline>
+<polyline points="1173.673,368.469 1173.673,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (13, 14), faces (17,)</title></polyline>
+<polyline points="1173.673,368.469 1167.041,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (13, 54), faces (17,)</title></polyline>
+<polyline points="1173.673,341.939 1240.000,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (14, 15), faces (0,)</title></polyline>
+<polyline points="1173.673,341.939 1167.041,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (14, 55), faces (0, 17)</title></polyline>
+<polyline points="1240.000,341.939 1240.000,328.673" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (15, 40), faces (0,)</title></polyline>
+<polyline points="1240.000,315.408 1206.837,315.408" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (16, 17), faces (1,)</title></polyline>
+<polyline points="1240.000,315.408 1240.000,328.673" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (16, 40), faces (1,)</title></polyline>
+<polyline points="1206.837,315.408 1206.837,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (17, 18), faces (19,)</title></polyline>
+<polyline points="1206.837,315.408 1203.520,322.041" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (17, 59), faces (1, 19)</title></polyline>
+<polyline points="1206.837,295.510 1203.520,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (18, 58), faces (19,)</title></polyline>
+<polyline points="1200.204,295.510 1200.204,315.408" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (19, 20), faces (18,)</title></polyline>
+<polyline points="1200.204,295.510 1203.520,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (19, 58), faces (18,)</title></polyline>
+<polyline points="1200.204,315.408 954.796,315.408" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (20, 21), faces (1,)</title></polyline>
+<polyline points="1200.204,315.408 1203.520,322.041" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (20, 59), faces (1, 18)</title></polyline>
+<polyline points="954.796,315.408 954.796,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (21, 22), faces (3,)</title></polyline>
+<polyline points="954.796,315.408 944.847,322.041" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (21, 57), faces (1, 3)</title></polyline>
+<polyline points="954.796,295.510 944.847,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (22, 56), faces (3,)</title></polyline>
+<polyline points="934.898,295.510 934.898,315.408" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (23, 24), faces (2,)</title></polyline>
+<polyline points="934.898,295.510 944.847,295.510" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (23, 56), faces (2,)</title></polyline>
+<polyline points="934.898,315.408 915.000,315.408" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (24, 25), faces (1,)</title></polyline>
+<polyline points="934.898,315.408 944.847,322.041" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (24, 57), faces (1, 2)</title></polyline>
+<polyline points="915.000,315.408 915.000,328.673" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (25, 41), faces (1,)</title></polyline>
+<polyline points="915.000,341.939 974.694,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (26, 27), faces (0,)</title></polyline>
+<polyline points="915.000,341.939 915.000,328.673" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (26, 41), faces (0,)</title></polyline>
+<polyline points="974.694,341.939 974.694,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (27, 28), faces (4,)</title></polyline>
+<polyline points="974.694,341.939 978.010,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (27, 43), faces (0, 4)</title></polyline>
+<polyline points="974.694,381.735 978.010,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (28, 42), faces (4,)</title></polyline>
+<polyline points="981.327,381.735 981.327,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (29, 30), faces (5,)</title></polyline>
+<polyline points="981.327,381.735 978.010,381.735" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (29, 42), faces (5,)</title></polyline>
+<polyline points="981.327,341.939 1007.857,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (30, 31), faces (0,)</title></polyline>
+<polyline points="981.327,341.939 978.010,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (30, 43), faces (0, 5)</title></polyline>
+<polyline points="1007.857,341.939 1007.857,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (31, 32), faces (6,)</title></polyline>
+<polyline points="1007.857,341.939 1014.490,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (31, 45), faces (0, 6)</title></polyline>
+<polyline points="1007.857,368.469 1014.490,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (32, 44), faces (6,)</title></polyline>
+<polyline points="1021.122,368.469 1021.122,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (33, 34), faces (7,)</title></polyline>
+<polyline points="1021.122,368.469 1014.490,368.469" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (33, 44), faces (7,)</title></polyline>
+<polyline points="1021.122,341.939 1034.388,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (34, 35), faces (0,)</title></polyline>
+<polyline points="1021.122,341.939 1014.490,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (34, 45), faces (0, 7)</title></polyline>
+<polyline points="1034.388,341.939 1034.388,375.102" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (35, 36), faces (8,)</title></polyline>
+<polyline points="1034.388,341.939 1044.337,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (35, 47), faces (0, 8)</title></polyline>
+<polyline points="1034.388,375.102 1044.337,375.102" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (36, 46), faces (8,)</title></polyline>
+<polyline points="1054.286,375.102 1054.286,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (37, 38), faces (9,)</title></polyline>
+<polyline points="1054.286,375.102 1044.337,375.102" fill="none" stroke="#586779" stroke-width="2.7"><title>gable_end: (37, 46), faces (9,)</title></polyline>
+<polyline points="1054.286,341.939 1074.184,341.939" fill="none" stroke="#586779" stroke-width="2.7"><title>eave: (38, 39), faces (0,)</title></polyline>
+<polyline points="1054.286,341.939 1044.337,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (38, 47), faces (0, 9)</title></polyline>
+<polyline points="1074.184,341.939 1077.500,335.306" fill="none" stroke="#1767cf" stroke-width="2.7"><title>valley: (39, 49), faces (0, 10)</title></polyline>
+<polyline points="1240.000,328.673 915.000,328.673" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (40, 41), faces (0, 1)</title></polyline>
+<polyline points="978.010,381.735 978.010,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (42, 43), faces (4, 5)</title></polyline>
+<polyline points="1014.490,368.469 1014.490,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (44, 45), faces (6, 7)</title></polyline>
+<polyline points="1044.337,375.102 1044.337,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (46, 47), faces (8, 9)</title></polyline>
+<polyline points="1077.500,361.837 1077.500,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (48, 49), faces (10, 11)</title></polyline>
+<polyline points="1107.347,395.000 1107.347,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (50, 51), faces (12, 13)</title></polyline>
+<polyline points="1137.194,381.735 1137.194,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (52, 53), faces (14, 15)</title></polyline>
+<polyline points="1167.041,368.469 1167.041,335.306" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (54, 55), faces (16, 17)</title></polyline>
+<polyline points="944.847,295.510 944.847,322.041" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (56, 57), faces (2, 3)</title></polyline>
+<polyline points="1203.520,295.510 1203.520,322.041" fill="none" stroke="#d63143" stroke-width="2.7"><title>ridge: (58, 59), faces (18, 19)</title></polyline>
+<circle cx="978.010" cy="335.306" r="4.5" fill="#18212b"/><text x="984.010" y="329.306">J43</text>
+<circle cx="1014.490" cy="335.306" r="4.5" fill="#18212b"/><text x="1020.490" y="329.306">J45</text>
+<circle cx="1044.337" cy="335.306" r="4.5" fill="#18212b"/><text x="1050.337" y="329.306">J47</text>
+<circle cx="1077.500" cy="335.306" r="4.5" fill="#18212b"/><text x="1083.500" y="329.306">J49</text>
+<circle cx="1107.347" cy="335.306" r="4.5" fill="#18212b"/><text x="1113.347" y="329.306">J51</text>
+<circle cx="1137.194" cy="335.306" r="4.5" fill="#18212b"/><text x="1143.194" y="329.306">J53</text>
+<circle cx="1167.041" cy="335.306" r="4.5" fill="#18212b"/><text x="1173.041" y="329.306">J55</text>
+<circle cx="944.847" cy="322.041" r="4.5" fill="#18212b"/><text x="950.847" y="316.041">J57</text>
+<circle cx="1203.520" cy="322.041" r="4.5" fill="#18212b"/><text x="1209.520" y="316.041">J59</text>
+<text x="35" y="447">Dashed gray: artificial cut; teal: cell adjacency. Dashed pink: candidates only.</text><text x="35" y="467">Final red: ridge; blue: valley; orange: hip; black: junction. XY is disposable initialization, not solved roof geometry.</text></g></svg>
