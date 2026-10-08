@@ -43,15 +43,82 @@ and scaled inputs while preserving the graph.
 
 This is an additional proven L/T interpretation. It does not solve the user's
 staggered parallel-band footprint. The previous frozen-corpus measurements
-belong to earlier production revisions; a fresh audit is running for this
-repair and must be reported separately before making coverage claims.
+belong to earlier production revisions. The fresh audit below measures this
+repair separately and does not show broader footprint coverage.
 
 The frozen branch corpus re-audit completed on this production source: 100/100
 through RoofGraph, GeometryProblem, solve and mesh, and 100/100 actual installed
 ZIP Blender conversions. This remains a separated-branch result, not general
 orthogonal coverage. [Core report](authority/eave-free/branch.json),
-[Blender report](authority/eave-free/blender-branch.json). The general corpus
-and serial benchmark are still pending.
+[Blender report](authority/eave-free/blender-branch.json).
+
+## Frozen corpus re-audit
+
+The canonical and branch payload hashes match the earlier frozen inputs.
+Every input still reaches partition and architecture in the orthogonal corpora.
+Supported input counts and all 164 selected candidate IDs (64 canonical plus
+100 branch) match the preceding offset-end-gate revision.
+
+| Corpus | Inputs | Retained architecture candidates | Constructible topology candidates | RoofGraph / solve / mesh | Installed ZIP Blender | Unsupported / incomplete |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Grid stress | 1000 | 36196 | 4 | 3 | 3 | 980 / 17 |
+| Nonuniform orthogonal | 150 | 5318 | 0 | 0 | 0 | 150 / 0 |
+| Structured orthogonal | 103 | 1284 | 25 | 13 | 13 | 90 / 0 |
+| Branch network | 100 | 300 | 100 | 100 | 100 | 0 / 0 |
+| Convex quadrilateral | 48 | 48 | 96 | 48 | 48 | 0 / 0 |
+
+Candidate totals differ from successful input totals. Blender attempts only
+core mesh successes: nonuniform inputs were not attempted there. Grid's 17
+incomplete searches are not counted as proven unsupported. Oblique 43 and
+general-polygon 40 probes remain unsupported at partition, outside this repair.
+This remains incomplete general orthogonal support.
+
+[Core stages](authority/eave-free/coverage-eave-free.json),
+[installed Blender stages](authority/eave-free/blender-coverage-eave-free.json),
+[outcome classification](authority/eave-free/outcomes.json), and
+[source/archive manifest](authority/eave-free/manifest.json) preserve this stage.
+
+## Serial performance comparison
+
+The starting revision's 20 core files were byte-compared with `0210d79`.
+Its benchmark and the current benchmark ran serially after the coverage jobs
+finished, with three samples, two warmups and a 24-building batch. No performance
+rewrite or candidate pruning was introduced in this repair.
+
+| Case | Starting core_total median ms | Current core_total median ms | Mesh before / after |
+| --- | ---: | ---: | --- |
+| U | 327.54 | 300.37 | True / True |
+| Cross | 82.03 | 113.02 | True / True |
+| Residential multi-reflex | 8.40 | 12.38 | False / False |
+| Grid14 | 28.12 | 64.38 | False / False |
+| Grid20 | 60.14 | 104.63 | False / False |
+| Grid40 | 330.28 | 2293.13 | False / False |
+
+Unsupported timings do not include successful embedding and must not be called
+finished-mesh performance. The small sample describes this run; it does not
+prove an optimization caused the U difference. Candidate evaluation and global
+constraints remain costly. Raw measurements:
+[before](authority/eave-free/mesh-performance-before.json),
+[after](authority/eave-free/mesh-performance-eave-free.json).
+The baseline raw `source_sha` is the enclosing checkout HEAD, not the extracted
+code-root revision. The general audit likewise started before the production
+commit; the manifest declares its actual production source and archive hash.
+
+## Unresolved aggregation boundary
+
+Current members still occupy whole minimum Cells and inherit their direction
+domain. The shared/T constraint work does not supply arbitrary long-side region
+ownership. The screenshot cases therefore remain ungenerated. Neither relation
+provenance, a valid mesh, nor rejecting those inputs proves the requested natural
+roof repair is complete.
+
+The reviewed Laycock procedure supplies collecting guides from a skeleton
+before roof-model assignment. A proposed next investigation would limit those
+guides to architectural region ownership, retaining explicit RoofGraph incidence
+and fixed-topology embedding. This is not implemented or proven to solve the
+screenshots. Its inclusion requires the user's scope decision because the
+original task forbids an unauthorized straight-skeleton conversion. No answer
+has been received. Existing proof-backed operations remain unchanged.
 
 The four screenshot approximations were also attempted with this installed ZIP.
 All four remain unsupported at `inter_part_parallel`, with atomic scene failure.

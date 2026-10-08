@@ -1,10 +1,15 @@
 # Architectural authority: audit and end-constraint result
 
-この報告の全corpus・性能の数値はproduction `449fe1d`の測定である。
+この報告の初回全corpus・性能の表はproduction `449fe1d`の測定である。
 その後の[one-line適用範囲の修正](ROOF_END_CONSTRAINTS.md)では、ずれた短辺接触を
 端制約生成前に拒否した。production `38657f6`の[全corpus再監査](authority/offset-end-gate/coverage-offset-end-gate.json)
 と[更新ZIPのBlender変換](authority/offset-end-gate/blender-coverage-offset-end-gate.json)が完了し、
 以下の成功数はすべて前段階と同じだった。診断コード・候補数・性能はrevisionごとの記録を参照する。
+
+最新production `c47ffe9`では、等幅corner-Tの軒に直接接しない5面目を保つために
+GeometryProblemのsupport契約を一般化した。[最新の検証記録](EAVE_FREE_FACE.md)では
+frozen core / installed ZIP Blenderの成功数と164件の選択candidate IDが前段階と一致する。
+画像近似4入力は最新ZIPでもunsupportedであり、工場屋根の自然な一体化は未完である。
 
 適用範囲修正後は139 tests（79.678s）が成功した。更新ZIPの19入力を
 実operatorで検証し、前段階の成功11入力のcandidate IDはすべて同一だった。
@@ -142,13 +147,23 @@ U/Cross以外はunsupportedなので、後4値を完成meshの性能とは扱わ
 ## Verification and commits
 
 - 開始production SHA: `0210d7900c3a4340ddd5b22e05a673926332bbc7`
-- 終了production SHA: `449fe1d8ea81bf75a45cda1b42a3723cfd3222d0`
+- 最新production SHA: `c47ffe9bc16a479a1c9e0a9263f03c27625481cf`
 - `f573932` Audit architectural authority in roof composition
 - `9e0fbf1` Reproduce decomposition authority bypass at composition boundary
 - `24a22a0` Make resolved architecture authoritative for roof composition and feature causes
 - `c6cdc7f` Resolve compound membership before topology construction
 - `449fe1d` Resolve global roof end choices before junction composition
+- `6f14b88` Record roof end constraints coverage and installed Blender evidence
+- `38657f6` Reject offset end contacts before one-line roof constraints
+- `c0dbe9d` Expose resolved roof ends in canonical inspection
+- `693de58` Reproduce staggered roof bands from user screenshot geometry
+- `a99ad3b` Verify published aggregation prerequisites against current architecture
+- `c47ffe9` Support eave-free receiver faces without changing roof topology
+- `ba5e4dd` Record equal-width end interpretation and transform evidence
+- `7d6dccc` Verify branch corpus with explicit slope support
+- `d871f0e` Check user screenshot inputs against current installed addon
 - 138 tests passed、104.060s。ZIPとsourceのbyte一致を確認。
+- 最新の等幅corner-T修正は141 tests（66.859s）が成功。その後追加したforeign-member support拒否のassertionもfocused suiteで成功した。最新ZIPの20実operator入力、24座標変換入力・48embedding、frozen core/Blender再監査を[EAVE_FREE_FACE](EAVE_FREE_FACE.md)に記録した。
 - Blender4.3.2 installed-ZIP smoke、UV/material、transform、atomic failureを検証。
 - baselineのCI全5 job成功は開始時の情報。今回のCIは未実行、pushなし。
 - 最終evidence/package commitと作業treeの状態は対話の最終報告に記す。既存untracked `.serena/` と `.roof-deps/` は保存した。

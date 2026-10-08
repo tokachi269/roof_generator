@@ -1,0 +1,26 @@
+{
+  "production_sha": "c47ffe9bc16a479a1c9e0a9263f03c27625481cf",
+  "archive_sha256": "87297263c34da7e3a6c18f2372ad3e21ae7aeee633416d946533d846c8a147bc",
+  "source_stage_note": "General audit started before production commit; source bytes correspond to production_sha. Later commits change evidence only. Existing unrelated untracked files make raw source_dirty true.",
+  "branch_selected_candidate_changes": 0,
+  "raw_details": {
+    "python/out/authority/coverage-eave-free.jsonl.gz": "42fd01eea82f340f899f19d9fc263eda4040d61fc9e1f1051b2cdae35da08ea1",
+    "python/out/authority/branch-eave-free.jsonl.gz": "7a74c2d00a168889b5fa0525c946f03add5c8ac59b2deed15797ce36855708ad"
+  },
+  "files": {
+    "python/docs/authority/eave-free/after.json": "c8ccc9607cafffcdaa728684410447e6160cf8de5bff3d5789f4143ec7891da5",
+    "python/docs/authority/eave-free/before.json": "b807bd1c57816bf2e65fa89305421e6bf9a43960a76079fb5cdd886cf8932587",
+    "python/docs/authority/eave-free/blender-branch.json": "23c34b56f0b341b8644c2411ede5170f458c19addd9f56671487412c00932245",
+    "python/docs/authority/eave-free/blender-coverage-eave-free.json": "4b9cedccf24a7ac2ac32e8c5a1cb11279a26347d1f25a58ea2e5d72f9b0206e6",
+    "python/docs/authority/eave-free/branch.json": "8f3692bc181ca13fe6a87105ffd82e2a833f364903a0f291abdc05bc8bf882f0",
+    "python/docs/authority/eave-free/coverage-eave-free.json": "70aa5d5c8d7ea06138051ee9e1713145a8ed8501a06ba8db89a5388252cc4400",
+    "python/docs/authority/eave-free/equal_corner_T.png": "4de3f159db808f3cdec46981226ff8c73a43558e2a9306bef444690d1e432344",
+    "python/docs/authority/eave-free/equal_corner_T.svg": "99405c19bdc37001c533c285d4f76f0245d2de18412e85b394da5be30d7d3751",
+    "python/docs/authority/eave-free/mesh-performance-before.json": "dede3d9cc11ecb2669592ec4108ba8dd4df64c77cfa587307f15e5cda58d3548",
+    "python/docs/authority/eave-free/mesh-performance-eave-free.json": "3a0a5eb449bb090760272be8aa5a4003dfcc322517a81b79b67e1802bf1efc18",
+    "python/docs/authority/eave-free/operator.json": "beade5b63bc7ebeabf59f7d620f8599156fb5555536075bdcd8c9fa213a8b6ee",
+    "python/docs/authority/eave-free/outcomes.json": "02ee417e965075f911db0eaf97417e60c4b2da8005d46ae5c94db53cc056aeca",
+    "python/docs/authority/eave-free/transforms.json": "6bdcf1c7b5721738ace81a6a9fac39efd4254a3c52e54d0527c34e438063ced1",
+    "python/docs/authority/eave-free/user-images-operator.json": "db65738797e82156f567b588e842561957995db6f972d02425f599ca940807fe"
+  }
+}
