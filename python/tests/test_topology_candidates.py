@@ -51,6 +51,18 @@ class TopologyCandidateProof(unittest.TestCase):
                 with self.assertRaisesRegex(UnsupportedRoofError, "no selectable"):
                     result.select(seed)
 
+    def test_rejection_records_all_local_relations_and_the_failure_stage(self):
+        result = pool(fixture("grid_40")["footprint"])
+        relation_failures = [
+            r for r in result.rejected if r.issues[0].stage == "relation"
+        ]
+        self.assertTrue(any(len(r.issues) > 1 for r in relation_failures))
+        self.assertTrue(all(i.cells for r in relation_failures for i in r.issues))
+        codes = {i.code for r in relation_failures for i in r.issues}
+        self.assertTrue({"parallel", "partial_end"} <= codes)
+        u = pool(fixture("orthogonal_U")["footprint"])
+        self.assertEqual({i.stage for r in u.rejected for i in r.issues}, {"junction"})
+
     def test_square_axis_is_real_roof_variation(self):
         result = pool(((0, 0), (6, 0), (6, 6), (0, 6)))
         self.assertEqual(len(result.valid), 2)

@@ -10,7 +10,7 @@ from dataclasses import dataclass, asdict
 import math
 
 from .footprint import EPS, on_segment, sub
-from .errors import UnsupportedRoofError
+from .errors import UnsupportedRoofError, GenerationIssue
 
 
 def port(graph, side):
@@ -147,7 +147,8 @@ def plan(decomposition, primitives):
             return relations
     if not relations or any(r.kind != "middle" for r in relations):
         raise UnsupportedRoofError(
-            "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+            "no complete supported middle-attachment arrangement; terminal graft requires one attachment",
+            issues=(GenerationIssue("junction", "terminal_arrangement"),),
         )
     hosts = {r.host for r in relations}
     branches = {r.branch for r in relations}
@@ -158,11 +159,13 @@ def plan(decomposition, primitives):
         or hosts.union(branches) != {c.id for c in decomposition.cells}
     ):
         raise UnsupportedRoofError(
-            "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved"
+            "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved",
+            issues=(GenerationIssue("junction", "host_arrangement"),),
         )
     if any(r.branch_width > r.host_width + 4 * EPS for r in relations):
         raise UnsupportedRoofError(
-            "middle attachment requires a narrower or equal-width branch"
+            "middle attachment requires a narrower or equal-width branch",
+            issues=(GenerationIssue("junction", "branch_width"),),
         )
     # Published extension is locally reusable for disjoint narrow slots only.
     # Require separation even on opposite eaves; interacting extensions and
@@ -192,10 +195,12 @@ def plan(decomposition, primitives):
         ):
             return relations
         raise UnsupportedRoofError(
-            "multiple equal-width attachments lack compatible opposite shared ports"
+            "multiple equal-width attachments lack compatible opposite shared ports",
+            issues=(GenerationIssue("junction", "equal_width_ports"),),
         )
     if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])):
         raise UnsupportedRoofError(
-            "branch attachment slots interact; no independent junction composition is proved"
+            "branch attachment slots interact; no independent junction composition is proved",
+            issues=(GenerationIssue("junction", "interacting_slots"),),
         )
     return relations

@@ -4,7 +4,7 @@
 from dataclasses import dataclass, replace
 from itertools import product
 import math
-from .errors import UnsupportedRoofError
+from .errors import UnsupportedRoofError, GenerationIssue
 from .solve import problem, GeometryProblem
 from .initialization import _valid_drawing
 from .architecture import Analysis
@@ -36,6 +36,7 @@ class Rejection:
     partition: str
     axes: tuple[int, ...]
     reason: str
+    issues: tuple[GenerationIssue, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -56,6 +57,18 @@ class TopologyCandidates:
 
 def _cell_id(d, cell, identity):
     return tuple(sorted(identity(d.vertices[v]) for v in cell.corners))
+
+
+def partition_id(decomposition, reference_direction=(1, 0)):
+    """Stable provenance join key for a minimum partition, also used by audits."""
+    identity = point_identity(decomposition.footprint, reference_direction)
+    return derive(
+        0,
+        "partition_id",
+        tuple(
+            sorted(_cell_id(decomposition, c, identity) for c in decomposition.cells)
+        ),
+    )
 
 
 def _candidate_id(architecture, composition, axes, identity):
@@ -87,18 +100,29 @@ def _candidate_id(architecture, composition, axes, identity):
 
 def _resolved_analysis(architecture, axes):
     relations = []
+    issues = []
+    reasons = []
     for relation in architecture.relations:
         assignment = tuple(axes[c] for c in relation.cells)
         options = tuple(o for o in relation.options if o.axes == assignment)
         if len(options) != 1:
-            raise UnsupportedRoofError(
+            issues.append(
+                GenerationIssue("relation", "unresolved_relation", relation.cells)
+            )
+            reasons.append(
                 "member axis assignment does not resolve a unique local relation"
             )
-        if options[0].kind in {"parallel", "partial_end", "continuation"}:
-            raise UnsupportedRoofError(
+        elif options[0].kind in {"parallel", "partial_end", "continuation"}:
+            issues.append(GenerationIssue("relation", options[0].kind, relation.cells))
+            reasons.append(
                 "no published implemented port operation for " + options[0].kind
             )
-        relations.append(replace(relation, options=options))
+        else:
+            relations.append(replace(relation, options=options))
+    if issues:
+        # Record every independent local blocker. The first message is retained
+        # for concise errors; diagnostics do not stop at the first relation.
+        raise UnsupportedRoofError(reasons[0], issues=issues)
     # Reject undefined port relations before allocating a resolved member graph.
     # This changes no rejection rule, order, candidate or incidence.
     members = tuple(replace(m, axes=(axes[m.cell],)) for m in architecture.members)
@@ -180,9 +204,7 @@ def build_candidates(
     for _, architecture in recommendation.retained:
         d = architecture.decomposition
         identity = point_identity(d.footprint, reference_direction)
-        partition_id = derive(
-            0, "partition_id", tuple(sorted(_cell_id(d, c, identity) for c in d.cells))
-        )
+        partition_key = partition_id(d, reference_direction)
         assignments = (
             product(*(m.axes for m in architecture.members))
             if roof_type == "gable"
@@ -197,6 +219,7 @@ def build_candidates(
                     "topology axis-assignment budget exhausted",
                 )
             work += 1
+            stage = "relation"
             try:
                 if roof_type == "gable":
                     resolved = _resolved_analysis(architecture, axes)
@@ -225,13 +248,16 @@ def build_candidates(
                         )
                         / math.dist(world[i], world[(i + 1) % 4]),
                     )
+                stage = "composition"
                 composition = compose(
                     d, roof_type, axes=axes or None, shed_edge=shed_edge
                 )
+                stage = "geometry_problem"
                 geometry = problem(
                     composition.graph, pitch, eave_height / d.footprint.frame.scale
                 )
                 stable_id = _candidate_id(architecture, composition, axes, identity)
+                stage = "graph_validation"
                 valid.setdefault(
                     stable_id,
                     TopologyCandidate(
@@ -239,7 +265,8 @@ def build_candidates(
                     ),
                 )
             except UnsupportedRoofError as exc:
-                rejected.append(Rejection(partition_id, axes, str(exc)))
+                issues = exc.issues or (GenerationIssue(stage, "unsupported"),)
+                rejected.append(Rejection(partition_key, axes, str(exc), issues))
     # Published terms are applied to fully resolved choices. No aesthetic score
     # resolves ties; all equally ranked VALID alternatives remain seedable.
     best = max((c.score for c in valid.values()), default=None)
