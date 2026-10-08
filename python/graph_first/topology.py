@@ -13,7 +13,7 @@ from .graph import (
     make_graph,
     boundary_span,
 )
-from .geometry import harmonic_seeds, ridge_seeds
+from .geometry import harmonic_seeds, ridge_seeds, middle_seeds
 from .connections import plan
 
 
@@ -185,9 +185,160 @@ def compose(decomposition, roof_type="gable"):
     relations = plan(decomposition, primitives)
     if len(relations) == 1 and relations[0].kind == "terminal":
         return _terminal(decomposition, primitives, relations[0])
-    raise UnsupportedGraphError(
-        "middle attachment identified; cycle rewriting is not yet implemented"
+    if len(relations) != 1:
+        raise UnsupportedGraphError(
+            "multiple middle operations await their simultaneous composition proof"
+        )
+    return _middle(decomposition, primitives, relations)
+
+
+def _middle(decomposition, primitives, relations):
+    """Splice published narrow-branch extension / equal-width T incidence.
+
+    All incidences and meanings are selected before drawing. Artificial cell
+    edges and consumed branch caps never enter the final graph. Host ridge
+    survives; only the equal-width T splits it and its attached slope cycle.
+    """
+    fp = decomposition.footprint
+    host = relations[0].host
+    seeds = list(fp.vertices)
+    roles = ["corner"] * len(seeds)
+    locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
+
+    def boundary_port(cell, local):
+        point = primitives[cell].vertices[local].seed
+        edges = [
+            i
+            for i, a in enumerate(fp.vertices)
+            if on_segment(point, a, fp.vertices[(i + 1) % len(fp.vertices)])
+        ]
+        if len(edges) != 1:
+            raise UnsupportedGraphError(
+                "surviving ridge port lacks a physical exterior edge"
+            )
+        edge = edges[0]
+        axis = sub(fp.vertices[(edge + 1) % len(fp.vertices)], fp.vertices[edge])
+        t = sum(x * y for x, y in zip(sub(point, fp.vertices[edge]), axis)) / sum(
+            v * v for v in axis
+        )
+        vertex = len(seeds)
+        locations[vertex] = BoundaryPoint(edge, t)
+        seeds.append(point)
+        roles.append("ridge_end")
+        return vertex
+
+    maps = {host: dict(enumerate(decomposition.cells[host].corners))}
+    host_caps = tuple(
+        i for i, v in enumerate(primitives[host].vertices) if v.role == "ridge_end"
     )
+    for cap in host_caps:
+        maps[host][cap] = boundary_port(host, cap)
+    joints = {}
+    for relation in relations:
+        branch, near = relation.branch, relation.branch_port
+        far = next(
+            i
+            for i, v in enumerate(primitives[branch].vertices)
+            if v.role == "ridge_end" and i != near
+        )
+        maps[branch] = dict(enumerate(decomposition.cells[branch].corners))
+        maps[branch][far] = boundary_port(branch, far)
+        junction = len(seeds)
+        seeds.append((0, 0))
+        roles.append("junction")
+        joints[branch] = junction
+        maps[branch][near] = junction
+    equal = [joints[r.branch] for r in relations if r.equal_width]
+    meanings = {}
+    host_ridge = tuple(maps[host][i] for i in host_caps)
+    chain = (host_ridge[0], *equal, host_ridge[1])
+    for a, b in zip(chain, chain[1:]):
+        meanings[_key(a, b)] = "ridge"
+    for relation in relations:
+        branch = relation.branch
+        junction = joints[branch]
+        far = next(i for i in maps[branch] if i >= 4 and i != relation.branch_port)
+        meanings[_key(junction, maps[branch][far])] = "ridge"
+        for corner in relation.shared:
+            meanings[_key(junction, corner)] = "valley"
+    faces = []
+    allowed_eaves = []
+    for cell, primitive in enumerate(primitives):
+        mapping = maps[cell]
+        for face in primitive.faces:
+            loop = []
+            for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
+                loop.append(mapping[a])
+                if cell == host:
+                    if {a, b} == set(host_caps):
+                        loop.extend(equal if a == host_caps[0] else reversed(equal))
+                    for relation in relations:
+                        if (a, b) == (relation.host_side, (relation.host_side + 1) % 4):
+                            loop.extend(
+                                (
+                                    relation.shared[0],
+                                    joints[relation.branch],
+                                    relation.shared[1],
+                                )
+                            )
+            cycles = [tuple(loop)]
+            for junction in equal:
+                if loop.count(junction) == 2:
+                    i = loop.index(junction)
+                    j = loop.index(junction, i + 1)
+                    cycles = [tuple(loop[i:j]), tuple(loop[j:] + loop[:i])]
+            eaves = {
+                span.edge
+                for side in face.eaves
+                for span in decomposition.cells[cell].sides[side].exterior
+            }
+            for cycle in cycles:
+                faces.append(Face(cycle, (cell,), ()))
+                allowed_eaves.append(eaves)
+    incidence = defaultdict(list)
+    for i, face in enumerate(faces):
+        for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
+            incidence[_key(a, b)].append(i)
+    actual_eaves = defaultdict(set)
+    for (a, b), owners in incidence.items():
+        if len(owners) != 1:
+            continue
+        span = boundary_span(fp.vertices, fp.source_edges, locations[a], locations[b])
+        face = owners[0]
+        meanings[a, b] = "eave" if span.edge in allowed_eaves[face] else "gable_end"
+        if meanings[a, b] == "eave":
+            actual_eaves[face].add(span.edge)
+    faces = tuple(
+        Face(f.loop, f.cells, tuple(sorted(actual_eaves[i])))
+        for i, f in enumerate(faces)
+    )
+    slots = tuple(
+        (
+            joints[r.branch],
+            *(decomposition.vertices[i] for i in r.shared),
+            r.equal_width,
+        )
+        for r in relations
+    )
+    seeds = middle_seeds(
+        fp.vertices, seeds, faces, locations, meanings, host_ridge, slots
+    )
+    graph = make_graph(
+        fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"
+    )
+    connections = tuple(
+        Connection(
+            r.host,
+            r.branch,
+            _key(*r.shared),
+            (r.branch_port,),
+            (joints[r.branch],),
+            None if r.equal_width else r.host,
+            "middle",
+        )
+        for r in relations
+    )
+    return Composition(graph, primitives, connections)
 
 
 def _terminal(decomposition, primitives, relation):

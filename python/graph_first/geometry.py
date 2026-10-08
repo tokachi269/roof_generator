@@ -144,6 +144,30 @@ def ridge_seeds(outline, seeds, faces, locations, semantics):
     return tuple(result)
 
 
+def middle_seeds(outline, seeds, faces, locations, semantics, host_ports, slots):
+    """Disposable drawing AFTER middle-attachment incidence is fixed.
+
+    Project each opening midpoint onto the declared host ridge axis. Equal
+    junctions lie on that axis; narrow junctions start inside the host slope
+    strip. The half-strip point is an initialization choice, not a roof vertex
+    discovered from a center or solved height/plane. No pitch/XYZ is used.
+    """
+    result = list(seeds)
+    a, b = (seeds[i] for i in host_ports)
+    direction = sub(b, a)
+    size = sum(v * v for v in direction)
+    for junction, first, second, equal in slots:
+        opening = tuple((first[k] + second[k]) / 2 for k in (0, 1))
+        t = sum(x * y for x, y in zip(sub(opening, a), direction)) / size
+        axis = tuple(a[k] + t * direction[k] for k in (0, 1))
+        result[junction] = (
+            axis if equal else tuple((opening[k] + axis[k]) / 2 for k in (0, 1))
+        )
+    if not _valid_drawing(outline, result, faces, locations, semantics):
+        raise UnsupportedGraphError("middle-junction initializer has no valid drawing")
+    return tuple(result)
+
+
 def harmonic_seeds(seeds, faces, fixed):
     """Tutte/Laplacian initialization, after all graph incidences are selected."""
     adjacent = defaultdict(set)
