@@ -94,3 +94,27 @@ roof types/pitches. The adapter evaluates inputs once and validates every roof
 before output. `generate_object` uses the same route for a single footprint.
 
 Measurements and limits: [ROOF_PERFORMANCE.md](docs/ROOF_PERFORMANCE.md).
+
+## Independent graph-first evaluation
+
+`graph_first/` owns a separate, plane-free topology path. It generates rectangle
+gable/hip/shed/flat meshes analytically and composes the **pre-solver 2D graph**
+of two orthogonal gable cells with a terminal attachment. It is not wired into
+the addon conversion button. L geometry solving, T/U and oblique cells remain
+unsupported; no automatic substitution by the existing generator occurs.
+
+```bash
+python python/inspect_roof_graph.py --fixture orthogonal_L --output python/out/graph-first/L.json
+python python/inspect_roof_graph.py --fixture rectangle_gable --roof-type hip
+python python/benchmark_graph_first.py --samples 101 --warmup 5
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_graph_first.py
+```
+
+Inspection exports cell boundaries/adjacency, primitive/composed RoofGraphs,
+edge meanings/provenance, an SGA21-ready geometry problem and an SVG. The drawing
+is a disposable initializer, not a solved L roof. The benchmark separates
+analysis, decomposition, graph construction, geometry and mesh export and
+compares the unchanged reference generator. New core modules require only the
+Python standard library; the comparison/tests use the existing dependencies.
+See [the design](docs/GRAPH_FIRST_DESIGN.md) and
+[the evaluation](docs/GRAPH_FIRST_EVALUATION.md) for evidence and limits.

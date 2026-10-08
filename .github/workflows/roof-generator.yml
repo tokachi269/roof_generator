@@ -50,6 +50,8 @@ jobs:
         run: python python/install_roof_dependencies.py --blender /tmp/roof-blender/blender
       - name: Generate source meshes and exercise footprint CLI
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_roof.py -- --no-render --output-dir python/out/source-smoke
+      - name: Graph-first rectangle mesh proof
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_graph_first.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -57,3 +59,4 @@ jobs:
           path: |
             python/out/addon/
             python/out/source-smoke/
+            python/out/graph-first-blender/
