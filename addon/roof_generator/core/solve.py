@@ -309,8 +309,8 @@ def solve_analytic(graph, pitch=0.5, eave_height=0.0):
     return RoofMesh(graph, rectangle_vertices(graph, pitch, eave_height))
 
 
-def solve(graph, geometry):
-    """Consume one GeometryProblem and graph; never choose topology or retry."""
+def embed(graph, geometry):
+    """Solve coordinates only, leaving surface validation to RoofMesh."""
     if geometry.faces != tuple(f.loop for f in graph.faces):
         raise UnsupportedRoofError("solve problem changes roof incidence")
     if graph.roof_type == "flat" or (
@@ -319,7 +319,7 @@ def solve(graph, geometry):
         # The already anchored primitive has an exact embedding. The pitch is
         # read from its explicit height constraints, not selected by the solver.
         if graph.roof_type in {"flat", "shed", "gable"}:
-            return RoofMesh(graph, geometry.initial_vertices)
+            return geometry.initial_vertices
         heights = dict(geometry.fixed_z)
         eave = min(heights.values())
         width = min(
@@ -327,8 +327,13 @@ def solve(graph, geometry):
             for a, b in zip(graph.outline, graph.outline[1:] + graph.outline[:1])
         )
         pitch = 2 * (max(heights.values()) - eave) / width
-        return solve_analytic(graph, pitch, eave)
+        return rectangle_vertices(graph, pitch, eave)
     from .optimization import optimize
 
     embedding = optimize(geometry)
-    return RoofMesh(graph, embedding.vertices)
+    return embedding.vertices
+
+
+def solve(graph, geometry):
+    """Consume one GeometryProblem and graph; never choose topology or retry."""
+    return RoofMesh(graph, embed(graph, geometry))

@@ -19,8 +19,8 @@ from roof_generator.core.partition_candidates import candidates
 from roof_generator.core.architecture_selection import recommend, Policy
 from roof_generator.core.topology_candidates import build_candidates, partition_id
 from roof_generator.core.errors import UnsupportedRoofError
-from roof_generator.core.solve import solve
-from roof_generator.core.optimization import optimize
+from roof_generator.core.solve import embed
+from roof_generator.core.mesh import RoofMesh
 
 STAGES = (
     "footprint",
@@ -124,21 +124,11 @@ def inspect(record):
         row["selected_id"] = selected.id
         completed("GeometryProblem")
         owner = "solve"
-        # Separate optimizer convergence from mesh validation. Exact primitive
-        # solve includes validation; compound coordinates can be checked alone.
-        if len(selected.architecture.members) > 1:
-            embedding = optimize(selected.geometry)
-            completed("solve")
-            owner = "mesh"
-            from roof_generator.core.mesh import RoofMesh
-
-            mesh = RoofMesh(selected.graph, embedding.vertices)
-        else:
-            mesh = solve(selected.graph, selected.geometry)
-            completed("solve")
+        vertices = embed(selected.graph, selected.geometry)
+        completed("solve")
         owner = "mesh"
         # Constructor validates exactly the solved graph; no triangulation/repair.
-        type(mesh)(mesh.graph, mesh.vertices)
+        RoofMesh(selected.graph, vertices)
         completed("mesh")
     except (UnsupportedRoofError, ValueError) as exc:
         row["failure_owner"] = owner

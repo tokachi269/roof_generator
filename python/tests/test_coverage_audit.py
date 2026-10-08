@@ -4,6 +4,7 @@ import gzip
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 from shapely.geometry import Polygon
 from python.audit_coverage import inspect
 
@@ -46,6 +47,15 @@ class CoverageAuditTests(unittest.TestCase):
         self.assertTrue(row["success"]["GeometryProblem"])
         self.assertTrue(row["success"]["mesh"])
         self.assertFalse(row["success"]["Blender"])
+
+    def test_mesh_rejection_is_owned_by_mesh_not_solve(self):
+        from roof_generator.core.errors import UnsupportedRoofError
+
+        with patch("python.audit_coverage.RoofMesh", side_effect=UnsupportedRoofError("mesh proof")):
+            row = inspect({"name": "rectangle", "footprint": ((0, 0), (12, 0), (12, 6), (0, 6))})
+        self.assertTrue(row["success"]["solve"])
+        self.assertFalse(row["success"]["mesh"])
+        self.assertEqual(row["failure_owner"], "mesh")
 
     def test_supplemental_branch_network_inputs_are_frozen_and_simple(self):
         from python.branch_network_corpus import corpus
