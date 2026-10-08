@@ -180,7 +180,7 @@ def independent_set(left, right, conflicts, matching):
     return selected
 
 
-def select_diagonals(fp, diagonals):
+def intersection_graph(fp, diagonals):
     left = tuple(i for i, d in enumerate(diagonals) if d.axis == 0)
     right = tuple(i for i, d in enumerate(diagonals) if d.axis == 1)
     conflicts = []
@@ -194,6 +194,11 @@ def select_diagonals(fp, diagonals):
                 )
             conflicts.append((j, i) if b.axis == 0 else (i, j))
     conflicts = tuple(sorted(conflicts))
+    return left, right, conflicts
+
+
+def select_diagonals(fp, diagonals):
+    left, right, conflicts = intersection_graph(fp, diagonals)
     matching = maximum_matching(left, right, conflicts)
     selected = independent_set(left, right, conflicts, matching)
     return Selection(diagonals, conflicts, matching, selected)

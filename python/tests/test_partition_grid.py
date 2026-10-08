@@ -211,6 +211,7 @@ class GeneratedPartitionTests(unittest.TestCase):
                 expected = c["minimum_cells"]
                 self.assertEqual(oracle_minimum(points)[0], expected)
                 d = decompose(analyze(points))
+                self.assertEqual(d, decompose(analyze(points)))
                 assert_partition(self, points, d, expected)
 
     def test_five_hundred_unknown_connected_grid_shapes(self):

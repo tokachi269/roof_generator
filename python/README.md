@@ -100,8 +100,11 @@ Measurements and limits: [ROOF_PERFORMANCE.md](docs/ROOF_PERFORMANCE.md).
 `graph_first/` owns a separate, plane-free topology path. It generates rectangle
 gable/hip/shed/flat meshes analytically and composes the **pre-solver 2D graph**
 of two orthogonal gable cells with a terminal attachment. It is not wired into
-the addon conversion button. L geometry solving, T/U and oblique cells remain
-unsupported; no automatic substitution by the existing generator occurs.
+the addon conversion button. Roof composition for T/U, L geometry solving and
+oblique cells remain unsupported; no automatic substitution by the existing
+generator occurs. The roof-independent partition layer now handles arbitrary
+reflex counts in hole-free simple orthogonal polygons, with a classical minimum
+rectangle-count certificate.
 
 ```bash
 python python/inspect_roof_graph.py --fixture orthogonal_L --output python/out/graph-first/L.json
@@ -118,3 +121,29 @@ compares the unchanged reference generator. New core modules require only the
 Python standard library; the comparison/tests use the existing dependencies.
 See [the design](docs/GRAPH_FIRST_DESIGN.md) and
 [the evaluation](docs/GRAPH_FIRST_EVALUATION.md) for evidence and limits.
+
+## Generic minimum rectangular partition
+
+```bash
+python python/inspect_rectangle_partition.py --fixture residential_multi_reflex
+python python/inspect_rectangle_partition.py --fixture comb_40 --output python/out/partition/comb.json
+python python/inspect_rectangle_partition.py --input footprint.json
+python python/benchmark_rectangle_partition.py --samples 101 --warmup 5 --buildings 1000
+```
+
+`footprint.json` is an ordered XY point array or an object with a `footprint`
+array. The scalar API is `analyze(points)` followed by `cells.decompose(footprint)`;
+it returns Cells, shared intervals, exterior provenance and a certificate with
+all good diagonals, conflicts, maximum matching, selected independent set,
+completion cuts and minimum count. It takes no roof parameters and imports no
+Shapely, NumPy, roof composition or geometry solver.
+
+The inspection JSON/SVG shows the selected diagonals and completed partition.
+The test-only grid generator supplies unknown inputs and is not imported by the
+partition core. The benchmark measures actual uncached partition stages and
+1000 distinct geometries; input generation is excluded explicitly. See the
+[algorithm contract](docs/MINIMUM_RECTANGULAR_PARTITION.md) and
+[partition evaluation](docs/RECTANGULAR_PARTITION_EVALUATION.md), including the
+necessary symmetry qualification for ambiguous intrinsic axes. The existing
+terminal-graft proof remains; arbitrary multi-cell roof composition is a later
+task and does not require changing this partition's roof-independent contract.
