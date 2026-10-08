@@ -6,7 +6,7 @@ import python
 import unittest
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.solve import problem
 from roof_generator.core.initialization import _valid_drawing

@@ -16,7 +16,7 @@ from roof_generator.core.footprint import analyze
 from roof_generator.core.partition_candidates import candidates
 from roof_generator.core.architecture_selection import recommend
 from roof_generator.core.topology_candidates import build_candidates
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.solve import problem
 from python.inspect_architectural_parts import fixture

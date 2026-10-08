@@ -17,8 +17,9 @@ from shapely.ops import unary_union
 
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose
-from roof_generator.core.topology import _rectangle_graph, compose
-from roof_generator.core.junctions import plan
+from roof_generator.core.topology import _rectangle_graph
+from python.tests.architecture_setup import compose
+from python.tests.architecture_setup import plan
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.solve import problem
@@ -415,11 +416,21 @@ class MultipleCompositionTests(unittest.TestCase):
 
     def test_unknown_grid_branch_buildings_keep_one_main_ridge_and_consume_caps(self):
         for case in buildings():
+            compose_case = compose
             points = case["footprint"]
             length, width = case["body"]
             branches = case["branches"]
             d = decompose(analyze(points))
-            c = compose(d)
+            try:
+                c = compose(d)
+            except UnsupportedRoofError as exc:
+                self.assertIn("outside architectural member domain", str(exc))
+                # These old port-only fixtures include squat branches whose
+                # assumed short axis is not in canonical architecture's domain.
+                # Preserve their operation oracle separately from authority.
+                from python.tests.architecture_setup import operation_composition
+                c = operation_composition(d)
+                compose_case = operation_composition
             g = c.graph
             n = len(branches)
             self.assertEqual(
@@ -496,7 +507,7 @@ class MultipleCompositionTests(unittest.TestCase):
                 )
             RoofMesh(g, tuple(xyz))
             # Order must be irrelevant before any merge is attempted.
-            self.assertEqual(compose(replace(d, adjacency=d.adjacency[::-1])), c)
+            self.assertEqual(compose_case(replace(d, adjacency=d.adjacency[::-1])), c)
 
     def test_interacting_equal_width_and_unproved_arrangements_fail_explicitly(self):
         # A single equal-width T is supported.
@@ -544,7 +555,7 @@ class MultipleCompositionTests(unittest.TestCase):
             (8, 8),
             (0, 8),
         ]
-        with self.assertRaisesRegex(UnsupportedRoofError, "no complete supported"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "outside architectural member domain|no complete supported"):
             compose(decompose(analyze(square_receiver)))
         overlapping_slots = [
             (0, 0),
@@ -583,7 +594,7 @@ class Block(importlib.abc.MetaPathFinder):
 sys.meta_path.insert(0, Block())
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from pathlib import Path
 for r in json.loads((Path(sys.argv[1])/'python/tests/fixtures/roof_composition.json').read_text()):
     graph=compose(decompose(analyze([r['points'][v][:2] for v in r['outline']]))).graph

@@ -16,7 +16,7 @@ from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose, Cell, Side, Adjacency, Decomposition
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from roof_generator.core.solve import problem, solve_analytic
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.errors import UnsupportedRoofError
@@ -196,7 +196,7 @@ class TerminalCompositionTests(unittest.TestCase):
         c = compose(d)
         g = c.graph
         assert_terminal(self, f, c)
-        self.assertEqual(len(c.primitives), 2)
+        self.assertEqual(c.primitives, ())
         self.assertTrue(all(len(p.faces) == 2 for p in c.primitives))
         self.assertTrue(
             all(
@@ -321,7 +321,9 @@ class TerminalCompositionTests(unittest.TestCase):
             g, edges=g.edges[:i] + (replace(g.edges[i], kind="hip"),) + g.edges[i + 1 :]
         )
         with self.assertRaises(AssertionError):
-            assert_terminal(self, f, replace(c, graph=wrong))
+            assert_terminal(self, f, SimpleNamespace(graph=wrong, connections=c.connections))
+        with self.assertRaises(UnsupportedRoofError):
+            replace(c, graph=wrong)
 
     def test_graph_metamorphisms_and_source_edge_geometry(self):
         f = analyze(L)
@@ -407,7 +409,7 @@ def checked(name,*args,**kwargs):
 builtins.__import__=checked
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from roof_generator.core.solve import problem
 g=compose(decompose(analyze(((0,0),(14.2,0),(14.2,5.6),(5.2,5.6),(5.2,12.8),(0,12.8))))).graph
 assert len(g.faces)==4 and len(problem(g).variable_xy)==2

@@ -2,11 +2,11 @@
 """Primitive incidences and cell grafts decide topology without roof planes."""
 
 import math
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, replace
 from collections import defaultdict
 from .footprint import EPS, rectangle, on_segment, sub
 from .provenance import BoundaryPoint
-from .graph import RoofFace, RoofGraph, make_graph, boundary_span
+from .graph import RoofFace, RoofGraph, RoofVertex, RoofEdge, make_graph, boundary_span
 from .errors import UnsupportedRoofError
 from .initialization import harmonic_seeds, ridge_seeds, middle_seeds
 from .junctions import plan
@@ -146,17 +146,80 @@ class RoofConnection:
 
 
 @dataclass(frozen=True)
+class FeatureCause:
+    vertices: tuple[int, int]
+    kind: str
+    members: tuple[int, ...]
+    relation: tuple[int, int] | None
+    operation: str
+    parts: tuple[int, ...] = ()
+
+
+@dataclass(frozen=True)
 class Composition:
     graph: RoofGraph
     primitives: tuple[RoofGraph, ...]
     connections: tuple[RoofConnection, ...]
+    features: tuple[FeatureCause, ...] = ()
+
+    def __post_init__(self):
+        expected = {(e.vertices, e.kind) for e in self.graph.edges if len(e.faces) == 2}
+        actual = {(f.vertices, f.kind) for f in self.features}
+        if expected != actual or len(actual) != len(self.features):
+            raise UnsupportedRoofError("internal roof feature lacks a unique declared cause")
 
     def inspect(self):
         return {
             "graph": self.graph.inspect(),
             "primitives": [g.inspect() for g in self.primitives],
             "connections": [asdict(c) for c in self.connections],
+            "feature_provenance": [asdict(f) for f in self.features],
         }
+
+
+def primitive_composition(graph):
+    """A single declared primitive owns its internal template features."""
+    features = tuple(
+        FeatureCause(e.vertices, e.kind, (0,), None, graph.roof_type + "_template", (0,))
+        for e in graph.edges if len(e.faces) == 2
+    )
+    return Composition(graph, (graph,), (), features)
+
+
+def _declare(meanings, features, edge, kind, members, relation=None, operation="member_axis"):
+    key = _key(*edge)
+    meanings[key] = kind
+    features[key] = FeatureCause(key, kind, tuple(members), relation, operation)
+
+
+@dataclass(frozen=True)
+class MemberTemplate:
+    """Local port/cycle incidence, not an independently generated roof graph."""
+
+    vertices: tuple[RoofVertex, ...]
+    faces: tuple[RoofFace, ...]
+    edges: tuple[RoofEdge, ...]
+
+
+def member_templates(resolved):
+    d = resolved.decomposition
+    result = []
+    for member, axis in zip(resolved.architecture.members, resolved.axes):
+        cell = d.cells[member.cell]
+        outline = tuple(d.vertices[i] for i in cell.corners)
+        base = next(i for i in range(4) if abs(outline[(i + 1) % 4][axis] - outline[i][axis]) > EPS)
+        v = tuple((base + i) % 4 for i in range(4))
+        vertices = [RoofVertex(p, "corner", BoundaryPoint(i, 0), (member.cell,)) for i, p in enumerate(outline)]
+        for edge in ((base + 1) % 4, (base + 3) % 4):
+            a, b = outline[edge], outline[(edge + 1) % 4]
+            vertices.append(RoofVertex(tuple((a[k] + b[k]) / 2 for k in (0, 1)), "ridge_end", BoundaryPoint(edge, .5), (member.cell,)))
+        result.append(MemberTemplate(
+            tuple(vertices),
+            (RoofFace((v[0], v[1], 4, 5), (member.cell,), (base,)),
+             RoofFace((4, v[2], v[3], 5), (member.cell,), ((base + 2) % 4,))),
+            tuple(RoofEdge(_key(i, (i + 1) % 4), (), "eave", None) for i in (base, (base + 2) % 4)),
+        ))
+    return tuple(result)
 
 
 def cell_primitives(decomposition, roof_type="gable", *, axes=None):
@@ -178,7 +241,12 @@ def cell_primitives(decomposition, roof_type="gable", *, axes=None):
     )
 
 
-def compose(decomposition, roof_type="gable", *, axes=None, shed_edge=None):
+def compose(resolved, roof_type="gable", *, shed_edge=None):
+    from .architecture import ResolvedArchitecture
+    if not isinstance(resolved, ResolvedArchitecture):
+        raise TypeError("composition requires resolved architectural authority")
+    decomposition = resolved.decomposition
+    axes = resolved.axes
     fp = decomposition.footprint
     if roof_type == "flat":
         # Flat has one coplanar exterior cycle. Neither artificial cuts nor
@@ -211,16 +279,21 @@ def compose(decomposition, roof_type="gable", *, axes=None, shed_edge=None):
             shed_edge=shed_edge,
             ridge_axis=None if axes is None or roof_type != "gable" else axes[0],
         )
-        return Composition(g, (g,), ())
+        return primitive_composition(g)
     if roof_type != "gable":
         raise UnsupportedRoofError(
             "multi-cell composition currently supports gable only"
         )
-    primitives = cell_primitives(decomposition, axes=axes)
-    relations = plan(decomposition, primitives)
-    if any(r.kind == "terminal" for r in relations):
-        return _terminals(decomposition, primitives, relations)
-    return _middle(decomposition, primitives, relations)
+    # The selected member directions determine local incidence. No independent
+    # Cell RoofGraph is generated, validated or subsequently discarded here.
+    primitives = member_templates(resolved)
+    relations = plan(resolved, primitives)
+    composition = (_terminals if any(r.kind == "terminal" for r in relations) else _middle)(decomposition, primitives, relations)
+    owners = resolved.owners
+    return replace(composition, features=tuple(
+        replace(f, parts=tuple(sorted({owners[c] for c in f.members})))
+        for f in composition.features
+    ))
 
 
 def _middle(decomposition, primitives, relations):
@@ -302,17 +375,18 @@ def _middle(decomposition, primitives, relations):
             )
         )
     meanings = {}
+    features = {}
     host_ridge = tuple(maps[host][i] for i in host_caps)
     chain = (host_ridge[0], *equal, host_ridge[1])
     for a, b in zip(chain, chain[1:]):
-        meanings[_key(a, b)] = "ridge"
+        _declare(meanings, features, (a, b), "ridge", (host,))
     for relation in relations:
         branch = relation.branch
         junction = joints[branch]
         far = next(i for i in maps[branch] if i >= 4 and i != relation.branch_port)
-        meanings[_key(junction, maps[branch][far])] = "ridge"
+        _declare(meanings, features, (junction, maps[branch][far]), "ridge", (host, branch), tuple(sorted((host, branch))), "middle")
         for corner in relation.shared:
-            meanings[_key(junction, corner)] = "valley"
+            _declare(meanings, features, (junction, corner), "valley", (host, branch), tuple(sorted((host, branch))), "middle")
     faces = []
     allowed_eaves = []
     for cell, primitive in enumerate(primitives):
@@ -390,7 +464,7 @@ def _middle(decomposition, primitives, relations):
         )
         for r in relations
     )
-    return Composition(graph, primitives, connections)
+    return Composition(graph, (), connections, tuple(features[k] for k in sorted(features)))
 
 
 def _terminals(decomposition, primitives, relations):
@@ -575,6 +649,7 @@ def _terminals(decomposition, primitives, relations):
         if v.role == "ridge_end"
     }
     meanings = {}
+    features = {}
     connections = []
     for r, _, reflex, outer, high, low, hj, bj, wider in corners:
         host_ends[r.host_port] = hj
@@ -583,11 +658,13 @@ def _terminals(decomposition, primitives, relations):
             for i, v in enumerate(primitives[r.branch].vertices)
             if v.role == "ridge_end" and i != r.branch_port
         )
-        meanings[_key(bj, bfar)] = "ridge"
-        meanings[_key(high, outer)] = "hip"
-        meanings[_key(low, reflex)] = "valley"
+        cause = (host, r.branch)
+        relation = tuple(sorted(cause))
+        _declare(meanings, features, (bj, bfar), "ridge", cause, relation, "terminal")
+        _declare(meanings, features, (high, outer), "hip", cause, relation, "terminal")
+        _declare(meanings, features, (low, reflex), "valley", cause, relation, "terminal")
         if high != low:
-            meanings[_key(high, low)] = "hip"
+            _declare(meanings, features, (high, low), "hip", cause, relation, "terminal")
         connections.append(
             RoofConnection(
                 host,
@@ -607,9 +684,11 @@ def _terminals(decomposition, primitives, relations):
             for i, v in enumerate(primitives[r.branch].vertices)
             if v.role == "ridge_end" and i != r.branch_port
         )
-        meanings[_key(joint, far)] = "ridge"
+        cause = (host, r.branch)
+        relation = tuple(sorted(cause))
+        _declare(meanings, features, (joint, far), "ridge", cause, relation, "middle")
         for corner in r.shared:
-            meanings[_key(joint, corner)] = "valley"
+            _declare(meanings, features, (joint, corner), "valley", cause, relation, "middle")
         connections.append(
             RoofConnection(
                 host,
@@ -621,7 +700,7 @@ def _terminals(decomposition, primitives, relations):
                 "middle",
             )
         )
-    meanings[_key(*host_ends.values())] = "ridge"
+    _declare(meanings, features, tuple(host_ends.values()), "ridge", (host,))
     incidence = defaultdict(list)
     for i, face in enumerate(faces):
         for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
@@ -647,7 +726,7 @@ def _terminals(decomposition, primitives, relations):
     graph = make_graph(
         fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"
     )
-    return Composition(graph, primitives, tuple(connections))
+    return Composition(graph, (), tuple(connections), tuple(features[k] for k in sorted(features)))
 
 
 def quadrilateral_graph(footprint, roof_type, *, eave=0):

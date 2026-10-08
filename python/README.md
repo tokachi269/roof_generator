@@ -13,6 +13,8 @@ python python/inspect_rectangular_partition.py --help
 python python/inspect_architectural_parts.py --help
 python python/inspect_roof.py --fixture cross --seed 7 --output python/out/cross.json
 python python/benchmark_generation.py --output python/out/performance.json
+python python/benchmark_generation.py --samples 3 --warmup 1 --buildings 24 --output python/out/authority/performance.json
+python python/benchmark_roof_mesh.py --samples 3 --buildings 24 --output python/out/authority/mesh-performance.json
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.3.0.zip --output-dir python/out/addon
 ```
 

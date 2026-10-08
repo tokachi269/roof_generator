@@ -48,99 +48,111 @@ class AttachmentPort:
         return asdict(self)
 
 
-def attachments(decomposition, primitives):
-    """Local candidates from complete end / partial side and exterior ownership.
+def attachments(resolved, primitives):
+    """Bind architecture-declared roles/kinds to complete local topology ports.
 
     A minimum subdivision may node one shared side into several atoms. Group
     those atoms by incident sides, requiring complete contiguous coverage.
-    No footprint class, largest-cell score or mesh/plane calculation is used.
+    Checks prove applicability; they never rediscover receiver/branch or kind.
     """
-    groups = defaultdict(list)
-    for adjacent in decomposition.adjacency:
-        key = tuple(sorted(zip(adjacent.cells, adjacent.sides)))
-        groups[key].append(adjacent.interval)
+    decomposition = resolved.decomposition
+    blockers = tuple(
+        GenerationIssue("relation", ("internal_" if resolved.internal(r) else "inter_part_") + r.options[0].kind, r.cells)
+        for r in resolved.relations if r.options[0].kind not in {"corner", "side_attachment"}
+    )
+    if blockers:
+        raise UnsupportedRoofError("no implemented architecture template for " + blockers[0].code, issues=blockers)
     nodes = decomposition.vertices
     candidates = []
-    for sides, atoms in sorted(groups.items()):
-        for (host, hs), (branch, bs) in (sides, sides[::-1]):
-            hc, bc = decomposition.cells[host], decomposition.cells[branch]
-            hside, bside = hc.sides[hs], bc.sides[bs]
-            branch_port = port(primitives[branch], bs)
-            if branch_port is None or any(
-                side.artificial for i, side in enumerate(bc.sides) if i != bs
-            ):
-                continue  # This operation consumes a leaf's complete end.
-            if not any(
-                e.vertices == tuple(sorted((hs, (hs + 1) % 4))) and e.kind == "eave"
-                for e in primitives[host].edges
-            ):
+    for relation in resolved.relations:
+        option = relation.options[0]
+        atoms = relation.intervals
+        host, branch = option.receiver, option.branch
+        hs = relation.sides[relation.cells.index(host)]
+        bs = relation.sides[relation.cells.index(branch)]
+        hc, bc = decomposition.cells[host], decomposition.cells[branch]
+        hside, bside = hc.sides[hs], bc.sides[bs]
+        branch_port = port(primitives[branch], bs)
+        if branch_port is None or any(
+            side.artificial for i, side in enumerate(bc.sides) if i != bs
+        ):
+            continue  # This operation consumes a leaf's complete end.
+        if not any(
+            e.vertices == tuple(sorted((hs, (hs + 1) % 4))) and e.kind == "eave"
+            for e in primitives[host].edges
+        ):
+            continue
+        a, b = (nodes[i] for i in hside.vertices)
+        axis = sub(b, a)
+        size = math.hypot(*axis)
+        parameter = (
+            lambda i: sum(x * y for x, y in zip(sub(nodes[i], a), axis)) / size
+        )
+        intervals = sorted(tuple(sorted(map(parameter, atom))) for atom in atoms)
+        end = tuple(sorted(map(parameter, bside.vertices)))
+        if (
+            abs(intervals[0][0] - end[0]) > EPS
+            or abs(intervals[-1][1] - end[1]) > EPS
+            or any(abs(x[1] - y[0]) > EPS for x, y in zip(intervals, intervals[1:]))
+            or end[0] < -EPS
+            or end[1] > size + EPS
+            or end[1] - end[0] >= size - EPS
+        ):
+            continue
+        shared = tuple(sorted(bside.vertices, key=parameter))
+        touching = set(shared).intersection(hside.vertices)
+        host_port = None
+        if option.kind == "corner" and len(touching) == 1:
+            cut = next(iter(touching))
+            reflex = next(i for i in shared if i != cut)
+            near = (hs - 1) % 4 if cut == hside.vertices[0] else (hs + 1) % 4
+            host_port = port(primitives[host], near)
+            if host_port is None or reflex not in decomposition.footprint.reflex:
                 continue
-            a, b = (nodes[i] for i in hside.vertices)
-            axis = sub(b, a)
-            size = math.hypot(*axis)
-            parameter = (
-                lambda i: sum(x * y for x, y in zip(sub(nodes[i], a), axis)) / size
+            outer = next(i for i in hc.sides[near].vertices if i != cut)
+            bi = bc.corners.index(cut)
+            other = next(
+                i
+                for i in (bc.corners[(bi - 1) % 4], bc.corners[(bi + 1) % 4])
+                if i not in shared
             )
-            intervals = sorted(tuple(sorted(map(parameter, atom))) for atom in atoms)
-            end = tuple(sorted(map(parameter, bside.vertices)))
-            if (
-                abs(intervals[0][0] - end[0]) > EPS
-                or abs(intervals[-1][1] - end[1]) > EPS
-                or any(abs(x[1] - y[0]) > EPS for x, y in zip(intervals, intervals[1:]))
-                or end[0] < -EPS
-                or end[1] > size + EPS
-                or end[1] - end[0] >= size - EPS
-            ):
+            if not on_segment(nodes[cut], nodes[outer], nodes[other]):
                 continue
-            shared = tuple(sorted(bside.vertices, key=parameter))
-            touching = set(shared).intersection(hside.vertices)
-            host_port = None
-            if len(touching) == 1:
-                cut = next(iter(touching))
-                reflex = next(i for i in shared if i != cut)
-                near = (hs - 1) % 4 if cut == hside.vertices[0] else (hs + 1) % 4
-                host_port = port(primitives[host], near)
-                if host_port is None or reflex not in decomposition.footprint.reflex:
-                    continue
-                outer = next(i for i in hc.sides[near].vertices if i != cut)
-                bi = bc.corners.index(cut)
-                other = next(
-                    i
-                    for i in (bc.corners[(bi - 1) % 4], bc.corners[(bi + 1) % 4])
-                    if i not in shared
-                )
-                if not on_segment(nodes[cut], nodes[outer], nodes[other]):
-                    continue
-                kind = "terminal"
-            elif not touching and all(
-                i in decomposition.footprint.reflex for i in shared
-            ):
-                kind = "middle"
-            else:
-                continue
-            # Rectangle gable caps imply perpendicular ridge axes here. Width
-            # is transverse to each ridge, not area or the long-axis heuristic.
-            width_side = hc.sides[(hs + 1) % 4]
-            candidates.append(
-                AttachmentPort(
-                    host,
-                    branch,
-                    hs,
-                    bs,
-                    shared,
-                    branch_port,
-                    host_port,
-                    kind,
-                    math.dist(*(nodes[i] for i in width_side.vertices)),
-                    math.dist(*(nodes[i] for i in bside.vertices)),
-                )
+            kind = "terminal"
+        elif option.kind == "side_attachment" and not touching and all(
+            i in decomposition.footprint.reflex for i in shared
+        ):
+            kind = "middle"
+        else:
+            continue
+        # Rectangle gable caps imply perpendicular ridge axes here. Width
+        # is transverse to each ridge, not area or the long-axis heuristic.
+        width_side = hc.sides[(hs + 1) % 4]
+        candidates.append(
+            AttachmentPort(
+                host,
+                branch,
+                hs,
+                bs,
+                shared,
+                branch_port,
+                host_port,
+                kind,
+                *option.widths,
             )
+        )
+    if len(candidates) != len(resolved.relations):
+        raise UnsupportedRoofError(
+            "declared architecture lacks a complete applicable port arrangement",
+            issues=(GenerationIssue("junction", "attachment_applicability"),),
+        )
     return tuple(candidates)
 
 
-def plan(decomposition, primitives):
+def plan(resolved, primitives):
     """Recognize the whole arrangement; never apply a sequence of pairwise merges."""
-    relations = attachments(decomposition, primitives)
+    decomposition = resolved.decomposition
+    relations = attachments(resolved, primitives)
     if len(decomposition.cells) == 2 and len(relations) == 1:
         relation = relations[0]
         if relation.kind == "terminal":

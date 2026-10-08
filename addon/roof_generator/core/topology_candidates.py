@@ -7,10 +7,10 @@ import math
 from .errors import UnsupportedRoofError, GenerationIssue
 from .solve import problem, GeometryProblem
 from .initialization import _valid_drawing
-from .architecture import Analysis
+from .architecture import resolve
 from .architecture_selection import evaluate
 from .seed import derive, choose, point_identity
-from .topology import compose, Composition, quadrilateral_graph
+from .topology import compose, Composition, quadrilateral_graph, primitive_composition
 from .architecture_models import ArchitecturalPartGraph
 
 
@@ -24,7 +24,7 @@ class TopologyCandidate:
     score: int
 
     def __post_init__(self):
-        _validate(self.architecture, self.composition, self.geometry)
+        _validate(self.architecture, self.composition, self.geometry, self.axes)
 
     @property
     def graph(self):
@@ -40,11 +40,31 @@ class Rejection:
 
 
 @dataclass(frozen=True)
+class ArchitecturalChoice:
+    partition: str
+    axes: tuple[int, ...]
+    score: int
+
+
+@dataclass(frozen=True)
 class TopologyCandidates:
     valid: tuple[TopologyCandidate, ...]
     rejected: tuple[Rejection, ...]
     complete: bool
     reason: str | None = None
+    architectural: tuple[ArchitecturalChoice, ...] = ()
+    constructible: tuple[TopologyCandidate, ...] = ()
+
+    def inspect_ranking(self):
+        best = max((c.score for c in self.architectural), default=None)
+        return {
+            "architectural_preferred_assignments": [c.__dict__ for c in self.architectural if c.score == best],
+            "architectural_assignment_count": len(self.architectural),
+            "constructible_candidate_ids": [c.id for c in self.constructible],
+            "selectable_candidate_ids": [c.id for c in self.valid],
+            "complete": self.complete,
+            "selection_rule": "best architectural score among constructible candidates, then seed",
+        }
 
     def select(self, seed=0):
         if not self.complete or not self.valid:
@@ -98,39 +118,21 @@ def _candidate_id(architecture, composition, axes, identity):
     )
 
 
-def _resolved_analysis(architecture, axes):
-    relations = []
-    issues = []
-    reasons = []
-    for relation in architecture.relations:
-        assignment = tuple(axes[c] for c in relation.cells)
-        options = tuple(o for o in relation.options if o.axes == assignment)
-        if len(options) != 1:
-            issues.append(
-                GenerationIssue("relation", "unresolved_relation", relation.cells)
-            )
-            reasons.append(
-                "member axis assignment does not resolve a unique local relation"
-            )
-        elif options[0].kind in {"parallel", "partial_end", "continuation"}:
-            issues.append(GenerationIssue("relation", options[0].kind, relation.cells))
-            reasons.append(
-                "no published implemented port operation for " + options[0].kind
-            )
-        else:
-            relations.append(replace(relation, options=options))
-    if issues:
-        # Record every independent local blocker. The first message is retained
-        # for concise errors; diagnostics do not stop at the first relation.
-        raise UnsupportedRoofError(reasons[0], issues=issues)
-    # Reject undefined port relations before allocating a resolved member graph.
-    # This changes no rejection rule, order, candidate or incidence.
-    members = tuple(replace(m, axes=(axes[m.cell],)) for m in architecture.members)
-    return Analysis(members, tuple(relations))
 
-
-def _validate(architecture, composition, geometry):
+def _validate(architecture, composition, geometry, axes):
     graph = composition.graph
+    owners = {c: p.id for p in architecture.parts for c in p.cells}
+    relations = {r.cells: r for r in (resolve(architecture, axes).relations if axes else architecture.relations)}
+    for feature in composition.features:
+        if feature.parts != tuple(sorted({owners[c] for c in feature.members})):
+            raise UnsupportedRoofError("feature cause changes architectural part ownership")
+        if feature.relation is not None:
+            relation = relations.get(feature.relation)
+            kind = "corner" if feature.operation == "terminal" else "side_attachment"
+            if relation is None or len(relation.options) != 1 or relation.options[0].kind != kind:
+                raise UnsupportedRoofError("feature cause is absent from architectural relations")
+            if not any(tuple(sorted((c.host, c.branch))) == feature.relation and c.kind == feature.operation for c in composition.connections):
+                raise UnsupportedRoofError("feature cause lacks its declared roof connection")
     if set(c for f in graph.faces for c in f.cells) != {
         m.cell for m in architecture.members
     }:
@@ -207,6 +209,7 @@ def build_candidates(
         return TopologyCandidates((), (), False, recommendation.search.reason)
     valid = {}
     rejected = []
+    architectural = []
     work = 0
     for _, architecture in recommendation.retained:
         d = architecture.decomposition
@@ -224,13 +227,15 @@ def build_candidates(
                     tuple(rejected),
                     False,
                     "topology axis-assignment budget exhausted",
+                    tuple(architectural),
+                    tuple(valid[k] for k in sorted(valid)),
                 )
             work += 1
             stage = "relation"
             try:
                 if roof_type == "gable":
-                    resolved = _resolved_analysis(architecture, axes)
-                    evaluation = evaluate(d, resolved, recommendation.policy)
+                    resolved = resolve(architecture, axes)
+                    evaluation = evaluate(d, resolved.analysis(), recommendation.policy)
                     if evaluation.score[0] != evaluation.score[1]:
                         raise UnsupportedRoofError(
                             "resolved axes still have an uncertain evaluation"
@@ -238,6 +243,8 @@ def build_candidates(
                     score = evaluation.score[0]
                 else:
                     score = 0
+                    resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+                architectural.append(ArchitecturalChoice(partition_key, tuple(axes), score))
                 shed_edge = None
                 if roof_type == "shed" and len(d.cells) == 1:
                     # The declared reference frame fixes directional intent;
@@ -257,7 +264,7 @@ def build_candidates(
                     )
                 stage = "composition"
                 composition = compose(
-                    d, roof_type, axes=axes or None, shed_edge=shed_edge
+                    resolved, roof_type, shed_edge=shed_edge
                 )
                 stage = "geometry_problem"
                 geometry = problem(
@@ -287,6 +294,8 @@ def build_candidates(
             if retained
             else "all architectural assignments lack a valid implemented roof topology"
         ),
+        tuple(architectural),
+        tuple(valid[k] for k in sorted(valid)),
     )
 
 
@@ -321,7 +330,7 @@ def _quadrilateral_candidates(
         for eave in eaves:
             try:
                 graph = quadrilateral_graph(fp, roof_type, eave=eave)
-                composition = Composition(graph, (), ())
+                composition = primitive_composition(graph)
                 geometry = problem(graph, pitch, eave_height / fp.frame.scale)
                 stable_id = _candidate_id(architecture, composition, (), identity)
                 valid[stable_id] = TopologyCandidate(
@@ -341,4 +350,6 @@ def _quadrilateral_candidates(
         tuple(rejected),
         recommendation.search.complete,
         None if valid else "no valid nonorthogonal primitive",
+        (),
+        tuple(valid[k] for k in sorted(valid)),
     )

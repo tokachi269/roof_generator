@@ -224,7 +224,7 @@ class CellRecordTests(unittest.TestCase):
 
     def test_generic_two_cell_partition_supplies_existing_terminal_graft(self):
         from roof_generator.core.cells import decompose
-        from roof_generator.core.topology import compose
+        from python.tests.architecture_setup import compose
         from python.tests.test_cells import L
         from python.tests.test_terminal_connection import assert_terminal
 

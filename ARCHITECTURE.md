@@ -92,6 +92,30 @@ coordinate initializer, distinct from the integer/string generation seed.
 
 ## Candidate validity and selection
 
+Composition receives a `ResolvedArchitecture`, including the selected member
+directions, explicit local combinations and Part ownership. Decomposition is
+retained for coordinates and provenance; it is not a roof parts list.
+Compound composition binds declared combinations to graphless member port/cycle
+templates, then assembles the final graph. `cell_primitives()` is a developer
+inspection facility; production compound composition never generates Cell roofs.
+Internal corner combinations still require a local junction; Part grouping does
+not by itself define a one-ridge roof. Internal continuation/parallel/partial-end
+and inter-Part contacts are diagnosed separately and remain unsupported where no
+architectural template has been specified. The solver does not choose templates.
+
+Every internal feature in `Composition.features` records its declared member
+axis/template or relation/operation cause at construction, plus Part ownership.
+The graph and solver stay free of inspection metadata. Inspection exposes
+architecturally preferred assignments, all constructible candidates and final
+seedable ties separately. Adding an implementation can expand the selection set
+without changing architectural scores; historical seeded output can consequently
+change when the set expands.
+
+Before adding nonorthogonal compound input, introduce decomposition backend
+ownership: an orthogonal minimum-rectangle backend and a separate nonorthogonal
+backend behind decomposition candidates. The current explicit convex-quad branch
+does not justify proliferating polygon-type branches in `partition_candidates.py`.
+
 The public coordinate entry points are `prepare_generation(points, settings)`
 for the selected fixed-topology GeometryProblem and `generate_roof(points,
 settings)` for a supported solved mesh. A `Generation` retains all valid ties

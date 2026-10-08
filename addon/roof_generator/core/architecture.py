@@ -2,7 +2,7 @@
 """Published end/side combinations and compound units, before roof topology."""
 
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from itertools import product
 import math
 from .footprint import EPS, area
@@ -15,12 +15,72 @@ from .architecture_models import (
     Issue,
     ArchitecturalPartGraph,
 )
+from .errors import UnsupportedRoofError, GenerationIssue
 
 
 @dataclass(frozen=True)
 class Analysis:
     members: tuple[ArchitecturalMember, ...]
     relations: tuple[PartRelation, ...]
+
+
+@dataclass(frozen=True)
+class ResolvedArchitecture:
+    """Selected member directions and combinations; composition reads these."""
+
+    architecture: ArchitecturalPartGraph
+    axes: tuple[int, ...]
+    relations: tuple[PartRelation, ...]
+
+    def __post_init__(self):
+        graph = self.architecture
+        if len(self.axes) != len(graph.members) or any(
+            axis not in member.axes for member, axis in zip(graph.members, self.axes)
+        ):
+            raise UnsupportedRoofError("resolved direction contradicts member domain")
+        if len(self.relations) != len(graph.relations):
+            raise UnsupportedRoofError("resolved architecture loses relations")
+        for source, relation in zip(graph.relations, self.relations):
+            assignment = tuple(self.axes[c] for c in source.cells)
+            options = tuple(o for o in source.options if o.axes == assignment)
+            if len(options) != 1 or relation != replace(source, options=options):
+                raise UnsupportedRoofError("resolved architecture changes a combination")
+
+    @property
+    def decomposition(self):
+        return self.architecture.decomposition
+
+    @property
+    def owners(self):
+        return tuple(
+            next(p.id for p in self.architecture.parts if m.cell in p.cells)
+            for m in self.architecture.members
+        )
+
+    def internal(self, relation):
+        owners = self.owners
+        return owners[relation.cells[0]] == owners[relation.cells[1]]
+
+    def analysis(self):
+        return Analysis(
+            tuple(replace(m, axes=(self.axes[m.cell],)) for m in self.architecture.members),
+            self.relations,
+        )
+
+
+def resolve(architecture, axes):
+    """Resolve ambiguity, without consulting implementation availability."""
+    relations = []
+    for relation in architecture.relations:
+        assignment = tuple(axes[c] for c in relation.cells)
+        options = tuple(o for o in relation.options if o.axes == assignment)
+        if len(options) != 1:
+            raise UnsupportedRoofError(
+                "member axis assignment does not resolve a unique local relation",
+                issues=(GenerationIssue("relation", "unresolved_relation", relation.cells),),
+            )
+        relations.append(replace(relation, options=options))
+    return ResolvedArchitecture(architecture, tuple(axes), tuple(relations))
 
 
 def analyze_parts(d):

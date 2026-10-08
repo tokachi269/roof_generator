@@ -31,6 +31,7 @@ def inspect(record, seed=0, roof_type="gable"):
         "roof_type": roof_type,
         "partitions": search.inspect(),
         "architecture": interpretation.inspect(),
+        "ranking": pool.inspect_ranking(),
         "valid_candidates": [
             {
                 "id": c.id,
@@ -39,6 +40,7 @@ def inspect(record, seed=0, roof_type="gable"):
                 "partition": c.architecture.decomposition.inspect(),
                 "architectural_parts": c.architecture.inspect(),
                 "graph": c.graph.inspect(),
+                "composition": c.composition.inspect(),
                 "geometry_problem": asdict(c.geometry),
             }
             for c in pool.valid

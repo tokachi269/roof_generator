@@ -22,6 +22,7 @@ from roof_generator.core.cells import decompose
 from roof_generator.core.topology import compose, cell_primitives
 from roof_generator.core.junctions import attachments
 from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.core.architecture import interpret, resolve
 from roof_generator.core.solve import problem
 
 
@@ -30,7 +31,12 @@ def inspect(record):
     d = decompose(fp)
     roof_type = record.get("roof_type", "gable")
     primitives = cell_primitives(d, roof_type)
-    candidates = attachments(d, primitives) if roof_type == "gable" else ()
+    architecture = interpret(d)
+    resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+    try:
+        candidates = attachments(resolved, primitives) if roof_type == "gable" else ()
+    except UnsupportedRoofError:
+        candidates = ()
     document = {
         "schema": 2,
         "scope": "one fixed partition and primitive orientation, not canonical candidate support",
@@ -55,7 +61,7 @@ def inspect(record):
         "solver_status": "no nonlinear solve",
     }
     try:
-        c = compose(d, roof_type)
+        c = compose(resolved, roof_type)
     except UnsupportedRoofError as exc:
         document["reason"] = str(exc)
     else:

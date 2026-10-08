@@ -58,7 +58,8 @@ class TopologyCandidateProof(unittest.TestCase):
         self.assertTrue(any(len(r.issues) > 1 for r in relation_failures))
         self.assertTrue(all(i.cells for r in relation_failures for i in r.issues))
         codes = {i.code for r in relation_failures for i in r.issues}
-        self.assertTrue({"parallel", "partial_end"} <= codes)
+        self.assertTrue(all(code.startswith(("internal_", "inter_part_")) for code in codes))
+        self.assertTrue({"parallel", "partial_end"} <= {code.removeprefix("internal_").removeprefix("inter_part_") for code in codes})
         u = pool(fixture("orthogonal_U")["footprint"])
         self.assertEqual({i.stage for r in u.rejected for i in r.issues}, {"junction"})
 

@@ -12,7 +12,7 @@ from roof_generator.core.generation import (
     prepare_generation,
     GenerationSettings,
 )
-from roof_generator.core.topology import compose
+from python.tests.architecture_setup import compose
 from roof_generator.core.errors import UnsupportedRoofError
 
 
@@ -128,7 +128,8 @@ class MixedAttachmentProof(unittest.TestCase):
         # Some alternate partitions can have another justified interpretation;
         # inspect the explicit mixed operation, rather than assuming a shape
         # can never be roofed.
-        from roof_generator.core.junctions import _mixed_plan, attachments
+        from roof_generator.core.junctions import _mixed_plan
+        from python.tests.architecture_setup import fixed_port_fixture as attachments
         from roof_generator.core.topology import cell_primitives
         from roof_generator.core.partition_candidates import candidates
         from roof_generator.core.footprint import analyze
