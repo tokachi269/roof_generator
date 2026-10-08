@@ -7,7 +7,8 @@ from .grid_footprints import outline
 
 def buildings(count=100, seed=4107):
     rng = random.Random(seed)
-    for _ in range(count):
+    seen = set()
+    while len(seen) < count:
         width = rng.randrange(4, 9)
         parts = []
         x = rng.randrange(1, 4)
@@ -27,8 +28,12 @@ def buildings(count=100, seed=4107):
                 range(width, width + extension) if side == 1 else range(-extension, 0)
             )
             cells.update((x, y) for x in range(a, b) for y in rows)
+        footprint = outline(cells)
+        if footprint in seen:
+            continue
+        seen.add(footprint)
         yield {
-            "footprint": outline(cells),
+            "footprint": footprint,
             "body": (length, width),
             "branches": tuple(parts),
         }

@@ -154,6 +154,7 @@ partition's roof-independent contract.
 ```bash
 python python/inspect_roof_composition.py --fixture orthogonal_T
 python python/inspect_roof_composition.py --input footprint.json --output python/out/composition/building.json
+python python/benchmark_roof_composition.py --samples 101 --warmup 5 --buildings 1000
 ```
 
 Read [the research reassessment](docs/ROOF_COMPOSITION_RESEARCH.md) for the
@@ -165,3 +166,7 @@ final retained ridge/valley/hip/junctions. Unsupported inspection writes an
 explicit reason with no final graph and exits 2. Independent gables are never
 returned as a fallback. XY is a drawing seed; this does not solve a multi-cell
 roof or generate its final Blender mesh. Nonlinear solving remains separate.
+The composition benchmark calls the unchanged graph-first stage harness; it
+records explicit unsupported cases and an uncached batch in the supported
+longitudinal-main/separated-narrow-branch domain. It does not measure final
+Blender object or multi-cell mesh throughput.
