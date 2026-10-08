@@ -13,25 +13,29 @@ candidates; unsupported topology produces an explicit error.
 | --- | --- |
 | Rectangle, including rotation and square | Gable, hip, shed or flat mesh |
 | Hole-free simple orthogonal polygon, including concave outlines | One unified flat roof face |
-| Supported terminal/middle gable attachments, disjoint narrow branches, coincident opposite equal-width ports | RoofGraph candidates and a fixed-topology GeometryProblem; compound pitched mesh solve is not implemented |
+| Supported terminal/middle gable attachments, separated mixed ports, compatible equal-width cross ports | One solved, planar compound gable mesh |
+| Convex parallelogram, trapezoid or general quadrilateral | Gable, shed or flat mesh; gable directions vary by seed |
 
-Arbitrary compound gable/hip/shed roofs and non-orthogonal quadrilateral
-partitioning are unsupported. Holes, touching/self-intersecting boundaries,
+Arbitrary compound gable/hip/shed roofs, nonrectangular hip primitives and
+non-orthogonal concave decomposition are unsupported. Holes, touching/self-intersecting boundaries,
 nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
 intentional perimeter boundary; walls and thickness are separate modeling tasks.
 
-Distinct receiver-end terminal attachments, including the U fixture, compose
-into one gable RoofGraph. The [support audit](python/docs/RELATION_TOPOLOGY_SUPPORT.md)
-reports all candidate rejection causes separately from final mesh capabilities.
-Parallel, offset/width-step continuation and partial-end contacts still require
-implemented topology operations.
+Distinct receiver-end and separated middle attachments compose simultaneously.
+The [staged coverage report](python/docs/END_TO_END_EVALUATION.md) separates
+RoofGraph availability from actual solve, validated mesh and Blender conversion.
+Connected-grid stress is one corpus, not overall coverage. Parallel, offset/
+width-step continuation and partial-end contacts remain explicit research limits.
 
 ## Installation and use
 
-1. Download [`roof_generator-1.2.0.zip`](packages/roof_generator-1.2.0.zip) with **Download raw file**.
+1. Download [`roof_generator-1.3.0.zip`](packages/roof_generator-1.3.0.zip) with **Download raw file**.
 2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
 3. Select filled planar footprint meshes in Object Mode.
 4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
+
+To replace an existing installation, remove the addon in Preferences before
+installing the ZIP; Blender's overwrite installation can retain removed files.
 
 No pip installation or third-party wheels are needed. Output is one ordinary mesh
 object per footprint, with shared vertices, UVs, material and `roof_cell_i` /
@@ -50,13 +54,13 @@ symmetric outlines.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md), and
-[canonical measurements](python/docs/CANONICAL_EVALUATION.md).
+[canonical measurements](python/docs/END_TO_END_EVALUATION.md).
 
 ```bash
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.2.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.3.0.zip
 ```
 
 `addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains

@@ -8,12 +8,12 @@ oracles only; Blender installs the ZIP without pip or external wheels.
 python -m pip install -r python/requirements.txt
 python -m unittest discover -s python/tests
 python python/build_addon.py
-python python/build_addon.py --check --output packages/roof_generator-1.2.0.zip
+python python/build_addon.py --check --output packages/roof_generator-1.3.0.zip
 python python/inspect_rectangular_partition.py --help
 python python/inspect_architectural_parts.py --help
 python python/inspect_roof.py --fixture cross --seed 7 --output python/out/cross.json
 python python/benchmark_generation.py --output python/out/performance.json
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.2.0.zip --output-dir python/out/addon
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.3.0.zip --output-dir python/out/addon
 ```
 
 `inspect_roof.py` reports all validated alternatives, rejected assignments,
@@ -35,8 +35,9 @@ problem = prepare_generation(((0, 0), (12, 0), (12, 6), (0, 6)), settings).geome
 
 Mesh coordinates are in the normalized intrinsic frame. Use the generation's
 `footprint.frame.world_xyz` to return to input units. The Blender adapter supplies
-its own metric plane frame. Compound pitched graphs may have a GeometryProblem
-without a supported mesh solve; `generate_roof` then raises `UnsupportedRoofError`.
+its own metric plane frame. Supported compound gable graphs use fixed-topology
+covariance embedding; general convex quadrilaterals use the same solve/mesh
+contracts. Unsupported incidence or failed convergence raises `UnsupportedRoofError`.
 
 Proofs cover minimum certificates, independent small-polygon/exact-cover
 oracles, hundreds of unknown connected-grid shapes, Cell coverage/provenance,
@@ -59,3 +60,20 @@ python python/audit_roof_support.py --corpus python/out/support/corpus.json --ou
 interpretations and the supported unified RoofGraph. `inspect_junctions.py`
 inspects one fixed minimum partition/orientation only, so its rejection is not a
 whole-footprint support verdict. See [relation audit and scope](docs/RELATION_TOPOLOGY_SUPPORT.md).
+
+
+Staged fixed-corpus coverage and independent Blender conversion:
+
+```bash
+python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --output python/out/coverage.json --details python/out/coverage.jsonl.gz
+blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-coverage.json
+python python/benchmark_roof_mesh.py --output python/out/core-budget.json
+python python/profile_partitions.py --output python/out/partition-profile.json
+```
+
+Grid stress, nonuniform orthogonal, structured orthogonal, convex quad, structured
+oblique and general polygon probe results are separate. The additional
+`branch_network_inputs_v1.json.gz` proves separated terminal/middle operations.
+See [current results](docs/END_TO_END_EVALUATION.md),
+[solver contract](docs/SGA21_SOLVER.md), and
+[nonorthogonal boundary](docs/NON_ORTHOGONAL.md).

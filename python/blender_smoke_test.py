@@ -81,7 +81,7 @@ def render(output):
     bpy.context.object.data.size = 60
     scene = bpy.context.scene
     scene.render.engine = "BLENDER_EEVEE_NEXT"
-    scene.eevee.taa_render_samples = 16
+    scene.eevee.taa_render_samples = 64
     scene.render.resolution_x = 1000
     scene.render.resolution_y = 700
     scene.render.resolution_percentage = 100
@@ -159,12 +159,32 @@ def main():
             "gable",
         )
     )
+    fixtures.append(
+        (
+            "mixed_branch_network",
+            (
+                (0, 0),
+                (32, 0),
+                (32, 6),
+                (20, 6),
+                (20, 14),
+                (16, 14),
+                (16, 6),
+                (4, 6),
+                (4, 14),
+                (0, 14),
+            ),
+            "gable",
+        )
+    )
     for record in acceptance:
         if record["name"] in {"parallelogram", "trapezoid", "general_convex_quad"}:
             fixtures.append((record["name"], record["footprint"], "gable"))
     for i, (name, points, kind) in enumerate(fixtures):
         src = source(name, points)
-        src.location = (i % 3 * 21, i // 3 * 20, 3)
+        # Exhibit spacing must accommodate the 32-unit branch network; source
+        # geometry must not overlap another case and create render z-fighting.
+        src.location = (i % 3 * 40, i // 3 * 30, 3)
         if i == 1:
             src.rotation_euler = (0.22, -0.17, 0.63)
             src.scale = (1.2, 0.8, 1.1)
@@ -190,7 +210,7 @@ def main():
         )
     # Real mesh variation: square gable axes, with the same source-local frame.
     square = source("square", ((0, 0), (7, 0), (7, 7), (0, 7)))
-    square.location = (42, 20, 3)
+    square.location = (0, 120, 3)
     bpy.context.view_layer.update()
     ids = {}
     roof_objects = []

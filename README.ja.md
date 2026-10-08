@@ -12,23 +12,27 @@ coreは最小矩形分割、建築的なpart解釈、検証済みのindexed Roof
 | --- | --- |
 | 長方形（回転・正方形を含む） | gable・hip・shed・flatのmesh |
 | 穴なしsimple直交polygon（concaveを含む） | 一体のflat屋根face |
-| 対応するterminal/middle gable接続、干渉しない細いbranch、対向する同位置・等幅port | RoofGraph候補とtopology固定のGeometryProblem。複合傾斜屋根のmesh solveは未実装 |
+| 対応するterminal/middle接続、干渉しない混合port、互換な等幅cross port | solve済みの一体・planarな複合gable mesh |
+| 凸の平行四辺形・台形・一般四辺形 | gable・shed・flat mesh。gable方向はseedで選択 |
 
-任意の複合gable/hip/shed屋根と非直交四辺形の分割は未対応です。
+任意の複合gable/hip/shed屋根、非矩形hip、非直交concaveの分割は未対応です。
 穴、接触・自己交差した境界、非平面入力、探索未完了も明示的に失敗します。
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
-異なるhost端へ付く複数terminalを一括接続でき、U fixtureも一体のgable RoofGraphになります。
-[対応率の集計](python/docs/RELATION_TOPOLOGY_SUPPORT.md)では、全candidateのreject理由と
-最終meshの対応範囲を分けて示しています。parallel、幅違い・軸ずれcontinuation、
-partial-endのtopology操作は未実装です。
+異なるhost端のterminalと、干渉しないmiddleを一括接続できます。
+[段階別coverage](python/docs/END_TO_END_EVALUATION.md)でRoofGraph、solve、mesh、
+実際のBlender変換を分けて報告します。grid stress corpusは全体coverageではありません。
+parallel、幅違い・軸ずれcontinuation、partial-endは明示的な研究・対応限界として残ります。
 
 ## インストールと使い方
 
-1. [`roof_generator-1.2.0.zip`](packages/roof_generator-1.2.0.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.3.0.zip`](packages/roof_generator-1.3.0.zip) を **Download raw file** で保存します。
 2. **Edit → Preferences → Add-ons → Install from Disk**でインストールし、**Roof Generator**を有効にします。
 3. Object Modeで、面を張った平面footprint meshを選択します。
 4. サイドバー（**N**）→ **Roof**で屋根種別、勾配、軒高offset、seedを設定し、**Generate roofs**を押します。
+
+インストール済みのaddonを置き換える場合は、Preferencesで削除してからZIPを
+インストールしてください。Blenderの上書きインストールでは不要なファイルが残る場合があります。
 
 pipや外部wheelの導入は不要です。footprintごとに共有頂点・UV・マテリアルと
 `roof_cell_i` / `roof_feature_i`のprovenance属性を持つ通常mesh objectを出力します。
@@ -45,13 +49,13 @@ pipや外部wheelの導入は不要です。footprintごとに共有頂点・UV�
 現在の構成は [ARCHITECTURE.md](ARCHITECTURE.md)、ツールとテストは
 [python/README.md](python/README.md)、研究との対応は
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md)、実測は
-[canonical measurements](python/docs/CANONICAL_EVALUATION.md)を参照してください。
+[canonical measurements](python/docs/END_TO_END_EVALUATION.md)を参照してください。
 
 ```bash
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.2.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.3.0.zip
 ```
 
 `addon/roof_generator/core/`が生成pipelineを所有します。Blender adapterは
