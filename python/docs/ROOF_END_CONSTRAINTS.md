@@ -26,9 +26,13 @@ interior T/Cross and separated middle slots keep their previous incidence
 contracts.
 
 Laycock aggregation/merge remains mapped in
-[the prior research document](ROOF_COMPOSITION_RESEARCH.md). The original paper
-could not be reread in this investigation; that mapping does not establish a
-new general offset or partial-end rule. No such rule was added.
+[the prior research document](ROOF_COMPOSITION_RESEARCH.md). It was inaccessible
+during the initial audit. The author-uploaded full text and PDF pages 3–4,
+including Figures 4–6, were subsequently reviewed. Section 7 obtains region
+ownership from skeleton-derived axis-aligned guides before assigning roof
+models. Its two merge drawings assume those regions; they do not establish a
+direct arbitrary-offset rewrite from minimum Cell relations. No such rule was
+added. See [the applicability review](LAYCOCK_AGGREGATION_SCOPE.md).
 
 ## State, ownership, and construction
 

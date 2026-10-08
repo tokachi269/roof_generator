@@ -1,0 +1,13 @@
+{
+  "title": "Automatically Generating Roof Models from Building Footprints",
+  "authors": ["R. G. Laycock", "A. M. Day"],
+  "year": 2003,
+  "author_pdf_url": "https://www.researchgate.net/profile/A-Day-2/publication/2472808_Automatically_Generating_Roof_Models_from_Building_Footprints/links/00463530c6ebb93f72000000/Automatically-Generating-Roof-Models-from-Building-Footprints.pdf",
+  "downloaded_mirror_url": "https://www.sthu.org/misc/SKRW14/papers/LaycockDay_2003_AutomaticallyGeneratingRoofModelsBuildingFootprints.pdf",
+  "pdf_sha256": "897386a51c7ebca4be719eb33f285c412d451d71540e365981a6b67a0491017c",
+  "full_text_reviewed": true,
+  "visually_reviewed_pdf_pages": [3, 4],
+  "visually_reviewed_figures": [4, 5, 6],
+  "production_change": false,
+  "applicability": "Region aggregation depends on an explicit collecting guide and subsequent roof-model assignment. Minimum Cell parallel labels alone do not supply those decisions."
+}
