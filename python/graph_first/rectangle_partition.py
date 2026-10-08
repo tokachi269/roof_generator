@@ -231,7 +231,7 @@ class Subdivision:
         return len(self.reflex) - len(self.selection.selected) + 1
 
 
-def complete_cuts(fp, selection):
+def complete_cuts(fp, selection, axes=()):
     """Classical bad-vertex completion: first side of the current region."""
     segments = [
         tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
@@ -239,10 +239,13 @@ def complete_cuts(fp, selection):
     ]
     covered = {v for i in selection.selected for v in selection.diagonals[i].endpoints}
     completions = []
-    for start in sorted(
+    starts = sorted(
         set(fp.reflex) - covered,
         key=lambda i: tuple(round(v, 10) for v in fp.vertices[i]),
-    ):
+    )
+    if axes and (len(axes) != len(starts) or any(a not in (0, 1) for a in axes)):
+        raise UnsupportedGraphError("completion axes must cover unresolved reflexes")
+    for k, start in enumerate(starts):
         p = fp.vertices[start]
         if any(on_segment(p, a, b) for a, b in segments):
             raise UnsupportedGraphError(
@@ -250,7 +253,7 @@ def complete_cuts(fp, selection):
             )
         direction = max(
             (fp.directions[start - 1], tuple(-v for v in fp.directions[start])),
-            key=lambda d: abs(d[1]),
+            key=lambda d: abs(d[axes[k] if axes else 1]),
         )
         hit = ray_hit(fp.vertices, start, direction)
         if hit is None:
