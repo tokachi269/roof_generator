@@ -313,12 +313,8 @@ def corners(boundary, nodes):
     return tuple(result)
 
 
-def subdivide(fp, selection, completions):
-    """Node selected cuts and enumerate their bounded planar face cycles.
-
-    Input is a fixed set of noncrossing orthogonal cuts. This is not a polygon
-    Boolean, rasterization or a search over polygon subdivisions.
-    """
+def _node_segments(fp, selection, completions):
+    """Create shared subdivision nodes and atomic segment ownership."""
     cut_points = [
         tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
         for i in selection.selected
@@ -348,6 +344,11 @@ def subdivide(fp, selection, completions):
                     "partition contains duplicate/zero atomic segment"
                 )
             edges[key] = exterior
+    return tuple(nodes), edges
+
+
+def _partition_faces(nodes, edges):
+    """Walk directed half edges; return bounded cycles and neighbor incidence."""
     neighbors = {i: [] for i in range(len(nodes))}
     for a, b in edges:
         neighbors[a].append(b)
@@ -391,6 +392,11 @@ def subdivide(fp, selection, completions):
             faces.append(tuple(ring))
         else:
             raise UnsupportedRoofError("zero-area partition cycle")
+    return neighbors, tuple(faces), outside
+
+
+def _validate_partition(fp, selection, nodes, edges, neighbors, faces, outside):
+    """Check the minimum certificate, coverage and resolved reflex incidence."""
     expected = len(fp.reflex) - len(selection.selected) + 1
     if (
         outside != 1
@@ -407,6 +413,13 @@ def subdivide(fp, selection, completions):
         > EPS
     ):
         raise UnsupportedRoofError("partition face area differs from footprint")
+
+
+def subdivide(fp, selection, completions):
+    """Materialize a fixed noncrossing cut set, without Boolean or rasterization."""
+    nodes, edges = _node_segments(fp, selection, completions)
+    neighbors, faces, outside = _partition_faces(nodes, edges)
+    _validate_partition(fp, selection, nodes, edges, neighbors, faces, outside)
     return Subdivision(
         tuple(nodes),
         tuple(faces),

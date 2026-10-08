@@ -166,6 +166,20 @@ class CandidateSearch:
         }
 
 
+def _cut_signature(fp, selection, cuts):
+    """Deduplicate geometric cut sets before subdivision materialization."""
+    return tuple(
+        sorted(
+            tuple(sorted(tuple(round(x, 10) for x in p) for p in pair))
+            for pair in [
+                tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
+                for i in selection.selected
+            ]
+            + [(c.start, c.end) for c in cuts]
+        )
+    )
+
+
 def candidates(fp, *, max_candidates=4096, max_work=65536):
     """Enumerate certified minimum subdivisions, never roof geometry.
 
@@ -195,16 +209,7 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
     def add(selection, cuts):
         nonlocal reason
         visit()
-        cut_key = tuple(
-            sorted(
-                tuple(sorted(tuple(round(x, 10) for x in p) for p in pair))
-                for pair in [
-                    tuple(fp.vertices[v] for v in base.diagonals[i].endpoints)
-                    for i in selection.selected
-                ]
-                + [(c.start, c.end) for c in cuts]
-            )
-        )
+        cut_key = _cut_signature(fp, selection, cuts)
         if cut_key in seen_cuts:
             return True
         seen_cuts.add(cut_key)

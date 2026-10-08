@@ -56,6 +56,33 @@ def decompose(fp):
     return from_subdivision(fp, partition(fp))
 
 
+def _boundary_span(fp, nodes, u, v, edge):
+    """Exterior provenance of one atomic segment."""
+    p = fp.vertices[edge]
+    vector = sub(fp.vertices[(edge + 1) % len(fp.vertices)], p)
+    size = sum(x * x for x in vector)
+    values = tuple(
+        sum(x * y for x, y in zip(sub(nodes[i], p), vector)) / size for i in (u, v)
+    )
+    interval = (max(0.0, min(values)), min(1.0, max(values)))
+    return BoundarySpan(edge, interval, fp.source_edges[edge])
+
+
+def _validate_provenance(boundary_spans):
+    """Every original exterior edge is owned exactly once."""
+    for edge, spans in boundary_spans.items():
+        spans.sort()
+        if (
+            not spans
+            or abs(spans[0][0]) > EPS
+            or abs(spans[-1][1] - 1) > EPS
+            or any(abs(a[1] - b[0]) > EPS for a, b in zip(spans, spans[1:]))
+        ):
+            raise UnsupportedRoofError(
+                "exterior provenance does not cover boundary exactly once"
+            )
+
+
 def from_subdivision(fp, subdivision: Subdivision):
     """Convert a noded rectangular subdivision to roof-independent cell records."""
     nodes = subdivision.vertices
@@ -85,15 +112,8 @@ def from_subdivision(fp, subdivision: Subdivision):
                 if edge is None:
                     artificial.append(key)
                 else:
-                    p = fp.vertices[edge]
-                    vector = sub(fp.vertices[(edge + 1) % len(fp.vertices)], p)
-                    size = sum(x * x for x in vector)
-                    values = tuple(
-                        sum(x * y for x, y in zip(sub(nodes[i], p), vector)) / size
-                        for i in (u, v)
-                    )
-                    interval = (max(0.0, min(values)), min(1.0, max(values)))
-                    span = BoundarySpan(edge, interval, fp.source_edges[edge])
+                    span = _boundary_span(fp, nodes, u, v, edge)
+                    interval = span.interval
                     if spans and spans[-1].edge == edge:
                         prev = spans.pop()
                         span = BoundarySpan(
@@ -124,17 +144,7 @@ def from_subdivision(fp, subdivision: Subdivision):
                 )
             (a, sa), (b, sb) = sorted(incident)
             adjacent.append(Adjacency((a, b), (sa, sb), key))
-    for edge, spans in boundary_spans.items():
-        spans.sort()
-        if (
-            not spans
-            or abs(spans[0][0]) > EPS
-            or abs(spans[-1][1] - 1) > EPS
-            or any(abs(a[1] - b[0]) > EPS for a, b in zip(spans, spans[1:]))
-        ):
-            raise UnsupportedRoofError(
-                "exterior provenance does not cover boundary exactly once"
-            )
+    _validate_provenance(boundary_spans)
     if len(cells) != subdivision.minimum_cells:
         raise UnsupportedRoofError("cell records lost minimum rectangle count")
     return Decomposition(
