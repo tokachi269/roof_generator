@@ -4,7 +4,7 @@ The canonical pipeline is:
 
 ```text
 Footprint
-  -> minimum rectangular partition candidates
+  -> decomposition candidates (minimum rectangles or one convex quad)
   -> ArchitecturalPart interpretations
   -> valid RoofGraph candidates
   -> stable seeded selection
@@ -18,12 +18,15 @@ The distributable `addon/roof_generator/core/` owns generation. Host tools impor
 the same modules. Blender reads evaluated planar footprints and creates mesh
 objects; it does not choose or repair topology.
 
-Footprint analysis validates a hole-free simple orthogonal polygon in its
-intrinsic frame. Minimum partition uses good diagonals, bipartite matching,
+Footprint analysis validates a hole-free simple polygon in its intrinsic frame.
+Orthogonal inputs use exact minimum rectangular partition; a nonorthogonal convex
+quad uses one Cell without a rectangular certificate. Other nonorthogonal
+decompositions are explicitly unsupported. Minimum rectangle partition uses good diagonals, bipartite matching,
 maximum independent sets and reflex completion. Each alternative has the same
 minimum certificate. Architectural interpretation keeps compound members,
 consumed cuts, exterior provenance, local axis/receiver options and published
-evaluation terms. Neither geometric Cell nor architectural unit implies one roof.
+evaluation terms. Canonical generation evaluates all completed interpretations;
+published ranking is applied among valid topology candidates. Neither geometric Cell nor architectural unit implies one roof.
 
 Topology composition consumes those member/port relations. It publishes only
 complete disk graphs with boundary ownership, manifold links, roof-edge
@@ -39,8 +42,10 @@ do not consume a common PRNG stream.
 
 Geometry solves fixed incidence; it cannot pick topology, roles or candidate
 axes. Analytic rectangle embedding handles gable/hip/shed/flat. Compound topology
-can be inspected as a GeometryProblem; nonlinear embedding support is a separate
-capability and must fail explicitly until implemented. Mesh validation checks
+uses the Ren covariance planarity objective, explicit eave/pitch constraints and
+fixed-variable nonlinear embedding. Convex quad gable has geometric directions
+and equal-pitch boundary ports; nonparallel eaves can yield a sloping ridge.
+No optimizer changes incidence or retries another architectural candidate. Mesh validation checks
 fixed boundary, projection, shared vertices, positive faces and planarity.
 
 Runtime core and Blender adapters require no external Python packages. Independent
@@ -67,7 +72,8 @@ addon/roof_generator/
     seed.py                   independent stable digest namespaces
     generation.py             canonical orchestration and settings
     initialization.py         topology-preserving 2D coordinate initializer
-    solve.py                  GeometryProblem and supported analytic embedding
+    solve.py                  GeometryProblem, explicit constraints, exact embedding
+    optimization.py           covariance objective and stdlib nonlinear embedding
     mesh.py                   fixed graph-to-mesh contract and validation
     errors.py                 UnsupportedRoofError
   mesh_frame.py, mesh_input.py planar source validation and coordinate transport
@@ -75,8 +81,10 @@ addon/roof_generator/
   ui.py                       conversion settings and button
 ```
 
-`Cell` is a geometric minimum rectangle. `ArchitecturalMember` references that
-Cell with local axes; `ArchitecturalPart` groups members and records consumed
+`Cell` is a geometric decomposition region. A minimum rectangle has its
+certificate; a single convex quad does not claim that theorem.
+`ArchitecturalMember` references a Cell with orthogonal local axes or geometric
+directions; `ArchitecturalPart` groups members and records consumed
 cuts. `PartRelation` describes architectural alternatives, while `AttachmentPort`
 and `RoofConnection` describe implemented primitive incidences. None of these
 units implies an independently capped final roof. `RoofVertex.seed` is its 2D
@@ -121,15 +129,17 @@ opposite coincident equal-width ports. It does not flatten a
 concave compound part into one primitive or leave internal caps/cuts in the graph.
 The U fixture has one valid six-face compound graph. Residential and arbitrary
 grid arrangements may have no implemented valid topology; the retained architectural interpretation and rejection reasons remain
-inspectable. Multi-cell hip/shed and non-orthogonal partitioning are unsupported.
+inspectable. Multi-cell hip/shed and non-orthogonal compound decomposition are unsupported.
 
 A GeometryProblem provides fixed face cycles, boundary anchors, internal XY/Z
 variables and ridge directions. A receiver ridge with both exterior ports
 consumed receives its equal-pitch height anchor from the declared opposite eaves;
 its XY remains variable. Its initializer is not a solved mesh or a
-nonlinear convergence certificate. Nonlinear compound embedding, residual
-planarity validation and release of additional final mesh cases remain separate
-work. The adapter cannot repair or approximate those missing solves.
+nonlinear convergence certificate. The covariance nonlinear optimizer consumes
+explicit eave/pitch constraints and validates convergence before mesh creation.
+Mesh validation independently checks the unchanged face cycles and projection.
+The adapter exports solved vertices, UVs, materials and provenance; it cannot
+repair an invalid graph or a failed solve.
 
 Rejections carry structured stage/code/member information. All independent local
 relation blockers are reported for each assignment; downstream composition is
