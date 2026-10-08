@@ -163,6 +163,14 @@ class ArchitecturalPartGraph:
                     )
                 if o.main is not None and o.main not in r.cells:
                     raise UnsupportedGraphError("local main is not an incident member")
+                if o.main is not None and (
+                    o.main != o.receiver
+                    or len(o.widths) != 2
+                    or o.widths[0] <= o.widths[1] + 4 * EPS
+                ):
+                    raise UnsupportedGraphError(
+                        "local main lacks a strict receiving-width justification"
+                    )
 
     def inspect(self):
         return {
