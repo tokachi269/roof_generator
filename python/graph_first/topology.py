@@ -4,7 +4,7 @@
 import math
 from dataclasses import dataclass, asdict
 from collections import defaultdict
-from .footprint import EPS, ANGLE, rectangle, on_segment, sub
+from .footprint import EPS, rectangle, on_segment, sub
 from .graph import (
     BoundaryPoint,
     Face,
@@ -14,6 +14,7 @@ from .graph import (
     boundary_span,
 )
 from .geometry import harmonic_seeds, ridge_seeds
+from .connections import plan
 
 
 def _key(a, b):
@@ -133,130 +134,29 @@ class Connection:
     host: int
     branch: int
     shared: tuple[int, int]
-    terminated_ports: tuple[int, int]
+    terminated_ports: tuple[int, ...]
     junctions: tuple[int, ...]
     wider_cell: int | None
+    kind: str = "terminal"
 
 
 @dataclass(frozen=True)
 class Composition:
     graph: RoofGraph
     primitives: tuple[RoofGraph, ...]
-    connection: Connection | None
+    connections: tuple[Connection, ...]
 
     def inspect(self):
         return {
             "graph": self.graph.inspect(),
             "primitives": [g.inspect() for g in self.primitives],
-            "connection": asdict(self.connection) if self.connection else None,
+            "connections": [asdict(c) for c in self.connections],
         }
 
 
-def _port(graph, side):
-    return next(
-        (
-            i
-            for i, v in enumerate(graph.vertices)
-            if v.role == "ridge_end"
-            and v.boundary is not None
-            and v.boundary.edge == side
-        ),
-        None,
-    )
-
-
-def _attachment(decomposition, primitives):
-    shared = decomposition.adjacency[0]
-    for host, branch in ((0, 1), (1, 0)):
-        hc, bc = decomposition.cells[host], decomposition.cells[branch]
-        hs, bs = shared.sides[host], shared.sides[branch]
-        hside, bside = hc.sides[hs], bc.sides[bs]
-        if set(bside.vertices) != set(shared.interval):
-            continue
-        if not any(
-            e.vertices == _key(hs, (hs + 1) % 4) and e.kind == "eave"
-            for e in primitives[host].edges
-        ):
-            continue
-        branch_port = _port(primitives[branch], bs)
-        if branch_port is None:
-            continue
-        touch = set(hside.vertices).intersection(shared.interval)
-        if len(touch) != 1:
-            continue
-        cut_corner = next(iter(touch))
-        reflex = next(i for i in shared.interval if i != cut_corner)
-        if reflex not in decomposition.footprint.reflex:
-            continue
-        near_side = (hs - 1) % 4 if cut_corner == hside.vertices[0] else (hs + 1) % 4
-        host_port = _port(primitives[host], near_side)
-        if host_port is None:
-            continue
-        outer = next(i for i in hc.sides[near_side].vertices if i != cut_corner)
-        # Continued physical exterior eave is the reason this end port moves
-        # inside the connection. Do not graft incompatible end/side relations.
-        branch_corner = bc.corners.index(cut_corner)
-        other_branch = next(
-            i
-            for i in (
-                bc.corners[(branch_corner - 1) % 4],
-                bc.corners[(branch_corner + 1) % 4],
-            )
-            if i not in shared.interval
-        )
-        if not on_segment(
-            decomposition.vertices[cut_corner],
-            decomposition.vertices[outer],
-            decomposition.vertices[other_branch],
-        ):
-            continue
-        hg, bg = primitives[host], primitives[branch]
-        hfar = next(
-            i
-            for i, v in enumerate(hg.vertices)
-            if v.role == "ridge_end" and i != host_port
-        )
-        bfar = next(
-            i
-            for i, v in enumerate(bg.vertices)
-            if v.role == "ridge_end" and i != branch_port
-        )
-        haxis = sub(hg.vertices[hfar].seed, hg.vertices[host_port].seed)
-        baxis = sub(bg.vertices[bfar].seed, bg.vertices[branch_port].seed)
-        if abs(sum(a * b for a, b in zip(haxis, baxis))) > ANGLE * math.hypot(
-            *haxis
-        ) * math.hypot(*baxis):
-            continue
-        return (
-            host,
-            branch,
-            hs,
-            bs,
-            host_port,
-            branch_port,
-            hfar,
-            bfar,
-            cut_corner,
-            reflex,
-            outer,
-        )
-    raise UnsupportedGraphError("no compatible terminal gable-end/eave-side attachment")
-
-
-def compose(decomposition, roof_type="gable"):
-    fp = decomposition.footprint
-    if len(decomposition.cells) == 1:
-        g = rectangle_graph(fp, roof_type)
-        return Composition(g, (g,), None)
-    if (
-        roof_type != "gable"
-        or len(decomposition.cells) != 2
-        or len(decomposition.adjacency) != 1
-    ):
-        raise UnsupportedGraphError(
-            "evaluation composition requires two gable cells and one shared interval"
-        )
-    primitives = tuple(
+def cell_primitives(decomposition, roof_type="gable"):
+    """Candidate primitive incidences; these are never a completed roof."""
+    return tuple(
         _rectangle_graph(
             tuple(decomposition.vertices[i] for i in cell.corners),
             tuple(
@@ -265,14 +165,52 @@ def compose(decomposition, roof_type="gable"):
                 )
                 for side in cell.sides
             ),
-            "gable",
+            roof_type,
             cell=cell.id,
         )
         for cell in decomposition.cells
     )
-    host, branch, hs, bs, hnear, bnear, hfar, bfar, cut_corner, reflex, outer = (
-        _attachment(decomposition, primitives)
+
+
+def compose(decomposition, roof_type="gable"):
+    fp = decomposition.footprint
+    if len(decomposition.cells) == 1:
+        g = rectangle_graph(fp, roof_type)
+        return Composition(g, (g,), ())
+    if roof_type != "gable":
+        raise UnsupportedGraphError(
+            "multi-cell composition currently supports gable only"
+        )
+    primitives = cell_primitives(decomposition)
+    relations = plan(decomposition, primitives)
+    if len(relations) == 1 and relations[0].kind == "terminal":
+        return _terminal(decomposition, primitives, relations[0])
+    raise UnsupportedGraphError(
+        "middle attachment identified; cycle rewriting is not yet implemented"
     )
+
+
+def _terminal(decomposition, primitives, relation):
+    """The existing proved corner graft, driven by the published port relation."""
+    fp = decomposition.footprint
+    host, branch = relation.host, relation.branch
+    hs, bs = relation.host_side, relation.branch_side
+    hnear, bnear = relation.host_port, relation.branch_port
+    hfar = next(
+        i
+        for i, v in enumerate(primitives[host].vertices)
+        if v.role == "ridge_end" and i != hnear
+    )
+    bfar = next(
+        i
+        for i, v in enumerate(primitives[branch].vertices)
+        if v.role == "ridge_end" and i != bnear
+    )
+    hc = decomposition.cells[host]
+    cut_corner = next(iter(set(relation.shared).intersection(hc.sides[hs].vertices)))
+    reflex = next(i for i in relation.shared if i != cut_corner)
+    near_side = primitives[host].vertices[hnear].boundary.edge
+    outer = next(i for i in hc.sides[near_side].vertices if i != cut_corner)
     seeds = list(fp.vertices)
     roles = ["corner"] * len(seeds)
     locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
@@ -404,12 +342,14 @@ def compose(decomposition, roof_type="gable"):
     return Composition(
         graph,
         primitives,
-        Connection(
-            host,
-            branch,
-            decomposition.adjacency[0].interval,
-            (hnear, bnear),
-            junctions,
-            wider,
+        (
+            Connection(
+                host,
+                branch,
+                _key(*relation.shared),
+                (hnear, bnear),
+                junctions,
+                wider,
+            ),
         ),
     )

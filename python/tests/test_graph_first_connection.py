@@ -201,7 +201,7 @@ class TerminalCompositionTests(unittest.TestCase):
                 for p in c.primitives
             )
         )
-        self.assertEqual(c.connection.shared, d.adjacency[0].interval)
+        self.assertEqual(c.connections[0].shared, d.adjacency[0].interval)
         # Geometry oracle is independent and tests only the chosen seed drawing.
         polygons = [
             Polygon([v.seed for v in [g.vertices[i] for i in face.loop]])
