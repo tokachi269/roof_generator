@@ -21,8 +21,8 @@ from roof_generator.core.solve import problem, solve_analytic
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.provenance import BoundarySpan
-from python.tests.test_graph_first_cells import L
-from python.tests.test_graph_first_rectangle import graph_signature
+from python.tests.test_graph_contract_cells import L
+from python.tests.test_graph_contract_rectangle import graph_signature
 from python.tests.test_roof_harness import assert_disk
 import json
 
