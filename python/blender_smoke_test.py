@@ -119,6 +119,36 @@ def main():
             "flat",
         )
     )
+    acceptance = json.loads(
+        (ROOT / "python/tests/fixtures/roof_acceptance.json").read_text()
+    )
+    fixtures.append(
+        (
+            "compound_gable_U",
+            next(r["footprint"] for r in acceptance if r["name"] == "orthogonal_U"),
+            "gable",
+        )
+    )
+    fixtures.append(
+        (
+            "compound_gable_cross",
+            (
+                (0, 0),
+                (6, 0),
+                (6, -6),
+                (10, -6),
+                (10, 0),
+                (16, 0),
+                (16, 4),
+                (10, 4),
+                (10, 10),
+                (6, 10),
+                (6, 4),
+                (0, 4),
+            ),
+            "gable",
+        )
+    )
     for i, (name, points, kind) in enumerate(fixtures):
         src = source(name, points)
         src.location = (i % 3 * 21, i // 3 * 20, 3)
@@ -173,7 +203,11 @@ def main():
     materials = set(bpy.data.materials)
     unsupported = source(
         "unsupported_compound",
-        ((0, 0), (16, 0), (16, 4), (10, 4), (10, 10), (6, 10), (6, 4), (0, 4)),
+        next(
+            r["footprint"]
+            for r in acceptance
+            if r["name"] == "residential_multi_reflex"
+        ),
     )
     before = set(bpy.data.objects)
     materials = set(bpy.data.materials)
@@ -182,7 +216,7 @@ def main():
     except UnsupportedRoofError:
         pass
     else:
-        raise AssertionError("compound solve must fail explicitly")
+        raise AssertionError("unsupported topology must fail explicitly")
     assert set(bpy.data.objects) == before and set(bpy.data.materials) == materials
     assert not unsupported.hide_get() and not unsupported.hide_render
     # CLI uses the same adapter and carries the seed into object metadata.
