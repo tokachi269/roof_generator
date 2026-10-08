@@ -199,6 +199,16 @@ class Recommendation:
 
 def recommend(search, policy=Policy()):
     analyses = tuple(analyze_parts(d) for d in search.candidates)
+    if policy is None:
+        return Recommendation(
+            search,
+            None,
+            (),
+            tuple(
+                (i, build_parts(d, a))
+                for i, (d, a) in enumerate(zip(search.candidates, analyses))
+            ),
+        )
     evaluations = tuple(
         evaluate(d, a, policy) for d, a in zip(search.candidates, analyses)
     )

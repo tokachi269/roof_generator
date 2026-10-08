@@ -5,7 +5,6 @@ from dataclasses import dataclass
 import math
 from .footprint import analyze, Footprint
 from .partition_candidates import candidates
-from .architecture import interpret
 from .architecture_selection import recommend, Recommendation, Policy
 from .topology_candidates import build_candidates, TopologyCandidate, TopologyCandidates
 from .solve import solve_analytic
@@ -75,18 +74,14 @@ def prepare_generation(points, settings=GenerationSettings()):
     search = candidates(
         fp, max_candidates=settings.max_candidates, max_work=settings.max_work
     )
-    policy = Policy(metres_per_unit=settings.metres_per_unit)
-    if settings.roof_type == "flat":
-        # Pitched-roof preference is not a flat-roof prior. Preserve the minimum
-        # family; structural interpretations retain every Cell and source span.
-        interpretation = Recommendation(
-            search,
-            None,
-            (),
-            tuple((i, interpret(d)) for i, d in enumerate(search.candidates)),
-        )
-    else:
-        interpretation = recommend(search, policy)
+    # A pitched-roof evaluation is not a flat-roof prior. None retains the
+    # minimum family without ranking; interpretation stays roof-independent.
+    policy = (
+        None
+        if settings.roof_type == "flat"
+        else Policy(metres_per_unit=settings.metres_per_unit)
+    )
+    interpretation = recommend(search, policy)
     pool = build_candidates(
         interpretation,
         settings.roof_type,
