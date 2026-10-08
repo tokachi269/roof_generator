@@ -141,9 +141,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         # Its declared opposite eaves fix the equal-pitch ridge rise to p*w/2.
         # This supplies solve constraints; it changes no topology or final XY.
         first, second = (graph.faces[f] for f in edge.faces)
-        if first.cells != second.cells or any(
-            len(f.eaves) != 1 for f in (first, second)
-        ):
+        if first.cells != second.cells or any(not f.eaves for f in (first, second)):
             raise UnsupportedRoofError(
                 "interior ridge lacks one declared receiving eave on each slope"
             )

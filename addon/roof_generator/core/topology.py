@@ -218,7 +218,7 @@ def compose(decomposition, roof_type="gable", *, axes=None, shed_edge=None):
         )
     primitives = cell_primitives(decomposition, axes=axes)
     relations = plan(decomposition, primitives)
-    if all(r.kind == "terminal" for r in relations):
+    if any(r.kind == "terminal" for r in relations):
         return _terminals(decomposition, primitives, relations)
     return _middle(decomposition, primitives, relations)
 
@@ -406,7 +406,7 @@ def _terminals(decomposition, primitives, relations):
     seeds = list(fp.vertices)
     roles = ["corner"] * len(seeds)
     locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
-    consumed = {(host, r.host_port) for r in relations} | {
+    consumed = {(host, r.host_port) for r in relations if r.host_port is not None} | {
         (r.branch, r.branch_port) for r in relations
     }
     ports = {}
@@ -435,7 +435,31 @@ def _terminals(decomposition, primitives, relations):
     patches = []
     declared_axes = defaultdict(list)
     corners = []
+    middle_joints = {}
     for r in relations:
+        if r.kind == "middle":
+            joint = len(seeds)
+            caps = [v.seed for v in primitives[host].vertices if v.role == "ridge_end"]
+            direction = sub(caps[1], caps[0])
+            size = sum(x * x for x in direction)
+            opening = tuple(
+                sum(decomposition.vertices[i][k] for i in r.shared) / 2 for k in (0, 1)
+            )
+            position = (
+                sum(x * y for x, y in zip(sub(opening, caps[0]), direction)) / size
+            )
+            projected = tuple(caps[0][k] + position * direction[k] for k in (0, 1))
+            seeds.append(tuple((opening[k] + projected[k]) / 2 for k in (0, 1)))
+            roles.append("junction")
+            ports[r.branch, r.branch_port] = joint
+            middle_joints[r.branch] = joint
+            caps = [
+                v.seed for v in primitives[r.branch].vertices if v.role == "ridge_end"
+            ]
+            vector = sub(caps[1], caps[0])
+            size = math.hypot(*vector)
+            declared_axes[joint].append((caps[0], tuple(x / size for x in vector)))
+            continue
         cut = next(iter(set(r.shared).intersection(hc.sides[r.host_side].vertices)))
         reflex = next(i for i in r.shared if i != cut)
         near_side = primitives[host].vertices[r.host_port].boundary.edge
@@ -491,12 +515,22 @@ def _terminals(decomposition, primitives, relations):
                     ]
                     # At distinct ends of one side, order in that CCW side.
                     start = decomposition.vertices[mapping[a]]
-                    inserts.sort(
-                        key=lambda pair: math.dist(
-                            start, decomposition.vertices[pair[1]]
+                    paths = [
+                        (decomposition.vertices[reflex], (reflex,))
+                        for _, reflex in inserts
+                    ]
+                    paths.extend(
+                        (
+                            decomposition.vertices[r.shared[0]],
+                            (r.shared[0], middle_joints[r.branch], r.shared[1]),
                         )
+                        for r in relations
+                        if r.kind == "middle"
+                        and edge == set(cell.sides[r.host_side].vertices)
                     )
-                    loop.extend(reflex for _, reflex in inserts)
+                    paths.sort(key=lambda pair: math.dist(start, pair[0]))
+                    for _, path in paths:
+                        loop.extend(path)
             eaves = tuple(
                 sorted(
                     {
@@ -564,6 +598,29 @@ def _terminals(decomposition, primitives, relations):
                 wider,
             )
         )
+    for r in relations:
+        if r.kind != "middle":
+            continue
+        joint = middle_joints[r.branch]
+        far = next(
+            ports[r.branch, i]
+            for i, v in enumerate(primitives[r.branch].vertices)
+            if v.role == "ridge_end" and i != r.branch_port
+        )
+        meanings[_key(joint, far)] = "ridge"
+        for corner in r.shared:
+            meanings[_key(joint, corner)] = "valley"
+        connections.append(
+            RoofConnection(
+                host,
+                r.branch,
+                _key(*r.shared),
+                (r.branch_port,),
+                (joint,),
+                host,
+                "middle",
+            )
+        )
     meanings[_key(*host_ends.values())] = "ridge"
     incidence = defaultdict(list)
     for i, face in enumerate(faces):
@@ -585,6 +642,7 @@ def _terminals(decomposition, primitives, relations):
         meanings,
         declared_axes=declared_axes,
         patches=patches,
+        fixed_seeds=tuple(middle_joints.values()),
     )
     graph = make_graph(
         fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"

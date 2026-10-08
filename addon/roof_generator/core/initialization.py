@@ -43,7 +43,15 @@ def _valid_drawing(outline, seeds, faces, locations, semantics):
 
 
 def ridge_seeds(
-    outline, seeds, faces, locations, semantics, *, declared_axes, patches=()
+    outline,
+    seeds,
+    faces,
+    locations,
+    semantics,
+    *,
+    declared_axes,
+    patches=(),
+    fixed_seeds=()
 ):
     """Laplacian initialization constrained to declared primitive ridge axes.
 
@@ -61,7 +69,7 @@ def ridge_seeds(
     result = list(seeds)
     lines = {}
     for vertex in range(len(seeds)):
-        if vertex in locations:
+        if vertex in locations or vertex in fixed_seeds:
             continue
         constraints = axes[vertex]
         if len(constraints) == 1:

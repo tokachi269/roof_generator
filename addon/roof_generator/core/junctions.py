@@ -160,6 +160,8 @@ def plan(decomposition, primitives):
             "terminal attachments need distinct receiver ends and exterior leaf branches",
             issues=(GenerationIssue("junction", "terminal_arrangement"),),
         )
+    if {r.kind for r in relations} == {"terminal", "middle"}:
+        return _mixed_plan(decomposition, primitives, relations)
     if not relations or any(r.kind != "middle" for r in relations):
         raise UnsupportedRoofError(
             "no complete supported terminal/middle attachment arrangement",
@@ -216,6 +218,57 @@ def plan(decomposition, primitives):
     if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])):
         raise UnsupportedRoofError(
             "branch attachment slots interact; no independent junction composition is proved",
+            issues=(GenerationIssue("junction", "interacting_slots"),),
+        )
+    return relations
+
+
+def _mixed_plan(d, primitives, relations):
+    """Existing port rewrites with disjoint receiver-end and side neighborhoods."""
+    terminals = tuple(r for r in relations if r.kind == "terminal")
+    middles = tuple(r for r in relations if r.kind == "middle")
+    hosts = {r.host for r in relations}
+    branches = {r.branch for r in relations}
+    if (
+        len(hosts) != 1
+        or len(branches) != len(relations)
+        or hosts & branches
+        or hosts | branches != {c.id for c in d.cells}
+        or len({r.host_port for r in terminals}) != len(terminals)
+    ):
+        raise UnsupportedRoofError(
+            "mixed attachment needs one receiver and distinct leaf/end ports",
+            issues=(GenerationIssue("junction", "mixed_arrangement"),),
+        )
+    if any(r.branch_width >= r.host_width - 4 * EPS for r in middles):
+        raise UnsupportedRoofError(
+            "mixed middle ports must be strictly narrower",
+            issues=(GenerationIssue("junction", "branch_width"),),
+        )
+    host = next(iter(hosts))
+    caps = [v.seed for v in primitives[host].vertices if v.role == "ridge_end"]
+    vector = sub(caps[1], caps[0])
+    length = math.hypot(*vector)
+    direction = tuple(x / length for x in vector)
+    coordinate = lambda p: sum(x * y for x, y in zip(sub(p, caps[0]), direction))
+    bounds = sorted(coordinate(p) for p in (caps[0], caps[1]))
+    slots = sorted(
+        tuple(sorted(coordinate(d.vertices[i]) for i in r.shared)) for r in middles
+    )
+    blocked = []
+    for r in terminals:
+        near = coordinate(primitives[host].vertices[r.host_port].seed)
+        reach = max(r.host_width, r.branch_width)
+        blocked.append(
+            (bounds[0], bounds[0] + reach)
+            if abs(near - bounds[0]) < EPS
+            else (bounds[1] - reach, bounds[1])
+        )
+    if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])) or any(
+        a[0] < b[1] + EPS and b[0] < a[1] + EPS for a in slots for b in blocked
+    ):
+        raise UnsupportedRoofError(
+            "mixed junction neighborhoods interact",
             issues=(GenerationIssue("junction", "interacting_slots"),),
         )
     return relations

@@ -1,0 +1,8 @@
+{
+  "source_sha": "b6a5928300c583794afdd470dd9adcb6f9e53998",
+  "scope": "before mixed attachment; same frozen 1000 orthogonal connected-grid stress inputs",
+  "corpus_sha256": "50fdc2041478650e165efea5ea2089e8e176635aa7b6e66dd04e3a438562479c",
+  "inputs": 1000,
+  "additional_valid_topologies_in_unretained_minimum_partitions": 0,
+  "interpretation": "No observed A rescue in this family; not a proof about all cut orders or architecture choices."
+}

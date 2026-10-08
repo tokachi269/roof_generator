@@ -60,3 +60,17 @@ Independent proofs use new parameterized branch networks, literal equal-pitch
 vertices/incidence, a near-end counterexample, relation-order and rigid-transform
 metamorphisms. This extends a proved relation operation; it does not assert that
 parallel/partial-end/offset-continuation has thereby been implemented.
+
+### Ranking after validity
+
+The new mixed-port proof exposes an architectural recommendation ordering error:
+a higher Hu symmetry score may prefer an arrangement whose junction cannot be
+constructed, while a lower-ranked minimum partition admits the proved operation.
+Hu §3.3 recommends ranked partitions (and §4 reports correct roofs at ranks 2–4);
+it does not prove that only the first rank may have a valid roof. Canonical
+generation therefore defers final ranking until RoofGraph candidates are valid.
+All completed minimum-partition interpretations are examined; the existing
+published score is then maximized **among valid topologies**, before seed choice.
+The standalone architectural recommendation inspection can still rank without a
+roof operation. No score, minimum guarantee, candidate budget or seed namespace
+changes. This is not a retry after selected solve failure.
