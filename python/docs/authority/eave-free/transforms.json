@@ -1,0 +1,146 @@
+[
+  {
+    "scale": 0.25,
+    "mirrored": false,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": false,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": false,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": false,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": true,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": true,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": true,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 0.25,
+    "mirrored": true,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": false,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": false,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": false,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": false,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": true,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": true,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": true,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 1,
+    "mirrored": true,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": false,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": false,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": false,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": false,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": true,
+    "quarter_turns": 0,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": true,
+    "quarter_turns": 1,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": true,
+    "quarter_turns": 2,
+    "eave_free_candidates_embedded": 2
+  },
+  {
+    "scale": 4,
+    "mirrored": true,
+    "quarter_turns": 3,
+    "eave_free_candidates_embedded": 2
+  }
+]

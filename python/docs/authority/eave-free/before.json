@@ -1,0 +1,1302 @@
+[
+  {
+    "input": {
+      "name": "equal_corner_T",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "seed": 0
+    },
+    "status": "supported",
+    "selected_candidate": "6c15f987a70c7c48d6c715f99e7abc91",
+    "resolved_ends": {
+      "states": [
+        {
+          "end": {
+            "member": 0,
+            "side": 0
+          },
+          "shape": "gable",
+          "connection": "exterior"
+        },
+        {
+          "end": {
+            "member": 0,
+            "side": 2
+          },
+          "shape": "shared",
+          "connection": "shared"
+        },
+        {
+          "end": {
+            "member": 1,
+            "side": 1
+          },
+          "shape": "gable",
+          "connection": "exterior"
+        },
+        {
+          "end": {
+            "member": 1,
+            "side": 3
+          },
+          "shape": "shared",
+          "connection": "shared"
+        }
+      ],
+      "joints": [
+        {
+          "cells": [
+            0,
+            1
+          ],
+          "kind": "shared",
+          "states": [
+            [
+              {
+                "member": 0,
+                "side": 2
+              },
+              "shared"
+            ],
+            [
+              {
+                "member": 1,
+                "side": 3
+              },
+              "shared"
+            ]
+          ]
+        }
+      ]
+    },
+    "partition": {
+      "vertices": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.09090909090909091,
+          0.0
+        ],
+        [
+          0.09090909090909091,
+          0.18181818181818182
+        ],
+        [
+          0.22727272727272727,
+          0.18181818181818182
+        ],
+        [
+          0.22727272727272727,
+          0.2727272727272727
+        ],
+        [
+          0.0,
+          0.2727272727272727
+        ],
+        [
+          0.09090909090909091,
+          0.2727272727272727
+        ]
+      ],
+      "cells": [
+        {
+          "id": 0,
+          "corners": [
+            0,
+            1,
+            6,
+            5
+          ],
+          "boundary": [
+            0,
+            1,
+            2,
+            6,
+            5
+          ],
+          "sides": [
+            {
+              "vertices": [
+                0,
+                1
+              ],
+              "exterior": [
+                {
+                  "edge": 0,
+                  "interval": [
+                    0.0,
+                    1.0
+                  ],
+                  "original_edges": [
+                    1
+                  ]
+                }
+              ],
+              "artificial": []
+            },
+            {
+              "vertices": [
+                1,
+                6
+              ],
+              "exterior": [
+                {
+                  "edge": 1,
+                  "interval": [
+                    0.0,
+                    1.0
+                  ],
+                  "original_edges": [
+                    2
+                  ]
+                }
+              ],
+              "artificial": [
+                [
+                  2,
+                  6
+                ]
+              ]
+            },
+            {
+              "vertices": [
+                6,
+                5
+              ],
+              "exterior": [
+                {
+                  "edge": 4,
+                  "interval": [
+                    0.6,
+                    1.0
+                  ],
+                  "original_edges": [
+                    5
+                  ]
+                }
+              ],
+              "artificial": []
+            },
+            {
+              "vertices": [
+                5,
+                0
+              ],
+              "exterior": [
+                {
+                  "edge": 5,
+                  "interval": [
+                    0.0,
+                    1.0
+                  ],
+                  "original_edges": [
+                    0
+                  ]
+                }
+              ],
+              "artificial": []
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "corners": [
+            2,
+            3,
+            4,
+            6
+          ],
+          "boundary": [
+            2,
+            3,
+            4,
+            6
+          ],
+          "sides": [
+            {
+              "vertices": [
+                2,
+                3
+              ],
+              "exterior": [
+                {
+                  "edge": 2,
+                  "interval": [
+                    0.0,
+                    1.0
+                  ],
+                  "original_edges": [
+                    3
+                  ]
+                }
+              ],
+              "artificial": []
+            },
+            {
+              "vertices": [
+                3,
+                4
+              ],
+              "exterior": [
+                {
+                  "edge": 3,
+                  "interval": [
+                    0.0,
+                    1.0
+                  ],
+                  "original_edges": [
+                    4
+                  ]
+                }
+              ],
+              "artificial": []
+            },
+            {
+              "vertices": [
+                4,
+                6
+              ],
+              "exterior": [
+                {
+                  "edge": 4,
+                  "interval": [
+                    0.0,
+                    0.6
+                  ],
+                  "original_edges": [
+                    5
+                  ]
+                }
+              ],
+              "artificial": []
+            },
+            {
+              "vertices": [
+                6,
+                2
+              ],
+              "exterior": [],
+              "artificial": [
+                [
+                  2,
+                  6
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "adjacency": [
+        {
+          "cells": [
+            0,
+            1
+          ],
+          "sides": [
+            1,
+            3
+          ],
+          "interval": [
+            2,
+            6
+          ]
+        }
+      ],
+      "certificate": {
+        "reflex": [
+          2
+        ],
+        "selection": {
+          "diagonals": [],
+          "conflicts": [],
+          "matching": [],
+          "selected": []
+        },
+        "completions": [
+          {
+            "source": 2,
+            "start": [
+              0.09090909090909091,
+              0.18181818181818182
+            ],
+            "end": [
+              0.09090909090909091,
+              0.2727272727272727
+            ]
+          }
+        ],
+        "minimum_cells": 2
+      }
+    },
+    "architecture": {
+      "members": [
+        {
+          "cell": 0,
+          "bounds": [
+            0.0,
+            0.0,
+            0.09090909090909091,
+            0.2727272727272727
+          ],
+          "axes": [
+            1
+          ],
+          "directions": []
+        },
+        {
+          "cell": 1,
+          "bounds": [
+            0.09090909090909091,
+            0.18181818181818182,
+            0.22727272727272727,
+            0.2727272727272727
+          ],
+          "axes": [
+            0
+          ],
+          "directions": []
+        }
+      ],
+      "parts": [
+        {
+          "id": 0,
+          "cells": [
+            0,
+            1
+          ],
+          "boundaries": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              6,
+              5
+            ]
+          ],
+          "exterior": [
+            {
+              "edge": 0,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                1
+              ]
+            },
+            {
+              "edge": 1,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                2
+              ]
+            },
+            {
+              "edge": 2,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                3
+              ]
+            },
+            {
+              "edge": 3,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                4
+              ]
+            },
+            {
+              "edge": 4,
+              "interval": [
+                0.0,
+                0.6
+              ],
+              "original_edges": [
+                5
+              ]
+            },
+            {
+              "edge": 4,
+              "interval": [
+                0.6,
+                1.0
+              ],
+              "original_edges": [
+                5
+              ]
+            },
+            {
+              "edge": 5,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                0
+              ]
+            }
+          ],
+          "consumed": [
+            [
+              2,
+              6
+            ]
+          ],
+          "axes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "cells": [
+            0,
+            1
+          ],
+          "sides": [
+            1,
+            3
+          ],
+          "intervals": [
+            [
+              2,
+              6
+            ]
+          ],
+          "options": [
+            {
+              "kind": "corner",
+              "axes": [
+                1,
+                0
+              ],
+              "receiver": 0,
+              "branch": 1,
+              "widths": [
+                0.09090909090909091,
+                0.09090909090909088
+              ],
+              "main": null
+            }
+          ]
+        }
+      ],
+      "adjacency": [],
+      "issues": [],
+      "roof_topology": null
+    },
+    "architecture_scope": "selected",
+    "rejected": [
+      {
+        "partition": "8544c3c9070c2895de4fe56c0bf2d90b",
+        "axes": [
+          1,
+          0
+        ],
+        "reason": "L/T extension requires one isolated strictly narrower branch",
+        "issues": [
+          {
+            "stage": "junction",
+            "code": "corner_extension",
+            "cells": [
+              0,
+              1
+            ]
+          }
+        ],
+        "end_choices": [
+          [
+            [
+              0,
+              1
+            ],
+            "extension"
+          ]
+        ]
+      },
+      {
+        "partition": "98c06ce1fb8812489de1e63ec5147e32",
+        "axes": [
+          1,
+          0
+        ],
+        "reason": "L/T extension requires one isolated strictly narrower branch",
+        "issues": [
+          {
+            "stage": "junction",
+            "code": "corner_extension",
+            "cells": [
+              0,
+              1
+            ]
+          }
+        ],
+        "end_choices": [
+          [
+            [
+              0,
+              1
+            ],
+            "extension"
+          ]
+        ]
+      }
+    ],
+    "ranking": {
+      "architectural_preferred_assignments": [
+        {
+          "partition": "8544c3c9070c2895de4fe56c0bf2d90b",
+          "axes": [
+            1,
+            0
+          ],
+          "score": 0,
+          "end_choices": [
+            [
+              [
+                0,
+                1
+              ],
+              "shared"
+            ]
+          ]
+        },
+        {
+          "partition": "8544c3c9070c2895de4fe56c0bf2d90b",
+          "axes": [
+            1,
+            0
+          ],
+          "score": 0,
+          "end_choices": [
+            [
+              [
+                0,
+                1
+              ],
+              "extension"
+            ]
+          ]
+        },
+        {
+          "partition": "98c06ce1fb8812489de1e63ec5147e32",
+          "axes": [
+            1,
+            0
+          ],
+          "score": 0,
+          "end_choices": [
+            [
+              [
+                0,
+                1
+              ],
+              "shared"
+            ]
+          ]
+        },
+        {
+          "partition": "98c06ce1fb8812489de1e63ec5147e32",
+          "axes": [
+            1,
+            0
+          ],
+          "score": 0,
+          "end_choices": [
+            [
+              [
+                0,
+                1
+              ],
+              "extension"
+            ]
+          ]
+        }
+      ],
+      "architectural_assignment_count": 4,
+      "constructible_candidate_ids": [
+        "512f9ba653be302788d874a7799ec056",
+        "6c15f987a70c7c48d6c715f99e7abc91"
+      ],
+      "selectable_candidate_ids": [
+        "512f9ba653be302788d874a7799ec056",
+        "6c15f987a70c7c48d6c715f99e7abc91"
+      ],
+      "complete": true,
+      "selection_rule": "best architectural score among constructible candidates, then seed"
+    },
+    "graph": {
+      "roof_type": "gable",
+      "outline": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.09090909090909091,
+          0.0
+        ],
+        [
+          0.09090909090909091,
+          0.18181818181818182
+        ],
+        [
+          0.22727272727272727,
+          0.18181818181818182
+        ],
+        [
+          0.22727272727272727,
+          0.2727272727272727
+        ],
+        [
+          0.0,
+          0.2727272727272727
+        ]
+      ],
+      "source_edges": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ],
+        [
+          5
+        ],
+        [
+          0
+        ]
+      ],
+      "vertices": [
+        {
+          "seed": [
+            0.0,
+            0.0
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 0,
+            "t": 0
+          },
+          "cells": [
+            0
+          ],
+          "id": 0,
+          "degree": 2
+        },
+        {
+          "seed": [
+            0.09090909090909091,
+            0.0
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 1,
+            "t": 0
+          },
+          "cells": [
+            0
+          ],
+          "id": 1,
+          "degree": 2
+        },
+        {
+          "seed": [
+            0.09090909090909091,
+            0.18181818181818182
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 2,
+            "t": 0
+          },
+          "cells": [
+            0,
+            1
+          ],
+          "id": 2,
+          "degree": 3
+        },
+        {
+          "seed": [
+            0.22727272727272727,
+            0.18181818181818182
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 3,
+            "t": 0
+          },
+          "cells": [
+            1
+          ],
+          "id": 3,
+          "degree": 2
+        },
+        {
+          "seed": [
+            0.22727272727272727,
+            0.2727272727272727
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 4,
+            "t": 0
+          },
+          "cells": [
+            1
+          ],
+          "id": 4,
+          "degree": 2
+        },
+        {
+          "seed": [
+            0.0,
+            0.2727272727272727
+          ],
+          "role": "corner",
+          "boundary": {
+            "edge": 5,
+            "t": 0
+          },
+          "cells": [
+            0,
+            1
+          ],
+          "id": 5,
+          "degree": 3
+        },
+        {
+          "seed": [
+            0.045454545454545456,
+            0.0
+          ],
+          "role": "ridge_end",
+          "boundary": {
+            "edge": 0,
+            "t": 0.5
+          },
+          "cells": [
+            0
+          ],
+          "id": 6,
+          "degree": 3
+        },
+        {
+          "seed": [
+            0.22727272727272727,
+            0.22727272727272727
+          ],
+          "role": "ridge_end",
+          "boundary": {
+            "edge": 3,
+            "t": 0.5
+          },
+          "cells": [
+            1
+          ],
+          "id": 7,
+          "degree": 3
+        },
+        {
+          "seed": [
+            0.045454545454545456,
+            0.22727272727272727
+          ],
+          "role": "junction",
+          "boundary": null,
+          "cells": [
+            0,
+            1
+          ],
+          "id": 8,
+          "degree": 4
+        }
+      ],
+      "faces": [
+        {
+          "loop": [
+            1,
+            2,
+            8,
+            6
+          ],
+          "cells": [
+            0
+          ],
+          "eaves": [
+            1
+          ],
+          "id": 0
+        },
+        {
+          "loop": [
+            8,
+            5,
+            0,
+            6
+          ],
+          "cells": [
+            0
+          ],
+          "eaves": [
+            5
+          ],
+          "id": 1
+        },
+        {
+          "loop": [
+            2,
+            3,
+            7,
+            8
+          ],
+          "cells": [
+            1
+          ],
+          "eaves": [
+            2
+          ],
+          "id": 2
+        },
+        {
+          "loop": [
+            7,
+            4,
+            5,
+            8
+          ],
+          "cells": [
+            1
+          ],
+          "eaves": [
+            4
+          ],
+          "id": 3
+        }
+      ],
+      "edges": [
+        {
+          "vertices": [
+            0,
+            5
+          ],
+          "faces": [
+            1
+          ],
+          "kind": "eave",
+          "boundary": {
+            "edge": 5,
+            "interval": [
+              0,
+              1.0
+            ],
+            "original_edges": [
+              0
+            ]
+          }
+        },
+        {
+          "vertices": [
+            0,
+            6
+          ],
+          "faces": [
+            1
+          ],
+          "kind": "gable_end",
+          "boundary": {
+            "edge": 0,
+            "interval": [
+              0,
+              0.5
+            ],
+            "original_edges": [
+              1
+            ]
+          }
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "faces": [
+            0
+          ],
+          "kind": "eave",
+          "boundary": {
+            "edge": 1,
+            "interval": [
+              0,
+              1.0
+            ],
+            "original_edges": [
+              2
+            ]
+          }
+        },
+        {
+          "vertices": [
+            1,
+            6
+          ],
+          "faces": [
+            0
+          ],
+          "kind": "gable_end",
+          "boundary": {
+            "edge": 0,
+            "interval": [
+              0.5,
+              1.0
+            ],
+            "original_edges": [
+              1
+            ]
+          }
+        },
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "faces": [
+            2
+          ],
+          "kind": "eave",
+          "boundary": {
+            "edge": 2,
+            "interval": [
+              0,
+              1.0
+            ],
+            "original_edges": [
+              3
+            ]
+          }
+        },
+        {
+          "vertices": [
+            2,
+            8
+          ],
+          "faces": [
+            0,
+            2
+          ],
+          "kind": "valley",
+          "boundary": null
+        },
+        {
+          "vertices": [
+            3,
+            7
+          ],
+          "faces": [
+            2
+          ],
+          "kind": "gable_end",
+          "boundary": {
+            "edge": 3,
+            "interval": [
+              0,
+              0.5
+            ],
+            "original_edges": [
+              4
+            ]
+          }
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "faces": [
+            3
+          ],
+          "kind": "eave",
+          "boundary": {
+            "edge": 4,
+            "interval": [
+              0,
+              1.0
+            ],
+            "original_edges": [
+              5
+            ]
+          }
+        },
+        {
+          "vertices": [
+            4,
+            7
+          ],
+          "faces": [
+            3
+          ],
+          "kind": "gable_end",
+          "boundary": {
+            "edge": 3,
+            "interval": [
+              0.5,
+              1.0
+            ],
+            "original_edges": [
+              4
+            ]
+          }
+        },
+        {
+          "vertices": [
+            5,
+            8
+          ],
+          "faces": [
+            1,
+            3
+          ],
+          "kind": "hip",
+          "boundary": null
+        },
+        {
+          "vertices": [
+            6,
+            8
+          ],
+          "faces": [
+            0,
+            1
+          ],
+          "kind": "ridge",
+          "boundary": null
+        },
+        {
+          "vertices": [
+            7,
+            8
+          ],
+          "faces": [
+            2,
+            3
+          ],
+          "kind": "ridge",
+          "boundary": null
+        }
+      ],
+      "features": {
+        "eave": 4,
+        "gable_end": 4,
+        "valley": 1,
+        "hip": 1,
+        "ridge": 2
+      },
+      "face_adjacency": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "connections": [
+      {
+        "host": 0,
+        "branch": 1,
+        "shared": [
+          2,
+          6
+        ],
+        "terminated_ports": [
+          4,
+          5
+        ],
+        "junctions": [
+          8
+        ],
+        "wider_cell": null,
+        "kind": "terminal"
+      }
+    ],
+    "features": [
+      {
+        "vertices": [
+          2,
+          8
+        ],
+        "kind": "valley",
+        "members": [
+          0,
+          1
+        ],
+        "relation": [
+          0,
+          1
+        ],
+        "operation": "terminal",
+        "parts": [
+          0
+        ]
+      },
+      {
+        "vertices": [
+          5,
+          8
+        ],
+        "kind": "hip",
+        "members": [
+          0,
+          1
+        ],
+        "relation": [
+          0,
+          1
+        ],
+        "operation": "terminal",
+        "parts": [
+          0
+        ]
+      },
+      {
+        "vertices": [
+          6,
+          8
+        ],
+        "kind": "ridge",
+        "members": [
+          0
+        ],
+        "relation": null,
+        "operation": "member_axis",
+        "parts": [
+          0
+        ]
+      },
+      {
+        "vertices": [
+          7,
+          8
+        ],
+        "kind": "ridge",
+        "members": [
+          0,
+          1
+        ],
+        "relation": [
+          0,
+          1
+        ],
+        "operation": "terminal",
+        "parts": [
+          0
+        ]
+      }
+    ],
+    "feature_cause_scope": "recorded at construction",
+    "independent_cell_roof_graphs": 0,
+    "solved_vertices": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.09090909090909091,
+        0.0,
+        0.0
+      ],
+      [
+        0.09090909090909091,
+        0.18181818181818182,
+        0.0
+      ],
+      [
+        0.22727272727272727,
+        0.18181818181818182,
+        0.0
+      ],
+      [
+        0.22727272727272727,
+        0.2727272727272727,
+        0.0
+      ],
+      [
+        0.0,
+        0.2727272727272727,
+        0.0
+      ],
+      [
+        0.045454545454545456,
+        0.0,
+        0.022727272727272728
+      ],
+      [
+        0.22727272727272727,
+        0.22727272727272727,
+        0.02272727272727272
+      ],
+      [
+        0.045454545454545456,
+        0.22727272727272727,
+        0.022727272727272724
+      ]
+    ],
+    "solver_preserved_graph": true
+  }
+]

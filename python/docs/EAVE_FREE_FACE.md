@@ -31,6 +31,15 @@ renders of Blender mesh output, not live viewport captures.
 
 - [Installed operator report](authority/eave-free/operator.json)
 - [Equal-width roof render](authority/eave-free/equal_corner_T.png)
+- [Cells, Parts, end decisions and final features](authority/eave-free/equal_corner_T.svg)
+
+The paired diagram compares seed 0 on `a99ad3b` and this repair. The earlier
+revision could already generate the shared L option for this footprint; it
+could not generate the resolved equal-width T option. The change adds that
+interpretation to the valid set, so seed 0 now selects it. It does not establish
+that one interpretation is aesthetically preferable to the other. A separate
+transform check embedded 48 eave-free candidates across 24 rotated, reflected
+and scaled inputs while preserving the graph.
 
 This is an additional proven L/T interpretation. It does not solve the user's
 staggered parallel-band footprint. The previous frozen-corpus measurements
