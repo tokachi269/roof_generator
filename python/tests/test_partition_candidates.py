@@ -160,5 +160,21 @@ class MinimumCandidateProof(unittest.TestCase):
             self.assertEqual(sorted(signature(d) for d in result.candidates), sig)
 
 
+class PrecisionSymmetryProof(unittest.TestCase):
+    def test_float32_U_does_not_expand_approximate_symmetry_into_duplicate_cuts(self):
+        import struct
+        from python.inspect_architectural_parts import fixture
+        from roof_generator.core.footprint import analyze
+        from roof_generator.core.partition_candidates import candidates
+
+        raw = fixture("orthogonal_U")["footprint"]
+        single = lambda x: struct.unpack("f", struct.pack("f", x))[0]
+        fp = analyze(tuple(tuple(single(x) for x in p) for p in raw))
+        search = candidates(fp)
+        self.assertTrue(search.complete)
+        self.assertTrue(search.candidates)
+        self.assertTrue(all(len(d.cells) == 3 for d in search.candidates))
+
+
 if __name__ == "__main__":
     unittest.main()

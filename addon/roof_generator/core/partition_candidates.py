@@ -3,6 +3,7 @@
 
 from dataclasses import dataclass, replace
 from itertools import product
+import math
 from .footprint import EPS
 from .partition import (
     good_diagonals,
@@ -42,11 +43,7 @@ def symmetries(fp):
         image = tuple(candidate.apply(p) for p in pts)
         mapping = tuple(
             next(
-                (
-                    i
-                    for i, q in enumerate(pts)
-                    if max(abs(a - b) for a, b in zip(p, q)) <= 4 * EPS
-                ),
+                (i for i, q in enumerate(pts) if math.dist(p, q) <= EPS),
                 -1,
             )
             for p in image
