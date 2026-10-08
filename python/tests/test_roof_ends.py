@@ -11,6 +11,16 @@ from roof_generator.core.errors import UnsupportedRoofError
 
 
 class RoofEndAuthorityProof(unittest.TestCase):
+    def test_offset_short_end_contact_does_not_receive_one_line_constraints(self):
+        raw = ((0, 0), (6, 0), (6, 12), (8, 12), (8, 24), (2, 24), (2, 12), (0, 12))
+        architecture = interpret(decompose(analyze(raw)))
+        resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+        self.assertEqual(resolved.relations[0].options[0].kind, 'continuation')
+        with self.assertRaises(UnsupportedRoofError) as error:
+            tuple(roof_configurations(resolved))
+        self.assertIn('offset', str(error.exception))
+        self.assertTrue(all(issue.code.endswith('offset_continuation') for issue in error.exception.issues))
+
     def test_selected_compound_has_resolved_end_configuration_before_composition(self):
         roof = prepare_generation(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10)))
         self.assertIsNotNone(getattr(roof.selected, 'ends', None),

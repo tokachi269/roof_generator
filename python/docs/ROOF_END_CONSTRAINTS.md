@@ -39,9 +39,10 @@ The global configuration intersects every relation's choices, then enforces
 exact reflected whole-member end equalities. Partial reflected root matches
 are not guessed. An assignment with no compatible configuration has no roof.
 
-One-line obligations participate in this constraint model. A general
-continuation RoofGraph rewrite is still unimplemented, including offset end
-contacts. Parallel and partial-end relations also remain unsupported.
+One-line obligations apply only to coincident full short ends, not staggered
+partial end/end contacts. Those contacts fail with `offset_continuation` before
+any end configuration is published. A general continuation RoofGraph rewrite
+is still unimplemented. Parallel and partial-end relations also remain unsupported.
 
 Composition receives the selected configuration. It binds published roles to
 ports and validates operation applicability; it cannot turn an extension into

@@ -1,0 +1,13 @@
+{
+  "scope": "Coincident full-end rule applicability only; no new graph operation",
+  "tests": {
+    "count": 139,
+    "seconds": 79.678,
+    "result": "passed"
+  },
+  "installed_archive_sha256": "919748119766379d0fd2bc5f6b18a9249aa7e6e08476d3fc3a463e18a492e65c",
+  "operator_cases": 19,
+  "supported": 11,
+  "same_supported_ids_as_end_state_stage": true,
+  "full_corpus_reaudit": "running; prior coverage table remains specific to production 449fe1d"
+}

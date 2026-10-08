@@ -1,5 +1,16 @@
 # Architectural authority: audit and end-constraint result
 
+この報告の全corpus・性能の数値はproduction `449fe1d`の測定である。
+その後の[one-line適用範囲の修正](ROOF_END_CONSTRAINTS.md)では、ずれた短辺接触を
+端制約生成前に拒否した。更新後の全corpus再測定が終わるまで、以下の数値を
+最新revisionの測定結果とは扱わない。
+
+適用範囲修正後は139 tests（79.678s）が成功した。更新ZIPの19入力を
+実operatorで検証し、前段階の成功11入力のcandidate IDはすべて同一だった。
+offsetのtall入力は、後段のjunctionではなく端制約生成で拒否される。
+[追加検証の記録](authority/offset-end-gate/verification.json)と
+[operator結果](authority/offset-end-gate/operator.json)は前段階の測定と分けて保存した。
+
 ArchitecturalPartを迂回してCell primitiveからrelationを再解釈する経路は、開始時のコードで実証した。現在はresolved architectureと全体の端制約をcompositionの入力にした。今回実装したのはgable要求のshared/T構成の制約と、狭いbranchのcorner-T extensionである。
 
 **報告された工場屋根の因果除去は未確認。** 「全valleyにrelationという由来があるから問題は確認できなかった」という結論は撤回する。provenanceは生成経路の記録であり、屋根への採用根拠を証明しない。

@@ -109,6 +109,16 @@ def end_rules(resolved):
     for relation in resolved.relations:
         option = relation.options[0]
         if option.kind == "continuation":
+            # Analytic end/end adjacency also includes staggered partial
+            # contacts. Hu's one-line obligation is for collinear full ends;
+            # do not manufacture that obligation for an unknown offset rule.
+            first, second = (tuple(d.vertices[v] for v in d.cells[c].sides[s].vertices)
+                             for c, s in zip(relation.cells, relation.sides))
+            if any(not any(max(abs(x - y) for x, y in zip(p, q)) <= 4 * EPS
+                           for q in second) for p in first):
+                scope = "internal_" if resolved.internal(relation) else "inter_part_"
+                unresolved.append(GenerationIssue("relation", scope + "offset_continuation", relation.cells))
+                continue
             states = tuple((End(c, s), EndShape.GABLE) for c, s in zip(relation.cells, relation.sides))
             choices = (EndChoice(relation.cells, "continuation", states),)
         elif option.kind in {"corner", "side_attachment"}:

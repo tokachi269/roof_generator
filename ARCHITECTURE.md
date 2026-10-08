@@ -64,7 +64,8 @@ addon/roof_generator/
     partition_candidates.py   bounded minimum candidate family and symmetry
     cells.py, provenance.py   Cell/Side/Adjacency and original boundary ownership
     architecture_models.py    architectural members, groups and relations
-    architecture.py           local published combination interpretation
+    architecture.py           resolved interpretation and Part ownership
+    roof_ends.py              simultaneous roof-end and symmetry constraints
     architecture_selection.py published evaluation bounds and retained ties
     topology.py, junctions.py  primitives, ports and whole-arrangement junctions
     graph.py                  indexed RoofVertex/RoofFace/RoofEdge disk contract
@@ -93,12 +94,15 @@ coordinate initializer, distinct from the integer/string generation seed.
 ## Candidate validity and selection
 
 Composition receives a `ResolvedArchitecture`, including the selected member
-directions, explicit local combinations and Part ownership. Decomposition is
+directions, compatible global roof-end choices and their Part ownership.
+Analytic corner contact admits shared/T choices rather than forcing a terminal
+junction. One-line end constraints require coincident complete short ends;
+staggered partial contacts remain `offset_continuation` unsupported. Decomposition is
 retained for coordinates and provenance; it is not a roof parts list.
 Compound composition binds declared combinations to graphless member port/cycle
 templates, then assembles the final graph. `cell_primitives()` is a developer
 inspection facility; production compound composition never generates Cell roofs.
-Internal corner combinations still require a local junction; Part grouping does
+Selected shared corner combinations require a local junction; Part grouping does
 not by itself define a one-ridge roof. Internal continuation/parallel/partial-end
 and inter-Part contacts are diagnosed separately and remain unsupported where no
 architectural template has been specified. The solver does not choose templates.
