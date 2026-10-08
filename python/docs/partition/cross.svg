@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760">
+<rect width="800" height="760" fill="white"/>
+<g font-family="sans-serif" fill="#18212b" font-size="14">
+<text x="35" y="28">Minimum rectangular partition: 3 cells</text>
+<polygon points="45.000,490.000 245.000,490.000 245.000,290.000 45.000,290.000" fill="#dbe9fa" stroke="#536273" stroke-width="1.5"/>
+<text x="145.000" y="390.000">0</text>
+<polygon points="245.000,690.000 445.000,690.000 445.000,490.000 445.000,290.000 445.000,90.000 245.000,90.000 245.000,290.000 245.000,490.000" fill="#f8ddc5" stroke="#536273" stroke-width="1.5"/>
+<text x="345.000" y="390.000">1</text>
+<polygon points="445.000,490.000 645.000,490.000 645.000,290.000 445.000,290.000" fill="#dfedda" stroke="#536273" stroke-width="1.5"/>
+<text x="545.000" y="390.000">2</text>
+<polyline points="245.000,290.000 245.000,490.000" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 2</title></polyline>
+<polyline points="445.000,490.000 445.000,290.000" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 3</title></polyline>
+<text x="35" y="735">Blue: selected good diagonal. Dashed: reflex completion. No roof geometry.</text></g></svg>

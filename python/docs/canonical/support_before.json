@@ -1,0 +1,292 @@
+{
+  "source_sha": "a7b4e67a4831c78d2b8cafe866c0b887b2e548a6",
+  "python": "3.12.14",
+  "profiled": false,
+  "scope": "2D RoofGraph + GeometryProblem; not solved meshes",
+  "corpus_generator_seed": 92821,
+  "grid_scale_metres": 3.0,
+  "censoring": "Junction/geometry failures after a blocked relation are unobserved. Sole known blockers are upper bounds.",
+  "fixtures": [
+    {
+      "name": "orthogonal_U",
+      "vertices": 8,
+      "partition_candidates": 4,
+      "retained_interpretations": 2,
+      "valid": 0,
+      "complete": true,
+      "status": "unsupported",
+      "fingerprint": "83f7626acee80c121145d677f83f2f855ba9c6897e9bab6e47cf8325d7083a4d",
+      "continuation_geometry": {},
+      "timings_ms": {
+        "footprint_analysis": 0.2626450004754588,
+        "partition_candidates": 3.392418999283109,
+        "architectural_interpretation": 0.2659620004124008,
+        "candidate_evaluation": 0.25047700182767585,
+        "selected_part_graph_construction": 0.2929239999502897,
+        "footprint_to_part_interpretation": 4.464427001948934,
+        "roof_topology_candidates": 2.429672997095622,
+        "seed_selection": 0.00036399796954356134,
+        "total": 6.917623999470379
+      }
+    },
+    {
+      "name": "cross",
+      "vertices": 12,
+      "partition_candidates": 2,
+      "retained_interpretations": 2,
+      "valid": 2,
+      "complete": true,
+      "status": "supported",
+      "fingerprint": "fdd6d7f185b4966a60061f74c71537cac3f3085efc5b7c7eab3d7595e5b1c630",
+      "continuation_geometry": {},
+      "timings_ms": {
+        "footprint_analysis": 0.28769700293196365,
+        "partition_candidates": 2.2878809977555647,
+        "architectural_interpretation": 0.14657900101155974,
+        "candidate_evaluation": 0.16676800078130327,
+        "selected_part_graph_construction": 0.450655999884475,
+        "footprint_to_part_interpretation": 3.3395810023648664,
+        "roof_topology_candidates": 8.89783200182137,
+        "seed_selection": 0.05751800199504942,
+        "total": 12.308012999710627
+      }
+    },
+    {
+      "name": "residential_multi_reflex",
+      "vertices": 12,
+      "partition_candidates": 4,
+      "retained_interpretations": 1,
+      "valid": 0,
+      "complete": true,
+      "status": "unsupported",
+      "fingerprint": "66b96b45cdbfe8e3f10bb6eac272bbe86a336f553550e49de3405a3b0f6d8954",
+      "continuation_geometry": {},
+      "timings_ms": {
+        "footprint_analysis": 0.21878900224692188,
+        "partition_candidates": 4.513710999162868,
+        "architectural_interpretation": 1.0866049997275695,
+        "candidate_evaluation": 0.4022489993076306,
+        "selected_part_graph_construction": 0.15092700050445274,
+        "footprint_to_part_interpretation": 6.372281000949442,
+        "roof_topology_candidates": 1.4983379987825174,
+        "seed_selection": 0.00026500129024498165,
+        "total": 7.885269998951117
+      }
+    },
+    {
+      "name": "grid_14",
+      "vertices": 14,
+      "partition_candidates": 12,
+      "retained_interpretations": 10,
+      "valid": 0,
+      "complete": true,
+      "status": "unsupported",
+      "fingerprint": "52600cc73eada64c558fda2911e9ce0c9d880b6936be4cc8def002f110d2a3dd",
+      "continuation_geometry": {
+        "offset_or_width_step": 12
+      },
+      "timings_ms": {
+        "footprint_analysis": 0.23293499907595105,
+        "partition_candidates": 14.529976000630995,
+        "architectural_interpretation": 0.7283749982889276,
+        "candidate_evaluation": 1.7810370009101462,
+        "selected_part_graph_construction": 2.225602998805698,
+        "footprint_to_part_interpretation": 19.497925997711718,
+        "roof_topology_candidates": 2.4086840021482203,
+        "seed_selection": 0.00023500251700170338,
+        "total": 21.9204909990367
+      }
+    },
+    {
+      "name": "grid_20",
+      "vertices": 20,
+      "partition_candidates": 16,
+      "retained_interpretations": 6,
+      "valid": 0,
+      "complete": true,
+      "status": "unsupported",
+      "fingerprint": "02e271d65c2b66828f96b1024886ca958b10ca842d03b8ad2be74516b4185a37",
+      "continuation_geometry": {
+        "offset_or_width_step": 6
+      },
+      "timings_ms": {
+        "footprint_analysis": 0.5674469975929242,
+        "partition_candidates": 24.01435399951879,
+        "architectural_interpretation": 1.5721950003353413,
+        "candidate_evaluation": 3.9982000016607344,
+        "selected_part_graph_construction": 2.4482310000166763,
+        "footprint_to_part_interpretation": 32.600426999124466,
+        "roof_topology_candidates": 1.7804249982873444,
+        "seed_selection": 0.00026500129024498165,
+        "total": 34.40581300310441
+      }
+    },
+    {
+      "name": "grid_40",
+      "vertices": 40,
+      "partition_candidates": 48,
+      "retained_interpretations": 25,
+      "valid": 0,
+      "complete": true,
+      "status": "unsupported",
+      "fingerprint": "04e7c3da99e8b8cf9dc1cdc6fe7a12f815c2b487b1bebc233ad0e2d7e3dcf8a9",
+      "continuation_geometry": {
+        "offset_or_width_step": 784
+      },
+      "timings_ms": {
+        "footprint_analysis": 1.8054329993901774,
+        "partition_candidates": 143.5228800000914,
+        "architectural_interpretation": 13.004307998926379,
+        "candidate_evaluation": 36.67784500066773,
+        "selected_part_graph_construction": 15.39582999976119,
+        "footprint_to_part_interpretation": 210.40629599883687,
+        "roof_topology_candidates": 36.15574599825777,
+        "seed_selection": 0.0002720007614698261,
+        "total": 246.6670849971706
+      }
+    }
+  ],
+  "repeated_six_fixtures_1000": {
+    "building_status": {
+      "unsupported": 833,
+      "supported": 167
+    },
+    "building_incidence_nonexclusive": {
+      "relation.parallel": 666,
+      "relation.continuation": 499,
+      "relation.partial_end": 499,
+      "junction.host_arrangement": 167,
+      "junction.terminal_arrangement": 167
+    },
+    "unsupported_building_incidence_nonexclusive": {
+      "relation.continuation": 499,
+      "relation.parallel": 499,
+      "relation.partial_end": 499,
+      "junction.host_arrangement": 167,
+      "junction.terminal_arrangement": 167
+    },
+    "rejected_assignment_incidence_nonexclusive": {
+      "relation.parallel": 159902,
+      "relation.partial_end": 152408,
+      "relation.continuation": 99944,
+      "junction.terminal_arrangement": 334,
+      "junction.host_arrangement": 167
+    },
+    "issue_occurrences": {
+      "relation.parallel": 747258,
+      "relation.partial_end": 399582,
+      "relation.continuation": 133144,
+      "junction.terminal_arrangement": 334,
+      "junction.host_arrangement": 167
+    },
+    "conditional_sole_known_blocker_buildings": {
+      "relation.parallel": 333,
+      "junction.host_arrangement": 167,
+      "junction.terminal_arrangement": 167
+    },
+    "continuation_geometry_occurrences": {
+      "offset_or_width_step": 133144
+    },
+    "raw_rejection_messages": {
+      "no published implemented port operation for parallel": 83036,
+      "no published implemented port operation for partial_end": 76036,
+      "no published implemented port operation for continuation": 830,
+      "no complete supported middle-attachment arrangement; terminal graft requires one attachment": 334,
+      "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved": 167
+    },
+    "total_ms": 54846.34453357285
+  },
+  "unique_generated_grid": {
+    "building_status": {
+      "unsupported": 986,
+      "incomplete": 12,
+      "supported": 2
+    },
+    "building_incidence_nonexclusive": {
+      "relation.parallel": 995,
+      "relation.continuation": 802,
+      "relation.partial_end": 802,
+      "junction.terminal_arrangement": 36,
+      "junction.host_arrangement": 16,
+      "junction.equal_width_ports": 2,
+      "junction.branch_width": 1,
+      "junction.interacting_slots": 1
+    },
+    "unsupported_building_incidence_nonexclusive": {
+      "relation.parallel": 981,
+      "relation.continuation": 790,
+      "relation.partial_end": 790,
+      "junction.terminal_arrangement": 36,
+      "junction.host_arrangement": 16,
+      "junction.equal_width_ports": 2,
+      "junction.branch_width": 1,
+      "junction.interacting_slots": 1
+    },
+    "rejected_assignment_incidence_nonexclusive": {
+      "relation.parallel": 277075,
+      "relation.partial_end": 193030,
+      "relation.continuation": 182412,
+      "junction.terminal_arrangement": 85,
+      "junction.host_arrangement": 21,
+      "junction.equal_width_ports": 2,
+      "junction.branch_width": 1,
+      "junction.interacting_slots": 1
+    },
+    "issue_occurrences": {
+      "relation.parallel": 1502054,
+      "relation.partial_end": 334180,
+      "relation.continuation": 284324,
+      "junction.terminal_arrangement": 85,
+      "junction.host_arrangement": 21,
+      "junction.equal_width_ports": 2,
+      "junction.branch_width": 1,
+      "junction.interacting_slots": 1
+    },
+    "conditional_sole_known_blocker_buildings": {
+      "relation.parallel": 777,
+      "relation.partial_end": 61,
+      "relation.continuation": 38,
+      "junction.terminal_arrangement": 36,
+      "junction.host_arrangement": 16,
+      "junction.equal_width_ports": 2,
+      "junction.branch_width": 1,
+      "junction.interacting_slots": 1
+    },
+    "continuation_geometry_occurrences": {
+      "offset_or_width_step": 284324
+    },
+    "raw_rejection_messages": {
+      "no published implemented port operation for parallel": 201038,
+      "no published implemented port operation for partial_end": 43964,
+      "no published implemented port operation for continuation": 32506,
+      "no complete supported middle-attachment arrangement; terminal graft requires one attachment": 85,
+      "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved": 21,
+      "multiple equal-width attachments lack compatible opposite shared ports": 2,
+      "branch attachment slots interact; no independent junction composition is proved": 1,
+      "middle attachment requires a narrower or equal-width branch": 1
+    },
+    "total_ms": 188733.43970307178
+  },
+  "unknown_vertex_histogram": {
+    "6": 1,
+    "8": 4,
+    "10": 18,
+    "12": 44,
+    "14": 41,
+    "16": 56,
+    "18": 64,
+    "20": 68,
+    "22": 59,
+    "24": 64,
+    "26": 70,
+    "28": 74,
+    "30": 78,
+    "32": 82,
+    "34": 69,
+    "36": 66,
+    "38": 73,
+    "40": 69
+  },
+  "corpus_sha256": "50fdc2041478650e165efea5ea2089e8e176635aa7b6e66dd04e3a438562479c",
+  "core_timing_caveat": "Full-detail run retained all diagnostic rows; use isolated support_benchmark files for timing. Counts are unaffected; the audit now streams diagnostics."
+}

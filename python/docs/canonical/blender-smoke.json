@@ -1,0 +1,45 @@
+{
+  "meshes": [
+    {
+      "case": "rectangle_gable",
+      "faces": 2,
+      "candidate": "fe53756b8df3375ba36e5fc8f66e1d41",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_hip",
+      "faces": 4,
+      "candidate": "25cad4c74b2ca052161764fa4079287d",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_shed",
+      "faces": 1,
+      "candidate": "ef03ab3ee70d967600fcca9af75f94da",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_flat",
+      "faces": 1,
+      "candidate": "a4d6f17e51692542b250944a9ac4f2fe",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "compound_flat",
+      "faces": 1,
+      "candidate": "78430db6b9a1a770600b698928e9b8d9",
+      "uv": true,
+      "material": true
+    }
+  ],
+  "square_seed_variation": {
+    "cffcb8c9df7ceec969d180541a6c6fca": 0,
+    "7ae0fafd7ab090134be818e804cb3450": 1
+  },
+  "compound_failure_atomic": true,
+  "cli": true
+}

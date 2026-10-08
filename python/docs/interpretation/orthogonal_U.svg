@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1380" viewBox="0 0 1400 1380">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#176a85"/></marker></defs>
+<rect width="1400" height="1380" fill="white"/>
+<g font-family="sans-serif" fill="#18212b">
+<text x="25" y="30" font-size="22">Architectural part interpretation: orthogonal_U</text>
+<text x="25" y="56">4 minimum candidates; 2 retained; ambiguous</text>
+<text x="25" y="82">Intrinsic XY. No roof primitives, ridge / valley / hip, heights or solver.</text>
+<text x="25" y="108">Gray dashed: retained analytic cut. Green dotted: consumed inside compound part.</text>
+<text x="25" y="134">Teal arrows: member attachment toward receiver (conditional when marked ?), not roof edges.</text>
+<rect x="3" y="163" width="544" height="374" fill="none" stroke="#b7c6d1"/>
+<text x="15" y="183" font-size="13">Established primary minimum partition</text>
+<polygon points="25.00,500.00 145.68,500.00 145.68,321.21 145.68,205.00 25.00,205.00" fill="#dbe9fa" stroke="none"/>
+<text x="85.34" y="352.50" font-size="11" text-anchor="middle">c0</text>
+<polygon points="145.68,321.21 293.18,321.21 293.18,205.00 145.68,205.00" fill="#f8ddc5" stroke="none"/>
+<text x="219.43" y="263.11" font-size="11" text-anchor="middle">c1</text>
+<polygon points="293.18,500.00 413.86,500.00 413.86,205.00 293.18,205.00 293.18,321.21" fill="#dfedda" stroke="none"/>
+<text x="353.52" y="352.50" font-size="11" text-anchor="middle">c2</text>
+<polyline points="145.68,321.21 145.68,205.00" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="293.18,321.21 293.18,205.00" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polygon points="25.00,500.00 145.68,500.00 145.68,321.21 293.18,321.21 293.18,500.00 413.86,500.00 413.86,205.00 25.00,205.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<text x="600" y="205">All candidate thumbnails are minimum partitions.</text>
+<text x="600" y="235">Retained candidates are not independent roof objects.</text>
+<text x="600" y="265">Compound parts retain member geometry and local relations.</text>
+<text x="600" y="295">An ambiguous recommendation has no selected main direction.</text>
+<text x="25" y="595" font-size="19">Minimum candidate gallery; retained means eligible under published score bounds</text>
+<rect x="3" y="623" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="15" y="643" font-size="13">#0: score (0, 0); lower recommendation bound</text>
+<polygon points="25.00,920.00 118.10,920.00 118.10,782.07 25.00,782.07" fill="#dbe9fa" stroke="none"/>
+<text x="71.55" y="851.03" font-size="11" text-anchor="middle">c0</text>
+<polygon points="25.00,782.07 118.10,782.07 231.90,782.07 231.90,692.41 25.00,692.41" fill="#f8ddc5" stroke="none"/>
+<text x="128.45" y="737.24" font-size="11" text-anchor="middle">c1</text>
+<polygon points="231.90,920.00 325.00,920.00 325.00,692.41 231.90,692.41 231.90,782.07" fill="#dfedda" stroke="none"/>
+<text x="278.45" y="806.21" font-size="11" text-anchor="middle">c2</text>
+<polyline points="118.10,782.07 25.00,782.07" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="231.90,782.07 231.90,692.41" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polygon points="25.00,920.00 118.10,920.00 118.10,782.07 231.90,782.07 231.90,920.00 325.00,920.00 325.00,692.41 25.00,692.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<rect x="353" y="623" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="365" y="643" font-size="13">#1: score (1, 1); RETAINED</text>
+<polygon points="375.00,920.00 468.10,920.00 468.10,782.07 375.00,782.07" fill="#dbe9fa" stroke="none"/>
+<text x="421.55" y="851.03" font-size="11" text-anchor="middle">c0</text>
+<polygon points="375.00,782.07 468.10,782.07 581.90,782.07 675.00,782.07 675.00,692.41 375.00,692.41" fill="#f8ddc5" stroke="none"/>
+<text x="525.00" y="737.24" font-size="11" text-anchor="middle">c1</text>
+<polygon points="581.90,920.00 675.00,920.00 675.00,782.07 581.90,782.07" fill="#dfedda" stroke="none"/>
+<text x="628.45" y="851.03" font-size="11" text-anchor="middle">c2</text>
+<polyline points="468.10,782.07 375.00,782.07" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="581.90,782.07 675.00,782.07" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polygon points="375.00,920.00 468.10,920.00 468.10,782.07 581.90,782.07 581.90,920.00 675.00,920.00 675.00,692.41 375.00,692.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<rect x="703" y="623" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="715" y="643" font-size="13">#2: score (1, 1); RETAINED</text>
+<polygon points="725.00,920.00 818.10,920.00 818.10,782.07 818.10,692.41 725.00,692.41" fill="#dbe9fa" stroke="none"/>
+<text x="771.55" y="806.21" font-size="11" text-anchor="middle">c0</text>
+<polygon points="818.10,782.07 931.90,782.07 931.90,692.41 818.10,692.41" fill="#f8ddc5" stroke="none"/>
+<text x="875.00" y="737.24" font-size="11" text-anchor="middle">c1</text>
+<polygon points="931.90,920.00 1025.00,920.00 1025.00,692.41 931.90,692.41 931.90,782.07" fill="#dfedda" stroke="none"/>
+<text x="978.45" y="806.21" font-size="11" text-anchor="middle">c2</text>
+<polyline points="818.10,782.07 818.10,692.41" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="931.90,782.07 931.90,692.41" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polygon points="725.00,920.00 818.10,920.00 818.10,782.07 931.90,782.07 931.90,920.00 1025.00,920.00 1025.00,692.41 725.00,692.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<rect x="1053" y="623" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="1065" y="643" font-size="13">#3: score (0, 0); lower recommendation bound</text>
+<polygon points="1075.00,920.00 1168.10,920.00 1168.10,782.07 1168.10,692.41 1075.00,692.41" fill="#dbe9fa" stroke="none"/>
+<text x="1121.55" y="806.21" font-size="11" text-anchor="middle">c0</text>
+<polygon points="1168.10,782.07 1281.90,782.07 1375.00,782.07 1375.00,692.41 1168.10,692.41" fill="#f8ddc5" stroke="none"/>
+<text x="1271.55" y="737.24" font-size="11" text-anchor="middle">c1</text>
+<polygon points="1281.90,920.00 1375.00,920.00 1375.00,782.07 1281.90,782.07" fill="#dfedda" stroke="none"/>
+<text x="1328.45" y="851.03" font-size="11" text-anchor="middle">c2</text>
+<polyline points="1168.10,782.07 1168.10,692.41" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polyline points="1281.90,782.07 1375.00,782.07" fill="none" stroke="#707b88" stroke-width="2" stroke-dasharray="6,4"/>
+<polygon points="1075.00,920.00 1168.10,920.00 1168.10,782.07 1281.90,782.07 1281.90,920.00 1375.00,920.00 1375.00,692.41 1075.00,692.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<text x="25" y="1005" font-size="19">All retained ArchitecturalPart graphs; part colors and consumed cuts</text>
+<rect x="3" y="1043" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="15" y="1063" font-size="13">#1: 1 compound/single units; 2 cuts consumed</text>
+<polygon points="25.00,1340.00 118.10,1340.00 118.10,1202.07 25.00,1202.07" fill="#dbe9fa" stroke="none"/>
+<text x="71.55" y="1271.03" font-size="11" text-anchor="middle">p0:c0</text>
+<polygon points="25.00,1202.07 118.10,1202.07 231.90,1202.07 325.00,1202.07 325.00,1112.41 25.00,1112.41" fill="#dbe9fa" stroke="none"/>
+<text x="175.00" y="1157.24" font-size="11" text-anchor="middle">p0:c1</text>
+<polygon points="231.90,1340.00 325.00,1340.00 325.00,1202.07 231.90,1202.07" fill="#dbe9fa" stroke="none"/>
+<text x="278.45" y="1271.03" font-size="11" text-anchor="middle">p0:c2</text>
+<polyline points="118.10,1202.07 25.00,1202.07" fill="none" stroke="#319267" stroke-width="2" stroke-dasharray="2,4"/>
+<polyline points="231.90,1202.07 325.00,1202.07" fill="none" stroke="#319267" stroke-width="2" stroke-dasharray="2,4"/>
+<polyline points="25.00,1340.00 118.10,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="118.10,1340.00 118.10,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="118.10,1202.07 231.90,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="231.90,1202.07 231.90,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="231.90,1340.00 325.00,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="325.00,1340.00 325.00,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="325.00,1202.07 325.00,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="325.00,1112.41 25.00,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="25.00,1112.41 25.00,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="25.00,1202.07 25.00,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<path d="M71.55,1271.03 L175.00,1157.24" fill="none" stroke="#176a85" stroke-width="1.2" stroke-dasharray="3,4" marker-end="url(#arrow)"><title>corner; main=None; declared relation</title></path>
+<path d="M278.45,1271.03 L175.00,1157.24" fill="none" stroke="#176a85" stroke-width="1.2" stroke-dasharray="3,4" marker-end="url(#arrow)"><title>corner; main=None; declared relation</title></path>
+<text x="12" y="1370" font-size="10">width_roles</text>
+<rect x="353" y="1043" width="344" height="334" fill="none" stroke="#b7c6d1"/>
+<text x="365" y="1063" font-size="13">#2: 1 compound/single units; 2 cuts consumed</text>
+<polygon points="375.00,1340.00 468.10,1340.00 468.10,1202.07 468.10,1112.41 375.00,1112.41" fill="#dbe9fa" stroke="none"/>
+<text x="421.55" y="1226.21" font-size="11" text-anchor="middle">p0:c0</text>
+<polygon points="468.10,1202.07 581.90,1202.07 581.90,1112.41 468.10,1112.41" fill="#dbe9fa" stroke="none"/>
+<text x="525.00" y="1157.24" font-size="11" text-anchor="middle">p0:c1</text>
+<polygon points="581.90,1340.00 675.00,1340.00 675.00,1112.41 581.90,1112.41 581.90,1202.07" fill="#dbe9fa" stroke="none"/>
+<text x="628.45" y="1226.21" font-size="11" text-anchor="middle">p0:c2</text>
+<polyline points="468.10,1202.07 468.10,1112.41" fill="none" stroke="#319267" stroke-width="2" stroke-dasharray="2,4"/>
+<polyline points="581.90,1202.07 581.90,1112.41" fill="none" stroke="#319267" stroke-width="2" stroke-dasharray="2,4"/>
+<polyline points="375.00,1340.00 468.10,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="468.10,1340.00 468.10,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="468.10,1202.07 581.90,1202.07" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="581.90,1202.07 581.90,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="581.90,1340.00 675.00,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="675.00,1340.00 675.00,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="675.00,1112.41 581.90,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="581.90,1112.41 468.10,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="468.10,1112.41 375.00,1112.41" fill="none" stroke="#31445a" stroke-width="2"/>
+<polyline points="375.00,1112.41 375.00,1340.00" fill="none" stroke="#31445a" stroke-width="2"/>
+<path d="M525.00,1157.24 L421.55,1226.21" fill="none" stroke="#176a85" stroke-width="1.2" stroke-dasharray="3,4" marker-end="url(#arrow)"><title>corner; main=0; declared relation</title></path>
+<path d="M525.00,1157.24 L628.45,1226.21" fill="none" stroke="#176a85" stroke-width="1.2" stroke-dasharray="3,4" marker-end="url(#arrow)"><title>corner; main=2; declared relation</title></path>
+<text x="362" y="1370" font-size="10">relations interpreted; topology pending</text>
+</g></svg>

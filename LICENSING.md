@@ -12,10 +12,12 @@ corresponding source as required, and license covered modifications under the GP
 
 ## Dependencies
 
-NumPy and Shapely are BSD-3-Clause; GEOS is LGPL-2.1; Blender is GPL.
+The addon runtime uses Python's standard library and Blender (GPL).
+Development-only independent test oracles use NumPy and Shapely (BSD-3-Clause)
+and GEOS (LGPL-2.1).
 Redistribution must satisfy each applicable license, including preservation
 of notices and LGPL source obligations when distributing GEOS binaries.
-Dependency source and license links are in the addon
+Dependency source and license links are in the
 [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md).
 
 ## Research references

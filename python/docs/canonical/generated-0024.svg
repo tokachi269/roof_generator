@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="525" viewBox="0 0 960 525">
+<rect width="960" height="525" fill="white"/>
+<g font-family="sans-serif" font-size="14" fill="#18212b">
+<text x="40" y="30">Cells / artificial boundary</text>
+<text x="520" y="30">2D RoofGraph before geometry solve</text>
+<polygon points="40.000,455.000 188.000,455.000 188.000,381.000 40.000,381.000" fill="#e0eefb" stroke="#586779" stroke-width="2"/>
+<text x="114.000" y="418.000">cell 0</text>
+<polygon points="188.000,455.000 336.000,455.000 336.000,307.000 336.000,233.000 188.000,233.000 188.000,381.000" fill="#f9e5d7" stroke="#586779" stroke-width="2"/>
+<text x="262.000" y="344.000">cell 1</text>
+<polygon points="336.000,307.000 410.000,307.000 410.000,233.000 336.000,233.000" fill="#e0eefb" stroke="#586779" stroke-width="2"/>
+<text x="373.000" y="270.000">cell 2</text>
+<polyline points="336.000,307.000 336.000,233.000" fill="none" stroke="#222" stroke-width="3" stroke-dasharray="7,5"/>
+<polyline points="188.000,381.000 188.000,455.000" fill="none" stroke="#222" stroke-width="3" stroke-dasharray="7,5"/>
+<polyline points="816.000,307.000 890.000,307.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (0, 1), faces (4,)</title></polyline>
+<polyline points="816.000,307.000 816.000,455.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (0, 7), faces (2,)</title></polyline>
+<polyline points="816.000,307.000 816.000,270.000" fill="none" stroke="#1767cf" stroke-width="3"><title>valley: (0, 13), faces (2, 4)</title></polyline>
+<polyline points="890.000,307.000 890.000,270.000" fill="none" stroke="#586779" stroke-width="3"><title>gable_end: (1, 9), faces (4,)</title></polyline>
+<polyline points="890.000,233.000 668.000,233.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (2, 3), faces (5,)</title></polyline>
+<polyline points="890.000,233.000 890.000,270.000" fill="none" stroke="#586779" stroke-width="3"><title>gable_end: (2, 9), faces (5,)</title></polyline>
+<polyline points="668.000,233.000 668.000,381.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (3, 4), faces (3,)</title></polyline>
+<polyline points="668.000,233.000 742.000,297.750" fill="none" stroke="#dc8818" stroke-width="3"><title>hip: (3, 12), faces (3, 5)</title></polyline>
+<polyline points="668.000,381.000 520.000,381.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (4, 5), faces (1,)</title></polyline>
+<polyline points="668.000,381.000 643.333,418.000" fill="none" stroke="#1767cf" stroke-width="3"><title>valley: (4, 11), faces (1, 3)</title></polyline>
+<polyline points="520.000,381.000 520.000,418.000" fill="none" stroke="#586779" stroke-width="3"><title>gable_end: (5, 8), faces (1,)</title></polyline>
+<polyline points="520.000,455.000 816.000,455.000" fill="none" stroke="#586779" stroke-width="3"><title>eave: (6, 7), faces (0,)</title></polyline>
+<polyline points="520.000,455.000 520.000,418.000" fill="none" stroke="#586779" stroke-width="3"><title>gable_end: (6, 8), faces (0,)</title></polyline>
+<polyline points="816.000,455.000 742.000,390.250" fill="none" stroke="#dc8818" stroke-width="3"><title>hip: (7, 10), faces (0, 2)</title></polyline>
+<polyline points="520.000,418.000 643.333,418.000" fill="none" stroke="#d63143" stroke-width="3"><title>ridge: (8, 11), faces (0, 1)</title></polyline>
+<polyline points="890.000,270.000 816.000,270.000" fill="none" stroke="#d63143" stroke-width="3"><title>ridge: (9, 13), faces (4, 5)</title></polyline>
+<polyline points="742.000,390.250 643.333,418.000" fill="none" stroke="#dc8818" stroke-width="3"><title>hip: (10, 11), faces (0, 3)</title></polyline>
+<polyline points="742.000,390.250 742.000,297.750" fill="none" stroke="#d63143" stroke-width="3"><title>ridge: (10, 12), faces (2, 3)</title></polyline>
+<polyline points="742.000,297.750 816.000,270.000" fill="none" stroke="#dc8818" stroke-width="3"><title>hip: (12, 13), faces (2, 5)</title></polyline>
+<circle cx="816.000" cy="307.000" r="4" fill="#18212b"/><text x="823.000" y="300.000">0</text>
+<circle cx="890.000" cy="307.000" r="4" fill="#18212b"/><text x="897.000" y="300.000">1</text>
+<circle cx="890.000" cy="233.000" r="4" fill="#18212b"/><text x="897.000" y="226.000">2</text>
+<circle cx="668.000" cy="233.000" r="4" fill="#18212b"/><text x="675.000" y="226.000">3</text>
+<circle cx="668.000" cy="381.000" r="4" fill="#18212b"/><text x="675.000" y="374.000">4</text>
+<circle cx="520.000" cy="381.000" r="4" fill="#18212b"/><text x="527.000" y="374.000">5</text>
+<circle cx="520.000" cy="455.000" r="4" fill="#18212b"/><text x="527.000" y="448.000">6</text>
+<circle cx="816.000" cy="455.000" r="4" fill="#18212b"/><text x="823.000" y="448.000">7</text>
+<circle cx="520.000" cy="418.000" r="4" fill="#18212b"/><text x="527.000" y="411.000">8</text>
+<circle cx="890.000" cy="270.000" r="4" fill="#18212b"/><text x="897.000" y="263.000">9</text>
+<circle cx="742.000" cy="390.250" r="4" fill="#18212b"/><text x="749.000" y="383.250">10</text>
+<circle cx="643.333" cy="418.000" r="4" fill="#18212b"/><text x="650.333" y="411.000">11</text>
+<circle cx="742.000" cy="297.750" r="4" fill="#18212b"/><text x="749.000" y="290.750">12</text>
+<circle cx="816.000" cy="270.000" r="4" fill="#18212b"/><text x="823.000" y="263.000">13</text>
+<text x="40" y="505">Red: ridge; blue: valley; orange: hip. XY is an initializer, not solved roof geometry.</text></g></svg>

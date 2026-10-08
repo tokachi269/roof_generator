@@ -2,66 +2,72 @@
 
 English | [日本語](README.ja.md)
 
-Convert a planar building footprint into one editable Blender roof mesh.
-The generator supports concave and oblique footprints, rectangles,
-parallelograms, trapezoids and general convex quadrilaterals. L/T/U footprints
-are assembled from connected RoofParts. Roof types are **flat, gable, hip and shed**;
-ridges, hips and valleys follow roof-plane intersections.
+Generate editable roof surfaces from filled planar footprint meshes in Blender 4.3+.
+The core uses minimum rectangular partitions, architectural interpretations and
+validated indexed roof graphs. Generation seed selects among equally ranked valid
+candidates; unsupported topology produces an explicit error.
+
+## Current capabilities
+
+| Input / roof | Output |
+| --- | --- |
+| Rectangle, including rotation and square | Gable, hip, shed or flat mesh |
+| Hole-free simple orthogonal polygon, including concave outlines | One unified flat roof face |
+| Supported terminal/middle gable attachments, disjoint narrow branches, coincident opposite equal-width ports | RoofGraph candidates and a fixed-topology GeometryProblem; compound pitched mesh solve is not implemented |
+
+Arbitrary compound gable/hip/shed roofs and non-orthogonal quadrilateral
+partitioning are unsupported. Holes, touching/self-intersecting boundaries,
+nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
+intentional perimeter boundary; walls and thickness are separate modeling tasks.
+
+Distinct receiver-end terminal attachments, including the U fixture, compose
+into one gable RoofGraph. The [support audit](python/docs/RELATION_TOPOLOGY_SUPPORT.md)
+reports all candidate rejection causes separately from final mesh capabilities.
+Parallel, offset/width-step continuation and partial-end contacts still require
+implemented topology operations.
 
 ## Installation and use
 
-1. Download [`roof_generator-1.0.0.zip`](packages/roof_generator-1.0.0.zip) using **Download raw file**.
-2. In Blender 4.3+, open **Edit → Preferences → Add-ons → Install from Disk**, select the ZIP and enable **Roof Generator**.
-3. In addon preferences, use **Install Shapely (Internet)** to set up Shapely when needed. This requires host Python with pip. Set **Host Python with pip** to its executable if automatic detection fails.
-4. In Object Mode, select a filled, planar footprint mesh.
-5. Open the 3D View sidebar (**N**) → **Roof**, choose the roof type, pitch and eave offset, then press **Generate roof**.
+1. Download [`roof_generator-1.2.0.zip`](packages/roof_generator-1.2.0.zip) with **Download raw file**.
+2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
+3. Select filled planar footprint meshes in Object Mode.
+4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
 
-Conversion supports Undo and preserves the input object. **Hide source footprint**
-controls its visibility. The output is an ordinary mesh with a UV layer, material
-and part/crease attributes, ready for editing and UV unwrapping. Object rotation,
-translation and nonuniform scale are supported without applying transforms.
+No pip installation or third-party wheels are needed. Output is one ordinary mesh
+object per footprint, with shared vertices, UVs, material and `roof_cell_i` /
+`roof_feature_i` provenance attributes. Rotation, translation and nonuniform
+scale are supported without applying transforms. Batch conversion validates all
+inputs before changing the scene. The conversion button supports Undo; it is not
+a Geometry Nodes implementation.
 
-The generated mesh is a roof surface with an intentional perimeter boundary.
-Building walls and roof thickness are separate modeling tasks. Holes,
-self-intersecting or nonplanar footprints, exhausted decomposition searches,
-and unsupported height-step connections produce an explicit error.
+The same footprint, settings and seed reproduce the same selected candidate.
+Blender uses the source object's local reference direction. For coordinate API
+calls, rotate `reference_direction` with the footprint to preserve physical seed
+choices. This explicit reference resolves the rotational ambiguity of perfectly
+symmetric outlines.
 
-## Licenses
+## Architecture and development
 
-| Component | License and conditions |
-| --- | --- |
-| Roof Generator source, tools and tests | **GPL-3.0-or-later**. Commercial use is permitted under the GPL; distribution must satisfy its license and source requirements. |
-| Runtime dependencies | NumPy and Shapely: BSD-3-Clause; GEOS: LGPL-2.1. |
-
-See [LICENSING.md](LICENSING.md) for file scope, attribution and full license texts,
-and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md) for dependency conditions.
-
-## Repository layout
-
-| Path | Purpose |
-| --- | --- |
-| [`addon/roof_generator/`](addon/roof_generator/) | Blender UI, footprint geometry and mesh output |
-| [`packages/`](packages/) | Installable addon ZIP |
-| [`python/`](python/README.md) | Build tools, tests and footprint CLI |
-| [`python/docs/`](python/docs/) | Generator design and research comparison |
-| [`reference/`](reference/README.md) | Source and research references |
-| `python/out/`, `dist/` | Generated validation and build artifacts |
-
-## Development and validation
+See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
+[research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md), and
+[canonical measurements](python/docs/CANONICAL_EVALUATION.md).
 
 ```bash
-python -m pip install -r python/requirements.txt
+python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_addon.py -- --zip dist/roof_generator-1.0.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.2.0.zip
 ```
 
-Validation covers 11 acceptance tests, 16 final-mesh scenarios, all four roof
-types, UV/material editing, object transforms, failure without scene mutation,
-and addon registration. Representative L/T/U, oblique and residential roofs
-are also rendered for visual inspection. CI runs core tests and ZIP checks on
-Windows/Linux with Python 3.11/3.13, plus installed-addon tests in Linux Blender
-4.3.2, including the footprint CLI. Blender execution is currently validated on Linux.
+`addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains
+Blender adapters; `python/` contains inspection, measurements and tests;
+`packages/` contains the installable ZIP. Source/research references are under
+[reference/](reference/README.md).
 
-See the [generator design](python/docs/ROOF_GENERATOR_DESIGN.md) and
-[Python guide](python/README.md) for details.
+## License
+
+Source, tools and tests are **GPL-3.0-or-later**. Commercial use is permitted;
+distribution must satisfy the GPL's license and source requirements. Runtime
+requires only Blender and Python's standard library. Development-only NumPy and
+Shapely/GEOS have their own license conditions. See [LICENSING.md](LICENSING.md)
+and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md).
