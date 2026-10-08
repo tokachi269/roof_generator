@@ -3,7 +3,8 @@
 
 from dataclasses import dataclass
 import math
-from .graph import Point, UnsupportedGraphError
+from .graph import Point
+from .errors import UnsupportedRoofError
 
 EPS = 2e-9  # normalized by perimeter; numerical allowance, not rectification
 ANGLE = 1e-8
@@ -103,25 +104,25 @@ def analyze(points):
     try:
         raw = tuple(tuple(float(v) for v in p) for p in points)
     except (TypeError, ValueError) as exc:
-        raise UnsupportedGraphError("outline must be finite ordered XY points") from exc
+        raise UnsupportedRoofError("outline must be finite ordered XY points") from exc
     if raw and raw[0] == raw[-1]:
         raw = raw[:-1]
     if len(raw) < 3 or any(
         len(p) != 2 or not all(math.isfinite(v) for v in p) for p in raw
     ):
-        raise UnsupportedGraphError("outline must be finite ordered XY points")
+        raise UnsupportedRoofError("outline must be finite ordered XY points")
     scale = sum(math.dist(a, b) for a, b in zip(raw, raw[1:] + raw[:1]))
     if (
         not math.isfinite(scale)
         or scale <= 0
         or any(math.dist(a, b) <= scale * EPS for a, b in zip(raw, raw[1:] + raw[:1]))
     ):
-        raise UnsupportedGraphError("zero-length outline edge")
+        raise UnsupportedRoofError("zero-length outline edge")
     centered = tuple(
         ((p[0] - raw[0][0]) / scale, (p[1] - raw[0][1]) / scale) for p in raw
     )
     if abs(area(centered)) <= EPS**2:
-        raise UnsupportedGraphError("zero-area outline")
+        raise UnsupportedRoofError("zero-area outline")
     n = len(raw)
     for i in range(n):
         for j in range(i + 1, n):
@@ -130,7 +131,7 @@ def analyze(points):
             if _intersects(
                 centered[i], centered[(i + 1) % n], centered[j], centered[(j + 1) % n]
             ):
-                raise UnsupportedGraphError("outline self-intersection or touching")
+                raise UnsupportedRoofError("outline self-intersection or touching")
     forward = area(centered) > 0
     ids = list(range(n)) if forward else list(reversed(range(n)))
     while len(ids) > 3:

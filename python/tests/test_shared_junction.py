@@ -6,7 +6,9 @@ import unittest
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import compose
-from python.graph_first.geometry import Mesh, problem, _valid_drawing
+from python.graph_first.mesh import RoofMesh
+from python.graph_first.solve import problem
+from python.graph_first.initialization import _valid_drawing
 
 
 class SharedJunctionProof(unittest.TestCase):
@@ -53,7 +55,7 @@ class SharedJunctionProof(unittest.TestCase):
                     z / fp.frame.scale,
                 )
             )
-        Mesh(graph, tuple(xyz))
+        RoofMesh(graph, tuple(xyz))
         self.assertEqual(problem(graph).faces, tuple(f.loop for f in graph.faces))
         self.assertEqual({c.junctions for c in result.connections}, {(joint,)})
 

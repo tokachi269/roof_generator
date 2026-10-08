@@ -16,8 +16,10 @@ from shapely.ops import unary_union
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose, Cell, Side, Adjacency, Decomposition
 from python.graph_first.topology import compose
-from python.graph_first.geometry import problem, solve_rectangle, Mesh
-from python.graph_first.graph import UnsupportedGraphError, BoundarySpan
+from python.graph_first.solve import problem, solve_rectangle
+from python.graph_first.mesh import RoofMesh
+from python.graph_first.errors import UnsupportedRoofError
+from python.graph_first.provenance import BoundarySpan
 from python.tests.test_graph_first_cells import L
 from python.tests.test_graph_first_rectangle import graph_signature
 from python.tests.test_roof_harness import assert_disk
@@ -266,10 +268,10 @@ class TerminalCompositionTests(unittest.TestCase):
             tuple(v[:2] for v in vertices),
             tuple(f.frame.world_xy(v.seed) for v in g.vertices),
         )
-        with self.assertRaisesRegex(UnsupportedGraphError, "awaits nonlinear solve"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "awaits nonlinear solve"):
             solve_rectangle(g)
-        with self.assertRaisesRegex(UnsupportedGraphError, "nonplanar"):
-            Mesh(g, p.initial_vertices)
+        with self.assertRaisesRegex(UnsupportedRoofError, "nonplanar"):
+            RoofMesh(g, p.initial_vertices)
         # A valid solver result is exported against exactly the same graph.
         u = f.frame.direction
         solved = tuple(
@@ -282,7 +284,7 @@ class TerminalCompositionTests(unittest.TestCase):
             )
             for x, y, z in vertices
         )
-        mesh = Mesh(g, solved)
+        mesh = RoofMesh(g, solved)
         self.assertIs(mesh.graph, g)
         self.assertEqual(mesh.faces, p.faces)
 
@@ -402,7 +404,7 @@ builtins.__import__=checked
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import compose
-from python.graph_first.geometry import problem
+from python.graph_first.solve import problem
 g=compose(decompose(analyze(((0,0),(14.2,0),(14.2,5.6),(5.2,5.6),(5.2,12.8),(0,12.8))))).graph
 assert len(g.faces)==4 and len(problem(g).variable_xy)==2
 """

@@ -7,10 +7,10 @@ from itertools import product
 import math
 from .footprint import EPS, area
 from .parts import (
-    Member,
-    Combination,
-    Relation,
-    Part,
+    ArchitecturalMember,
+    PartCombination,
+    PartRelation,
+    ArchitecturalPart,
     PartAdjacency,
     Issue,
     ArchitecturalPartGraph,
@@ -19,8 +19,8 @@ from .parts import (
 
 @dataclass(frozen=True)
 class Analysis:
-    members: tuple[Member, ...]
-    relations: tuple[Relation, ...]
+    members: tuple[ArchitecturalMember, ...]
+    relations: tuple[PartRelation, ...]
 
 
 def analyze_parts(d):
@@ -39,7 +39,7 @@ def analyze_parts(d):
             if abs(sizes[0] - sizes[1]) <= 4 * EPS
             else (int(sizes[1] > sizes[0]),)
         )
-        members.append(Member(c.id, b, axes))
+        members.append(ArchitecturalMember(c.id, b, axes))
     shared = defaultdict(list)
     for a in d.adjacency:
         shared[(a.cells, a.sides)].append(a.interval)
@@ -65,23 +65,23 @@ def analyze_parts(d):
             end = [a != axis for a in axes]
             if all(end):
                 kind = "continuation"
-                options.append(Combination(kind, axes))
+                options.append(PartCombination(kind, axes))
             elif not any(end):
-                options.append(Combination("parallel", axes))
+                options.append(PartCombination("parallel", axes))
             else:
                 bi = end.index(True)
                 hi_index = 1 - bi
                 if not full[bi] or full[hi_index]:
-                    options.append(Combination("partial_end", axes))
+                    options.append(PartCombination("partial_end", axes))
                     continue
                 host, branch = cells[hi_index], cells[bi]
                 hb, bb = members[host].bounds, members[branch].bounds
                 widths = (hb[3 - axis] - hb[1 - axis], bb[2 + axis] - bb[axis])
                 main = host if widths[0] > widths[1] + 4 * EPS else None
                 kind = "corner" if corner[hi_index] else "side_attachment"
-                options.append(Combination(kind, axes, host, branch, widths, main))
+                options.append(PartCombination(kind, axes, host, branch, widths, main))
         relations.append(
-            Relation(cells, sides, tuple(sorted(intervals)), tuple(options))
+            PartRelation(cells, sides, tuple(sorted(intervals)), tuple(options))
         )
     return Analysis(tuple(members), tuple(relations))
 
@@ -213,7 +213,7 @@ def build_parts(d, analysis):
             sorted(a.interval for a in d.adjacency if set(a.cells) <= set(cells))
         )
         axes = tuple(sorted({axis for c in cells for axis in analysis.members[c].axes}))
-        parts.append(Part(i, cells, rings, exterior, consumed, axes))
+        parts.append(ArchitecturalPart(i, cells, rings, exterior, consumed, axes))
     owners = {c: p.id for p in parts for c in p.cells}
     adjacent = tuple(
         sorted(

@@ -3,7 +3,8 @@
 
 from dataclasses import dataclass, asdict
 from .footprint import EPS, sub, Footprint
-from .graph import BoundarySpan, UnsupportedGraphError
+from .provenance import BoundarySpan
+from .errors import UnsupportedRoofError
 from .rectangle_partition import partition, Subdivision, PartitionCertificate, corners
 
 
@@ -113,12 +114,12 @@ def from_subdivision(fp, subdivision: Subdivision):
     for key, incident in sorted(owners.items()):
         if exterior[key] is not None:
             if len(incident) != 1:
-                raise UnsupportedGraphError(
+                raise UnsupportedRoofError(
                     "exterior interval has multiple/missing cells"
                 )
         else:
             if len(incident) != 2 or incident[0][0] == incident[1][0]:
-                raise UnsupportedGraphError(
+                raise UnsupportedRoofError(
                     "artificial interval lacks two distinct cells"
                 )
             (a, sa), (b, sb) = sorted(incident)
@@ -131,11 +132,11 @@ def from_subdivision(fp, subdivision: Subdivision):
             or abs(spans[-1][1] - 1) > EPS
             or any(abs(a[1] - b[0]) > EPS for a, b in zip(spans, spans[1:]))
         ):
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "exterior provenance does not cover boundary exactly once"
             )
     if len(cells) != subdivision.minimum_cells:
-        raise UnsupportedGraphError("cell records lost minimum rectangle count")
+        raise UnsupportedRoofError("cell records lost minimum rectangle count")
     return Decomposition(
         fp, nodes, tuple(cells), tuple(adjacent), subdivision.certificate
     )

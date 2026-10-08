@@ -16,8 +16,8 @@ from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import compose, cell_primitives
 from python.graph_first.connections import attachments
-from python.graph_first.graph import UnsupportedGraphError
-from python.graph_first.geometry import problem
+from python.graph_first.errors import UnsupportedRoofError
+from python.graph_first.solve import problem
 
 
 def inspect(record):
@@ -50,7 +50,7 @@ def inspect(record):
     }
     try:
         c = compose(d, roof_type)
-    except UnsupportedGraphError as exc:
+    except UnsupportedRoofError as exc:
         document["reason"] = str(exc)
     else:
         document["status"] = "supported"

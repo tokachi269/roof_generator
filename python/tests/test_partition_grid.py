@@ -16,7 +16,7 @@ from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.errors import UnsupportedRoofError
 from python.tests.grid_footprints import generated
 from python.tests.test_rectangle_partition import oracle_diagonals
 
@@ -337,7 +337,7 @@ for c in json.load(open(sys.argv[2])):
             [(0, 0), (2, 2), (0, 2), (2, 0)],
             [[(0, 0), (5, 0), (5, 5), (0, 5)], [(1, 1), (1, 2), (2, 2), (2, 1)]],
         ]:
-            with self.assertRaises(UnsupportedGraphError):
+            with self.assertRaises(UnsupportedRoofError):
                 decompose(analyze(points))
 
 

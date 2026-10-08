@@ -10,7 +10,7 @@ from dataclasses import dataclass, asdict
 import math
 
 from .footprint import EPS, on_segment, sub
-from .graph import UnsupportedGraphError
+from .errors import UnsupportedRoofError
 
 
 def port(graph, side):
@@ -28,7 +28,7 @@ def port(graph, side):
 
 
 @dataclass(frozen=True)
-class Attachment:
+class AttachmentPort:
     host: int
     branch: int
     host_side: int
@@ -122,7 +122,7 @@ def attachments(decomposition, primitives):
             # is transverse to each ridge, not area or the long-axis heuristic.
             width_side = hc.sides[(hs + 1) % 4]
             candidates.append(
-                Attachment(
+                AttachmentPort(
                     host,
                     branch,
                     hs,
@@ -146,7 +146,7 @@ def plan(decomposition, primitives):
         if relation.kind == "terminal":
             return relations
     if not relations or any(r.kind != "middle" for r in relations):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
         )
     hosts = {r.host for r in relations}
@@ -157,11 +157,11 @@ def plan(decomposition, primitives):
         or hosts.intersection(branches)
         or hosts.union(branches) != {c.id for c in decomposition.cells}
     ):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved"
         )
     if any(r.branch_width > r.host_width + 4 * EPS for r in relations):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "middle attachment requires a narrower or equal-width branch"
         )
     # Published extension is locally reusable for disjoint narrow slots only.
@@ -191,11 +191,11 @@ def plan(decomposition, primitives):
             and all(abs(a - b) <= 4 * EPS for a, b in zip(slots[0], slots[1]))
         ):
             return relations
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "multiple equal-width attachments lack compatible opposite shared ports"
         )
     if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "branch attachment slots interact; no independent junction composition is proved"
         )
     return relations

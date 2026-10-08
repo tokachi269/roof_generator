@@ -4,8 +4,9 @@
 from dataclasses import dataclass, replace
 from itertools import product
 import math
-from .graph import UnsupportedGraphError
-from .geometry import problem, _valid_drawing
+from .errors import UnsupportedRoofError
+from .solve import problem
+from .initialization import _valid_drawing
 from .part_interpretation import Analysis
 from .part_selection import evaluate
 from .seed import derive, choose, point_identity
@@ -46,7 +47,7 @@ class TopologyCandidates:
     def select(self, seed=0):
         if not self.complete or not self.valid:
             detail = self.reason or "; ".join(sorted({r.reason for r in self.rejected}))
-            raise UnsupportedGraphError("no selectable roof topology: " + detail)
+            raise UnsupportedRoofError("no selectable roof topology: " + detail)
         return choose(self.valid, seed, "roof_candidate", key=lambda c: c.id)
 
 
@@ -88,11 +89,11 @@ def _resolved_analysis(architecture, axes):
         assignment = tuple(axes[c] for c in relation.cells)
         options = tuple(o for o in relation.options if o.axes == assignment)
         if len(options) != 1:
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "member axis assignment does not resolve a unique local relation"
             )
         if options[0].kind in {"parallel", "partial_end", "continuation"}:
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "no published implemented port operation for " + options[0].kind
             )
         relations.append(replace(relation, options=options))
@@ -104,25 +105,25 @@ def _validate(architecture, composition, geometry):
     if set(c for f in graph.faces for c in f.cells) != {
         m.cell for m in architecture.members
     }:
-        raise UnsupportedGraphError("roof topology loses member provenance")
+        raise UnsupportedRoofError("roof topology loses member provenance")
     if geometry.faces != tuple(f.loop for f in graph.faces):
-        raise UnsupportedGraphError("geometry problem changes topology")
+        raise UnsupportedRoofError("geometry problem changes topology")
     n = len(graph.vertices)
     if len(geometry.initial_vertices) != n or any(
         len(p) != 3 or not all(math.isfinite(x) for x in p)
         for p in geometry.initial_vertices
     ):
-        raise UnsupportedGraphError("geometry problem has invalid initial coordinates")
+        raise UnsupportedRoofError("geometry problem has invalid initial coordinates")
     fixed = dict(geometry.fixed_z)
     if set(fixed).intersection(geometry.variable_z) or set(fixed).union(
         geometry.variable_z
     ) != set(range(n)):
-        raise UnsupportedGraphError("geometry problem has incomplete height ownership")
+        raise UnsupportedRoofError("geometry problem has incomplete height ownership")
     locations = {i for i, v in enumerate(graph.vertices) if v.boundary is not None}
     if set(geometry.variable_xy) != set(range(n)) - locations or any(
         geometry.initial_vertices[i][:2] != graph.vertices[i].seed for i in locations
     ):
-        raise UnsupportedGraphError("geometry problem moves fixed footprint ownership")
+        raise UnsupportedRoofError("geometry problem moves fixed footprint ownership")
     if not _valid_drawing(
         graph.outline,
         tuple(v.seed for v in graph.vertices),
@@ -130,7 +131,7 @@ def _validate(architecture, composition, geometry):
         locations,
         {e.vertices: e.kind for e in graph.edges},
     ):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "roof graph has a crossing or zero-area initial drawing"
         )
     # Raw artificial partition segments are not roof edges. All final edges
@@ -145,7 +146,7 @@ def _validate(architecture, composition, geometry):
             tuple(round(x, 10) for x in graph.vertices[v].seed) for v in e.vertices
         )
         if key in cuts:
-            raise UnsupportedGraphError("raw artificial cut leaked into roof topology")
+            raise UnsupportedRoofError("raw artificial cut leaked into roof topology")
 
 
 def build_candidates(
@@ -196,7 +197,7 @@ def build_candidates(
                     resolved = _resolved_analysis(architecture, axes)
                     evaluation = evaluate(d, resolved, recommendation.policy)
                     if evaluation.score[0] != evaluation.score[1]:
-                        raise UnsupportedGraphError(
+                        raise UnsupportedRoofError(
                             "resolved axes still have an uncertain evaluation"
                         )
                     score = evaluation.score[0]
@@ -213,7 +214,7 @@ def build_candidates(
                         stable_id, architecture, axes, composition, geometry, score
                     ),
                 )
-            except UnsupportedGraphError as exc:
+            except UnsupportedRoofError as exc:
                 rejected.append(Rejection(partition_id, axes, str(exc)))
     # Published terms are applied to fully resolved choices. No aesthetic score
     # resolves ties; all equally ranked VALID alternatives remain seedable.

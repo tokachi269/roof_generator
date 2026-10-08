@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import compose
-from python.graph_first.geometry import problem
+from python.graph_first.solve import problem
 
 
 def svg(decomposition, composition):

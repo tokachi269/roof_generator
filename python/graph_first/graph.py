@@ -5,22 +5,15 @@ from dataclasses import dataclass
 from collections import Counter, defaultdict
 import math
 
+from .errors import UnsupportedRoofError
+from .provenance import BoundaryPoint, BoundarySpan
+
 Point = tuple[float, float]
 KINDS = frozenset(("ridge", "hip", "valley", "eave", "gable_end"))
 
 
-class UnsupportedGraphError(ValueError):
-    """No graph in the explicitly supported composition scope exists."""
-
-
 @dataclass(frozen=True)
-class BoundaryPoint:
-    edge: int
-    t: float
-
-
-@dataclass(frozen=True)
-class Vertex:
+class RoofVertex:
     seed: Point
     role: str
     boundary: BoundaryPoint | None
@@ -28,21 +21,14 @@ class Vertex:
 
 
 @dataclass(frozen=True)
-class Face:
+class RoofFace:
     loop: tuple[int, ...]
     cells: tuple[int, ...]
     eaves: tuple[int, ...]
 
 
 @dataclass(frozen=True)
-class BoundarySpan:
-    edge: int
-    interval: tuple[float, float]
-    original_edges: tuple[int, ...]
-
-
-@dataclass(frozen=True)
-class Edge:
+class RoofEdge:
     vertices: tuple[int, int]
     faces: tuple[int, ...]
     kind: str
@@ -53,15 +39,15 @@ class Edge:
 class RoofGraph:
     outline: tuple[Point, ...]
     source_edges: tuple[tuple[int, ...], ...]
-    vertices: tuple[Vertex, ...]
-    faces: tuple[Face, ...]
-    edges: tuple[Edge, ...]
+    vertices: tuple[RoofVertex, ...]
+    faces: tuple[RoofFace, ...]
+    edges: tuple[RoofEdge, ...]
     roof_type: str
 
     def __post_init__(self):
         n = len(self.vertices)
         if len(self.outline) < 3 or len(self.source_edges) != len(self.outline):
-            raise UnsupportedGraphError("invalid outline/provenance contract")
+            raise UnsupportedRoofError("invalid outline/provenance contract")
         if not self.faces or any(
             len(f.loop) < 3
             or len(set(f.loop)) != len(f.loop)
@@ -69,12 +55,12 @@ class RoofGraph:
             or not f.cells
             for f in self.faces
         ):
-            raise UnsupportedGraphError("invalid face cycle/index/cell ownership")
+            raise UnsupportedRoofError("invalid face cycle/index/cell ownership")
         canonical = [
             min(f.loop[i:] + f.loop[:i] for i in range(len(f.loop))) for f in self.faces
         ]
         if len(set(canonical)) != len(canonical):
-            raise UnsupportedGraphError("duplicate face cycle")
+            raise UnsupportedRoofError("duplicate face cycle")
         incidence = defaultdict(list)
         owners = defaultdict(set)
         for i, f in enumerate(self.faces):
@@ -83,19 +69,19 @@ class RoofGraph:
             for a, b in zip(f.loop, f.loop[1:] + f.loop[:1]):
                 incidence[tuple(sorted((a, b)))].append((i, a, b))
         if set(owners) != set(range(n)):
-            raise UnsupportedGraphError("unused graph vertex")
+            raise UnsupportedRoofError("unused graph vertex")
         if len(self.edges) != len(incidence) or len(
             {e.vertices for e in self.edges}
         ) != len(self.edges):
-            raise UnsupportedGraphError("missing or duplicated graph edge")
+            raise UnsupportedRoofError("missing or duplicated graph edge")
         perimeter, adjacency = defaultdict(set), defaultdict(set)
         coverage = defaultdict(list)
         for edge in self.edges:
             items = incidence.get(edge.vertices, ())
             if len(items) not in (1, 2) or edge.faces != tuple(i for i, _, _ in items):
-                raise UnsupportedGraphError("edge/face incidence mismatch")
+                raise UnsupportedRoofError("edge/face incidence mismatch")
             if edge.kind not in KINDS:
-                raise UnsupportedGraphError("undeclared roof edge semantics")
+                raise UnsupportedRoofError("undeclared roof edge semantics")
             if len(items) == 2:
                 (i, a, b), (j, c, d) = items
                 if (
@@ -103,22 +89,22 @@ class RoofGraph:
                     or edge.boundary is not None
                     or edge.kind in {"eave", "gable_end"}
                 ):
-                    raise UnsupportedGraphError("invalid oriented interior edge")
+                    raise UnsupportedRoofError("invalid oriented interior edge")
                 adjacency[i].add(j)
                 adjacency[j].add(i)
             else:
                 a, b = edge.vertices
                 if edge.boundary is None or edge.kind not in {"eave", "gable_end"}:
-                    raise UnsupportedGraphError("perimeter lacks boundary ownership")
+                    raise UnsupportedRoofError("perimeter lacks boundary ownership")
                 span = edge.boundary
                 if (
                     not 0 <= span.edge < len(self.outline)
                     or span.original_edges != self.source_edges[span.edge]
                 ):
-                    raise UnsupportedGraphError("invalid exterior-edge provenance")
+                    raise UnsupportedRoofError("invalid exterior-edge provenance")
                 lo, hi = span.interval
                 if not 0 <= lo < hi <= 1:
-                    raise UnsupportedGraphError("invalid boundary interval")
+                    raise UnsupportedRoofError("invalid boundary interval")
                 coverage[span.edge].append((lo, hi))
                 perimeter[a].add(b)
                 perimeter[b].add(a)
@@ -127,23 +113,23 @@ class RoofGraph:
             last = 0.0
             for lo, hi in spans:
                 if abs(lo - last) > 1e-9:
-                    raise UnsupportedGraphError("exterior boundary gap/overlap")
+                    raise UnsupportedRoofError("exterior boundary gap/overlap")
                 last = hi
             if abs(last - 1) > 1e-9:
-                raise UnsupportedGraphError("unowned exterior boundary")
+                raise UnsupportedRoofError("unowned exterior boundary")
         if any(len(v) != 2 for v in perimeter.values()) or not _connected(perimeter):
-            raise UnsupportedGraphError("graph boundary is not one cycle")
+            raise UnsupportedRoofError("graph boundary is not one cycle")
         if len(self.faces) > 1 and not _connected(adjacency):
-            raise UnsupportedGraphError("disconnected roof faces")
+            raise UnsupportedRoofError("disconnected roof faces")
         if n - len(self.edges) + len(self.faces) != 1:
-            raise UnsupportedGraphError("roof graph is not a disk")
+            raise UnsupportedRoofError("roof graph is not a disk")
         for i, vertex in enumerate(self.vertices):
             if vertex.cells != tuple(sorted(owners[i])) or not all(
                 math.isfinite(v) for v in vertex.seed
             ):
-                raise UnsupportedGraphError("invalid vertex seed/cell provenance")
+                raise UnsupportedRoofError("invalid vertex seed/cell provenance")
             if (i in perimeter) != (vertex.boundary is not None):
-                raise UnsupportedGraphError("boundary vertex ownership mismatch")
+                raise UnsupportedRoofError("boundary vertex ownership mismatch")
             if vertex.boundary is not None:
                 p = vertex.boundary
                 if (
@@ -151,16 +137,14 @@ class RoofGraph:
                     or not math.isfinite(p.t)
                     or not 0 <= p.t < 1
                 ):
-                    raise UnsupportedGraphError("invalid fixed boundary point")
+                    raise UnsupportedRoofError("invalid fixed boundary point")
                 a, b = (
                     self.outline[p.edge],
                     self.outline[(p.edge + 1) % len(self.outline)],
                 )
                 expected = tuple(a[k] + p.t * (b[k] - a[k]) for k in (0, 1))
                 if math.dist(vertex.seed, expected) > 2e-8:
-                    raise UnsupportedGraphError(
-                        "seed violates fixed footprint boundary"
-                    )
+                    raise UnsupportedRoofError("seed violates fixed footprint boundary")
             link = defaultdict(set)
             for face in self.faces:
                 if i in face.loop:
@@ -174,7 +158,7 @@ class RoofGraph:
                 or any(d not in (1, 2) for d in degrees)
                 or degrees.count(1) != (2 if i in perimeter else 0)
             ):
-                raise UnsupportedGraphError("nonmanifold vertex link")
+                raise UnsupportedRoofError("nonmanifold vertex link")
 
     def inspect(self):
         """Read the authoritative graph; do not derive semantics from geometry."""
@@ -219,18 +203,18 @@ def make_graph(
         for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
             incidence[tuple(sorted((a, b)))].append(i)
     if set(semantics) != set(incidence):
-        raise UnsupportedGraphError("every selected graph edge needs one meaning")
+        raise UnsupportedRoofError("every selected graph edge needs one meaning")
     edges = []
     for (a, b), owners in sorted(incidence.items()):
         span = None
         if len(owners) == 1:
             first, second = locations.get(a), locations.get(b)
             if first is None or second is None:
-                raise UnsupportedGraphError("perimeter vertex has no boundary location")
+                raise UnsupportedRoofError("perimeter vertex has no boundary location")
             span = boundary_span(outline, source_edges, first, second)
-        edges.append(Edge((a, b), tuple(owners), semantics[a, b], span))
+        edges.append(RoofEdge((a, b), tuple(owners), semantics[a, b], span))
     vertices = tuple(
-        Vertex(tuple(p), roles[i], locations.get(i), tuple(sorted(cells[i])))
+        RoofVertex(tuple(p), roles[i], locations.get(i), tuple(sorted(cells[i])))
         for i, p in enumerate(seeds)
     )
     return RoofGraph(
@@ -258,5 +242,5 @@ def boundary_span(outline, source_edges, first, second):
                 BoundarySpan(edge, tuple(sorted(values)), source_edges[edge])
             )
     if len(candidates) != 1:
-        raise UnsupportedGraphError("ambiguous boundary segment ownership")
+        raise UnsupportedRoofError("ambiguous boundary segment ownership")
     return candidates[0]

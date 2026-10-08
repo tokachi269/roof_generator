@@ -3,19 +3,16 @@
 
 from dataclasses import replace
 import unittest
-from python.graph_first.graph import (
-    BoundaryPoint,
-    Face,
-    UnsupportedGraphError,
-    make_graph,
-)
+from python.graph_first.provenance import BoundaryPoint
+from python.graph_first.graph import RoofFace, make_graph
+from python.graph_first.errors import UnsupportedRoofError
 
 
 class GraphContractTests(unittest.TestCase):
     def graph(self):
         # Authored gable disk: two faces share one ridge, with two gable caps.
         points = ((0, 0), (12, 0), (12, 6), (0, 6), (0, 3), (12, 3))
-        loops = (Face((0, 1, 5, 4), (0,), (0,)), Face((5, 2, 3, 4), (0,), (2,)))
+        loops = (RoofFace((0, 1, 5, 4), (0,), (0,)), RoofFace((5, 2, 3, 4), (0,), (2,)))
         labels = {
             (0, 1): "eave",
             (2, 3): "eave",
@@ -49,11 +46,11 @@ class GraphContractTests(unittest.TestCase):
 
     def test_incidence_and_boundary_faults_are_rejected(self):
         g = self.graph()
-        with self.assertRaisesRegex(UnsupportedGraphError, "edge/face incidence"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "edge/face incidence"):
             replace(g, edges=(replace(g.edges[0], faces=()),) + g.edges[1:])
-        with self.assertRaisesRegex(UnsupportedGraphError, "missing or duplicated"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "missing or duplicated"):
             replace(g, edges=g.edges[:-1])
-        with self.assertRaisesRegex(UnsupportedGraphError, "provenance"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "provenance"):
             replace(
                 g,
                 edges=(

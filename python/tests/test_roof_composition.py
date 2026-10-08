@@ -18,8 +18,9 @@ from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import _rectangle_graph, compose
 from python.graph_first.connections import plan
-from python.graph_first.graph import UnsupportedGraphError
-from python.graph_first.geometry import Mesh, problem
+from python.graph_first.errors import UnsupportedRoofError
+from python.graph_first.mesh import RoofMesh
+from python.graph_first.solve import problem
 from python.tests.composition_footprints import buildings
 
 RECORDS = json.loads(
@@ -151,7 +152,7 @@ def assert_reference(test, record, decomposition, graph, rotation=None, offset=N
         normalized.append(
             (*((world - frame.origin) @ transform / frame.scale), xyz[2] / frame.scale)
         )
-    Mesh(graph, tuple(normalized))
+    RoofMesh(graph, tuple(normalized))
     p = problem(graph, 0.5)
     test.assertEqual(
         set(p.variable_xy),
@@ -250,7 +251,7 @@ class AttachmentRelationTests(unittest.TestCase):
         for name in ("orthogonal_U", "residential_multi_reflex"):
             record = next(r for r in RECORDS if r["name"] == name)
             d = decompose(analyze(record["footprint"]))
-            with self.subTest(name=name), self.assertRaises(UnsupportedGraphError):
+            with self.subTest(name=name), self.assertRaises(UnsupportedRoofError):
                 plan(d, primitives(d))
 
 
@@ -490,7 +491,7 @@ class MultipleCompositionTests(unittest.TestCase):
                         value[2] / frame.scale,
                     )
                 )
-            Mesh(g, tuple(xyz))
+            RoofMesh(g, tuple(xyz))
             # Order must be irrelevant before any merge is attempted.
             self.assertEqual(compose(replace(d, adjacency=d.adjacency[::-1])), c)
 
@@ -540,7 +541,7 @@ class MultipleCompositionTests(unittest.TestCase):
             (8, 8),
             (0, 8),
         ]
-        with self.assertRaisesRegex(UnsupportedGraphError, "no complete supported"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "no complete supported"):
             compose(decompose(analyze(square_receiver)))
         overlapping_slots = [
             (0, 0),
@@ -556,14 +557,14 @@ class MultipleCompositionTests(unittest.TestCase):
             (6, 6),
             (0, 6),
         ]
-        with self.assertRaisesRegex(UnsupportedGraphError, "slots interact"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "slots interact"):
             compose(decompose(analyze(overlapping_slots)))
         for kind in ("hip", "shed", "flat"):
-            with self.assertRaisesRegex(UnsupportedGraphError, "multi-cell"):
+            with self.assertRaisesRegex(UnsupportedRoofError, "multi-cell"):
                 compose(decompose(analyze(points)), kind)
         for name in ("orthogonal_U", "residential_multi_reflex"):
             raw = next(r["footprint"] for r in RECORDS if r["name"] == name)
-            with self.assertRaises(UnsupportedGraphError):
+            with self.assertRaises(UnsupportedRoofError):
                 compose(decompose(analyze(raw)))
 
     def test_middle_and_multiple_have_no_polygon_or_legacy_runtime_dependency(self):

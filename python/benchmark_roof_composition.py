@@ -12,7 +12,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from python.benchmark_graph_first import measure, stats
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.errors import UnsupportedRoofError
 from python.tests.composition_footprints import buildings
 
 
@@ -95,7 +95,7 @@ def main():
     for case in cases():
         try:
             row, c = measure(case)
-        except UnsupportedGraphError as exc:
+        except UnsupportedRoofError as exc:
             report["cases"][case["name"]] = {
                 "status": "unsupported",
                 "reason": str(exc),

@@ -8,7 +8,7 @@ from shapely.geometry import Polygon
 from shapely.ops import unary_union
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.errors import UnsupportedRoofError
 
 L = np.array([(0, 0), (14.2, 0), (14.2, 5.6), (5.2, 5.6), (5.2, 12.8), (0, 12.8)])
 
@@ -117,7 +117,7 @@ class CellPartitionTests(unittest.TestCase):
         )
         self.assertEqual((len(t.cells), len(t.adjacency)), (2, 1))
         self.assertEqual(t.certificate.minimum_cells, 2)
-        with self.assertRaisesRegex(UnsupportedGraphError, "orthogonal"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "orthogonal"):
             decompose(analyze([(0, 0), (12, 0), (13, 4), (5, 4), (6, 10), (0, 10)]))
 
 

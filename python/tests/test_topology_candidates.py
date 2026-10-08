@@ -9,7 +9,7 @@ from python.graph_first.footprint import analyze
 from python.graph_first.partition_candidates import candidates
 from python.graph_first.part_selection import recommend
 from python.graph_first.topology_candidates import build_candidates
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.errors import UnsupportedRoofError
 from python.inspect_architectural_parts import fixture
 
 
@@ -47,7 +47,7 @@ class TopologyCandidateProof(unittest.TestCase):
             self.assertFalse(result.valid)
             self.assertTrue(result.rejected)
             for seed in (0, 1, 79):
-                with self.assertRaisesRegex(UnsupportedGraphError, "no selectable"):
+                with self.assertRaisesRegex(UnsupportedRoofError, "no selectable"):
                     result.select(seed)
 
     def test_square_axis_is_real_roof_variation(self):
@@ -100,11 +100,11 @@ class TopologyCandidateProof(unittest.TestCase):
     def test_geometry_fault_and_incomplete_search_never_reach_seed_choice(self):
         result = pool(((0, 0), (9, 0), (9, 5), (0, 5)))
         candidate = result.valid[0]
-        with self.assertRaisesRegex(UnsupportedGraphError, "changes topology"):
+        with self.assertRaisesRegex(UnsupportedRoofError, "changes topology"):
             replace(candidate, geometry=replace(candidate.geometry, faces=()))
         result = pool(fixture("cross")["footprint"], max_axis_assignments=1)
         self.assertFalse(result.complete)
-        with self.assertRaises(UnsupportedGraphError):
+        with self.assertRaises(UnsupportedRoofError):
             result.select(3)
         search = candidates(analyze(fixture("cross")["footprint"]), max_work=1)
         result = build_candidates(recommend(search))

@@ -15,7 +15,7 @@ from .footprint import (
     area,
     rectangle,
 )
-from .graph import UnsupportedGraphError
+from .errors import UnsupportedRoofError
 
 
 @dataclass(frozen=True)
@@ -31,11 +31,9 @@ def good_diagonals(fp):
     already touch the first one. This is enumeration, not partition selection.
     """
     if not fp.orthogonal:
-        raise UnsupportedGraphError(
-            "rectangle partition requires an orthogonal outline"
-        )
+        raise UnsupportedRoofError("rectangle partition requires an orthogonal outline")
     if len(fp.vertices) != 2 * len(fp.reflex) + 4:
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "outline does not satisfy the simple orthogonal corner identity"
         )
     result = set()
@@ -81,7 +79,7 @@ def maximum_matching(left, right, conflicts):
     neighbors = {h: [] for h in left}
     for h, v in conflicts:
         if h not in neighbors or v not in right:
-            raise UnsupportedGraphError("conflict graph is not bipartite")
+            raise UnsupportedRoofError("conflict graph is not bipartite")
         neighbors[h].append(v)
     neighbors = {h: tuple(sorted(set(values))) for h, values in neighbors.items()}
     pair_h = {h: None for h in left}
@@ -160,7 +158,7 @@ def independent_set(left, right, conflicts, matching):
     if len(selected) != len(left) + len(right) - len(matching) or any(
         h in selected and v in selected for h, v in conflicts
     ):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "matching does not certify a maximum independent set"
         )
     return selected
@@ -175,7 +173,7 @@ def intersection_graph(fp, diagonals):
             if not _intersects(*(fp.vertices[k] for k in a.endpoints + b.endpoints)):
                 continue
             if a.axis == b.axis:
-                raise UnsupportedGraphError(
+                raise UnsupportedRoofError(
                     "same-axis diagonals intersect: invalid open-interior chord"
                 )
             conflicts.append((j, i) if b.axis == 0 else (i, j))
@@ -244,11 +242,11 @@ def complete_cuts(fp, selection, axes=()):
         key=lambda i: tuple(round(v, 10) for v in fp.vertices[i]),
     )
     if axes and (len(axes) != len(starts) or any(a not in (0, 1) for a in axes)):
-        raise UnsupportedGraphError("completion axes must cover unresolved reflexes")
+        raise UnsupportedRoofError("completion axes must cover unresolved reflexes")
     for k, start in enumerate(starts):
         p = fp.vertices[start]
         if any(on_segment(p, a, b) for a, b in segments):
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "unresolved reflex already lies on a partition cut"
             )
         direction = max(
@@ -257,7 +255,7 @@ def complete_cuts(fp, selection, axes=()):
         )
         hit = ray_hit(fp.vertices, start, direction)
         if hit is None:
-            raise UnsupportedGraphError("reflex extension has no visible boundary")
+            raise UnsupportedRoofError("reflex extension has no visible boundary")
         end, _ = hit
         best = math.dist(p, end)
         for a, b in segments:
@@ -293,7 +291,7 @@ def complete_cuts(fp, selection, axes=()):
         if best <= EPS or not inside(
             tuple((a + b) / 2 for a, b in zip(p, end)), fp.vertices
         ):
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "reflex completion is not a nonzero interior segment"
             )
         completions.append(Cut(start, p, end))
@@ -346,7 +344,7 @@ def subdivide(fp, selection, completions):
         for u, v in zip(ids, ids[1:]):
             key = tuple(sorted((u, v)))
             if math.dist(nodes[u], nodes[v]) <= EPS or key in edges:
-                raise UnsupportedGraphError(
+                raise UnsupportedRoofError(
                     "partition contains duplicate/zero atomic segment"
                 )
             edges[key] = exterior
@@ -356,7 +354,7 @@ def subdivide(fp, selection, completions):
         neighbors[b].append(a)
     for i, values in neighbors.items():
         if len(values) < 2:
-            raise UnsupportedGraphError("dangling partition cut")
+            raise UnsupportedRoofError("dangling partition cut")
         values.sort(
             key=lambda j: math.atan2(
                 nodes[j][1] - nodes[i][1], nodes[j][0] - nodes[i][0]
@@ -380,35 +378,35 @@ def subdivide(fp, selection, completions):
             ring.append(edge[0])
             edge = successor[edge]
         if edge != initial:
-            raise UnsupportedGraphError("partition half-edge walk is not a cycle")
+            raise UnsupportedRoofError("partition half-edge walk is not a cycle")
         signed = area(tuple(nodes[i] for i in ring))
         if signed < -(EPS**2):
             outside += 1
         elif signed > EPS**2:
             geometric = corners(ring, nodes)
             if not rectangle(tuple(nodes[i] for i in geometric)):
-                raise UnsupportedGraphError(
+                raise UnsupportedRoofError(
                     "unresolved reflex/nonrectangle partition face"
                 )
             faces.append(tuple(ring))
         else:
-            raise UnsupportedGraphError("zero-area partition cycle")
+            raise UnsupportedRoofError("zero-area partition cycle")
     expected = len(fp.reflex) - len(selection.selected) + 1
     if (
         outside != 1
         or len(faces) != expected
         or len(nodes) - len(edges) + len(faces) != 1
     ):
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "partition does not attain the minimum rectangle certificate"
         )
     if any(len(neighbors[v]) < 3 for v in fp.reflex):
-        raise UnsupportedGraphError("unresolved original reflex vertex")
+        raise UnsupportedRoofError("unresolved original reflex vertex")
     if (
         abs(sum(area(tuple(nodes[i] for i in f)) for f in faces) - area(fp.vertices))
         > EPS
     ):
-        raise UnsupportedGraphError("partition face area differs from footprint")
+        raise UnsupportedRoofError("partition face area differs from footprint")
     return Subdivision(
         tuple(nodes),
         tuple(faces),

@@ -12,7 +12,7 @@ from .rectangle_partition import (
     Cut,
 )
 from .cells import from_subdivision
-from .graph import UnsupportedGraphError
+from .errors import UnsupportedRoofError
 
 
 @dataclass(frozen=True)
@@ -130,7 +130,7 @@ class CandidateSearch:
                 j = ids.get(image)
                 if j is None:
                     if self.complete:
-                        raise UnsupportedGraphError(
+                        raise UnsupportedRoofError(
                             "completed candidate family is not symmetry closed"
                         )
                 else:

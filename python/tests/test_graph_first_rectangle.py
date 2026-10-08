@@ -14,8 +14,8 @@ from types import SimpleNamespace
 import numpy as np
 from python.graph_first.footprint import analyze
 from python.graph_first.topology import rectangle_graph
-from python.graph_first.geometry import solve_rectangle, problem
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.solve import solve_rectangle, problem
+from python.graph_first.errors import UnsupportedRoofError
 from python.tests.graph_first_reference import rectangle_snapshot
 from python.roof_harness import capture, differences
 from python.tests.test_roof_harness import assert_rectangle, assert_disk
@@ -193,7 +193,7 @@ def checked(name,*args,**kwargs):
 builtins.__import__=checked
 from python.graph_first.footprint import analyze
 from python.graph_first.topology import rectangle_graph
-from python.graph_first.geometry import solve_rectangle
+from python.graph_first.solve import solve_rectangle
 for kind in ("gable","hip","shed","flat"):
  g=rectangle_graph(analyze(((0,0),(12,0),(12,6),(0,6))),kind)
  assert solve_rectangle(g).faces
@@ -206,9 +206,9 @@ for kind in ("gable","hip","shed","flat"):
         self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_unsupported_and_square_hip(self):
-        with self.assertRaises(UnsupportedGraphError):
+        with self.assertRaises(UnsupportedRoofError):
             analyze([(0, 0), (1, 1), (0, 1), (1, 0)])
-        with self.assertRaises(UnsupportedGraphError):
+        with self.assertRaises(UnsupportedRoofError):
             rectangle_graph(analyze([(0, 0), (12, 0), (11, 6), (0, 6)]))
         g = rectangle_graph(analyze([(0, 0), (6, 0), (6, 6), (0, 6)]), "hip")
         self.assertEqual(len(g.vertices), 5)

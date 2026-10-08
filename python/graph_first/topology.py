@@ -5,15 +5,10 @@ import math
 from dataclasses import dataclass, asdict
 from collections import defaultdict
 from .footprint import EPS, rectangle, on_segment, sub
-from .graph import (
-    BoundaryPoint,
-    Face,
-    RoofGraph,
-    UnsupportedGraphError,
-    make_graph,
-    boundary_span,
-)
-from .geometry import harmonic_seeds, ridge_seeds, middle_seeds
+from .provenance import BoundaryPoint
+from .graph import RoofFace, RoofGraph, make_graph, boundary_span
+from .errors import UnsupportedRoofError
+from .initialization import harmonic_seeds, ridge_seeds, middle_seeds
 from .connections import plan
 
 
@@ -31,9 +26,9 @@ def _rectangle_graph(
     outline, source_edges, roof_type, *, shed_edge=None, cell=0, ridge_axis=None
 ):
     if not rectangle(outline):
-        raise UnsupportedGraphError("rectangle primitive requires a rectangle")
+        raise UnsupportedRoofError("rectangle primitive requires a rectangle")
     if roof_type not in {"gable", "hip", "shed", "flat"}:
-        raise UnsupportedGraphError("unsupported primitive type")
+        raise UnsupportedRoofError("unsupported primitive type")
     lengths = [math.dist(a, b) for a, b in zip(outline, outline[1:] + outline[:1])]
     # Canonical cell-edge order, not the input's cyclic first vertex, resolves
     # equal-length choices. An explicit shed edge specifies directional intent.
@@ -56,7 +51,7 @@ def _rectangle_graph(
     )
     if ridge_axis is not None:
         if ridge_axis not in (0, 1) or roof_type != "gable":
-            raise UnsupportedGraphError("ridge_axis selects a gable member axis")
+            raise UnsupportedRoofError("ridge_axis selects a gable member axis")
         base = next(
             i
             for i in range(4)
@@ -68,7 +63,7 @@ def _rectangle_graph(
             or not isinstance(shed_edge, int)
             or not 0 <= shed_edge < 4
         ):
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "shed_edge must select a rectangle boundary edge"
             )
         base = shed_edge
@@ -79,7 +74,7 @@ def _rectangle_graph(
     semantics = {}
     if roof_type in {"flat", "shed"}:
         faces = (
-            Face(
+            RoofFace(
                 (0, 1, 2, 3),
                 (cell,),
                 tuple(range(4)) if roof_type == "flat" else (base,),
@@ -94,7 +89,7 @@ def _rectangle_graph(
     elif roof_type == "hip" and abs(lengths[base] - lengths[(base + 1) % 4]) <= 1e-9:
         seeds.append((0, 0))
         roles.append("ridge_end")
-        faces = tuple(Face((i, (i + 1) % 4, 4), (cell,), (i,)) for i in range(4))
+        faces = tuple(RoofFace((i, (i + 1) % 4, 4), (cell,), (i,)) for i in range(4))
         for i in range(4):
             semantics[_key(i, (i + 1) % 4)] = "eave"
             semantics[_key(i, 4)] = "hip"
@@ -107,8 +102,8 @@ def _rectangle_graph(
                 seeds[vertex] = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
                 locations[vertex] = BoundaryPoint(edge, 0.5)
             faces = (
-                Face((v[0], v[1], 4, 5), (cell,), (base,)),
-                Face((4, v[2], v[3], 5), (cell,), ((base + 2) % 4,)),
+                RoofFace((v[0], v[1], 4, 5), (cell,), (base,)),
+                RoofFace((4, v[2], v[3], 5), (cell,), ((base + 2) % 4,)),
             )
             for a, b in ((v[0], v[1]), (v[2], v[3])):
                 semantics[_key(a, b)] = "eave"
@@ -116,10 +111,10 @@ def _rectangle_graph(
                 semantics[_key(a, b)] = "gable_end"
         else:
             faces = (
-                Face((v[0], v[1], 4, 5), (cell,), (base,)),
-                Face((v[1], v[2], 4), (cell,), ((base + 1) % 4,)),
-                Face((v[2], v[3], 5, 4), (cell,), ((base + 2) % 4,)),
-                Face((v[3], v[0], 5), (cell,), ((base + 3) % 4,)),
+                RoofFace((v[0], v[1], 4, 5), (cell,), (base,)),
+                RoofFace((v[1], v[2], 4), (cell,), ((base + 1) % 4,)),
+                RoofFace((v[2], v[3], 5, 4), (cell,), ((base + 2) % 4,)),
+                RoofFace((v[3], v[0], 5), (cell,), ((base + 3) % 4,)),
             )
             for i in range(4):
                 semantics[_key(i, (i + 1) % 4)] = "eave"
@@ -140,7 +135,7 @@ def _rectangle_graph(
 
 
 @dataclass(frozen=True)
-class Connection:
+class RoofConnection:
     host: int
     branch: int
     shared: tuple[int, int]
@@ -154,7 +149,7 @@ class Connection:
 class Composition:
     graph: RoofGraph
     primitives: tuple[RoofGraph, ...]
-    connections: tuple[Connection, ...]
+    connections: tuple[RoofConnection, ...]
 
     def inspect(self):
         return {
@@ -194,7 +189,7 @@ def compose(decomposition, roof_type="gable", *, axes=None):
         )
         return Composition(g, (g,), ())
     if roof_type != "gable":
-        raise UnsupportedGraphError(
+        raise UnsupportedRoofError(
             "multi-cell composition currently supports gable only"
         )
     primitives = cell_primitives(decomposition, axes=axes)
@@ -225,7 +220,7 @@ def _middle(decomposition, primitives, relations):
             if on_segment(point, a, fp.vertices[(i + 1) % len(fp.vertices)])
         ]
         if len(edges) != 1:
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "surviving ridge port lacks a physical exterior edge"
             )
         edge = edges[0]
@@ -326,7 +321,7 @@ def _middle(decomposition, primitives, relations):
                 for span in decomposition.cells[cell].sides[side].exterior
             }
             for cycle in cycles:
-                faces.append(Face(cycle, (cell,), ()))
+                faces.append(RoofFace(cycle, (cell,), ()))
                 allowed_eaves.append(eaves)
     incidence = defaultdict(list)
     for i, face in enumerate(faces):
@@ -342,7 +337,7 @@ def _middle(decomposition, primitives, relations):
         if meanings[a, b] == "eave":
             actual_eaves[face].add(span.edge)
     faces = tuple(
-        Face(f.loop, f.cells, tuple(sorted(actual_eaves[i])))
+        RoofFace(f.loop, f.cells, tuple(sorted(actual_eaves[i])))
         for i, f in enumerate(faces)
     )
     slots = tuple(
@@ -360,7 +355,7 @@ def _middle(decomposition, primitives, relations):
         fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"
     )
     connections = tuple(
-        Connection(
+        RoofConnection(
             r.host,
             r.branch,
             _key(*r.shared),
@@ -407,7 +402,7 @@ def _terminal(decomposition, primitives, relation):
             if on_segment(p, a, fp.vertices[(i + 1) % len(fp.vertices)])
         ]
         if len(candidates) != 1:
-            raise UnsupportedGraphError(
+            raise UnsupportedRoofError(
                 "surviving gable port lacks one physical boundary"
             )
         edge = candidates[0]
@@ -452,7 +447,7 @@ def _terminal(decomposition, primitives, relation):
                     }
                 )
             )
-            faces.append(Face(tuple(loop), (ci,), eaves))
+            faces.append(RoofFace(tuple(loop), (ci,), eaves))
     widths = {
         host: math.dist(
             primitives[host].outline[primitives[host].vertices[hnear].boundary.edge],
@@ -490,7 +485,7 @@ def _terminal(decomposition, primitives, relation):
                 else (groups[prev], groups[nxt])
             )
             refined.append(
-                Face(
+                RoofFace(
                     face.loop[:i] + replacement + face.loop[i + 1 :],
                     face.cells,
                     face.eaves,
@@ -527,7 +522,7 @@ def _terminal(decomposition, primitives, relation):
         graph,
         primitives,
         (
-            Connection(
+            RoofConnection(
                 host,
                 branch,
                 _key(*relation.shared),

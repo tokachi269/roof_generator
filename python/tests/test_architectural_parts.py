@@ -3,15 +3,19 @@ import unittest
 from dataclasses import replace
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
-from python.graph_first.parts import ArchitecturalPartGraph, Member, Part
-from python.graph_first.graph import UnsupportedGraphError
+from python.graph_first.parts import (
+    ArchitecturalPartGraph,
+    ArchitecturalMember,
+    ArchitecturalPart,
+)
+from python.graph_first.errors import UnsupportedRoofError
 
 
 class PartContractProof(unittest.TestCase):
     def rectangle(self):
         d = decompose(analyze(((0, 0), (12, 0), (12, 5), (0, 5))))
         c = d.cells[0]
-        p = Part(
+        p = ArchitecturalPart(
             0,
             (0,),
             (c.boundary,),
@@ -28,7 +32,7 @@ class PartContractProof(unittest.TestCase):
         )
         axes = (int(bounds[3] - bounds[1] > bounds[2] - bounds[0]),)
         p = replace(p, axes=axes)
-        m = Member(0, bounds, axes)
+        m = ArchitecturalMember(0, bounds, axes)
         return ArchitecturalPartGraph(d, (m,), (p,), (), (), ())
 
     def test_contract_is_not_roofgraph(self):
@@ -45,7 +49,7 @@ class PartContractProof(unittest.TestCase):
             replace(g.parts[0], exterior=()),
             replace(g.parts[0], consumed=((0, 1),)),
         ):
-            with self.assertRaises(UnsupportedGraphError):
+            with self.assertRaises(UnsupportedRoofError):
                 replace(g, parts=(bad,))
 
 
@@ -210,10 +214,10 @@ class CompoundInterpretationProof(unittest.TestCase):
             decompose(analyze(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10))))
         )
         bad = replace(g.members[0], bounds=(0, 0, 1, 1))
-        with self.assertRaises(UnsupportedGraphError):
+        with self.assertRaises(UnsupportedRoofError):
             replace(g, members=(bad,) + g.members[1:])
         bad = replace(g.relations[0], intervals=())
-        with self.assertRaises(UnsupportedGraphError):
+        with self.assertRaises(UnsupportedRoofError):
             replace(g, relations=(bad,))
 
 

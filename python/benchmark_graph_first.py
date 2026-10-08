@@ -16,7 +16,8 @@ sys.path.insert(0, str(ROOT / "addon"))
 from python.graph_first.footprint import analyze
 from python.graph_first.cells import decompose
 from python.graph_first.topology import compose
-from python.graph_first.geometry import problem, rectangle_vertices, Mesh
+from python.graph_first.solve import problem, rectangle_vertices
+from python.graph_first.mesh import RoofMesh
 
 
 def stats(samples):
@@ -54,7 +55,7 @@ def measure(case):
         now = time.perf_counter()
         row["geometry_solve"] = (now - t) * 1000
         t = now
-        mesh = Mesh(graph, vertices)
+        mesh = RoofMesh(graph, vertices)
         now = time.perf_counter()
         row["mesh_conversion"] = (now - t) * 1000
         row["total_core"] = (now - start) * 1000
