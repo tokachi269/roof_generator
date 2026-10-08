@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760">
+<rect width="800" height="760" fill="white"/>
+<g font-family="sans-serif" fill="#18212b" font-size="14">
+<text x="35" y="28">Minimum rectangular partition: 2 cells</text>
+<polygon points="45.000,385.775 425.282,385.775 425.282,149.155 45.000,149.155" fill="#dbe9fa" stroke="#536273" stroke-width="1.5"/>
+<text x="235.141" y="267.465">0</text>
+<polygon points="425.282,690.000 645.000,690.000 645.000,149.155 425.282,149.155 425.282,385.775" fill="#f8ddc5" stroke="#536273" stroke-width="1.5"/>
+<text x="535.141" y="419.577">1</text>
+<polyline points="425.282,385.775 425.282,149.155" fill="none" stroke="#26364a" stroke-width="2" stroke-dasharray="6,4"><title>completion from reflex 5</title></polyline>
+<text x="35" y="735">Blue: selected good diagonal. Dashed: reflex completion. No roof geometry.</text></g></svg>

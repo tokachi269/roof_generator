@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760">
+<rect width="800" height="760" fill="white"/>
+<g font-family="sans-serif" fill="#18212b" font-size="14">
+<text x="35" y="28">Minimum rectangular partition: 4 cells</text>
+<polygon points="45.000,407.647 245.000,407.647 245.000,254.706 45.000,254.706" fill="#dbe9fa" stroke="#536273" stroke-width="1.5"/>
+<text x="145.000" y="331.176">0</text>
+<polygon points="97.941,690.000 245.000,690.000 245.000,531.176 97.941,531.176" fill="#f8ddc5" stroke="#536273" stroke-width="1.5"/>
+<text x="171.471" y="610.588">1</text>
+<polygon points="245.000,690.000 445.000,690.000 445.000,248.824 445.000,90.000 245.000,90.000 245.000,254.706 245.000,407.647 245.000,531.176" fill="#dfedda" stroke="#536273" stroke-width="1.5"/>
+<text x="345.000" y="390.000">2</text>
+<polygon points="445.000,248.824 539.118,248.824 539.118,90.000 445.000,90.000" fill="#f2dced" stroke="#536273" stroke-width="1.5"/>
+<text x="492.059" y="169.412">3</text>
+<polyline points="245.000,254.706 245.000,407.647" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 0</title></polyline>
+<polyline points="245.000,531.176 245.000,690.000" fill="none" stroke="#26364a" stroke-width="2" stroke-dasharray="6,4"><title>completion from reflex 8</title></polyline>
+<polyline points="445.000,248.824 445.000,90.000" fill="none" stroke="#26364a" stroke-width="2" stroke-dasharray="6,4"><title>completion from reflex 0</title></polyline>
+<text x="35" y="735">Blue: selected good diagonal. Dashed: reflex completion. No roof geometry.</text></g></svg>

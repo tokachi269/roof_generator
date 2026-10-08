@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760">
+<rect width="800" height="760" fill="white"/>
+<g font-family="sans-serif" fill="#18212b" font-size="14">
+<text x="35" y="28">Minimum rectangular partition: 10 cells</text>
+<polygon points="45.000,595.263 76.579,595.263 108.158,595.263 139.737,595.263 171.316,595.263 202.895,595.263 234.474,595.263 266.053,595.263 297.632,595.263 329.211,595.263 360.789,595.263 392.368,595.263 423.947,595.263 455.526,595.263 487.105,595.263 518.684,595.263 550.263,595.263 581.842,595.263 613.421,595.263 645.000,595.263 645.000,563.684 45.000,563.684" fill="#dbe9fa" stroke="#536273" stroke-width="1.5"/>
+<text x="345.000" y="579.474">0</text>
+<polygon points="76.579,690.000 108.158,690.000 108.158,595.263 76.579,595.263" fill="#f8ddc5" stroke="#536273" stroke-width="1.5"/>
+<text x="92.368" y="642.632">1</text>
+<polygon points="139.737,690.000 171.316,690.000 171.316,595.263 139.737,595.263" fill="#dfedda" stroke="#536273" stroke-width="1.5"/>
+<text x="155.526" y="642.632">2</text>
+<polygon points="202.895,690.000 234.474,690.000 234.474,595.263 202.895,595.263" fill="#f2dced" stroke="#536273" stroke-width="1.5"/>
+<text x="218.684" y="642.632">3</text>
+<polygon points="266.053,690.000 297.632,690.000 297.632,595.263 266.053,595.263" fill="#e6e2fd" stroke="#536273" stroke-width="1.5"/>
+<text x="281.842" y="642.632">4</text>
+<polygon points="329.211,690.000 360.789,690.000 360.789,595.263 329.211,595.263" fill="#dbe9fa" stroke="#536273" stroke-width="1.5"/>
+<text x="345.000" y="642.632">5</text>
+<polygon points="392.368,690.000 423.947,690.000 423.947,595.263 392.368,595.263" fill="#f8ddc5" stroke="#536273" stroke-width="1.5"/>
+<text x="408.158" y="642.632">6</text>
+<polygon points="455.526,690.000 487.105,690.000 487.105,595.263 455.526,595.263" fill="#dfedda" stroke="#536273" stroke-width="1.5"/>
+<text x="471.316" y="642.632">7</text>
+<polygon points="518.684,690.000 550.263,690.000 550.263,595.263 518.684,595.263" fill="#f2dced" stroke="#536273" stroke-width="1.5"/>
+<text x="534.474" y="642.632">8</text>
+<polygon points="581.842,690.000 613.421,690.000 613.421,595.263 581.842,595.263" fill="#e6e2fd" stroke="#536273" stroke-width="1.5"/>
+<text x="597.632" y="642.632">9</text>
+<polyline points="76.579,595.263 108.158,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 0</title></polyline>
+<polyline points="139.737,595.263 171.316,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 1</title></polyline>
+<polyline points="202.895,595.263 234.474,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 2</title></polyline>
+<polyline points="266.053,595.263 297.632,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 3</title></polyline>
+<polyline points="329.211,595.263 360.789,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 4</title></polyline>
+<polyline points="392.368,595.263 423.947,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 5</title></polyline>
+<polyline points="455.526,595.263 487.105,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 6</title></polyline>
+<polyline points="518.684,595.263 550.263,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 7</title></polyline>
+<polyline points="613.421,595.263 581.842,595.263" fill="none" stroke="#185dc7" stroke-width="3"><title>selected good diagonal 8</title></polyline>
+<text x="35" y="735">Blue: selected good diagonal. Dashed: reflex completion. No roof geometry.</text></g></svg>
