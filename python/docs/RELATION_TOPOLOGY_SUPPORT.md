@@ -51,9 +51,9 @@ arbitrary new junction grammar.
 
 1. Relations identify one receiver and distinct exterior-leaf branches, covering
    every member. All attachments are terminal, with perpendicular primitive axes.
-2. Each consumed host end is distinct. Multiple replacements require branches
-   no wider than the receiver. Singleton behavior keeps its established wider
-   branch refinement. Mixed terminal/middle or two replacements on one end fail.
+2. Each consumed host end is distinct. The receiver is a geometric side role, not a global higher main roof.
+   Each end uses the established single-terminal local wider/narrower
+   refinement; either neighbor may be wider, independently of the other end. Mixed terminal/middle or two replacements on one end fail.
 3. Allocate surviving exterior gable ports and a corner junction per attachment.
    Remove all consumed host ports, branch caps and artificial boundaries. Rewrite
    each host face using the full attachment set once; branch faces splice into
@@ -69,11 +69,30 @@ arbitrary new junction grammar.
    Local high/low pairs may backtrack toward their axis intersection together;
    that coincident limit is never emitted. A crossing/degenerate drawing fails.
    No XYZ, plane envelope, Boolean, wavefront or optimizer selects incidence.
-6. Primary tests supply an independent planar metric witness for unequal-width
-   opposite-end attachments. Also verify input transforms, cyclic start, winding,
+6. Primary tests supply independent planar metric witnesses for opposite-end
+   attachments with narrower, equal and wider branches. Hu’s simultaneous end
+   constraints do not justify a global wider-host restriction; Sugihara’s higher
+   roof distinction is local to each connection. Keeping that distinction local
+   is necessary for the existing slightly-wider-branch U fixture. Also verify input transforms, cyclic start, winding,
    collinear redundancy and relation-order permutations. Witness geometry is a
    test oracle, not production topology discovery or a fixture special case.
 
 This operation does not imply interacting-junction, continuation, partial-end,
 parallel-contact or arbitrary generated-grid support. It does not add a
 nonlinear geometry solver or a Blender compound-mesh fallback.
+
+## Baseline findings
+
+See [canonical/support_before.json](canonical/support_before.json). The unknown
+corpus has 2 supported, 986 unsupported and 12 incomplete-budget buildings.
+Unsupported-building incidence: parallel 981, continuation 790, partial_end 790;
+these counts overlap. All 284,324 continuation occurrences have width-step or
+axis-offset bounds; zero are the trivial aligned full-end merge. Conditional
+sole-known-blocker incidence is parallel 777, partial_end 61, continuation 38,
+terminal arrangement 36. These upper bounds censor downstream failures.
+
+The original U receiver is slightly narrower than both branches. A rule that
+rejects this only because the geometric receiver is not the locally wider roof
+would be more restrictive than the existing singleton terminal contract. The
+multi-terminal extension must prove all local width orderings using independent
+planar witnesses, while keeping distinct-end/leaf and noncrossing applicability.
