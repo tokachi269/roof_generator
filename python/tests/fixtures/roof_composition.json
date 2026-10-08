@@ -1,0 +1,60 @@
+[
+  {
+    "name": "middle_narrow",
+    "source": "Sugihara 2007 narrow-to-wide extension; Laycock Figure 6 case 1",
+    "points": {
+      "A": [0,0,0], "B": [17.2,0,0], "C": [17.2,5.8,0], "D": [11,5.8,0],
+      "E": [11,14,0], "F": [6.2,14,0], "G": [6.2,5.8,0], "H": [0,5.8,0],
+      "P": [0,2.9,1.45], "Q": [17.2,2.9,1.45], "R": [8.6,14,1.2], "J": [8.6,3.4,1.2]
+    },
+    "outline": ["A","B","C","D","E","F","G","H"],
+    "ports": ["P","Q","R"], "junctions": ["J"],
+    "faces": [["A","B","Q","P"], ["Q","C","D","J","G","H","P"], ["J","D","E","R"], ["G","J","R","F"]],
+    "ridge": [["P","Q"],["J","R"]], "valley": [["D","J"],["G","J"]], "hip": [],
+    "cells": 2, "junction_degrees": [3]
+  },
+  {
+    "name": "middle_equal",
+    "source": "Kada Figure 11 T port incidence",
+    "points": {
+      "A": [0,0,0], "B": [16,0,0], "C": [16,4,0], "D": [10,4,0],
+      "E": [10,11,0], "F": [6,11,0], "G": [6,4,0], "H": [0,4,0],
+      "P": [0,2,1], "Q": [16,2,1], "R": [8,11,1], "J": [8,2,1]
+    },
+    "outline": ["A","B","C","D","E","F","G","H"],
+    "ports": ["P","Q","R"], "junctions": ["J"],
+    "faces": [["A","B","Q","J","P"], ["Q","C","D","J"], ["J","G","H","P"], ["J","D","E","R"], ["G","J","R","F"]],
+    "ridge": [["P","J"],["J","Q"],["J","R"]], "valley": [["D","J"],["G","J"]], "hip": [],
+    "cells": 2, "junction_degrees": [5]
+  },
+  {
+    "name": "middle_offset",
+    "source": "Same narrow-to-wide extension, off-center architectural proportions",
+    "points": {
+      "A": [0,0,0], "B": [20,0,0], "C": [20,6,0], "D": [5,6,0],
+      "E": [5,11,0], "F": [2,11,0], "G": [2,6,0], "H": [0,6,0],
+      "P": [0,3,1.5], "Q": [20,3,1.5], "R": [3.5,11,0.75], "J": [3.5,4.5,0.75]
+    },
+    "outline": ["A","B","C","D","E","F","G","H"],
+    "ports": ["P","Q","R"], "junctions": ["J"],
+    "faces": [["A","B","Q","P"], ["Q","C","D","J","G","H","P"], ["J","D","E","R"], ["G","J","R","F"]],
+    "ridge": [["P","Q"],["J","R"]], "valley": [["D","J"],["G","J"]], "hip": [],
+    "cells": 2, "junction_degrees": [3]
+  },
+  {
+    "name": "multiple_disjoint_middle",
+    "source": "Sugihara multiple branches, restricted to commuting disjoint narrow slots",
+    "points": {
+      "A": [0,0,0], "B": [24,0,0], "C": [24,8,0], "D": [22,8,0],
+      "E": [22,14,0], "F": [18,14,0], "G": [18,8,0], "H": [10,8,0],
+      "I": [10,16,0], "K": [6,16,0], "L": [6,8,0], "M": [0,8,0],
+      "P": [0,4,2], "Q": [24,4,2], "R": [8,16,1], "S": [20,14,1],
+      "J1": [8,6,1], "J2": [20,6,1]
+    },
+    "outline": ["A","B","C","D","E","F","G","H","I","K","L","M"],
+    "ports": ["P","Q","R","S"], "junctions": ["J1","J2"],
+    "faces": [["A","B","Q","P"], ["Q","C","D","J2","G","H","J1","L","M","P"], ["J1","H","I","R"], ["L","J1","R","K"], ["J2","D","E","S"], ["G","J2","S","F"]],
+    "ridge": [["P","Q"],["J1","R"],["J2","S"]], "valley": [["H","J1"],["L","J1"],["D","J2"],["G","J2"]], "hip": [],
+    "cells": 3, "junction_degrees": [3,3]
+  }
+]

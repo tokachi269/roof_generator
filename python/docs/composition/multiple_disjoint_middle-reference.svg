@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="470" viewBox="0 0 920 470">
+<rect width="920" height="470" fill="white"/>
+<g font-family="sans-serif" font-size="13">
+<text x="40" y="25">Minimum cells / artificial intervals</text>
+<text x="500" y="25">Independent reference cycles (metric witness)</text>
+<polygon points="380.000,291.667 351.667,291.667 295.000,291.667 181.667,291.667 125.000,291.667 40.000,291.667 40.000,405.000 380.000,405.000" fill="#e6eff5" stroke="#88929b" stroke-width="1.5"/>
+<polygon points="351.667,206.667 295.000,206.667 295.000,291.667 351.667,291.667" fill="#e6eff5" stroke="#88929b" stroke-width="1.5"/>
+<polygon points="181.667,178.333 125.000,178.333 125.000,291.667 181.667,291.667" fill="#e6eff5" stroke="#88929b" stroke-width="1.5"/>
+<polyline points="351.667,291.667 295.000,291.667" fill="none" stroke="#888" stroke-width="3" stroke-dasharray="6,4"/>
+<polyline points="181.667,291.667 125.000,291.667" fill="none" stroke="#888" stroke-width="3" stroke-dasharray="6,4"/>
+<polygon points="500.000,405.000 840.000,405.000 840.000,291.667 811.667,291.667 811.667,206.667 755.000,206.667 755.000,291.667 641.667,291.667 641.667,178.333 585.000,178.333 585.000,291.667 500.000,291.667" fill="#f7fafc" stroke="#536474" stroke-width="2"/>
+<polyline points="500.000,348.333 840.000,348.333" fill="none" stroke="#d63143" stroke-width="3"/>
+<polyline points="613.333,320.000 613.333,178.333" fill="none" stroke="#d63143" stroke-width="3"/>
+<polyline points="783.333,320.000 783.333,206.667" fill="none" stroke="#d63143" stroke-width="3"/>
+<polyline points="641.667,291.667 613.333,320.000" fill="none" stroke="#1767cf" stroke-width="3"/>
+<polyline points="585.000,291.667 613.333,320.000" fill="none" stroke="#1767cf" stroke-width="3"/>
+<polyline points="811.667,291.667 783.333,320.000" fill="none" stroke="#1767cf" stroke-width="3"/>
+<polyline points="755.000,291.667 783.333,320.000" fill="none" stroke="#1767cf" stroke-width="3"/>
+<circle cx="613.333" cy="320.000" r="5" fill="#151c28"/>
+<circle cx="783.333" cy="320.000" r="5" fill="#151c28"/>
+<text x="40" y="445">Red: ridge; blue: valley. Reference XYZ is test evidence, never a production topology input.</text>
+</g></svg>
