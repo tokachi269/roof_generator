@@ -4,6 +4,8 @@
 from collections import Counter
 from dataclasses import replace
 import math
+import subprocess
+import sys
 from pathlib import Path
 import json
 import unittest
@@ -18,6 +20,7 @@ from python.graph_first.topology import _rectangle_graph, compose
 from python.graph_first.connections import plan
 from python.graph_first.graph import UnsupportedGraphError
 from python.graph_first.geometry import Mesh, problem
+from python.tests.composition_footprints import buildings
 
 RECORDS = json.loads(
     (Path(__file__).parent / "fixtures/rectangle_partition.json").read_text()
@@ -329,6 +332,205 @@ class MiddleCompositionTests(unittest.TestCase):
             )
             with self.assertRaises(AssertionError):
                 assert_reference(self, record, d, broken)
+
+
+class MultipleCompositionTests(unittest.TestCase):
+    def test_disjoint_slots_are_composed_simultaneously_and_match_literal_cycles(self):
+        record = REFERENCES[-1]
+        points = np.array([record["points"][v][:2] for v in record["outline"]])
+        angle = 0.912
+        r = np.array(
+            [[math.cos(angle), -math.sin(angle)], [math.sin(angle), math.cos(angle)]]
+        )
+        for raw, rotation, offset in (
+            (points, np.eye(2), np.zeros(2)),
+            (points[::-1], np.eye(2), np.zeros(2)),
+            (np.roll(points, 4, axis=0), np.eye(2), np.zeros(2)),
+            (points @ r.T + [51, -40], r, np.array([51, -40])),
+        ):
+            d = decompose(analyze(raw))
+            c = compose(d)
+            assert_reference(self, record, d, c.graph, rotation, offset)
+            self.assertEqual(len(c.connections), 2)
+            self.assertEqual(compose(replace(d, adjacency=d.adjacency[::-1])), c)
+
+    def test_unknown_grid_branch_buildings_keep_one_main_ridge_and_consume_caps(self):
+        for case in buildings():
+            points = case["footprint"]
+            length, width = case["body"]
+            branches = case["branches"]
+            d = decompose(analyze(points))
+            c = compose(d)
+            g = c.graph
+            n = len(branches)
+            self.assertEqual(
+                (len(d.cells), len(c.connections), len(g.faces)), (n + 1, n, 2 + 2 * n)
+            )
+            features = Counter(e.kind for e in g.edges)
+            self.assertEqual(
+                (features["ridge"], features["valley"], features["hip"]),
+                (n + 1, 2 * n, 0),
+            )
+            degree = Counter(i for e in g.edges for i in e.vertices)
+            self.assertEqual(
+                [degree[i] for i, v in enumerate(g.vertices) if v.boundary is None],
+                [3] * n,
+            )
+            self.assertEqual(
+                Counter(f.cells for f in g.faces), {(i,): 2 for i in range(n + 1)}
+            )
+            # One unsplit main ridge connects the two original main gable ports.
+            world = [d.footprint.frame.world_xy(v.seed) for v in g.vertices]
+            caps = {
+                tuple(np.round(world[i], 6)): i
+                for i, v in enumerate(g.vertices)
+                if v.role == "ridge_end"
+            }
+            main = {caps[(0, width / 2)], caps[(length, width / 2)]}
+            self.assertEqual(
+                sum(e.kind == "ridge" and set(e.vertices) == main for e in g.edges), 1
+            )
+            shape = Polygon(points)
+            drawn = [Polygon([world[i] for i in f.loop]) for f in g.faces]
+            self.assertTrue(all(p.is_valid and p.area > 0 for p in drawn))
+            self.assertLess(unary_union(drawn).symmetric_difference(shape).area, 1e-8)
+            self.assertLess(abs(sum(p.area for p in drawn) - shape.area), 1e-8)
+            # Metric witness from independent known building dimensions,
+            # outside production. No plane envelope or topology helper.
+            exact = {}
+            cap_heights = {(0, width / 2): width / 4, (length, width / 2): width / 4}
+            for a, b, extension, side in branches:
+                x = (a + b) / 2
+                cap = (x, width + extension if side == 1 else -extension)
+                cap_heights[cap] = (b - a) / 4
+                exact[cap] = (
+                    x,
+                    width - (b - a) / 2 if side == 1 else (b - a) / 2,
+                    (b - a) / 4,
+                )
+            xyz = []
+            frame = d.footprint.frame
+            u = frame.direction
+            transform = np.array([[u[0], -u[1]], [u[1], u[0]]])
+            for i, vertex in enumerate(g.vertices):
+                key = tuple(np.round(world[i], 6))
+                if vertex.boundary is None:
+                    cap = next(
+                        j
+                        for e in g.edges
+                        if e.kind == "ridge" and i in e.vertices
+                        for j in e.vertices
+                        if j != i
+                    )
+                    value = exact[tuple(np.round(world[cap], 6))]
+                else:
+                    value = (*world[i], cap_heights.get(key, 0))
+                xyz.append(
+                    (
+                        *(
+                            (np.array(value[:2]) - frame.origin)
+                            @ transform
+                            / frame.scale
+                        ),
+                        value[2] / frame.scale,
+                    )
+                )
+            Mesh(g, tuple(xyz))
+            # Order must be irrelevant before any merge is attempted.
+            self.assertEqual(compose(replace(d, adjacency=d.adjacency[::-1])), c)
+
+    def test_interacting_equal_width_and_unproved_arrangements_fail_explicitly(self):
+        # A single equal-width T is supported.
+        points = [
+            (0, 0),
+            (16, 0),
+            (16, 4),
+            (10, 4),
+            (10, 10),
+            (6, 10),
+            (6, 4),
+            (0, 4),
+            (0, 0),
+        ]
+        # Keep single equal-width T supported; the real cross fixture is a
+        # separate minimum partition and must not get two coincident T vertices.
+        self.assertEqual(len(compose(decompose(analyze(points))).graph.faces), 5)
+        cross = [
+            (0, 0),
+            (6, 0),
+            (6, -6),
+            (10, -6),
+            (10, 0),
+            (16, 0),
+            (16, 4),
+            (10, 4),
+            (10, 10),
+            (6, 10),
+            (6, 4),
+            (0, 4),
+        ]
+        with self.assertRaisesRegex(UnsupportedGraphError, "multiple equal-width"):
+            compose(decompose(analyze(cross)))
+        square_receiver = [
+            (0, 0),
+            (1, 0),
+            (1, -3),
+            (5, -3),
+            (5, 0),
+            (8, 0),
+            (8, 8),
+            (0, 8),
+        ]
+        with self.assertRaisesRegex(UnsupportedGraphError, "no complete supported"):
+            compose(decompose(analyze(square_receiver)))
+        overlapping_slots = [
+            (0, 0),
+            (5, 0),
+            (5, -5),
+            (8, -5),
+            (8, 0),
+            (20, 0),
+            (20, 6),
+            (9, 6),
+            (9, 12),
+            (6, 12),
+            (6, 6),
+            (0, 6),
+        ]
+        with self.assertRaisesRegex(UnsupportedGraphError, "slots interact"):
+            compose(decompose(analyze(overlapping_slots)))
+        for kind in ("hip", "shed", "flat"):
+            with self.assertRaisesRegex(UnsupportedGraphError, "multi-cell"):
+                compose(decompose(analyze(points)), kind)
+        for name in ("cross", "orthogonal_U", "residential_multi_reflex"):
+            raw = next(r["footprint"] for r in RECORDS if r["name"] == name)
+            with self.assertRaises(UnsupportedGraphError):
+                compose(decompose(analyze(raw)))
+
+    def test_middle_and_multiple_have_no_polygon_or_legacy_runtime_dependency(self):
+        root = Path(__file__).resolve().parents[2]
+        script = """
+import sys, importlib.abc, json
+sys.path.insert(0, sys.argv[1])
+class Block(importlib.abc.MetaPathFinder):
+    def find_spec(self, name, path=None, target=None):
+        if name.split('.')[0] in {'numpy', 'shapely', 'roof_generator'}:
+            raise RuntimeError('forbidden runtime dependency: ' + name)
+sys.meta_path.insert(0, Block())
+from python.graph_first.footprint import analyze
+from python.graph_first.cells import decompose
+from python.graph_first.topology import compose
+from pathlib import Path
+for r in json.loads((Path(sys.argv[1])/'python/tests/fixtures/roof_composition.json').read_text()):
+    graph=compose(decompose(analyze([r['points'][v][:2] for v in r['outline']]))).graph
+    assert len(graph.faces)==len(r['faces'])
+"""
+        result = subprocess.run(
+            [sys.executable, "-I", "-c", script, str(root)],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
 if __name__ == "__main__":

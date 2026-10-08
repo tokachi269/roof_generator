@@ -185,10 +185,6 @@ def compose(decomposition, roof_type="gable"):
     relations = plan(decomposition, primitives)
     if len(relations) == 1 and relations[0].kind == "terminal":
         return _terminal(decomposition, primitives, relations[0])
-    if len(relations) != 1:
-        raise UnsupportedGraphError(
-            "multiple middle operations await their simultaneous composition proof"
-        )
     return _middle(decomposition, primitives, relations)
 
 
@@ -249,6 +245,21 @@ def _middle(decomposition, primitives, relations):
         joints[branch] = junction
         maps[branch][near] = junction
     equal = [joints[r.branch] for r in relations if r.equal_width]
+    side_relations = defaultdict(list)
+    for relation in relations:
+        side_relations[relation.host_side].append(relation)
+    for side, items in side_relations.items():
+        a, b = (
+            decomposition.vertices[i]
+            for i in decomposition.cells[host].sides[side].vertices
+        )
+        direction = sub(b, a)
+        items.sort(
+            key=lambda r: sum(
+                x * y
+                for x, y in zip(sub(decomposition.vertices[r.shared[0]], a), direction)
+            )
+        )
     meanings = {}
     host_ridge = tuple(maps[host][i] for i in host_caps)
     chain = (host_ridge[0], *equal, host_ridge[1])
@@ -272,8 +283,8 @@ def _middle(decomposition, primitives, relations):
                 if cell == host:
                     if {a, b} == set(host_caps):
                         loop.extend(equal if a == host_caps[0] else reversed(equal))
-                    for relation in relations:
-                        if (a, b) == (relation.host_side, (relation.host_side + 1) % 4):
+                    if a < 4 and b == (a + 1) % 4:
+                        for relation in side_relations[a]:
                             loop.extend(
                                 (
                                     relation.shared[0],
