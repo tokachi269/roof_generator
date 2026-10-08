@@ -45,3 +45,10 @@ This is an additional proven L/T interpretation. It does not solve the user's
 staggered parallel-band footprint. The previous frozen-corpus measurements
 belong to earlier production revisions; a fresh audit is running for this
 repair and must be reported separately before making coverage claims.
+
+The frozen branch corpus re-audit completed on this production source: 100/100
+through RoofGraph, GeometryProblem, solve and mesh, and 100/100 actual installed
+ZIP Blender conversions. This remains a separated-branch result, not general
+orthogonal coverage. [Core report](authority/eave-free/branch.json),
+[Blender report](authority/eave-free/blender-branch.json). The general corpus
+and serial benchmark are still pending.
