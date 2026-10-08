@@ -13,6 +13,7 @@ class ArchitecturalMember:
     cell: int
     bounds: tuple[float, float, float, float]
     axes: tuple[int, ...]
+    directions: tuple[tuple[float, float], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -93,7 +94,22 @@ class ArchitecturalPartGraph:
                 if abs(sizes[0] - sizes[1]) <= 4 * EPS
                 else (int(sizes[1] > sizes[0]),)
             )
-            if m.axes != axes:
+            if not d.footprint.orthogonal:
+                import math
+                from .footprint import sub
+
+                directions = tuple(sub(pts[(i + 1) % 4], pts[i]) for i in range(4))
+                units = tuple(tuple(x / math.hypot(*v) for x in v) for v in directions)
+                vectors = tuple(
+                    tuple(units[i][k] - units[(i + 2) % 4][k] for k in (0, 1))
+                    for i in (0, 1)
+                )
+                expected = tuple(tuple(x / math.hypot(*v) for x in v) for v in vectors)
+                if m.axes or m.directions != expected:
+                    raise UnsupportedRoofError(
+                        "quadrilateral member requires geometric directions, not orthogonal axes"
+                    )
+            elif m.axes != axes:
                 raise UnsupportedRoofError(
                     "member axes differ from its geometric domain"
                 )

@@ -27,6 +27,9 @@ class RoofAcceptanceTests(unittest.TestCase):
             "rectangle_hip",
             "rectangle_shed",
             "rotated_rectangle",
+            "parallelogram",
+            "trapezoid",
+            "general_convex_quad",
         }
         mesh_supported |= {
             "orthogonal_L",

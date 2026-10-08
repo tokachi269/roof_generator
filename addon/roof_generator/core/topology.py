@@ -590,3 +590,80 @@ def _terminals(decomposition, primitives, relations):
         fp.vertices, fp.source_edges, seeds, locations, roles, faces, meanings, "gable"
     )
     return Composition(graph, primitives, tuple(connections))
+
+
+def quadrilateral_graph(footprint, roof_type, *, eave=0):
+    """Two equal-pitch slopes with boundary ports on the distance bisector."""
+    outline = footprint.vertices
+    if len(outline) != 4 or footprint.reflex or roof_type == "hip":
+        raise UnsupportedRoofError(
+            "nonrectangular primitive supports convex-quad gable/shed/flat only"
+        )
+    if roof_type in {"flat", "shed"}:
+        semantics = {
+            _key(i, (i + 1) % 4): (
+                "eave"
+                if roof_type == "flat" or i in (eave, (eave + 2) % 4)
+                else "gable_end"
+            )
+            for i in range(4)
+        }
+        faces = (
+            RoofFace(
+                tuple(range(4)),
+                (0,),
+                tuple(range(4)) if roof_type == "flat" else (eave,),
+            ),
+        )
+        return make_graph(
+            outline,
+            footprint.source_edges,
+            outline,
+            {i: BoundaryPoint(i, 0) for i in range(4)},
+            ["corner"] * 4,
+            faces,
+            semantics,
+            roof_type,
+        )
+    opposite = (eave + 2) % 4
+
+    def distance(p, edge):
+        a, b = outline[edge], outline[(edge + 1) % 4]
+        vector = sub(b, a)
+        return (vector[0] * (p[1] - a[1]) - vector[1] * (p[0] - a[0])) / math.hypot(
+            *vector
+        )
+
+    seeds = list(outline)
+    locations = {i: BoundaryPoint(i, 0) for i in range(4)}
+    for side in ((eave + 1) % 4, (eave + 3) % 4):
+        a, b = outline[side], outline[(side + 1) % 4]
+        da = distance(a, eave) - distance(a, opposite)
+        db = distance(b, eave) - distance(b, opposite)
+        if abs(da - db) <= EPS:
+            raise UnsupportedRoofError(
+                "quad gable port lacks a unique equal-pitch bisector"
+            )
+        t = da / (da - db)
+        if not EPS < t < 1 - EPS:
+            raise UnsupportedRoofError("quad gable port degenerates at a corner")
+        locations[len(seeds)] = BoundaryPoint(side, t)
+        seeds.append(tuple(a[k] + t * (b[k] - a[k]) for k in (0, 1)))
+    v = tuple((eave + i) % 4 for i in range(4))
+    faces = (
+        RoofFace((v[0], v[1], 4, 5), (0,), (eave,)),
+        RoofFace((4, v[2], v[3], 5), (0,), (opposite,)),
+    )
+    semantics = {_key(v[0], v[1]): "eave", _key(v[2], v[3]): "eave", (4, 5): "ridge"}
+    for a, b in ((v[1], 4), (4, v[2]), (v[3], 5), (5, v[0])):
+        semantics[_key(a, b)] = "gable_end"
+    return make_graph(
+        outline,
+        footprint.source_edges,
+        seeds,
+        locations,
+        ["corner"] * 4 + ["ridge_end"] * 2,
+        faces,
+        semantics,
+        roof_type,
+    )

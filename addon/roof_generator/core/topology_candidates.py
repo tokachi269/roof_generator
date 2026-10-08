@@ -10,7 +10,7 @@ from .initialization import _valid_drawing
 from .architecture import Analysis
 from .architecture_selection import evaluate
 from .seed import derive, choose, point_identity
-from .topology import compose, Composition
+from .topology import compose, Composition, quadrilateral_graph
 from .architecture_models import ArchitecturalPartGraph
 
 
@@ -194,6 +194,13 @@ def build_candidates(
     no winner. Successful 2D topology/problem conversion does not claim a solved
     nonlinear embedding.
     """
+    if (
+        recommendation.search.candidates
+        and not recommendation.search.candidates[0].footprint.orthogonal
+    ):
+        return _quadrilateral_candidates(
+            recommendation, roof_type, reference_direction, pitch, eave_height
+        )
     if max_axis_assignments < 1:
         raise ValueError("axis-assignment budget must be positive")
     if not recommendation.search.complete:
@@ -280,4 +287,58 @@ def build_candidates(
             if retained
             else "all architectural assignments lack a valid implemented roof topology"
         ),
+    )
+
+
+def _quadrilateral_candidates(
+    recommendation, roof_type, reference_direction, pitch, eave_height
+):
+    """One geometric member, no orthogonal-axis or rectangle scoring assumption."""
+    valid = {}
+    rejected = []
+    for _, architecture in recommendation.retained:
+        fp = architecture.decomposition.footprint
+        identity = point_identity(fp, reference_direction)
+        partition_key = partition_id(architecture.decomposition, reference_direction)
+        if roof_type == "gable":
+            eaves = (0, 1)
+        elif roof_type == "shed":
+            u = reference_direction
+            rise = (-u[1], u[0])
+            world = tuple(fp.frame.world_xy(p) for p in fp.vertices)
+            eaves = (
+                max(
+                    range(4),
+                    key=lambda i: (
+                        -(world[(i + 1) % 4][1] - world[i][1]) * rise[0]
+                        + (world[(i + 1) % 4][0] - world[i][0]) * rise[1]
+                    )
+                    / math.dist(world[i], world[(i + 1) % 4]),
+                ),
+            )
+        else:
+            eaves = (0,)
+        for eave in eaves:
+            try:
+                graph = quadrilateral_graph(fp, roof_type, eave=eave)
+                composition = Composition(graph, (), ())
+                geometry = problem(graph, pitch, eave_height / fp.frame.scale)
+                stable_id = _candidate_id(architecture, composition, (), identity)
+                valid[stable_id] = TopologyCandidate(
+                    stable_id, architecture, (), composition, geometry, 0
+                )
+            except UnsupportedRoofError as exc:
+                rejected.append(
+                    Rejection(
+                        partition_key,
+                        (),
+                        str(exc),
+                        (GenerationIssue("composition", "unsupported"),),
+                    )
+                )
+    return TopologyCandidates(
+        tuple(valid[k] for k in sorted(valid)),
+        tuple(rejected),
+        recommendation.search.complete,
+        None if valid else "no valid nonorthogonal primitive",
     )

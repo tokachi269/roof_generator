@@ -39,7 +39,15 @@ def analyze_parts(d):
             if abs(sizes[0] - sizes[1]) <= 4 * EPS
             else (int(sizes[1] > sizes[0]),)
         )
-        members.append(ArchitecturalMember(c.id, b, axes))
+        if not d.footprint.orthogonal:
+            edge = d.footprint.directions
+            vectors = tuple(
+                tuple(edge[i][k] - edge[(i + 2) % 4][k] for k in (0, 1)) for i in (0, 1)
+            )
+            directions = tuple(tuple(x / math.hypot(*v) for x in v) for v in vectors)
+            members.append(ArchitecturalMember(c.id, b, (), directions))
+        else:
+            members.append(ArchitecturalMember(c.id, b, axes))
     shared = defaultdict(list)
     for a in d.adjacency:
         shared[(a.cells, a.sides)].append(a.interval)

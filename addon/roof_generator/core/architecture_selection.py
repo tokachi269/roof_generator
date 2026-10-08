@@ -207,6 +207,9 @@ class Recommendation:
 
 
 def recommend(search, policy=Policy()):
+    if search.candidates and not search.candidates[0].footprint.orthogonal:
+        # Hu's rectangular penalty terms do not rank arbitrary quadrilaterals.
+        policy = None
     analyses = tuple(analyze_parts(d) for d in search.candidates)
     if policy is None:
         return Recommendation(

@@ -88,7 +88,19 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     ):
         raise UnsupportedRoofError("positive finite pitch and finite eave required")
     if graph.roof_type == "shed":
-        vertices = solve_analytic(graph, pitch, eave_height).vertices
+        eave = graph.faces[0].eaves[0]
+        a, b = graph.outline[eave], graph.outline[(eave + 1) % len(graph.outline)]
+        vector = sub(b, a)
+        length = math.hypot(*vector)
+        inward = (-vector[1] / length, vector[0] / length)
+        vertices = tuple(
+            (
+                *v.seed,
+                eave_height
+                + pitch * sum(x * y for x, y in zip(sub(v.seed, a), inward)),
+            )
+            for v in graph.vertices
+        )
         return GeometryProblem(
             vertices,
             tuple(f.loop for f in graph.faces),
@@ -106,7 +118,18 @@ def problem(graph, pitch=0.5, eave_height=0.0):
             heights[i] = eave_height
         elif v.role == "ridge_end":
             width = lengths[v.boundary.edge] if v.boundary is not None else min(lengths)
-            heights[i] = eave_height + pitch * width / 2
+            if graph.roof_type == "gable" and v.boundary is not None:
+                face = next(f for f in graph.faces if i in f.loop)
+                eave = face.eaves[0]
+                a, b = (
+                    graph.outline[eave],
+                    graph.outline[(eave + 1) % len(graph.outline)],
+                )
+                vector = sub(b, a)
+                distance = cross(vector, sub(v.seed, a)) / math.hypot(*vector)
+                heights[i] = eave_height + pitch * distance
+            else:
+                heights[i] = eave_height + pitch * width / 2
     for edge in graph.edges:
         if (
             edge.kind != "ridge"
@@ -140,6 +163,14 @@ def problem(graph, pitch=0.5, eave_height=0.0):
             if v in heights and abs(heights[v] - height) > 4 * EPS:
                 raise UnsupportedRoofError("interior ridge height anchors conflict")
             heights[v] = height
+    if (
+        graph.roof_type == "gable"
+        and not rectangle(graph.outline)
+        and len(graph.outline) == 4
+    ):
+        # One nonflat anchor suffices; the second cap height is a solve variable.
+        caps = sorted(i for i, v in enumerate(graph.vertices) if v.role == "ridge_end")
+        heights.pop(caps[-1])
     interior_height = max(heights.values()) if heights else eave_height
     seeds = tuple(
         (*v.seed, heights.get(i, interior_height)) for i, v in enumerate(graph.vertices)
@@ -148,9 +179,15 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     for edge in graph.edges:
         if edge.kind == "ridge":
             eave = graph.faces[edge.faces[0]].eaves[0]
-            vector = sub(
-                graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
-            )
+            if not rectangle(graph.outline) and len(graph.outline) == 4:
+                vector = sub(
+                    graph.vertices[edge.vertices[1]].seed,
+                    graph.vertices[edge.vertices[0]].seed,
+                )
+            else:
+                vector = sub(
+                    graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
+                )
             size = math.hypot(*vector)
             directions.append((edge.vertices, tuple(v / size for v in vector)))
     slopes = []

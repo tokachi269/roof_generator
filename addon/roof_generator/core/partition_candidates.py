@@ -185,6 +185,18 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
     """
     if max_candidates < 1 or max_work < 1:
         raise ValueError("candidate/work budgets must be positive")
+    if not fp.orthogonal:
+        from .cells import single_cell
+
+        return CandidateSearch(
+            (single_cell(fp),),
+            0,
+            1,
+            True,
+            None,
+            (),
+            "one convex quadrilateral; rectangular minimum theorem not applicable",
+        )
     base = select_diagonals(fp, good_diagonals(fp))
     transforms = symmetries(fp)
     pool = {}

@@ -65,8 +65,13 @@ class MeshAdapterProof(unittest.TestCase):
             )
         skew = ((0, 0), (12, 0), (12.001, 6), (0.001, 6))
         self.assertFalse(analyze(skew).orthogonal)
-        with self.assertRaises(UnsupportedRoofError):
-            generate_footprint_mesh(tuple((*p, 0) for p in skew), ((0, 1, 2, 3),))
+        result = generate_footprint_mesh(tuple((*p, 0) for p in skew), ((0, 1, 2, 3),))
+        fp = result.roof.generation.footprint
+        self.assertFalse(fp.orthogonal)
+        # Formal quad support must preserve the skew, not silently rectify it.
+        world = [fp.frame.world_xy(p) for p in fp.vertices]
+        self.assertAlmostEqual(abs(world[2][0] - world[3][0]), 12, places=8)
+        self.assertTrue(any(abs(d[0] * d[1]) > 1e-6 for d in fp.directions))
 
     def test_invalid_source_meshes_fail_without_topology_repair(self):
         v = ((0, 0, 0), (8, 0, 0), (8, 4, 0), (0, 4, 0))

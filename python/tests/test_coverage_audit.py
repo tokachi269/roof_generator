@@ -27,7 +27,10 @@ class CoverageAuditTests(unittest.TestCase):
 
     def test_valid_oblique_input_is_partition_failure_not_invalid_footprint(self):
         row = inspect(
-            {"name": "probe", "footprint": [(0, 0), (12, 0), (14, 6), (2, 6)]}
+            {
+                "name": "probe",
+                "footprint": [(0, 0), (12, 0), (13, 4), (5, 4), (6, 10), (0, 10)],
+            }
         )
         self.assertTrue(row["success"]["footprint"])
         self.assertFalse(row["success"]["partition"])

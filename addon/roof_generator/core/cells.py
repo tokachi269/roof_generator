@@ -150,3 +150,15 @@ def from_subdivision(fp, subdivision: Subdivision):
     return Decomposition(
         fp, nodes, tuple(cells), tuple(adjacent), subdivision.certificate
     )
+
+
+def single_cell(fp):
+    """One convex quadrilateral; no rectangular partition theorem is claimed."""
+    if len(fp.vertices) != 4 or fp.reflex:
+        raise UnsupportedRoofError(
+            "generalized decomposition currently requires a convex quadrilateral"
+        )
+    spans = tuple(BoundarySpan(i, (0.0, 1.0), fp.source_edges[i]) for i in range(4))
+    sides = tuple(Side((i, (i + 1) % 4), (spans[i],), ()) for i in range(4))
+    ring = tuple(range(4))
+    return Decomposition(fp, fp.vertices, (Cell(0, ring, ring, sides),), ())
