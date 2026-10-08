@@ -98,11 +98,12 @@ Measurements and limits: [ROOF_PERFORMANCE.md](docs/ROOF_PERFORMANCE.md).
 ## Independent graph-first evaluation
 
 `graph_first/` owns a separate, plane-free topology path. It generates rectangle
-gable/hip/shed/flat meshes analytically and composes the **pre-solver 2D graph**
-of two orthogonal gable cells with a terminal attachment. It is not wired into
-the addon conversion button. Roof composition for T/U, L geometry solving and
-oblique cells remain unsupported; no automatic substitution by the existing
-generator occurs. The roof-independent partition layer now handles arbitrary
+gable/hip/shed/flat meshes analytically and composes **pre-solver 2D graphs**
+for a terminal gable attachment, narrow/equal-width middle attachments, and
+separated narrow middle branches on one host. It is not wired into the addon
+conversion button. U/cross junctions, arbitrary architectural aggregation,
+multi-cell geometry solving and oblique cells remain unsupported; no automatic
+substitution by the existing generator occurs. The roof-independent partition layer handles arbitrary
 reflex counts in hole-free simple orthogonal polygons, with a classical minimum
 rectangle-count certificate.
 
@@ -145,5 +146,22 @@ partition core. The benchmark measures actual uncached partition stages and
 [algorithm contract](docs/MINIMUM_RECTANGULAR_PARTITION.md) and
 [partition evaluation](docs/RECTANGULAR_PARTITION_EVALUATION.md), including the
 necessary symmetry qualification for ambiguous intrinsic axes. The existing
-terminal-graft proof remains; arbitrary multi-cell roof composition is a later
-task and does not require changing this partition's roof-independent contract.
+terminal-graft proof remains. Scoped composition does not change this
+partition's roof-independent contract.
+
+## Published branch/junction composition
+
+```bash
+python python/inspect_roof_composition.py --fixture orthogonal_T
+python python/inspect_roof_composition.py --input footprint.json --output python/out/composition/building.json
+```
+
+Read [the research reassessment](docs/ROOF_COMPOSITION_RESEARCH.md) for the
+published mechanisms, prior rejected junctions, Cell/port mapping and explicit
+adaptations. `Composition.connections` records applied operations. Inspection
+schema 2 has plural connections, replacing the prototype's single connection.
+The three-panel SVG separates cells/cuts/adjacency, primitive candidates and
+final retained ridge/valley/hip/junctions. Unsupported inspection writes an
+explicit reason with no final graph and exits 2. Independent gables are never
+returned as a fallback. XY is a drawing seed; this does not solve a multi-cell
+roof or generate its final Blender mesh. Nonlinear solving remains separate.

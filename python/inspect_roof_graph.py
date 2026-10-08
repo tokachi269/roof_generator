@@ -104,7 +104,7 @@ def main():
     composition = compose(cells, args.roof_type or record.get("roof_type", "gable"))
     geometry = problem(composition.graph, record.get("pitch", 0.5))
     document = {
-        "schema": 1,
+        "schema": 2,
         "source_sha": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),

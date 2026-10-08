@@ -335,6 +335,23 @@ class MiddleCompositionTests(unittest.TestCase):
 
 
 class MultipleCompositionTests(unittest.TestCase):
+    def test_inspection_does_not_mislabel_candidate_gables_as_a_final_roof(self):
+        from python.inspect_roof_composition import inspect, svg
+
+        for name, status in (("orthogonal_T", "supported"), ("cross", "unsupported")):
+            record = next(r for r in RECORDS if r["name"] == name)
+            result = inspect(record)
+            self.assertEqual(result["status"], status)
+            self.assertEqual(result["composition"] is None, status == "unsupported")
+            self.assertEqual(
+                len(result["primitive_candidates"]), record["minimum_cells"]
+            )
+            drawing = svg(result)
+            self.assertIn("Primitive ridge candidates", drawing)
+            if status == "unsupported":
+                self.assertIn("no final graph", drawing)
+                self.assertTrue(result["reason"])
+
     def test_disjoint_slots_are_composed_simultaneously_and_match_literal_cycles(self):
         record = REFERENCES[-1]
         points = np.array([record["points"][v][:2] for v in record["outline"]])

@@ -3,8 +3,10 @@
 The partition prototype described below has been replaced by the
 [classical minimum rectangular partition](MINIMUM_RECTANGULAR_PARTITION.md).
 The initial evaluation and its recorded timings remain historical evidence.
-Current partition accepts arbitrary reflex count; roof composition still stops
-at the proved terminal two-cell case.
+Current partition accepts arbitrary reflex count. Published terminal/middle
+and disjoint branch composition is reassessed in
+[ROOF_COMPOSITION_RESEARCH.md](ROOF_COMPOSITION_RESEARCH.md); the remainder of
+this document records the initial terminal-only evaluation.
 
 ## Scope and decision owners
 

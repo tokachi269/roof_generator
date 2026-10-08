@@ -31,7 +31,7 @@ one final roof; an artificial interval is not a roof edge.
   The paper was published in 2013, despite earlier online dates/search labels.
 - **Ren et al. (2021)**,
   [full preprint](https://arxiv.org/pdf/2109.07683), Sections 3.1–3.2, 4.2–4.3,
-  and initialization in Section 4.4. Primal face cycles or dual face adjacency
+  and initialization at the end of Section 4.3. Primal face cycles or dual face adjacency
   precede the geometry solve; outline information alone does not uniquely
   identify a real roof. Learned topology generation is a separate application.
 

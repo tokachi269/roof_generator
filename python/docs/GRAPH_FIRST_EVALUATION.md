@@ -1,5 +1,9 @@
 # Graph-first evaluation: rectangle and terminal attachment
 
+This records the initial evaluation. Current partition and scoped junction
+composition are documented in [the partition evaluation](RECTANGULAR_PARTITION_EVALUATION.md)
+and [the composition reassessment](ROOF_COMPOSITION_RESEARCH.md).
+
 ## Result and boundary
 
 The new path selects primitive face incidence and ridge/hip/valley meanings
