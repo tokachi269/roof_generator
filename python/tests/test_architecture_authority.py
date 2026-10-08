@@ -33,7 +33,7 @@ class ArchitectureAuthorityProof(unittest.TestCase):
         raw = ((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10))
         with patch.object(topology, "cell_primitives", side_effect=AssertionError("Cell roof assumption")):
             generation = prepare_generation(raw)
-        candidate = generation.selected
+        candidate = next(c for c in generation.candidates.valid if all(j.kind == 'shared' for j in c.ends.joints))
         composition = candidate.composition
         self.assertEqual(composition.primitives, ())
         self.assertEqual(len(candidate.architecture.parts), 1)

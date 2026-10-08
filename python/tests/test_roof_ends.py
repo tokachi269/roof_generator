@@ -11,6 +11,45 @@ from roof_generator.core.errors import UnsupportedRoofError
 
 
 class RoofEndAuthorityProof(unittest.TestCase):
+    def test_equal_corner_T_preserves_its_eave_free_face_through_embedding(self):
+        from roof_generator.core.solve import problem, solve
+        raw = ((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10))
+        architecture = interpret(decompose(analyze(raw)))
+        resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+        ends = next(c for c in roof_configurations(resolved) if c.joints[0].kind == 'extension')
+        composition = compose(resolved.with_ends(ends))
+        graph = composition.graph
+        points = {'A': (0, 0), 'B': (12, 0), 'C': (12, 4), 'D': (4, 4),
+                  'E': (4, 10), 'F': (0, 10), 'G': (0, 4),
+                  'H': (12, 2), 'I': (0, 2), 'K': (2, 10), 'J': (2, 2)}
+        names = {}
+        for i, vertex in enumerate(graph.vertices):
+            xy = architecture.decomposition.footprint.frame.world_xy(vertex.seed)
+            names[i] = next(k for k, p in points.items() if max(abs(a-b) for a,b in zip(xy,p)) < 1e-7)
+        canonical = lambda ring: min(tuple(ring[i:] + ring[:i]) for i in range(len(ring)))
+        expected = ('ABHJI', 'HCDJ', 'JGI', 'DEKJ', 'KFGJ')
+        self.assertEqual({canonical([names[v] for v in f.loop]) for f in graph.faces},
+                         {canonical(list(r)) for r in expected})
+        internal = [f for f in graph.faces if not f.eaves]
+        self.assertEqual(len(internal), 1)
+        self.assertIsNotNone(internal[0].support)
+        # Removing the upstream declaration must not trigger a guessed slope.
+        from dataclasses import replace
+        missing = replace(graph, faces=tuple(replace(f, support=None) if not f.eaves else f for f in graph.faces))
+        with self.assertRaisesRegex(UnsupportedRoofError, 'declared eave support'):
+            problem(missing, .5)
+        foreign = next(f.eaves[0] for f in graph.faces if f.eaves and f.cells != internal[0].cells)
+        with self.assertRaisesRegex(UnsupportedRoofError, 'declared member'):
+            replace(graph, faces=tuple(replace(f, support=foreign) if not f.eaves else f for f in graph.faces))
+        before = graph.inspect()
+        mesh = solve(graph, problem(graph, .5))
+        self.assertIs(mesh.graph, graph)
+        self.assertEqual(graph.inspect(), before)
+        for i, xyz in enumerate(mesh.vertices):
+            world = architecture.decomposition.footprint.frame.world_xyz(xyz)
+            target = (*points[names[i]], 1 if names[i] in 'HIJK' else 0)
+            self.assertLess(max(abs(a-b) for a,b in zip(world,target)), 1e-5)
+
     def test_offset_short_end_contact_does_not_receive_one_line_constraints(self):
         raw = ((0, 0), (6, 0), (6, 12), (8, 12), (8, 24), (2, 24), (2, 12), (0, 12))
         architecture = interpret(decompose(analyze(raw)))
@@ -64,8 +103,19 @@ class RoofEndAuthorityProof(unittest.TestCase):
         self.assertEqual(len(resolved.with_ends(shared).architecture.parts), 1)
         self.assertEqual(len(resolved.with_ends(extended).architecture.parts), 2)
         self.assertTrue(compose(resolved.with_ends(shared)).connections)
+        composition = compose(resolved.with_ends(extended))
+        self.assertEqual({c.kind for c in composition.connections}, {'middle'})
+        self.assertEqual(len(composition.graph.faces), 5)
+
+    def test_wider_corner_T_still_has_no_unproved_extension_fallback(self):
+        raw = ((0, 0), (12, 0), (12, 6), (4, 6), (4, 12), (0, 12))
+        architecture = interpret(decompose(analyze(raw)))
+        resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+        option = resolved.relations[0].options[0]
+        self.assertGreater(option.widths[1], option.widths[0])
+        ends = next(c for c in roof_configurations(resolved) if c.joints[0].kind == 'extension')
         with self.assertRaises(UnsupportedRoofError) as error:
-            compose(resolved.with_ends(extended))
+            compose(resolved.with_ends(ends))
         self.assertEqual({i.code for i in error.exception.issues}, {'corner_extension'})
 
     def test_narrow_corner_T_has_an_independent_extension_incidence_witness(self):

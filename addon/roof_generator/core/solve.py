@@ -79,14 +79,20 @@ class GeometryProblem:
                 raise UnsupportedRoofError("invalid explicit roof slope constraint")
 
 
-def _eave_line(graph, face):
+def _support(face):
+    if face.support is not None:
+        return face.support
     if not face.eaves:
-        raise UnsupportedRoofError("pitched face lacks a declared exterior eave")
-    edge = face.eaves[0]
+        raise UnsupportedRoofError("pitched face lacks a declared eave support")
+    return face.eaves[0]
+
+
+def _eave_line(graph, face):
+    edge = _support(face)
     a, b = graph.outline[edge], graph.outline[(edge + 1) % len(graph.outline)]
     vector = sub(b, a)
     length = math.hypot(*vector)
-    for other in face.eaves[1:]:
+    for other in face.eaves:
         c, d = graph.outline[other], graph.outline[(other + 1) % len(graph.outline)]
         direction = sub(d, c)
         if (
@@ -143,7 +149,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
             width = lengths[v.boundary.edge] if v.boundary is not None else min(lengths)
             if graph.roof_type == "gable" and v.boundary is not None:
                 face = next(f for f in graph.faces if i in f.loop)
-                eave = face.eaves[0]
+                eave = _support(face)
                 a, b = (
                     graph.outline[eave],
                     graph.outline[(eave + 1) % len(graph.outline)],
@@ -164,13 +170,13 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         # Its declared opposite eaves fix the equal-pitch ridge rise to p*w/2.
         # This supplies solve constraints; it changes no topology or final XY.
         first, second = (graph.faces[f] for f in edge.faces)
-        if first.cells != second.cells or any(not f.eaves for f in (first, second)):
+        if first.cells != second.cells:
             raise UnsupportedRoofError(
                 "interior ridge lacks one declared receiving eave on each slope"
             )
-        a, b = (graph.outline[f.eaves[0]] for f in (first, second))
+        a, b = (graph.outline[_support(f)] for f in (first, second))
         directions = tuple(
-            sub(graph.outline[(f.eaves[0] + 1) % len(graph.outline)], origin)
+            sub(graph.outline[(_support(f) + 1) % len(graph.outline)], origin)
             for f, origin in ((first, a), (second, b))
         )
         size = math.hypot(*directions[0])
@@ -199,7 +205,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     directions = []
     for edge in graph.edges:
         if edge.kind == "ridge":
-            eave = graph.faces[edge.faces[0]].eaves[0]
+            eave = _support(graph.faces[edge.faces[0]])
             if not rectangle(graph.outline) and len(graph.outline) == 4:
                 vector = sub(
                     graph.vertices[edge.vertices[1]].seed,
@@ -214,11 +220,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     slopes = []
     if graph.roof_type != "flat":
         for fi, face in enumerate(graph.faces):
-            if not face.eaves:
-                raise UnsupportedRoofError(
-                    "pitched face needs a declared eave for its slope"
-                )
-            eave = face.eaves[0]
+            eave = _support(face)
             direction = sub(
                 graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
             )

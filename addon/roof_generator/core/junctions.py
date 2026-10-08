@@ -71,9 +71,9 @@ def attachments(resolved, primitives):
         option = relation.options[0]
         decision = decisions[relation.cells]
         if (option.kind == "corner" and decision.kind == "extension"
-            and (len(resolved.relations) != 1 or option.widths[1] >= option.widths[0] - 4 * EPS)):
+            and (len(resolved.relations) != 1 or option.widths[1] > option.widths[0] + 4 * EPS)):
             raise UnsupportedRoofError(
-                "L/T extension requires one isolated strictly narrower branch",
+                "L/T extension requires one isolated narrower or equal-width branch",
                 issues=(GenerationIssue("junction", "corner_extension", relation.cells),),
             )
         atoms = relation.intervals

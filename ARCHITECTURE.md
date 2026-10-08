@@ -91,6 +91,12 @@ and `RoofConnection` describe implemented primitive incidences. None of these
 units implies an independently capped final roof. `RoofVertex.seed` is its 2D
 coordinate initializer, distinct from the integer/string generation seed.
 
+`RoofFace.eaves` declares physical incident eave ownership. For a selected
+eave-free slope fragment, `RoofFace.support` separately names an exterior eave
+line of the same member. The composition template publishes it; GeometryProblem
+uses that line for pitch constraints without adding an edge or changing a face
+cycle. Missing support is unsupported, not inferred from a neighboring face.
+
 ## Candidate validity and selection
 
 Composition receives a `ResolvedArchitecture`, including the selected member

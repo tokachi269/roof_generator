@@ -20,8 +20,9 @@ half-hip family, or independent options for all roof types.
 describes extending a narrower branch into a wider receiver. The new isolated
 corner-T operation reuses that extension incidence, with a literal four-face
 witness and solver feasibility check. It requires one corner relation, a
-strictly narrower leaf branch, and a complete branch-end contact. Equal-width
-corner-T and multiple corner-T choices remain unsupported. Existing strictly
+leaf branch no wider than the receiver, and a complete branch-end contact.
+Equal-width corner-T retains its five-face incidence, including one face without
+a physical eave. Multiple corner-T choices remain unsupported. Existing strictly
 interior T/Cross and separated middle slots keep their previous incidence
 contracts.
 
@@ -76,10 +77,22 @@ of an unsupported T without fallback, a literal narrow corner-T face incidence,
 and rejection of forged end states. Internal branch caps do not survive as
 gable-end edges; those edges must have physical boundary provenance.
 
+`RoofFace.eaves` continues to record incident physical eaves. An eave-free face
+can separately declare `RoofFace.support`, an exterior supporting eave line of
+the same authored member. Composition publishes that line from the original
+member slope before GeometryProblem construction. The graph validator rejects
+a foreign member's support; GeometryProblem rejects a missing declaration.
+Neither stage invents a line from neighboring faces. The equal-width corner-T
+proof fixes all five face cycles and their analytic coordinates/heights, then
+requires the identical graph object after embedding. No face is removed or
+split to accommodate the solver.
+
 Constraint feasibility and provenance do not prove a unique architectural roof
 for an arbitrary footprint. The staggered, non-overlapping two-rectangle input
-is still unsupported for both one-face and two-face Blender meshes. Its reported
-factory roof was not reproduced. The representative render set is a sanity
+is still unsupported for both one-face and two-face Blender meshes. The reported
+factory roof was reproduced with the historical generator, not with the current
+canonical operator; see [user-image evidence](USER_FACTORY_ROOF_EVIDENCE.md).
+The representative render set is a sanity
 check of recorded decisions, not a human aesthetics oracle.
 
 Global configuration enumeration is finite but combinatorial. The generation

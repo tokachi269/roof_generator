@@ -459,7 +459,8 @@ def _middle(decomposition, primitives, relations):
         if meanings[a, b] == "eave":
             actual_eaves[face].add(span.edge)
     faces = tuple(
-        RoofFace(f.loop, f.cells, tuple(sorted(actual_eaves[i])))
+        RoofFace(f.loop, f.cells, tuple(sorted(actual_eaves[i])),
+                 min(allowed_eaves[i]) if not actual_eaves[i] and allowed_eaves[i] else None)
         for i, f in enumerate(faces)
     )
     slots = tuple(

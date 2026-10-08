@@ -104,7 +104,11 @@ class TerminalNetworkProof(unittest.TestCase):
                 self.assertEqual(len(candidate.ends.joints), 1)
                 self.assertEqual(candidate.ends.joints[0].kind, "extension")
                 self.assertEqual(len(candidate.architecture.parts), 2)
-                self.assertEqual(len(candidate.graph.faces), 4)
+                self.assertIn(len(candidate.graph.faces), (4, 5))
+                if len(candidate.graph.faces) == 5:
+                    internal = [f for f in candidate.graph.faces if not f.eaves]
+                    self.assertEqual(len(internal), 1)
+                    self.assertIsNotNone(internal[0].support)
                 self.assertFalse(any(e.kind == "hip" for e in candidate.graph.edges))
             # Keep the old seed contract on the unchanged candidate family.
             # Adding a researched roof option deliberately expands that family.

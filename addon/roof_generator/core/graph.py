@@ -25,6 +25,9 @@ class RoofFace:
     loop: tuple[int, ...]
     cells: tuple[int, ...]
     eaves: tuple[int, ...]
+    # Selected supporting exterior eave line when this face has no incident
+    # eave. This is geometry authority, separate from physical edge ownership.
+    support: int | None = None
 
 
 @dataclass(frozen=True)
@@ -123,6 +126,14 @@ class RoofGraph:
             raise UnsupportedRoofError("disconnected roof faces")
         if n - len(self.edges) + len(self.faces) != 1:
             raise UnsupportedRoofError("roof graph is not a disk")
+        for face in self.faces:
+            if face.support is not None and (
+                type(face.support) is not int or not 0 <= face.support < len(self.outline)
+                or not any(edge.kind == "eave" and edge.boundary.edge == face.support
+                           and self.faces[edge.faces[0]].cells == face.cells
+                           for edge in self.edges if edge.boundary is not None)
+            ):
+                raise UnsupportedRoofError("face support lacks an exterior eave of its declared member")
         for i, vertex in enumerate(self.vertices):
             if vertex.cells != tuple(sorted(owners[i])) or not all(
                 math.isfinite(v) for v in vertex.seed

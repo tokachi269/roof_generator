@@ -116,7 +116,7 @@ supported / unsupported / incompleteの全件集計は[outcomes](authority/end-s
 
 architectural scoreとend configurationをoperation availabilityより先に記録する。constructible集合とそのうちのbest-score seedable集合は別。未知relationもavailabilityを理由に好ましいarchitectureへ置換しない。新end choices自体への独自の見た目scoreは追加しない。
 
-solver/optimization production codeは開始SHAから変更していない。候補Graph、problem face loops、boundary ownership、embedding後のGraph同一性を確認した。solverが解けるように等幅corner-Tを別Graphへ変形する修正はしていない。
+端制約導入時点ではsolver/optimization production codeを変更しなかった。その後、等幅corner-Tで外周軒に直接接しない面をGeometryProblemが拒否することを再現したため、GeometryProblemの入力契約を一般化した。RoofFace.supportは同じmemberの外周軒線を明示し、物理的な軒の所有とは分離する。既存の5面のcycleを保ち、解析的な座標・高さとembedding後のGraph同一性を検証した。optimizationは変更していない。詳細とinstalled ZIPの結果は[eave-free face evidence](EAVE_FREE_FACE.md)に記録する。
 
 ## Performance
 
