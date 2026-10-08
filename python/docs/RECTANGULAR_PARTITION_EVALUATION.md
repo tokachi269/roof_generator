@@ -2,7 +2,7 @@
 
 ## Result and scope
 
-`graph_first.cells.decompose(analyze(points))` now partitions arbitrary-reflex,
+`roof_generator.core.cells.decompose(analyze(points))` now partitions arbitrary-reflex,
 hole-free simple orthogonal polygons into minimum-count rectangles. It has no
 roof parameters or dependency on roof generation. The single-reflex two-candidate
 selector, aspect/cut cost and legacy assembly have been removed, without an

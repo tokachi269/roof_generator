@@ -21,7 +21,7 @@ See the source README for its license and usage conditions, and the
 
 ## Roof generation research
 
-The [generator design](../python/docs/ROOF_GENERATOR_DESIGN.md#research-and-decisions)
+The [research mapping](../python/docs/ROOF_COMPOSITION_RESEARCH.md)
 compares footprint partitioning, roof primitives and connections in Kada &
 McKinley, Laycock & Day, Sugihara & Hayashi, Kelly & Wonka, campskeleton,
 siteplan and CGAL.

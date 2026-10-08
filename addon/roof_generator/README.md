@@ -1,29 +1,17 @@
-# Roof Generator
+# Roof Generator addon
 
-Install the ZIP as a Blender 4.3+ addon, enable **Roof Generator**, and open
-View3D → Sidebar → **Roof**. Select one or more filled planar footprints in Object Mode,
-choose Flat/Gable/Hip/Shed, pitch and eave offset, then press **Generate roofs**.
+Install the repository's `packages/roof_generator-1.2.0.zip` in Blender 4.3+.
+No external Python packages are required.
 
-Each selected footprint produces one editable roof surface with a UV layer, material and
-crease/part attributes. The surface has a perimeter boundary; walls and roof
-thickness are separate modeling tasks. Source visibility is configurable,
-and conversion supports Undo.
+The Roof sidebar conversion button creates ordinary editable meshes with UVs,
+material and Cell/edge provenance. Rectangle gable/hip/shed/flat and hole-free
+orthogonal compound flat surfaces have analytic mesh support. Supported compound
+gable junctions expose a GeometryProblem through the core API; their nonlinear
+mesh embedding is not implemented. Unsupported conversion fails before scene
+mutation. The full current capability table is in the repository README.
 
-## Dependencies
+`core/` owns normalization, minimum partitions, architectural interpretation,
+validated topology candidates, stable seeds, geometry and mesh validation.
+Blender adapters only read source meshes and create output objects.
 
-NumPy is provided by Blender. To set up Shapely, open addon preferences and
-press **Install Shapely (Internet)**. This downloads a wheel matching Blender's
-CPython and installs it locally with its license files. Host Python with pip
-is required; set its executable in preferences if automatic detection fails.
-Automatic detection checks that each candidate can run pip, skipping unusable
-launchers such as Windows app execution aliases. An explicitly selected executable
-must pass the same check; failures report the selected path and pip error.
-
-## License
-
-This addon is **GPL-3.0-or-later**. Commercial use is permitted under the GPL;
-distribution must satisfy its license and corresponding-source requirements.
-See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-Repository documentation: [English](https://github.com/tokachi269/roof_generator/blob/main/README.md)
-| [日本語](https://github.com/tokachi269/roof_generator/blob/main/README.ja.md).
+Source is GPL-3.0-or-later; see `LICENSE` and `THIRD_PARTY_NOTICES.md`.

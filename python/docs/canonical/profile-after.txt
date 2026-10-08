@@ -1,0 +1,53 @@
+         1121571 function calls (1118788 primitive calls) in 0.633 seconds
+
+   Ordered by: cumulative time
+   List reduced from 266 to 45 due to restriction <45>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.658    0.658 /workspace/roof_generator/python/benchmark_generation.py:34(measure)
+        1    0.000    0.000    0.620    0.620 /workspace/roof_generator/python/benchmark_architectural_parts.py:28(measure)
+        1    0.001    0.001    0.461    0.461 /workspace/roof_generator/addon/roof_generator/core/partition_candidates.py:183(candidates)
+       97    0.001    0.000    0.340    0.004 /workspace/roof_generator/addon/roof_generator/core/partition_candidates.py:210(add)
+       48    0.001    0.000    0.203    0.004 /workspace/roof_generator/addon/roof_generator/core/partition.py:442(subdivide)
+23782/21575    0.032    0.000    0.147    0.000 {built-in method builtins.sorted}
+       48    0.018    0.000    0.117    0.002 /workspace/roof_generator/addon/roof_generator/core/cells.py:86(from_subdivision)
+       48    0.017    0.000    0.113    0.002 /workspace/roof_generator/addon/roof_generator/core/partition.py:325(_node_segments)
+       49    0.000    0.000    0.086    0.002 /workspace/roof_generator/python/benchmark_architectural_parts.py:43(<genexpr>)
+       48    0.002    0.000    0.085    0.002 /workspace/roof_generator/addon/roof_generator/core/architecture_selection.py:134(evaluate)
+       97    0.016    0.000    0.085    0.001 /workspace/roof_generator/addon/roof_generator/core/partition.py:233(complete_cuts)
+       48    0.033    0.001    0.082    0.002 /workspace/roof_generator/addon/roof_generator/core/architecture_selection.py:43(symmetry_clusters)
+     8744    0.010    0.000    0.079    0.000 {built-in method builtins.any}
+       48    0.015    0.000    0.071    0.001 /workspace/roof_generator/addon/roof_generator/core/partition.py:374(_partition_faces)
+23978/23402    0.028    0.000    0.067    0.000 {built-in method builtins.sum}
+    32211    0.043    0.000    0.064    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:32(on_segment)
+      438    0.001    0.000    0.051    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:41(inside)
+     1728    0.027    0.000    0.043    0.000 /workspace/roof_generator/addon/roof_generator/core/partition.py:311(corners)
+     5286    0.002    0.000    0.042    0.000 {built-in method builtins.next}
+    35694    0.024    0.000    0.041    0.000 {built-in method builtins.max}
+    17958    0.008    0.000    0.040    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:42(<genexpr>)
+       26    0.000    0.000    0.039    0.001 /workspace/roof_generator/python/benchmark_architectural_parts.py:50(<genexpr>)
+       25    0.004    0.000    0.039    0.002 /workspace/roof_generator/addon/roof_generator/core/architecture.py:138(build_parts)
+        1    0.003    0.003    0.038    0.038 /workspace/roof_generator/addon/roof_generator/core/topology_candidates.py:157(build_candidates)
+     7496    0.006    0.000    0.031    0.000 /workspace/roof_generator/addon/roof_generator/core/partition.py:361(<genexpr>)
+     2030    0.008    0.000    0.031    0.000 /workspace/roof_generator/addon/roof_generator/core/cells.py:59(_boundary_span)
+    28532    0.016    0.000    0.030    0.000 {built-in method builtins.min}
+     2088    0.003    0.000    0.027    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:21(area)
+       49    0.000    0.000    0.027    0.001 /workspace/roof_generator/python/benchmark_architectural_parts.py:39(<genexpr>)
+       48    0.012    0.000    0.027    0.001 /workspace/roof_generator/addon/roof_generator/core/architecture.py:26(analyze_parts)
+      576    0.001    0.000    0.025    0.000 /workspace/roof_generator/addon/roof_generator/core/cells.py:90(<lambda>)
+   138765    0.024    0.000    0.024    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:17(sub)
+        1    0.000    0.000    0.023    0.023 /workspace/roof_generator/addon/roof_generator/core/partition_candidates.py:32(symmetries)
+      576    0.003    0.000    0.021    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:235(rectangle)
+      328    0.000    0.000    0.020    0.000 /workspace/roof_generator/addon/roof_generator/core/partition_candidates.py:43(<genexpr>)
+    16331    0.014    0.000    0.020    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:24(<genexpr>)
+      481    0.006    0.000    0.020    0.000 /workspace/roof_generator/addon/roof_generator/core/partition_candidates.py:45(<genexpr>)
+     5806    0.004    0.000    0.020    0.000 /workspace/roof_generator/addon/roof_generator/core/architecture_selection.py:82(<genexpr>)
+     2200    0.006    0.000    0.017    0.000 /workspace/roof_generator/addon/roof_generator/core/seed.py:58(project)
+      325    0.000    0.000    0.017    0.000 /workspace/roof_generator/addon/roof_generator/core/topology_candidates.py:184(<genexpr>)
+      300    0.000    0.000    0.017    0.000 /workspace/roof_generator/addon/roof_generator/core/topology_candidates.py:57(_cell_id)
+     1500    0.001    0.000    0.016    0.000 /workspace/roof_generator/addon/roof_generator/core/topology_candidates.py:58(<genexpr>)
+     7344    0.008    0.000    0.015    0.000 /workspace/roof_generator/addon/roof_generator/core/partition.py:350(<genexpr>)
+     1200    0.003    0.000    0.015    0.000 /workspace/roof_generator/addon/roof_generator/core/seed.py:68(identity)
+     6090    0.007    0.000    0.014    0.000 /workspace/roof_generator/addon/roof_generator/core/cells.py:64(<genexpr>)
+
+

@@ -1,0 +1,84 @@
+{
+  "fixture": "grid_40",
+  "instrumented": true,
+  "nested_times": true,
+  "candidates": 48,
+  "work": 116,
+  "stages": {
+    "good_diagonals": {
+      "calls": 1,
+      "inclusive_ms": 3.318699000374181,
+      "exclusive_ms": 3.318699000374181
+    },
+    "matching_certificate": {
+      "calls": 1,
+      "inclusive_ms": 0.44768199950340204,
+      "exclusive_ms": 0.44768199950340204
+    },
+    "symmetry_point_expansion": {
+      "calls": 320,
+      "inclusive_ms": 1.6671249977662228,
+      "exclusive_ms": 1.6671249977662228
+    },
+    "symmetry_detection": {
+      "calls": 1,
+      "inclusive_ms": 8.55909800156951,
+      "exclusive_ms": 6.891973003803287
+    },
+    "completion_generation": {
+      "calls": 97,
+      "inclusive_ms": 28.7238129931211,
+      "exclusive_ms": 28.7238129931211
+    },
+    "cut_signature_dedup": {
+      "calls": 97,
+      "inclusive_ms": 4.579431988531724,
+      "exclusive_ms": 4.579431988531724
+    },
+    "noding": {
+      "calls": 48,
+      "inclusive_ms": 37.446246009494644,
+      "exclusive_ms": 37.446246009494644
+    },
+    "face_cycles": {
+      "calls": 48,
+      "inclusive_ms": 20.497091998549877,
+      "exclusive_ms": 20.497091998549877
+    },
+    "subdivision_validation": {
+      "calls": 48,
+      "inclusive_ms": 3.702130001329351,
+      "exclusive_ms": 3.702130001329351
+    },
+    "subdivision": {
+      "calls": 48,
+      "inclusive_ms": 65.08130799920764,
+      "exclusive_ms": 3.4358399898337666
+    },
+    "provenance": {
+      "calls": 2030,
+      "inclusive_ms": 11.850730028527323,
+      "exclusive_ms": 11.850730028527323
+    },
+    "provenance_validation": {
+      "calls": 48,
+      "inclusive_ms": 1.7721050062391441,
+      "exclusive_ms": 1.7721050062391441
+    },
+    "cell_materialization": {
+      "calls": 48,
+      "inclusive_ms": 41.09896800946444,
+      "exclusive_ms": 27.476132974697975
+    },
+    "MIS_enumeration": {
+      "calls": 6,
+      "inclusive_ms": 0.059241996495984495,
+      "exclusive_ms": 0.059241996495984495
+    },
+    "partition_total": {
+      "calls": 1,
+      "inclusive_ms": 157.46283599946764,
+      "exclusive_ms": 5.594594011199661
+    }
+  }
+}

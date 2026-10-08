@@ -1,0 +1,206 @@
+{
+  "orthogonal_U": {
+    "minimum_cells": 3,
+    "minimum_candidates": 4,
+    "retained_interpretations": 2,
+    "part_counts": [
+      1,
+      1
+    ],
+    "consumed_cut_counts": [
+      2,
+      2
+    ],
+    "valid_topologies": 0,
+    "rejected_axes": 2,
+    "reasons": [
+      "no complete supported middle-attachment arrangement; terminal graft requires one attachment"
+    ],
+    "candidate_ids": [],
+    "seed_choices": {}
+  },
+  "cross": {
+    "minimum_cells": 3,
+    "minimum_candidates": 2,
+    "retained_interpretations": 2,
+    "part_counts": [
+      3,
+      3
+    ],
+    "consumed_cut_counts": [
+      0,
+      0
+    ],
+    "valid_topologies": 2,
+    "rejected_axes": 6,
+    "reasons": [
+      "no published implemented port operation for parallel"
+    ],
+    "candidate_ids": [
+      "6bf81e979e765b9edf2a8a4c30edb08d",
+      "d9727f6617b1b2ba522ead5cb3d6e97b"
+    ],
+    "seed_choices": {
+      "0": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "1": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "2": "6bf81e979e765b9edf2a8a4c30edb08d",
+      "3": "6bf81e979e765b9edf2a8a4c30edb08d",
+      "4": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "5": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "6": "d9727f6617b1b2ba522ead5cb3d6e97b",
+      "7": "6bf81e979e765b9edf2a8a4c30edb08d"
+    }
+  },
+  "residential_multi_reflex": {
+    "minimum_cells": 4,
+    "minimum_candidates": 4,
+    "retained_interpretations": 1,
+    "part_counts": [
+      2
+    ],
+    "consumed_cut_counts": [
+      2
+    ],
+    "valid_topologies": 0,
+    "rejected_axes": 1,
+    "reasons": [
+      "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved"
+    ],
+    "candidate_ids": [],
+    "seed_choices": {}
+  },
+  "grid_14": {
+    "minimum_cells": 5,
+    "minimum_candidates": 12,
+    "retained_interpretations": 10,
+    "part_counts": [
+      5,
+      4,
+      5,
+      5,
+      5,
+      4,
+      5,
+      4,
+      5,
+      4
+    ],
+    "consumed_cut_counts": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "valid_topologies": 0,
+    "rejected_axes": 38,
+    "reasons": [
+      "no published implemented port operation for parallel",
+      "no published implemented port operation for partial_end"
+    ],
+    "candidate_ids": [],
+    "seed_choices": {}
+  },
+  "grid_20": {
+    "minimum_cells": 7,
+    "minimum_candidates": 16,
+    "retained_interpretations": 6,
+    "part_counts": [
+      6,
+      5,
+      5,
+      4,
+      5,
+      2
+    ],
+    "consumed_cut_counts": [
+      1,
+      2,
+      2,
+      3,
+      2,
+      6
+    ],
+    "valid_topologies": 0,
+    "rejected_axes": 23,
+    "reasons": [
+      "no published implemented port operation for continuation",
+      "no published implemented port operation for parallel",
+      "no published implemented port operation for partial_end"
+    ],
+    "candidate_ids": [],
+    "seed_choices": {}
+  },
+  "grid_40": {
+    "minimum_cells": 12,
+    "minimum_candidates": 48,
+    "retained_interpretations": 25,
+    "part_counts": [
+      11,
+      11,
+      11,
+      11,
+      11,
+      9,
+      11,
+      10,
+      11,
+      11,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      11,
+      11,
+      11,
+      9,
+      11,
+      10,
+      11,
+      11
+    ],
+    "consumed_cut_counts": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      4,
+      1,
+      2,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      4,
+      1,
+      2,
+      1,
+      1
+    ],
+    "valid_topologies": 0,
+    "rejected_axes": 896,
+    "reasons": [
+      "no published implemented port operation for parallel",
+      "no published implemented port operation for partial_end"
+    ],
+    "candidate_ids": [],
+    "seed_choices": {}
+  }
+}

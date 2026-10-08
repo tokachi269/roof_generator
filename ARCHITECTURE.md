@@ -48,3 +48,82 @@ development oracles may use NumPy/Shapely, declared separately from runtime.
 See [the migration contract](python/docs/CANONICAL_MIGRATION.md) for the inventory
 and [the research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md) for
 published operations and their adaptation limits.
+
+## Module responsibilities
+
+```text
+addon/roof_generator/
+  core/
+    footprint.py              normalization, scalar predicates, intrinsic frame
+    partition.py              good diagonals, matching, completion, subdivision
+    partition_candidates.py   bounded minimum candidate family and symmetry
+    cells.py, provenance.py   Cell/Side/Adjacency and original boundary ownership
+    architecture_models.py    architectural members, groups and relations
+    architecture.py           local published combination interpretation
+    architecture_selection.py published evaluation bounds and retained ties
+    topology.py, junctions.py  primitives, ports and whole-arrangement junctions
+    graph.py                  indexed RoofVertex/RoofFace/RoofEdge disk contract
+    topology_candidates.py    valid alternatives, rejected relations and IDs
+    seed.py                   independent stable digest namespaces
+    generation.py             canonical orchestration and settings
+    initialization.py         topology-preserving 2D coordinate initializer
+    solve.py                  GeometryProblem and supported analytic embedding
+    mesh.py                   fixed graph-to-mesh contract and validation
+    errors.py                 UnsupportedRoofError
+  mesh_frame.py, mesh_input.py planar source validation and coordinate transport
+  blender_output.py           atomic ordinary object/material/UV output
+  ui.py                       conversion settings and button
+```
+
+`Cell` is a geometric minimum rectangle. `ArchitecturalMember` references that
+Cell with local axes; `ArchitecturalPart` groups members and records consumed
+cuts. `PartRelation` describes architectural alternatives, while `AttachmentPort`
+and `RoofConnection` describe implemented primitive incidences. None of these
+units implies an independently capped final roof. `RoofVertex.seed` is its 2D
+coordinate initializer, distinct from the integer/string generation seed.
+
+## Candidate validity and selection
+
+The public coordinate entry points are `prepare_generation(points, settings)`
+for the selected fixed-topology GeometryProblem and `generate_roof(points,
+settings)` for a supported solved mesh. A `Generation` retains all valid ties
+and rejected assignments for inspection. Developer tools can inspect earlier
+stages independently, but no alternate runtime generation path exists.
+
+The current seeded decision is the **joint valid roof candidate**, which includes
+its minimum partition, member axes and implemented attachment interpretation.
+It uses `derive(seed, "roof_candidate", candidate.id)` and selects the minimum
+stable digest; this consumes no PRNG state. IDs are derived with BLAKE2b from
+centered geometric keys, oriented face cycles, grouped Cell provenance and edge
+roles. They omit incidental vertex numbers and source-input edge numbering.
+`derive` also permits independent namespaces for additional decisions; material
+randomization is not implemented. Core geometric IDs are quantized to a documented
+numerical precision, not to an architectural grid.
+
+Fully resolved published Hu evaluation terms rank VALID candidates. Equal scores
+remain selectable. Undefined parallel/partial-end/continuation ports, unsupported
+whole arrangements, self-crossing drawings and inconsistent incidence are
+rejections. An exhausted partition or axis budget is incomplete, and cannot
+publish a seeded winner. Seed never substitutes for an undefined operation.
+
+Minimum candidate search is complete within its explicit family: all maximum
+independent sets, both axes in canonical free-reflex order, plus exact footprint
+symmetry images. It does not claim every possible reflex processing order. Every
+materialized candidate still attains the classical minimum rectangle certificate.
+
+## Embedding capabilities
+
+Analytic embedding supports rectangle gable/hip/shed/flat and a single concave
+flat face covering a hole-free orthogonal outline. Compound gable topology uses
+published member port replacement for terminal/middle/noninterfering narrow
+attachments and two opposite coincident equal-width ports. It does not flatten a
+concave compound part into one primitive or leave internal caps/cuts in the graph.
+U, residential and arbitrary grid gable arrangements may have no implemented valid
+topology; the retained architectural interpretation and rejection reasons remain
+inspectable. Multi-cell hip/shed and non-orthogonal partitioning are unsupported.
+
+A GeometryProblem provides fixed face cycles, boundary anchors, internal XY/Z
+variables and ridge directions. Its initializer is not a solved mesh or a
+nonlinear convergence certificate. Nonlinear compound embedding, residual
+planarity validation and release of additional final mesh cases remain separate
+work. The adapter cannot repair or approximate those missing solves.
