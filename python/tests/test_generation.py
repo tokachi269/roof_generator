@@ -28,8 +28,9 @@ class GenerationProof(unittest.TestCase):
         g = prepare_generation(raw)
         self.assertEqual(len(g.candidates.valid), 2)
         self.assertTrue(g.geometry_problem.variable_xy)
-        with self.assertRaisesRegex(UnsupportedRoofError, "analytic solve supports"):
-            generate_roof(raw)
+        r = generate_roof(raw)
+        self.assertEqual(r.mesh.faces, g.geometry_problem.faces)
+        self.assertEqual(r.mesh.graph, g.selected.graph)
 
     def test_flat_compound_consumes_all_cuts_without_pitched_prior(self):
         for name in (

@@ -7,7 +7,7 @@ from .footprint import analyze, Footprint
 from .partition_candidates import candidates
 from .architecture_selection import recommend, Recommendation, Policy
 from .topology_candidates import build_candidates, TopologyCandidate, TopologyCandidates
-from .solve import solve_analytic
+from .solve import solve
 from .mesh import RoofMesh
 from .seed import derive
 
@@ -95,9 +95,5 @@ def prepare_generation(points, settings=GenerationSettings()):
 
 def generate_roof(points, settings=GenerationSettings()):
     generation = prepare_generation(points, settings)
-    mesh = solve_analytic(
-        generation.selected.graph,
-        settings.pitch,
-        settings.eave_height / generation.footprint.frame.scale,
-    )
+    mesh = solve(generation.selected.graph, generation.geometry_problem)
     return GeneratedRoof(generation, mesh)

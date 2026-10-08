@@ -39,5 +39,5 @@ class CoverageAuditTests(unittest.TestCase):
 
         row = inspect(dict(fixture("orthogonal_U"), name="U"))
         self.assertTrue(row["success"]["GeometryProblem"])
-        self.assertFalse(row["success"]["mesh"])
-        self.assertEqual(row["failure_owner"], "solve")
+        self.assertTrue(row["success"]["mesh"])
+        self.assertFalse(row["success"]["Blender"])

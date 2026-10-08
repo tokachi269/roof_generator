@@ -112,7 +112,9 @@ class TopologyCandidateProof(unittest.TestCase):
     def test_geometry_fault_and_incomplete_search_never_reach_seed_choice(self):
         result = pool(((0, 0), (9, 0), (9, 5), (0, 5)))
         candidate = result.valid[0]
-        with self.assertRaisesRegex(UnsupportedRoofError, "changes topology"):
+        with self.assertRaisesRegex(
+            UnsupportedRoofError, "invalid fixed geometry face cycles"
+        ):
             replace(candidate, geometry=replace(candidate.geometry, faces=()))
         result = pool(fixture("cross")["footprint"], max_axis_assignments=1)
         self.assertFalse(result.complete)

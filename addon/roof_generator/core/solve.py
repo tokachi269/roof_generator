@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""SGA21-compatible geometry problem and analytic rectangle embedding."""
+"""Explicit geometry constraints and fixed-topology analytic/nonlinear solve."""
 
 from dataclasses import dataclass
 from collections import defaultdict
@@ -20,6 +20,63 @@ class GeometryProblem:
     variable_z: tuple[int, ...]
     fixed_z: tuple[tuple[int, float], ...]
     ridge_directions: tuple[tuple[tuple[int, int], tuple[float, float]], ...] = ()
+    slope_constraints: tuple[
+        tuple[int, tuple[float, float, float], tuple[float, float], float], ...
+    ] = ()
+
+    def __post_init__(self):
+        n = len(self.initial_vertices)
+        if not n or any(
+            len(p) != 3 or not all(math.isfinite(x) for x in p)
+            for p in self.initial_vertices
+        ):
+            raise UnsupportedRoofError("geometry problem needs finite XYZ")
+        for indices in (
+            self.variable_xy,
+            self.variable_z,
+            tuple(i for i, _ in self.fixed_z),
+        ):
+            if len(set(indices)) != len(indices) or any(
+                not isinstance(i, int) or not 0 <= i < n for i in indices
+            ):
+                raise UnsupportedRoofError("invalid geometry variable indices")
+        fixed = dict(self.fixed_z)
+        if (
+            set(fixed) & set(self.variable_z)
+            or set(fixed) | set(self.variable_z) != set(range(n))
+            or any(not math.isfinite(z) for z in fixed.values())
+        ):
+            raise UnsupportedRoofError(
+                "geometry problem needs disjoint complete Z ownership"
+            )
+        if not self.faces or any(
+            len(f) < 3 or len(set(f)) != len(f) or any(not 0 <= i < n for i in f)
+            for f in self.faces
+        ):
+            raise UnsupportedRoofError("invalid fixed geometry face cycles")
+        for edge, direction in self.ridge_directions:
+            if (
+                len(edge) != 2
+                or any(not 0 <= i < n for i in edge)
+                or edge[0] == edge[1]
+                or len(direction) != 2
+                or not all(math.isfinite(x) for x in direction)
+                or abs(math.hypot(*direction) - 1) > 1e-8
+            ):
+                raise UnsupportedRoofError("invalid declared ridge direction")
+
+        for face, origin, inward, pitch in self.slope_constraints:
+            if (
+                len(origin) != 3
+                or not all(math.isfinite(x) for x in origin)
+                or not 0 <= face < len(self.faces)
+                or len(inward) != 2
+                or not all(math.isfinite(v) for v in inward)
+                or abs(math.hypot(*inward) - 1) > 1e-8
+                or not math.isfinite(pitch)
+                or pitch <= 0
+            ):
+                raise UnsupportedRoofError("invalid explicit roof slope constraint")
 
 
 def problem(graph, pitch=0.5, eave_height=0.0):
@@ -96,6 +153,26 @@ def problem(graph, pitch=0.5, eave_height=0.0):
             )
             size = math.hypot(*vector)
             directions.append((edge.vertices, tuple(v / size for v in vector)))
+    slopes = []
+    if graph.roof_type != "flat":
+        for fi, face in enumerate(graph.faces):
+            if not face.eaves:
+                raise UnsupportedRoofError(
+                    "pitched face needs a declared eave for its slope"
+                )
+            eave = face.eaves[0]
+            direction = sub(
+                graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
+            )
+            length = math.hypot(*direction)
+            slopes.append(
+                (
+                    fi,
+                    (*graph.outline[eave], eave_height),
+                    (-direction[1] / length, direction[0] / length),
+                    pitch,
+                )
+            )
     return GeometryProblem(
         seeds,
         tuple(f.loop for f in graph.faces),
@@ -103,6 +180,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         tuple(i for i in range(len(graph.vertices)) if i not in heights),
         tuple(sorted(heights.items())),
         tuple(directions),
+        tuple(slopes),
     )
 
 
@@ -173,3 +251,28 @@ def solve_analytic(graph, pitch=0.5, eave_height=0.0):
             raise UnsupportedRoofError("finite eave height required")
         return RoofMesh(graph, tuple((*v.seed, eave_height) for v in graph.vertices))
     return RoofMesh(graph, rectangle_vertices(graph, pitch, eave_height))
+
+
+def solve(graph, geometry):
+    """Consume one GeometryProblem and graph; never choose topology or retry."""
+    if geometry.faces != tuple(f.loop for f in graph.faces):
+        raise UnsupportedRoofError("solve problem changes roof incidence")
+    if graph.roof_type == "flat" or (
+        rectangle(graph.outline) and all(f.cells == (0,) for f in graph.faces)
+    ):
+        # The already anchored primitive has an exact embedding. The pitch is
+        # read from its explicit height constraints, not selected by the solver.
+        if graph.roof_type in {"flat", "shed", "gable"}:
+            return RoofMesh(graph, geometry.initial_vertices)
+        heights = dict(geometry.fixed_z)
+        eave = min(heights.values())
+        width = min(
+            math.dist(a, b)
+            for a, b in zip(graph.outline, graph.outline[1:] + graph.outline[:1])
+        )
+        pitch = 2 * (max(heights.values()) - eave) / width
+        return solve_analytic(graph, pitch, eave)
+    from .optimization import optimize
+
+    embedding = optimize(geometry)
+    return RoofMesh(graph, embedding.vertices)

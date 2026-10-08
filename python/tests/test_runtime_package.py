@@ -28,9 +28,7 @@ for kind in ('gable','hip','shed','flat'):
 compound=((0,0),(16,0),(16,4),(10,4),(10,10),(6,10),(6,4),(0,4))
 assert prepare_generation(compound).geometry_problem.faces
 assert len(generate_roof(compound,GenerationSettings('flat')).mesh.faces)==1
-try:generate_roof(compound)
-except UnsupportedRoofError:pass
-else:raise AssertionError('compound nonlinear mesh solve is unsupported')
+assert generate_roof(compound).mesh.faces
 assert not {'numpy','shapely'}.intersection(sys.modules)
 """
         out = subprocess.run(

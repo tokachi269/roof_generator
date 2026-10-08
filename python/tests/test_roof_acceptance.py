@@ -28,7 +28,7 @@ class RoofAcceptanceTests(unittest.TestCase):
             "rectangle_shed",
             "rotated_rectangle",
         }
-        topology_supported = mesh_supported | {
+        mesh_supported |= {
             "orthogonal_L",
             "orthogonal_T",
             "orthogonal_U",
@@ -37,6 +37,7 @@ class RoofAcceptanceTests(unittest.TestCase):
             "terminating_ridge",
             "valley_join",
         }
+        topology_supported = mesh_supported
         for row in json.loads(FIXTURES.read_text()):
             settings = GenerationSettings(row["roof_type"], row["pitch"])
             raw = row["footprint"]
