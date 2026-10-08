@@ -58,17 +58,27 @@ def render(output):
     for obj in bpy.data.objects:
         if obj.type == "MESH" and obj.name.endswith("_source"):
             obj.hide_render = True
-    bpy.ops.object.camera_add(location=(62, -56, 72))
+    points = [
+        obj.matrix_world @ vertex.co
+        for obj in bpy.data.objects
+        if obj.type == "MESH" and not obj.hide_render
+        for vertex in obj.data.vertices
+    ]
+    lo = Vector(tuple(min(p[k] for p in points) for k in range(3)))
+    hi = Vector(tuple(max(p[k] for p in points) for k in range(3)))
+    center = (lo + hi) / 2
+    extent = (hi - lo).length
+    bpy.ops.object.camera_add(location=center + Vector((extent, -extent, 1.5 * extent)))
     camera = bpy.context.object
     camera.rotation_euler = (
-        (Vector((31, 12, 2)) - camera.location).to_track_quat("-Z", "Y").to_euler()
+        (center - camera.location).to_track_quat("-Z", "Y").to_euler()
     )
     camera.data.type = "ORTHO"
-    camera.data.ortho_scale = 84
+    camera.data.ortho_scale = extent * 1.2
     bpy.context.scene.camera = camera
-    bpy.ops.object.light_add(type="AREA", location=(12, 4, 28))
-    bpy.context.object.data.energy = 3500
-    bpy.context.object.data.size = 30
+    bpy.ops.object.light_add(type="AREA", location=center + Vector((0, 0, 40)))
+    bpy.context.object.data.energy = 18000
+    bpy.context.object.data.size = 60
     scene = bpy.context.scene
     scene.render.engine = "BLENDER_EEVEE_NEXT"
     scene.eevee.taa_render_samples = 16
@@ -149,6 +159,9 @@ def main():
             "gable",
         )
     )
+    for record in acceptance:
+        if record["name"] in {"parallelogram", "trapezoid", "general_convex_quad"}:
+            fixtures.append((record["name"], record["footprint"], "gable"))
     for i, (name, points, kind) in enumerate(fixtures):
         src = source(name, points)
         src.location = (i % 3 * 21, i // 3 * 20, 3)
