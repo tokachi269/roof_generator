@@ -62,10 +62,20 @@ def attachments(resolved, primitives):
     )
     if blockers:
         raise UnsupportedRoofError("no implemented architecture template for " + blockers[0].code, issues=blockers)
+    if resolved.ends is None:
+        raise UnsupportedRoofError("junction plan requires resolved roof end configuration")
+    decisions = {j.cells: j for j in resolved.ends.joints}
     nodes = decomposition.vertices
     candidates = []
     for relation in resolved.relations:
         option = relation.options[0]
+        decision = decisions[relation.cells]
+        if (option.kind == "corner" and decision.kind == "extension"
+            and (len(resolved.relations) != 1 or option.widths[1] >= option.widths[0] - 4 * EPS)):
+            raise UnsupportedRoofError(
+                "L/T extension requires one isolated strictly narrower branch",
+                issues=(GenerationIssue("junction", "corner_extension", relation.cells),),
+            )
         atoms = relation.intervals
         host, branch = option.receiver, option.branch
         hs = relation.sides[relation.cells.index(host)]
@@ -102,7 +112,7 @@ def attachments(resolved, primitives):
         shared = tuple(sorted(bside.vertices, key=parameter))
         touching = set(shared).intersection(hside.vertices)
         host_port = None
-        if option.kind == "corner" and len(touching) == 1:
+        if decision.kind == "shared" and len(touching) == 1:
             cut = next(iter(touching))
             reflex = next(i for i in shared if i != cut)
             near = (hs - 1) % 4 if cut == hside.vertices[0] else (hs + 1) % 4
@@ -119,8 +129,10 @@ def attachments(resolved, primitives):
             if not on_segment(nodes[cut], nodes[outer], nodes[other]):
                 continue
             kind = "terminal"
-        elif option.kind == "side_attachment" and not touching and all(
-            i in decomposition.footprint.reflex for i in shared
+        elif decision.kind == "extension" and (
+            (not touching and all(i in decomposition.footprint.reflex for i in shared))
+            or (option.kind == "corner" and len(touching) == 1
+                and all(i in decomposition.footprint.reflex for i in set(shared) - touching))
         ):
             kind = "middle"
         else:

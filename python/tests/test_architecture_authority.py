@@ -44,8 +44,9 @@ class ArchitectureAuthorityProof(unittest.TestCase):
             if cause.kind in {"hip", "valley"}:
                 self.assertEqual(cause.relation, (0, 1))
                 self.assertEqual(cause.operation, "terminal")
-        # The internal corner is a true junction inside a compound unit; it
-        # must not be erased just because both members belong to one Part.
+        # Preserve the existing terminal template's geometric regression.
+        # This is not proof that architecture should adopt this junction:
+        # Part grouping and feature provenance do not establish roof intent.
         self.assertTrue(any(f.kind == "valley" for f in composition.features))
 
     def test_embedding_preserves_incidence_semantics_and_causes(self):

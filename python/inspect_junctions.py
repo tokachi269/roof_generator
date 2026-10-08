@@ -24,6 +24,7 @@ from roof_generator.core.junctions import attachments
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.architecture import interpret, resolve
 from roof_generator.core.solve import problem
+from roof_generator.core.roof_ends import roof_configurations
 
 
 def inspect(record):
@@ -33,6 +34,14 @@ def inspect(record):
     primitives = cell_primitives(d, roof_type)
     architecture = interpret(d)
     resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
+    end_error = None
+    try:
+        end_options = tuple(roof_configurations(resolved)) if roof_type == "gable" else ()
+        if end_options:
+            resolved = resolved.with_ends(end_options[0])
+    except UnsupportedRoofError as exc:
+        end_options = ()
+        end_error = exc
     try:
         candidates = attachments(resolved, primitives) if roof_type == "gable" else ()
     except UnsupportedRoofError:
@@ -53,6 +62,8 @@ def inspect(record):
         "input": record,
         "frame": asdict(fp.frame),
         "decomposition": d.inspect(),
+        "end_configurations": [option.inspect() for option in end_options],
+        "selected_ends": resolved.ends.inspect() if resolved.ends else None,
         "attachment_candidates": [a.inspect() for a in candidates],
         "primitive_candidates": [g.inspect() for g in primitives],
         "status": "unsupported",
@@ -61,6 +72,8 @@ def inspect(record):
         "solver_status": "no nonlinear solve",
     }
     try:
+        if end_error:
+            raise end_error
         c = compose(resolved, roof_type)
     except UnsupportedRoofError as exc:
         document["reason"] = str(exc)

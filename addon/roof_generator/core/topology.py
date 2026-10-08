@@ -284,6 +284,8 @@ def compose(resolved, roof_type="gable", *, shed_edge=None):
         raise UnsupportedRoofError(
             "multi-cell composition currently supports gable only"
         )
+    if resolved.ends is None:
+        raise UnsupportedRoofError("compound composition requires resolved roof ends")
     # The selected member directions determine local incidence. No independent
     # Cell RoofGraph is generated, validated or subsequently discarded here.
     primitives = member_templates(resolved)
@@ -309,6 +311,28 @@ def _middle(decomposition, primitives, relations):
     roles = ["corner"] * len(seeds)
     locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
 
+    # A resolved corner T retains the receiver end and has a valley outlet
+    # at a collinear exterior Cell corner. Declare that boundary node before
+    # incidence assembly; do not confuse subdivision indices with graph IDs.
+    boundary_nodes = {i: i for i in range(len(fp.vertices))}
+    for cell in decomposition.cells:
+        for node in cell.corners:
+            if node in boundary_nodes:
+                continue
+            p = decomposition.vertices[node]
+            edges = [i for i, a in enumerate(fp.vertices)
+                     if on_segment(p, a, fp.vertices[(i + 1) % len(fp.vertices)])]
+            if len(edges) != 1:
+                raise UnsupportedRoofError("extension corner is not one physical boundary node")
+            edge = edges[0]
+            a, b = fp.vertices[edge], fp.vertices[(edge + 1) % len(fp.vertices)]
+            vector = sub(b, a)
+            t = sum(x * y for x, y in zip(sub(p, a), vector)) / sum(x * x for x in vector)
+            boundary_nodes[node] = len(seeds)
+            locations[len(seeds)] = BoundaryPoint(edge, t)
+            seeds.append(p)
+            roles.append("corner")
+
     def boundary_port(cell, local):
         point = primitives[cell].vertices[local].seed
         edges = [
@@ -331,7 +355,7 @@ def _middle(decomposition, primitives, relations):
         roles.append("ridge_end")
         return vertex
 
-    maps = {host: dict(enumerate(decomposition.cells[host].corners))}
+    maps = {host: {i: boundary_nodes[v] for i, v in enumerate(decomposition.cells[host].corners)}}
     host_caps = tuple(
         i for i, v in enumerate(primitives[host].vertices) if v.role == "ridge_end"
     )
@@ -346,7 +370,7 @@ def _middle(decomposition, primitives, relations):
             for i, v in enumerate(primitives[branch].vertices)
             if v.role == "ridge_end" and i != near
         )
-        maps[branch] = dict(enumerate(decomposition.cells[branch].corners))
+        maps[branch] = {i: boundary_nodes[v] for i, v in enumerate(decomposition.cells[branch].corners)}
         maps[branch][far] = boundary_port(branch, far)
         if relation.equal_width and shared_junction is not None:
             junction = shared_junction
@@ -386,27 +410,27 @@ def _middle(decomposition, primitives, relations):
         far = next(i for i in maps[branch] if i >= 4 and i != relation.branch_port)
         _declare(meanings, features, (junction, maps[branch][far]), "ridge", (host, branch), tuple(sorted((host, branch))), "middle")
         for corner in relation.shared:
-            _declare(meanings, features, (junction, corner), "valley", (host, branch), tuple(sorted((host, branch))), "middle")
+            _declare(meanings, features, (junction, boundary_nodes[corner]), "valley", (host, branch), tuple(sorted((host, branch))), "middle")
     faces = []
     allowed_eaves = []
     for cell, primitive in enumerate(primitives):
         mapping = maps[cell]
         for face in primitive.faces:
             loop = []
+            def append(vertex):
+                if not loop or loop[-1] != vertex:
+                    loop.append(vertex)
             for a, b in zip(face.loop, face.loop[1:] + face.loop[:1]):
-                loop.append(mapping[a])
+                append(mapping[a])
                 if cell == host:
                     if {a, b} == set(host_caps):
                         loop.extend(equal if a == host_caps[0] else reversed(equal))
                     if a < 4 and b == (a + 1) % 4:
                         for relation in side_relations[a]:
-                            loop.extend(
-                                (
-                                    relation.shared[0],
-                                    joints[relation.branch],
-                                    relation.shared[1],
-                                )
-                            )
+                            for vertex in (boundary_nodes[relation.shared[0]], joints[relation.branch], boundary_nodes[relation.shared[1]]):
+                                append(vertex)
+            if loop[0] == loop[-1]:
+                loop.pop()
             cycles = [tuple(loop)]
             for junction in equal:
                 if loop.count(junction) == 2:
@@ -456,7 +480,7 @@ def _middle(decomposition, primitives, relations):
         RoofConnection(
             r.host,
             r.branch,
-            _key(*r.shared),
+            _key(*(boundary_nodes[v] for v in r.shared)),
             (r.branch_port,),
             (joints[r.branch],),
             None if r.equal_width else r.host,

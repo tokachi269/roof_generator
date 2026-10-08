@@ -16,6 +16,7 @@ from .architecture_models import (
     ArchitecturalPartGraph,
 )
 from .errors import UnsupportedRoofError, GenerationIssue
+from .roof_ends import RoofEnds, EndRule, end_rules, configurations, symmetric_ends
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,7 @@ class ResolvedArchitecture:
     architecture: ArchitecturalPartGraph
     axes: tuple[int, ...]
     relations: tuple[PartRelation, ...]
+    ends: RoofEnds | None = None
 
     def __post_init__(self):
         graph = self.architecture
@@ -66,6 +68,22 @@ class ResolvedArchitecture:
             tuple(replace(m, axes=(self.axes[m.cell],)) for m in self.architecture.members),
             self.relations,
         )
+
+    def with_ends(self, ends):
+        """Publish a globally compatible roof configuration at its owner."""
+        keys, rules = end_rules(self)
+        from .architecture_selection import symmetry_clusters
+        equalities = symmetric_ends(self, keys, symmetry_clusters(self.analysis()))
+        selected = {j.cells: j for j in ends.joints}
+        if len(selected) != len(rules) or any(selected.get(r.cells) not in r.choices for r in rules):
+            raise UnsupportedRoofError("roof end configuration changes combination domains")
+        expected = tuple(configurations(keys, tuple(EndRule(r.cells, (selected[r.cells],)) for r in rules), equalities))
+        if expected != (ends,):
+            raise UnsupportedRoofError("roof end configuration violates simultaneous end constraints")
+        compound = {j.cells for j in ends.joints if j.kind == "shared"}
+        selected_graph = build_parts(self.decomposition,
+            Analysis(self.architecture.members, self.relations), compound_relations=compound)
+        return replace(self, architecture=selected_graph, ends=ends)
 
 
 def resolve(architecture, axes):
@@ -206,7 +224,7 @@ def _cycles(d, cells):
     return tuple(sorted(rings))
 
 
-def build_parts(d, analysis):
+def build_parts(d, analysis, *, compound_relations=None):
     """Group all unambiguous corner/continuation components simultaneously.
 
     Compound units retain every rectangular member and every local combination.
@@ -216,7 +234,7 @@ def build_parts(d, analysis):
     issues = []
     for r in analysis.relations:
         kinds = {o.kind for o in r.options}
-        if kinds <= {"corner", "continuation"}:
+        if (r.cells in compound_relations if compound_relations is not None else kinds <= {"corner", "continuation"}):
             a, b = r.cells
             neighbors[a].add(b)
             neighbors[b].add(a)

@@ -21,7 +21,10 @@ def authority(d, axes=None, primitives=None):
     if any(a not in m.axes for a, m in zip(axes, architecture.members)):
         from roof_generator.core.errors import UnsupportedRoofError
         raise UnsupportedRoofError("fixed primitive orientation is outside architectural member domain")
-    return resolve(architecture, axes)
+    from roof_generator.core.roof_ends import roof_configurations
+    resolved = resolve(architecture, axes)
+    # Fixed historical operation oracles explicitly request the shared option.
+    return resolved.with_ends(next(roof_configurations(resolved)))
 
 
 def compose(d, roof_type="gable", *, axes=None, shed_edge=None):

@@ -12,6 +12,7 @@ from .architecture_selection import evaluate
 from .seed import derive, choose, point_identity
 from .topology import compose, Composition, quadrilateral_graph, primitive_composition
 from .architecture_models import ArchitecturalPartGraph
+from .roof_ends import RoofEnds, roof_configurations
 
 
 @dataclass(frozen=True)
@@ -22,9 +23,20 @@ class TopologyCandidate:
     composition: Composition
     geometry: GeometryProblem
     score: int
+    ends: RoofEnds | None = None
 
     def __post_init__(self):
         _validate(self.architecture, self.composition, self.geometry, self.axes)
+        if self.ends is not None:
+            # A candidate is a public immutable record; reject forged end
+            # states as well as a connection that uses the wrong operation.
+            resolve(self.architecture, self.axes).with_ends(self.ends)
+            decisions = {j.cells: j.kind for j in self.ends.joints}
+            for connection in self.composition.connections:
+                cells = tuple(sorted((connection.host, connection.branch)))
+                expected = "shared" if connection.kind == "terminal" else "extension"
+                if decisions.get(cells) != expected:
+                    raise UnsupportedRoofError("roof connection contradicts resolved end configuration")
 
     @property
     def graph(self):
@@ -37,6 +49,7 @@ class Rejection:
     axes: tuple[int, ...]
     reason: str
     issues: tuple[GenerationIssue, ...] = ()
+    end_choices: tuple = ()
 
 
 @dataclass(frozen=True)
@@ -44,6 +57,7 @@ class ArchitecturalChoice:
     partition: str
     axes: tuple[int, ...]
     score: int
+    end_choices: tuple = ()
 
 
 @dataclass(frozen=True)
@@ -128,8 +142,8 @@ def _validate(architecture, composition, geometry, axes):
             raise UnsupportedRoofError("feature cause changes architectural part ownership")
         if feature.relation is not None:
             relation = relations.get(feature.relation)
-            kind = "corner" if feature.operation == "terminal" else "side_attachment"
-            if (relation is None or len(relation.options) != 1 or relation.options[0].kind != kind
+            kinds = {"corner"} if feature.operation == "terminal" else {"corner", "side_attachment"}
+            if (relation is None or len(relation.options) != 1 or relation.options[0].kind not in kinds
                 or relation.options[0].axes != tuple(axes[c] for c in relation.cells)):
                 raise UnsupportedRoofError("feature cause is absent from architectural relations")
             if not any(tuple(sorted((c.host, c.branch))) == feature.relation and c.kind == feature.operation for c in composition.connections):
@@ -233,6 +247,7 @@ def build_candidates(
                 )
             work += 1
             stage = "relation"
+            score = None
             try:
                 if roof_type == "gable":
                     resolved = resolve(architecture, axes)
@@ -245,7 +260,6 @@ def build_candidates(
                 else:
                     score = 0
                     resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
-                architectural.append(ArchitecturalChoice(partition_key, tuple(axes), score))
                 shed_edge = None
                 if roof_type == "shed" and len(d.cells) == 1:
                     # The declared reference frame fixes directional intent;
@@ -263,23 +277,37 @@ def build_candidates(
                         )
                         / math.dist(world[i], world[(i + 1) % 4]),
                     )
-                stage = "composition"
-                composition = compose(
-                    resolved, roof_type, shed_edge=shed_edge
-                )
-                stage = "geometry_problem"
-                geometry = problem(
-                    composition.graph, pitch, eave_height / d.footprint.frame.scale
-                )
-                stable_id = _candidate_id(resolved.architecture, composition, axes, identity)
-                stage = "graph_validation"
-                valid.setdefault(
-                    stable_id,
-                    TopologyCandidate(
-                        stable_id, resolved.architecture, axes, composition, geometry, score
-                    ),
-                )
+                configs = roof_configurations(resolved, evaluation.symmetry) if roof_type == "gable" else (None,)
+                found = False
+                for index, ends in enumerate(configs):
+                    found = True
+                    if index:
+                        if work >= max_axis_assignments:
+                            return TopologyCandidates(tuple(valid[k] for k in sorted(valid)), tuple(rejected), False,
+                                "roof end-configuration budget exhausted", tuple(architectural), tuple(valid[k] for k in sorted(valid)))
+                        work += 1
+                    authority = resolved.with_ends(ends) if ends is not None else resolved
+                    architectural.append(ArchitecturalChoice(partition_key, tuple(axes), score,
+                        tuple((j.cells, j.kind) for j in ends.joints) if ends else ()))
+                    try:
+                        stage = "composition"
+                        composition = compose(authority, roof_type, shed_edge=shed_edge)
+                        stage = "geometry_problem"
+                        geometry = problem(composition.graph, pitch, eave_height / d.footprint.frame.scale)
+                        stable_id = _candidate_id(authority.architecture, composition, axes, identity)
+                        stage = "graph_validation"
+                        valid.setdefault(stable_id, TopologyCandidate(
+                            stable_id, authority.architecture, axes, composition, geometry, score, ends))
+                    except UnsupportedRoofError as exc:
+                        issues = exc.issues or (GenerationIssue(stage, "unsupported"),)
+                        rejected.append(Rejection(partition_key, axes, str(exc), issues,
+                            tuple((j.cells, j.kind) for j in ends.joints) if ends else ()))
+                if not found:
+                    raise UnsupportedRoofError("all roof end configurations violate simultaneous constraints",
+                        issues=(GenerationIssue("architecture", "end_conflict"),))
             except UnsupportedRoofError as exc:
+                if score is not None:
+                    architectural.append(ArchitecturalChoice(partition_key, tuple(axes), score))
                 issues = exc.issues or (GenerationIssue(stage, "unsupported"),)
                 rejected.append(Rejection(partition_key, axes, str(exc), issues))
     # Published terms are applied to fully resolved choices. No aesthetic score

@@ -97,9 +97,20 @@ class TerminalNetworkProof(unittest.TestCase):
         )
         for name, expected in reference["cases"].items():
             pool, _ = selected(fixture(name)["footprint"])
-            self.assertEqual(sorted(c.id for c in pool.valid), expected["valid"])
+            original = tuple(c for c in pool.valid if c.id in expected["valid"])
+            self.assertEqual(sorted(c.id for c in original), expected["valid"])
+            added = tuple(c for c in pool.valid if c.id not in expected["valid"])
+            for candidate in added:
+                self.assertEqual(len(candidate.ends.joints), 1)
+                self.assertEqual(candidate.ends.joints[0].kind, "extension")
+                self.assertEqual(len(candidate.architecture.parts), 2)
+                self.assertEqual(len(candidate.graph.faces), 4)
+                self.assertFalse(any(e.kind == "hip" for e in candidate.graph.edges))
+            # Keep the old seed contract on the unchanged candidate family.
+            # Adding a researched roof option deliberately expands that family.
+            frozen_pool = replace(pool, valid=original)
             self.assertEqual(
-                {str(s): pool.select(s).id for s in range(16)}, expected["choices"]
+                {str(s): frozen_pool.select(s).id for s in range(16)}, expected["choices"]
             )
 
     def test_original_U_is_one_graph_with_internal_receiver_ridge(self):
