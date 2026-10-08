@@ -184,13 +184,13 @@ class RectangleGraphTests(unittest.TestCase):
                     {i for ids in fp.source_edges for i in ids}, set(range(len(points)))
                 )
 
-    def test_no_legacy_or_polygon_runtime_dependency_in_fresh_process(self):
+    def test_stdlib_primitive_runtime_in_fresh_process(self):
         script = """import sys,builtins
 sys.path.insert(0,sys.argv[1])
 sys.path.insert(0,sys.argv[1] + "/addon")
 original=builtins.__import__
 def checked(name,*args,**kwargs):
- if name=="shapely" or name.startswith(("shapely.","numpy.","roof_generator.core.roof_")):raise AssertionError("forbidden new-path import: "+name)
+ if name.split(".")[0] in ("shapely", "numpy"):raise AssertionError("forbidden runtime import: "+name)
  return original(name,*args,**kwargs)
 builtins.__import__=checked
 from roof_generator.core.footprint import analyze

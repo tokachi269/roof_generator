@@ -3,9 +3,9 @@
 
 from dataclasses import dataclass
 import math
-from .graph import Point
 from .errors import UnsupportedRoofError
 
+Point = tuple[float, float]
 EPS = 2e-9  # normalized by perimeter; numerical allowance, not rectification
 ANGLE = 1e-8
 

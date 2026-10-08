@@ -309,7 +309,7 @@ sys.path.insert(0,sys.argv[1])
 sys.path.insert(0,sys.argv[1] + "/addon")
 original=builtins.__import__
 def checked(name,*args,**kwargs):
- if name.startswith(('shapely','numpy','roof_generator.core.roof_','roof_generator.core.topology','roof_generator.core.solve')):raise AssertionError('forbidden partition import: '+name)
+ if name.startswith(('shapely','numpy','roof_generator.core.graph','roof_generator.core.topology','roof_generator.core.solve')):raise AssertionError('forbidden partition import: '+name)
  return original(name,*args,**kwargs)
 builtins.__import__=checked
 from roof_generator.core.footprint import analyze

@@ -7,8 +7,8 @@ import math
 
 from .errors import UnsupportedRoofError
 from .provenance import BoundaryPoint, BoundarySpan
+from .footprint import Point
 
-Point = tuple[float, float]
 KINDS = frozenset(("ridge", "hip", "valley", "eave", "gable_end"))
 
 
