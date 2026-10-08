@@ -195,6 +195,7 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
     reason = None
     diagonal_ids = {tuple(sorted(d.endpoints)): i for i, d in enumerate(base.diagonals)}
     seen_cuts = set()
+    boundary_hits = {}  # local to this immutable footprint, never persistent
 
     class BudgetExhausted(Exception):
         pass
@@ -223,13 +224,13 @@ def candidates(fp, *, max_candidates=4096, max_work=65536):
 
     # Keep the established deterministic partition as the first generated witness.
     try:
-        add(base, complete_cuts(fp, base))
+        add(base, complete_cuts(fp, base, boundary_hits=boundary_hits))
         for chosen in maximum_sets(base, visit):
             sets += 1
             selection = replace(base, selected=chosen)
             covered = {v for i in chosen for v in base.diagonals[i].endpoints}
             for axes in product((0, 1), repeat=len(set(fp.reflex) - covered)):
-                cuts = complete_cuts(fp, selection, axes)
+                cuts = complete_cuts(fp, selection, axes, boundary_hits=boundary_hits)
                 if not add(selection, cuts):
                     break
                 for symmetry in transforms:

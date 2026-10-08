@@ -3,6 +3,7 @@
 
 from dataclasses import dataclass
 from collections import deque
+from bisect import bisect_left, bisect_right
 import math
 from .footprint import (
     EPS,
@@ -229,7 +230,7 @@ class Subdivision:
         return len(self.reflex) - len(self.selection.selected) + 1
 
 
-def complete_cuts(fp, selection, axes=()):
+def complete_cuts(fp, selection, axes=(), *, boundary_hits=None):
     """Classical bad-vertex completion: first side of the current region."""
     segments = [
         tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
@@ -253,7 +254,15 @@ def complete_cuts(fp, selection, axes=()):
             (fp.directions[start - 1], tuple(-v for v in fp.directions[start])),
             key=lambda d: abs(d[axes[k] if axes else 1]),
         )
-        hit = ray_hit(fp.vertices, start, direction)
+        # A first exterior hit depends only on the immutable footprint and ray.
+        # Candidate-local clipping below still runs for every selected cut set.
+        key = (start, direction)
+        if boundary_hits is None:
+            hit = ray_hit(fp.vertices, start, direction)
+        else:
+            if key not in boundary_hits:
+                boundary_hits[key] = ray_hit(fp.vertices, start, direction)
+            hit = boundary_hits[key]
         if hit is None:
             raise UnsupportedRoofError("reflex extension has no visible boundary")
         end, _ = hit
@@ -331,10 +340,25 @@ def _node_segments(fp, selection, completions):
         for i in range(len(fp.vertices))
     ] + [(a, b, None) for a, b in cut_points]
     edges = {}
+    # Conservative axis-aligned bounding-box exclusion only. The original
+    # on_segment predicate decides every survivor. No grid or snapped topology.
+    coordinate_indices = tuple(
+        sorted((p[k], i) for i, p in enumerate(nodes)) for k in (0, 1)
+    )
     for a, b, exterior in segments:
         direction = sub(b, a)
+        ranges = tuple(
+            (
+                bisect_left(index, (min(a[k], b[k]) - 2 * EPS, -1)),
+                bisect_right(index, (max(a[k], b[k]) + 2 * EPS, len(nodes))),
+            )
+            for k, index in enumerate(coordinate_indices)
+        )
+        axis = min((0, 1), key=lambda k: ranges[k][1] - ranges[k][0])
+        lo, hi = ranges[axis]
+        possible = sorted(i for _, i in coordinate_indices[axis][lo:hi])
         ids = sorted(
-            (i for i, p in enumerate(nodes) if on_segment(p, a, b)),
+            (i for i in possible if on_segment(nodes[i], a, b)),
             key=lambda i: sum(v * d for v, d in zip(sub(nodes[i], a), direction)),
         )
         for u, v in zip(ids, ids[1:]):
