@@ -1,4 +1,10 @@
-# Graph-first rectangle / terminal-attachment evaluation
+# Initial graph-first rectangle / terminal-attachment evaluation
+
+The partition prototype described below has been replaced by the
+[classical minimum rectangular partition](MINIMUM_RECTANGULAR_PARTITION.md).
+The initial evaluation and its recorded timings remain historical evidence.
+Current partition accepts arbitrary reflex count; roof composition still stops
+at the proved terminal two-cell case.
 
 ## Scope and decision owners
 

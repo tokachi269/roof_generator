@@ -191,11 +191,11 @@ class SubdivisionTests(unittest.TestCase):
 class CellRecordTests(unittest.TestCase):
     def test_generic_records_cover_provenance_and_every_shared_interval(self):
         from collections import Counter
-        from python.graph_first.cells import minimum_decompose
+        from python.graph_first.cells import decompose
 
         for points, minimum in [(T, 2), (U, 3), (CROSS, 3)]:
             fp = analyze(points)
-            d = minimum_decompose(fp)
+            d = decompose(fp)
             self.assertEqual(len(d.cells), minimum)
             self.assertEqual(d.certificate.minimum_cells, minimum)
             incidence = Counter(
@@ -222,13 +222,13 @@ class CellRecordTests(unittest.TestCase):
             )
 
     def test_generic_two_cell_partition_supplies_existing_terminal_graft(self):
-        from python.graph_first.cells import minimum_decompose
+        from python.graph_first.cells import decompose
         from python.graph_first.topology import compose
         from python.tests.test_graph_first_cells import L
         from python.tests.test_graph_first_connection import assert_terminal
 
         fp = analyze(L)
-        d = minimum_decompose(fp)
+        d = decompose(fp)
         self.assertEqual((len(d.cells), len(d.adjacency)), (2, 1))
         assert_terminal(self, fp, compose(d))
 

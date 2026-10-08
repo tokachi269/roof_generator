@@ -15,7 +15,7 @@ import numpy as np
 from shapely.geometry import Polygon, LineString
 from shapely.ops import unary_union
 from python.graph_first.footprint import analyze
-from python.graph_first.cells import minimum_decompose
+from python.graph_first.cells import decompose
 from python.graph_first.graph import UnsupportedGraphError
 from python.tests.grid_footprints import generated
 from python.tests.test_rectangle_partition import oracle_diagonals
@@ -210,7 +210,7 @@ class GeneratedPartitionTests(unittest.TestCase):
                 points = c["footprint"]
                 expected = c["minimum_cells"]
                 self.assertEqual(oracle_minimum(points)[0], expected)
-                d = minimum_decompose(analyze(points))
+                d = decompose(analyze(points))
                 assert_partition(self, points, d, expected)
 
     def test_five_hundred_unknown_connected_grid_shapes(self):
@@ -218,7 +218,7 @@ class GeneratedPartitionTests(unittest.TestCase):
         for index, points in enumerate(generated()):
             with self.subTest(index=index, points=points):
                 minimum, reflex, diagonals, independent = oracle_minimum(points)
-                d = minimum_decompose(analyze(points))
+                d = decompose(analyze(points))
                 s = d.certificate.selection
                 self.assertEqual(
                     (len(d.certificate.reflex), len(s.diagonals), len(s.selected)),
@@ -238,7 +238,7 @@ class GeneratedPartitionTests(unittest.TestCase):
         samples = [c["footprint"] for c in FIXTURES] + list(generated(20, seed=143))
         for raw in samples:
             points = np.asarray(raw, float)
-            base = minimum_decompose(analyze(points))
+            base = decompose(analyze(points))
             expected = cell_signature(base)
             allowed = symmetric_signatures(points, expected)
             split = []
@@ -253,7 +253,7 @@ class GeneratedPartitionTests(unittest.TestCase):
             ]
             for raw, rotation, offset in variants:
                 with self.subTest(points=points.tolist()):
-                    d = minimum_decompose(analyze(raw))
+                    d = decompose(analyze(raw))
                     assert_partition(self, raw, d, len(base.cells))
                     self.assertIn(cell_signature(d, rotation, offset), allowed)
                     if len(allowed) == 1:
@@ -261,7 +261,7 @@ class GeneratedPartitionTests(unittest.TestCase):
 
     def test_primary_oracle_detects_missing_adjacency_and_exterior_provenance(self):
         points = FIXTURES[2]["footprint"]
-        d = minimum_decompose(analyze(points))
+        d = decompose(analyze(points))
         with self.assertRaises(AssertionError):
             assert_partition(self, points, replace(d, adjacency=()), 2)
         cell = d.cells[0]
@@ -288,9 +288,9 @@ def checked(name,*args,**kwargs):
  return original(name,*args,**kwargs)
 builtins.__import__=checked
 from python.graph_first.footprint import analyze
-from python.graph_first.cells import minimum_decompose
+from python.graph_first.cells import decompose
 for c in json.load(open(sys.argv[2])):
- d=minimum_decompose(analyze(c['footprint']))
+ d=decompose(analyze(c['footprint']))
  assert len(d.cells)==c['minimum_cells']
 """
         result = subprocess.run(
@@ -315,7 +315,7 @@ for c in json.load(open(sys.argv[2])):
             [[(0, 0), (5, 0), (5, 5), (0, 5)], [(1, 1), (1, 2), (2, 2), (2, 1)]],
         ]:
             with self.assertRaises(UnsupportedGraphError):
-                minimum_decompose(analyze(points))
+                decompose(analyze(points))
 
 
 if __name__ == "__main__":

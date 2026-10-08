@@ -18,10 +18,13 @@ def cell_key(points):
 
 
 class CellPartitionTests(unittest.TestCase):
-    def test_minimum_single_reflex_partition_and_explicit_adjacency(self):
+    def test_minimum_two_cell_partition_and_explicit_adjacency(self):
         fp = analyze(L)
         d = decompose(fp)
-        self.assertEqual((len(d.cells), len(d.adjacency), d.candidates), (2, 1, 2))
+        self.assertEqual((len(d.cells), len(d.adjacency)), (2, 1))
+        self.assertEqual(d.certificate.minimum_cells, 2)
+        self.assertEqual(len(d.certificate.selection.diagonals), 0)
+        self.assertEqual(len(d.certificate.completions), 1)
         cells = {
             cell_key([fp.frame.world_xy(d.vertices[i]) for i in c.corners])
             for c in d.cells
@@ -103,22 +106,17 @@ class CellPartitionTests(unittest.TestCase):
 
     def test_no_partition_tree_or_unsupported_continuation(self):
         d = decompose(analyze([(0, 0), (12, 0), (12, 6), (0, 6)]))
-        self.assertEqual((len(d.cells), d.adjacency, d.candidates), (1, (), 0))
-        with self.assertRaisesRegex(UnsupportedGraphError, "one reflex|exactly one"):
-            decompose(
-                analyze(
-                    [
-                        (0, 0),
-                        (16, 0),
-                        (16, 5),
-                        (10, 5),
-                        (10, 12),
-                        (6, 12),
-                        (6, 5),
-                        (0, 5),
-                    ]
-                )
+        self.assertEqual((len(d.cells), d.adjacency), (1, ()))
+        self.assertEqual(d.certificate.minimum_cells, 1)
+        # The formerly unsupported multi-reflex case now has its known
+        # minimum partition; no L-only selector is involved.
+        t = decompose(
+            analyze(
+                [(0, 0), (16, 0), (16, 5), (10, 5), (10, 12), (6, 12), (6, 5), (0, 5)]
             )
+        )
+        self.assertEqual((len(t.cells), len(t.adjacency)), (2, 1))
+        self.assertEqual(t.certificate.minimum_cells, 2)
         with self.assertRaisesRegex(UnsupportedGraphError, "orthogonal"):
             decompose(analyze([(0, 0), (12, 0), (13, 4), (5, 4), (6, 10), (0, 10)]))
 

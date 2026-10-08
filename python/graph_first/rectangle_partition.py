@@ -34,6 +34,10 @@ def good_diagonals(fp):
         raise UnsupportedGraphError(
             "rectangle partition requires an orthogonal outline"
         )
+    if len(fp.vertices) != 2 * len(fp.reflex) + 4:
+        raise UnsupportedGraphError(
+            "outline does not satisfy the simple orthogonal corner identity"
+        )
     result = set()
     for start in fp.reflex:
         directions = (fp.directions[start - 1], tuple(-v for v in fp.directions[start]))

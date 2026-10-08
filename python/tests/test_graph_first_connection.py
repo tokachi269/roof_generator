@@ -173,7 +173,7 @@ class TerminalCompositionTests(unittest.TestCase):
             ),
         )
         alternate = Decomposition(
-            f, nodes, (host, branch), (Adjacency((0, 1), (2, 0), cut),), 2
+            f, nodes, (host, branch), (Adjacency((0, 1), (2, 0), cut),)
         )
         graph = compose(alternate).graph
 
