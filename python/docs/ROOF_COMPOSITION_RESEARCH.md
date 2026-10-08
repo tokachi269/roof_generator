@@ -113,6 +113,10 @@ result for those configurations; do not invent them during this task.
    branch transverse width must be less than host transverse width. Ambiguous
    roles, unequal slope/height policies, and unsupported arrangements fail.
    There is no new largest-area, centrality or weighted main-structure score.
+   In a terminal relation, `host` names the receiving geometric side, not
+   necessarily the higher architectural roof: either primitive can be wider.
+   The existing corner refinement preserves the wider ridge accordingly. The
+   narrow-to-wide hypothesis specifically governs the new middle rule.
 4. Terminal: remove both incident near ports and artificial cut, splice the
    existing corner/reflex junction into the four slope cycles. Equal-width has
    ridge/ridge/hip/valley spokes; unequal-width has the existing two trivalent
