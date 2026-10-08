@@ -101,7 +101,7 @@ Measurements and limits: [ROOF_PERFORMANCE.md](docs/ROOF_PERFORMANCE.md).
 gable/hip/shed/flat meshes analytically and composes **pre-solver 2D graphs**
 for a terminal gable attachment, narrow/equal-width middle attachments, and
 separated narrow middle branches on one host. It is not wired into the addon
-conversion button. U/cross junctions, arbitrary architectural aggregation,
+conversion button. U/cross roof junctions, arbitrary compound roof topology,
 multi-cell geometry solving and oblique cells remain unsupported; no automatic
 substitution by the existing generator occurs. The roof-independent partition layer handles arbitrary
 reflex counts in hole-free simple orthogonal polygons, with a classical minimum
@@ -172,3 +172,51 @@ The composition benchmark calls the unchanged graph-first stage harness; it
 records explicit unsupported cases and an uncached batch in the supported
 longitudinal-main/separated-narrow-branch domain. It does not measure final
 Blender object or multi-cell mesh throughput.
+
+## Architectural part interpretation
+
+An independent evaluation layer now separates minimum geometric Cells from
+architectural units. It inspects alternative certified minimum partitions,
+published end/side combinations, compound boundaries and local receiver/branch
+relations before any RoofGraph is generated.
+
+```bash
+python python/inspect_architectural_parts.py --fixture orthogonal_U
+python python/inspect_architectural_parts.py --fixture cross
+python python/inspect_architectural_parts.py --fixture grid_40 --output python/out/interpretation/grid_40.json
+python python/inspect_architectural_parts.py --input footprint.json --metres-per-unit 0.01
+python python/benchmark_architectural_parts.py --samples 25 --warmup 3
+```
+
+The core API is `analyze(points)`, `partition_candidates.candidates(footprint)`,
+then `part_selection.recommend(search, Policy())`. The existing scalar minimum
+partition API and roof composer remain unchanged. The new core uses the Python
+standard library only. `ArchitecturalPartGraph` records every member Cell,
+exact grouped boundaries, consumed artificial cuts, exterior provenance,
+adjacency, member axis domains, combination options and unresolved issues.
+A compound unit can have a concave boundary; it is not one gable primitive.
+
+Candidate generation explores maximum independent sets and both completion
+axes in canonical reflex order, with actual footprint symmetry images. This
+explicit family does not claim all possible cut-order realizations. Defaults
+are `--max-candidates 4096` and `--max-work 65536`. A budget stop reports
+`incomplete`, retains the valid partial pool for inspection, recommends no
+winner and exits 2. Completed inspections can be `ambiguous` or `partial`;
+these statuses do not mean a final roof is supported. Cross retains both
+symmetry-equivalent directions. No hidden main-axis choice is made.
+
+Hu's published fragment/parallel/symmetry terms rank the candidate family.
+The default 3-metre fragment threshold and input-unit conversion are explicit;
+fragments retain coverage and provenance. Unresolved square axes yield score
+bounds and multiple retained candidates, not an arbitrary axis selection.
+The part contract is roof-type independent; this recommendation prior comes
+from pitched-roof research and should not silently determine flat/shed choices.
+
+Read [the research and adaptations](docs/ROOF_PART_INTERPRETATION_RESEARCH.md)
+and [the measured evaluation](docs/ROOF_PART_INTERPRETATION_EVALUATION.md).
+[The overview](docs/interpretation/overview.png) and per-case SVG/JSON evidence
+show original U/Cross/Residential/grid14/20/40 inputs, minimum alternatives,
+compound units, consumed cuts and conditional relations. The 40-vertex case
+takes about 278 ms including all candidate evaluation on the measured machine;
+this layer is not yet an interactive replacement for the current generator.
+No roof ridge, mesh, nonlinear solver or addon integration is added here.

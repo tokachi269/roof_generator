@@ -117,3 +117,23 @@ No existing roof composer/optimizer/addon is rewired during this series.
 After inspection/measurements, evaluate whether the part graph provides enough
 architectural information for subsequent generic topology composition. Ambiguous
 or unsupported contacts remain blockers; no silent independent-roof fallback.
+
+## Implemented interpretation boundary
+
+The [evaluation](ROOF_PART_INTERPRETATION_EVALUATION.md) records the implemented
+candidate family and the retained relations on the original inputs. Square
+axis options can change Hu's parallel penalty. Their scores therefore remain
+lower/upper bounds; a candidate is discarded only when its upper bound is
+below another candidate's lower bound. This conservative comparison preserves
+potential winners without inventing another score or resolving axes implicitly.
+Actual footprint isometries also define candidate symmetry orbits. Membership
+in one orbit is evidence of equivalent directions, not permission to choose a
+main direction.
+
+The part graph itself has no roof type. Hu's recommendation terms are a
+pitched-roof prior; future flat/shed composition must not inherit that prior
+without an explicit architectural contract. Exact 2D reflected components are
+a conservative adaptation of the paper's extended centerline symmetry graph,
+not a claim to reproduce its approximate-generalization or full recommendation
+model. Compound boundary grouping preserves all local constraints, including
+contacts inside a grouped unit that still need an architectural choice.

@@ -1,0 +1,1038 @@
+{
+  "source_sha": "f46ff7149f8bc21bb57b1805de279696e5be78f5",
+  "source_dirty": false,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "samples": 25,
+  "warmup": 3,
+  "profiled": false,
+  "cache": "none",
+  "policy": {
+    "fragment_metres": 3,
+    "metres_per_unit": 1
+  },
+  "cases": {
+    "orthogonal_U": {
+      "corners": 8,
+      "minimum_cells": 3,
+      "search": {
+        "candidate_count": 4,
+        "maximum_sets": 1,
+        "work": 10,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0,
+              7,
+              6
+            ]
+          },
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        ]
+      },
+      "status": "ambiguous",
+      "retained": [
+        1,
+        2
+      ],
+      "parts": [
+        1,
+        1
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.10919299893430434,
+          "p95_ms": 0.17933839953911956
+        },
+        "partition_candidates": {
+          "median_ms": 2.6741210003820015,
+          "p95_ms": 3.3980069994868245
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.11223100045754109,
+          "p95_ms": 0.2522074013540987
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.1681869998719776,
+          "p95_ms": 0.4876834009337468
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 0.1920119993883418,
+          "p95_ms": 0.28449040073610377
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 3.465323999989778,
+          "p95_ms": 4.031955800019205
+        }
+      }
+    },
+    "cross": {
+      "corners": 12,
+      "minimum_cells": 3,
+      "search": {
+        "candidate_count": 2,
+        "maximum_sets": 2,
+        "work": 22,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0,
+            1
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ]
+            ],
+            "vertices": [
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "matrix": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              9,
+              8,
+              7,
+              6,
+              5,
+              4,
+              3,
+              2,
+              1,
+              0,
+              11,
+              10
+            ]
+          },
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                -1
+              ]
+            ],
+            "vertices": [
+              3,
+              2,
+              1,
+              0,
+              11,
+              10,
+              9,
+              8,
+              7,
+              6,
+              5,
+              4
+            ]
+          },
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "matrix": [
+              [
+                0,
+                -1
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "vertices": [
+              0,
+              11,
+              10,
+              9,
+              8,
+              7,
+              6,
+              5,
+              4,
+              3,
+              2,
+              1
+            ]
+          },
+          {
+            "matrix": [
+              [
+                0,
+                -1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "vertices": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "matrix": [
+              [
+                0,
+                1
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "vertices": [
+              9,
+              10,
+              11,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "matrix": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "vertices": [
+              6,
+              5,
+              4,
+              3,
+              2,
+              1,
+              0,
+              11,
+              10,
+              9,
+              8,
+              7
+            ]
+          }
+        ]
+      },
+      "status": "ambiguous",
+      "retained": [
+        0,
+        1
+      ],
+      "parts": [
+        3,
+        3
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.20104899886064231,
+          "p95_ms": 0.6453401991166166
+        },
+        "partition_candidates": {
+          "median_ms": 2.322807000382454,
+          "p95_ms": 3.265247000672389
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.06905999907758087,
+          "p95_ms": 0.09489599979133342
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.12233599954925012,
+          "p95_ms": 0.251845599268563
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 0.26243100001011044,
+          "p95_ms": 0.47218200015777256
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 3.149874999508029,
+          "p95_ms": 4.682771798979956
+        }
+      }
+    },
+    "residential_multi_reflex": {
+      "corners": 12,
+      "minimum_cells": 4,
+      "search": {
+        "candidate_count": 4,
+        "maximum_sets": 1,
+        "work": 6,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          }
+        ]
+      },
+      "status": "partial",
+      "retained": [
+        2
+      ],
+      "parts": [
+        2
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.17868499890028033,
+          "p95_ms": 0.5505606004589934
+        },
+        "partition_candidates": {
+          "median_ms": 5.127394999362878,
+          "p95_ms": 10.011934401336472
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.1521419999335194,
+          "p95_ms": 0.4381825998279958
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.2914969991252292,
+          "p95_ms": 0.8597677999205183
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 0.15541100037808064,
+          "p95_ms": 0.5309868003678269
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 6.07919299909554,
+          "p95_ms": 11.618456401265572
+        }
+      }
+    },
+    "grid_14": {
+      "corners": 14,
+      "minimum_cells": 5,
+      "search": {
+        "candidate_count": 12,
+        "maximum_sets": 2,
+        "work": 20,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ]
+          }
+        ]
+      },
+      "status": "ambiguous",
+      "retained": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "parts": [
+        5,
+        4,
+        5,
+        5,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.22158600040711462,
+          "p95_ms": 0.5090530008601488
+        },
+        "partition_candidates": {
+          "median_ms": 15.7863560016267,
+          "p95_ms": 25.85915259915054
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.714497999069863,
+          "p95_ms": 1.4336809999804228
+        },
+        "candidate_evaluation": {
+          "median_ms": 1.4857770001981407,
+          "p95_ms": 3.2457209992571734
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 2.47459399906802,
+          "p95_ms": 4.86098419969494
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 20.962189000783837,
+          "p95_ms": 33.60711060013273
+        }
+      }
+    },
+    "grid_20": {
+      "corners": 20,
+      "minimum_cells": 7,
+      "search": {
+        "candidate_count": 16,
+        "maximum_sets": 1,
+        "work": 19,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19
+            ]
+          }
+        ]
+      },
+      "status": "ambiguous",
+      "retained": [
+        0,
+        2,
+        4,
+        12,
+        13,
+        14
+      ],
+      "parts": [
+        6,
+        5,
+        5,
+        4,
+        5,
+        2
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.3772370000660885,
+          "p95_ms": 0.8136145992466479
+        },
+        "partition_candidates": {
+          "median_ms": 28.62373499920068,
+          "p95_ms": 46.15812579977499
+        },
+        "architectural_interpretation": {
+          "median_ms": 1.297782000619918,
+          "p95_ms": 2.7182796005945407
+        },
+        "candidate_evaluation": {
+          "median_ms": 3.0663520010421053,
+          "p95_ms": 5.699481000556261
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 1.9120279994240263,
+          "p95_ms": 4.5751683996058965
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 36.28458399907686,
+          "p95_ms": 58.03242399961162
+        }
+      }
+    },
+    "grid_40": {
+      "corners": 40,
+      "minimum_cells": 12,
+      "search": {
+        "candidate_count": 48,
+        "maximum_sets": 6,
+        "work": 116,
+        "complete": true,
+        "reason": null,
+        "family": "both axes in canonical reflex order, plus footprint symmetry images",
+        "symmetry_orbits": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            18
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            21
+          ],
+          [
+            22
+          ],
+          [
+            23
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ],
+          [
+            26
+          ],
+          [
+            27
+          ],
+          [
+            28
+          ],
+          [
+            29
+          ],
+          [
+            30
+          ],
+          [
+            31
+          ],
+          [
+            32
+          ],
+          [
+            33
+          ],
+          [
+            34
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ],
+          [
+            37
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ],
+          [
+            40
+          ],
+          [
+            41
+          ],
+          [
+            42
+          ],
+          [
+            43
+          ],
+          [
+            44
+          ],
+          [
+            45
+          ],
+          [
+            46
+          ],
+          [
+            47
+          ]
+        ],
+        "symmetries": [
+          {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "vertices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39
+            ]
+          }
+        ]
+      },
+      "status": "ambiguous",
+      "retained": [
+        0,
+        5,
+        6,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        24,
+        29,
+        30,
+        32,
+        35,
+        36,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "parts": [
+        11,
+        11,
+        11,
+        11,
+        11,
+        9,
+        11,
+        10,
+        11,
+        11,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        11,
+        11,
+        11,
+        9,
+        11,
+        10,
+        11,
+        11
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 1.3785499995719874,
+          "p95_ms": 2.561554000567411
+        },
+        "partition_candidates": {
+          "median_ms": 212.15597999980673,
+          "p95_ms": 269.8949484005425
+        },
+        "architectural_interpretation": {
+          "median_ms": 8.164230001057149,
+          "p95_ms": 13.54868759954115
+        },
+        "candidate_evaluation": {
+          "median_ms": 38.14689399951021,
+          "p95_ms": 60.46059520012929
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 17.765144000804867,
+          "p95_ms": 28.75679019998642
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 277.707000999726,
+          "p95_ms": 349.8289846007537
+        }
+      }
+    }
+  }
+}
