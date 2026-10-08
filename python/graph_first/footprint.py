@@ -52,6 +52,16 @@ def inside(p, ring):
 
 
 def _intersects(a, b, c, d):
+    # on_segment allows EPS along and normal to a segment. An endpoint can
+    # therefore exceed its axis-aligned box by at most 2*EPS. Proper crossings
+    # need overlapping unexpanded boxes. This conservative exclusion preserves
+    # the exact narrow-phase predicate, including its numerical allowance.
+    if any(
+        max(a[k], b[k]) + 2 * EPS < min(c[k], d[k])
+        or max(c[k], d[k]) + 2 * EPS < min(a[k], b[k])
+        for k in (0, 1)
+    ):
+        return False
     if any(
         on_segment(p, u, v) for p, u, v in ((a, c, d), (b, c, d), (c, a, b), (d, a, b))
     ):

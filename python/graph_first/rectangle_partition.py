@@ -51,24 +51,10 @@ def good_diagonals(fp):
             )
             if end is None or start == end:
                 continue
-            a, b = fp.vertices[start], fp.vertices[end]
-            if not inside(tuple((x + y) / 2 for x, y in zip(a, b)), fp.vertices):
-                continue
-            if any(
-                on_segment(p, a, b)
-                for i, p in enumerate(fp.vertices)
-                if i not in (start, end)
-            ):
-                continue
-            if any(
-                _intersects(a, b, c, d)
-                for i, (c, d) in enumerate(
-                    zip(fp.vertices, fp.vertices[1:] + fp.vertices[:1])
-                )
-                if i not in (start, end)
-                and (i + 1) % len(fp.vertices) not in (start, end)
-            ):
-                continue
+            # The first-hit contract already excludes all intermediate
+            # boundary contacts. Each endpoint of a parallel boundary edge
+            # has a perpendicular incident edge and is included in the scan.
+            # Rechecking every boundary segment here would duplicate visibility.
             axis = int(abs(direction[1]) > abs(direction[0]))
             result.add(Diagonal(tuple(sorted((start, end))), axis))
 

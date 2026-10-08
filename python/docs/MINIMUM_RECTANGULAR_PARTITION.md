@@ -54,6 +54,10 @@ G a maximum disjoint subset of D. For this scope n=2r+4 and the optimum is
    boundary. Keep hits at reflex vertices and deduplicate endpoint pairs. This
    ray enumeration is equivalent to checking every aligned reflex pair, not a
    greedy partition: no cut has yet been selected.
+   First-hit visibility is evaluated once, not repeated for both endpoints:
+   a parallel boundary edge's endpoint has a perpendicular incident edge and
+   cannot be skipped by the boundary scan. The independent all-pairs/open-segment
+   oracle verifies the resulting diagonal set.
 3. Split diagonals by horizontal/vertical direction. Add a conflict whenever
    their **closed segments** meet, including a shared endpoint. Same-direction
    diagonals cannot overlap or share an endpoint: at a reflex there is only one
@@ -120,6 +124,11 @@ independent small minima and independent geometric/matching oracles test it.
   nonorthogonal buildings or rasterize input. Guarantee statements apply to a
   simple orthogonal polygon whose distinct features are resolved by that
   tolerance; zero-length/touching/ambiguous degeneracies fail explicitly.
+  Intersection checks first exclude disjoint bounding boxes conservatively
+  expanded by 2*EPS: the existing narrow predicate allows at most EPS along a
+  segment and EPS normal to it, so each coordinate allowance is at most 2*EPS.
+  Proper intersections require unexpanded box overlap. This changes no accepted
+  intersection, cut or optimum and is not a partition heuristic.
 
 ## Determinism and symmetry
 
