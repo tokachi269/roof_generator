@@ -15,9 +15,9 @@ from types import SimpleNamespace
 import numpy as np
 from roof_generator.core.footprint import analyze
 from roof_generator.core.topology import rectangle_graph
-from roof_generator.core.solve import solve_rectangle, problem
+from roof_generator.core.solve import solve_analytic, problem
 from roof_generator.core.errors import UnsupportedRoofError
-from python.tests.graph_first_reference import rectangle_snapshot
+from python.roof_harness import snapshot_mesh
 from python.roof_harness import capture, differences
 from python.tests.test_roof_harness import assert_rectangle, assert_disk
 
@@ -72,7 +72,7 @@ class RectangleGraphTests(unittest.TestCase):
         for kind, (vertices, faces, labels) in expected.items():
             with self.subTest(kind=kind):
                 graph = rectangle_graph(fp, kind)
-                mesh = solve_rectangle(graph, eave_height=2 / fp.frame.scale)
+                mesh = solve_analytic(graph, eave_height=2 / fp.frame.scale)
                 self.assertEqual(
                     (len(graph.vertices), len(graph.faces)), (vertices, faces)
                 )
@@ -109,13 +109,13 @@ class RectangleGraphTests(unittest.TestCase):
         self.assertGreater(p.fixed_z[-1][1], 0)
         self.assertEqual(g.inspect(), before)
         # Harmonic seeds are disposable; the exact hip solve moves them.
-        m = solve_rectangle(g)
+        m = solve_analytic(g)
         self.assertNotEqual(
             tuple(v.seed for v in g.vertices), tuple(v[:2] for v in m.vertices)
         )
         self.assertTrue(all(not hasattr(f, "plane") for f in g.faces))
 
-    def test_rectangle_secondary_semantic_harness_unchanged(self):
+    def test_rectangle_snapshot_matches_canonical_mesh_semantics(self):
         fixtures = json.loads(
             (ROOT / "python/tests/fixtures/roof_acceptance.json").read_text()
         )
@@ -135,8 +135,8 @@ class RectangleGraphTests(unittest.TestCase):
             with self.subTest(case=c["name"]):
                 f = analyze(c["footprint"])
                 g = rectangle_graph(f, c["roof_type"])
-                m = solve_rectangle(g, c["pitch"])
-                self.assertEqual(differences(capture(c), rectangle_snapshot(f, m)), [])
+                m = solve_analytic(g, c["pitch"])
+                self.assertEqual(differences(capture(c), snapshot_mesh(f, m)), [])
 
     def test_rectangle_graph_metamorphisms_and_redundant_provenance(self):
         original = np.array([(0, 0), (12, 0), (12, 6), (0, 6)], float)
@@ -195,10 +195,10 @@ def checked(name,*args,**kwargs):
 builtins.__import__=checked
 from roof_generator.core.footprint import analyze
 from roof_generator.core.topology import rectangle_graph
-from roof_generator.core.solve import solve_rectangle
+from roof_generator.core.solve import solve_analytic
 for kind in ("gable","hip","shed","flat"):
  g=rectangle_graph(analyze(((0,0),(12,0),(12,6),(0,6))),kind)
- assert solve_rectangle(g).faces
+ assert solve_analytic(g).faces
 """
         result = subprocess.run(
             [sys.executable, "-I", "-c", script, str(ROOT)],

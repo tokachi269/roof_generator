@@ -30,7 +30,7 @@ def problem(graph, pitch=0.5, eave_height=0.0):
     ):
         raise UnsupportedRoofError("positive finite pitch and finite eave required")
     if graph.roof_type == "shed":
-        vertices = solve_rectangle(graph, pitch, eave_height).vertices
+        vertices = solve_analytic(graph, pitch, eave_height).vertices
         return GeometryProblem(
             vertices,
             tuple(f.loop for f in graph.faces),
@@ -76,7 +76,7 @@ def rectangle_vertices(graph, pitch=0.5, eave_height=0.0):
     """Exact rectangle geometry, consuming already selected connectivity."""
     if not rectangle(graph.outline) or any(f.cells != (0,) for f in graph.faces):
         raise UnsupportedRoofError(
-            "analytic solve supports one rectangle only; L awaits nonlinear solve"
+            "analytic solve supports one rectangle only; compound pitched embedding is not implemented"
         )
     if (
         not math.isfinite(pitch)
@@ -132,14 +132,10 @@ def rectangle_vertices(graph, pitch=0.5, eave_height=0.0):
     return tuple(result)
 
 
-def solve_rectangle(graph, pitch=0.5, eave_height=0.0):
-    return RoofMesh(graph, rectangle_vertices(graph, pitch, eave_height))
-
-
 def solve_analytic(graph, pitch=0.5, eave_height=0.0):
     """Fixed graph embedding: flat surface or one rectangle, no topology edits."""
     if graph.roof_type == "flat":
         if not math.isfinite(eave_height):
             raise UnsupportedRoofError("finite eave height required")
         return RoofMesh(graph, tuple((*v.seed, eave_height) for v in graph.vertices))
-    return solve_rectangle(graph, pitch, eave_height)
+    return RoofMesh(graph, rectangle_vertices(graph, pitch, eave_height))

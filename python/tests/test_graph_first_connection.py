@@ -17,14 +17,14 @@ from shapely.ops import unary_union
 from roof_generator.core.footprint import analyze
 from roof_generator.core.cells import decompose, Cell, Side, Adjacency, Decomposition
 from roof_generator.core.topology import compose
-from roof_generator.core.solve import problem, solve_rectangle
+from roof_generator.core.solve import problem, solve_analytic
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.provenance import BoundarySpan
 from python.tests.test_graph_first_cells import L
 from python.tests.test_graph_first_rectangle import graph_signature
 from python.tests.test_roof_harness import assert_disk
-from python.roof_harness import capture
+import json
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -269,8 +269,8 @@ class TerminalCompositionTests(unittest.TestCase):
             tuple(v[:2] for v in vertices),
             tuple(f.frame.world_xy(v.seed) for v in g.vertices),
         )
-        with self.assertRaisesRegex(UnsupportedRoofError, "awaits nonlinear solve"):
-            solve_rectangle(g)
+        with self.assertRaisesRegex(UnsupportedRoofError, "compound pitched embedding"):
+            solve_analytic(g)
         with self.assertRaisesRegex(UnsupportedRoofError, "nonplanar"):
             RoofMesh(g, p.initial_vertices)
         # A valid solver result is exported against exactly the same graph.
@@ -289,13 +289,15 @@ class TerminalCompositionTests(unittest.TestCase):
         self.assertIs(mesh.graph, g)
         self.assertEqual(mesh.faces, p.faces)
 
-    def test_existing_semantic_harness_secondary_topology_comparison(self):
+    def test_frozen_terminal_topology_reference_without_old_runtime(self):
         f = analyze(L)
         g = compose(decompose(f)).graph
-        old = capture(
-            {"name": "orthogonal_L", "footprint": L, "roof_type": "gable", "pitch": 0.5}
+        old = json.loads(
+            (
+                ROOT / "python/tests/fixtures/terminal_topology_reference.json"
+            ).read_text()
         )
-        legacy = abstract_signature(
+        reference = abstract_signature(
             old["vertices"],
             tuple(tuple(x["loop"]) for x in old["faces"]),
             {tuple(e["vertices"]): e["feature"] for e in old["edge_features"]},
@@ -308,7 +310,7 @@ class TerminalCompositionTests(unittest.TestCase):
             tuple(face.loop for face in g.faces),
             {e.vertices: e.kind for e in g.edges},
         )
-        self.assertEqual(new, legacy)
+        self.assertEqual(new, reference)
 
     def test_primary_proof_detects_changed_valley_semantics(self):
         f = analyze(L)

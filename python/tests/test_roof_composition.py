@@ -264,8 +264,10 @@ class MiddleCompositionTests(unittest.TestCase):
         graph = compose(d).graph
         labels = assert_reference(self, record, d, graph)
         baseline = json.loads(
-            (Path(__file__).parent / "fixtures/roof_semantic_baseline.json").read_text()
-        )["cases"]["orthogonal_T"]
+            (
+                Path(__file__).parent / "fixtures/middle_topology_reference.json"
+            ).read_text()
+        )
         perimeter = sum(
             np.linalg.norm(a - b) for a, b in zip(points, np.roll(points, -1, axis=0))
         )

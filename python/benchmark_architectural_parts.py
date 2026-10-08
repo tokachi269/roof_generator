@@ -22,7 +22,7 @@ from roof_generator.core.architecture_selection import (
     Recommendation,
 )
 from inspect_architectural_parts import fixture
-from benchmark_graph_first import stats  # existing reporting contract, unchanged
+from measurements import stats
 
 
 def measure(record, policy):

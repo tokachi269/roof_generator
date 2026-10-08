@@ -1,3 +1,0 @@
-# Install with Blender's bundled CPython; do not vendor binary wheels in source.
-# Shapely: BSD-3-Clause; bundled dynamically linked GEOS: LGPL-2.1.
-shapely==2.1.2

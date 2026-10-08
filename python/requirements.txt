@@ -1,4 +1,4 @@
-# Host Python: roof geometry and acceptance validation.
-# Blender installation uses requirements-roof.txt (NumPy is bundled).
+# Development-only independent numerical and polygon oracles.
+# Production core and Blender addon use the standard library and Blender API.
 numpy
--r requirements-roof.txt
+shapely==2.1.2
