@@ -10,6 +10,8 @@ from python.graph_first.rectangle_partition import (
     select_diagonals,
     maximum_matching,
     independent_set,
+    partition,
+    corners,
 )
 
 CROSS = [
@@ -138,6 +140,52 @@ class MatchingTests(unittest.TestCase):
             self.assertEqual(len({a for a, b in matching}), len(matching))
             self.assertEqual(len({b for a, b in matching}), len(matching))
             self.assertTrue(all(e in edges for e in matching))
+
+
+class SubdivisionTests(unittest.TestCase):
+    def test_literal_minimum_counts_and_independent_geometry(self):
+        from shapely.ops import unary_union
+
+        cases = [
+            ([(0, 0), (12, 0), (12, 6), (0, 6)], 1),
+            ([(0, 0), (14.2, 0), (14.2, 5.6), (5.2, 5.6), (5.2, 12.8), (0, 12.8)], 2),
+            (T, 2),
+            (U, 3),
+            (CROSS, 3),
+        ]
+        for points, minimum in cases:
+            with self.subTest(points=points):
+                fp = analyze(points)
+                result = partition(fp)
+                self.assertEqual(len(result.faces), minimum)
+                polygons = [
+                    Polygon([result.vertices[i] for i in f]) for f in result.faces
+                ]
+                self.assertTrue(all(p.is_valid and p.area > 0 for p in polygons))
+                self.assertLess(
+                    unary_union(polygons)
+                    .symmetric_difference(Polygon(fp.vertices))
+                    .area,
+                    1e-10,
+                )
+                self.assertLess(
+                    abs(sum(p.area for p in polygons) - Polygon(fp.vertices).area),
+                    1e-10,
+                )
+                self.assertTrue(
+                    all(len(corners(f, result.vertices)) == 4 for f in result.faces)
+                )
+                incident = {e.vertices: [] for e in result.edges}
+                for index, f in enumerate(result.faces):
+                    for a, b in zip(f, f[1:] + f[:1]):
+                        incident[tuple(sorted((a, b)))].append(index)
+                self.assertTrue(
+                    all(
+                        len(incident[e.vertices])
+                        == (1 if e.boundary is not None else 2)
+                        for e in result.edges
+                    )
+                )
 
 
 if __name__ == "__main__":

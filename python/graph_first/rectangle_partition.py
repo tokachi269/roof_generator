@@ -4,7 +4,17 @@
 from dataclasses import dataclass
 from collections import deque
 import math
-from .footprint import EPS, inside, on_segment, ray_hit, _intersects
+from .footprint import (
+    EPS,
+    inside,
+    on_segment,
+    ray_hit,
+    _intersects,
+    sub,
+    cross,
+    area,
+    rectangle,
+)
 from .graph import UnsupportedGraphError
 
 
@@ -183,3 +193,222 @@ def select_diagonals(fp, diagonals):
     matching = maximum_matching(left, right, conflicts)
     selected = independent_set(left, right, conflicts, matching)
     return Selection(diagonals, conflicts, matching, selected)
+
+
+@dataclass(frozen=True)
+class Cut:
+    source: int
+    start: tuple[float, float]
+    end: tuple[float, float]
+
+
+@dataclass(frozen=True)
+class AtomicEdge:
+    vertices: tuple[int, int]
+    boundary: int | None
+
+
+@dataclass(frozen=True)
+class Subdivision:
+    vertices: tuple[tuple[float, float], ...]
+    faces: tuple[tuple[int, ...], ...]
+    edges: tuple[AtomicEdge, ...]
+    reflex: tuple[int, ...]
+    selection: Selection
+    completions: tuple[Cut, ...]
+
+    @property
+    def minimum_cells(self):
+        return len(self.reflex) - len(self.selection.selected) + 1
+
+
+def complete_cuts(fp, selection):
+    """Classical bad-vertex completion: first side of the current region."""
+    segments = [
+        tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
+        for i in selection.selected
+    ]
+    covered = {v for i in selection.selected for v in selection.diagonals[i].endpoints}
+    completions = []
+    for start in sorted(
+        set(fp.reflex) - covered,
+        key=lambda i: tuple(round(v, 10) for v in fp.vertices[i]),
+    ):
+        p = fp.vertices[start]
+        if any(on_segment(p, a, b) for a, b in segments):
+            raise UnsupportedGraphError(
+                "unresolved reflex already lies on a partition cut"
+            )
+        direction = max(
+            (fp.directions[start - 1], tuple(-v for v in fp.directions[start])),
+            key=lambda d: abs(d[1]),
+        )
+        hit = ray_hit(fp.vertices, start, direction)
+        if hit is None:
+            raise UnsupportedGraphError("reflex extension has no visible boundary")
+        end, _ = hit
+        best = math.dist(p, end)
+        for a, b in segments:
+            edge, offset = sub(b, a), sub(a, p)
+            determinant = cross(direction, edge)
+            if abs(determinant) <= EPS * math.hypot(*edge):
+                if abs(cross(direction, offset)) > EPS:
+                    continue
+                choices = [
+                    (sum(v * d for v, d in zip(sub(q, p), direction)), q)
+                    for q in (a, b)
+                ]
+                choices = [(t, q) for t, q in choices if t > EPS]
+                if not choices:
+                    continue
+                t, point = min(choices)
+            else:
+                t = cross(offset, edge) / determinant
+                u = cross(offset, direction) / determinant
+                if t <= EPS or u < -EPS or u > 1 + EPS:
+                    continue
+                point = (
+                    a
+                    if abs(u) <= EPS
+                    else (
+                        b
+                        if abs(u - 1) <= EPS
+                        else tuple(p[k] + t * direction[k] for k in (0, 1))
+                    )
+                )
+            if t < best - EPS:
+                best, end = t, point
+        if best <= EPS or not inside(
+            tuple((a + b) / 2 for a, b in zip(p, end)), fp.vertices
+        ):
+            raise UnsupportedGraphError(
+                "reflex completion is not a nonzero interior segment"
+            )
+        completions.append(Cut(start, p, end))
+        segments.append((p, end))
+    return tuple(completions)
+
+
+def corners(boundary, nodes):
+    """Geometric corners only; preserve the separate noded face boundary."""
+    result = []
+    for k, v in enumerate(boundary):
+        a = sub(nodes[v], nodes[boundary[k - 1]])
+        b = sub(nodes[boundary[(k + 1) % len(boundary)]], nodes[v])
+        if (
+            abs(cross(a, b)) > EPS * math.hypot(*a)
+            or sum(x * y for x, y in zip(a, b)) < 0
+        ):
+            result.append(v)
+    return tuple(result)
+
+
+def subdivide(fp, selection, completions):
+    """Node selected cuts and enumerate their bounded planar face cycles.
+
+    Input is a fixed set of noncrossing orthogonal cuts. This is not a polygon
+    Boolean, rasterization or a search over polygon subdivisions.
+    """
+    cut_points = [
+        tuple(fp.vertices[v] for v in selection.diagonals[i].endpoints)
+        for i in selection.selected
+    ] + [(c.start, c.end) for c in completions]
+    nodes = list(fp.vertices)
+    for point in sorted(
+        (p for cut in cut_points for p in cut),
+        key=lambda p: tuple(round(v, 10) for v in p),
+    ):
+        if not any(math.dist(p, point) <= EPS for p in nodes):
+            nodes.append(point)
+    segments = [
+        (fp.vertices[i], fp.vertices[(i + 1) % len(fp.vertices)], i)
+        for i in range(len(fp.vertices))
+    ] + [(a, b, None) for a, b in cut_points]
+    edges = {}
+    for a, b, exterior in segments:
+        direction = sub(b, a)
+        ids = sorted(
+            (i for i, p in enumerate(nodes) if on_segment(p, a, b)),
+            key=lambda i: sum(v * d for v, d in zip(sub(nodes[i], a), direction)),
+        )
+        for u, v in zip(ids, ids[1:]):
+            key = tuple(sorted((u, v)))
+            if math.dist(nodes[u], nodes[v]) <= EPS or key in edges:
+                raise UnsupportedGraphError(
+                    "partition contains duplicate/zero atomic segment"
+                )
+            edges[key] = exterior
+    neighbors = {i: [] for i in range(len(nodes))}
+    for a, b in edges:
+        neighbors[a].append(b)
+        neighbors[b].append(a)
+    for i, values in neighbors.items():
+        if len(values) < 2:
+            raise UnsupportedGraphError("dangling partition cut")
+        values.sort(
+            key=lambda j: math.atan2(
+                nodes[j][1] - nodes[i][1], nodes[j][0] - nodes[i][0]
+            )
+        )
+    successor = {
+        (a, b): (b, neighbors[b][(neighbors[b].index(a) - 1) % len(neighbors[b])])
+        for a in neighbors
+        for b in neighbors[a]
+    }
+    visited = set()
+    faces = []
+    outside = 0
+    for initial in sorted(successor):
+        if initial in visited:
+            continue
+        edge = initial
+        ring = []
+        while edge not in visited:
+            visited.add(edge)
+            ring.append(edge[0])
+            edge = successor[edge]
+        if edge != initial:
+            raise UnsupportedGraphError("partition half-edge walk is not a cycle")
+        signed = area(tuple(nodes[i] for i in ring))
+        if signed < -(EPS**2):
+            outside += 1
+        elif signed > EPS**2:
+            geometric = corners(ring, nodes)
+            if not rectangle(tuple(nodes[i] for i in geometric)):
+                raise UnsupportedGraphError(
+                    "unresolved reflex/nonrectangle partition face"
+                )
+            faces.append(tuple(ring))
+        else:
+            raise UnsupportedGraphError("zero-area partition cycle")
+    expected = len(fp.reflex) - len(selection.selected) + 1
+    if (
+        outside != 1
+        or len(faces) != expected
+        or len(nodes) - len(edges) + len(faces) != 1
+    ):
+        raise UnsupportedGraphError(
+            "partition does not attain the minimum rectangle certificate"
+        )
+    if any(len(neighbors[v]) < 3 for v in fp.reflex):
+        raise UnsupportedGraphError("unresolved original reflex vertex")
+    if (
+        abs(sum(area(tuple(nodes[i] for i in f)) for f in faces) - area(fp.vertices))
+        > EPS
+    ):
+        raise UnsupportedGraphError("partition face area differs from footprint")
+    return Subdivision(
+        tuple(nodes),
+        tuple(faces),
+        tuple(AtomicEdge(key, value) for key, value in sorted(edges.items())),
+        fp.reflex,
+        selection,
+        completions,
+    )
+
+
+def partition(fp):
+    diagonals = good_diagonals(fp)
+    selection = select_diagonals(fp, diagonals)
+    completions = complete_cuts(fp, selection)
+    return subdivide(fp, selection, completions)
