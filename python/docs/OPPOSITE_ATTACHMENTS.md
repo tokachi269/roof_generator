@@ -131,13 +131,54 @@ The previous shared-layout change's full frozen audit has now completed:
 grid 3/1000, nonuniform 0/150, structured 13/103, quadrilateral 48/48 all reached
 graph, solve and mesh. The report is saved with that phase's code provenance;
 it does not claim measurements of this new applicability predicate.
-The new full frozen audit is running separately. Default proposal discovery
-continues to use the existing minimum source. The four-case operator gate
-remains unmet, even though explicit proposals now embed for 2 of 4 cases.
+The new full frozen audit has completed. The installed ZIP converted every
+successful mesh, including the new grid case:
+
+| Corpus | Previous graph/mesh | Current graph/solve/mesh | Installed Blender |
+| --- | ---: | ---: | ---: |
+| Grid | 3/1000 | 4/1000 | 4/4 attempted |
+| Nonuniform | 0/150 | 0/150 | no valid mesh to attempt |
+| Structured | 13/103 | 13/103 | 13/13 attempted |
+| Quadrilateral | 48/48 | 48/48 | 48/48 attempted |
+| Supplemental branch | 100/100 | 100/100 | 100/100 attempted |
+
+The supplemental branch selected IDs and valid-graph counts match the previous
+100 inputs. Unsupported inputs remain unattempted in Blender; those counts
+are not Blender failures. This remains poor general orthogonal coverage.
+
+`generated_0356` is the newly available default-generator scenario, now fixed
+in `opposite_grid_v1.json`. A read-only `0e65abc` snapshot rejects its only
+otherwise applicable choice as mixed neighborhood interaction. Current code
+uses one terminal and one opposite middle branch. Its 16-vertex, 6-face roof
+has the analytic junctions `(10.5,4.5,2.25)`, `(7.5,1.5,.75)` and
+`(13.5,7.5,.75)` at pitch .5. The regression verifies the declared operations,
+metric junctions, unchanged graph/mesh incidence and no entire internal valley
+at height zero. The installed footprint operator also generates and renders it.
+
+![New default-generator grid scenario](authority/opposite-audit/grid-0356.png)
+
+This is a new usable frozen-corpus scenario, rather than an added test on an
+already passing case. It is not one of the user's unrecovered original meshes.
+Default proposal discovery continues to use the existing minimum source.
+The four-case operator gate remains unmet, even though explicit proposals now
+embed for 2 of 4 screenshot approximations.
+
+The newer proposal inspection records actual source Cell intersections,
+resolved region geometry, connection records and every feature cause. The
+diagram puts all three layers in the same intrinsic frame:
+
+![Image 2 Cells, actual Regions/Parts and solved feature causes](authority/source-history/user_image_2_three_staggered_bands-0.png)
+
+The middle is not a recoloring of minimum Cells: its central member intersects
+three source Cells. Feature records refer to model members/Parts and resolved
+shared/extension decisions. A relation's presence alone is not the reason to
+retain a junction; the selected model/end state and applicability proof must
+also hold. Cell intersections are provenance, not topology instructions.
 
 ```sh
 python python/probe_opposite_attachments.py
 python -m unittest discover -s python/tests -p test_opposite_attachments.py
 python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/receiver-probe.json
 python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/opposite-region-roofs.json
+python python/region_diagrams.py --report python/out/authority/source-history-roofs.json --output-dir python/out/authority/source-history-diagrams
 ```

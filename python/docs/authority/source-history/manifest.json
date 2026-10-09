@@ -2,9 +2,9 @@
   "base_head": "57737f4",
   "scope": "Retain canonical proposal source histories and check all coordinate-bounded receiver hypotheses; no increase in roof scenarios",
   "test_result": {
-    "count": 166,
+    "count": 167,
     "passed": true,
-    "seconds": 65.679,
+    "seconds": 56.588,
     "command": "python -m unittest discover -s python/tests"
   },
   "embedded_counts": [
@@ -28,13 +28,13 @@
     2
   ],
   "four_case_gate": "unmet",
-  "frozen_audit": "opposite-eave audit running; source-history repair changes explicit proposal metadata only",
+  "frozen_audit": "completed opposite-eave audit: grid4/1000 nonuniform0/150 structured13/103 quad48/48; branch100/100",
   "files": {
     "addon/roof_generator/core/region_generation.py": "eed023cee8fc1d262c46c069ab204ce902b08b7e9c04983802343ff96ce4d9c3",
     "python/tests/test_region_generation.py": "3291c9dfdb544c3289f6e483c2b540d4cd2175e2af4862a4852bbd7a1fe0de6a",
     "python/probe_receiver_regions.py": "80162a230e33300b451f581747d771e39e5893da9734260ea89c423dbe06ac62",
-    "python/docs/OPPOSITE_ATTACHMENTS.md": "35ce2a2c9368836a0f5046de7d4461f5d3ba84c91a5c6e764df010362630c867",
-    "python/docs/authority/source-history/roofs.json": "31f47aee238a152af54a81186122c3bde34a016965c56a18fccb2d0500a0acbe",
+    "python/docs/OPPOSITE_ATTACHMENTS.md": "5e56369934cbb3414bd4a3ba06ffd16c2a551326d20fac6a4e5da6d4d813f0b6",
+    "python/docs/authority/source-history/roofs.json": "e1143d1d749a893f5a9cf29e128b5cf89cc555c1062939c5af2e64e7ae698a9e",
     "python/docs/authority/source-history/all-receivers.json": "20d27d1dc69679edd2065bcb6a5be91db415f3a7ffa05249a18c4581547e457e",
     "python/docs/authority/source-history/blender.json": "1eeca728293b941036cc25035547ee238a9ec32ff80cd36a1b120f1fd4d138cb",
     "packages/roof_generator-1.3.0.zip": "bf6b2d0edf13026182adeed831252aba92e6c2976b9b46833ffd25285251d801"

@@ -1,0 +1,38 @@
+{
+  "base_head": "bb75095",
+  "scope": "Complete frozen audit, default-generator causal regression and recorded region/feature diagrams; four screenshot operator gate remains unmet",
+  "tests": {
+    "count": 167,
+    "passed": true,
+    "seconds": 56.588
+  },
+  "before_regression_snapshot": "0e65abc",
+  "after_regression_id": "e71360e4d564055e811ce16e6b6a9ed5",
+  "before_regression": "unsupported",
+  "after_regression": "default generator, solve, mesh, installed footprint operator rendered",
+  "blender_version": "5.2.2 LTS",
+  "mesh_blender_success": {
+    "grid": 4,
+    "nonuniform": 0,
+    "structured": 13,
+    "quadrilateral": 48,
+    "branch": 100
+  },
+  "branch_selected_ids_unchanged": 100,
+  "serial_performance_family_fingerprints_equal": 6,
+  "files": {
+    "python/inspect_region_roofs.py": "44cae4aa338fd3ada080c87737895e04ff7d5c0b63c86536bbf3b69a4f9f2ced",
+    "python/region_diagrams.py": "ef368b89326974753911cfdc00b3ce18df672b371cab50350b2db55c1c0df64c",
+    "python/tests/test_opposite_attachments.py": "35c4c5bc6b99d0456acd3c30ef1b851662c016bb78d168d1ea4a97dd045499ec",
+    "python/tests/fixtures/opposite_grid_v1.json": "97fcf389faba8431962b5cc740a462e9d53166451752f085fbb714a56ed7901d",
+    "python/docs/OPPOSITE_ATTACHMENTS.md": "5e56369934cbb3414bd4a3ba06ffd16c2a551326d20fac6a4e5da6d4d813f0b6",
+    "packages/roof_generator-1.3.0.zip": "bf6b2d0edf13026182adeed831252aba92e6c2976b9b46833ffd25285251d801",
+    "python/docs/authority/opposite-audit/before-grid.txt": "6da5599207126ef0c4a92851e0bdadb9dc480e85a3e94802479971e9db366641",
+    "python/docs/authority/opposite-audit/blender.json": "0ed4a2323cdde7fe0beead1fdab4b52ee1260312f759d28579c3e21b738d5a0d",
+    "python/docs/authority/opposite-audit/coverage.json": "c39ea4ae7c5dbb88e56ef8f8d08cccbc4a976349a5133d4b123d325866dae8bc",
+    "python/docs/authority/opposite-audit/grid-0356.json": "21147b444007c07c76071c4284ca1063d89cbaff0ac7a0aefeed8da8cfe1034c",
+    "python/docs/authority/opposite-audit/grid-0356.png": "d32a095ab53c0efa1ea3c2ce495b44cced73f74ab62a413ccaf0bb7a13ce7197",
+    "python/docs/authority/opposite-audit/performance-after.json": "7a18403cc0bf91c848b7ea5860c0b80bc36e1858e98361aba9730268b5d764c6",
+    "python/docs/authority/opposite-audit/performance-before.json": "1904268e7fea6107643dd04e00776b05fabe7fa103c0a397d2ae8c10afd9dbe7"
+  }
+}

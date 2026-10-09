@@ -1,0 +1,223 @@
+{
+  "source_sha": "0e65abcd4b4f1edf6f82b51e2d282086e9d03ed9",
+  "source_dirty": true,
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "generator_version": 1,
+  "seed": 382901,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "inputs": 1000,
+      "success": {
+        "footprint": 1000,
+        "partition": 1000,
+        "architecture": 1000,
+        "RoofGraph": 4,
+        "GeometryProblem": 4,
+        "solve": 4,
+        "mesh": 4,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 996
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.inter_part_partial_end": 802,
+        "relation.internal_offset_continuation": 809,
+        "relation.inter_part_parallel": 999,
+        "relation.internal_parallel": 389,
+        "relation.internal_partial_end": 201,
+        "junction.corner_extension": 38,
+        "junction.attachment_applicability": 19,
+        "junction.branch_width": 4,
+        "junction.equal_width_ports": 2,
+        "junction.interacting_slots": 2
+      },
+      "conditional_sole_assignment_blocker": {
+        "relation.inter_part_partial_end": 58,
+        "relation.inter_part_parallel": 922,
+        "relation.internal_parallel": 16,
+        "relation.internal_offset_continuation": 38,
+        "junction.corner_extension": 25,
+        "junction.equal_width_ports": 2,
+        "relation.internal_partial_end": 2,
+        "junction.interacting_slots": 1,
+        "junction.attachment_applicability": 1,
+        "junction.branch_width": 1
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 979,
+        "topology axis-assignment budget exhausted": 17
+      },
+      "total_ms": 1022134.2995000305,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 36196,
+        "constructible_topology_candidate_count": 5,
+        "architectural_preferred_assignment_count": 4324,
+        "architectural_assignment_count": 320321
+      }
+    },
+    "nonuniform_orthogonal": {
+      "inputs": 150,
+      "success": {
+        "footprint": 150,
+        "partition": 150,
+        "architecture": 150,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 150
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.inter_part_partial_end": 110,
+        "relation.internal_offset_continuation": 120,
+        "relation.inter_part_parallel": 150,
+        "relation.internal_parallel": 47,
+        "relation.internal_partial_end": 26,
+        "junction.corner_extension": 1,
+        "junction.attachment_applicability": 1
+      },
+      "conditional_sole_assignment_blocker": {
+        "relation.inter_part_parallel": 129,
+        "relation.internal_offset_continuation": 2
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 150
+      },
+      "total_ms": 83586.40789997298,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 5318,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 395,
+        "architectural_assignment_count": 5324
+      }
+    },
+    "structured_orthogonal": {
+      "inputs": 103,
+      "success": {
+        "footprint": 103,
+        "partition": 103,
+        "architecture": 103,
+        "RoofGraph": 13,
+        "GeometryProblem": 13,
+        "solve": 13,
+        "mesh": 13,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 90
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.inter_part_parallel": 88,
+        "junction.corner_extension": 19,
+        "junction.branch_width": 9,
+        "junction.attachment_applicability": 15,
+        "relation.inter_part_partial_end": 34,
+        "relation.internal_offset_continuation": 41,
+        "junction.interacting_slots": 4,
+        "relation.internal_parallel": 27,
+        "relation.internal_partial_end": 11
+      },
+      "conditional_sole_assignment_blocker": {
+        "relation.inter_part_parallel": 82,
+        "junction.branch_width": 7,
+        "junction.interacting_slots": 4,
+        "relation.internal_offset_continuation": 1
+      },
+      "failure_reasons": {
+        "all architectural assignments lack a valid implemented roof topology": 90
+      },
+      "total_ms": 14390.487200696953,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 1284,
+        "constructible_topology_candidate_count": 25,
+        "architectural_preferred_assignment_count": 344,
+        "architectural_assignment_count": 1407
+      }
+    },
+    "convex_quadrilateral": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 48,
+        "architecture": 48,
+        "RoofGraph": 48,
+        "GeometryProblem": 48,
+        "solve": 48,
+        "mesh": 48,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 693.7982001109049,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 48,
+        "constructible_topology_candidate_count": 96,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "structured_oblique": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 43
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 43
+      },
+      "total_ms": 6.794700166210532,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "general_simple_polygon_probe": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 40
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 40
+      },
+      "total_ms": 9.818900027312338,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    }
+  }
+}

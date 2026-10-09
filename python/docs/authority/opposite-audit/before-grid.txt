@@ -1,0 +1,1 @@
+BEFORE_UNSUPPORTED no selectable roof topology: all architectural assignments lack a valid implemented roof topology; L/T extension requires one isolated narrower or equal-width branch; mixed junction neighborhoods interact; no resolved roof-end combination for inter_part_parallel

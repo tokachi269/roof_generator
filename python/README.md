@@ -24,6 +24,7 @@ python -m unittest discover -s python/tests -p test_region_generation.py
 python -m unittest discover -s python/tests -p test_opposite_attachments.py
 python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/receiver-probe.json
 python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --receiver-family all --output python/out/authority/all-receivers.json
+python python/region_diagrams.py --report python/out/authority/source-history-roofs.json --output-dir python/out/authority/source-history-diagrams
 ```
 
 The current run used the existing development Shapely/Matplotlib and installed

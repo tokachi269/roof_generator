@@ -1,0 +1,667 @@
+{
+  "source_sha": "bb75095a4f0622385e0a7dfb1db653ff64947c72",
+  "source_dirty": true,
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "profiled": false,
+  "persistent_cache": true,
+  "seed_samples": [
+    0,
+    1,
+    7,
+    42
+  ],
+  "cases": {
+    "orthogonal_U": {
+      "vertices": 8,
+      "candidates": 4,
+      "work": 10,
+      "retained_interpretations": 4,
+      "valid_topologies": 1,
+      "rejected_assignments": 11,
+      "fingerprint": "c39227c6b8e55efe24a30726a5abbd6138809a85d2e004706ca51a6dfe168ee7",
+      "seed_choices": [
+        "2c5b6cdf530f9227affa66d24bfb7367",
+        "2c5b6cdf530f9227affa66d24bfb7367",
+        "2c5b6cdf530f9227affa66d24bfb7367",
+        "2c5b6cdf530f9227affa66d24bfb7367"
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.21600001491606236,
+          "p95_ms": 0.3150000353343785,
+          "samples_ms": [
+            0.21600001491606236,
+            0.17799995839595795,
+            0.3260000376030803
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 3.432000055909157,
+          "p95_ms": 5.521260038949549,
+          "samples_ms": [
+            3.155499929562211,
+            3.432000055909157,
+            5.753400037065148
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.19180006347596645,
+          "p95_ms": 0.2663200022652745,
+          "samples_ms": [
+            0.19180006347596645,
+            0.15569990500807762,
+            0.27459999546408653
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.21900003775954247,
+          "p95_ms": 0.31547993421554565,
+          "samples_ms": [
+            0.21849991753697395,
+            0.21900003775954247,
+            0.3261999227106571
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 0.5893000634387136,
+          "p95_ms": 0.6504100048914552,
+          "samples_ms": [
+            0.4268999909982085,
+            0.6571999983862042,
+            0.5893000634387136
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 4.641899955458939,
+          "p95_ms": 7.006740046199411,
+          "samples_ms": [
+            4.208699916489422,
+            4.641899955458939,
+            7.269500056281686
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 13.926399988122284,
+          "p95_ms": 15.054640092421323,
+          "samples_ms": [
+            12.980700004845858,
+            13.926399988122284,
+            15.180000104010105
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.04770001396536827,
+          "p95_ms": 0.11673001572489738,
+          "samples_ms": [
+            0.04299997817724943,
+            0.04770001396536827,
+            0.12440001592040062
+          ]
+        },
+        "total": {
+          "median_ms": 18.62700004130602,
+          "p95_ms": 22.190099931322038,
+          "samples_ms": [
+            17.243199981749058,
+            18.62700004130602,
+            22.585999919101596
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 0.5871000466868281,
+        "partition_candidates": 6.396500044502318,
+        "architectural_interpretation": 0.33920002169907093,
+        "candidate_evaluation": 0.4531999584287405,
+        "selected_part_graph_construction": 0.8594000246375799,
+        "footprint_to_part_interpretation": 8.635400095954537,
+        "roof_topology_candidates": 22.84029999282211,
+        "seed_selection": 0.04640000406652689,
+        "total": 31.556300004012883
+      }
+    },
+    "cross": {
+      "vertices": 12,
+      "candidates": 2,
+      "work": 22,
+      "retained_interpretations": 2,
+      "valid_topologies": 2,
+      "rejected_assignments": 6,
+      "fingerprint": "00aa1c283ee4c2b0481e65f8c7cccdde5c9c1a80ba53a78d28437755ffa3c895",
+      "seed_choices": [
+        "d9727f6617b1b2ba522ead5cb3d6e97b",
+        "d9727f6617b1b2ba522ead5cb3d6e97b",
+        "6bf81e979e765b9edf2a8a4c30edb08d",
+        "6bf81e979e765b9edf2a8a4c30edb08d"
+      ],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.34609995782375336,
+          "p95_ms": 0.7213099859654903,
+          "samples_ms": [
+            0.27629989199340343,
+            0.34609995782375336,
+            0.76299998909235
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 2.9853000305593014,
+          "p95_ms": 5.237639998085797,
+          "samples_ms": [
+            2.9853000305593014,
+            2.6507000438869,
+            5.48789999447763
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.11829996947199106,
+          "p95_ms": 0.1854399568401277,
+          "samples_ms": [
+            0.09680003859102726,
+            0.11829996947199106,
+            0.19289995543658733
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.2109999768435955,
+          "p95_ms": 0.3180100582540035,
+          "samples_ms": [
+            0.17280003521591425,
+            0.2109999768435955,
+            0.3299000672996044
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 0.42639998719096184,
+          "p95_ms": 0.6853299681097269,
+          "samples_ms": [
+            0.42639998719096184,
+            0.33980002626776695,
+            0.7140999659895897
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 3.957599983550608,
+          "p95_ms": 7.134779973421246,
+          "samples_ms": [
+            3.957599983550608,
+            3.665899974294007,
+            7.487799972295761
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 16.317400033585727,
+          "p95_ms": 20.740539976395667,
+          "samples_ms": [
+            15.80440008547157,
+            21.231999970041215,
+            16.317400033585727
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.11769996490329504,
+          "p95_ms": 0.1613499829545617,
+          "samples_ms": [
+            0.05989999044686556,
+            0.166199984960258,
+            0.11769996490329504
+          ]
+        },
+        "total": {
+          "median_ms": 23.940299986861646,
+          "p95_ms": 24.9619800131768,
+          "samples_ms": [
+            19.833800033666193,
+            25.075500016100705,
+            23.940299986861646
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 0.34710008185356855,
+        "partition_candidates": 2.3216999834403396,
+        "architectural_interpretation": 0.14160003047436476,
+        "candidate_evaluation": 0.40149991400539875,
+        "selected_part_graph_construction": 0.3651999868452549,
+        "footprint_to_part_interpretation": 3.5770999966189265,
+        "roof_topology_candidates": 22.418800042942166,
+        "seed_selection": 0.06210000719875097,
+        "total": 26.070900028571486
+      }
+    },
+    "residential_multi_reflex": {
+      "vertices": 12,
+      "candidates": 4,
+      "work": 6,
+      "retained_interpretations": 4,
+      "valid_topologies": 0,
+      "rejected_assignments": 7,
+      "fingerprint": "161f030ff13790e0bf3f7980a9cd73002dafba58a1e44aeaaca6b832b202a74a",
+      "seed_choices": [],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.6741000106558204,
+          "p95_ms": 0.8163900463841856,
+          "samples_ms": [
+            0.8322000503540039,
+            0.6548999808728695,
+            0.6741000106558204
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 9.070700034499168,
+          "p95_ms": 9.58900999976322,
+          "samples_ms": [
+            7.761199958622456,
+            9.070700034499168,
+            9.64659999590367
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.46140002086758614,
+          "p95_ms": 0.5893800524063408,
+          "samples_ms": [
+            0.2367999404668808,
+            0.46140002086758614,
+            0.6036000559106469
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 0.7647000020369887,
+          "p95_ms": 0.7883699727244675,
+          "samples_ms": [
+            0.327700050547719,
+            0.7647000020369887,
+            0.7909999694675207
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 1.5460000140592456,
+          "p95_ms": 1.5827199793420732,
+          "samples_ms": [
+            0.8256000000983477,
+            1.5867999754846096,
+            1.5460000140592456
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 12.538500013761222,
+          "p95_ms": 13.189020042773336,
+          "samples_ms": [
+            9.983500000089407,
+            12.538500013761222,
+            13.261300045996904
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 9.420500020496547,
+          "p95_ms": 10.417789965867996,
+          "samples_ms": [
+            7.179899956099689,
+            9.420500020496547,
+            10.528599959798157
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.000400003045797348,
+          "p95_ms": 0.0004900037311017513,
+          "samples_ms": [
+            0.000400003045797348,
+            0.000500003807246685,
+            0.000400003045797348
+          ]
+        },
+        "total": {
+          "median_ms": 21.977100055664778,
+          "p95_ms": 23.62491003004834,
+          "samples_ms": [
+            17.181799979880452,
+            21.977100055664778,
+            23.80800002720207
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 0.7233999203890562,
+        "partition_candidates": 4.481000010855496,
+        "architectural_interpretation": 0.29960006941109896,
+        "candidate_evaluation": 0.43919996824115515,
+        "selected_part_graph_construction": 0.8085999870672822,
+        "footprint_to_part_interpretation": 6.751799955964088,
+        "roof_topology_candidates": 18.882300006225705,
+        "seed_selection": 0.000400003045797348,
+        "total": 25.652799988165498
+      }
+    },
+    "grid_14": {
+      "vertices": 14,
+      "candidates": 12,
+      "work": 20,
+      "retained_interpretations": 12,
+      "valid_topologies": 0,
+      "rejected_assignments": 42,
+      "fingerprint": "4eb51ec1e73756a8995732b5dd87d8a6fe23eacb4f4ccd327556193699ba3013",
+      "seed_choices": [],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.34829997457563877,
+          "p95_ms": 0.552330061327666,
+          "samples_ms": [
+            0.34829997457563877,
+            0.5750000709667802,
+            0.3328000893816352
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 20.507699926383793,
+          "p95_ms": 23.999789904337376,
+          "samples_ms": [
+            17.403800040483475,
+            20.507699926383793,
+            24.387799901887774
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 0.9821000276133418,
+          "p95_ms": 1.9256600877270103,
+          "samples_ms": [
+            0.9009999921545386,
+            0.9821000276133418,
+            2.0305000944063067
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 2.0191000076010823,
+          "p95_ms": 2.3355400073342025,
+          "samples_ms": [
+            1.7442000098526478,
+            2.370700007304549,
+            2.0191000076010823
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 3.7221000529825687,
+          "p95_ms": 3.8442300399765372,
+          "samples_ms": [
+            3.8578000385314226,
+            3.7221000529825687,
+            3.584299935027957
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 28.157600085251033,
+          "p95_ms": 31.934810033999383,
+          "samples_ms": [
+            24.255100055597723,
+            28.157600085251033,
+            32.354500028304756
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 28.2331999624148,
+          "p95_ms": 29.381960013415664,
+          "samples_ms": [
+            27.543500065803528,
+            29.509600019082427,
+            28.2331999624148
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.000300002284348011,
+          "p95_ms": 0.000300002284348011,
+          "samples_ms": [
+            0.000300002284348011,
+            0.000300002284348011,
+            0.000300002284348011
+          ]
+        },
+        "total": {
+          "median_ms": 57.68049997277558,
+          "p95_ms": 60.3077799663879,
+          "samples_ms": [
+            51.81159998755902,
+            57.68049997277558,
+            60.599699965678155
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 0.891599920578301,
+        "partition_candidates": 24.640100076794624,
+        "architectural_interpretation": 2.291899989359081,
+        "candidate_evaluation": 3.969399956986308,
+        "selected_part_graph_construction": 6.5599000081419945,
+        "footprint_to_part_interpretation": 38.35289995186031,
+        "roof_topology_candidates": 73.78799992147833,
+        "seed_selection": 0.000300002284348011,
+        "total": 112.1655999450013
+      }
+    },
+    "grid_20": {
+      "vertices": 20,
+      "candidates": 16,
+      "work": 19,
+      "retained_interpretations": 16,
+      "valid_topologies": 0,
+      "rejected_assignments": 81,
+      "fingerprint": "b335cc4d10740b481368ec8400c3a8ba85fd353da4a5531a98d8dbc7cfbfe8ea",
+      "seed_choices": [],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 0.5299999611452222,
+          "p95_ms": 0.8369899936951697,
+          "samples_ms": [
+            0.8710999973118305,
+            0.5274999421089888,
+            0.5299999611452222
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 25.514199980534613,
+          "p95_ms": 28.027810051571578,
+          "samples_ms": [
+            24.921500007621944,
+            25.514199980534613,
+            28.307100059464574
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 1.7851999728009105,
+          "p95_ms": 1.863680046517402,
+          "samples_ms": [
+            1.730599906295538,
+            1.8724000547081232,
+            1.7851999728009105
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 3.2598000252619386,
+          "p95_ms": 3.2628599437884986,
+          "samples_ms": [
+            3.2598000252619386,
+            3.263199934735894,
+            3.1780999852344394
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 5.91910001821816,
+          "p95_ms": 6.356769998092204,
+          "samples_ms": [
+            6.405399995855987,
+            5.91910001821816,
+            5.7134999660775065
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 37.18839993234724,
+          "p95_ms": 39.28134994348511,
+          "samples_ms": [
+            37.18839993234724,
+            37.09639993030578,
+            39.51389994472265
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 83.4508000407368,
+          "p95_ms": 83.6260300129652,
+          "samples_ms": [
+            73.0113999452442,
+            83.4508000407368,
+            83.64550000987947
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.000300002284348011,
+          "p95_ms": 0.0004800036549568176,
+          "samples_ms": [
+            0.000300002284348011,
+            0.000200001522898674,
+            0.000500003807246685
+          ]
+        },
+        "total": {
+          "median_ms": 120.55939994752407,
+          "p95_ms": 122.91209005052224,
+          "samples_ms": [
+            110.21429998800159,
+            120.55939994752407,
+            123.17350006196648
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 0.5574000533670187,
+        "partition_candidates": 31.259199953638017,
+        "architectural_interpretation": 1.9453000277280807,
+        "candidate_evaluation": 3.2363999634981155,
+        "selected_part_graph_construction": 6.548700039274991,
+        "footprint_to_part_interpretation": 43.54700003750622,
+        "roof_topology_candidates": 119.63630001991987,
+        "seed_selection": 0.000300002284348011,
+        "total": 163.2073000073433
+      }
+    },
+    "grid_40": {
+      "vertices": 40,
+      "candidates": 48,
+      "work": 116,
+      "retained_interpretations": 48,
+      "valid_topologies": 0,
+      "rejected_assignments": 1224,
+      "fingerprint": "c2c88afd281643330e69dabf6080776ef559edce2b3f37d51e5f3e3b8091fc5d",
+      "seed_choices": [],
+      "stages": {
+        "footprint_analysis": {
+          "median_ms": 1.6157999634742737,
+          "p95_ms": 2.272619935683906,
+          "samples_ms": [
+            1.6095000319182873,
+            1.6157999634742737,
+            2.3455999325960875
+          ]
+        },
+        "partition_candidates": {
+          "median_ms": 154.86920007970184,
+          "p95_ms": 157.94297001557425,
+          "samples_ms": [
+            158.28450000844896,
+            154.86920007970184,
+            152.5776000926271
+          ]
+        },
+        "architectural_interpretation": {
+          "median_ms": 9.285599924623966,
+          "p95_ms": 9.647219954058528,
+          "samples_ms": [
+            9.257999947294593,
+            9.285599924623966,
+            9.687399957329035
+          ]
+        },
+        "candidate_evaluation": {
+          "median_ms": 25.47640004195273,
+          "p95_ms": 25.90335994027555,
+          "samples_ms": [
+            25.47640004195273,
+            25.069599971175194,
+            25.950799928978086
+          ]
+        },
+        "selected_part_graph_construction": {
+          "median_ms": 33.04729994852096,
+          "p95_ms": 37.72334003588185,
+          "samples_ms": [
+            33.04729994852096,
+            38.24290004558861,
+            31.76290006376803
+          ]
+        },
+        "footprint_to_part_interpretation": {
+          "median_ms": 227.67569997813553,
+          "p95_ms": 228.94235998392105,
+          "samples_ms": [
+            227.67569997813553,
+            229.0830999845639,
+            222.32429997529835
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 1909.3110000248998,
+          "p95_ms": 2070.3568200347945,
+          "samples_ms": [
+            1892.2057000454515,
+            1909.3110000248998,
+            2088.250800035894
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.000300002284348011,
+          "p95_ms": 0.000300002284348011,
+          "samples_ms": [
+            0.000300002284348011,
+            0.000300002284348011,
+            0.000300002284348011
+          ]
+        },
+        "total": {
+          "median_ms": 2138.434800086543,
+          "p95_ms": 2293.3900500298478,
+          "samples_ms": [
+            2119.9025999521837,
+            2138.434800086543,
+            2310.6073000235483
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint_analysis": 2.354399999603629,
+        "partition_candidates": 158.07370003312826,
+        "architectural_interpretation": 8.619399974122643,
+        "candidate_evaluation": 27.576499967835844,
+        "selected_part_graph_construction": 31.610999954864383,
+        "footprint_to_part_interpretation": 228.23499992955476,
+        "roof_topology_candidates": 2201.288599986583,
+        "seed_selection": 0.000300002284348011,
+        "total": 2429.5458000851795
+      }
+    }
+  },
+  "member_layout_cache_after_cases": {
+    "hits": 5450,
+    "misses": 86,
+    "maxsize": 64,
+    "currsize": 64
+  },
+  "mixed_buildings": {
+    "count": 24,
+    "total_ms": 11928.91120002605,
+    "geometry_problem_supported": 8,
+    "unsupported": 16,
+    "final_mesh_generated": false
+  },
+  "rectangle_mesh_buildings": {
+    "count": 24,
+    "total_ms": 50.09589996188879
+  }
+}

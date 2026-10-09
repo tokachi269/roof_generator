@@ -15,6 +15,7 @@ from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.junctions import plan
 from roof_generator.core.topology import member_templates
 from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.core.generation import generate_roof
 
 
 def arrangement(low=3,high=6,bottom_width=3):
@@ -34,6 +35,22 @@ def arrangement(low=3,high=6,bottom_width=3):
 
 
 class OppositeSlopeProof(unittest.TestCase):
+    def test_previously_unsupported_frozen_grid_case_uses_default_generator(self):
+        import json
+        fixture=Path(__file__).parent/'fixtures/opposite_grid_v1.json'
+        raw=json.loads(fixture.read_text(encoding='utf-8'))['inputs'][0]['footprint']
+        roof=generate_roof(raw)
+        c=roof.generation.selected.composition
+        self.assertEqual({r.kind for r in c.connections},{'terminal','middle'})
+        self.assertEqual(len(roof.mesh.faces),6)
+        self.assertEqual(roof.mesh.graph,c.graph)
+        for point in ((10.5,4.5,2.25),(7.5,1.5,.75),(13.5,7.5,.75)):
+            self.assertLess(min(math.dist(point,roof.generation.footprint.frame.world_xyz(p))
+                                for p in roof.mesh.vertices),1e-6)
+        for edge in c.graph.edges:
+            if edge.kind=='valley':
+                self.assertGreater(max(roof.mesh.vertices[v][2] for v in edge.vertices),0)
+
     def test_literal_embedding_does_not_use_solver_to_choose_incidence(self):
         authority=arrangement()
         composition=compose(authority)
