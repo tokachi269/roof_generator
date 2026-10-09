@@ -1,0 +1,88 @@
+{
+  "scope": "Figure 4 approximate trace, raw Step 3 collections only; not exact source coordinates or a resolved priority rule",
+  "atom_to_figure_label": {
+    "0": 0,
+    "1": 2,
+    "2": 1,
+    "3": 3,
+    "4": 5,
+    "5": 7,
+    "6": 4,
+    "7": 6,
+    "8": 8,
+    "9": 9
+  },
+  "actual_raw_collections": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "expected_raw_collections": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "match": true,
+  "printed_step4_sets": [
+    [
+      0,
+      1,
+      2
+    ],
+    [],
+    [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      9
+    ]
+  ],
+  "printed_step4_missing_atom": 3,
+  "source": "https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf"
+}

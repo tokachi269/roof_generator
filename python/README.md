@@ -7,6 +7,20 @@ All tools use the distributable `roof_generator.core` under `addon/`.
 Runtime needs Python's standard library. `requirements.txt` declares development
 oracles only; Blender installs the ZIP without pip or external wheels.
 
+The optional `laycock_regions.py` diagnostic uses only footprint/partition APIs
+and external skeleton/polygon oracles; it creates no RoofGraph. It probes section
+7 steps 1-5 before any production region-model change. Install its dependencies
+into an isolated directory, then inspect the declared growth/priority variants:
+
+```bash
+python -m pip install --target python/out/laycock-deps -r python/requirements-laycock.txt
+python python/laycock_regions.py --inputs python/tests/fixtures/laycock_inputs_v1.json --output-dir python/out/laycock
+python -m unittest discover -s python/tests -p test_laycock_regions.py
+```
+
+The current run used the existing development Shapely/Matplotlib and installed
+only `py_straight_skeleton==0.1.0` with `--no-deps` into that directory.
+
 ```bash
 python -m pip install -r python/requirements.txt
 python -m unittest discover -s python/tests

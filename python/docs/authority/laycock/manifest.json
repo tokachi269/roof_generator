@@ -1,0 +1,32 @@
+{
+  "scope": "Diagnostic aggregation guide only; no production code or RoofGraph changes",
+  "production_head": "587cf101701b903039b80538bf0725395f5ed659",
+  "source_pdf_sha256": "897386a51c7ebca4be719eb33f285c412d451d71540e365981a6b67a0491017c",
+  "source_url": "https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf",
+  "dependencies": {
+    "shapely": "2.1.2",
+    "matplotlib": "3.10.3",
+    "package": "py_straight_skeleton",
+    "version": "0.1.0"
+  },
+  "files": {
+    "python/laycock_regions.py": "7a579a74cd8eed947cd32333bd2293d48b8089739acac11cf73247b547364136",
+    "python/tests/fixtures/laycock_inputs_v1.json": "92244921278090824e4186df70d34cb1c720f7913b81e36aa727194f42f66dc9",
+    "python/tests/test_laycock_regions.py": "e6ab19fabffa6377e399e36924878176ffe4ae0617988c4f44eef22244ee1261",
+    "python/requirements-laycock.txt": "a87723ebc3367f9e3a6a0ccefd628e45bf1178f6639f6d7750ca9ff617800a66",
+    "python/docs/authority/laycock/figure4-check.json": "c02ad4b85760f6d205e7a41abd0e1de9e496a002a83bf1106eb6195d9f8b0e4b",
+    "python/docs/authority/laycock/figure4_trace.png": "2700a1c2bfb24f35afc90cecd7e19f176bc8e8cae911895c2dbed4a66c0ae526",
+    "python/docs/authority/laycock/figure4_trace.svg": "e8f78a4971839fdceeab581e4dd1030d4c33eb5967267402e26c91306173aba9",
+    "python/docs/authority/laycock/report.json.gz": "611f886b3112f6d973857fc2e9198952b8cd926105824a0d9b0efbb1b74262d1",
+    "python/docs/authority/laycock/S_staggered_reference.png": "195c0df8faafdc7aaa12ec3d34abc6efb61bb6683bbc39a1444341c158a1f12e",
+    "python/docs/authority/laycock/S_staggered_reference.svg": "669ef5ed091343adc3969fb93fdc3d67499a12e922b8d69cdb7334e31c2d9e0d",
+    "python/docs/authority/laycock/user_image_1_four_staggered_bands.png": "203e0d83a3a37d514465172b902197b2b6c908fbd7d6d821d74d8117fa4f4cd7",
+    "python/docs/authority/laycock/user_image_1_four_staggered_bands.svg": "4596a8f416b8d0c2cad7f8792a0281e1b6ec4adfe71e5ff2ade4d3838a9ce648",
+    "python/docs/authority/laycock/user_image_2_three_staggered_bands.png": "7209b7c6e9a6f7cdc231b6678e693cd8e7f6d90b5e457aa372223be0d30ba9cb",
+    "python/docs/authority/laycock/user_image_2_three_staggered_bands.svg": "1a555d08d5dd82a3d89d5d1b5051e9ee6915e433ae2de8c22ec45f3ba495e89a",
+    "python/docs/authority/laycock/user_image_3_band_and_lower_corner.png": "e7995ab1802b65a977b125cc13debdad0d75056bf30e051709c228d7ec5fc67c",
+    "python/docs/authority/laycock/user_image_3_band_and_lower_corner.svg": "10ba8786b8680ffca54b8f2e81fe4931b6b68711577cdab880026a7ff4b9170c",
+    "python/docs/authority/laycock/user_image_4_two_staggered_rectangles.png": "ef6030721e1ca46cb76a05868d70fb952d094172829b67162a0458e943a29493",
+    "python/docs/authority/laycock/user_image_4_two_staggered_rectangles.svg": "6fe002e2bf910ebe40d96c6e61b3bc54c6ecfcc35226c26e113cc5006542e8fa"
+  }
+}

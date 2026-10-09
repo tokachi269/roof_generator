@@ -4,7 +4,9 @@ The [author-uploaded paper](https://www.researchgate.net/profile/A-Day-2/publica
 was read as full text and visually reviewed on PDF pages 3–4 (Figures 4–6).
 The publisher endpoint timed out and the author endpoint denied a direct
 download; a previously referenced public mirror supplied the same titled paper
-for local rendering. The paper and its figures are not redistributed here.
+for local rendering. During the subsequent authorized diagnostic, the
+[publisher PDF](https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf) also became
+accessible and was checked. The paper and its figures are not redistributed here.
 
 Section 7 builds an elementary rectangle grid, derives axis-aligned guides
 from a straight skeleton, grows collecting regions, resolves their elementary
@@ -39,3 +41,18 @@ The read receipt is in
 [the research record](authority/user-images/laycock-review.json). Current
 [factory-roof evidence](USER_FACTORY_ROOF_EVIDENCE.md) remains a historical
 reproduction, not a completed natural-roof repair.
+
+## Authorized diagnostic follow-up
+
+After `587cf10` was pushed, the user authorized section 7 Steps 1–5 solely as an
+ArchitecturalPart aggregation guide. Skeleton edges must not become final roof
+features or a RoofGraph backend. Before production changes, compare regions
+against minimum Cell unions on all four screenshot approximations and the
+specified structured/grid inputs. Data-model changes remain conditional on
+that representability investigation.
+
+The [diagnostic result](LAYCOCK_REGION_DIAGNOSTIC.md) records 13 inputs, Figure 4
+raw collection reproduction and priority-sensitive partial-Cell witnesses.
+It distinguishes the paper's stated sequence from an explicit centred-growth
+probe and ordered ownership conventions. These do not yet establish the
+production gate or repair the four screenshot roofs.

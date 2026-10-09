@@ -113,12 +113,13 @@ provenance, a valid mesh, nor rejecting those inputs proves the requested natura
 roof repair is complete.
 
 The reviewed Laycock procedure supplies collecting guides from a skeleton
-before roof-model assignment. A proposed next investigation would limit those
-guides to architectural region ownership, retaining explicit RoofGraph incidence
-and fixed-topology embedding. This is not implemented or proven to solve the
-screenshots. Its inclusion requires the user's scope decision because the
-original task forbids an unauthorized straight-skeleton conversion. No answer
-has been received. Existing proof-backed operations remain unchanged.
+before roof-model assignment. After this stage was pushed at `587cf10`, the user
+authorized Steps 1–5 as a diagnostic architectural aggregation guide, explicitly
+excluding skeleton edges as final roof topology. The resulting
+[13-input diagnostic](LAYCOCK_REGION_DIAGNOSTIC.md) demonstrates conditional
+whole-Cell and splitting configurations. Growth and ownership remain unresolved;
+production introduction and a natural-roof repair are not established. Existing
+proof-backed operations remain unchanged.
 
 The four screenshot approximations were also attempted with this installed ZIP.
 All four remain unsupported at `inter_part_parallel`, with atomic scene failure.

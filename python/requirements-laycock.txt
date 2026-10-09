@@ -1,0 +1,4 @@
+# Optional diagnostic tooling only. Never installed into the addon ZIP.
+py_straight_skeleton==0.1.0
+shapely==2.1.2
+matplotlib==3.10.3
