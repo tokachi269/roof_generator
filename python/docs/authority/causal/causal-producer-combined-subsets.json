@@ -1,0 +1,20 @@
+{
+  "scope": "Building-level, complete pinned minimum+receiver families; not all conceivable architectures or the recursive diagnostic family",
+  "corpora": {
+    "nonuniform_orthogonal": {
+      "parallel_free_reaches_composition": 3,
+      "no_parallel_free_modeled_candidate_in_both_default_families": 139,
+      "parallel_free_reaches_mesh": 1,
+      "parallel_free_reaches_junction": 2,
+      "parallel_free_reaches_ends": 3,
+      "parallel_free_reaches_relation": 2
+    },
+    "structured_orthogonal": {
+      "parallel_free_reaches_mesh": 32,
+      "parallel_free_reaches_junction": 15,
+      "parallel_free_reaches_composition": 16,
+      "no_parallel_free_modeled_candidate_in_both_default_families": 39,
+      "parallel_free_reaches_relation": 1
+    }
+  }
+}

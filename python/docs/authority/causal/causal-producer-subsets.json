@@ -1,0 +1,115 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "axis_ablation": false,
+  "diagnostic_sha256": "c527ab67558bcf212e0657af6efcdfef6dae364af30acefb7b77c631bdf790c1",
+  "only_changed_constraint": null,
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "frontier_scope": "inclusion-minimal observed first-failure sets; downstream censored, not sufficient rescue conditions",
+  "corpora": {
+    "nonuniform_orthogonal": {
+      "counts": {
+        "inputs": 150,
+        "selectable": 1,
+        "incomplete": 0,
+        "receiver_parallel_free_when_minimum_unavoidable": 6,
+        "receiver_mesh_when_minimum_unavoidable": 0
+      },
+      "max_reached_stage": {
+        "composition": 3,
+        "relation": 141,
+        "embedding": 1,
+        "junction": 2,
+        "ends": 3
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "composition": 3,
+        "parallel": 130,
+        "parallel+partial_end": 19,
+        "model": 9,
+        "offset_continuation": 2,
+        "ends": 3,
+        "partial_end": 2
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/both_partial/between_parts": 131,
+        "unequal_width/offset/one_full/between_parts": 146,
+        "unequal_width/offset/both_partial/same_part": 25,
+        "unequal_width/offset/one_full/same_part": 39
+      },
+      "producer_parallel_states": {
+        "minimum": {
+          "parallel_unavoidable_in_modeled_family": 145,
+          "parallel_free_candidate": 5
+        },
+        "receiver": {
+          "parallel_free_candidate": 7,
+          "no_modeled_candidate": 143
+        }
+      },
+      "producer_parallel_free_max_stage": {
+        "minimum": {
+          "junction": 3,
+          "relation": 2
+        },
+        "receiver": {
+          "composition": 3,
+          "mesh": 1,
+          "ends": 3
+        }
+      }
+    },
+    "structured_orthogonal": {
+      "counts": {
+        "inputs": 103,
+        "selectable": 32,
+        "incomplete": 0,
+        "receiver_parallel_free_when_minimum_unavoidable": 27,
+        "receiver_mesh_when_minimum_unavoidable": 11
+      },
+      "max_reached_stage": {
+        "embedding": 32,
+        "junction": 15,
+        "composition": 16,
+        "relation": 40
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "branch_width": 9,
+        "composition": 31,
+        "ends": 6,
+        "parallel": 63,
+        "interacting_slots": 4,
+        "attachment_applicability": 4,
+        "corner_extension": 4,
+        "offset_continuation": 1,
+        "partial_end": 1
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/one_full/between_parts": 88,
+        "unequal_width/offset/one_full/same_part": 17,
+        "unequal_width/offset/both_partial/between_parts": 29,
+        "unequal_width/offset/both_partial/same_part": 10
+      },
+      "producer_parallel_states": {
+        "minimum": {
+          "parallel_free_candidate": 37,
+          "parallel_unavoidable_in_modeled_family": 66
+        },
+        "receiver": {
+          "parallel_free_candidate": 63,
+          "no_modeled_candidate": 40
+        }
+      },
+      "producer_parallel_free_max_stage": {
+        "minimum": {
+          "mesh": 13,
+          "junction": 23,
+          "relation": 1
+        },
+        "receiver": {
+          "mesh": 32,
+          "composition": 31
+        }
+      }
+    }
+  }
+}
