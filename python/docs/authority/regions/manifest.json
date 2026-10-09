@@ -1,0 +1,20 @@
+{
+  "base_head": "b80286a",
+  "scope": "Polygon proposal contract and 2D acceptance, not a valid roof compiler",
+  "test_result": {
+    "command": "python -m unittest discover -s python/tests",
+    "tests": 158,
+    "result": "passed"
+  },
+  "initial_regression": "test_roof_regions.py failed before implementation: missing roof_regions API",
+  "input_report_sha256": "611f886b3112f6d973857fc2e9198952b8cd926105824a0d9b0efbb1b74262d1",
+  "installed_zip_sha256": "87297263c34da7e3a6c18f2372ad3e21ae7aeee633416d946533d846c8a147bc",
+  "factory_roof_gate": "unmet: no region model/end-state/graph/embedding/Blender results",
+  "files": {
+    "addon/roof_generator/core/roof_regions.py": "e20f1a733e033a667297e1996127e5b274cc01559e11bb74d4d1a00855ab1234",
+    "python/inspect_region_candidates.py": "1c3de3622286e3c57c617dca04be342487b37cacff2895295efee1d4d0f0306f",
+    "python/tests/test_roof_regions.py": "43f8ce792b868509252bd0c611603c0403c0ebec14ab1f55bb7ef9801e57eaa5",
+    "python/docs/ROOF_REGION_CONTRACT.md": "d2805f5a573753b354cb2126900187b0fa01ad00858bf7c10e95376969f9b002",
+    "python/docs/authority/regions/candidates.json": "8359497ff46247c075bb4469d499d05aa8d715cdc03b8f45880c18818d1bb166"
+  }
+}
