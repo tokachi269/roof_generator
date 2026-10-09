@@ -224,6 +224,12 @@ performance optimization has been attempted in this phase.
 
 ## Remaining gate
 
+A subsequent isolated [hybrid/end-choice comparison](HYBRID_ROOF_COMPARISON.md)
+constructs all 84 shared-cap failures using explicitly declared alternative
+gable/hip ends (172 configurations). This demonstrates compatibility for those
+intentions, not a new default end-choice policy or weighted wavefront. The
+3973235 all-cap results below remain frozen and default behavior is unchanged.
+
 The corrected grid's 255 topology failures consist of 144 antiparallel-direction
 dependency exceptions, 84 conflicting multiple-cap configurations, and 27 other
 dependency failures. Four additional inputs time out. There are no remaining

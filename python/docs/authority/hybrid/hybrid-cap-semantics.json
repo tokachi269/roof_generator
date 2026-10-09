@@ -1,0 +1,1615 @@
+{
+  "scope": "Check declared crease meanings against solved facet normals, read-only.",
+  "input_sha256": {
+    "cap-choices-flat.json": "bd5c318ccc043494abe9746395b417a8d525c29192c47b6092753bc4db12ee99",
+    "hybrid-small-bounded.json": "42f346e0b98e26a6a26b9e4e3c73382cf308a379a793993206713906633090c8",
+    "hybrid-structured-bounded.json": "11a11850b998d657578618596bad50bab8927935290239f6531810dbd3c7b9c8",
+    "hybrid-nonuniform-bounded.json": "3fc88cdbea4eda6c79a2d426407838009241c654779169d520413d8a8e4cb239",
+    "hybrid-images.json": "285a5b64ac05657a1c57e4e724c305ce54cac77e622889706437c225e7d070ed"
+  },
+  "mesh_inputs": 264,
+  "semantic_failure_inputs": 1,
+  "zero_height_valley_inputs": 0,
+  "rows": [
+    {
+      "name": "generated_0001",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0001",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0011",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0011",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0026",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0026",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0083",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0083",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0083",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0083",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0110",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0110",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0145",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0145",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0175",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0175",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0176",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0176",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0186",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0186",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0210",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0210",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0211",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0211",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0213",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0213",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0214",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0214",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0218",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0218",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0221",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0221",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0241",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0241",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0253",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0253",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0254",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0254",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0270",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0270",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0276",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0276",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0308",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0308",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0323",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0323",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0324",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0324",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0345",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0345",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0363",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0363",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0366",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0366",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0374",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0374",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0381",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0381",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0382",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0382",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0390",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0390",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0391",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0391",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0392",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0392",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0402",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0402",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0418",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0418",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0420",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0420",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0427",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0427",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0435",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0435",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0458",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0458",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0474",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0474",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0475",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0475",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0482",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0482",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0488",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0488",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0492",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0492",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0513",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0513",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0516",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0516",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0538",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0538",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0545",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0545",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0550",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0550",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0570",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0570",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0607",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0607",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0621",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0621",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0635",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0635",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0645",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0645",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0652",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0652",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0657",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0657",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0659",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0659",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0669",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0669",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0688",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0688",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0708",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0708",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0735",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0735",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0748",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0748",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0761",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0761",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0763",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0763",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0765",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0765",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0778",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0778",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0778",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0778",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0788",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0788",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0813",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0813",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0828",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0828",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0853",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0853",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0854",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0854",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0859",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0859",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0873",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0873",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0894",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0894",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0895",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0895",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0896",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0896",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0901",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0901",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0921",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0921",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0930",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0930",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0933",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0933",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0953",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0953",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0957",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0957",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0964",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0964",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0982",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0982",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0990",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0990",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0024",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0044",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0047",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0122",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0154",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0220",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0356",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0370",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0385",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0391",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0399",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0499",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0545",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0563",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0564",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0600",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0626",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0630",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0646",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0681",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0685",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0694",
+      "category": "orthogonal_grid_stress",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0024",
+      "category": "nonuniform_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0122",
+      "category": "nonuniform_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_L_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_T_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "orthogonal_U_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "cross_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "comb_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_0",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_1",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_2",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_3",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_4",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_5",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_6",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_7",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_8",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "residential_multi_reflex_9",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "unequal_width_join",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "terminating_ridge",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "valley_join",
+      "category": "structured_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0024",
+      "category": "nonuniform_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "generated_0122",
+      "category": "nonuniform_orthogonal",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "category": "user_images",
+      "semantic_disagreements": [
+        {
+          "edge": 21,
+          "declared": "gable_end",
+          "reason": "no boundary ridge end"
+        },
+        {
+          "edge": 22,
+          "declared": "gable_end",
+          "reason": "no boundary ridge end"
+        },
+        {
+          "edge": 29,
+          "declared": "gable_end",
+          "reason": "no boundary ridge end"
+        }
+      ],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "category": "user_images",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "category": "user_images",
+      "semantic_disagreements": [],
+      "zero_height_valleys": []
+    }
+  ]
+}

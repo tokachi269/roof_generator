@@ -1,0 +1,708 @@
+{
+  "scope": "Exact ordered small-input pairing; old grammar pool versus hybrid existential witness, not seed pool",
+  "retained": 6,
+  "added": 18,
+  "lost": 0,
+  "rows": [
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0022",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0024",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0025",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0030",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0035",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0041",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0043",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0044",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0047",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0052",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0076",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0102",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0107",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0122",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0134",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0145",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0147",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0148",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0154",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0157",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0170",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0180",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0182",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0190",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0203",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0204",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0208",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0220",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0221",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0235",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0264",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0273",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0280",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0296",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0307",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0312",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0323",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0326",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0343",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0354",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0356",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0361",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0370",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0385",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0386",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0391",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0398",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0399",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0400",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0403",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0452",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0454",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0462",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0466",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0471",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0477",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0498",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0499",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0522",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0537",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0545",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0553",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0558",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0563",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0564",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0582",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0600",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0602",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0606",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0626",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0630",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0641",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0643",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0646",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0666",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0679",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0680",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0681",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0685",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0687",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0694",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0706",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0022",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0024",
+      "old_grammar_selectable": true,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0025",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0030",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0035",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0041",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0043",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0044",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0047",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0052",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0076",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0102",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0107",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0122",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": true,
+      "hybrid_stage": "mesh"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0134",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0145",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0147",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0148",
+      "old_grammar_selectable": false,
+      "hybrid_embedded_witness": false,
+      "hybrid_stage": "composition"
+    }
+  ]
+}

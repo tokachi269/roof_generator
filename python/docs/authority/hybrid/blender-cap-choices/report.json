@@ -1,0 +1,58 @@
+{
+  "scope": "Inspect exported topology-prototype meshes in Blender; not addon acceptance.",
+  "blender": "5.2.2 LTS",
+  "cases": [
+    {
+      "name": "orthogonal_grid_stress_generated_0001_cap_variant_0",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0001_cap_variant_0/meshes.png",
+      "faces": 28,
+      "features": {
+        "eave": 31,
+        "valley": 18,
+        "gable_end": 18,
+        "hip": 13,
+        "ridge": 15
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0001_cap_variant_1",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0001_cap_variant_1/meshes.png",
+      "faces": 28,
+      "features": {
+        "eave": 31,
+        "valley": 18,
+        "gable_end": 18,
+        "hip": 13,
+        "ridge": 15
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0011_cap_variant_0",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0011_cap_variant_0/meshes.png",
+      "faces": 15,
+      "features": {
+        "eave": 15,
+        "valley": 7,
+        "hip": 8,
+        "gable_end": 6,
+        "ridge": 7
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0011_cap_variant_1",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0011_cap_variant_1/meshes.png",
+      "faces": 15,
+      "features": {
+        "eave": 15,
+        "valley": 7,
+        "hip": 8,
+        "gable_end": 6,
+        "ridge": 7
+      }
+    }
+  ]
+}

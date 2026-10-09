@@ -1,0 +1,73 @@
+{
+  "scope": "Completed comparison and explicit cap-end construction; no addon/backend promotion",
+  "base_revision": "3973235afef01f0defa126c21857cdb7d7686c44",
+  "unchanged_fixed_geometry_contract_against_486abd6": {
+    "graph.py": true,
+    "solve.py": true,
+    "mesh.py": true,
+    "footprint.py": true
+  },
+  "hybrid": {
+    "hybrid-small-bounded": {
+      "inputs": 100,
+      "embedded": 24,
+      "stages": {
+        "composition": 76,
+        "mesh": 24
+      },
+      "incomplete_reasons": {}
+    },
+    "hybrid-structured-bounded": {
+      "inputs": 103,
+      "embedded": 63,
+      "stages": {
+        "mesh": 63,
+        "composition": 20,
+        "search_incomplete": 20
+      },
+      "incomplete_reasons": {
+        "per-input wall budget exhausted; no impossibility claim": 10,
+        "recursive region structure budget exhausted": 10
+      }
+    },
+    "hybrid-nonuniform-bounded": {
+      "inputs": 150,
+      "embedded": 2,
+      "stages": {
+        "composition": 45,
+        "search_incomplete": 103,
+        "mesh": 2
+      },
+      "incomplete_reasons": {
+        "recursive region structure budget exhausted": 19,
+        "recursive region work budget exhausted": 46,
+        "per-input wall budget exhausted; no impossibility claim": 29,
+        "hybrid axis/composition work budget exhausted": 9
+      }
+    },
+    "hybrid-images": {
+      "inputs": 4,
+      "embedded": 3,
+      "stages": {
+        "mesh": 3,
+        "composition": 1
+      },
+      "incomplete_reasons": {}
+    }
+  },
+  "cap_choices": {
+    "requested_inputs": 84,
+    "finished_inputs": 84,
+    "inputs_with_embedded_intent": 84,
+    "candidate_stages": {
+      "mesh": 172
+    }
+  },
+  "tests": {
+    "full_passed": 201,
+    "focused_passed": 12
+  },
+  "visual_selection": "three screenshot approximations; U/Cross/comb first variants; small old success 0024 and new 0044/0047/0122; both ends of first two shared-cap failures",
+  "architectural_warning": "hybrid screenshot approximation 1 has three gable_end segments without a boundary ridge endpoint; mesh success is not roof quality",
+  "next_boundary": "region/axis proposals -> explicit exterior interval end intent -> compatible global ends -> fixed RoofGraph; weighted wavefront not implemented"
+}

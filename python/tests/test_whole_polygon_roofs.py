@@ -36,6 +36,36 @@ def rectangle_skeleton(exterior,holes,subdivide=False):
 
 
 class WholePolygonWitness(unittest.TestCase):
+    def test_explicit_opposite_caps_can_share_square_event(self):
+        fp=analyze([(0,0),(10,0),(10,10),(0,10)])
+        def square(exterior,holes):
+            points=list(exterior)+[tuple((exterior[0][k]+exterior[2][k])/2 for k in (0,1))]
+            return SimpleNamespace(nodes=[SimpleNamespace(position=SimpleNamespace(x=x,y=y)) for x,y in points],
+                                   get_faces=lambda:[[i,(i+1)%4,4,i] for i in range(4)])
+        with self.assertRaisesRegex(UnsupportedRoofError,'simultaneous terminal caps'):
+            topology(fp,square,graph,BoundaryPoint,UnsupportedRoofError)
+        roof,_=topology(fp,square,graph,BoundaryPoint,UnsupportedRoofError,selected_caps=(0,2))
+        mesh=solve(roof,problem(roof))
+        self.assertIs(mesh.graph,roof)
+        self.assertEqual(len(roof.faces),2)
+        self.assertEqual(sum(e.kind=='ridge' for e in roof.edges),1)
+        self.assertEqual(sum(e.kind=='hip' for e in roof.edges),0)
+        self.assertEqual(sum(v.boundary is None for v in roof.vertices),0)
+        with self.assertRaisesRegex(UnsupportedRoofError,'uniquely incident slope sectors'):
+            topology(fp,square,graph,BoundaryPoint,UnsupportedRoofError,selected_caps=(0,1))
+
+    def test_explicit_single_end_preserves_the_other_hip_support(self):
+        fp=analyze([(0,0),(10,0),(10,4),(0,4)])
+        source=rectangle_skeleton(exterior=[(x*fp.frame.scale,y*fp.frame.scale) for x,y in fp.vertices],holes=[])
+        caps=[face[0] for face in source.get_faces() if len(face)==4]
+        roof,decisions=topology(fp,rectangle_skeleton,graph,BoundaryPoint,UnsupportedRoofError,selected_caps=(caps[0],))
+        mesh=solve(roof,problem(roof))
+        self.assertIs(mesh.graph,roof)
+        self.assertEqual(decisions['cap_edges'],[caps[0]])
+        self.assertEqual(len(roof.faces),3)
+        self.assertTrue(any(f.support==caps[1] for f in roof.faces))
+        self.assertEqual(sum(e.kind=='hip' for e in roof.edges),2)
+
     def test_gable_adjustment_consumes_terminal_faces_before_fixed_solve(self):
         fp=analyze([(0,0),(10,0),(10,4),(0,4)])
         roof,decisions=topology(fp,rectangle_skeleton,graph,BoundaryPoint,UnsupportedRoofError)

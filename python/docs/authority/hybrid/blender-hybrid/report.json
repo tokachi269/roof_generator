@@ -1,0 +1,126 @@
+{
+  "scope": "Inspect exported topology-prototype meshes in Blender; not addon acceptance.",
+  "blender": "5.2.2 LTS",
+  "cases": [
+    {
+      "name": "user_images_user_image_1_four_staggered_bands",
+      "mesh_valid": true,
+      "image": "user_images_user_image_1_four_staggered_bands/meshes.png",
+      "faces": 8,
+      "features": {
+        "eave": 10,
+        "gable_end": 13,
+        "valley": 6,
+        "ridge": 4
+      }
+    },
+    {
+      "name": "user_images_user_image_2_three_staggered_bands",
+      "mesh_valid": true,
+      "image": "user_images_user_image_2_three_staggered_bands/meshes.png",
+      "faces": 8,
+      "features": {
+        "gable_end": 10,
+        "eave": 9,
+        "ridge": 4,
+        "valley": 6
+      }
+    },
+    {
+      "name": "user_images_user_image_4_two_staggered_rectangles",
+      "mesh_valid": true,
+      "image": "user_images_user_image_4_two_staggered_rectangles/meshes.png",
+      "faces": 6,
+      "features": {
+        "gable_end": 8,
+        "eave": 6,
+        "ridge": 3,
+        "valley": 4
+      }
+    },
+    {
+      "name": "structured_orthogonal_orthogonal_U_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_orthogonal_U_0/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 6,
+        "gable_end": 8,
+        "valley": 4,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "structured_orthogonal_cross_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_cross_0/meshes.png",
+      "faces": 6,
+      "features": {
+        "gable_end": 8,
+        "eave": 8,
+        "ridge": 3,
+        "valley": 4
+      }
+    },
+    {
+      "name": "structured_orthogonal_comb_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_comb_0/meshes.png",
+      "faces": 18,
+      "features": {
+        "eave": 18,
+        "gable_end": 20,
+        "valley": 16,
+        "ridge": 9
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0024",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0024/meshes.png",
+      "faces": 6,
+      "features": {
+        "gable_end": 8,
+        "eave": 6,
+        "ridge": 3,
+        "valley": 4
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0044",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0044/meshes.png",
+      "faces": 14,
+      "features": {
+        "gable_end": 12,
+        "eave": 11,
+        "ridge": 8,
+        "valley": 8
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0047",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0047/meshes.png",
+      "faces": 10,
+      "features": {
+        "eave": 9,
+        "gable_end": 10,
+        "valley": 6,
+        "ridge": 6
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0122",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0122/meshes.png",
+      "faces": 12,
+      "features": {
+        "eave": 10,
+        "gable_end": 12,
+        "valley": 8,
+        "ridge": 7
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ from pathlib import Path
 import sys
 
 
-def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofError):
+def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofError, *, selected_caps=None):
     if not fp.orthogonal:
         raise UnsupportedRoofError('whole-polygon probe requires orthogonal input')
     scale = fp.frame.scale
@@ -39,8 +39,14 @@ def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofErro
             if len(loop)==3 and loop[2]>=n]
     if not caps:
         raise UnsupportedRoofError('no terminal triangular face for published gable adjustment')
+    available_caps = {edge for edge,node in caps}
+    if selected_caps is not None:
+        selected_caps = frozenset(selected_caps)
+        if not selected_caps or not selected_caps <= available_caps:
+            raise UnsupportedRoofError('explicit gable selection must use available terminal caps')
+        caps = [(edge,node) for edge,node in caps if edge in selected_caps]
     counts = Counter(node for edge,node in caps)
-    if any(count != 1 for count in counts.values()):
+    if selected_caps is None and any(count != 1 for count in counts.values()):
         raise UnsupportedRoofError('simultaneous terminal caps share a skeleton node')
     cap_edges = {edge for edge,node in caps}
     locations = {i:BoundaryPoint(i,0.0) for i in range(n)}
