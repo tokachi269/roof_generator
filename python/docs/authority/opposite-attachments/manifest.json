@@ -25,7 +25,7 @@
   "files": {
     "addon/roof_generator/core/junctions.py": "f20312b765c30131013c06b754beb63be3bd6a6bcc21a4538537606b5a81debd",
     "addon/roof_generator/core/region_generation.py": "b2434e716da419c46de98d10de020cf129393f88954b181b59cde23a7f95c4c1",
-    "python/tests/test_opposite_attachments.py": "7417dcf3433ed94a89045ab967417ff224d7e9dabebff6ea90343bb84f0af540",
+    "python/tests/test_opposite_attachments.py": "37e2745bf6d37c8b46b97e0d814cdc31d25f2ed9b072b6e1c61a35e8fb8cc0fe",
     "python/tests/test_region_generation.py": "d2973de09599c892393d59a7e9a8c383bea9908c65ded214107407d5ae57b3b0",
     "python/probe_opposite_attachments.py": "03e8e9dcc7448d250b862a12f0a60fedf06115c215cc3ef19550fd70faa7f6a0",
     "python/probe_receiver_regions.py": "cf4c02cd7196ddd95efec028300e8b49bd50d042b9aa2dea9355acd0c7de0570",

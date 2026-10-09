@@ -71,7 +71,7 @@ class OppositeSlopeProof(unittest.TestCase):
 
     def test_equal_width_terminal_is_outside_strictly_lower_proof(self):
         authority=arrangement(bottom_width=5)
-        with self.assertRaises(UnsupportedRoofError):
+        with self.assertRaisesRegex(UnsupportedRoofError,'mixed junction neighborhoods interact'):
             plan(authority,member_templates(authority))
 
 
