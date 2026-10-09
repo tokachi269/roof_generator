@@ -202,10 +202,10 @@ class MemberTemplate:
 
 
 def member_templates(resolved):
-    d = resolved.decomposition
+    d = resolved.layout
     result = []
     for member, axis in zip(resolved.architecture.members, resolved.axes):
-        cell = d.cells[member.cell]
+        cell = d.supports[member.cell]
         outline = tuple(d.vertices[i] for i in cell.corners)
         base = next(i for i in range(4) if abs(outline[(i + 1) % 4][axis] - outline[i][axis]) > EPS)
         v = tuple((base + i) % 4 for i in range(4))
@@ -245,7 +245,7 @@ def compose(resolved, roof_type="gable", *, shed_edge=None):
     from .architecture import ResolvedArchitecture
     if not isinstance(resolved, ResolvedArchitecture):
         raise TypeError("composition requires resolved architectural authority")
-    decomposition = resolved.decomposition
+    decomposition = resolved.layout
     axes = resolved.axes
     fp = decomposition.footprint
     if roof_type == "flat":
@@ -260,7 +260,7 @@ def compose(resolved, roof_type="gable", *, shed_edge=None):
             (
                 RoofFace(
                     tuple(range(len(fp.vertices))),
-                    tuple(c.id for c in decomposition.cells),
+                    tuple(c.id for c in decomposition.supports),
                     tuple(range(len(fp.vertices))),
                 ),
             ),
@@ -271,7 +271,7 @@ def compose(resolved, roof_type="gable", *, shed_edge=None):
             "flat",
         )
         return Composition(graph, (), ())
-    if len(decomposition.cells) == 1:
+    if len(decomposition.supports) == 1:
         g = _rectangle_graph(
             fp.vertices,
             fp.source_edges,
@@ -315,7 +315,7 @@ def _middle(decomposition, primitives, relations):
     # at a collinear exterior Cell corner. Declare that boundary node before
     # incidence assembly; do not confuse subdivision indices with graph IDs.
     boundary_nodes = {i: i for i in range(len(fp.vertices))}
-    for cell in decomposition.cells:
+    for cell in decomposition.supports:
         for node in cell.corners:
             if node in boundary_nodes:
                 continue
@@ -355,7 +355,7 @@ def _middle(decomposition, primitives, relations):
         roles.append("ridge_end")
         return vertex
 
-    maps = {host: {i: boundary_nodes[v] for i, v in enumerate(decomposition.cells[host].corners)}}
+    maps = {host: {i: boundary_nodes[v] for i, v in enumerate(decomposition.supports[host].corners)}}
     host_caps = tuple(
         i for i, v in enumerate(primitives[host].vertices) if v.role == "ridge_end"
     )
@@ -370,7 +370,7 @@ def _middle(decomposition, primitives, relations):
             for i, v in enumerate(primitives[branch].vertices)
             if v.role == "ridge_end" and i != near
         )
-        maps[branch] = {i: boundary_nodes[v] for i, v in enumerate(decomposition.cells[branch].corners)}
+        maps[branch] = {i: boundary_nodes[v] for i, v in enumerate(decomposition.supports[branch].corners)}
         maps[branch][far] = boundary_port(branch, far)
         if relation.equal_width and shared_junction is not None:
             junction = shared_junction
@@ -389,7 +389,7 @@ def _middle(decomposition, primitives, relations):
     for side, items in side_relations.items():
         a, b = (
             decomposition.vertices[i]
-            for i in decomposition.cells[host].sides[side].vertices
+            for i in decomposition.supports[host].sides[side].vertices
         )
         direction = sub(b, a)
         items.sort(
@@ -440,7 +440,7 @@ def _middle(decomposition, primitives, relations):
             eaves = {
                 span.edge
                 for side in face.eaves
-                for span in decomposition.cells[cell].sides[side].exterior
+                for span in decomposition.supports[cell].sides[side].exterior
             }
             for cycle in cycles:
                 faces.append(RoofFace(cycle, (cell,), ()))
@@ -501,7 +501,14 @@ def _terminals(decomposition, primitives, relations):
     """
     fp = decomposition.footprint
     host = relations[0].host
-    hc = decomposition.cells[host]
+    hc = decomposition.supports[host]
+    consumed_corners = {
+        next(iter(set(r.shared).intersection(hc.sides[r.host_side].vertices)))
+        for r in relations if r.kind == "terminal"
+    }
+    if any(node >= len(fp.vertices) and node not in consumed_corners
+           for support in decomposition.supports for node in support.corners):
+        raise UnsupportedRoofError("terminal arrangement requires explicit surviving boundary nodes")
     seeds = list(fp.vertices)
     roles = ["corner"] * len(seeds)
     locations = {i: BoundaryPoint(i, 0) for i in range(len(seeds))}
@@ -592,7 +599,7 @@ def _terminals(decomposition, primitives, relations):
     cuts = {cut for _, cut, *_ in corners}
     by_branch = {r.branch: (cut, outer) for r, cut, _, outer, *_ in corners}
     for ci, primitive in enumerate(primitives):
-        cell = decomposition.cells[ci]
+        cell = decomposition.supports[ci]
         mapping = dict(enumerate(cell.corners))
         mapping.update({local: v for (owner, local), v in ports.items() if owner == ci})
         for face in primitive.faces:

@@ -1,9 +1,9 @@
 # Polygon-authoritative region candidate contract
 
-This phase implements the requested candidate boundary in
-`addon/roof_generator/core/roof_regions.py`. It does not replace production roof
-composition, assign unspecified roof models, or promote the skeleton diagnostic
-to a runtime generator. The factory-roof production gate remains unmet.
+The polygon contract now reaches the shared composer through explicit region
+models. The default footprint generator still proposes minimum partitions;
+the skeleton diagnostic is not a runtime generator. The four-case production
+gate remains unmet. See [composition evidence](ROOF_REGION_COMPOSITION.md).
 
 ## Authority and stages
 
@@ -49,12 +49,11 @@ Inspection explicitly reports `validation_stage = 2D support only` and
 `roof_topology = None`. No method selects these records by seed and no
 `valid_roof` field claims that geometry acceptance proves a roof.
 
-Still required before a valid roof candidate exists: region/member roof models,
-global end constraints, explicit relation/merge incidence, RoofGraph validation,
-embedding and Blender verification. The current `ArchitecturalPartGraph`
-continues to require Cell-derived geometry and is **not** the consumer of this
-new contract yet. Passing new polygons back through a forged minimum
-Decomposition would defeat the authority boundary and is not implemented.
+`RegionPartGraph` consumes these polygons, declares rectangular gable model
+axes, resolves global ends and reaches the same composer. Nonrectangular model
+supports remain unsupported. The minimum-source `ArchitecturalPartGraph`
+continues to validate its source-specific Cell interpretation. Neither path
+forges a minimum Decomposition for a new polygon region.
 
 ## Recommendation domain
 
@@ -77,8 +76,9 @@ the API did not exist. Previously `ArchitecturalPartGraph` demanded member
 bounds equal Cell bounds and Part boundaries equal canceled Cell boundaries.
 The new regression accepts screenshot 4's central `(1,0)`–`(6,6)` rectangle
 plus its left/right attachments. The central region's area is 30 input-unit²,
-with 15 unit² from each of the two unchanged minimum Cells. This is a newly
-expressible support configuration, not a newly usable roof-generation scenario.
+with 15 unit² from each of the two unchanged minimum Cells. This configuration
+now has one embedded shared-end roof through the explicit proposal API; it is
+not yet discovered by the default footprint generator.
 
 The four screenshot sources pass through the same core contract:
 
@@ -103,12 +103,16 @@ such contacts (-4). Therefore a larger region alone does not establish a
 better roof. Explicit transverse attachment axes remove those particular
 parallel contacts, but the attachments then lie outside the scored long-axis
 domain; their roof models and merge rules must be defined before selection.
-The central support candidate is not advertised as a factory-roof repair.
+The central candidate now passes model/end/graph/embedding validation with
+explicit transverse attachment axes. Its unknown recommendation remains
+unknown. This does not establish a general factory-roof repair.
 
 Ten focused regressions cover partial Cell provenance, source/order-independent
 geometry identity, the common producer contract, missing/overlapping/outside
 area, a narrow gap, disconnected/self-touching input and score applicability.
-No old generation path or installed ZIP has been changed by this phase.
+The shared composer now reads indexed member supports. The explicit API was
+also tested from an isolated installed ZIP; default candidate discovery is
+still minimum-based.
 
 ## Next production gate
 

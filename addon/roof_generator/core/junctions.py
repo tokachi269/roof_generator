@@ -55,7 +55,7 @@ def attachments(resolved, primitives):
     those atoms by incident sides, requiring complete contiguous coverage.
     Checks prove applicability; they never rediscover receiver/branch or kind.
     """
-    decomposition = resolved.decomposition
+    decomposition = resolved.layout
     blockers = tuple(
         GenerationIssue("relation", ("internal_" if resolved.internal(r) else "inter_part_") + r.options[0].kind, r.cells)
         for r in resolved.relations if r.options[0].kind not in {"corner", "side_attachment"}
@@ -80,11 +80,11 @@ def attachments(resolved, primitives):
         host, branch = option.receiver, option.branch
         hs = relation.sides[relation.cells.index(host)]
         bs = relation.sides[relation.cells.index(branch)]
-        hc, bc = decomposition.cells[host], decomposition.cells[branch]
+        hc, bc = decomposition.supports[host], decomposition.supports[branch]
         hside, bside = hc.sides[hs], bc.sides[bs]
         branch_port = port(primitives[branch], bs)
         if branch_port is None or any(
-            side.artificial for i, side in enumerate(bc.sides) if i != bs
+            side.interior for i, side in enumerate(bc.sides) if i != bs
         ):
             continue  # This operation consumes a leaf's complete end.
         if not any(
@@ -163,9 +163,9 @@ def attachments(resolved, primitives):
 
 def plan(resolved, primitives):
     """Recognize the whole arrangement; never apply a sequence of pairwise merges."""
-    decomposition = resolved.decomposition
+    decomposition = resolved.layout
     relations = attachments(resolved, primitives)
-    if len(decomposition.cells) == 2 and len(relations) == 1:
+    if len(decomposition.supports) == 2 and len(relations) == 1:
         relation = relations[0]
         if relation.kind == "terminal":
             return relations
@@ -176,7 +176,7 @@ def plan(resolved, primitives):
             len(hosts) == 1
             and len(branches) == len(relations)
             and not hosts.intersection(branches)
-            and hosts.union(branches) == {c.id for c in decomposition.cells}
+            and hosts.union(branches) == {c.id for c in decomposition.supports}
             and len({r.host_port for r in relations}) == len(relations)
         ):
             return relations
@@ -197,7 +197,7 @@ def plan(resolved, primitives):
         len(hosts) != 1
         or len(branches) != len(relations)
         or hosts.intersection(branches)
-        or hosts.union(branches) != {c.id for c in decomposition.cells}
+        or hosts.union(branches) != {c.id for c in decomposition.supports}
     ):
         raise UnsupportedRoofError(
             "attachment roles do not identify one host and exterior leaf branches; architectural aggregation is unresolved",
@@ -211,7 +211,7 @@ def plan(resolved, primitives):
     # Published extension is locally reusable for disjoint narrow slots only.
     # Require separation even on opposite eaves; interacting extensions and
     # combined corner templates are deliberately outside this proof.
-    host = decomposition.cells[next(iter(hosts))]
+    host = decomposition.supports[next(iter(hosts))]
     origin = decomposition.vertices[host.corners[0]]
     first = relations[0]
     a, b = (decomposition.vertices[i] for i in host.sides[first.host_side].vertices)
@@ -257,7 +257,7 @@ def _mixed_plan(d, primitives, relations):
         len(hosts) != 1
         or len(branches) != len(relations)
         or hosts & branches
-        or hosts | branches != {c.id for c in d.cells}
+        or hosts | branches != {c.id for c in d.supports}
         or len({r.host_port for r in terminals}) != len(terminals)
     ):
         raise UnsupportedRoofError(

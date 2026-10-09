@@ -2,6 +2,7 @@
 """Architectural interpretation contract. No roof faces, features or heights."""
 
 from dataclasses import dataclass, asdict
+from functools import cached_property
 from .provenance import BoundarySpan
 from .errors import UnsupportedRoofError
 from .cells import Decomposition
@@ -66,6 +67,19 @@ class ArchitecturalPartGraph:
     relations: tuple[PartRelation, ...]
     adjacency: tuple[PartAdjacency, ...]
     issues: tuple[Issue, ...]
+
+    @cached_property
+    def layout(self):
+        from .member_layout import minimum_layout
+        return minimum_layout(self.decomposition)
+
+    @property
+    def owners(self):
+        return tuple(next(p.id for p in self.parts if m.cell in p.cells) for m in self.members)
+
+    def rebuild(self, analysis, *, compound_relations=None):
+        from .architecture import build_parts
+        return build_parts(self.decomposition,analysis,compound_relations=compound_relations)
 
     def __post_init__(self):
         d = self.decomposition

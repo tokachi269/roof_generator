@@ -135,7 +135,8 @@ def fixed_port_fixture(decomposition, primitives):
 
 
 def operation_composition(d):
+    from roof_generator.core.member_layout import minimum_layout
     from roof_generator.core.topology import _middle, _terminals
     primitives = cell_primitives(d)
     relations = fixed_port_fixture(d, primitives)
-    return (_terminals if any(r.kind == "terminal" for r in relations) else _middle)(d, primitives, relations)
+    return (_terminals if any(r.kind == "terminal" for r in relations) else _middle)(minimum_layout(d), primitives, relations)

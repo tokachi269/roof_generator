@@ -1,0 +1,33 @@
+{
+  "module_under_isolated_scripts": true,
+  "cases": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "embedded_candidates": 0,
+      "complete": true,
+      "scope": "installed explicit region API; not footprint operator acceptance"
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "embedded_candidates": 0,
+      "complete": true,
+      "scope": "installed explicit region API; not footprint operator acceptance"
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "embedded_candidates": 0,
+      "complete": true,
+      "scope": "installed explicit region API; not footprint operator acceptance"
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "embedded_candidates": 1,
+      "complete": true,
+      "scope": "installed explicit region API; not footprint operator acceptance",
+      "candidate_id": "564dbce239718cb51386b0dcde42ec39",
+      "vertices": 14,
+      "faces": 6,
+      "image": "user_image_4_two_staggered_rectangles/meshes.png"
+    }
+  ]
+}

@@ -91,8 +91,11 @@ def main():
     }
     for name, record in records.items():
         rows = []
+        cold = None
         for i in range(args.samples + args.warmup):
             row, recommendation, pool, choices = measure(record)
+            if i == 0:
+                cold = row
             if i >= args.warmup:
                 rows.append(row)
         output["cases"][name] = {
@@ -105,7 +108,12 @@ def main():
             "fingerprint": fingerprint(recommendation, pool, choices),
             "seed_choices": choices,
             "stages": {k: stats([row[k] for row in rows]) for k in rows[0]},
+            "first_stages_ms": cold,
         }
+    cache = getattr(getattr(sys.modules.get("roof_generator.core.member_layout"),
+                            "minimum_layout", None), "cache_info", None)
+    output["persistent_cache"] = cache is not None
+    output["member_layout_cache_after_cases"] = cache()._asdict() if cache else None
     t = time.perf_counter()
     successful = 0
     for i in range(args.buildings):

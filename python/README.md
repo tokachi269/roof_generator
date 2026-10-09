@@ -19,6 +19,8 @@ python -m unittest discover -s python/tests -p test_laycock_regions.py
 python python/audit_region_ownership.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
 python python/inspect_region_candidates.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/region-contract.json
 python -m unittest discover -s python/tests -p test_roof_regions.py
+python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/region-roofs.json
+python -m unittest discover -s python/tests -p test_region_generation.py
 ```
 
 The current run used the existing development Shapely/Matplotlib and installed

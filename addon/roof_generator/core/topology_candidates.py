@@ -133,9 +133,9 @@ def _candidate_id(architecture, composition, axes, identity):
 
 
 
-def _validate(architecture, composition, geometry, axes):
+def validate_authority(architecture, composition, geometry, axes):
     graph = composition.graph
-    owners = {c: p.id for p in architecture.parts for c in p.cells}
+    owners = dict(enumerate(architecture.owners))
     relations = {r.cells: r for r in architecture.relations}
     for feature in composition.features:
         if feature.parts != tuple(sorted({owners[c] for c in feature.members})):
@@ -180,6 +180,9 @@ def _validate(architecture, composition, geometry, axes):
         raise UnsupportedRoofError(
             "roof graph has a crossing or zero-area initial drawing"
         )
+def _validate(architecture, composition, geometry, axes):
+    validate_authority(architecture, composition, geometry, axes)
+    graph = composition.graph
     # Raw artificial partition segments are not roof edges. All final edges
     # already have explicit roof semantics and boundary ownership in RoofGraph.
     d = architecture.decomposition

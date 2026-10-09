@@ -128,6 +128,7 @@ class MixedAttachmentProof(unittest.TestCase):
         # Some alternate partitions can have another justified interpretation;
         # inspect the explicit mixed operation, rather than assuming a shape
         # can never be roofed.
+        from roof_generator.core.member_layout import minimum_layout
         from roof_generator.core.junctions import _mixed_plan
         from python.tests.architecture_setup import fixed_port_fixture as attachments
         from roof_generator.core.topology import cell_primitives
@@ -142,5 +143,5 @@ class MixedAttachmentProof(unittest.TestCase):
                 if {r.kind for r in relations} == {"terminal", "middle"}:
                     found += 1
                     with self.assertRaises(UnsupportedRoofError):
-                        _mixed_plan(d, p, relations)
+                        _mixed_plan(minimum_layout(d), p, relations)
             self.assertGreater(found, 0)

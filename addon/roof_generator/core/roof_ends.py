@@ -96,10 +96,10 @@ def configurations(ends, rules, equalities=()):
 
 
 def end_rules(resolved):
-    d = resolved.decomposition
+    d = resolved.layout
     ends = []
     for m, axis in zip(resolved.architecture.members, resolved.axes):
-        c = d.cells[m.cell]
+        c = d.supports[m.cell]
         for index, side in enumerate(c.sides):
             a, b = (d.vertices[i] for i in side.vertices)
             if abs(a[axis] - b[axis]) <= EPS:
@@ -112,7 +112,7 @@ def end_rules(resolved):
             # Analytic end/end adjacency also includes staggered partial
             # contacts. Hu's one-line obligation is for collinear full ends;
             # do not manufacture that obligation for an unknown offset rule.
-            first, second = (tuple(d.vertices[v] for v in d.cells[c].sides[s].vertices)
+            first, second = (tuple(d.vertices[v] for v in d.supports[c].sides[s].vertices)
                              for c, s in zip(relation.cells, relation.sides))
             if any(not any(max(abs(x - y) for x, y in zip(p, q)) <= 4 * EPS
                            for q in second) for p in first):
@@ -129,7 +129,7 @@ def end_rules(resolved):
             else:
                 host = option.receiver
                 hs = relation.sides[relation.cells.index(host)]
-                hc = d.cells[host]
+                hc = d.supports[host]
                 shared = {v for atom in relation.intervals for v in atom}
                 touching = shared.intersection(hc.sides[hs].vertices)
                 if len(touching) != 1:
@@ -149,7 +149,7 @@ def end_rules(resolved):
 
 def symmetric_ends(resolved, ends, clusters):
     """Exact whole-member reflected ends; split-root matches are not guessed."""
-    d = resolved.decomposition
+    d = resolved.layout
     members = resolved.architecture.members
     pairs = set()
     for cluster in clusters:
@@ -160,10 +160,10 @@ def symmetric_ends(resolved, ends, clusters):
             if max(abs(x - y) for x, y in zip(box, members[b].bounds)) > 4 * EPS:
                 continue
             for first in (e for e in ends if e.member == a):
-                points = tuple(d.vertices[v] for v in d.cells[a].sides[first.side].vertices)
+                points = tuple(d.vertices[v] for v in d.supports[a].sides[first.side].vertices)
                 mirror = tuple(tuple(2 * mid - p[k] if k == axis else p[k] for k in (0, 1)) for p in points)
                 for second in (e for e in ends if e.member == b):
-                    targets = tuple(d.vertices[v] for v in d.cells[b].sides[second.side].vertices)
+                    targets = tuple(d.vertices[v] for v in d.supports[b].sides[second.side].vertices)
                     if all(any(max(abs(x - y) for x, y in zip(p, q)) <= 4 * EPS for q in targets) for p in mirror):
                         pairs.add(tuple(sorted((first, second))))
     return tuple(sorted(pairs))

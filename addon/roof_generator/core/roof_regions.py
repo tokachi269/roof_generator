@@ -9,7 +9,7 @@ from dataclasses import asdict, dataclass
 import math
 
 from .errors import UnsupportedRoofError
-from .footprint import EPS, Footprint, analyze, area, inside
+from .footprint import EPS, Footprint, analyze, area, inside, rectangle
 from .seed import derive, point_identity
 
 
@@ -47,6 +47,16 @@ class RegionRecommendation:
     score: int | None
     parallel_contacts: tuple[tuple[int, int], ...]
     unscored_regions: tuple[int, ...]
+
+
+def _interior(ring):
+    # Exact axis-aligned rectangles have the same open interior as their box.
+    # Keep the polygon predicate for rotated/toleranced or compound supports.
+    xs={p[0] for p in ring};ys={p[1] for p in ring}
+    if len(xs)==len(ys)==2 and rectangle(ring):
+        x0,x1=sorted(xs);y0,y1=sorted(ys)
+        return lambda p:x0<p[0]<x1 and y0<p[1]<y1
+    return lambda p:inside(p,ring)
 
 
 def parallel_recommendation(candidate, axes):
@@ -122,6 +132,9 @@ def propose_regions(fp, outlines, *, source, provenance=None):
     outlines = (fp.vertices, *rings, *cells)
     xs, ys = (sorted({p[k] for ring in outlines for p in ring}) for k in (0,1))
     overlaps = [[[] for _ in cells] for _ in rings]
+    interiors=tuple(_interior(ring) for ring in rings)
+    source_interiors=tuple(_interior(ring) for ring in cells)
+    footprint_interior=_interior(fp.vertices)
     # A boundary-aligned arrangement has constant interior ownership in each
     # open rectangle. Round-trip coordinate differences below the existing
     # footprint numerical resolution cannot have a reliable interior probe.
@@ -131,8 +144,8 @@ def propose_regions(fp, outlines, *, source, provenance=None):
             if x1-x0 <= 4*EPS or y1-y0 <= 4*EPS:
                 continue
             center = (x0+(x1-x0)/2, y0+(y1-y0)/2)
-            owners = [i for i,ring in enumerate(rings) if inside(center,ring)]
-            covered = inside(center,fp.vertices)
+            owners = [i for i,contains in enumerate(interiors) if contains(center)]
+            covered = footprint_interior(center)
             if len(owners)>1:
                 raise UnsupportedRoofError('region interiors overlap')
             if owners and not covered:
@@ -140,7 +153,7 @@ def propose_regions(fp, outlines, *, source, provenance=None):
             if covered and not owners:
                 raise UnsupportedRoofError('region proposal leaves footprint uncovered')
             if owners and cells:
-                sources = [i for i,ring in enumerate(cells) if inside(center,ring)]
+                sources = [i for i,contains in enumerate(source_interiors) if contains(center)]
                 if len(sources)!=1:
                     raise UnsupportedRoofError('source Cell provenance does not cover footprint once')
                 overlaps[owners[0]][sources[0]].append((x1-x0)*(y1-y0))

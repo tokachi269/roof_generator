@@ -53,11 +53,12 @@ class ResolvedArchitecture:
         return self.architecture.decomposition
 
     @property
+    def layout(self):
+        return self.architecture.layout
+
+    @property
     def owners(self):
-        return tuple(
-            next(p.id for p in self.architecture.parts if m.cell in p.cells)
-            for m in self.architecture.members
-        )
+        return self.architecture.owners
 
     def internal(self, relation):
         owners = self.owners
@@ -81,7 +82,7 @@ class ResolvedArchitecture:
         if expected != (ends,):
             raise UnsupportedRoofError("roof end configuration violates simultaneous end constraints")
         compound = {j.cells for j in ends.joints if j.kind == "shared"}
-        selected_graph = build_parts(self.decomposition,
+        selected_graph = self.architecture.rebuild(
             Analysis(self.architecture.members, self.relations), compound_relations=compound)
         return replace(self, architecture=selected_graph, ends=ends)
 
@@ -100,7 +101,7 @@ def resolve(architecture, axes):
         relations.append(replace(relation, options=options))
     # Selected combinations determine compound membership here, at the
     # architectural owner, before any topology template is considered.
-    selected = build_parts(architecture.decomposition, Analysis(architecture.members, tuple(relations)))
+    selected = architecture.rebuild(Analysis(architecture.members, tuple(relations)))
     return ResolvedArchitecture(selected, tuple(axes), tuple(relations))
 
 
@@ -129,20 +130,26 @@ def analyze_parts(d):
             members.append(ArchitecturalMember(c.id, b, (), directions))
         else:
             members.append(ArchitecturalMember(c.id, b, axes))
+    return Analysis(tuple(members), relation_options(d.vertices,d.cells,
+        tuple((a.cells,a.sides,a.interval) for a in d.adjacency),members))
+
+
+def relation_options(vertices, supports, adjacency, members):
+    """Geometric contact domains on declared supports, independent of source."""
     shared = defaultdict(list)
-    for a in d.adjacency:
-        shared[(a.cells, a.sides)].append(a.interval)
+    for pair, sides, interval in adjacency:
+        shared[(pair, sides)].append(interval)
     relations = []
     for (cells, sides), intervals in sorted(shared.items()):
         nodes = {v for edge in intervals for v in edge}
-        ps = [d.vertices[v] for v in nodes]
+        ps = [vertices[v] for v in nodes]
         axis = int(max(p[1] for p in ps) - min(p[1] for p in ps) > EPS)
         lo, hi = min(p[axis] for p in ps), max(p[axis] for p in ps)
         full = []
         corner = []
         for c, s in zip(cells, sides):
-            side = d.cells[c].sides[s]
-            extent = sorted(d.vertices[v][axis] for v in side.vertices)
+            side = supports[c].sides[s]
+            extent = sorted(vertices[v][axis] for v in side.vertices)
             full.append(
                 abs(lo - extent[0]) <= 4 * EPS and abs(hi - extent[1]) <= 4 * EPS
             )
@@ -172,7 +179,7 @@ def analyze_parts(d):
         relations.append(
             PartRelation(cells, sides, tuple(sorted(intervals)), tuple(options))
         )
-    return Analysis(tuple(members), tuple(relations))
+    return tuple(relations)
 
 
 def _cycles(d, cells):
