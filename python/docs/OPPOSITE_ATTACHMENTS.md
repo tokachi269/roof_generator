@@ -92,6 +92,39 @@ partial-end combinations. Therefore no default generator integration is
 claimed. Missing compound leaf models/merge incidence cannot be inferred from
 provenance or replaced by appearance scoring.
 
+The later `--receiver-family all` probe also includes contained receiver
+rectangles. Restricting proposals to maximal receivers is therefore no longer
+an untested explanation for these failures. It tests the finite coordinate
+family induced by the original footprint vertices, not arbitrary free receiver
+positions or compound support models:
+
+| Screenshot | Nonrectangular residual rejection | Accepted support proposals | Embedded roofs |
+| --- | ---: | ---: | ---: |
+| 1 | 26 | 0 | 0 |
+| 2 | 7 | 5 | 1 |
+| 3 | 14 | 3 | 0 |
+| 4 | 2 | 5 | 1 |
+
+These results identify the missing broader model family without making a new
+unproved parallel/partial-end connection. They do not prove that no natural
+roof exists for screenshots 1 and 3.
+
+Kada & McKinley was reread at sections 2.2–2.4, printed pages 49–51. Its
+junction replacement considers neighboring roof shapes **and their fitted
+parameters**, obtained from LIDAR. Section 2.4 provides a compatibility and
+selection principle, not indexed incidence for arbitrary offset footprint-only
+models. It cannot supply missing roof parameters by naming a contact relation.
+The paper's outline generalization and low-overlap-cell omission also cannot
+be imported into this project's exact footprint coverage contract.
+[Primary paper](https://www.isprs.org/proceedings/xxxviii/3-w4/pub/CMRT09_47.pdf).
+
+The region pool now retains all producer proposals/provenance while searching
+each geometric support set once. Its metadata representative is canonical by
+source/provenance order, not whichever producer ran last. Inspection exposes
+all sources; duplicates have one probability mass. Reversing source order now
+preserves selected architecture metadata as well as graph ID and mesh. This
+contract repair adds no usable roof scenario.
+
 ## Coverage status
 
 The previous shared-layout change's full frozen audit has now completed:

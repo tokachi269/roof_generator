@@ -50,6 +50,10 @@ class RegionGenerationProof(unittest.TestCase):
         second=generate_region_roof((b,a),GenerationSettings(seed=43))
         self.assertEqual(first.generation.selected.id,second.generation.selected.id)
         self.assertEqual(first.mesh,second.mesh)
+        self.assertEqual(first.generation.selected.architecture,second.generation.selected.architecture)
+        self.assertEqual(first.generation.candidates.proposals,second.generation.candidates.proposals)
+        self.assertEqual({p.source for p in first.generation.candidates.proposals},{'a','b'})
+        self.assertEqual(len(first.generation.candidates.valid),1)
 
     def test_unfinished_search_has_no_seed_winner(self):
         fp=analyze(OUTLINE)

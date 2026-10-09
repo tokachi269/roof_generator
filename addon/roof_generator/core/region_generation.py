@@ -66,11 +66,14 @@ class RegionPool:
     complete: bool
     reason: str | None = None
     architectural: tuple[RegionChoice,...] = ()
+    proposals: tuple = ()
 
     def inspect_ranking(self):
         known=tuple(c for c in self.architectural if c.recommendation.score is not None)
         best=max((c.recommendation.score for c in known),default=None)
         return {
+            'proposal_sources':tuple({'region_id':p.id,'source':p.source,
+                                     'regions':p.inspect()['regions']} for p in self.proposals),
             'architectural_assignments':len(self.architectural),
             'preferred_known_assignments':tuple(c for c in known if c.recommendation.score==best),
             'unscored_assignments':tuple(c for c in self.architectural if c.recommendation.score is None),
@@ -122,10 +125,16 @@ def region_candidates(proposals,settings=GenerationSettings()):
     fp=proposals[0].footprint
     if any(p.footprint!=fp for p in proposals):
         raise UnsupportedRoofError('region proposals refer to different footprints')
-    unique={p.id:p for p in proposals}
+    # Retain every producer's provenance, but give duplicate geometry one
+    # architectural search and one probability mass. Choose its metadata
+    # representative canonically, rather than by producer iteration order.
+    sources=tuple(sorted(set(proposals),key=lambda p:(p.id,p.source,
+                  tuple(tuple((c.cell,c.area) for c in r.provenance) for r in p.regions))))
+    unique={}
+    for proposal in sources:unique.setdefault(proposal.id,proposal)
     valid={};rejected=[];choices=[];work=0
     def pool(complete,reason=None):
-        return RegionPool(tuple(valid[k] for k in sorted(valid)),tuple(rejected),complete,reason,tuple(choices))
+        return RegionPool(tuple(valid[k] for k in sorted(valid)),tuple(rejected),complete,reason,tuple(choices),sources)
     for region_id in sorted(unique):
         proposal=unique[region_id]
         try:architecture=interpret_regions(proposal)

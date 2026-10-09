@@ -1,0 +1,2078 @@
+{
+  "scope": "Enumerate rectangular receivers with rectangular residual leaves.\n\nDiagnostic adaptation of published receiver/leaf models. All coordinate-bounded\nreceivers are enumerated in the 'all' family, or only inclusion-maximal receivers\nin the original 'maximal' probe. Area never ranks ownership. Residual connected\ncomponents are declared separate leaves by this proposal family, not repairs of\na Laycock collection owner. Nonrectangular residuals reject this family.\n",
+  "receiver_family": "all",
+  "cases": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "proposals": [],
+      "rejected_receivers": [
+        {
+          "receiver": [
+            [
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              5.0
+            ],
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              5.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              6.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              5.0
+            ],
+            [
+              7.0,
+              5.0
+            ],
+            [
+              7.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              5.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              6.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              5.0
+            ],
+            [
+              7.0,
+              5.0
+            ],
+            [
+              7.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              6.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              7.0,
+              5.0
+            ],
+            [
+              7.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              6.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              7.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              6.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              7.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              2.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              6.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              6.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              7.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              8.0,
+              4.0
+            ],
+            [
+              8.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              5.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              7.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              5.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              8.0,
+              4.0
+            ],
+            [
+              8.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              7.0,
+              5.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              8.0,
+              4.0
+            ],
+            [
+              8.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              2.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              6.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              5.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              2.0
+            ],
+            [
+              2.0,
+              2.0
+            ],
+            [
+              2.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              2.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              4.0
+            ],
+            [
+              2.0,
+              2.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              4.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              2.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              2.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              2.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              7.0,
+              2.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              2.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              7.0,
+              2.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        }
+      ],
+      "embedded_roofs": 0,
+      "rejections": [],
+      "complete": true,
+      "reason": "no receiver with rectangular residual leaves"
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "proposals": [
+        {
+          "id": "b153229478736bc6451f7b141127c247",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.1875,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.1875,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0625
+                ],
+                [
+                  -0.15625,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "d055b06604274cb4ee83fae383646730",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.1875,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  -0.1875,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.1875
+                ],
+                [
+                  0.0,
+                  -0.1875
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0625
+                ],
+                [
+                  -0.15625,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  -0.09375
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "22b87bf9c319fd3cba08956ca6f9d7d0",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.1875,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  -0.1875,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.1875
+                ],
+                [
+                  0.0,
+                  -0.1875
+                ],
+                [
+                  0.0,
+                  0.0625
+                ],
+                [
+                  -0.15625,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  -0.09375
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0625
+                ],
+                [
+                  0.0,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "32d49bcefafe95488206434e851512a7",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.1875,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  -0.1875,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0625
+                ],
+                [
+                  -0.15625,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "48fdc9c35c5e53c9cdbfcd4b4ac982af",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.1875,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  0.0
+                ],
+                [
+                  -0.1875,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.1875
+                ],
+                [
+                  0.03125,
+                  -0.09375
+                ],
+                [
+                  -0.15625,
+                  -0.09375
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.15625,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  -0.09375
+                ],
+                [
+                  0.0,
+                  0.0625
+                ],
+                [
+                  -0.15625,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0
+                ],
+                [
+                  0.03125,
+                  0.0625
+                ],
+                [
+                  0.0,
+                  0.0625
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        }
+      ],
+      "rejected_receivers": [
+        {
+          "receiver": [
+            [
+              1.0,
+              3.0
+            ],
+            [
+              2.0,
+              3.0
+            ],
+            [
+              2.0,
+              6.0
+            ],
+            [
+              1.0,
+              6.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              7.0,
+              0.0
+            ],
+            [
+              7.0,
+              3.0
+            ],
+            [
+              2.0,
+              3.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              7.0,
+              6.0
+            ],
+            [
+              7.0,
+              8.0
+            ],
+            [
+              2.0,
+              8.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              8.0,
+              0.0
+            ],
+            [
+              8.0,
+              3.0
+            ],
+            [
+              2.0,
+              3.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              8.0,
+              6.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              2.0,
+              8.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              7.0,
+              0.0
+            ],
+            [
+              8.0,
+              0.0
+            ],
+            [
+              8.0,
+              3.0
+            ],
+            [
+              7.0,
+              3.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              7.0,
+              6.0
+            ],
+            [
+              8.0,
+              6.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              7.0,
+              8.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        }
+      ],
+      "embedded_roofs": 1,
+      "rejections": [
+        "composition: L/T extension requires one isolated narrower or equal-width branch",
+        "ends: no resolved roof-end combination for inter_part_offset_continuation",
+        "ends: no resolved roof-end combination for inter_part_parallel",
+        "ends: no resolved roof-end combination for inter_part_partial_end"
+      ],
+      "complete": true,
+      "reason": null
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "proposals": [
+        {
+          "id": "cf2e1f6cd1777d15e4ec7c2be2c7ae20",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.2692307692307692,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.15384615384615385
+                ],
+                [
+                  -0.2692307692307692,
+                  0.15384615384615385
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.19230769230769232,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  0.11538461538461539
+                ],
+                [
+                  -0.19230769230769232,
+                  0.11538461538461539
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  0.0,
+                  0.11538461538461539
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "138213739de00e544f547615c3ac2707",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.2692307692307692,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.15384615384615385
+                ],
+                [
+                  -0.2692307692307692,
+                  0.15384615384615385
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.19230769230769232,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.19230769230769232,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.19230769230769232,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.11538461538461539
+                ],
+                [
+                  -0.19230769230769232,
+                  0.11538461538461539
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  0.0,
+                  0.11538461538461539
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "7be68291eeafcdd375ff436c2143e230",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.2692307692307692,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  -0.038461538461538464,
+                  0.15384615384615385
+                ],
+                [
+                  -0.2692307692307692,
+                  0.15384615384615385
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.19230769230769232,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  -0.038461538461538464
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.19230769230769232,
+                  0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.19230769230769232,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.0
+                ],
+                [
+                  0.038461538461538464,
+                  0.11538461538461539
+                ],
+                [
+                  -0.19230769230769232,
+                  0.11538461538461539
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        }
+      ],
+      "rejected_receivers": [
+        {
+          "receiver": [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              2.0,
+              4.0
+            ],
+            [
+              2.0,
+              5.0
+            ],
+            [
+              0.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              0.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              6.0,
+              0.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              2.0,
+              1.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              6.0,
+              0.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              2.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              6.0,
+              0.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              2.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              2.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              2.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              2.0,
+              5.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              7.0,
+              0.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              2.0,
+              1.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              7.0,
+              0.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              6.0,
+              1.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              7.0,
+              0.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              1.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              6.0,
+              1.0
+            ],
+            [
+              8.0,
+              1.0
+            ],
+            [
+              8.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              7.0,
+              1.0
+            ],
+            [
+              8.0,
+              1.0
+            ],
+            [
+              8.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        }
+      ],
+      "embedded_roofs": 0,
+      "rejections": [
+        "ends: no resolved roof-end combination for inter_part_offset_continuation",
+        "ends: no resolved roof-end combination for inter_part_parallel",
+        "ends: no resolved roof-end combination for inter_part_partial_end"
+      ],
+      "complete": true,
+      "reason": null
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "proposals": [
+        {
+          "id": "a97dea7fd1dad451906b53e4f86c5678",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.25,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  -0.25,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "825a847e47304a35addc2d40d2e6f9dc",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.25,
+                  -0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  -0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  -0.25,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "379283e23e6ca149a03b8bc24a0135a1",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.25,
+                  -0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  -0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  -0.25,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.10714285714285714
+                ],
+                [
+                  -0.0,
+                  0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.10714285714285714
+                ],
+                [
+                  -0.0,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "c258cea5c3346358fcf4ed03cb838264",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.25,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  -0.25,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  -0.0,
+                  0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.10714285714285714
+                ],
+                [
+                  -0.0,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        },
+        {
+          "id": "a97dea7fd1dad451906b53e4f86c5678",
+          "source": "all_receiver_probe",
+          "regions": [
+            {
+              "boundary": [
+                [
+                  -0.25,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.10714285714285714
+                ],
+                [
+                  0.0,
+                  -0.0
+                ],
+                [
+                  -0.25,
+                  -0.0
+                ]
+              ],
+              "provenance": []
+            },
+            {
+              "boundary": [
+                [
+                  -0.17857142857142858,
+                  -0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.0
+                ],
+                [
+                  0.03571428571428571,
+                  0.10714285714285714
+                ],
+                [
+                  -0.17857142857142858,
+                  0.10714285714285714
+                ]
+              ],
+              "provenance": []
+            }
+          ],
+          "validation_stage": "2D support only",
+          "roof_topology": null
+        }
+      ],
+      "rejected_receivers": [
+        {
+          "receiver": [
+            [
+              8.0,
+              6.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              6.0,
+              3.0
+            ],
+            [
+              8.0,
+              3.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        },
+        {
+          "receiver": [
+            [
+              1.0,
+              3.0
+            ],
+            [
+              0.0,
+              3.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "reason": "nonrectangular residual leaf"
+        }
+      ],
+      "embedded_roofs": 1,
+      "rejections": [
+        "composition: L/T extension requires one isolated narrower or equal-width branch",
+        "ends: no resolved roof-end combination for inter_part_offset_continuation",
+        "ends: no resolved roof-end combination for inter_part_parallel",
+        "ends: no resolved roof-end combination for inter_part_partial_end"
+      ],
+      "complete": true,
+      "reason": null
+    }
+  ]
+}
