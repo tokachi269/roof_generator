@@ -30,9 +30,9 @@
     "python/probe_opposite_attachments.py": "03e8e9dcc7448d250b862a12f0a60fedf06115c215cc3ef19550fd70faa7f6a0",
     "python/probe_receiver_regions.py": "cf4c02cd7196ddd95efec028300e8b49bd50d042b9aa2dea9355acd0c7de0570",
     "python/docs/OPPOSITE_ATTACHMENTS.md": "fce393a1a9d8045ff0bdba20ea40c344e3d77bc8a68af36a1b28a809a74f0ca9",
-    "python/docs/authority/opposite-attachments/roofs.json": "23cfa689b6182814a89ccb75964d21e7852d35a3a48927a035aef00b31b0b4e6",
-    "python/docs/authority/opposite-attachments/receivers.json": "e201aead03e459c4b901df20a2c429639dd5b6965257da1cd96bec1ed26e6802",
-    "python/docs/authority/opposite-attachments/blender.json": "db4839c48a9606049f09a0f2ef2250efe307f45a8af2eb80d87dcd69517370b5",
+    "python/docs/authority/opposite-attachments/roofs.json": "298f90884d9645d40ea7e4ea5e2e0560cf28620632bf8b510bb7832060f4b811",
+    "python/docs/authority/opposite-attachments/receivers.json": "2905249d8d3042479382328e42e095b79b6dc48d3714cee31e2119a6da71d6d0",
+    "python/docs/authority/opposite-attachments/blender.json": "1eeca728293b941036cc25035547ee238a9ec32ff80cd36a1b120f1fd4d138cb",
     "python/docs/authority/opposite-attachments/image-2.png": "ee75b3adfc45223df06cc7463f5a11d940e46f7d5206a5cf3e89f852c376379e",
     "packages/roof_generator-1.3.0.zip": "15941560bd1cf033461fee0cc6a5f28500a27e7d56d544a5ca88399a79e24355"
   }
