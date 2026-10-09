@@ -1,0 +1,105 @@
+{
+  "scope": "Independent fixed-graph source-slope metric witness; no solver, topology or runtime changes. Not selectable roofs.",
+  "rows": [
+    {
+      "name": "generated_0025",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.024999999999999994,
+      "fixed_z_mismatch": 0.008333333333333331,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0076",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.03125,
+      "fixed_z_mismatch": 0.020833333333333336,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0235",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.027777777777777776,
+      "fixed_z_mismatch": 0.018518518518518517,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0312",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.03125,
+      "fixed_z_mismatch": 0.010416666666666664,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0343",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.02500000000000001,
+      "fixed_z_mismatch": 0.008333333333333328,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0403",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.03409090909090909,
+      "fixed_z_mismatch": 0.022727272727272728,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0537",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.027777777777777776,
+      "fixed_z_mismatch": 0.018518518518518517,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0630",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.025,
+      "fixed_z_mismatch": 0.01666666666666667,
+      "ridge_error": 1.3877787807814457e-17,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0685",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.025,
+      "fixed_z_mismatch": 0.008333333333333328,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    },
+    {
+      "name": "generated_0687",
+      "category": "orthogonal_grid_stress",
+      "source_plane_height_spread": 0.019230769230769232,
+      "fixed_z_mismatch": 0.006410256410256412,
+      "ridge_error": 0.0,
+      "fixed_topology_mesh_witness": false,
+      "error": "mesh face is nonplanar or has inconsistent normal",
+      "satisfies_unchanged_problem": false
+    }
+  ]
+}

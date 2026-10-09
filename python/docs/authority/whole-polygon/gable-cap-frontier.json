@@ -1,0 +1,729 @@
+{
+  "scope": "Trace relocated gable ends to declared source facets, without roof repair.",
+  "input_sha256": "7081bf1eb3d47b6517e90bb45d73bfe7046869d3d2d9d4e40b6becc761e6d7b7",
+  "graph_inputs": 91,
+  "cap_conflict_inputs": 10,
+  "conflicts_by_stage": {
+    "embedding": 10
+  },
+  "interpretation": "additional facets violate the simple two-bisector terminal adjustment domain; no arbitrary-embedding impossibility claim",
+  "rows": [
+    {
+      "name": "generated_0022",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0024",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0025",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 21,
+          "cap_edge": 4,
+          "additional_source_supports": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0030",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0035",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0041",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0043",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0044",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0047",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0052",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0076",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 14,
+          "cap_edge": 8,
+          "additional_source_supports": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0102",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0107",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0122",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0147",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0154",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0157",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0170",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0180",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0182",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0190",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0203",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0204",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0208",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0235",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 18,
+          "cap_edge": 8,
+          "additional_source_supports": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0264",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0273",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0280",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0296",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0307",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0312",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 17,
+          "cap_edge": 3,
+          "additional_source_supports": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0326",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0343",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 18,
+          "cap_edge": 7,
+          "additional_source_supports": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0354",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0356",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0361",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0370",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0385",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0386",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0398",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0399",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0400",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0403",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 16,
+          "cap_edge": 8,
+          "additional_source_supports": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0452",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0454",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0462",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0466",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0477",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0498",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0499",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0522",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0537",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 21,
+          "cap_edge": 8,
+          "additional_source_supports": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0553",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0558",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0563",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0564",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0582",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0600",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0602",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0606",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0626",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0630",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 22,
+          "cap_edge": 12,
+          "additional_source_supports": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0641",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0643",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0646",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0666",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0679",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0680",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0681",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0685",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 14,
+          "cap_edge": 1,
+          "additional_source_supports": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0687",
+      "category": "orthogonal_grid_stress",
+      "stage": "embedding",
+      "embedded": false,
+      "cap_conflicts": [
+        {
+          "node": 21,
+          "cap_edge": 9,
+          "additional_source_supports": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "name": "generated_0694",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0706",
+      "category": "orthogonal_grid_stress",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0022",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0024",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0025",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0030",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0035",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0041",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0043",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0044",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0047",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0052",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0076",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0102",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0107",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0122",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0134",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0145",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0147",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    },
+    {
+      "name": "generated_0148",
+      "category": "nonuniform_orthogonal",
+      "stage": "mesh",
+      "embedded": true,
+      "cap_conflicts": []
+    }
+  ]
+}

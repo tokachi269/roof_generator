@@ -77,7 +77,15 @@ Completed prototype results:
 | Factory approximations 4 | previous domain probe | default addon 2 | 4, all attempted |
 
 Small prototype failures comprise nine topology/dependency failures and ten
-embedding failures. The two structured failures and single nonuniform failure
+embedding failures. All ten embedding failures share a specific upstream
+condition: a relocated terminal cap node also belongs to an additional source
+facet beyond its two adjacent supporting lines. None of the 81 embedded inputs
+has this condition. The source-slope metric witness at the original drawing
+also has inconsistent incident heights in all ten. This does not prove that no
+other embedding exists, but it invalidates treating these as ordinary terminal
+adjustments or blaming initialization without further evidence. A generalized
+simultaneous-end event is needed before changing the optimizer.
+The two structured failures and single nonuniform failure
 come from external skeleton antiparallel-event handling. Grid 1000 is still
 being attempted and has no final coverage claim.
 
@@ -90,8 +98,8 @@ continuous roof rather than independent roofs capped at minimum Cell cuts.
 
 ## Remaining gate
 
-Complete grid and axis measurements; reverse-trace the ten small embedding
-failures to distinguish gable-topology incompatibility from initialization.
+Complete grid and axis measurements; resolve the ten small embedding failures
+using the identified additional-facet cap domain.
 Handle simultaneous skeleton events without input perturbation. Verify edge
 semantics independently against solved slopes and transforms. Decide whether
 this whole-polygon model supplies the intended gable architecture, including
@@ -106,4 +114,12 @@ python python/whole_polygon_roofs.py --code-root python/out/authority/causal-bas
 python python/probe_recursive_roofs.py --code-root python/out/authority/causal-recursive-c53a815 --source-sha c53a815bdff00e47c43dcd45b82f04baa6015e70 --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/causal-recursive-structured.json
 blender -b --factory-startup --python-exit-code 1 --python python/blender_topology_probe.py -- --report python/out/authority/whole-polygon-images.json --output-dir python/out/authority/blender-whole-polygon-images --limit 4
 python -m unittest python.tests.test_whole_polygon_roofs python.tests.test_causal_frontier
+python python/audit_gable_caps.py --report python/docs/authority/whole-polygon/whole-polygon-small.json.gz --output python/out/authority/gable-cap-frontier.json
+python python/whole_polygon_batch.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category orthogonal_grid_stress --resume python/out/authority/whole-polygon-grid.json --seconds 15 --output python/out/authority/whole-polygon-grid-bounded.json
 ```
+
+The first unbounded grid probe stopped advancing on the twentieth input for
+over ten minutes and was interrupted. The bounded batch isolates each input
+with a 15-second wall budget. A timeout is `search_incomplete`, not unsupported,
+and cannot establish impossibility. Its initial 19 completed rows are reused
+only after checking corpus, prototype source, core hashes and exact prefix.

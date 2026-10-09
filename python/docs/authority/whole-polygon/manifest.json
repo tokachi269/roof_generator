@@ -5,7 +5,9 @@
     "python/blender_topology_probe.py": "c93f9a83373cf8cbff98f565b7a54f70bbc307bf37aac658ece231f27d54db30",
     "python/replay_roof_frontiers.py": "4b9afe0c786eea18d9abda5e7f480dded761794cb35a1c3f57e418fa41b2d22b",
     "python/probe_recursive_roofs.py": "2b2d623bc804806dc3e145e36da71a49933b8cdd2c1239af50a71f6a59a7cf03",
-    "python/causal_roof_audit.py": "0234f84e6932e8ea87902d7eafaf1633abfc5502ab6c9c65890c0528c4457c1a"
+    "python/causal_roof_audit.py": "0234f84e6932e8ea87902d7eafaf1633abfc5502ab6c9c65890c0528c4457c1a",
+    "python/audit_gable_caps.py": "0399cad6a557cc335607a4c81c5cc66e85df66884d8500cd9b6caeab04f9ce11",
+    "python/whole_polygon_batch.py": "0ac93f76033a375fddf4cf1f886dd9579175378d242924b2d0c76d783da49d2f"
   },
   "external_dependency": {
     "version": "0.1.0",
@@ -21,6 +23,8 @@
     }
   },
   "files_sha256": {
+    "embedding-witness.json": "f4a369634c8fc81e2267d292adf55a8d1ddb047f14efc2ff6cbd074e27c33882",
+    "gable-cap-frontier.json": "b97a268319221c5df9bb6b5125278a38f6dae092d7e80a34bb877153df3f235f",
     "whole-polygon-images.json.gz": "4828a1092c124c1d790bf1e1a59b38c3b52303359212358d5f893259fc970723",
     "whole-polygon-nonuniform.json.gz": "ad4405bfad50c710e53d7e64da3322689719c60fb1a06e1ae054f76f3c484390",
     "whole-polygon-small.json.gz": "40aec3217865076fc90744bbb2d76dcd428e13b47a4882a330c0dc02636f05b7",
