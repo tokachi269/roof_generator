@@ -68,8 +68,8 @@ class RoofEndAuthorityProof(unittest.TestCase):
 
     def test_selected_compound_has_resolved_end_configuration_before_composition(self):
         roof = prepare_generation(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10)))
-        self.assertIsNotNone(getattr(roof.selected, 'ends', None),
-                             'Cell contact labels are not a resolved roof end configuration')
+        self.assertTrue(roof.selected.architecture.gable_edges,
+                        'Resolved exterior end states must exist before topology construction')
 
     def test_partial_long_edge_model_ends_do_not_inherit_Hu_short_side_prior(self):
         from roof_generator.core.roof_regions import propose_regions
@@ -173,10 +173,10 @@ class RoofEndAuthorityProof(unittest.TestCase):
     def test_candidate_rejects_forged_end_state(self):
         from dataclasses import replace
         candidate = prepare_generation(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10))).selected
-        state = candidate.ends.states[0]
-        changed = replace(state, shape=EndShape.HIP)
+        ends=candidate.architecture.gable_edges
+        changed=tuple(e for e in ends if e!=ends[0])
         with self.assertRaises(UnsupportedRoofError):
-            replace(candidate, ends=replace(candidate.ends, states=(changed,) + candidate.ends.states[1:]))
+            replace(candidate, architecture=replace(candidate.architecture,gable_edges=changed))
 
 
 if __name__ == '__main__':

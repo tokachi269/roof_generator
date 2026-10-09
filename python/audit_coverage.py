@@ -24,6 +24,8 @@ from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.roof_candidates import roof_candidates,RoofCandidates
 from roof_generator.core.generation import GenerationSettings
 from roof_generator.core.architecture_models import ArchitecturalPartGraph
+from roof_generator.core.cells import decompose
+from roof_generator.core.polygon_generation import candidates as polygon_candidates, PolygonCandidates
 
 STAGES = (
     "footprint",
@@ -44,6 +46,11 @@ def classify(pool):
     graph. Otherwise these remain joint B/C/F questions pending research; they
     are NOT automatically classified C. Downstream solve is censored.
     """
+    if isinstance(pool,PolygonCandidates):
+        return [{'code':'polygon.'+r.stage,'category':'D' if r.stage=='embedding' else 'unresolved_C_D_F',
+                 'owner':'geometry' if r.stage=='embedding' else 'topology',
+                 'gable_edges':r.gable_edges,'evidence':r.reason,
+                 'authority_evidence':'resolved continuous polygon model; no Cell junction inference'} for r in pool.rejected]
     good = {partition_id(c.architecture.decomposition) for c in pool.valid
             if isinstance(c.architecture,ArchitecturalPartGraph)}
     regional_success=any(not isinstance(c.architecture,ArchitecturalPartGraph) for c in pool.valid)
@@ -124,6 +131,37 @@ def inspect(record):
         fp = analyze(record["footprint"])
         completed("footprint")
         owner = "partition"
+        if fp.orthogonal:
+            decompose(fp)
+            completed('partition')
+            row['partition_count']=1
+            row['partition_scope']='classical minimum guide; polygon models own topology'
+            owner='topology'
+            pool=polygon_candidates(fp,GenerationSettings())
+            row['success']['architecture']=bool(pool.interpretation.models)
+            row['interpretation_count']=len(pool.interpretation.models)
+            row['architecturally_retained_candidate_count']=len(pool.interpretation.models)
+            row['architectural_preferred_assignment_count']=len(pool.interpretation.models)
+            row['architectural_assignment_count']=len(pool.interpretation.models)
+            row['issues']=classify(pool)
+            row['valid_graph_count']=len(pool.valid)
+            row['constructible_topology_candidate_count']=len(pool.constructible)
+            row['region_proposal_count']=len(pool.interpretation.guides)
+            row['ambiguity']=len(pool.valid)>1
+            row['incomplete_search']=not pool.complete
+            row['candidate_validation_scope']='all preferred polygon end models embedded before selection'
+            if pool.constructible:
+                completed('RoofGraph');completed('GeometryProblem')
+            if not pool.complete or not pool.valid:
+                if pool.constructible and pool.complete:owner='solve'
+                raise UnsupportedRoofError(pool.reason or 'no valid polygon roof')
+            selected=pool.select(0);row['selected_id']=selected.id
+            owner='solve';vertices=pool.mesh(selected).vertices
+            row['solve_timing_scope']='embedding occurs during candidate validation; solve stage reads cached proof'
+            completed('solve')
+            owner='mesh';RoofMesh(selected.graph,vertices);completed('mesh')
+            row['timings_ms']['total']=sum(row['timings_ms'].values())+(time.perf_counter()-t)*1000
+            return row
         search = candidates(fp)
         row["incomplete_search"] = not search.complete
         if search.complete and search.candidates:
@@ -215,6 +253,8 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--details", type=Path, required=True)
     p.add_argument("--limit", type=int)
+    p.add_argument('--category',action='append')
+    p.add_argument('--seconds',type=float,default=15)
     a = p.parse_args()
     payload = gzip.decompress(a.corpus.read_bytes())
     data = json.loads(payload)
@@ -234,19 +274,33 @@ def main():
     a.details.parent.mkdir(parents=True, exist_ok=True)
     with gzip.open(a.details, "wt") as f:
         for category, records in data["corpora"].items():
+            if a.category and category not in a.category:continue
             if a.limit:
                 records = records[: a.limit]
             counts, failures, reasons, issues, sole = (Counter() for _ in range(5))
             elapsed = 0.0
             candidate_counts = Counter()
             for i, record in enumerate(records):
-                row = inspect(record)
+                try:
+                    run=subprocess.run([sys.executable,'-c',
+                        'import json,sys; from python.audit_coverage import inspect; print(json.dumps(inspect(json.load(sys.stdin))))'],
+                        cwd=ROOT,input=json.dumps(record),capture_output=True,text=True,timeout=a.seconds)
+                    if run.returncode:raise RuntimeError(run.stderr[-2000:])
+                    row=json.loads(run.stdout)
+                except subprocess.TimeoutExpired:
+                    row={'name':record['name'],'success':{k:False for k in STAGES},
+                         'failure_owner':'search','reason':'per-input wall budget exhausted',
+                         'issues':[],'incomplete_search':True,'censored':True,
+                         'failure':{'owner':'search','code':'incomplete_search'},
+                         'timings_ms':{'total':a.seconds*1000},
+                         'timing_scope':'wall budget includes process and imports; no feasibility claim'}
                 row["corpus"] = category
                 candidate_counts.update({k: row.get(k, 0) for k in (
                     "architecturally_retained_candidate_count", "constructible_topology_candidate_count",
                     "architectural_preferred_assignment_count", "architectural_assignment_count",
                 )})
                 f.write(json.dumps(row, separators=(",", ":")) + "\n")
+                f.flush()
                 counts.update(k for k, v in row["success"].items() if v)
                 if row["failure_owner"]:
                     failures[row["failure_owner"]] += 1
@@ -257,6 +311,8 @@ def main():
                 if not row["success"]["RoofGraph"]:
                     per_candidate = {}
                     for issue in row["issues"]:
+                        if 'partition' not in issue:
+                            continue  # Polygon models are not minimum assignments.
                         per_candidate.setdefault(
                             (issue["partition"], tuple(issue["axes"])), set()
                         ).add(issue["code"])
@@ -264,7 +320,7 @@ def main():
                         {next(iter(s)) for s in per_candidate.values() if len(s) == 1}
                     )
                 elapsed += row["timings_ms"]["total"]
-                if (i + 1) % 100 == 0:
+                if (i + 1) % 25 == 0:
                     print(category, i + 1, len(records), flush=True)
             out["corpora"][category] = {
                 "inputs": len(records),

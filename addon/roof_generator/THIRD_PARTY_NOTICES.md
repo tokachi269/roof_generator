@@ -8,6 +8,12 @@ The complete license text is in [LICENSE](LICENSE).
 The addon uses Python's standard library and the Blender API.
 Blender is GPL: https://www.blender.org/about/license/.
 
+The bundled `vendor/straight_skeleton` source is adapted from
+`py_straight_skeleton` 0.1.0, copyright ICON, 2024, under BSD-3-Clause.
+Its original license is included at [vendor/straight_skeleton/LICENSE](vendor/straight_skeleton/LICENSE).
+Only algorithm/math source is shipped; plotting and wheel metadata are omitted.
+No runtime pip installation or external wheels are required.
+
 ## Development-only independent test oracles
 
 | Dependency | License | Source / license |

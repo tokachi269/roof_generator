@@ -63,7 +63,7 @@ class CoverageAuditTests(unittest.TestCase):
 
         raw = ((0, 0), (12, 0), (12, 6), (0, 6))
         pool = replace(prepare_generation(raw).candidates, complete=False, reason="budget")
-        with patch("python.audit_coverage.roof_candidates", return_value=pool):
+        with patch("python.audit_coverage.polygon_candidates", return_value=pool):
             row = inspect({"name": "incomplete", "footprint": raw})
         self.assertTrue(row["success"]["RoofGraph"])
         self.assertTrue(row["success"]["GeometryProblem"])

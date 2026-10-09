@@ -2,7 +2,8 @@
 
 Roof Generator source, tools and tests are licensed under the GNU General Public
 License, version 3 or later (**GPL-3.0-or-later**). Copyright tokachi269, 2026.
-This covers `addon/roof_generator/**`, `python/**` and the installable addon ZIP.
+Bundled third-party source retains its own notices and license; see below.
+The combined addon distribution includes both the project GPL source and those notices.
 The full license is available in [LICENSE](LICENSE) and
 [LICENSES/GPL-3.0-or-later.txt](LICENSES/GPL-3.0-or-later.txt).
 
@@ -13,6 +14,8 @@ corresponding source as required, and license covered modifications under the GP
 ## Dependencies
 
 The addon runtime uses Python's standard library and Blender (GPL).
+The bundled `py_straight_skeleton` 0.1.0 algorithm source is BSD-3-Clause,
+copyright ICON, 2024. Its license accompanies the source and addon ZIP.
 Development-only independent test oracles use NumPy and Shapely (BSD-3-Clause)
 and GEOS (LGPL-2.1).
 Redistribution must satisfy each applicable license, including preservation

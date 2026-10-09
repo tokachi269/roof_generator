@@ -3,8 +3,9 @@
 English | [日本語](README.ja.md)
 
 Generate editable roof surfaces from filled planar footprint meshes in Blender 4.3+.
-The core uses minimum rectangular partitions, architectural interpretations and
-validated indexed roof graphs. Generation seed selects among equally ranked valid
+Orthogonal gables use region-guided exterior end choices and one continuous
+polygon roof model. Mathematical rectangle cuts are not independent roofs.
+Generation seed selects among fully validated
 candidates; unsupported topology produces an explicit error.
 
 ## Current capabilities
@@ -13,15 +14,15 @@ candidates; unsupported topology produces an explicit error.
 | --- | --- |
 | Rectangle, including rotation and square | Gable, hip, shed or flat mesh |
 | Hole-free simple orthogonal polygon, including concave outlines | One unified flat roof face |
-| Supported terminal/middle gable attachments, separated mixed ports, compatible equal-width cross ports | One solved, planar compound gable mesh |
+| Supported simple orthogonal footprints, including offset bands and branch networks | One solved continuous gable roof; hip facets can remain |
 | Convex parallelogram, trapezoid or general quadrilateral | Gable, shed or flat mesh; gable directions vary by seed |
 
-Arbitrary compound gable/hip/shed roofs, nonrectangular hip primitives and
+Unresolved polygon events, unsupported gable ends, compound hip/shed roofs and
 non-orthogonal concave decomposition are unsupported. Holes, touching/self-intersecting boundaries,
 nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
 intentional perimeter boundary; walls and thickness are separate modeling tasks.
 
-Distinct receiver-end and separated middle attachments compose simultaneously.
+Roof junctions are constructed globally before fixed embedding.
 The [staged coverage report](python/docs/END_TO_END_EVALUATION.md) separates
 RoofGraph availability from actual solve, validated mesh and Blender conversion.
 Connected-grid stress is one corpus, not overall coverage. Parallel, offset/
@@ -29,7 +30,7 @@ width-step continuation and partial-end contacts remain explicit research limits
 
 ## Installation and use
 
-1. Download [`roof_generator-1.3.0.zip`](packages/roof_generator-1.3.0.zip) with **Download raw file**.
+1. Download [`roof_generator-1.4.0.zip`](packages/roof_generator-1.4.0.zip) with **Download raw file**.
 2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
 3. Select filled planar footprint meshes in Object Mode.
 4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
@@ -60,7 +61,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.3.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.0.zip
 ```
 
 `addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains

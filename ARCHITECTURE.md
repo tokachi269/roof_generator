@@ -4,12 +4,11 @@ The canonical pipeline is:
 
 ```text
 Footprint
-  -> decomposition candidates (minimum rectangles or one convex quad)
-  -> ArchitecturalPart interpretations
-  -> valid RoofGraph candidates
-  -> stable seeded selection
-  -> GeometryProblem
-  -> validated embedding
+  -> orthogonal gable: polygon/region guides -> resolved PolygonRoof end models
+  -> other supported types: certified decomposition -> architectural interpretation
+  -> complete RoofGraph and GeometryProblem candidates
+  -> validated fixed embedding
+  -> stable seeded selection from a completed pool
   -> ordinary mesh
   -> Blender object
 ```
@@ -17,6 +16,21 @@ Footprint
 The distributable `addon/roof_generator/core/` owns generation. Host tools import
 the same modules. Blender reads evaluated planar footprints and creates mesh
 objects; it does not choose or repair topology.
+
+Orthogonal gable composition consumes `PolygonRoof`, whose physical support is
+the whole polygon and whose exterior gable/eave choices are resolved upstream.
+Minimum and receiver rectangles guide exterior ends; they are not independent
+roof supports or instructions to retain their shared boundaries. A single
+global wavefront supplies incidence. Terminal gable disk replacements preserve
+shared events and all other facets. An incomplete proposal/end family forbids
+seed selection. There is no retry through the old rectangle grammar.
+
+`polygon_generation.py` owns the model pool; `roof_intent.py` and
+`roof_preference.py` own end constraints and soft axis preference.
+`polygon_roof.py` publishes topology; `wavefront.py` bounds the bundled incidence
+dependency. Geometry and mesh layers retain their fixed-graph contracts.
+The following partition/member-port descriptions apply to the other supported
+types and retained restricted-model comparison APIs.
 
 Footprint analysis validates a hole-free simple polygon in its intrinsic frame.
 Orthogonal inputs use exact minimum rectangular partition; a nonorthogonal convex

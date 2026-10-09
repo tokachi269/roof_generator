@@ -22,10 +22,28 @@ def main():
     from roof_generator.core.solve import solve
     from roof_generator.core.generation import GenerationSettings
     from roof_generator.core.roof_candidates import roof_candidates,RoofCandidates
+    from roof_generator.core.polygon_generation import candidates as polygon_candidates
+    from roof_generator.core.cells import decompose
 
     rows = []
     for record in json.loads(args.inputs.read_text(encoding="utf-8"))["inputs"]:
         fp=analyze(record['footprint'])
+        if fp.orthogonal:
+            partition=decompose(fp)
+            pool=polygon_candidates(fp,GenerationSettings())
+            candidate=pool.select(record.get('seed',0)) if pool.complete and pool.valid else None
+            row={'input':record,'status':'supported' if candidate else 'unsupported' if pool.complete else 'incomplete',
+                 'selected_candidate':candidate.id if candidate else None,
+                 'partition':partition.inspect(),'partition_scope':'analysis/provenance only; no Cell roof parts',
+                 'architecture':candidate.architecture.inspect() if candidate else pool.interpretation.inspect(),
+                 'ranking':pool.inspect_ranking(),'rejected':[asdict(r) for r in pool.rejected],
+                 'graph':candidate.graph.inspect() if candidate else None,
+                 'features':candidate.inspect_features() if candidate else [],
+                 'feature_cause_scope':'declared continuous polygon model and source eave incidence',
+                 'independent_cell_roof_graphs':0 if candidate else None}
+            if candidate:
+                row.update(solved_vertices=candidate.mesh.vertices,solver_preserved_graph=candidate.mesh.graph is candidate.graph)
+            rows.append(row);continue
         recommendation = recommend(candidates(fp), Policy(), defer_ranking=True)
         pool = roof_candidates(fp,recommendation,GenerationSettings())
         candidate = pool.select(record.get("seed", 0)) if pool.complete and pool.valid else None

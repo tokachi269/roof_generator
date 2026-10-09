@@ -133,11 +133,18 @@ class NonlinearSolveTests(unittest.TestCase):
             self.assertEqual(actual, sorted(tuple(np.round(p, 6)) for p in expected))
 
     def test_iteration_failure_is_explicit_and_does_not_return_approximate_mesh(self):
-        g = prepare_generation(fixture("orthogonal_U")["footprint"])
+        # Use the retained restricted-template oracle to preserve this hard
+        # nonlinear witness. A new canonical graph may already be planar at
+        # initialization, which is not evidence that failure handling vanished.
+        from roof_generator.core.footprint import analyze
+        from roof_generator.core.partition_candidates import candidates
+        from roof_generator.core.architecture_selection import recommend
+        from roof_generator.core.topology_candidates import build_candidates
+        candidate=build_candidates(recommend(candidates(analyze(fixture("orthogonal_U")["footprint"])),defer_ranking=True)).select(0)
         with self.assertRaisesRegex(UnsupportedRoofError, "did not converge"):
-            optimize(g.geometry_problem, max_iterations=1)
+            optimize(candidate.geometry, max_iterations=1)
         with self.assertRaises(UnsupportedRoofError):
             replace(
-                g.geometry_problem,
-                variable_z=tuple(range(len(g.geometry_problem.initial_vertices))),
+                candidate.geometry,
+                variable_z=tuple(range(len(candidate.geometry.initial_vertices))),
             )

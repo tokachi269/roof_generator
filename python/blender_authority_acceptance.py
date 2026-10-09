@@ -121,14 +121,14 @@ def main():
             assert candidate.id == row["candidate"]
             row["inspection"] = {
                 "input": record, "status": "supported", "selected_candidate": candidate.id,
-                "partition": generation.interpretation.search.candidates[0].inspect(),
+                "partition": None,
                 "partition_scope": "first minimum source for provenance; actual support authority is architecture",
                 "architecture": candidate.architecture.inspect(),
                 "architecture_scope": "actual installed operator preparation",
                 "graph": candidate.graph.inspect(),
-                "connections": [asdict(c) for c in candidate.composition.connections],
-                "features": [asdict(f) for f in getattr(candidate.composition, "features", ())],
-                "resolved_ends": candidate.ends.inspect() if getattr(candidate, "ends", None) else None,
+                "connections": [],
+                "features": list(candidate.inspect_features()),
+                "resolved_ends": candidate.architecture.inspect()['ends'],
                 "solved_vertices": captured[0].roof.mesh.vertices,
                 "solver_preserved_graph": captured[0].roof.mesh.graph is candidate.graph,
             }

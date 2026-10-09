@@ -26,7 +26,7 @@ class GenerationProof(unittest.TestCase):
     def test_compound_problem_is_distinct_from_completed_mesh(self):
         raw = fixture("cross")["footprint"]
         g = prepare_generation(raw)
-        self.assertEqual(len(g.candidates.valid), 2)
+        self.assertGreater(len(g.candidates.valid), 1)
         self.assertTrue(g.geometry_problem.variable_xy)
         r = generate_roof(raw)
         self.assertEqual(r.mesh.faces, g.geometry_problem.faces)

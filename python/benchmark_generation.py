@@ -26,6 +26,7 @@ from roof_generator.core.footprint import analyze
 from benchmark_architectural_parts import measure as measure_architecture
 from inspect_architectural_parts import fixture
 from measurements import stats
+from roof_generator.core.polygon_generation import candidates as polygon_candidates
 
 NAMES = (
     "orthogonal_U",
@@ -39,10 +40,11 @@ NAMES = (
 
 def measure(record):
     start = time.perf_counter()
-    row, recommendation = measure_architecture(record, Policy(), defer_ranking=True)
+    fp=analyze(record['footprint'])
+    row={'footprint':(time.perf_counter()-start)*1000}
     t = time.perf_counter()
-    pool = (roof_candidates(analyze(record['footprint']),recommendation,GenerationSettings())
-            if roof_candidates is not None else build_candidates(recommendation))
+    pool=polygon_candidates(fp,GenerationSettings())
+    recommendation=pool.interpretation
     row["roof_topology_candidates"] = (time.perf_counter() - t) * 1000
     t = time.perf_counter()
     choices = []
@@ -55,13 +57,12 @@ def measure(record):
 
 def fingerprint(recommendation, pool, choices):
     proof = {
-        "partitions": [signature(d) for d in recommendation.search.candidates],
         "architecture": recommendation.inspect(),
         "valid": [
-            (c.id, c.axes, getattr(c,'score',None), c.graph.inspect(), c.geometry.__dict__)
+            (c.id, c.architecture.inspect(), c.graph.inspect(), c.geometry.__dict__)
             for c in pool.valid
         ],
-        "rejected": [(r.partition, r.axes, r.reason) for r in pool.rejected],
+        "rejected": [(r.gable_edges,r.stage,r.reason) for r in pool.rejected],
         "complete": pool.complete,
         "choices": choices,
     }
@@ -102,16 +103,23 @@ def main():
         rows = []
         cold = None
         for i in range(args.samples + args.warmup):
-            row, recommendation, pool, choices = measure(record)
+            started=time.perf_counter()
+            try:
+                row, recommendation, pool, choices = measure(record)
+            except UnsupportedRoofError as exc:
+                output['cases'][name]={'unsupported':True,'reason':str(exc),
+                                       'first_total_ms':(time.perf_counter()-started)*1000}
+                break
             if i == 0:
                 cold = row
             if i >= args.warmup:
                 rows.append(row)
+        if not rows:continue
         output["cases"][name] = {
-            "vertices": len(recommendation.search.candidates[0].footprint.vertices),
-            "candidates": len(recommendation.search.candidates),
-            "work": recommendation.search.work,
-            "retained_interpretations": len(recommendation.retained),
+            "vertices": len(recommendation.footprint.vertices),
+            "candidates": len(recommendation.guides),
+            "work": pool.work,
+            "retained_interpretations": len(recommendation.models),
             "valid_topologies": len(pool.valid),
             "rejected_assignments": len(pool.rejected),
             "fingerprint": fingerprint(recommendation, pool, choices),
@@ -126,7 +134,8 @@ def main():
     t = time.perf_counter()
     successful = 0
     for i in range(args.buildings):
-        _, _, pool, _ = measure(records[NAMES[i % len(NAMES)]])
+        try:_, _, pool, _ = measure(records[NAMES[i % len(NAMES)]])
+        except UnsupportedRoofError:continue
         successful += bool(pool.valid and pool.complete)
     output["mixed_buildings"] = {
         "count": args.buildings,
@@ -148,9 +157,10 @@ def main():
         json.dumps(
             {
                 n: {
+                    "total_ms": d['first_total_ms'],"unsupported":True,
+                } if d.get('unsupported') else {
                     "total_ms": d["stages"]["total"]["median_ms"],
-                    "candidates": d["candidates"],
-                    "valid": d["valid_topologies"],
+                    "candidates": d["candidates"],"valid": d["valid_topologies"],
                 }
                 for n, d in output["cases"].items()
             }

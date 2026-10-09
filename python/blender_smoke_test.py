@@ -238,9 +238,7 @@ def main():
     materials = set(bpy.data.materials)
     unsupported = source(
         "unsupported_compound",
-        next(r['footprint'] for r in json.loads(
-            (ROOT/'python/tests/fixtures/user_roof_images_v1.json').read_text(encoding='utf-8'))['inputs']
-            if r['name']=='user_image_3_band_and_lower_corner'),
+        ((0,0),(12,0),(12.8,4),(4.8,4),(6,10),(2,10)),
     )
     before = set(bpy.data.objects)
     materials = set(bpy.data.materials)

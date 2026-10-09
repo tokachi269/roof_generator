@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""One canonical pipeline: certified partitions to seeded topology and mesh."""
+"""Canonical roof models to explicit topology, fixed geometry and mesh."""
 
 from dataclasses import dataclass
 import math
@@ -14,6 +14,7 @@ from .seed import derive
 if TYPE_CHECKING:
     from .roof_candidates import RoofCandidates
     from .region_generation import RegionRoofCandidate
+    from .polygon_generation import PolygonInterpretation, PolygonCandidates, PolygonCandidate
 
 
 @dataclass(frozen=True)
@@ -58,9 +59,9 @@ class GenerationSettings:
 class Generation:
     footprint: Footprint
     settings: GenerationSettings
-    interpretation: Recommendation
-    candidates: "TopologyCandidates | RoofCandidates"
-    selected: "TopologyCandidate | RegionRoofCandidate"
+    interpretation: "Recommendation | PolygonInterpretation"
+    candidates: "TopologyCandidates | RoofCandidates | PolygonCandidates"
+    selected: "TopologyCandidate | RegionRoofCandidate | PolygonCandidate"
 
     @property
     def geometry_problem(self):
@@ -75,6 +76,10 @@ class GeneratedRoof:
 
 def prepare_generation(points, settings=GenerationSettings()):
     fp = analyze(points)
+    if fp.orthogonal and settings.roof_type=='gable':
+        from .polygon_generation import candidates as polygon_candidates
+        pool=polygon_candidates(fp,settings)
+        return Generation(fp,settings,pool.interpretation,pool,pool.select(settings.seed))
     search = candidates(
         fp, max_candidates=settings.max_candidates, max_work=settings.max_work
     )
@@ -94,7 +99,8 @@ def prepare_generation(points, settings=GenerationSettings()):
 def generate_roof(points, settings=GenerationSettings()):
     generation = prepare_generation(points, settings)
     from .roof_candidates import RoofCandidates
+    from .polygon_generation import PolygonCandidates
     mesh = (generation.candidates.mesh(generation.selected)
-            if isinstance(generation.candidates,RoofCandidates)
+            if isinstance(generation.candidates,(RoofCandidates,PolygonCandidates))
             else solve(generation.selected.graph, generation.geometry_problem))
     return GeneratedRoof(generation, mesh)

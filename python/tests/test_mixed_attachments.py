@@ -6,6 +6,7 @@ from collections import Counter
 from dataclasses import replace
 import math
 import unittest
+from unittest.mock import patch
 import numpy as np
 from roof_generator.core.generation import (
     generate_roof,
@@ -62,19 +63,13 @@ class MixedAttachmentProof(unittest.TestCase):
             Counter(e.kind for e in g.edges if len(e.faces) == 2),
             {"ridge": 3, "valley": 3, "hip": 2},
         )
-        self.assertEqual(
-            {c.kind for c in r.generation.selected.composition.connections},
-            {"terminal", "middle"},
-        )
+        self.assertTrue(r.generation.selected.architecture.gable_edges)
         self.assertEqual(len(g.vertices) - len(g.edges) + len(g.faces), 1)
-        d = r.generation.selected.architecture.decomposition
-        self.assertEqual(
-            compose(
-                replace(d, adjacency=d.adjacency[::-1]), axes=r.generation.selected.axes
-            ).graph,
-            g,
-        )
-        self.assertEqual({c for f in g.faces for c in f.cells}, {0, 1, 2})
+        from roof_generator.core.cells import decompose
+        d=decompose(r.generation.footprint)
+        with patch('roof_generator.core.polygon_generation.decompose',return_value=replace(d,adjacency=d.adjacency[::-1])):
+            self.assertEqual(generate_roof(network()).mesh.graph,g)
+        self.assertEqual({c for f in g.faces for c in f.cells}, {0})
         self.assertEqual(
             {i for e in g.edges if e.boundary for i in e.boundary.original_edges},
             set(range(10)),
@@ -119,10 +114,7 @@ class MixedAttachmentProof(unittest.TestCase):
             Counter(e.kind for e in r.mesh.graph.edges if len(e.faces) == 2),
             {"ridge": 5, "valley": 6, "hip": 4},
         )
-        self.assertEqual(
-            Counter(c.kind for c in r.generation.selected.composition.connections),
-            {"terminal": 2, "middle": 2},
-        )
+        self.assertTrue(r.generation.selected.architecture.gable_edges)
 
     def test_near_end_and_equal_width_middle_are_not_silently_spliced(self):
         # Some alternate partitions can have another justified interpretation;

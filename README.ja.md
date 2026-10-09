@@ -3,7 +3,8 @@
 [English](README.md) | 日本語
 
 Blender 4.3以降で、面を張った平面footprintから編集可能な屋根表面を生成します。
-coreは最小矩形分割、建築的なpart解釈、検証済みのindexed RoofGraphを使います。
+直交gableはregionから外周の端状態を解釈し、polygon全体の一体構造からRoofGraphを作ります。
+数学的な矩形分割の境界は独立した屋根にはしません。
 同等に妥当な候補はgeneration seedで選び、未対応のtopologyは明示的なエラーにします。
 
 ## 現在の対応範囲
@@ -12,21 +13,21 @@ coreは最小矩形分割、建築的なpart解釈、検証済みのindexed Roof
 | --- | --- |
 | 長方形（回転・正方形を含む） | gable・hip・shed・flatのmesh |
 | 穴なしsimple直交polygon（concaveを含む） | 一体のflat屋根face |
-| 対応するterminal/middle接続、干渉しない混合port、互換な等幅cross port | solve済みの一体・planarな複合gable mesh |
+| 対応するsimple直交footprint、ずれた帯形状、branch network | solve済みの一体gable mesh。hip面が残る場合があります |
 | 凸の平行四辺形・台形・一般四辺形 | gable・shed・flat mesh。gable方向はseedで選択 |
 
-任意の複合gable/hip/shed屋根、非矩形hip、非直交concaveの分割は未対応です。
+未解決のpolygon event、未対応のgable端、複合hip/shed、非直交concaveの分割は未対応です。
 穴、接触・自己交差した境界、非平面入力、探索未完了も明示的に失敗します。
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
-異なるhost端のterminalと、干渉しないmiddleを一括接続できます。
+屋根接続は建物全体で構成してから、決定済みのGraphを固定してsolveします。
 [段階別coverage](python/docs/END_TO_END_EVALUATION.md)でRoofGraph、solve、mesh、
 実際のBlender変換を分けて報告します。grid stress corpusは全体coverageではありません。
 parallel、幅違い・軸ずれcontinuation、partial-endは明示的な研究・対応限界として残ります。
 
 ## インストールと使い方
 
-1. [`roof_generator-1.3.0.zip`](packages/roof_generator-1.3.0.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.4.0.zip`](packages/roof_generator-1.4.0.zip) を **Download raw file** で保存します。
 2. **Edit → Preferences → Add-ons → Install from Disk**でインストールし、**Roof Generator**を有効にします。
 3. Object Modeで、面を張った平面footprint meshを選択します。
 4. サイドバー（**N**）→ **Roof**で屋根種別、勾配、軒高offset、seedを設定し、**Generate roofs**を押します。
@@ -55,7 +56,7 @@ pipや外部wheelの導入は不要です。footprintごとに共有頂点・UV�
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.3.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.0.zip
 ```
 
 `addon/roof_generator/core/`が生成pipelineを所有します。Blender adapterは

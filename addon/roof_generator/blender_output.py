@@ -148,8 +148,9 @@ def _create_mesh(source, result, settings, debug_cells):
                 result.roof.mesh.edge_features[key]
             ]
         data.uv_layers.new(name="Roof UV")
-        architecture = result.roof.generation.selected.architecture
-        count = len(architecture.members) if debug_cells else 1
+        # Display the decided face ownership. Analysis/guide rectangles are
+        # not independently roofed regions in the global polygon model.
+        count = max(i for owners in result.roof.mesh.face_cells for i in owners)+1 if debug_cells else 1
         colors = (
             (0.55, 0.16, 0.08, 1),
             (0.16, 0.34, 0.55, 1),

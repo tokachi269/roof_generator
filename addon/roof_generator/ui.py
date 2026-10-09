@@ -20,7 +20,7 @@ class RoofSettings(bpy.types.PropertyGroup):
     pitch: FloatProperty(name="Pitch", default=0.5, min=0.001, max=4)
     eave_height: FloatProperty(name="Eave offset", default=0)
     seed: IntProperty(name="Generation seed", default=0)
-    debug_cells: BoolProperty(name="Color source cells", default=False)
+    debug_cells: BoolProperty(name="Color roof regions", default=False)
     hide_source: BoolProperty(name="Hide source footprint", default=True)
 
 

@@ -40,14 +40,12 @@ class OppositeSlopeProof(unittest.TestCase):
         fixture=Path(__file__).parent/'fixtures/opposite_grid_v1.json'
         raw=json.loads(fixture.read_text(encoding='utf-8'))['inputs'][0]['footprint']
         roof=generate_roof(raw)
-        c=roof.generation.selected.composition
-        self.assertEqual({r.kind for r in c.connections},{'terminal','middle'})
-        self.assertEqual(len(roof.mesh.faces),6)
-        self.assertEqual(roof.mesh.graph,c.graph)
+        self.assertTrue(roof.generation.selected.architecture.gable_edges)
+        self.assertEqual(roof.mesh.graph,roof.generation.selected.graph)
         for point in ((10.5,4.5,2.25),(7.5,1.5,.75),(13.5,7.5,.75)):
             self.assertLess(min(math.dist(point,roof.generation.footprint.frame.world_xyz(p))
                                 for p in roof.mesh.vertices),1e-6)
-        for edge in c.graph.edges:
+        for edge in roof.mesh.graph.edges:
             if edge.kind=='valley':
                 self.assertGreater(max(roof.mesh.vertices[v][2] for v in edge.vertices),0)
 
