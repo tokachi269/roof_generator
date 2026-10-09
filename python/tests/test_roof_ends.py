@@ -50,20 +50,40 @@ class RoofEndAuthorityProof(unittest.TestCase):
             target = (*points[names[i]], 1 if names[i] in 'HIJK' else 0)
             self.assertLess(max(abs(a-b) for a,b in zip(world,target)), 1e-5)
 
-    def test_offset_short_end_contact_does_not_receive_one_line_constraints(self):
+    def test_offset_short_end_constraint_does_not_invent_a_graph_merge(self):
         raw = ((0, 0), (6, 0), (6, 12), (8, 12), (8, 24), (2, 24), (2, 12), (0, 12))
         architecture = interpret(decompose(analyze(raw)))
         resolved = resolve(architecture, tuple(m.axes[0] for m in architecture.members))
         self.assertEqual(resolved.relations[0].options[0].kind, 'continuation')
+        configurations=tuple(roof_configurations(resolved))
+        self.assertEqual(len(configurations),1)
+        ends=configurations[0]
+        self.assertEqual(ends.joints[0].kind,'continuation')
+        self.assertTrue(all(shape==EndShape.GABLE for _,shape in ends.joints[0].states))
         with self.assertRaises(UnsupportedRoofError) as error:
-            tuple(roof_configurations(resolved))
+            compose(resolved.with_ends(ends))
         self.assertIn('offset', str(error.exception))
-        self.assertTrue(all(issue.code.endswith('offset_continuation') for issue in error.exception.issues))
+        self.assertTrue(all(issue.stage=='junction' and issue.code.endswith('offset_continuation')
+                            for issue in error.exception.issues))
 
     def test_selected_compound_has_resolved_end_configuration_before_composition(self):
         roof = prepare_generation(((0, 0), (12, 0), (12, 4), (4, 4), (4, 10), (0, 10)))
         self.assertIsNotNone(getattr(roof.selected, 'ends', None),
                              'Cell contact labels are not a resolved roof end configuration')
+
+    def test_partial_long_edge_model_ends_do_not_inherit_Hu_short_side_prior(self):
+        from roof_generator.core.roof_regions import propose_regions
+        from roof_generator.core.region_architecture import interpret_regions
+        fp=analyze(((0,0),(2,0),(2,1),(4,1),(4,6),(2,6),(2,5),(0,5)))
+        regions=(((0,0),(2,0),(2,5),(0,5)),((2,1),(4,1),(4,6),(2,6)))
+        architecture=interpret_regions(propose_regions(fp,regions,source='declared-short-axis'))
+        horizontal=int(abs(fp.frame.direction[1])>.5)
+        resolved=resolve(architecture,(horizontal,horizontal))
+        self.assertEqual(resolved.relations[0].options[0].kind,'continuation')
+        with self.assertRaises(UnsupportedRoofError) as error:
+            tuple(roof_configurations(resolved))
+        self.assertTrue(all(issue.stage=='relation' and issue.code.endswith('offset_continuation')
+                            for issue in error.exception.issues))
 
     def test_same_end_one_line_constraint_eliminates_shared_L_option(self):
         # Independent Hu Fig.18 constraint witness: one-line forces A's end

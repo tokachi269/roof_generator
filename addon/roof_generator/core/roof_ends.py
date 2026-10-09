@@ -109,13 +109,18 @@ def end_rules(resolved):
     for relation in resolved.relations:
         option = relation.options[0]
         if option.kind == "continuation":
-            # Analytic end/end adjacency also includes staggered partial
-            # contacts. Hu's one-line obligation is for collinear full ends;
-            # do not manufacture that obligation for an unknown offset rule.
+            # Hu's obligation concerns adjacent collinear short sides, not
+            # the availability of an indexed merge. For partial contact, both
+            # declared ends must be physical short sides to stay in that prior
+            # domain. The compositor still rejects undefined offset incidence.
             first, second = (tuple(d.vertices[v] for v in d.supports[c].sides[s].vertices)
                              for c, s in zip(relation.cells, relation.sides))
-            if any(not any(max(abs(x - y) for x, y in zip(p, q)) <= 4 * EPS
-                           for q in second) for p in first):
+            full=all(any(max(abs(x-y) for x,y in zip(p,q))<=4*EPS for q in second) for p in first)
+            long_axis=all(m.bounds[axis+2]-m.bounds[axis]+4*EPS >=
+                          m.bounds[3-axis]-m.bounds[1-axis]
+                          for m,axis in ((resolved.architecture.members[c],resolved.axes[c])
+                                         for c in relation.cells))
+            if not full and not long_axis:
                 scope = "internal_" if resolved.internal(relation) else "inter_part_"
                 unresolved.append(GenerationIssue("relation", scope + "offset_continuation", relation.cells))
                 continue

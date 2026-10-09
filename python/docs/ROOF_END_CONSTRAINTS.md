@@ -44,17 +44,23 @@ The global configuration intersects every relation's choices, then enforces
 exact reflected whole-member end equalities. Partial reflected root matches
 are not guessed. An assignment with no compatible configuration has no roof.
 
-One-line obligations apply only to coincident full short ends, not staggered
-partial end/end contacts. Those contacts fail with `offset_continuation` before
-any end configuration is published. A general continuation RoofGraph rewrite
-is still unimplemented. Parallel and partial-end relations also remain unsupported.
+One-line obligations apply to adjacent collinear physical short sides, including
+partial overlaps when both selected models follow their rectangles' long axes.
+Those obligations suppress triangular roof sides before implementation
+availability is checked. Undefined offset incidence then fails in junction
+composition. If declared model ends are physical long sides, partial contact
+stays outside Hu's short-side prior and rejects during end-domain analysis.
+Full coincident-end behavior remains unchanged. A general continuation
+RoofGraph rewrite is still unimplemented. Parallel and partial-end relations
+also remain unsupported.
 
-The full-end applicability above is this implementation's restricted contract,
-not a claimed extra condition in Hu section 3.4.1. That section describes
-adjacent collinear short sides and sets their triangular-side domains to R=0.
-It does not by itself define an indexed RoofGraph rewrite for every offset or
-width-step. Such contacts remain unsupported here; this is a limit of the
-implementation, not evidence that the paper forbids them.
+The former full-coincident-end check incorrectly combined an end prior with
+merge availability. Hu section 3.4.1 describes adjacent collinear short sides
+and sets their triangular-side domains to R=0. It does not by itself define an
+indexed RoofGraph rewrite for every offset or width-step. Such contacts still
+remain unsupported here, but a known end obligation is no longer erased merely
+because its graph operation is missing. This distinction is covered by the
+offset regression and the physical-long-side counterexample.
 
 Composition receives the selected configuration. It binds published roles to
 ports and validates operation applicability; it cannot turn an extension into

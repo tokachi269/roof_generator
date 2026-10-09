@@ -56,10 +56,18 @@ def attachments(resolved, primitives):
     Checks prove applicability; they never rediscover receiver/branch or kind.
     """
     decomposition = resolved.layout
-    blockers = tuple(
-        GenerationIssue("relation", ("internal_" if resolved.internal(r) else "inter_part_") + r.options[0].kind, r.cells)
-        for r in resolved.relations if r.options[0].kind not in {"corner", "side_attachment"}
-    )
+    blockers=[]
+    for r in resolved.relations:
+        kind=r.options[0].kind
+        if kind in {"corner","side_attachment"}:continue
+        if kind=='continuation':
+            first,second=(tuple(decomposition.vertices[v] for v in decomposition.supports[c].sides[s].vertices)
+                          for c,s in zip(r.cells,r.sides))
+            if any(not any(max(abs(x-y) for x,y in zip(p,q))<=4*EPS for q in second) for p in first):
+                kind='offset_continuation'
+        blockers.append(GenerationIssue('junction',
+            ('internal_' if resolved.internal(r) else 'inter_part_')+kind,r.cells))
+    blockers=tuple(blockers)
     if blockers:
         raise UnsupportedRoofError("no implemented architecture template for " + blockers[0].code, issues=blockers)
     if resolved.ends is None:

@@ -4,6 +4,13 @@ This diagnostic changes no production roof generator and adds no usable roof
 scenario. It investigates why the remaining two screenshot approximations
 still fail after polygon-authoritative supports and the opposite-eave repair.
 
+The results below describe the `45a8964` end-domain behavior. A subsequent
+repair restores Hu's physical-short-side prior independently of merge
+availability; see [end authority](ROOF_END_CONSTRAINTS.md). Under that repair,
+image 1 has two end configurations that reject at undefined offset composition.
+No additional RoofGraph is constructed. This changes the failing responsibility,
+not the diagnostic's conclusion about missing graph/model support.
+
 ## Question and finite search
 
 The maximal/all-receiver probes considered one receiving rectangle and exterior
