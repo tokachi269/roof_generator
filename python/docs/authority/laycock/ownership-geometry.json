@@ -1,0 +1,126 @@
+{
+  "scope": "2D coverage and order/collection-label deduplication only; no roof-valid classification",
+  "input_report_sha256": "611f886b3112f6d973857fc2e9198952b8cd926105824a0d9b0efbb1b74262d1",
+  "cases": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "complete": true,
+      "labelled_configurations": 48,
+      "region_set_configurations": 48,
+      "disconnected_configurations": 19,
+      "nonrectangular_configurations": 19,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "complete": true,
+      "labelled_configurations": 8,
+      "region_set_configurations": 8,
+      "disconnected_configurations": 1,
+      "nonrectangular_configurations": 1,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "complete": true,
+      "labelled_configurations": 10,
+      "region_set_configurations": 10,
+      "disconnected_configurations": 1,
+      "nonrectangular_configurations": 1,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "complete": true,
+      "labelled_configurations": 4,
+      "region_set_configurations": 4,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 0,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "S_staggered_reference",
+      "complete": true,
+      "labelled_configurations": 1,
+      "region_set_configurations": 1,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 0,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "orthogonal_U",
+      "complete": true,
+      "labelled_configurations": 4,
+      "region_set_configurations": 4,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 0,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "residential_multi_reflex",
+      "complete": true,
+      "labelled_configurations": 8,
+      "region_set_configurations": 8,
+      "disconnected_configurations": 4,
+      "nonrectangular_configurations": 4,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "staircase",
+      "complete": true,
+      "labelled_configurations": 132,
+      "region_set_configurations": 132,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 0,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "comb",
+      "complete": true,
+      "labelled_configurations": 16,
+      "region_set_configurations": 16,
+      "disconnected_configurations": 15,
+      "nonrectangular_configurations": 15,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "grid_14",
+      "complete": true,
+      "labelled_configurations": 56,
+      "region_set_configurations": 51,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 0,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    },
+    {
+      "name": "grid_20",
+      "complete": false,
+      "reason": "growth domains unresolved"
+    },
+    {
+      "name": "grid_40",
+      "complete": false,
+      "reason": "collection coverage incomplete"
+    },
+    {
+      "name": "figure4_trace",
+      "complete": true,
+      "labelled_configurations": 10,
+      "region_set_configurations": 10,
+      "disconnected_configurations": 0,
+      "nonrectangular_configurations": 4,
+      "configurations_with_holes": 0,
+      "roof_validity": "not evaluated"
+    }
+  ]
+}

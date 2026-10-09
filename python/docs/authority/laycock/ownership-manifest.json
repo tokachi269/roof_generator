@@ -1,0 +1,38 @@
+{
+  "scope": "Ownership selection research and saved-report 2D audit only; no new skeleton or roof generation",
+  "diagnostic_head": "84934f147c605e72c8ce392c23a7e6e755c6892a",
+  "sources": [
+    {
+      "title": "Laycock and Day 2003",
+      "url": "https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf",
+      "read": "Section 7, Figure 4; full text and local rendered page",
+      "local_sha256": "897386a51c7ebca4be719eb33f285c412d451d71540e365981a6b67a0491017c"
+    },
+    {
+      "title": "Hu et al. 2017",
+      "url": "https://www.researchgate.net/publication/319650645_Roof_model_recommendation_for_complex_buildings_based_on_combination_rules_and_symmetry_features_in_footprints",
+      "read": "Author-uploaded full text, sections 3.3-3.6, 5.2; publisher returned 403"
+    },
+    {
+      "title": "Sugihara and Hayashi 2007",
+      "url": "https://www.jstage.jst.go.jp/article/journalac2003/16/0/16_0_309/_pdf",
+      "read": "Full six-page PDF text; printed page 313 rendered and visually inspected",
+      "local_sha256": "8b64f42421895a9776ffe7f75df1f106b73928eeac2349c6a81527e96e785559"
+    },
+    {
+      "title": "Sugihara and Hayashi 2008",
+      "url": "https://citeseerx.ist.psu.edu/document?doi=63dfa4c8c74ac58d6a172a66737c168f50971472&repid=rep1&type=pdf",
+      "read": "Search-indexed primary-paper excerpt on printed page 369 only; attempted PDF returned HTML; no full algorithm read"
+    },
+    {
+      "title": "Sugihara and Kikata 2013",
+      "url": "https://researchmap.jp/sugihara1128/published_papers/14649928/attachment_file.pdf",
+      "read": "Unavailable in this investigation; no new claims used"
+    }
+  ],
+  "files": {
+    "python/audit_region_ownership.py": "4437e27f95bf86f97c6a9dbd5c0551960b3f8882f9a21b87fda1840e1601185e",
+    "python/docs/ROOF_REGION_SELECTION.md": "757275ad96b9d243c35294da75f5c57aaedcea4fc868314ca137356e75b82a76",
+    "python/docs/authority/laycock/ownership-geometry.json": "45a18906862c293daa27835e4606207956d671a7e0aa6b98efd3a89f25ba636f"
+  }
+}

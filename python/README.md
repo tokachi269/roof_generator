@@ -16,6 +16,7 @@ into an isolated directory, then inspect the declared growth/priority variants:
 python -m pip install --target python/out/laycock-deps -r python/requirements-laycock.txt
 python python/laycock_regions.py --inputs python/tests/fixtures/laycock_inputs_v1.json --output-dir python/out/laycock
 python -m unittest discover -s python/tests -p test_laycock_regions.py
+python python/audit_region_ownership.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
 ```
 
 The current run used the existing development Shapely/Matplotlib and installed

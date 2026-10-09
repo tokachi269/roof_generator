@@ -107,13 +107,17 @@ The four screenshots remain unsupported in production; previous coverage
 counts and the ZIP are unchanged.
 
 Both whole-Cell and splitting outcomes exist. Therefore `Part = set<Cell>`
-cannot represent every demonstrated aggregation option, but an atom layer is
-not yet established as mandatory for the eventual selected architectural rule.
+is generally insufficient to represent the demonstrated roof-region candidate
+family. This representational limitation is established; choosing an atom set
+or an actual polygonal region as its replacement remains undecided.
 Do not change the data model or select a priority simply to fit that model.
 First resolve/document growth and ownership, explicitly retaining the Grid20
 ambiguity and Grid40 uncovered atom. Then reassess representability of the
 selected regions. Roof-model assignment and region merge incidence remain
 separate, unimplemented contracts for these cases.
+
+The subsequent [ownership/selection research](ROOF_REGION_SELECTION.md)
+distinguishes published selection domains from the candidate/seed contract.
 
 The prototype enumerates boundary-grid rectangles in O(nx² ny²), and priority
 orders in O(k!) with a diagnostic limit of eight collections. It is not a
