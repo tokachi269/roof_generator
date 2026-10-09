@@ -1,0 +1,14 @@
+{
+  "scope": "Corrected diagnostic phase; fixed 486abd6 grammar. Complete full-corpus baseline/all-axis reports still pending.",
+  "oracle": {
+    "inputs": 100,
+    "complete": 99,
+    "embedded_inputs": 6
+  },
+  "files": {
+    "python/docs/authority/causal/causal-all-axis-structured.json": "a3a068a45a1773b39985ed6a380a23af545f3db174cd8c8c5500ac09d37b8220",
+    "python/docs/authority/causal/causal-cover-small.json": "77dc7f8805adcdf193d66e7274f6ee12a453b77761f73d67b5298c66f3582ae4",
+    "python/docs/authority/causal/causal-small-inputs.json": "bc63005b836fa41be543d72deb2cecce03ebf915056b4c115c178b977102396c",
+    "python/docs/authority/causal/causal-source-manifest.json": "3355835522f3340d997be72e6069b634cc35c9689fd9a8368df867c97b8b0136"
+  }
+}

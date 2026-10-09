@@ -1,0 +1,2241 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "scope": "Finite boundary-coordinate rectangle-cover oracle for a pinned grammar.\n\nAll contained covers and both axes are in scope. Existing impossible relation\ndomains are pruned by the pinned diagnostic CSP, never by aesthetic ranking.\nIncomplete inputs do not establish nonrepresentability.\n",
+  "inputs": 100,
+  "finished_inputs": 100,
+  "complete": 99,
+  "selectable": 6,
+  "rows": [
+    {
+      "name": "generated_0022",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 2247,
+        "complete": true,
+        "covers": 880,
+        "atom_count": 12,
+        "rectangle_count": 39
+      },
+      "covers_without_supported_axes": 876,
+      "all_axis_combinations_in_cover_domain": 310944,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0024",
+      "category": "orthogonal_grid_stress",
+      "vertices": 8,
+      "search": {
+        "work": 22,
+        "complete": true,
+        "covers": 9,
+        "atom_count": 5,
+        "rectangle_count": 10
+      },
+      "covers_without_supported_axes": 5,
+      "all_axis_combinations_in_cover_domain": 128,
+      "evaluated_axis_end_choices": 22,
+      "graphs": 1,
+      "embeddings": 1,
+      "selectable": true,
+      "rejections": {
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0025",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 478,
+        "complete": true,
+        "covers": 165,
+        "atom_count": 10,
+        "rectangle_count": 27
+      },
+      "covers_without_supported_axes": 154,
+      "all_axis_combinations_in_cover_domain": 26240,
+      "evaluated_axis_end_choices": 41,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 17,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 12,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      }
+    },
+    {
+      "name": "generated_0030",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 153,
+        "complete": true,
+        "covers": 49,
+        "atom_count": 8,
+        "rectangle_count": 22
+      },
+      "covers_without_supported_axes": 44,
+      "all_axis_combinations_in_cover_domain": 3104,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0035",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 1367,
+        "complete": true,
+        "covers": 546,
+        "atom_count": 11,
+        "rectangle_count": 35
+      },
+      "covers_without_supported_axes": 543,
+      "all_axis_combinations_in_cover_domain": 113680,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0041",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 91,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0043",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 176,
+        "complete": true,
+        "covers": 56,
+        "atom_count": 8,
+        "rectangle_count": 20
+      },
+      "covers_without_supported_axes": 53,
+      "all_axis_combinations_in_cover_domain": 3312,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0044",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 117,
+        "complete": true,
+        "covers": 40,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 2640,
+      "evaluated_axis_end_choices": 40,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 18,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      }
+    },
+    {
+      "name": "generated_0047",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 321,
+        "complete": true,
+        "covers": 125,
+        "atom_count": 9,
+        "rectangle_count": 25
+      },
+      "covers_without_supported_axes": 122,
+      "all_axis_combinations_in_cover_domain": 11200,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 5,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0052",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 1058,
+        "complete": true,
+        "covers": 378,
+        "atom_count": 11,
+        "rectangle_count": 34
+      },
+      "covers_without_supported_axes": 368,
+      "all_axis_combinations_in_cover_domain": 90240,
+      "evaluated_axis_end_choices": 62,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 22,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 20,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16
+      }
+    },
+    {
+      "name": "generated_0076",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 212,
+        "complete": true,
+        "covers": 78,
+        "atom_count": 8,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 75,
+      "all_axis_combinations_in_cover_domain": 4112,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      }
+    },
+    {
+      "name": "generated_0102",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 608,
+        "complete": true,
+        "covers": 211,
+        "atom_count": 10,
+        "rectangle_count": 32
+      },
+      "covers_without_supported_axes": 205,
+      "all_axis_combinations_in_cover_domain": 31264,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8
+      }
+    },
+    {
+      "name": "generated_0107",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 376,
+        "complete": true,
+        "covers": 127,
+        "atom_count": 9,
+        "rectangle_count": 28
+      },
+      "covers_without_supported_axes": 122,
+      "all_axis_combinations_in_cover_domain": 11344,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5,
+        "composition: no implemented architecture template for inter_part_continuation": 1,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      }
+    },
+    {
+      "name": "generated_0122",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 112,
+        "complete": true,
+        "covers": 45,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 29,
+      "all_axis_combinations_in_cover_domain": 2816,
+      "evaluated_axis_end_choices": 118,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 32,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 26,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 58,
+        "composition: declared architecture lacks a complete applicable port arrangement": 2
+      }
+    },
+    {
+      "name": "generated_0134",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 32075,
+        "complete": true,
+        "covers": 10512,
+        "atom_count": 15,
+        "rectangle_count": 70
+      },
+      "covers_without_supported_axes": 10507,
+      "all_axis_combinations_in_cover_domain": 12663744,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10
+      }
+    },
+    {
+      "name": "generated_0145",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 547,
+        "complete": true,
+        "covers": 234,
+        "atom_count": 10,
+        "rectangle_count": 28
+      },
+      "covers_without_supported_axes": 231,
+      "all_axis_combinations_in_cover_domain": 32896,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0147",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 76,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_offset_continuation": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3
+      }
+    },
+    {
+      "name": "generated_0148",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 155,
+        "complete": true,
+        "covers": 49,
+        "atom_count": 8,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 42,
+      "all_axis_combinations_in_cover_domain": 3104,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0154",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 146,
+        "complete": true,
+        "covers": 48,
+        "atom_count": 8,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 43,
+      "all_axis_combinations_in_cover_domain": 3072,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5
+      }
+    },
+    {
+      "name": "generated_0157",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 1273,
+        "complete": true,
+        "covers": 475,
+        "atom_count": 11,
+        "rectangle_count": 40
+      },
+      "covers_without_supported_axes": 469,
+      "all_axis_combinations_in_cover_domain": 106528,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 9,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      }
+    },
+    {
+      "name": "generated_0170",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 600,
+        "complete": true,
+        "covers": 211,
+        "atom_count": 10,
+        "rectangle_count": 30
+      },
+      "covers_without_supported_axes": 208,
+      "all_axis_combinations_in_cover_domain": 31264,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0180",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 103,
+        "complete": true,
+        "covers": 34,
+        "atom_count": 7,
+        "rectangle_count": 17
+      },
+      "covers_without_supported_axes": 31,
+      "all_axis_combinations_in_cover_domain": 1200,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 2
+      }
+    },
+    {
+      "name": "generated_0182",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 307,
+        "complete": true,
+        "covers": 125,
+        "atom_count": 9,
+        "rectangle_count": 27
+      },
+      "covers_without_supported_axes": 120,
+      "all_axis_combinations_in_cover_domain": 11240,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0190",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 2167,
+        "complete": true,
+        "covers": 875,
+        "atom_count": 12,
+        "rectangle_count": 40
+      },
+      "covers_without_supported_axes": 865,
+      "all_axis_combinations_in_cover_domain": 307808,
+      "evaluated_axis_end_choices": 30,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 14,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 7,
+        "composition: mixed middle ports must be strictly narrower": 1
+      }
+    },
+    {
+      "name": "generated_0203",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 159,
+        "complete": true,
+        "covers": 55,
+        "atom_count": 8,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 49,
+      "all_axis_combinations_in_cover_domain": 3280,
+      "evaluated_axis_end_choices": 12,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0204",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 20,
+        "complete": true,
+        "covers": 8,
+        "atom_count": 5,
+        "rectangle_count": 9
+      },
+      "covers_without_supported_axes": 6,
+      "all_axis_combinations_in_cover_domain": 120,
+      "evaluated_axis_end_choices": 2,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0208",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 220,
+        "complete": true,
+        "covers": 78,
+        "atom_count": 8,
+        "rectangle_count": 25
+      },
+      "covers_without_supported_axes": 73,
+      "all_axis_combinations_in_cover_domain": 4128,
+      "evaluated_axis_end_choices": 9,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5,
+        "composition: no implemented architecture template for inter_part_continuation": 1,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      }
+    },
+    {
+      "name": "generated_0220",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 22,
+        "complete": true,
+        "covers": 7,
+        "atom_count": 5,
+        "rectangle_count": 11
+      },
+      "covers_without_supported_axes": 1,
+      "all_axis_combinations_in_cover_domain": 112,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 2,
+      "embeddings": 2,
+      "selectable": true,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0221",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 3013,
+        "complete": true,
+        "covers": 1232,
+        "atom_count": 12,
+        "rectangle_count": 44
+      },
+      "covers_without_supported_axes": 1229,
+      "all_axis_combinations_in_cover_domain": 388192,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5
+      }
+    },
+    {
+      "name": "generated_0235",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 158,
+        "complete": true,
+        "covers": 55,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 52,
+      "all_axis_combinations_in_cover_domain": 3280,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0264",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 919,
+        "complete": true,
+        "covers": 342,
+        "atom_count": 11,
+        "rectangle_count": 34
+      },
+      "covers_without_supported_axes": 322,
+      "all_axis_combinations_in_cover_domain": 79680,
+      "evaluated_axis_end_choices": 37,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 37
+      }
+    },
+    {
+      "name": "generated_0273",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 91,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      }
+    },
+    {
+      "name": "generated_0280",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 302,
+        "complete": true,
+        "covers": 114,
+        "atom_count": 9,
+        "rectangle_count": 24
+      },
+      "covers_without_supported_axes": 109,
+      "all_axis_combinations_in_cover_domain": 9960,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0296",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 1159,
+        "complete": true,
+        "covers": 387,
+        "atom_count": 11,
+        "rectangle_count": 34
+      },
+      "covers_without_supported_axes": 378,
+      "all_axis_combinations_in_cover_domain": 91136,
+      "evaluated_axis_end_choices": 40,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 16,
+        "composition: no implemented architecture template for inter_part_continuation": 8,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16
+      }
+    },
+    {
+      "name": "generated_0307",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 187,
+        "complete": true,
+        "covers": 78,
+        "atom_count": 8,
+        "rectangle_count": 22
+      },
+      "covers_without_supported_axes": 76,
+      "all_axis_combinations_in_cover_domain": 4112,
+      "evaluated_axis_end_choices": 3,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3
+      }
+    },
+    {
+      "name": "generated_0312",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 342,
+        "complete": true,
+        "covers": 130,
+        "atom_count": 9,
+        "rectangle_count": 26
+      },
+      "covers_without_supported_axes": 128,
+      "all_axis_combinations_in_cover_domain": 11368,
+      "evaluated_axis_end_choices": 3,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3
+      }
+    },
+    {
+      "name": "generated_0323",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 5620,
+        "complete": true,
+        "covers": 2047,
+        "atom_count": 13,
+        "rectangle_count": 47
+      },
+      "covers_without_supported_axes": 2044,
+      "all_axis_combinations_in_cover_domain": 1071840,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5
+      }
+    },
+    {
+      "name": "generated_0326",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 554,
+        "complete": true,
+        "covers": 210,
+        "atom_count": 10,
+        "rectangle_count": 29
+      },
+      "covers_without_supported_axes": 190,
+      "all_axis_combinations_in_cover_domain": 29184,
+      "evaluated_axis_end_choices": 59,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 29,
+        "composition: no implemented architecture template for inter_part_continuation": 15,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 15
+      }
+    },
+    {
+      "name": "generated_0343",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 364,
+        "complete": true,
+        "covers": 105,
+        "atom_count": 9,
+        "rectangle_count": 26
+      },
+      "covers_without_supported_axes": 93,
+      "all_axis_combinations_in_cover_domain": 9680,
+      "evaluated_axis_end_choices": 48,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 14,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 18
+      }
+    },
+    {
+      "name": "generated_0354",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 4350,
+        "complete": true,
+        "covers": 1650,
+        "atom_count": 13,
+        "rectangle_count": 45
+      },
+      "covers_without_supported_axes": 1642,
+      "all_axis_combinations_in_cover_domain": 916992,
+      "evaluated_axis_end_choices": 21,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 17,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0356",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 43,
+        "complete": true,
+        "covers": 15,
+        "atom_count": 6,
+        "rectangle_count": 14
+      },
+      "covers_without_supported_axes": 7,
+      "all_axis_combinations_in_cover_domain": 352,
+      "evaluated_axis_end_choices": 31,
+      "graphs": 1,
+      "embeddings": 1,
+      "selectable": true,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 8,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 14,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8
+      }
+    },
+    {
+      "name": "generated_0361",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 446,
+        "complete": true,
+        "covers": 175,
+        "atom_count": 10,
+        "rectangle_count": 29
+      },
+      "covers_without_supported_axes": 155,
+      "all_axis_combinations_in_cover_domain": 26752,
+      "evaluated_axis_end_choices": 52,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 28,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 24
+      }
+    },
+    {
+      "name": "generated_0370",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 21,
+        "complete": true,
+        "covers": 8,
+        "atom_count": 5,
+        "rectangle_count": 10
+      },
+      "covers_without_supported_axes": 4,
+      "all_axis_combinations_in_cover_domain": 120,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      }
+    },
+    {
+      "name": "generated_0385",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 104,
+        "complete": true,
+        "covers": 40,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 2640,
+      "evaluated_axis_end_choices": 40,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 18,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 14,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 8
+      }
+    },
+    {
+      "name": "generated_0386",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 715,
+        "complete": true,
+        "covers": 285,
+        "atom_count": 10,
+        "rectangle_count": 35
+      },
+      "covers_without_supported_axes": 281,
+      "all_axis_combinations_in_cover_domain": 38496,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0391",
+      "category": "orthogonal_grid_stress",
+      "vertices": 8,
+      "search": {
+        "work": 40,
+        "complete": true,
+        "covers": 18,
+        "atom_count": 6,
+        "rectangle_count": 13
+      },
+      "covers_without_supported_axes": 10,
+      "all_axis_combinations_in_cover_domain": 384,
+      "evaluated_axis_end_choices": 45,
+      "graphs": 1,
+      "embeddings": 1,
+      "selectable": true,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 16,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 8
+      }
+    },
+    {
+      "name": "generated_0398",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 481,
+        "complete": true,
+        "covers": 165,
+        "atom_count": 10,
+        "rectangle_count": 27
+      },
+      "covers_without_supported_axes": 153,
+      "all_axis_combinations_in_cover_domain": 26240,
+      "evaluated_axis_end_choices": 38,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 22,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16
+      }
+    },
+    {
+      "name": "generated_0399",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 205,
+        "complete": true,
+        "covers": 78,
+        "atom_count": 8,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 75,
+      "all_axis_combinations_in_cover_domain": 4112,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      }
+    },
+    {
+      "name": "generated_0400",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 376,
+        "complete": true,
+        "covers": 125,
+        "atom_count": 9,
+        "rectangle_count": 27
+      },
+      "covers_without_supported_axes": 120,
+      "all_axis_combinations_in_cover_domain": 11240,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0403",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 202,
+        "complete": true,
+        "covers": 63,
+        "atom_count": 8,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 57,
+      "all_axis_combinations_in_cover_domain": 3520,
+      "evaluated_axis_end_choices": 34,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 12
+      }
+    },
+    {
+      "name": "generated_0452",
+      "category": "orthogonal_grid_stress",
+      "vertices": 8,
+      "search": {
+        "work": 49,
+        "complete": true,
+        "covers": 21,
+        "atom_count": 6,
+        "rectangle_count": 15
+      },
+      "covers_without_supported_axes": 18,
+      "all_axis_combinations_in_cover_domain": 440,
+      "evaluated_axis_end_choices": 9,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      }
+    },
+    {
+      "name": "generated_0454",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 146,
+        "complete": true,
+        "covers": 56,
+        "atom_count": 8,
+        "rectangle_count": 20
+      },
+      "covers_without_supported_axes": 53,
+      "all_axis_combinations_in_cover_domain": 3312,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0462",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 377,
+        "complete": true,
+        "covers": 129,
+        "atom_count": 9,
+        "rectangle_count": 28
+      },
+      "covers_without_supported_axes": 124,
+      "all_axis_combinations_in_cover_domain": 11392,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0466",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 1356,
+        "complete": true,
+        "covers": 470,
+        "atom_count": 11,
+        "rectangle_count": 35
+      },
+      "covers_without_supported_axes": 467,
+      "all_axis_combinations_in_cover_domain": 106048,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0471",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 93,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 25,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0477",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 3909,
+        "complete": true,
+        "covers": 1636,
+        "atom_count": 13,
+        "rectangle_count": 41
+      },
+      "covers_without_supported_axes": 1630,
+      "all_axis_combinations_in_cover_domain": 907200,
+      "evaluated_axis_end_choices": 12,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 12
+      }
+    },
+    {
+      "name": "generated_0498",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 146,
+        "complete": true,
+        "covers": 56,
+        "atom_count": 8,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 51,
+      "all_axis_combinations_in_cover_domain": 3312,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0499",
+      "category": "orthogonal_grid_stress",
+      "vertices": 8,
+      "search": {
+        "work": 14,
+        "complete": true,
+        "covers": 5,
+        "atom_count": 4,
+        "rectangle_count": 8
+      },
+      "covers_without_supported_axes": 1,
+      "all_axis_combinations_in_cover_domain": 44,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 1,
+      "embeddings": 1,
+      "selectable": true,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0522",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 1357,
+        "complete": true,
+        "covers": 558,
+        "atom_count": 11,
+        "rectangle_count": 38
+      },
+      "covers_without_supported_axes": 554,
+      "all_axis_combinations_in_cover_domain": 115056,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0537",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 241,
+        "complete": true,
+        "covers": 89,
+        "atom_count": 9,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 87,
+      "all_axis_combinations_in_cover_domain": 8944,
+      "evaluated_axis_end_choices": 2,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0545",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 276,
+        "complete": true,
+        "covers": 102,
+        "atom_count": 9,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 92,
+      "all_axis_combinations_in_cover_domain": 9536,
+      "evaluated_axis_end_choices": 40,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 12,
+        "composition: no implemented architecture template for inter_part_continuation": 8,
+        "composition: declared architecture lacks a complete applicable port arrangement": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 14,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0553",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 4412,
+        "complete": true,
+        "covers": 1653,
+        "atom_count": 13,
+        "rectangle_count": 45
+      },
+      "covers_without_supported_axes": 1645,
+      "all_axis_combinations_in_cover_domain": 918016,
+      "evaluated_axis_end_choices": 25,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 17,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 8
+      }
+    },
+    {
+      "name": "generated_0558",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 164,
+        "complete": true,
+        "covers": 57,
+        "atom_count": 8,
+        "rectangle_count": 21
+      },
+      "covers_without_supported_axes": 53,
+      "all_axis_combinations_in_cover_domain": 3344,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      }
+    },
+    {
+      "name": "generated_0563",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 54,
+        "complete": true,
+        "covers": 18,
+        "atom_count": 6,
+        "rectangle_count": 15
+      },
+      "covers_without_supported_axes": 15,
+      "all_axis_combinations_in_cover_domain": 408,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 2,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      }
+    },
+    {
+      "name": "generated_0564",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 65,
+        "complete": true,
+        "covers": 24,
+        "atom_count": 7,
+        "rectangle_count": 15
+      },
+      "covers_without_supported_axes": 17,
+      "all_axis_combinations_in_cover_domain": 960,
+      "evaluated_axis_end_choices": 27,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: no implemented architecture template for inter_part_continuation": 5,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      }
+    },
+    {
+      "name": "generated_0582",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 3453,
+        "complete": true,
+        "covers": 1261,
+        "atom_count": 12,
+        "rectangle_count": 48
+      },
+      "covers_without_supported_axes": 1255,
+      "all_axis_combinations_in_cover_domain": 393824,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10
+      }
+    },
+    {
+      "name": "generated_0600",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 59,
+        "complete": true,
+        "covers": 21,
+        "atom_count": 7,
+        "rectangle_count": 14
+      },
+      "covers_without_supported_axes": 18,
+      "all_axis_combinations_in_cover_domain": 896,
+      "evaluated_axis_end_choices": 11,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 8
+      }
+    },
+    {
+      "name": "generated_0602",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 650,
+        "complete": true,
+        "covers": 210,
+        "atom_count": 10,
+        "rectangle_count": 32
+      },
+      "covers_without_supported_axes": 201,
+      "all_axis_combinations_in_cover_domain": 31152,
+      "evaluated_axis_end_choices": 25,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 12,
+        "composition: no implemented architecture template for inter_part_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 7,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2,
+        "composition: declared architecture lacks a complete applicable port arrangement": 1
+      }
+    },
+    {
+      "name": "generated_0606",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 100001,
+        "complete": false,
+        "covers": 35679,
+        "atom_count": 17,
+        "rectangle_count": 67
+      },
+      "covers_without_supported_axes": 35677,
+      "all_axis_combinations_in_cover_domain": 106081248,
+      "evaluated_axis_end_choices": 2,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0626",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 796,
+        "complete": true,
+        "covers": 300,
+        "atom_count": 11,
+        "rectangle_count": 29
+      },
+      "covers_without_supported_axes": 172,
+      "all_axis_combinations_in_cover_domain": 69696,
+      "evaluated_axis_end_choices": 616,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 472,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 80,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 62,
+        "composition: declared architecture lacks a complete applicable port arrangement": 2
+      }
+    },
+    {
+      "name": "generated_0630",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 226,
+        "complete": true,
+        "covers": 92,
+        "atom_count": 9,
+        "rectangle_count": 25
+      },
+      "covers_without_supported_axes": 82,
+      "all_axis_combinations_in_cover_domain": 9072,
+      "evaluated_axis_end_choices": 18,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 11,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0641",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 76,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0643",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 2424,
+        "complete": true,
+        "covers": 903,
+        "atom_count": 12,
+        "rectangle_count": 40
+      },
+      "covers_without_supported_axes": 899,
+      "all_axis_combinations_in_cover_domain": 314176,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0646",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 39,
+        "complete": true,
+        "covers": 13,
+        "atom_count": 6,
+        "rectangle_count": 14
+      },
+      "covers_without_supported_axes": 5,
+      "all_axis_combinations_in_cover_domain": 328,
+      "evaluated_axis_end_choices": 15,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 6,
+        "composition: no implemented architecture template for inter_part_continuation": 4,
+        "composition: multiple equal-width attachments lack compatible opposite shared ports": 1
+      }
+    },
+    {
+      "name": "generated_0666",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 54,
+        "complete": true,
+        "covers": 18,
+        "atom_count": 6,
+        "rectangle_count": 15
+      },
+      "covers_without_supported_axes": 15,
+      "all_axis_combinations_in_cover_domain": 408,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 2,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1,
+        "composition: mixed middle ports must be strictly narrower": 1
+      }
+    },
+    {
+      "name": "generated_0679",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 524,
+        "complete": true,
+        "covers": 205,
+        "atom_count": 10,
+        "rectangle_count": 30
+      },
+      "covers_without_supported_axes": 200,
+      "all_axis_combinations_in_cover_domain": 30928,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0680",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 1481,
+        "complete": true,
+        "covers": 564,
+        "atom_count": 11,
+        "rectangle_count": 39
+      },
+      "covers_without_supported_axes": 560,
+      "all_axis_combinations_in_cover_domain": 115440,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0681",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 217,
+        "complete": true,
+        "covers": 75,
+        "atom_count": 9,
+        "rectangle_count": 24
+      },
+      "covers_without_supported_axes": 43,
+      "all_axis_combinations_in_cover_domain": 7744,
+      "evaluated_axis_end_choices": 144,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 66,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 36,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 40,
+        "composition: declared architecture lacks a complete applicable port arrangement": 2
+      }
+    },
+    {
+      "name": "generated_0685",
+      "category": "orthogonal_grid_stress",
+      "vertices": 10,
+      "search": {
+        "work": 81,
+        "complete": true,
+        "covers": 34,
+        "atom_count": 7,
+        "rectangle_count": 17
+      },
+      "covers_without_supported_axes": 31,
+      "all_axis_combinations_in_cover_domain": 1200,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0687",
+      "category": "orthogonal_grid_stress",
+      "vertices": 14,
+      "search": {
+        "work": 3084,
+        "complete": true,
+        "covers": 1323,
+        "atom_count": 13,
+        "rectangle_count": 39
+      },
+      "covers_without_supported_axes": 1305,
+      "all_axis_combinations_in_cover_domain": 774400,
+      "evaluated_axis_end_choices": 176,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 56,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 84,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 36
+      }
+    },
+    {
+      "name": "generated_0694",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 152,
+        "complete": true,
+        "covers": 55,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 53,
+      "all_axis_combinations_in_cover_domain": 3272,
+      "evaluated_axis_end_choices": 3,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3
+      }
+    },
+    {
+      "name": "generated_0706",
+      "category": "orthogonal_grid_stress",
+      "vertices": 12,
+      "search": {
+        "work": 879,
+        "complete": true,
+        "covers": 285,
+        "atom_count": 10,
+        "rectangle_count": 35
+      },
+      "covers_without_supported_axes": 281,
+      "all_axis_combinations_in_cover_domain": 38496,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0022",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 2082,
+        "complete": true,
+        "covers": 880,
+        "atom_count": 12,
+        "rectangle_count": 39
+      },
+      "covers_without_supported_axes": 876,
+      "all_axis_combinations_in_cover_domain": 310944,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    },
+    {
+      "name": "generated_0024",
+      "category": "nonuniform_orthogonal",
+      "vertices": 8,
+      "search": {
+        "work": 24,
+        "complete": true,
+        "covers": 9,
+        "atom_count": 5,
+        "rectangle_count": 10
+      },
+      "covers_without_supported_axes": 5,
+      "all_axis_combinations_in_cover_domain": 128,
+      "evaluated_axis_end_choices": 22,
+      "graphs": 1,
+      "embeddings": 1,
+      "selectable": true,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      }
+    },
+    {
+      "name": "generated_0025",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 436,
+        "complete": true,
+        "covers": 165,
+        "atom_count": 10,
+        "rectangle_count": 27
+      },
+      "covers_without_supported_axes": 154,
+      "all_axis_combinations_in_cover_domain": 26240,
+      "evaluated_axis_end_choices": 36,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 20,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0030",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 153,
+        "complete": true,
+        "covers": 49,
+        "atom_count": 8,
+        "rectangle_count": 22
+      },
+      "covers_without_supported_axes": 44,
+      "all_axis_combinations_in_cover_domain": 3104,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0035",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 1619,
+        "complete": true,
+        "covers": 546,
+        "atom_count": 11,
+        "rectangle_count": 35
+      },
+      "covers_without_supported_axes": 543,
+      "all_axis_combinations_in_cover_domain": 113680,
+      "evaluated_axis_end_choices": 21,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 5,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16
+      }
+    },
+    {
+      "name": "generated_0041",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 90,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 6,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0043",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 152,
+        "complete": true,
+        "covers": 56,
+        "atom_count": 8,
+        "rectangle_count": 20
+      },
+      "covers_without_supported_axes": 53,
+      "all_axis_combinations_in_cover_domain": 3312,
+      "evaluated_axis_end_choices": 4,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4
+      }
+    },
+    {
+      "name": "generated_0044",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 117,
+        "complete": true,
+        "covers": 40,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 2640,
+      "evaluated_axis_end_choices": 46,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 20,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 15,
+        "composition: declared architecture lacks a complete applicable port arrangement": 1
+      }
+    },
+    {
+      "name": "generated_0047",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 346,
+        "complete": true,
+        "covers": 125,
+        "atom_count": 9,
+        "rectangle_count": 25
+      },
+      "covers_without_supported_axes": 122,
+      "all_axis_combinations_in_cover_domain": 11200,
+      "evaluated_axis_end_choices": 12,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 7
+      }
+    },
+    {
+      "name": "generated_0052",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 955,
+        "complete": true,
+        "covers": 378,
+        "atom_count": 11,
+        "rectangle_count": 34
+      },
+      "covers_without_supported_axes": 368,
+      "all_axis_combinations_in_cover_domain": 90240,
+      "evaluated_axis_end_choices": 59,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 25,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 28,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      }
+    },
+    {
+      "name": "generated_0076",
+      "category": "nonuniform_orthogonal",
+      "vertices": 10,
+      "search": {
+        "work": 212,
+        "complete": true,
+        "covers": 78,
+        "atom_count": 8,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 75,
+      "all_axis_combinations_in_cover_domain": 4112,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: no implemented architecture template for inter_part_continuation": 2,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      }
+    },
+    {
+      "name": "generated_0102",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 584,
+        "complete": true,
+        "covers": 211,
+        "atom_count": 10,
+        "rectangle_count": 32
+      },
+      "covers_without_supported_axes": 205,
+      "all_axis_combinations_in_cover_domain": 31264,
+      "evaluated_axis_end_choices": 8,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8
+      }
+    },
+    {
+      "name": "generated_0107",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 357,
+        "complete": true,
+        "covers": 127,
+        "atom_count": 9,
+        "rectangle_count": 28
+      },
+      "covers_without_supported_axes": 122,
+      "all_axis_combinations_in_cover_domain": 11344,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      }
+    },
+    {
+      "name": "generated_0122",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 112,
+        "complete": true,
+        "covers": 45,
+        "atom_count": 8,
+        "rectangle_count": 19
+      },
+      "covers_without_supported_axes": 29,
+      "all_axis_combinations_in_cover_domain": 2816,
+      "evaluated_axis_end_choices": 122,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_continuation": 32,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 26,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60
+      }
+    },
+    {
+      "name": "generated_0134",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 26284,
+        "complete": true,
+        "covers": 10512,
+        "atom_count": 15,
+        "rectangle_count": 70
+      },
+      "covers_without_supported_axes": 10507,
+      "all_axis_combinations_in_cover_domain": 12663744,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10
+      }
+    },
+    {
+      "name": "generated_0145",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 648,
+        "complete": true,
+        "covers": 234,
+        "atom_count": 10,
+        "rectangle_count": 28
+      },
+      "covers_without_supported_axes": 231,
+      "all_axis_combinations_in_cover_domain": 32896,
+      "evaluated_axis_end_choices": 7,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 7
+      }
+    },
+    {
+      "name": "generated_0147",
+      "category": "nonuniform_orthogonal",
+      "vertices": 12,
+      "search": {
+        "work": 97,
+        "complete": true,
+        "covers": 30,
+        "atom_count": 7,
+        "rectangle_count": 18
+      },
+      "covers_without_supported_axes": 27,
+      "all_axis_combinations_in_cover_domain": 1128,
+      "evaluated_axis_end_choices": 5,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      }
+    },
+    {
+      "name": "generated_0148",
+      "category": "nonuniform_orthogonal",
+      "vertices": 14,
+      "search": {
+        "work": 155,
+        "complete": true,
+        "covers": 49,
+        "atom_count": 8,
+        "rectangle_count": 23
+      },
+      "covers_without_supported_axes": 42,
+      "all_axis_combinations_in_cover_domain": 3104,
+      "evaluated_axis_end_choices": 10,
+      "graphs": 0,
+      "embeddings": 0,
+      "selectable": false,
+      "rejections": {
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 6
+      }
+    }
+  ]
+}

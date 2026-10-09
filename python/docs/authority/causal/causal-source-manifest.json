@@ -1,0 +1,42 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "modules": {
+    "addon/roof_generator/__init__.py": "dd389a1794fad657ca8af307fadcba1b0135239e152ca26967db72c7fb5a1b56",
+    "addon/roof_generator/blender_output.py": "0cc2fcf21cdb39bc1242a423eba47469020131b31ae3bea1015497cdb0a84c09",
+    "addon/roof_generator/core/__init__.py": "2407b7ad4274e3e72490683eb85d386408f033d2c5bcc475b483dd075a438356",
+    "addon/roof_generator/core/architecture.py": "a22db3b54829f1a55859fbed79bdb21b79e10068d539d483df279f5aa8b2f351",
+    "addon/roof_generator/core/architecture_models.py": "4b48a991d6e6872ff43e0379d9f26c17920f4369439e82819045d043e959f97c",
+    "addon/roof_generator/core/architecture_selection.py": "e4f626118273925321d5ac9f356aa816210198d25305dd9e94b6d978c72bf637",
+    "addon/roof_generator/core/cells.py": "eaa34a369604e3a55fa3d2c051a3e0465901596c4a5a52bd29ddabf9a2780e13",
+    "addon/roof_generator/core/errors.py": "3539372347f072fb50b41b39e0f1503fcfd618104b1c35c9962fe2b1003f93b6",
+    "addon/roof_generator/core/footprint.py": "7896865c8e84d33f9e2751a4254801ee0ee8f1f7869ba8f8602b633d48d9327d",
+    "addon/roof_generator/core/generation.py": "318949384c0a1180337ce435bdbb190dd2b86cb9ab7d4153fe0386bd64743add",
+    "addon/roof_generator/core/graph.py": "9620f5382dd96a2664898582ce1d52b68f00c20f5928e1c234443692a96f9c54",
+    "addon/roof_generator/core/initialization.py": "4ce3f284e0bccb78740734b82a79a462f154f1d7a87f3be6b143303f8880a700",
+    "addon/roof_generator/core/junctions.py": "a1d01e198c9a704903d547452f0ebecc4775809dbb4486612f097d11cb32d2d8",
+    "addon/roof_generator/core/member_layout.py": "f9e191e36368f74ec257be4fc2b5e9a173fdcabc2fe601bb561d6f47bb76473c",
+    "addon/roof_generator/core/mesh.py": "d10764f600892f553eb35d0860eaa6318f35a51e1c6a9da71519509e970ed5aa",
+    "addon/roof_generator/core/optimization.py": "65cf6432b0a59f1f6ce8565e94fae93de1abe0a9a7298f2b9b8c2d5882107ba9",
+    "addon/roof_generator/core/partition.py": "302c37b924418af32591fd10a2196ad019716462011e2d69100a9ddb023db458",
+    "addon/roof_generator/core/partition_candidates.py": "5fcf2741238877509aa05206a8ab0a2bbd4af19f07b62ac603fdbc99fb4e6396",
+    "addon/roof_generator/core/provenance.py": "c663936dbeef846d15d4d732a92e5ed326bfdca664d3ba0635c3d85596e9764d",
+    "addon/roof_generator/core/receiver_regions.py": "c71bb3604afdb8a9be69fc80be19a2bacae8c12687ff3492587b9e16ae42fac4",
+    "addon/roof_generator/core/region_architecture.py": "69f488d3682c9d12be5e364b2875933fc73bb8db30d9acc20a635bf48f95cb94",
+    "addon/roof_generator/core/region_generation.py": "bcd72a1705c5f79791f633741aee09689b78ea9d6eaa1e2e503ec36fa4c490fa",
+    "addon/roof_generator/core/roof_candidates.py": "aa5aabbc9c2940bf934b820890ee41ee1d95da527adc1396d2ae34c95d06eea9",
+    "addon/roof_generator/core/roof_ends.py": "b9b828b99fbac8d0d89a5b1042495db6aee8868651e06e4adcd92a61e3206290",
+    "addon/roof_generator/core/roof_regions.py": "87408381d92b01eda25f271fd3b1dc05a2b4d7468c2c2521bb6d573f59d00180",
+    "addon/roof_generator/core/seed.py": "fd5facd58eff37618a98a147f009d3ba294e2b4ab795ec7005056521c2fb6f64",
+    "addon/roof_generator/core/solve.py": "b02dfb51eaf923e2da0bf7f0c71e456b0dfbda3050335e2cfd94dfddc603bf76",
+    "addon/roof_generator/core/topology.py": "9ca5559b60db258b22b1092882ce5f89b61887abebeba9a0a7a32864a93e6832",
+    "addon/roof_generator/core/topology_candidates.py": "e9d9e0f6e6be2dd96bb81763658f0c555a0570e84ab0e1870c4e56546e67fc23",
+    "addon/roof_generator/mesh_frame.py": "e80b163350eb6d7144c6b2b218cc9e28e94509fc9f0d1de92477ab99461b87db",
+    "addon/roof_generator/mesh_input.py": "f21cf9e53f4029fa76cf5d1b5092a664fe818e98a6416ba83353300979ccfd43",
+    "addon/roof_generator/ui.py": "50fa5b368c260310435731b1621cad584d357c5ec3a07b2a313eecb99dbc2a8c"
+  },
+  "diagnostic_current_source": {
+    "python/causal_roof_audit.py": "7b388e21fb73c5da02a832a3375eb2d9b2c282457ec00ae3bc3cc1aa9897a3b5",
+    "python/causal_cover_oracle.py": "0149023169ec07d747ac2fc03f6b6291a7ba6e09642482a08d65b1e9fc2d0df7",
+    "python/probe_recursive_roofs.py": "39452f69111dbcf89c6b00aa88de833f088d1fb025a2a24db1bc3f0c9394b25e"
+  }
+}

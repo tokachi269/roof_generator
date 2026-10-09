@@ -1,0 +1,37 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "axis_ablation": true,
+  "only_changed_constraint": "minimum rectangular member axes=(0,1)",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "frontier_scope": "inclusion-minimal observed first-failure sets; downstream censored, not sufficient rescue conditions",
+  "corpora": {
+    "structured_orthogonal": {
+      "counts": {
+        "inputs": 103,
+        "selectable": 32,
+        "incomplete": 10
+      },
+      "max_reached_stage": {
+        "embedding": 32,
+        "junction": 31,
+        "relation": 40
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "branch_width": 31,
+        "composition": 31,
+        "offset_continuation": 61,
+        "parallel": 61,
+        "partial_end": 61,
+        "ends": 6,
+        "interacting_slots": 10,
+        "attachment_applicability": 5,
+        "corner_extension": 5
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/one_full/between_parts": 103,
+        "unequal_width/offset/one_full/same_part": 33,
+        "unequal_width/offset/both_partial/between_parts": 30
+      }
+    }
+  }
+}
