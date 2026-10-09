@@ -17,6 +17,20 @@ import sys
 import textwrap
 from unittest.mock import patch
 
+STAGE_ORDER = {'model':0,'relation':1,'ends':2,'architecture':2,'junction':3,
+               'composition':3,'geometry_problem':4,'graph_validation':4,'embedding':5,'mesh':6}
+
+
+def source_frontier(observations, complete, model_failures=0):
+    free = [stage for parallel,stage in observations if not parallel]
+    return {'complete':complete, 'modeled_assignments':len(observations),
+            'model_failures':model_failures, 'parallel_free_assignments':len(free),
+            'parallel_free_mesh_assignments':sum(s=='mesh' for s in free),
+            'parallel_free_max_reached_stage':max(free,key=lambda s:STAGE_ORDER.get(s,0),default=None),
+            'state':'incomplete' if not complete else 'no_modeled_candidate' if not observations
+                    else 'parallel_free_candidate' if free else 'parallel_unavoidable_in_modeled_family',
+            'scope':'actual declared contact options before end consumption; later stages may be censored'}
+
 
 def minimal_sets(sets):
     unique = {frozenset(s) for s in sets if s}
@@ -79,8 +93,7 @@ def main():
              dict(vars(architecture_models)),namespace)
         validator = namespace['__post_init__']
 
-    order = {'model':0,'relation':1,'ends':2,'architecture':2,'junction':3,
-             'composition':3,'geometry_problem':4,'graph_validation':4,'embedding':5,'mesh':6}
+    order = STAGE_ORDER
     def labels(issues):
         return sorted({i.code.removeprefix('inter_part_').removeprefix('internal_')
                        if i.code != 'unsupported' else i.stage for i in issues})
@@ -120,17 +133,6 @@ def main():
                 shape += '/'+('same_part' if resolved.internal(relation) else 'between_parts')
                 shapes[shape] += 1
         return shapes
-
-    def source_frontier(observations, complete, model_failures=0):
-        free = [stage for parallel,stage in observations if not parallel]
-        return {'complete':complete, 'modeled_assignments':len(observations),
-                'model_failures':model_failures,
-                'parallel_free_assignments':len(free),
-                'parallel_free_mesh_assignments':sum(s=='mesh' for s in free),
-                'parallel_free_max_reached_stage':max(free,key=lambda s:order.get(s,0),default=None),
-                'state':'incomplete' if not complete else 'no_modeled_candidate' if not observations
-                        else 'parallel_free_candidate' if free else 'parallel_unavoidable_in_modeled_family',
-                'scope':'actual declared contact options before end consumption; later stages may be censored'}
 
     def producer_frontiers(pool, statuses, receiver_complete):
         minimum = {}
@@ -207,7 +209,7 @@ def main():
                         'axes':rejection.axes,'blockers':[rejection.stage],
                         'reached_stage':rejection.stage,'reason':rejection.reason})
                 for rejection in pool.rejected:
-                    if any(i.stage=='embedding' for i in rejection.issues):
+                    if any(i.stage=='embedding' and i.code=='unsupported' for i in rejection.issues):
                         failures.append({'source':'minimum','geometry':rejection.partition,
                             'axes':rejection.axes,'blockers':['embedding'],
                             'reached_stage':'embedding','reason':rejection.reason})

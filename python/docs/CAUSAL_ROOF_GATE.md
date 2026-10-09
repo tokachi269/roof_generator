@@ -91,3 +91,13 @@ RoofGraph before the unchanged fixed GeometryProblem and solver. It cannot be
 a runtime fallback, cannot let the solver infer topology, and cannot be promoted
 to production from screenshot-only success. Independent coverage, planarity,
 incidence and representative Blender inspection remain required.
+
+## Current decision
+
+The completed finite oracle and unchanged-grammar recursive comparison support
+the isolated whole-polygon branch of this gate. In the same 100 small inputs,
+recursive proposals have parallel-free assignments in every completed search
+but still embed exactly the same six roofs as the cover oracle. The remaining
+94 stop at ends or composition. Structured recursion adds no selectable input.
+The full all-axis run remains incomplete and is not an impossibility proof.
+See [the measured comparison and remaining limits](WHOLE_POLYGON_COMPARISON.md).

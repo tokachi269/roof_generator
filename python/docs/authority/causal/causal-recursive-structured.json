@@ -1,0 +1,3043 @@
+{
+  "scope": "Recursive polygons through all-axis models, global ends, whole graph and embedding; not default generation or Blender coverage",
+  "source_sha": "c53a815bdff00e47c43dcd45b82f04baa6015e70",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "source_files_sha256": {
+    "__init__.py": "2407b7ad4274e3e72490683eb85d386408f033d2c5bcc475b483dd075a438356",
+    "architecture.py": "a22db3b54829f1a55859fbed79bdb21b79e10068d539d483df279f5aa8b2f351",
+    "architecture_models.py": "4b48a991d6e6872ff43e0379d9f26c17920f4369439e82819045d043e959f97c",
+    "architecture_selection.py": "e4f626118273925321d5ac9f356aa816210198d25305dd9e94b6d978c72bf637",
+    "cells.py": "eaa34a369604e3a55fa3d2c051a3e0465901596c4a5a52bd29ddabf9a2780e13",
+    "errors.py": "3539372347f072fb50b41b39e0f1503fcfd618104b1c35c9962fe2b1003f93b6",
+    "footprint.py": "7896865c8e84d33f9e2751a4254801ee0ee8f1f7869ba8f8602b633d48d9327d",
+    "generation.py": "318949384c0a1180337ce435bdbb190dd2b86cb9ab7d4153fe0386bd64743add",
+    "graph.py": "9620f5382dd96a2664898582ce1d52b68f00c20f5928e1c234443692a96f9c54",
+    "initialization.py": "4ce3f284e0bccb78740734b82a79a462f154f1d7a87f3be6b143303f8880a700",
+    "junctions.py": "a1d01e198c9a704903d547452f0ebecc4775809dbb4486612f097d11cb32d2d8",
+    "member_layout.py": "f9e191e36368f74ec257be4fc2b5e9a173fdcabc2fe601bb561d6f47bb76473c",
+    "mesh.py": "d10764f600892f553eb35d0860eaa6318f35a51e1c6a9da71519509e970ed5aa",
+    "optimization.py": "65cf6432b0a59f1f6ce8565e94fae93de1abe0a9a7298f2b9b8c2d5882107ba9",
+    "partition.py": "302c37b924418af32591fd10a2196ad019716462011e2d69100a9ddb023db458",
+    "partition_candidates.py": "5fcf2741238877509aa05206a8ab0a2bbd4af19f07b62ac603fdbc99fb4e6396",
+    "provenance.py": "c663936dbeef846d15d4d732a92e5ed326bfdca664d3ba0635c3d85596e9764d",
+    "receiver_regions.py": "c71bb3604afdb8a9be69fc80be19a2bacae8c12687ff3492587b9e16ae42fac4",
+    "recursive_regions.py": "273b93585cf42968cb3304d505e615acfd639e0ff9069cdb05a60da54c44dfb8",
+    "region_architecture.py": "69f488d3682c9d12be5e364b2875933fc73bb8db30d9acc20a635bf48f95cb94",
+    "region_generation.py": "bcd72a1705c5f79791f633741aee09689b78ea9d6eaa1e2e503ec36fa4c490fa",
+    "roof_candidates.py": "aa5aabbc9c2940bf934b820890ee41ee1d95da527adc1396d2ae34c95d06eea9",
+    "roof_ends.py": "b9b828b99fbac8d0d89a5b1042495db6aee8868651e06e4adcd92a61e3206290",
+    "roof_regions.py": "8cfccdadce781dcf5a29947e92e4132c5352fbb048fcfc625c0d2ca7faaaa6df",
+    "seed.py": "fd5facd58eff37618a98a147f009d3ba294e2b4ab795ec7005056521c2fb6f64",
+    "solve.py": "b02dfb51eaf923e2da0bf7f0c71e456b0dfbda3050335e2cfd94dfddc603bf76",
+    "topology.py": "9ca5559b60db258b22b1092882ce5f89b61887abebeba9a0a7a32864a93e6832",
+    "topology_candidates.py": "e9d9e0f6e6be2dd96bb81763658f0c555a0570e84ab0e1870c4e56546e67fc23"
+  },
+  "requested_inputs": 103,
+  "inputs": 103,
+  "selectable_inputs": 32,
+  "decomposition_incomplete": 10,
+  "architecture_incomplete": 20,
+  "producer_parallel_states": {
+    "parallel_free_candidate": 73,
+    "incomplete": 30
+  },
+  "parallel_free_max_stage": {
+    "mesh": 32,
+    "composition": 31,
+    "ends": 10
+  },
+  "rows": [
+    {
+      "name": "orthogonal_L_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_L_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 3
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_T_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3,
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_parallel": 10
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 11,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 9
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 11,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 9
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_parallel": 10
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 11,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 9,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 8,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "orthogonal_U_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "cross_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 14,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 4,
+        "composition: branch attachment slots interact; no independent junction composition is proved": 1,
+        "ends: no resolved roof-end combination for inter_part_parallel": 6,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 4,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 16,
+        "model_failures": 0,
+        "parallel_free_assignments": 10,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "staircase_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1455,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1312,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1329
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 527,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1068,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1339,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1689
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 546,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1608,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1168,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1320
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 492,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1898,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1313,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 885
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 481,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1840,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1332,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 924
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 496,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 916,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1308,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1872
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 546,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1700,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1292,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1104
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 506,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1680,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1300,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1116
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 576,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1544,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1339,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1213
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 508,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "staircase_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 132,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1828,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1300,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 968
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 529,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "comb_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1016,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 672,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 888,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 255
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 255
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 255
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 856,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 648
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "comb_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 16,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2576,
+        "composition": 256
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1072,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 852,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 255,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 652,
+        "composition: middle attachment requires a narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2592,
+        "model_failures": 0,
+        "parallel_free_assignments": 512,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 64
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 63
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 64
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 60,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 76,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 63
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 64
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 63
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 64,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 50,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 70
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 180,
+        "composition": 80
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 56,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 76,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 64
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 63
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "residential_multi_reflex_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 63
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 68,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 48,
+        "ends: no resolved roof-end combination for inter_part_parallel": 68,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_parallel": 192
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 232,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 200,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 176
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 123,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 285,
+        "ends: no resolved roof-end combination for inter_part_parallel": 200
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 216,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 296,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 96
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_14_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_parallel": 192
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "grid_20_0",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1460,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1408,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1228
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 488,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_1",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1349,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1272,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1475
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 450,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_2",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1492,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1328,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1276
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 456,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_3",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1156,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1848,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1092
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 433,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_4",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1280,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1200,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1616
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 408,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_5",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1500,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1370,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1226
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 449,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_6",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1160,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1368,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1568
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 409,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_7",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1530,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1403,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1163
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 418,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_8",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1226,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1178,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1692
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 405,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_20_9",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1168,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1188,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1740
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 376,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "grid_40_0",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_1",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_2",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_3",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_4",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_5",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_6",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_7",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_8",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "grid_40_9",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "unequal_width_join",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 3
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "terminating_ridge",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 10,
+        "composition": 3
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 4,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 3,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 12,
+        "model_failures": 0,
+        "parallel_free_assignments": 8,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "valley_join",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 2,
+      "architecture_complete": true,
+      "embedded_count": 3,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 6,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 8,
+        "model_failures": 0,
+        "parallel_free_assignments": 6,
+        "parallel_free_mesh_assignments": 2,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    }
+  ]
+}

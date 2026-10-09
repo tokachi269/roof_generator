@@ -1,0 +1,215 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""Isolated whole-polygon topology comparison, never a production fallback.
+
+Laycock section 6.1 moves a terminal skeleton node to its incident boundary
+edge midpoint. Here only triangular faces with one uniquely owned terminal
+node can become gable ends. Shared simultaneous cap nodes are unsupported.
+The external skeleton supplies face incidence; the unchanged core solver
+receives a complete RoofGraph, without external XYZ or event-time anchors.
+"""
+import argparse
+from collections import Counter, defaultdict
+import gzip
+import hashlib
+import json
+import math
+from pathlib import Path
+import sys
+
+
+def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofError):
+    if not fp.orthogonal:
+        raise UnsupportedRoofError('whole-polygon probe requires orthogonal input')
+    scale = fp.frame.scale
+    skeleton = compute_skeleton(exterior=[(x*scale,y*scale) for x,y in fp.vertices], holes=[])
+    seeds = [(node.position.x/scale,node.position.y/scale) for node in skeleton.nodes]
+    loops = [tuple(face[:-1]) for face in skeleton.get_faces()]
+    n = len(fp.vertices)
+    # Bind each face to its explicit initiating exterior edge. Do not rely on
+    # the dependency's face order or derive ownership from final solved XYZ.
+    supports = []
+    for loop in loops:
+        a,b = loop[:2]
+        if not (a < n and b == (a+1)%n and math.dist(seeds[a],fp.vertices[a])<2e-8):
+            raise UnsupportedRoofError('skeleton original-edge identity changed')
+        supports.append(a)
+    seeds[:n] = fp.vertices
+    caps = [(support,loop[2]) for support,loop in zip(supports,loops)
+            if len(loop)==3 and loop[2]>=n]
+    if not caps:
+        raise UnsupportedRoofError('no terminal triangular face for published gable adjustment')
+    counts = Counter(node for edge,node in caps)
+    if any(count != 1 for count in counts.values()):
+        raise UnsupportedRoofError('simultaneous terminal caps share a skeleton node')
+    cap_edges = {edge for edge,node in caps}
+    locations = {i:BoundaryPoint(i,0.0) for i in range(n)}
+    roles = ['corner' if i<n else 'junction' for i in range(len(seeds))]
+    for edge,node in caps:
+        a,b = fp.vertices[edge],fp.vertices[(edge+1)%n]
+        seeds[node] = tuple((a[k]+b[k])/2 for k in (0,1))
+        locations[node] = BoundaryPoint(edge,0.5)
+        roles[node] = 'ridge_end'
+    faces = [graph_api.RoofFace(loop,(0,),(edge,),edge)
+             for edge,loop in zip(supports,loops) if edge not in cap_edges]
+    # Adjacent pieces with the same oriented supporting line describe one
+    # roof facet. Remove only their common cycle edges; no metric seam repair.
+    parent = list(range(len(faces)))
+    def find(i):
+        while parent[i]!=i:
+            i=parent[i]
+        return i
+    def support_line(face):
+        edge=face.support
+        a,b=fp.vertices[edge],fp.vertices[(edge+1)%n]
+        size=math.dist(a,b)
+        normal=(-(b[1]-a[1])/size,(b[0]-a[0])/size)
+        return normal, sum(x*y for x,y in zip(normal,a))
+    shared=defaultdict(list)
+    for i,face in enumerate(faces):
+        for a,b in zip(face.loop,face.loop[1:]+face.loop[:1]):
+            shared[tuple(sorted((a,b)))].append(i)
+    lines=[support_line(face) for face in faces]
+    for owners in shared.values():
+        if len(owners)!=2:continue
+        i,j=owners
+        if (math.dist(lines[i][0],lines[j][0])<1e-8 and
+            abs(lines[i][1]-lines[j][1])<1e-8):
+            parent[find(j)]=find(i)
+    groups=defaultdict(list)
+    for i,face in enumerate(faces):groups[find(i)].append(face)
+    merged=[]
+    for group in groups.values():
+        boundary=set()
+        for face in group:
+            for a,b in zip(face.loop,face.loop[1:]+face.loop[:1]):
+                if (b,a) in boundary:boundary.remove((b,a))
+                else:boundary.add((a,b))
+        outgoing={a:b for a,b in boundary}
+        if len(outgoing)!=len(boundary):
+            raise UnsupportedRoofError('coplanar facet union has branching boundary')
+        start=min(outgoing);loop=[];node=start
+        while node not in loop:
+            loop.append(node);node=outgoing[node]
+        if node!=start or len(loop)!=len(boundary):
+            raise UnsupportedRoofError('coplanar facet union is not one simple region')
+        eaves=tuple(sorted({edge for face in group for edge in face.eaves}))
+        merged.append(graph_api.RoofFace(tuple(loop),(0,),eaves,eaves[0]))
+    faces=merged
+    # Facet aggregation can leave a degree-two subdivision point on one
+    # straight crease. Suppress that point in both incident cycles; keep
+    # every boundary vertex and every actual junction.
+    occurrences=defaultdict(list)
+    for i,face in enumerate(faces):
+        for j,node in enumerate(face.loop):
+            occurrences[node].append((i,face.loop[j-1],face.loop[(j+1)%len(face.loop)]))
+    redundant=set()
+    for node,items in occurrences.items():
+        if node in locations or len(items)!=2:continue
+        (_,a,b),(_,c,d)=items
+        if {a,b}!={c,d}:continue
+        u=(seeds[a][0]-seeds[node][0],seeds[a][1]-seeds[node][1])
+        v=(seeds[b][0]-seeds[node][0],seeds[b][1]-seeds[node][1])
+        if abs(u[0]*v[1]-u[1]*v[0])<1e-10 and sum(x*y for x,y in zip(u,v))<0:
+            redundant.add(node)
+    faces=[graph_api.RoofFace(tuple(v for v in f.loop if v not in redundant),f.cells,f.eaves,f.support)
+           for f in faces]
+    incidence = defaultdict(list)
+    for face_id,face in enumerate(faces):
+        for a,b in zip(face.loop,face.loop[1:]+face.loop[:1]):
+            incidence[tuple(sorted((a,b)))].append((face_id,a,b))
+    normals = []
+    for face in faces:
+        edge = face.support
+        a,b = fp.vertices[edge],fp.vertices[(edge+1)%n]
+        size = math.dist(a,b)
+        normals.append((-(b[1]-a[1])/size,(b[0]-a[0])/size))
+    semantics = {}
+    for key,owners in incidence.items():
+        if len(owners)==1:
+            a,b = key
+            semantics[key] = 'gable_end' if roles[a]=='ridge_end' or roles[b]=='ridge_end' else 'eave'
+            continue
+        if len(owners)!=2:
+            raise UnsupportedRoofError('skeleton has nonmanifold face incidence')
+        (i,a,b),(j,_,_) = owners
+        p,q = normals[i],normals[j]
+        dot = sum(x*y for x,y in zip(p,q))
+        if abs(dot+1)<1e-8:
+            semantics[key] = 'ridge'
+        else:
+            # For an oriented face its left side is its interior. Source slope
+            # normals determine convex/concave crease meaning before solving.
+            dx,dy = seeds[b][0]-seeds[a][0],seeds[b][1]-seeds[a][1]
+            sign = (q[0]-p[0])*(-dy)+(q[1]-p[1])*dx
+            if abs(sign)<1e-12:
+                raise UnsupportedRoofError('coplanar skeleton seam needs explicit face aggregation')
+            semantics[key] = 'hip' if sign>0 else 'valley'
+    used = sorted({v for face in faces for v in face.loop})
+    remap = {old:new for new,old in enumerate(used)}
+    faces = [graph_api.RoofFace(tuple(remap[v] for v in face.loop),face.cells,face.eaves,face.support)
+             for face in faces]
+    graph = graph_api.make_graph(fp.vertices,fp.source_edges,
+        tuple(seeds[i] for i in used),{remap[i]:point for i,point in locations.items() if i in remap},
+        tuple(roles[i] for i in used),faces,
+        {tuple(sorted((remap[a],remap[b]))):kind for (a,b),kind in semantics.items()},'gable')
+    return graph, {'cap_edges':sorted(cap_edges), 'skeleton_nodes':len(seeds),
+                   'policy':'all uniquely owned terminal triangular caps; no appearance ranking'}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--code-root',type=Path,required=True)
+    parser.add_argument('--deps',type=Path,required=True)
+    parser.add_argument('--inputs',type=Path,required=True)
+    parser.add_argument('--category')
+    parser.add_argument('--output',type=Path,required=True)
+    args = parser.parse_args()
+    sys.path.insert(0,str(args.code_root/'addon'))
+    sys.path.insert(0,str(args.deps))
+    from py_straight_skeleton import compute_skeleton,__version__
+    from roof_generator.core import graph as graph_api
+    from roof_generator.core.footprint import analyze
+    from roof_generator.core.provenance import BoundaryPoint
+    from roof_generator.core.errors import UnsupportedRoofError
+    from roof_generator.core.solve import problem,solve
+    payload = args.inputs.read_bytes()
+    if args.inputs.suffix=='.gz':payload=gzip.decompress(payload)
+    data = json.loads(payload)
+    records = data['corpora'][args.category] if args.category else data['inputs']
+    hashes = {p.name:hashlib.sha256(p.read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+              for p in sorted((args.code_root/'addon/roof_generator/core').glob('*.py'))}
+    diagnostic_hash = hashlib.sha256(Path(__file__).read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+    rows = []
+    for index,record in enumerate(records):
+        row = {'name':record['name'],'stage':'footprint','embedded':False}
+        if 'category' in record:row['category']=record['category']
+        try:
+            fp = analyze(record['footprint'])
+            row['stage']='topology'
+            graph,decisions = topology(fp,compute_skeleton,graph_api,BoundaryPoint,UnsupportedRoofError)
+            row.update(decisions=decisions,graph=graph.inspect())
+            row['stage']='geometry_problem'
+            geometry = problem(graph)
+            row['stage']='embedding'
+            mesh = solve(graph,geometry)
+            if mesh.graph is not graph:
+                raise RuntimeError('whole-polygon solver changed topology')
+            row.update(stage='mesh',embedded=True,vertices=mesh.vertices,faces=mesh.faces)
+        except Exception as exc:
+            # Dependency failures are evidence, never repaired by jitter or
+            # replaced by another generator. Preserve their concrete type.
+            row['error']=type(exc).__name__+': '+str(exc)
+        rows.append(row)
+        report = {'scope':__doc__,'external_skeleton_version':__version__,
+                  'diagnostic_sha256':diagnostic_hash,'core_source_files_sha256':hashes,
+                  'inputs_sha256':hashlib.sha256(payload).hexdigest(),
+                  'requested_inputs':len(records),'finished_inputs':len(rows),
+                  'embedded_inputs':sum(r['embedded'] for r in rows),
+                  'stages':dict(Counter(r['stage'] for r in rows)),'rows':rows}
+        args.output.parent.mkdir(parents=True,exist_ok=True)
+        args.output.write_bytes((json.dumps(report,indent=2)+'\n').encode())
+        if (index+1)%10==0 or index+1==len(records):
+            print(index+1,len(records),report['embedded_inputs'],report['stages'],flush=True)
+
+
+if __name__=='__main__':main()

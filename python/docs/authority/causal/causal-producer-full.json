@@ -1,0 +1,119 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "scope": "Recover producer alternatives from a completed pinned baseline audit.\n\nRead failed minimum assignments directly; do not reconstruct RoofGraphs for\nthem. Re-evaluate only their geometric contact options. The small receiver\nfamily and successful inputs are checked through the pinned public pipeline.\n",
+  "input_details_sha256": "c8c6591dd814a0ea83fdb221c9010ab2d0d1739f62f6330dd82c6a264ab8afd0",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "counts": {
+        "inputs": 1000,
+        "receiver_parallel_free_when_minimum_unavoidable": 32,
+        "receiver_mesh_when_minimum_unavoidable": 0
+      },
+      "producer_parallel_states": {
+        "minimum": {
+          "parallel_free_candidate": 124,
+          "parallel_unavoidable_in_modeled_family": 859,
+          "incomplete": 17
+        },
+        "receiver": {
+          "parallel_free_candidate": 64,
+          "no_modeled_candidate": 936
+        }
+      },
+      "producer_parallel_free_max_stage": {
+        "minimum": {
+          "relation": 52,
+          "junction": 68,
+          "mesh": 4
+        },
+        "receiver": {
+          "composition": 29,
+          "mesh": 5,
+          "ends": 29,
+          "embedding": 1
+        }
+      },
+      "combined_states": {
+        "parallel_free_reaches_composition": 15,
+        "no_parallel_free_modeled_candidate": 827,
+        "parallel_free_reaches_relation": 44,
+        "parallel_free_reaches_junction": 66,
+        "parallel_free_reaches_mesh": 5,
+        "parallel_free_reaches_ends": 25,
+        "search_incomplete": 17,
+        "parallel_free_reaches_embedding": 1
+      }
+    },
+    "nonuniform_orthogonal": {
+      "counts": {
+        "inputs": 150,
+        "receiver_parallel_free_when_minimum_unavoidable": 6,
+        "receiver_mesh_when_minimum_unavoidable": 0
+      },
+      "producer_parallel_states": {
+        "minimum": {
+          "parallel_unavoidable_in_modeled_family": 145,
+          "parallel_free_candidate": 5
+        },
+        "receiver": {
+          "parallel_free_candidate": 7,
+          "no_modeled_candidate": 143
+        }
+      },
+      "producer_parallel_free_max_stage": {
+        "minimum": {
+          "junction": 3,
+          "relation": 2
+        },
+        "receiver": {
+          "composition": 3,
+          "mesh": 1,
+          "ends": 3
+        }
+      },
+      "combined_states": {
+        "parallel_free_reaches_composition": 3,
+        "no_parallel_free_modeled_candidate": 139,
+        "parallel_free_reaches_mesh": 1,
+        "parallel_free_reaches_junction": 2,
+        "parallel_free_reaches_ends": 3,
+        "parallel_free_reaches_relation": 2
+      }
+    },
+    "structured_orthogonal": {
+      "counts": {
+        "inputs": 103,
+        "receiver_parallel_free_when_minimum_unavoidable": 27,
+        "receiver_mesh_when_minimum_unavoidable": 11
+      },
+      "producer_parallel_states": {
+        "minimum": {
+          "parallel_free_candidate": 37,
+          "parallel_unavoidable_in_modeled_family": 66
+        },
+        "receiver": {
+          "parallel_free_candidate": 63,
+          "no_modeled_candidate": 40
+        }
+      },
+      "producer_parallel_free_max_stage": {
+        "minimum": {
+          "mesh": 13,
+          "junction": 23,
+          "relation": 1
+        },
+        "receiver": {
+          "mesh": 32,
+          "composition": 31
+        }
+      },
+      "combined_states": {
+        "parallel_free_reaches_mesh": 32,
+        "parallel_free_reaches_junction": 15,
+        "parallel_free_reaches_composition": 16,
+        "no_parallel_free_modeled_candidate": 39,
+        "parallel_free_reaches_relation": 1
+      }
+    }
+  }
+}

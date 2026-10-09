@@ -1,0 +1,84 @@
+{
+  "scope": "Inspect exported topology-prototype meshes in Blender; not addon acceptance.",
+  "blender": "5.2.2 LTS",
+  "cases": [
+    {
+      "name": "orthogonal_grid_stress_generated_0022",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0022/meshes.png",
+      "faces": 12,
+      "features": {
+        "eave": 12,
+        "valley": 5,
+        "hip": 7,
+        "gable_end": 4,
+        "ridge": 6
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0024",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0024/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 6,
+        "valley": 2,
+        "gable_end": 4,
+        "hip": 4,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0030",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0030/meshes.png",
+      "faces": 10,
+      "features": {
+        "eave": 10,
+        "valley": 5,
+        "hip": 4,
+        "gable_end": 8,
+        "ridge": 4
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0035",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0035/meshes.png",
+      "faces": 10,
+      "features": {
+        "eave": 10,
+        "valley": 4,
+        "hip": 8,
+        "gable_end": 4,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0041",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0041/meshes.png",
+      "faces": 9,
+      "features": {
+        "eave": 9,
+        "valley": 4,
+        "hip": 3,
+        "gable_end": 6,
+        "ridge": 4
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0043",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0043/meshes.png",
+      "faces": 9,
+      "features": {
+        "eave": 9,
+        "valley": 4,
+        "gable_end": 6,
+        "hip": 5,
+        "ridge": 5
+      }
+    }
+  ]
+}

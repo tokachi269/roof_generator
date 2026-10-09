@@ -1,0 +1,41 @@
+{
+  "scope": "Completed prototype comparisons; no addon promotion. Grid and all-axis full runs still pending.",
+  "diagnostic_files_sha256": {
+    "python/whole_polygon_roofs.py": "bc29c1386c534ef2317391e520f97b4099246e47eb86f5f999e7c0ba94c17150",
+    "python/blender_topology_probe.py": "c93f9a83373cf8cbff98f565b7a54f70bbc307bf37aac658ece231f27d54db30",
+    "python/replay_roof_frontiers.py": "4b9afe0c786eea18d9abda5e7f480dded761794cb35a1c3f57e418fa41b2d22b",
+    "python/probe_recursive_roofs.py": "2b2d623bc804806dc3e145e36da71a49933b8cdd2c1239af50a71f6a59a7cf03",
+    "python/causal_roof_audit.py": "0234f84e6932e8ea87902d7eafaf1633abfc5502ab6c9c65890c0528c4457c1a"
+  },
+  "external_dependency": {
+    "version": "0.1.0",
+    "license": "BSD 3-Clause per installed LICENSE",
+    "modules_sha256": {
+      "algorithm.py": "746ec7a0579d87aaf3ae75b9cbbaa63567c122d309a5dca2ed3c17879af80ca3",
+      "constants.py": "8e9a16d1fab288148dc7819b2a6bc661c413d57f290f1a19ea0104fb8c15775d",
+      "plotting.py": "abacabec7262f35cc4fbb5d2bf698aa70a982c0e1bf7f48349e25c2c06456ed1",
+      "polygon_math.py": "7385526a21652e28132673a8123a305fde0b78f5848e06e18d378a14ceb2e8b8",
+      "skeleton.py": "9cd4334e391e8b607802994f96be9157a27d7e92b96aabe0a125b623d807bdef",
+      "vector_math.py": "1b21f9daa06a1398ace93f4648b185d9c451cb28d54d7b4125359602728da116",
+      "__init__.py": "95c538ba593198f6297c2dd97a268d511037c407dc545700a25d8df968e41d35"
+    }
+  },
+  "files_sha256": {
+    "whole-polygon-images.json.gz": "4828a1092c124c1d790bf1e1a59b38c3b52303359212358d5f893259fc970723",
+    "whole-polygon-nonuniform.json.gz": "ad4405bfad50c710e53d7e64da3322689719c60fb1a06e1ae054f76f3c484390",
+    "whole-polygon-small.json.gz": "40aec3217865076fc90744bbb2d76dcd428e13b47a4882a330c0dc02636f05b7",
+    "whole-polygon-structured.json.gz": "55ab9561d9ddbd5ba170527aceda7224e1305ff703918e0c0415b73f724f465e",
+    "blender-whole-polygon-images/report.json": "0fbb50701bef275ffa9d46fb0d2e9e151c9ca581001e198fd4378976e95cd60d",
+    "blender-whole-polygon-images/user_images_user_image_1_four_staggered_bands/meshes.png": "33be2355893d1eec778ac2b61ad70c13fd363916929ba8aa83bdc1c2aedfda48",
+    "blender-whole-polygon-images/user_images_user_image_2_three_staggered_bands/meshes.png": "e0b4aa846b393955cf87ae485293c5a63286361936c33c3069dea0f214400d09",
+    "blender-whole-polygon-images/user_images_user_image_3_band_and_lower_corner/meshes.png": "889e2a1b0b44b73a435021183dbe4cb7e3443a782a54e5e8c3509a7433129ac6",
+    "blender-whole-polygon-images/user_images_user_image_4_two_staggered_rectangles/meshes.png": "79146d14dc0b0a6f869aa621cddba0c04e54ef507001d44daa050301c2d5ad12",
+    "blender-whole-polygon-small/report.json": "9eeb80f0c35df68923a66a70f919a5eac098cd5d30b4b7433cb52e73c42321d2",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0022/meshes.png": "4b5b09601047ec3c812de6155238383a8ecb5a81e2f0aea36ea7db9efb171cfa",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0024/meshes.png": "97e55068a5eabfbc7bddf618524c2b0ad5842373618231b6dccd1024a46ad1a8",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0030/meshes.png": "31c57ef78b63c457d81d3956ca91b182fa56faf82d873a8d54bbf0b18538a9f4",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0035/meshes.png": "d62bc58766cb9d3a74c6cac93b8f5047a0b8cd2ffbd6dadbecc739abde60fa24",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0041/meshes.png": "8059d82df1b4467d05379863d4df5247493bd2341f5983dda77c71f9aff7fb4d",
+    "blender-whole-polygon-small/orthogonal_grid_stress_generated_0043/meshes.png": "793f6c8cba8c78bb51cb1c63891264a24626cbc0d440a6a30ef71446fb11ce65"
+  }
+}

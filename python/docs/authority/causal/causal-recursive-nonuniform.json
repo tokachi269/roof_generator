@@ -1,0 +1,3858 @@
+{
+  "scope": "Recursive polygons through all-axis models, global ends, whole graph and embedding; not default generation or Blender coverage",
+  "source_sha": "c53a815bdff00e47c43dcd45b82f04baa6015e70",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "source_files_sha256": {
+    "__init__.py": "2407b7ad4274e3e72490683eb85d386408f033d2c5bcc475b483dd075a438356",
+    "architecture.py": "a22db3b54829f1a55859fbed79bdb21b79e10068d539d483df279f5aa8b2f351",
+    "architecture_models.py": "4b48a991d6e6872ff43e0379d9f26c17920f4369439e82819045d043e959f97c",
+    "architecture_selection.py": "e4f626118273925321d5ac9f356aa816210198d25305dd9e94b6d978c72bf637",
+    "cells.py": "eaa34a369604e3a55fa3d2c051a3e0465901596c4a5a52bd29ddabf9a2780e13",
+    "errors.py": "3539372347f072fb50b41b39e0f1503fcfd618104b1c35c9962fe2b1003f93b6",
+    "footprint.py": "7896865c8e84d33f9e2751a4254801ee0ee8f1f7869ba8f8602b633d48d9327d",
+    "generation.py": "318949384c0a1180337ce435bdbb190dd2b86cb9ab7d4153fe0386bd64743add",
+    "graph.py": "9620f5382dd96a2664898582ce1d52b68f00c20f5928e1c234443692a96f9c54",
+    "initialization.py": "4ce3f284e0bccb78740734b82a79a462f154f1d7a87f3be6b143303f8880a700",
+    "junctions.py": "a1d01e198c9a704903d547452f0ebecc4775809dbb4486612f097d11cb32d2d8",
+    "member_layout.py": "f9e191e36368f74ec257be4fc2b5e9a173fdcabc2fe601bb561d6f47bb76473c",
+    "mesh.py": "d10764f600892f553eb35d0860eaa6318f35a51e1c6a9da71519509e970ed5aa",
+    "optimization.py": "65cf6432b0a59f1f6ce8565e94fae93de1abe0a9a7298f2b9b8c2d5882107ba9",
+    "partition.py": "302c37b924418af32591fd10a2196ad019716462011e2d69100a9ddb023db458",
+    "partition_candidates.py": "5fcf2741238877509aa05206a8ab0a2bbd4af19f07b62ac603fdbc99fb4e6396",
+    "provenance.py": "c663936dbeef846d15d4d732a92e5ed326bfdca664d3ba0635c3d85596e9764d",
+    "receiver_regions.py": "c71bb3604afdb8a9be69fc80be19a2bacae8c12687ff3492587b9e16ae42fac4",
+    "recursive_regions.py": "273b93585cf42968cb3304d505e615acfd639e0ff9069cdb05a60da54c44dfb8",
+    "region_architecture.py": "69f488d3682c9d12be5e364b2875933fc73bb8db30d9acc20a635bf48f95cb94",
+    "region_generation.py": "bcd72a1705c5f79791f633741aee09689b78ea9d6eaa1e2e503ec36fa4c490fa",
+    "roof_candidates.py": "aa5aabbc9c2940bf934b820890ee41ee1d95da527adc1396d2ae34c95d06eea9",
+    "roof_ends.py": "b9b828b99fbac8d0d89a5b1042495db6aee8868651e06e4adcd92a61e3206290",
+    "roof_regions.py": "8cfccdadce781dcf5a29947e92e4132c5352fbb048fcfc625c0d2ca7faaaa6df",
+    "seed.py": "fd5facd58eff37618a98a147f009d3ba294e2b4ab795ec7005056521c2fb6f64",
+    "solve.py": "b02dfb51eaf923e2da0bf7f0c71e456b0dfbda3050335e2cfd94dfddc603bf76",
+    "topology.py": "9ca5559b60db258b22b1092882ce5f89b61887abebeba9a0a7a32864a93e6832",
+    "topology_candidates.py": "e9d9e0f6e6be2dd96bb81763658f0c555a0570e84ab0e1870c4e56546e67fc23"
+  },
+  "requested_inputs": 150,
+  "inputs": 150,
+  "selectable_inputs": 1,
+  "decomposition_incomplete": 65,
+  "architecture_incomplete": 48,
+  "producer_parallel_states": {
+    "incomplete": 113,
+    "parallel_free_candidate": 37
+  },
+  "parallel_free_max_stage": {
+    "ends": 17,
+    "composition": 19,
+    "mesh": 1
+  },
+  "rows": [
+    {
+      "name": "generated_0000",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 22,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4080,
+        "composition": 16
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1572,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1344,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1164,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 15,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4084,
+        "model_failures": 0,
+        "parallel_free_assignments": 652,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0001",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0002",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0003",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 148,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1272,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1184,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1640
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 360,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0004",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 34,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4084,
+        "composition": 12
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1614,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1286,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1184,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 12
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4085,
+        "model_failures": 0,
+        "parallel_free_assignments": 690,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0005",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0006",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0007",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0008",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0009",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0010",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0011",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 14,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 800
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 232,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 288,
+        "ends: no resolved roof-end combination for inter_part_parallel": 280
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 800,
+        "model_failures": 0,
+        "parallel_free_assignments": 188,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0012",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 118,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1360,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1272,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1464
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 532,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0013",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0014",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 222,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1344,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1696,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1056
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 236,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0015",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 124,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1376,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1610,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1110
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 338,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0016",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 20,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 1404,
+        "composition": 32
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 588,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 440,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 376,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 28
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 1408,
+        "model_failures": 0,
+        "parallel_free_assignments": 336,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0017",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 76,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1676,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1350,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1070
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 398,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0018",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 64,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1496,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1396,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1204
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 339,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0019",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0020",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0021",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0022",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 19,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 608
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 192,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 264,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 152
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 608,
+        "model_failures": 0,
+        "parallel_free_assignments": 162,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0023",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0024",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 4,
+      "architecture_complete": true,
+      "embedded_count": 1,
+      "selectable": true,
+      "rejections_by_stage": {
+        "ends": 28,
+        "composition": 15
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 10,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 10,
+        "composition: declared architecture lacks a complete applicable port arrangement": 3,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 8
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 32,
+        "model_failures": 0,
+        "parallel_free_assignments": 18,
+        "parallel_free_mesh_assignments": 1,
+        "parallel_free_max_reached_stage": "mesh",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0025",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 12,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 381,
+        "composition": 16
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 142,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 126,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 113,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 4
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 384,
+        "model_failures": 0,
+        "parallel_free_assignments": 123,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0026",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0027",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 50,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1064,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1196,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1836
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 386,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0028",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 34,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 3646,
+        "composition": 4
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1485,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 889,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1272,
+        "composition: declared architecture lacks a complete applicable port arrangement": 2,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 3648,
+        "model_failures": 0,
+        "parallel_free_assignments": 609,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0029",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 204,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1968,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1028,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1100
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 156,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0030",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 6,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 126,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 51,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 41,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 34
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 128,
+        "model_failures": 0,
+        "parallel_free_assignments": 46,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0031",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0032",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 66,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1624,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1224,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1248
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 360,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0033",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 48,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4064,
+        "composition": 32
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1640,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1372,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 28,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1052
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4068,
+        "model_failures": 0,
+        "parallel_free_assignments": 632,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0034",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 649,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1024,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1536,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1536
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 96,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0035",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 15,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 398,
+        "composition": 16
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 157,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 73,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 168,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 16
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 400,
+        "model_failures": 0,
+        "parallel_free_assignments": 115,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0036",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 490,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 3016,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 536,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 544
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 144,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0037",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 250,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1464,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1208,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1424
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 149,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0038",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0039",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0040",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0041",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 5,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 71,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 27,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 24,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 20,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 72,
+        "model_failures": 0,
+        "parallel_free_assignments": 30,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0042",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0043",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 7,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 128
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 34,
+        "ends: no resolved roof-end combination for inter_part_parallel": 50,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 44
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 128,
+        "model_failures": 0,
+        "parallel_free_assignments": 48,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0044",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 6,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 140,
+        "composition": 16
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 46,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 42,
+        "ends: no resolved roof-end combination for inter_part_parallel": 52,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 15,
+        "composition: declared architecture lacks a complete applicable port arrangement": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 144,
+        "model_failures": 0,
+        "parallel_free_assignments": 56,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0045",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 30,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 3072
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 872,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 998,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1202
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 3072,
+        "model_failures": 0,
+        "parallel_free_assignments": 588,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0046",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 216,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1592,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1282,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1222
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 377,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0047",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 9,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 158,
+        "composition": 8
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 52,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 62,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 44,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 7,
+        "composition: mixed middle ports must be strictly narrower": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 160,
+        "model_failures": 0,
+        "parallel_free_assignments": 57,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0048",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 14,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 991,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 347,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 368,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 276,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 992,
+        "model_failures": 0,
+        "parallel_free_assignments": 236,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0049",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0050",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0051",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 23,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 1280
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 316,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 514,
+        "ends: no resolved roof-end combination for inter_part_parallel": 450
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 1280,
+        "model_failures": 0,
+        "parallel_free_assignments": 272,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0052",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 14,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 443,
+        "composition": 34
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 159,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 160,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 124,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 28,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 448,
+        "model_failures": 0,
+        "parallel_free_assignments": 138,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0053",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 121,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1656,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1120,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1320
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 471,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0054",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 52,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1056,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1648,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1392
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 558,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0055",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 40,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1675,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1401,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1020
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 573,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0056",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 114,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1456,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1936,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 704
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 384,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0057",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 26,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2048
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 741,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 739,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 568
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2048,
+        "model_failures": 0,
+        "parallel_free_assignments": 363,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0058",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0059",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0060",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 120,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1018,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1534,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1544
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 410,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0061",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0062",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 190,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1274,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1464,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1358
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 266,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0063",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 233,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1376,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1376,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1344
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 238,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0064",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 198,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1376,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1216,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1504
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 325,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0065",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 84,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1536,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1296,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1264
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 375,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0066",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0067",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0068",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0069",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 239,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 70,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 76,
+        "ends: no resolved roof-end combination for inter_part_parallel": 93,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 240,
+        "model_failures": 0,
+        "parallel_free_assignments": 82,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0070",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0071",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 120,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1568,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1400,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1128
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 353,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0072",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 928,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2816,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 320,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 960
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0073",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0074",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 28,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2368
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1036,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 733,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 599
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2368,
+        "model_failures": 0,
+        "parallel_free_assignments": 444,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0075",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 20,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2205,
+        "composition": 9
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 911,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 720,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 574,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 9
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2208,
+        "model_failures": 0,
+        "parallel_free_assignments": 432,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0076",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 7,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 95,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 36,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 17,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 42,
+        "composition: mixed middle ports must be strictly narrower": 1,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 96,
+        "model_failures": 0,
+        "parallel_free_assignments": 37,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0077",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0078",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 84,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1192,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1680,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1224
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 464,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0079",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 100,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1564,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1080,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1452
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 388,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0080",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 53,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1202,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1310,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1584
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 568,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0081",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 88,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1688,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1176,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1232
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 357,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0082",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0083",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0084",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 154,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1376,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1408,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1312
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 312,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0085",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0086",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 364,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1600,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1240,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1256
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 194,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0087",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0088",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0089",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 80,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1922,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1258,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 916
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 353,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0090",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 12,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 480
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 180,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 142,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 158
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 480,
+        "model_failures": 0,
+        "parallel_free_assignments": 140,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0091",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 7,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 205,
+        "composition": 12
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 53,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 78,
+        "ends: no resolved roof-end combination for inter_part_parallel": 74,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 12
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 208,
+        "model_failures": 0,
+        "parallel_free_assignments": 76,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0092",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0093",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 558,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1280,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1536,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1280
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 150,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0094",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 23,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 1824
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 491,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 591,
+        "ends: no resolved roof-end combination for inter_part_parallel": 742
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 1824,
+        "model_failures": 0,
+        "parallel_free_assignments": 352,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0095",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0096",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0097",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0098",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0099",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0100",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 180,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1424,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1336,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1336
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 192,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0101",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0102",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 11,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 352
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 79,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 143,
+        "ends: no resolved roof-end combination for inter_part_parallel": 130
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 352,
+        "model_failures": 0,
+        "parallel_free_assignments": 93,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0103",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0104",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0105",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 49,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4094,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1696,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1100,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1298,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4095,
+        "model_failures": 0,
+        "parallel_free_assignments": 564,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0106",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0107",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 6,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 95,
+        "composition": 3
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 25,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 35,
+        "ends: no resolved roof-end combination for inter_part_parallel": 35,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 3
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 96,
+        "model_failures": 0,
+        "parallel_free_assignments": 41,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0108",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 56,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 496,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1824,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1776
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 511,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0109",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0110",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0111",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 126,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1872,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1136,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1088
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 212,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0112",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 7,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 208
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 88,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 62,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 58
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 208,
+        "model_failures": 0,
+        "parallel_free_assignments": 68,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0113",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0114",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 29,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 3200
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1190,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1186,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 824
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 3200,
+        "model_failures": 0,
+        "parallel_free_assignments": 540,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0115",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0116",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0117",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0118",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0119",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0120",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 584,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1152,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1792,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1152
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 244,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0121",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0122",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 8,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 184,
+        "composition": 64
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 80,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 52,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 60,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 52,
+        "composition: declared architecture lacks a complete applicable port arrangement": 4
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 192,
+        "model_failures": 0,
+        "parallel_free_assignments": 72,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0123",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 112,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1120,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1440,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1536
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 352,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0124",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0125",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 104,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1608,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1180,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1308
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 530,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0126",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0127",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0128",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 12,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 670,
+        "composition": 16
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 171,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 241,
+        "ends: no resolved roof-end combination for inter_part_parallel": 258,
+        "composition: L/T extension requires one isolated narrower or equal-width branch": 16
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 672,
+        "model_failures": 0,
+        "parallel_free_assignments": 194,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0129",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 20,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2304
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 880,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 700,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 724
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2304,
+        "model_failures": 0,
+        "parallel_free_assignments": 432,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0130",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0131",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0132",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 150,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1400,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1508,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1188
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 260,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0133",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0134",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 13,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 416
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 133,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 133,
+        "ends: no resolved roof-end combination for inter_part_parallel": 150
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 416,
+        "model_failures": 0,
+        "parallel_free_assignments": 120,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0135",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 156,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1592,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1175,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1329
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 375,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0136",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 33,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 2816
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 956,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 976,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 884
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 2816,
+        "model_failures": 0,
+        "parallel_free_assignments": 500,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0137",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region work budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0138",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0139",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 33,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4095,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1000,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1628,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1467,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 623,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0140",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 74,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 1572,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1406,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1118
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 445,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0141",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0142",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 30,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 3456
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 985,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1072,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1399
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 3456,
+        "model_failures": 0,
+        "parallel_free_assignments": 598,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0143",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0144",
+      "decomposition_complete": false,
+      "decomposition_reason": "recursive region structure budget exhausted",
+      "proposal_count": 0,
+      "architecture_complete": null,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {},
+      "rejection_reasons": {},
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 0,
+        "model_failures": 0,
+        "parallel_free_assignments": 0,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": null,
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      }
+    },
+    {
+      "name": "generated_0145",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 14,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 384
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 132,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 144,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 108
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 384,
+        "model_failures": 0,
+        "parallel_free_assignments": 111,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0146",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 260,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 1360,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 1272,
+        "ends: no resolved roof-end combination for inter_part_parallel": 1464
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 229,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    },
+    {
+      "name": "generated_0147",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 5,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 71,
+        "composition": 1
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 31,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 24,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 16,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 1
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 72,
+        "model_failures": 0,
+        "parallel_free_assignments": 30,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0148",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 5,
+      "architecture_complete": true,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 94,
+        "composition": 2
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 21,
+        "composition: no implemented architecture template for inter_part_offset_continuation": 2,
+        "ends: no resolved roof-end combination for inter_part_parallel": 41,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 32
+      },
+      "producer_parallel_frontier": {
+        "complete": true,
+        "modeled_assignments": 96,
+        "model_failures": 0,
+        "parallel_free_assignments": 36,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "composition",
+        "state": "parallel_free_candidate",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": null
+    },
+    {
+      "name": "generated_0149",
+      "decomposition_complete": true,
+      "decomposition_reason": null,
+      "proposal_count": 330,
+      "architecture_complete": false,
+      "embedded_count": 0,
+      "selectable": false,
+      "rejections_by_stage": {
+        "ends": 4096
+      },
+      "rejection_reasons": {
+        "ends: no resolved roof-end combination for inter_part_parallel": 2560,
+        "ends: no resolved roof-end combination for inter_part_offset_continuation": 592,
+        "ends: no resolved roof-end combination for inter_part_partial_end": 944
+      },
+      "producer_parallel_frontier": {
+        "complete": false,
+        "modeled_assignments": 4096,
+        "model_failures": 0,
+        "parallel_free_assignments": 218,
+        "parallel_free_mesh_assignments": 0,
+        "parallel_free_max_reached_stage": "ends",
+        "state": "incomplete",
+        "scope": "actual declared contact options before end consumption; later stages may be censored"
+      },
+      "architecture_reason": "region model/end search budget exhausted"
+    }
+  ]
+}

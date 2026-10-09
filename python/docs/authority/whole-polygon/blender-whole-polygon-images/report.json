@@ -1,0 +1,58 @@
+{
+  "scope": "Inspect exported topology-prototype meshes in Blender; not addon acceptance.",
+  "blender": "5.2.2 LTS",
+  "cases": [
+    {
+      "name": "user_images_user_image_1_four_staggered_bands",
+      "mesh_valid": true,
+      "image": "user_images_user_image_1_four_staggered_bands/meshes.png",
+      "faces": 11,
+      "features": {
+        "eave": 12,
+        "valley": 6,
+        "gable_end": 8,
+        "hip": 6,
+        "ridge": 6
+      }
+    },
+    {
+      "name": "user_images_user_image_2_three_staggered_bands",
+      "mesh_valid": true,
+      "image": "user_images_user_image_2_three_staggered_bands/meshes.png",
+      "faces": 8,
+      "features": {
+        "eave": 9,
+        "valley": 4,
+        "gable_end": 6,
+        "hip": 4,
+        "ridge": 4
+      }
+    },
+    {
+      "name": "user_images_user_image_3_band_and_lower_corner",
+      "mesh_valid": true,
+      "image": "user_images_user_image_3_band_and_lower_corner/meshes.png",
+      "faces": 8,
+      "features": {
+        "eave": 8,
+        "valley": 3,
+        "gable_end": 4,
+        "hip": 5,
+        "ridge": 4
+      }
+    },
+    {
+      "name": "user_images_user_image_4_two_staggered_rectangles",
+      "mesh_valid": true,
+      "image": "user_images_user_image_4_two_staggered_rectangles/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 6,
+        "valley": 2,
+        "gable_end": 4,
+        "hip": 4,
+        "ridge": 3
+      }
+    }
+  ]
+}

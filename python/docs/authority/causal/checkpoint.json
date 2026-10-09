@@ -1,5 +1,5 @@
 {
-  "scope": "Corrected diagnostic phase; fixed 486abd6 grammar. Complete full-corpus baseline/all-axis reports still pending.",
+  "scope": "Completed baseline1253 and producer replay. Oracle100 and recursive comparisons complete. Full all-axis and whole-polygon grid still pending.",
   "oracle": {
     "inputs": 100,
     "complete": 99,
@@ -7,8 +7,31 @@
   },
   "files": {
     "python/docs/authority/causal/causal-all-axis-structured.json": "a3a068a45a1773b39985ed6a380a23af545f3db174cd8c8c5500ac09d37b8220",
+    "python/docs/authority/causal/causal-baseline-details.jsonl.gz": "c8c6591dd814a0ea83fdb221c9010ab2d0d1739f62f6330dd82c6a264ab8afd0",
+    "python/docs/authority/causal/causal-baseline.json": "6b631d1e94054928f29b3784c704589b20ef69aa3387c7df2c51612973d2ace6",
     "python/docs/authority/causal/causal-cover-small.json": "77dc7f8805adcdf193d66e7274f6ee12a453b77761f73d67b5298c66f3582ae4",
+    "python/docs/authority/causal/causal-producer-combined-subsets.json": "fd24d976faaaaf0e8da39c2ff93a7f6743e9ef3eb2088579ea40e1e08e5a497d",
+    "python/docs/authority/causal/causal-producer-full-details.jsonl.gz": "c107f8656d8e7e665d51c50fc6894dfb62537d2f7fce1c7f689a934f2d67e802",
+    "python/docs/authority/causal/causal-producer-full.json": "70970e319c9ced4957ac132e17cf1574258ba725d81ec79c68832e350a8b7482",
+    "python/docs/authority/causal/causal-producer-smoke-details.jsonl.gz": "e3ce7d2569389c41dfda06f119e13ec52a611226587cad230c357e6adb54eeca",
+    "python/docs/authority/causal/causal-producer-smoke.json": "428a18343c94c4c499272b5380375dd02a18f78df126cdd019f6f38d060591cc",
+    "python/docs/authority/causal/causal-producer-subsets-details.jsonl.gz": "a5f2417382b91bb66d8c69a05a2c2d423e1fb6abeb5b9bad086d56f43893e143",
+    "python/docs/authority/causal/causal-producer-subsets.json": "bd19ef24c8e9e6c0be7500984d08eeb72c33ce1a0678a9310f012375807c01a4",
+    "python/docs/authority/causal/causal-recursive-nonuniform.json": "9a217a75466670bc45d365b2308fdc4181959d73ac1f0c91d6f2b43fbca761a2",
+    "python/docs/authority/causal/causal-recursive-small.json": "7c7e6c6bbae6a1fdaa9bab8e5c8ec8ecbbb294eeca5f7e3ce15e84ff3bb85f75",
+    "python/docs/authority/causal/causal-recursive-structured.json": "8e5e95622ab5c2122804578b5f0018118b9a3d9e9c28fa2e47fc40dc594fc09f",
     "python/docs/authority/causal/causal-small-inputs.json": "bc63005b836fa41be543d72deb2cecce03ebf915056b4c115c178b977102396c",
     "python/docs/authority/causal/causal-source-manifest.json": "3355835522f3340d997be72e6069b634cc35c9689fd9a8368df867c97b8b0136"
+  },
+  "producer_replay_native_agreement_inputs": 253,
+  "whole_polygon_completed": {
+    "small": 81,
+    "small_inputs": 100,
+    "structured": 101,
+    "structured_inputs": 103,
+    "nonuniform": 149,
+    "nonuniform_inputs": 150,
+    "factory": 4,
+    "factory_inputs": 4
   }
 }
