@@ -1,0 +1,1038 @@
+{
+  "scope": "2D region decomposition only; no roof model, end constraints, graph or embedding acceptance",
+  "inputs": 103,
+  "complete_with_proposals": 93,
+  "incomplete": 10,
+  "rows": [
+    {
+      "name": "orthogonal_L_0",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_1",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_2",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_3",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_4",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_5",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_6",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_7",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_8",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_L_9",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_0",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_1",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_2",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_3",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_4",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_5",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_6",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_7",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_8",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_T_9",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_0",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_1",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_2",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_3",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_4",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_5",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_6",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_7",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_8",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "orthogonal_U_9",
+      "complete": true,
+      "reason": null,
+      "work": 63,
+      "geometry_count": 4,
+      "structure_count": 5,
+      "depth": 3,
+      "structures": []
+    },
+    {
+      "name": "cross_0",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_1",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_2",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_3",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_4",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_5",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_6",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_7",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_8",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "cross_9",
+      "complete": true,
+      "reason": null,
+      "work": 51,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "staircase_0",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_1",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_2",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_3",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_4",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_5",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_6",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_7",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_8",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "staircase_9",
+      "complete": true,
+      "reason": null,
+      "work": 3681,
+      "geometry_count": 132,
+      "structure_count": 132,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "comb_0",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_1",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_2",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_3",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_4",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_5",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_6",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_7",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_8",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "comb_9",
+      "complete": true,
+      "reason": null,
+      "work": 1290,
+      "geometry_count": 16,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_0",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_1",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_2",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_3",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_4",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_5",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_6",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_7",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_8",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "residential_multi_reflex_9",
+      "complete": true,
+      "reason": null,
+      "work": 539,
+      "geometry_count": 8,
+      "structure_count": 15,
+      "depth": 4,
+      "structures": []
+    },
+    {
+      "name": "grid_14_0",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_1",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_2",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_3",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_4",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_5",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_6",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_7",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_8",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_14_9",
+      "complete": true,
+      "reason": null,
+      "work": 1299,
+      "geometry_count": 19,
+      "structure_count": 51,
+      "depth": 5,
+      "structures": []
+    },
+    {
+      "name": "grid_20_0",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_1",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_2",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_3",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_4",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_5",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_6",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_7",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_8",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_20_9",
+      "complete": true,
+      "reason": null,
+      "work": 11151,
+      "geometry_count": 118,
+      "structure_count": 462,
+      "depth": 6,
+      "structures": []
+    },
+    {
+      "name": "grid_40_0",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 18939,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_1",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 41703,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_2",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 41703,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_3",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 13269,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_4",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 51036,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_5",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 13269,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_6",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 51036,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_7",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 51036,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_8",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 41703,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "grid_40_9",
+      "complete": false,
+      "reason": "recursive region structure budget exhausted",
+      "work": 18939,
+      "geometry_count": 0,
+      "structure_count": 0,
+      "depth": 0,
+      "structures": []
+    },
+    {
+      "name": "unequal_width_join",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "terminating_ridge",
+      "complete": true,
+      "reason": null,
+      "work": 29,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    },
+    {
+      "name": "valley_join",
+      "complete": true,
+      "reason": null,
+      "work": 17,
+      "geometry_count": 2,
+      "structure_count": 2,
+      "depth": 2,
+      "structures": []
+    }
+  ]
+}

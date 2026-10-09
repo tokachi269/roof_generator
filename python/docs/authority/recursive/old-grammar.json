@@ -1,0 +1,40 @@
+{
+  "scope": "Existing model/end grammar only; hierarchical ancestry is not yet interpreted",
+  "rows": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "complete": true,
+      "embedded_roofs": 0,
+      "rejections_by_stage": {
+        "ends": 463,
+        "composition": 2
+      }
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "complete": true,
+      "embedded_roofs": 1,
+      "rejections_by_stage": {
+        "ends": 53,
+        "composition": 11
+      }
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "complete": true,
+      "embedded_roofs": 0,
+      "rejections_by_stage": {
+        "ends": 48
+      }
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "complete": true,
+      "embedded_roofs": 1,
+      "rejections_by_stage": {
+        "ends": 11,
+        "composition": 3
+      }
+    }
+  ]
+}

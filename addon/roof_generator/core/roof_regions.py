@@ -102,6 +102,16 @@ def _intrinsic(fp, point):
     return ux*x + uy*y, -uy*x + ux*y
 
 
+def region_boundary(fp,outline):
+    """Canonical validated support boundary in the footprint's intrinsic frame."""
+    polygon=analyze(outline)
+    ring=tuple(_intrinsic(fp,polygon.frame.world_xy(p)) for p in polygon.vertices)
+    if any(min(abs(b[0]-a[0]),abs(b[1]-a[1]))>4*EPS
+           for a,b in zip(ring,ring[1:]+ring[:1])):
+        raise UnsupportedRoofError('region support is not aligned with footprint axes')
+    return _canonical(ring)
+
+
 def propose_regions(fp, outlines, *, source, provenance=None):
     """Accept connected simple orthogonal supports supplied in input/world XY.
 
@@ -118,12 +128,7 @@ def propose_regions(fp, outlines, *, source, provenance=None):
         raise UnsupportedRoofError('region provenance refers to a different footprint')
     rings = []
     for outline in outlines:
-        polygon = analyze(outline)  # rejects self-contact, holes and multi-component input
-        ring = tuple(_intrinsic(fp, polygon.frame.world_xy(p)) for p in polygon.vertices)
-        if any(min(abs(b[0]-a[0]), abs(b[1]-a[1])) > 4*EPS
-               for a,b in zip(ring,ring[1:]+ring[:1])):
-            raise UnsupportedRoofError('region support is not aligned with footprint axes')
-        rings.append(_canonical(ring))
+        rings.append(region_boundary(fp,outline))
     if not rings:
         raise UnsupportedRoofError('region proposal leaves the footprint uncovered')
     rings.sort()

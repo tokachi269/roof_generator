@@ -1,0 +1,22 @@
+{
+  "scope": "recursive 2D producer checkpoint; no new default roof grammar",
+  "source_sha256": {
+    "addon/roof_generator/core/recursive_regions.py": "273b93585cf42968cb3304d505e615acfd639e0ff9069cdb05a60da54c44dfb8",
+    "addon/roof_generator/core/roof_regions.py": "8cfccdadce781dcf5a29947e92e4132c5352fbb048fcfc625c0d2ca7faaaa6df",
+    "python/tests/test_recursive_regions.py": "bcca334c6562f031e89e871990a4dfdbd06676cbf17b3d0fb31eecbe8ab2719f",
+    "python/probe_recursive_regions.py": "7614e67412164690f40e1690883275f0dfb27a0ad328c95a4248b19ae36e9c5c"
+  },
+  "archive_sha256": "a38d67067db4778b1323fe07c6fea9d85e232be5b274b2b421dad2a914a6d1c5",
+  "checks": {
+    "full_suite_before_final_atomic_budget_guard": {
+      "tests": 184,
+      "seconds": 85.934,
+      "exit_code": 0
+    },
+    "final_recursive_suite": {
+      "tests": 7,
+      "exit_code": 0
+    },
+    "addon_zip_matches_source": true
+  }
+}

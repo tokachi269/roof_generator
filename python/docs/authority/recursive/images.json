@@ -1,0 +1,1049 @@
+{
+  "scope": "2D region decomposition only; no roof model, end constraints, graph or embedding acceptance",
+  "inputs": 4,
+  "complete_with_proposals": 4,
+  "incomplete": 0,
+  "rows": [
+    {
+      "name": "user_image_1_four_staggered_bands",
+      "complete": true,
+      "reason": null,
+      "work": 639,
+      "geometry_count": 10,
+      "structure_count": 29,
+      "depth": 4,
+      "structures": [
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": [
+                      {
+                        "region": 3,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "57aa3aa92c162da730c0181698f5e85b",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      },
+                      {
+                        "region": 4,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "e479a95c3fce76e292e4f3291a5a9fef",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": []
+                  },
+                  {
+                    "region": 4,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "0ee8fc7dab652eed82b5714d350acbae",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 4,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      },
+                      {
+                        "region": 3,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": [
+                      {
+                        "region": 1,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "1a1b3313edb40565224a009c6c913dd5",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 4,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "5870962d94e27cb38c69b93cf064df5e",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              },
+              {
+                "region": 4,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": []
+                  },
+                  {
+                    "region": 5,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "1a1b3313edb40565224a009c6c913dd5",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              },
+              {
+                "region": 4,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "e15efb05477cd6060af01067d0794aa3",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "region": 4,
+                "children": []
+              },
+              {
+                "region": 5,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "b8954be7427d6010b324db9a9b113d23",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "region": 4,
+                "children": []
+              },
+              {
+                "region": 5,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "57aa3aa92c162da730c0181698f5e85b",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  },
+                  {
+                    "region": 4,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "region": 3,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "1a1b3313edb40565224a009c6c913dd5",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "region": 4,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "region": 3,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "0ee8fc7dab652eed82b5714d350acbae",
+          {
+            "region": 4,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      },
+                      {
+                        "region": 3,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": [
+                      {
+                        "region": 1,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "1a1b3313edb40565224a009c6c913dd5",
+          {
+            "region": 4,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 2,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "69394d9c79eede845848ad69d46ab4a7",
+          {
+            "region": 5,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 2,
+                    "children": [
+                      {
+                        "region": 3,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "region": 4,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "5a3fdb72d616bda2628a8d2866e1f147",
+          {
+            "region": 5,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": [
+                      {
+                        "region": 2,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "region": 4,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": [
+                      {
+                        "region": 1,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "1a1b3313edb40565224a009c6c913dd5",
+          {
+            "region": 4,
+            "children": [
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 0,
+                        "children": []
+                      },
+                      {
+                        "region": 2,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "a27fb7d81efcf231c6d926a058468eb9",
+          {
+            "region": 3,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": [
+                      {
+                        "region": 0,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "user_image_2_three_staggered_bands",
+      "complete": true,
+      "reason": null,
+      "work": 122,
+      "geometry_count": 4,
+      "structure_count": 8,
+      "depth": 3,
+      "structures": [
+        [
+          "b153229478736bc6451f7b141127c247",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "22b87bf9c319fd3cba08956ca6f9d7d0",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "b153229478736bc6451f7b141127c247",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "48fdc9c35c5e53c9cdbfcd4b4ac982af",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "b153229478736bc6451f7b141127c247",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "b153229478736bc6451f7b141127c247",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 0,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "d055b06604274cb4ee83fae383646730",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  },
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "b153229478736bc6451f7b141127c247",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 0,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "complete": true,
+      "reason": null,
+      "work": 130,
+      "geometry_count": 4,
+      "structure_count": 6,
+      "depth": 3,
+      "structures": [
+        [
+          "cf2e1f6cd1777d15e4ec7c2be2c7ae20",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "7be68291eeafcdd375ff436c2143e230",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 1,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "2d4c19af30d9ec95053ba3ad67b28327",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": [
+                  {
+                    "region": 3,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "daecebb355795ff1d52ac38d239e8a8a",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 3,
+                "children": [
+                  {
+                    "region": 2,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "cf2e1f6cd1777d15e4ec7c2be2c7ae20",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "7be68291eeafcdd375ff436c2143e230",
+          {
+            "region": 2,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 1,
+                "children": []
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "user_image_4_two_staggered_rectangles",
+      "complete": true,
+      "reason": null,
+      "work": 33,
+      "geometry_count": 2,
+      "structure_count": 3,
+      "depth": 2,
+      "structures": [
+        [
+          "a97dea7fd1dad451906b53e4f86c5678",
+          {
+            "region": 0,
+            "children": [
+              {
+                "region": 1,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "379283e23e6ca149a03b8bc24a0135a1",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              },
+              {
+                "region": 2,
+                "children": []
+              }
+            ]
+          }
+        ],
+        [
+          "a97dea7fd1dad451906b53e4f86c5678",
+          {
+            "region": 1,
+            "children": [
+              {
+                "region": 0,
+                "children": []
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

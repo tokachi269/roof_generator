@@ -92,10 +92,14 @@ grammar. This reread adds no runtime skeleton dependency or roof edge source.
 [Primary full paper](https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf).
 
 The current four-case production gate is still unmet. Images 2 and 4 embed from
-explicit proposals; default proposal discovery remains minimum-based. Images
+explicit proposals and the default receiver family. Images
 1 and 3 require further model work with stated applicability, incidence and
 independent embedding evidence. The existing default-generator improvement on
 frozen grid `generated_0356` and its coverage audit remain valid, separate work.
+
+The next authorized phase uses [recursive region structures](RECURSIVE_REGIONS.md)
+and explicitly proved generic project rules. This bounded rectangular-model
+probe does not constrain that new grammar to the old implementation domain.
 
 ```sh
 python python/probe_region_covers.py --inputs python/tests/fixtures/user_roof_images_v1.json --max-members 10 --max-work 100000 --output python/out/authority/covers-all-images.json
