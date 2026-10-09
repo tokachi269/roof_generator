@@ -1,0 +1,112 @@
+{
+  "source_sha": "486abd60b1a44cadfaf419b787b7936bb3174908",
+  "axis_ablation": true,
+  "only_changed_constraint": "minimum rectangular member axes=(0,1)",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "frontier_scope": "inclusion-minimal observed first-failure sets; downstream censored, not sufficient rescue conditions",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "counts": {
+        "inputs": 1000,
+        "selectable": 6,
+        "incomplete": 435
+      },
+      "max_reached_stage": {
+        "junction": 103,
+        "relation": 864,
+        "embedding": 6,
+        "ends": 25,
+        "composition": 2
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "branch_width": 15,
+        "composition": 29,
+        "corner_extension": 65,
+        "offset_continuation": 502,
+        "parallel": 526,
+        "partial_end": 557,
+        "attachment_applicability": 29,
+        "model": 55,
+        "ends": 30,
+        "offset_continuation+parallel": 22,
+        "equal_width_ports": 2,
+        "interacting_slots": 2,
+        "offset_continuation+partial_end": 2,
+        "parallel+partial_end": 1
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/one_full/between_parts": 957,
+        "unequal_width/centered/one_full/between_parts": 632,
+        "equal_width/centered/one_full/between_parts": 617,
+        "equal_width/offset/one_full/between_parts": 957,
+        "unequal_width/offset/both_partial/between_parts": 704,
+        "equal_width/offset/both_partial/between_parts": 800,
+        "unequal_width/offset/one_full/same_part": 632,
+        "equal_width/offset/one_full/same_part": 396,
+        "equal_width/offset/both_partial/same_part": 71,
+        "unequal_width/offset/both_partial/same_part": 77,
+        "unequal_width/centered/one_full/same_part": 45,
+        "equal_width/centered/one_full/same_part": 46
+      }
+    },
+    "nonuniform_orthogonal": {
+      "counts": {
+        "inputs": 150,
+        "selectable": 1,
+        "incomplete": 66
+      },
+      "max_reached_stage": {
+        "junction": 15,
+        "relation": 131,
+        "embedding": 1,
+        "ends": 3
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "branch_width": 3,
+        "composition": 3,
+        "corner_extension": 11,
+        "offset_continuation": 76,
+        "parallel": 78,
+        "partial_end": 83,
+        "attachment_applicability": 6,
+        "model": 9,
+        "ends": 3,
+        "offset_continuation+parallel": 3
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/both_partial/between_parts": 133,
+        "unequal_width/offset/one_full/between_parts": 150,
+        "unequal_width/offset/one_full/same_part": 119,
+        "unequal_width/offset/both_partial/same_part": 15
+      }
+    },
+    "structured_orthogonal": {
+      "counts": {
+        "inputs": 103,
+        "selectable": 32,
+        "incomplete": 10
+      },
+      "max_reached_stage": {
+        "embedding": 32,
+        "junction": 31,
+        "relation": 40
+      },
+      "minimal_observed_sets_building_incidence_nonexclusive": {
+        "branch_width": 31,
+        "composition": 31,
+        "offset_continuation": 61,
+        "parallel": 61,
+        "partial_end": 61,
+        "ends": 6,
+        "interacting_slots": 10,
+        "attachment_applicability": 5,
+        "corner_extension": 5
+      },
+      "parallel_shape_building_incidence_nonexclusive": {
+        "unequal_width/offset/one_full/between_parts": 103,
+        "unequal_width/offset/one_full/same_part": 33,
+        "unequal_width/offset/both_partial/between_parts": 30
+      }
+    }
+  }
+}

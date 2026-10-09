@@ -1,0 +1,31 @@
+{
+  "scope": "Paired source-pinned diagnostic; incomplete searches are censored, no axis-domain upper bound",
+  "corpora": {
+    "nonuniform_orthogonal": {
+      "inputs": 150,
+      "both_complete": 84,
+      "new_selectable_observed": [],
+      "lost_selectable_observed": [],
+      "paired_complete_new": 0,
+      "paired_complete_lost": 0
+    },
+    "orthogonal_grid_stress": {
+      "inputs": 1000,
+      "both_complete": 565,
+      "new_selectable_observed": [
+        "generated_0920"
+      ],
+      "lost_selectable_observed": [],
+      "paired_complete_new": 1,
+      "paired_complete_lost": 0
+    },
+    "structured_orthogonal": {
+      "inputs": 103,
+      "both_complete": 93,
+      "new_selectable_observed": [],
+      "lost_selectable_observed": [],
+      "paired_complete_new": 0,
+      "paired_complete_lost": 0
+    }
+  }
+}

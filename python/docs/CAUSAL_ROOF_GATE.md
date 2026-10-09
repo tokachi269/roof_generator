@@ -99,5 +99,8 @@ the isolated whole-polygon branch of this gate. In the same 100 small inputs,
 recursive proposals have parallel-free assignments in every completed search
 but still embed exactly the same six roofs as the cover oracle. The remaining
 94 stop at ends or composition. Structured recursion adds no selectable input.
-The full all-axis run remains incomplete and is not an impossibility proof.
+The full all-axis run finished its attempts but leaves grid 435/1000,
+nonuniform 66/150 and structured 10/103 searches incomplete. Paired complete
+inputs gain only one grid success and no nonuniform/structured successes.
+These censored results are not an impossibility proof.
 See [the measured comparison and remaining limits](WHOLE_POLYGON_COMPARISON.md).

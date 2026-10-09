@@ -1,0 +1,135 @@
+{
+  "scope": "Inspect exported topology-prototype meshes in Blender; not addon acceptance.",
+  "blender": "5.2.2 LTS",
+  "cases": [
+    {
+      "name": "structured_orthogonal_orthogonal_U_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_orthogonal_U_0/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 6,
+        "valley": 2,
+        "gable_end": 4,
+        "hip": 4,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "structured_orthogonal_cross_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_cross_0/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 8,
+        "valley": 4,
+        "gable_end": 8,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "structured_orthogonal_staircase_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_staircase_0/meshes.png",
+      "faces": 12,
+      "features": {
+        "eave": 12,
+        "gable_end": 4,
+        "valley": 5,
+        "hip": 10,
+        "ridge": 6
+      }
+    },
+    {
+      "name": "structured_orthogonal_comb_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_comb_0/meshes.png",
+      "faces": 11,
+      "features": {
+        "eave": 14,
+        "valley": 8,
+        "gable_end": 12,
+        "ridge": 6,
+        "hip": 2
+      }
+    },
+    {
+      "name": "structured_orthogonal_grid_40_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_grid_40_0/meshes.png",
+      "faces": 27,
+      "features": {
+        "eave": 31,
+        "valley": 18,
+        "hip": 14,
+        "gable_end": 18,
+        "ridge": 15
+      }
+    },
+    {
+      "name": "structured_orthogonal_residential_multi_reflex_0",
+      "mesh_valid": true,
+      "image": "structured_orthogonal_residential_multi_reflex_0/meshes.png",
+      "faces": 9,
+      "features": {
+        "eave": 9,
+        "valley": 4,
+        "gable_end": 6,
+        "hip": 6,
+        "ridge": 5
+      }
+    },
+    {
+      "name": "nonuniform_orthogonal_generated_0024",
+      "mesh_valid": true,
+      "image": "nonuniform_orthogonal_generated_0024/meshes.png",
+      "faces": 6,
+      "features": {
+        "eave": 6,
+        "gable_end": 4,
+        "hip": 4,
+        "valley": 2,
+        "ridge": 3
+      }
+    },
+    {
+      "name": "nonuniform_orthogonal_generated_0000",
+      "mesh_valid": true,
+      "image": "nonuniform_orthogonal_generated_0000/meshes.png",
+      "faces": 15,
+      "features": {
+        "eave": 17,
+        "valley": 9,
+        "gable_end": 10,
+        "hip": 8,
+        "ridge": 8
+      }
+    },
+    {
+      "name": "nonuniform_orthogonal_generated_0001",
+      "mesh_valid": true,
+      "image": "nonuniform_orthogonal_generated_0001/meshes.png",
+      "faces": 28,
+      "features": {
+        "eave": 32,
+        "valley": 18,
+        "hip": 16,
+        "gable_end": 16,
+        "ridge": 15
+      }
+    },
+    {
+      "name": "orthogonal_grid_stress_generated_0685",
+      "mesh_valid": true,
+      "image": "orthogonal_grid_stress_generated_0685/meshes.png",
+      "faces": 7,
+      "features": {
+        "eave": 7,
+        "valley": 3,
+        "gable_end": 6,
+        "hip": 4,
+        "ridge": 4
+      }
+    }
+  ]
+}

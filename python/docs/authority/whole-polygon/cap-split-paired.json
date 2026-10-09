@@ -1,0 +1,224 @@
+{
+  "scope": "Paired by category and name; canonical graph signatures use seed/role/boundary/face supports and edge meanings, independent of node numbering",
+  "corpora": {
+    "small": {
+      "inputs": 100,
+      "before_mesh": 81,
+      "after_mesh": 91,
+      "added_mesh": [
+        [
+          "orthogonal_grid_stress",
+          "generated_0025"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0076"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0235"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0312"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0343"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0403"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0537"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0630"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0685"
+        ],
+        [
+          "orthogonal_grid_stress",
+          "generated_0687"
+        ]
+      ],
+      "lost_mesh": [],
+      "changed_graph_among_retained_successes": []
+    },
+    "structured": {
+      "inputs": 103,
+      "before_mesh": 101,
+      "after_mesh": 101,
+      "added_mesh": [],
+      "lost_mesh": [],
+      "changed_graph_among_retained_successes": []
+    },
+    "nonuniform": {
+      "inputs": 150,
+      "before_mesh": 149,
+      "after_mesh": 149,
+      "added_mesh": [],
+      "lost_mesh": [],
+      "changed_graph_among_retained_successes": []
+    },
+    "images": {
+      "inputs": 4,
+      "before_mesh": 4,
+      "after_mesh": 4,
+      "added_mesh": [],
+      "lost_mesh": [],
+      "changed_graph_among_retained_successes": []
+    },
+    "grid": {
+      "inputs": 1000,
+      "before_mesh": 631,
+      "after_mesh": 741,
+      "added_mesh": [
+        "generated_0002",
+        "generated_0020",
+        "generated_0021",
+        "generated_0025",
+        "generated_0036",
+        "generated_0037",
+        "generated_0046",
+        "generated_0051",
+        "generated_0059",
+        "generated_0065",
+        "generated_0066",
+        "generated_0070",
+        "generated_0071",
+        "generated_0076",
+        "generated_0077",
+        "generated_0095",
+        "generated_0097",
+        "generated_0099",
+        "generated_0103",
+        "generated_0117",
+        "generated_0124",
+        "generated_0137",
+        "generated_0168",
+        "generated_0178",
+        "generated_0183",
+        "generated_0228",
+        "generated_0230",
+        "generated_0231",
+        "generated_0232",
+        "generated_0235",
+        "generated_0249",
+        "generated_0279",
+        "generated_0312",
+        "generated_0313",
+        "generated_0315",
+        "generated_0316",
+        "generated_0319",
+        "generated_0332",
+        "generated_0342",
+        "generated_0343",
+        "generated_0357",
+        "generated_0358",
+        "generated_0362",
+        "generated_0378",
+        "generated_0384",
+        "generated_0403",
+        "generated_0414",
+        "generated_0448",
+        "generated_0453",
+        "generated_0483",
+        "generated_0487",
+        "generated_0503",
+        "generated_0505",
+        "generated_0535",
+        "generated_0537",
+        "generated_0544",
+        "generated_0546",
+        "generated_0559",
+        "generated_0560",
+        "generated_0567",
+        "generated_0575",
+        "generated_0576",
+        "generated_0580",
+        "generated_0590",
+        "generated_0597",
+        "generated_0599",
+        "generated_0617",
+        "generated_0627",
+        "generated_0630",
+        "generated_0633",
+        "generated_0637",
+        "generated_0647",
+        "generated_0673",
+        "generated_0685",
+        "generated_0687",
+        "generated_0695",
+        "generated_0699",
+        "generated_0701",
+        "generated_0710",
+        "generated_0718",
+        "generated_0739",
+        "generated_0767",
+        "generated_0769",
+        "generated_0774",
+        "generated_0780",
+        "generated_0785",
+        "generated_0789",
+        "generated_0791",
+        "generated_0793",
+        "generated_0805",
+        "generated_0825",
+        "generated_0829",
+        "generated_0837",
+        "generated_0842",
+        "generated_0856",
+        "generated_0914",
+        "generated_0918",
+        "generated_0919",
+        "generated_0922",
+        "generated_0923",
+        "generated_0926",
+        "generated_0945",
+        "generated_0950",
+        "generated_0958",
+        "generated_0959",
+        "generated_0991",
+        "generated_0994",
+        "generated_0995",
+        "generated_0997",
+        "generated_0998"
+      ],
+      "lost_mesh": [],
+      "changed_graph_among_retained_successes": [],
+      "stage_transitions": [
+        {
+          "before": "mesh",
+          "after": "mesh",
+          "inputs": 631
+        },
+        {
+          "before": "topology",
+          "after": "topology",
+          "inputs": 255
+        },
+        {
+          "before": "embedding",
+          "after": "mesh",
+          "inputs": 109
+        },
+        {
+          "before": "search_incomplete",
+          "after": "search_incomplete",
+          "inputs": 4
+        },
+        {
+          "before": "topology",
+          "after": "mesh",
+          "inputs": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "Isolated whole-polygon topology comparison, never a production fallback.\n\nLaycock section 6.1 moves a terminal skeleton node to its incident boundary\nedge midpoint. Here only triangular faces with one uniquely owned terminal\nnode can become gable ends. Shared simultaneous cap nodes are unsupported.\nThe external skeleton supplies face incidence; the unchanged core solver\nreceives a complete RoofGraph, without external XYZ or event-time anchors.\n",
+  "external_skeleton_version": "0.1.0",
+  "diagnostic_sha256": "bc29c1386c534ef2317391e520f97b4099246e47eb86f5f999e7c0ba94c17150",
+  "core_source_files_sha256": {
+    "__init__.py": "2407b7ad4274e3e72490683eb85d386408f033d2c5bcc475b483dd075a438356",
+    "architecture.py": "a22db3b54829f1a55859fbed79bdb21b79e10068d539d483df279f5aa8b2f351",
+    "architecture_models.py": "4b48a991d6e6872ff43e0379d9f26c17920f4369439e82819045d043e959f97c",
+    "architecture_selection.py": "e4f626118273925321d5ac9f356aa816210198d25305dd9e94b6d978c72bf637",
+    "cells.py": "eaa34a369604e3a55fa3d2c051a3e0465901596c4a5a52bd29ddabf9a2780e13",
+    "errors.py": "3539372347f072fb50b41b39e0f1503fcfd618104b1c35c9962fe2b1003f93b6",
+    "footprint.py": "7896865c8e84d33f9e2751a4254801ee0ee8f1f7869ba8f8602b633d48d9327d",
+    "generation.py": "318949384c0a1180337ce435bdbb190dd2b86cb9ab7d4153fe0386bd64743add",
+    "graph.py": "9620f5382dd96a2664898582ce1d52b68f00c20f5928e1c234443692a96f9c54",
+    "initialization.py": "4ce3f284e0bccb78740734b82a79a462f154f1d7a87f3be6b143303f8880a700",
+    "junctions.py": "a1d01e198c9a704903d547452f0ebecc4775809dbb4486612f097d11cb32d2d8",
+    "member_layout.py": "f9e191e36368f74ec257be4fc2b5e9a173fdcabc2fe601bb561d6f47bb76473c",
+    "mesh.py": "d10764f600892f553eb35d0860eaa6318f35a51e1c6a9da71519509e970ed5aa",
+    "optimization.py": "65cf6432b0a59f1f6ce8565e94fae93de1abe0a9a7298f2b9b8c2d5882107ba9",
+    "partition.py": "302c37b924418af32591fd10a2196ad019716462011e2d69100a9ddb023db458",
+    "partition_candidates.py": "5fcf2741238877509aa05206a8ab0a2bbd4af19f07b62ac603fdbc99fb4e6396",
+    "provenance.py": "c663936dbeef846d15d4d732a92e5ed326bfdca664d3ba0635c3d85596e9764d",
+    "receiver_regions.py": "c71bb3604afdb8a9be69fc80be19a2bacae8c12687ff3492587b9e16ae42fac4",
+    "region_architecture.py": "69f488d3682c9d12be5e364b2875933fc73bb8db30d9acc20a635bf48f95cb94",
+    "region_generation.py": "bcd72a1705c5f79791f633741aee09689b78ea9d6eaa1e2e503ec36fa4c490fa",
+    "roof_candidates.py": "aa5aabbc9c2940bf934b820890ee41ee1d95da527adc1396d2ae34c95d06eea9",
+    "roof_ends.py": "b9b828b99fbac8d0d89a5b1042495db6aee8868651e06e4adcd92a61e3206290",
+    "roof_regions.py": "87408381d92b01eda25f271fd3b1dc05a2b4d7468c2c2521bb6d573f59d00180",
+    "seed.py": "fd5facd58eff37618a98a147f009d3ba294e2b4ab795ec7005056521c2fb6f64",
+    "solve.py": "b02dfb51eaf923e2da0bf7f0c71e456b0dfbda3050335e2cfd94dfddc603bf76",
+    "topology.py": "9ca5559b60db258b22b1092882ce5f89b61887abebeba9a0a7a32864a93e6832",
+    "topology_candidates.py": "e9d9e0f6e6be2dd96bb81763658f0c555a0570e84ab0e1870c4e56546e67fc23"
+  },
+  "inputs_sha256": "7ed5a3e769a23059b3f496ab2060b1a69a718e23908ba94b5fc884668ccc3cad",
+  "requested_inputs": 1,
+  "finished_inputs": 1,
+  "embedded_inputs": 0,
+  "stages": {
+    "topology": 1
+  },
+  "rows": [
+    {
+      "name": "generated_0699",
+      "stage": "topology",
+      "embedded": false,
+      "category": "orthogonal_grid_stress",
+      "error": "UnsupportedRoofError: nonmanifold vertex link"
+    }
+  ]
+}

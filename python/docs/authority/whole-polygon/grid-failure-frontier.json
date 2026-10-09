@@ -1,0 +1,30 @@
+{
+  "scope": "Complete bounded grid attempts; timeout remains censored, no mathematical impossibility claim",
+  "requested_inputs": 1000,
+  "finished_inputs": 1000,
+  "stages": {
+    "mesh": 741,
+    "topology": 255,
+    "search_incomplete": 4
+  },
+  "failures": {
+    "simultaneous terminal caps share a skeleton node": 84,
+    "Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 106,
+    "Can't determine bisector direction for opposite edges.": 38,
+    "All vertices are overlapping, can't get a safe prev vertex.": 8,
+    "per-input wall budget exhausted; no impossibility claim": 4,
+    "float division by zero": 12,
+    "Ran to an original node SKN(18, 3.000, 3.000, 0.00000) not part of the initiating edge.": 1,
+    "Ran to an original node SKN(9, 6.000, 12.000, 0.00000) not part of the initiating edge.": 1,
+    "Ran to an original node SKN(22, 12.000, 9.000, 0.00000) not part of the initiating edge.": 1,
+    "Ran to an original node SKN(27, 0.000, -9.000, 0.00000) not part of the initiating edge.": 1,
+    "prev(prev(Va)) == Vb, but prev(Va) != next(Vb)": 2,
+    "Ran to an original node SKN(37, 0.000, -6.000, 0.00000) not part of the initiating edge.": 1
+  },
+  "timeout_inputs": [
+    "generated_0019",
+    "generated_0344",
+    "generated_0468",
+    "generated_0851"
+  ]
+}

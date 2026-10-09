@@ -1,5 +1,5 @@
 {
-  "scope": "Completed baseline1253 and producer replay. Oracle100 and recursive comparisons complete. Full all-axis and whole-polygon grid still pending.",
+  "scope": "Baseline1253, producer replay, oracle100, recursive comparisons and full all-axis attempts completed. Whole-polygon comparisons completed in separate versioned manifest.",
   "oracle": {
     "inputs": 100,
     "complete": 99,
@@ -21,11 +21,27 @@
     "python/docs/authority/causal/causal-recursive-small.json": "7c7e6c6bbae6a1fdaa9bab8e5c8ec8ecbbb294eeca5f7e3ce15e84ff3bb85f75",
     "python/docs/authority/causal/causal-recursive-structured.json": "8e5e95622ab5c2122804578b5f0018118b9a3d9e9c28fa2e47fc40dc594fc09f",
     "python/docs/authority/causal/causal-small-inputs.json": "bc63005b836fa41be543d72deb2cecce03ebf915056b4c115c178b977102396c",
-    "python/docs/authority/causal/causal-source-manifest.json": "3355835522f3340d997be72e6069b634cc35c9689fd9a8368df867c97b8b0136"
+    "python/docs/authority/causal/causal-source-manifest.json": "3355835522f3340d997be72e6069b634cc35c9689fd9a8368df867c97b8b0136",
+    "python/docs/authority/causal/causal-all-axis.json": "e317d21c90f9bcaa2a9c631493bb14ccfb7d1c3108ac56bf42898b6e7aac1784",
+    "python/docs/authority/causal/causal-all-axis-paired.json": "fb3372f7adeedbc5992a67520c67880d83c78d2eb00765bc450efb8004ac9548",
+    "python/docs/authority/causal/causal-all-axis-inputs.jsonl.gz": "975d6c12d0b6ae503397dff3283e880bfd4c86bf161f2f46e790b2f7c2a9120b"
   },
   "producer_replay_native_agreement_inputs": 253,
-  "whole_polygon_completed": {
+  "whole_polygon_original_completed": {
     "small": 81,
+    "small_inputs": 100,
+    "structured": 101,
+    "structured_inputs": 103,
+    "nonuniform": 149,
+    "nonuniform_inputs": 150,
+    "factory": 4,
+    "factory_inputs": 4
+  },
+  "whole_polygon_corrected_completed": {
+    "grid": 741,
+    "grid_inputs": 1000,
+    "grid_timeouts": 4,
+    "small": 91,
     "small_inputs": 100,
     "structured": 101,
     "structured_inputs": 103,

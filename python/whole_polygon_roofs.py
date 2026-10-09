@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Isolated whole-polygon topology comparison, never a production fallback.
 
-Laycock section 6.1 moves a terminal skeleton node to its incident boundary
-edge midpoint. Here only triangular faces with one uniquely owned terminal
-node can become gable ends. Shared simultaneous cap nodes are unsupported.
+Terminal triangular caps are replaced by a boundary ridge end and extensions
+of the two incident slope facets. The original event remains shared by its
+other facets. Simple degree-two events are then suppressed. This generalizes
+the two-bisector terminal adjustment without moving a multi-facet event.
 The external skeleton supplies face incidence; the unchanged core solver
 receives a complete RoofGraph, without external XYZ or event-time anchors.
 """
@@ -44,12 +45,41 @@ def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofErro
     cap_edges = {edge for edge,node in caps}
     locations = {i:BoundaryPoint(i,0.0) for i in range(n)}
     roles = ['corner' if i<n else 'junction' for i in range(len(seeds))]
+    extensions = {}
     for edge,node in caps:
         a,b = fp.vertices[edge],fp.vertices[(edge+1)%n]
-        seeds[node] = tuple((a[k]+b[k])/2 for k in (0,1))
-        locations[node] = BoundaryPoint(edge,0.5)
-        roles[node] = 'ridge_end'
-    faces = [graph_api.RoofFace(loop,(0,),(edge,),edge)
+        # Replace the oriented triangular disk (a,b,node) with the two
+        # adjacent slope sectors (a,k,node) and (k,b,node). Their common
+        # k-node ridge retains the original event and every other incidence.
+        # Across the cap edges the neighboring loops run node->b and a->node.
+        k = len(seeds)
+        seeds.append(tuple((a[i]+b[i])/2 for i in (0,1)))
+        roles.append('ridge_end')
+        locations[k] = BoundaryPoint(edge,0.5)
+        for pair in ((node,(edge+1)%n),(edge,node)):
+            owners = [loop for support,loop in zip(supports,loops)
+                      if support not in cap_edges and
+                      pair in tuple(zip(loop,loop[1:]+loop[:1]))]
+            if len(owners)!=1 or pair in extensions:
+                raise UnsupportedRoofError('terminal cap lacks two uniquely incident slope sectors')
+            extensions[pair] = k
+        # Adjacent support normals must be opposed, so their equality locus
+        # passes through both the midpoint and the preserved event.
+        left,right = (edge-1)%n,(edge+1)%n
+        vectors = []
+        for support in (left,right):
+            p,q = fp.vertices[support],fp.vertices[(support+1)%n]
+            size = math.dist(p,q)
+            vectors.append((-(q[1]-p[1])/size,(q[0]-p[0])/size))
+        if math.dist(vectors[0],tuple(-x for x in vectors[1]))>1e-8:
+            raise UnsupportedRoofError('terminal cap is not bounded by opposed slope supports')
+    def extend(loop):
+        result=[]
+        for a,b in zip(loop,loop[1:]+loop[:1]):
+            result.append(a)
+            if (a,b) in extensions:result.append(extensions[a,b])
+        return tuple(result)
+    faces = [graph_api.RoofFace(extend(loop),(0,),(edge,),edge)
              for edge,loop in zip(supports,loops) if edge not in cap_edges]
     # Adjacent pieces with the same oriented supporting line describe one
     # roof facet. Remove only their common cycle edges; no metric seam repair.
@@ -153,7 +183,7 @@ def topology(fp, compute_skeleton, graph_api, BoundaryPoint, UnsupportedRoofErro
         tuple(roles[i] for i in used),faces,
         {tuple(sorted((remap[a],remap[b]))):kind for (a,b),kind in semantics.items()},'gable')
     return graph, {'cap_edges':sorted(cap_edges), 'skeleton_nodes':len(seeds),
-                   'policy':'all uniquely owned terminal triangular caps; no appearance ranking'}
+                   'policy':'oriented terminal-cap disk replacement; preserve shared events; no appearance ranking'}
 
 
 def main():

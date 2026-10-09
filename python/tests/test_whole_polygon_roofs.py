@@ -16,13 +16,21 @@ from roof_generator.core.solve import problem,solve
 
 def rectangle_skeleton(exterior,holes,subdivide=False):
     a,b,c,d=exterior
-    y=(a[1]+c[1])/2
-    radius=(c[1]-a[1])/2
-    points=[a,b,c,d,(a[0]+radius,y),(b[0]-radius,y)]
-    faces=[[0,1,5,4,0],[1,2,5,1],[2,3,4,5,2],[3,0,4,3]]
+    width,height=b[0]-a[0],c[1]-a[1]
+    if width>=height:
+        y=(a[1]+c[1])/2
+        radius=height/2
+        points=[a,b,c,d,(a[0]+radius,y),(b[0]-radius,y)]
+        faces=[[0,1,5,4,0],[1,2,5,1],[2,3,4,5,2],[3,0,4,3]]
+    else:
+        x=(a[0]+c[0])/2
+        radius=width/2
+        points=[a,b,c,d,(x,a[1]+radius),(x,c[1]-radius)]
+        faces=[[0,1,4,0],[1,2,5,4,1],[2,3,5,2],[3,0,4,5,3]]
     if subdivide:
-        points.append(((points[4][0]+points[5][0])/2,y))
-        faces[0]=[0,1,5,6,4,0];faces[2]=[2,3,4,6,5,2]
+        points.append(tuple((points[4][k]+points[5][k])/2 for k in (0,1)))
+        faces=[sum(([v,6] if {v,face[(j+1)%(len(face)-1)]}=={4,5}
+                    else [v] for j,v in enumerate(face[:-1])),[])+[face[0]] for face in faces]
     return SimpleNamespace(nodes=[SimpleNamespace(position=SimpleNamespace(x=x,y=y)) for x,y in points],
                            get_faces=lambda:faces)
 
@@ -46,6 +54,32 @@ class WholePolygonWitness(unittest.TestCase):
         self.assertEqual(sum(e.kind=='ridge' for e in roof.edges),1)
         self.assertEqual(len(roof.vertices),6)
         self.assertEqual(sum(v.boundary is None for v in roof.vertices),0)
+
+    def test_shared_event_keeps_third_slope_while_boundary_cap_is_separate(self):
+        # A measured four-facet event, represented without the external
+        # library. The old midpoint relocation cannot satisfy support 7.
+        fp=analyze([(0,9),(6,9),(6,0),(12,0),(12,12),
+                    (6,12),(6,18),(3,18),(3,15),(0,15)])
+        extra=[(-.025,.025),(-.075,.075),(-.025,.075),(-.025,-.025),
+               (0,.05),(-.1,.2),(-.1,.1)]
+        loops=[[0,1,14,10],[1,2,14],[2,3,11,12,14],[3,4,15,16,11],
+               [4,5,15],[5,6,16,15],[6,7,12,11,16],[7,8,13,10,14,12],
+               [8,9,13],[9,0,10,13]]
+        def source(exterior,holes):
+            points=list(exterior)+[(x*fp.frame.scale,y*fp.frame.scale) for x,y in extra]
+            return SimpleNamespace(
+                nodes=[SimpleNamespace(position=SimpleNamespace(x=x,y=y)) for x,y in points],
+                get_faces=lambda:[f+[f[0]] for f in loops])
+        roof,_=topology(fp,source,graph,BoundaryPoint,UnsupportedRoofError)
+        event=next(i for i,v in enumerate(roof.vertices) if v.seed==(0,.05))
+        end=next(i for i,v in enumerate(roof.vertices) if v.boundary==BoundaryPoint(1,.5))
+        self.assertNotEqual(event,end)
+        self.assertIsNone(roof.vertices[event].boundary)
+        self.assertEqual({f.support for f in roof.faces if event in f.loop},{0,2,7})
+        self.assertEqual({f.support for f in roof.faces if end in f.loop},{0,2})
+        mesh=solve(roof,problem(roof))
+        self.assertIs(mesh.graph,roof)
+        self.assertAlmostEqual(mesh.vertices[event][2],mesh.vertices[end][2])
 
 
 if __name__=='__main__':unittest.main()

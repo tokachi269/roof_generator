@@ -1,0 +1,4107 @@
+{
+  "scope": "Raw cap multiplicity diagnostic only; no end selection or composition repair",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "inputs": 84,
+  "all_cap_selection_lacks_incident_slope_inputs": 84,
+  "event_cap_multiplicity": {
+    "2": 86
+  },
+  "rows": [
+    {
+      "name": "generated_0001",
+      "caps": [
+        [
+          2,
+          42
+        ],
+        [
+          6,
+          58
+        ],
+        [
+          9,
+          43
+        ],
+        [
+          13,
+          46
+        ],
+        [
+          16,
+          47
+        ],
+        [
+          21,
+          50
+        ],
+        [
+          24,
+          51
+        ],
+        [
+          30,
+          59
+        ],
+        [
+          31,
+          59
+        ],
+        [
+          37,
+          56
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 59,
+          "cap_edges": [
+            30,
+            31
+          ],
+          "remaining_incident_supports": [
+            29,
+            32
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        30,
+        31
+      ]
+    },
+    {
+      "name": "generated_0011",
+      "caps": [
+        [
+          4,
+          20
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          15,
+          25
+        ],
+        [
+          16,
+          25
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 25,
+          "cap_edges": [
+            15,
+            16
+          ],
+          "remaining_incident_supports": [
+            14,
+            17
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        16,
+        15
+      ]
+    },
+    {
+      "name": "generated_0026",
+      "caps": [
+        [
+          3,
+          34
+        ],
+        [
+          9,
+          37
+        ],
+        [
+          16,
+          41
+        ],
+        [
+          19,
+          43
+        ],
+        [
+          24,
+          45
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          47
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 47,
+          "cap_edges": [
+            29,
+            30
+          ],
+          "remaining_incident_supports": [
+            28,
+            31
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "generated_0083",
+      "caps": [
+        [
+          2,
+          36
+        ],
+        [
+          5,
+          38
+        ],
+        [
+          8,
+          40
+        ],
+        [
+          16,
+          42
+        ],
+        [
+          23,
+          50
+        ],
+        [
+          24,
+          50
+        ],
+        [
+          31,
+          51
+        ],
+        [
+          32,
+          51
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 50,
+          "cap_edges": [
+            23,
+            24
+          ],
+          "remaining_incident_supports": [
+            22,
+            25
+          ]
+        },
+        {
+          "node": 51,
+          "cap_edges": [
+            31,
+            32
+          ],
+          "remaining_incident_supports": [
+            30,
+            33
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        32,
+        23,
+        24,
+        31
+      ]
+    },
+    {
+      "name": "generated_0110",
+      "caps": [
+        [
+          4,
+          40
+        ],
+        [
+          7,
+          54
+        ],
+        [
+          11,
+          56
+        ],
+        [
+          12,
+          56
+        ],
+        [
+          16,
+          43
+        ],
+        [
+          24,
+          47
+        ],
+        [
+          27,
+          48
+        ],
+        [
+          30,
+          49
+        ],
+        [
+          36,
+          52
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 56,
+          "cap_edges": [
+            11,
+            12
+          ],
+          "remaining_incident_supports": [
+            10,
+            13
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        11,
+        12
+      ]
+    },
+    {
+      "name": "generated_0145",
+      "caps": [
+        [
+          3,
+          16
+        ],
+        [
+          4,
+          16
+        ],
+        [
+          9,
+          14
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 16,
+          "cap_edges": [
+            3,
+            4
+          ],
+          "remaining_incident_supports": [
+            2,
+            5
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        3,
+        4
+      ]
+    },
+    {
+      "name": "generated_0175",
+      "caps": [
+        [
+          2,
+          20
+        ],
+        [
+          8,
+          26
+        ],
+        [
+          9,
+          26
+        ],
+        [
+          16,
+          24
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 26,
+          "cap_edges": [
+            8,
+            9
+          ],
+          "remaining_incident_supports": [
+            7,
+            10
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        8,
+        9
+      ]
+    },
+    {
+      "name": "generated_0176",
+      "caps": [
+        [
+          7,
+          37
+        ],
+        [
+          13,
+          41
+        ],
+        [
+          16,
+          48
+        ],
+        [
+          19,
+          49
+        ],
+        [
+          24,
+          50
+        ],
+        [
+          25,
+          50
+        ],
+        [
+          31,
+          46
+        ],
+        [
+          34,
+          47
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 50,
+          "cap_edges": [
+            24,
+            25
+          ],
+          "remaining_incident_supports": [
+            23,
+            26
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        24,
+        25
+      ]
+    },
+    {
+      "name": "generated_0186",
+      "caps": [
+        [
+          2,
+          26
+        ],
+        [
+          5,
+          27
+        ],
+        [
+          10,
+          30
+        ],
+        [
+          13,
+          31
+        ],
+        [
+          17,
+          33
+        ],
+        [
+          20,
+          35
+        ],
+        [
+          21,
+          35
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 35,
+          "cap_edges": [
+            20,
+            21
+          ],
+          "remaining_incident_supports": [
+            19,
+            22
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        20,
+        21
+      ]
+    },
+    {
+      "name": "generated_0210",
+      "caps": [
+        [
+          7,
+          36
+        ],
+        [
+          10,
+          37
+        ],
+        [
+          13,
+          47
+        ],
+        [
+          17,
+          39
+        ],
+        [
+          21,
+          48
+        ],
+        [
+          22,
+          48
+        ],
+        [
+          26,
+          44
+        ],
+        [
+          30,
+          45
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 48,
+          "cap_edges": [
+            21,
+            22
+          ],
+          "remaining_incident_supports": [
+            20,
+            23
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        21,
+        22
+      ]
+    },
+    {
+      "name": "generated_0211",
+      "caps": [
+        [
+          4,
+          35
+        ],
+        [
+          12,
+          38
+        ],
+        [
+          18,
+          40
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          24,
+          46
+        ],
+        [
+          28,
+          48
+        ],
+        [
+          29,
+          48
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 48,
+          "cap_edges": [
+            28,
+            29
+          ],
+          "remaining_incident_supports": [
+            27,
+            30
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        28,
+        29
+      ]
+    },
+    {
+      "name": "generated_0213",
+      "caps": [
+        [
+          4,
+          38
+        ],
+        [
+          8,
+          52
+        ],
+        [
+          12,
+          40
+        ],
+        [
+          17,
+          54
+        ],
+        [
+          18,
+          54
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          33,
+          49
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 54,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0214",
+      "caps": [
+        [
+          4,
+          31
+        ],
+        [
+          7,
+          33
+        ],
+        [
+          14,
+          34
+        ],
+        [
+          19,
+          36
+        ],
+        [
+          26,
+          42
+        ],
+        [
+          27,
+          42
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 42,
+          "cap_edges": [
+            26,
+            27
+          ],
+          "remaining_incident_supports": [
+            25,
+            28
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        26,
+        27
+      ]
+    },
+    {
+      "name": "generated_0218",
+      "caps": [
+        [
+          4,
+          38
+        ],
+        [
+          6,
+          50
+        ],
+        [
+          14,
+          42
+        ],
+        [
+          18,
+          45
+        ],
+        [
+          20,
+          51
+        ],
+        [
+          27,
+          52
+        ],
+        [
+          28,
+          52
+        ],
+        [
+          34,
+          55
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 52,
+          "cap_edges": [
+            27,
+            28
+          ],
+          "remaining_incident_supports": [
+            26,
+            29
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        27,
+        28
+      ]
+    },
+    {
+      "name": "generated_0221",
+      "caps": [
+        [
+          3,
+          16
+        ],
+        [
+          6,
+          17
+        ],
+        [
+          7,
+          17
+        ],
+        [
+          10,
+          14
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 17,
+          "cap_edges": [
+            6,
+            7
+          ],
+          "remaining_incident_supports": [
+            5,
+            8
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        6,
+        7
+      ]
+    },
+    {
+      "name": "generated_0241",
+      "caps": [
+        [
+          2,
+          36
+        ],
+        [
+          8,
+          37
+        ],
+        [
+          12,
+          39
+        ],
+        [
+          16,
+          42
+        ],
+        [
+          25,
+          45
+        ],
+        [
+          29,
+          50
+        ],
+        [
+          30,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 50,
+          "cap_edges": [
+            29,
+            30
+          ],
+          "remaining_incident_supports": [
+            28,
+            31
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "generated_0253",
+      "caps": [
+        [
+          2,
+          33
+        ],
+        [
+          7,
+          42
+        ],
+        [
+          8,
+          42
+        ],
+        [
+          15,
+          37
+        ],
+        [
+          23,
+          40
+        ],
+        [
+          30,
+          41
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 42,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        7,
+        8
+      ]
+    },
+    {
+      "name": "generated_0254",
+      "caps": [
+        [
+          2,
+          31
+        ],
+        [
+          7,
+          41
+        ],
+        [
+          8,
+          41
+        ],
+        [
+          15,
+          36
+        ],
+        [
+          18,
+          38
+        ],
+        [
+          21,
+          39
+        ],
+        [
+          25,
+          44
+        ],
+        [
+          28,
+          40
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 41,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        7,
+        8
+      ]
+    },
+    {
+      "name": "generated_0270",
+      "caps": [
+        [
+          2,
+          38
+        ],
+        [
+          6,
+          41
+        ],
+        [
+          10,
+          54
+        ],
+        [
+          11,
+          54
+        ],
+        [
+          14,
+          43
+        ],
+        [
+          20,
+          46
+        ],
+        [
+          24,
+          47
+        ],
+        [
+          28,
+          50
+        ],
+        [
+          36,
+          52
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 54,
+          "cap_edges": [
+            10,
+            11
+          ],
+          "remaining_incident_supports": [
+            9,
+            12
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        10,
+        11
+      ]
+    },
+    {
+      "name": "generated_0276",
+      "caps": [
+        [
+          4,
+          48
+        ],
+        [
+          5,
+          48
+        ],
+        [
+          10,
+          34
+        ],
+        [
+          14,
+          36
+        ],
+        [
+          17,
+          38
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          24,
+          42
+        ],
+        [
+          29,
+          45
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 48,
+          "cap_edges": [
+            4,
+            5
+          ],
+          "remaining_incident_supports": [
+            3,
+            6
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "generated_0308",
+      "caps": [
+        [
+          2,
+          31
+        ],
+        [
+          5,
+          32
+        ],
+        [
+          11,
+          45
+        ],
+        [
+          12,
+          45
+        ],
+        [
+          16,
+          46
+        ],
+        [
+          19,
+          39
+        ],
+        [
+          23,
+          40
+        ],
+        [
+          27,
+          43
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 45,
+          "cap_edges": [
+            11,
+            12
+          ],
+          "remaining_incident_supports": [
+            10,
+            13
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        11,
+        12
+      ]
+    },
+    {
+      "name": "generated_0323",
+      "caps": [
+        [
+          2,
+          19
+        ],
+        [
+          3,
+          19
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          12,
+          18
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 19,
+          "cap_edges": [
+            2,
+            3
+          ],
+          "remaining_incident_supports": [
+            1,
+            4
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "generated_0324",
+      "caps": [
+        [
+          2,
+          27
+        ],
+        [
+          6,
+          29
+        ],
+        [
+          11,
+          37
+        ],
+        [
+          12,
+          37
+        ],
+        [
+          16,
+          32
+        ],
+        [
+          19,
+          33
+        ],
+        [
+          24,
+          35
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 37,
+          "cap_edges": [
+            11,
+            12
+          ],
+          "remaining_incident_supports": [
+            10,
+            13
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        11,
+        12
+      ]
+    },
+    {
+      "name": "generated_0345",
+      "caps": [
+        [
+          2,
+          39
+        ],
+        [
+          8,
+          64
+        ],
+        [
+          9,
+          64
+        ],
+        [
+          13,
+          41
+        ],
+        [
+          17,
+          44
+        ],
+        [
+          23,
+          45
+        ],
+        [
+          26,
+          46
+        ],
+        [
+          33,
+          57
+        ],
+        [
+          36,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 64,
+          "cap_edges": [
+            8,
+            9
+          ],
+          "remaining_incident_supports": [
+            7,
+            10
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        8,
+        9
+      ]
+    },
+    {
+      "name": "generated_0363",
+      "caps": [
+        [
+          4,
+          30
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          13,
+          42
+        ],
+        [
+          14,
+          42
+        ],
+        [
+          18,
+          37
+        ],
+        [
+          23,
+          40
+        ],
+        [
+          26,
+          41
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 42,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0366",
+      "caps": [
+        [
+          4,
+          27
+        ],
+        [
+          5,
+          27
+        ],
+        [
+          8,
+          23
+        ],
+        [
+          12,
+          29
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 27,
+          "cap_edges": [
+            4,
+            5
+          ],
+          "remaining_incident_supports": [
+            3,
+            6
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "generated_0374",
+      "caps": [
+        [
+          2,
+          22
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          10,
+          21
+        ],
+        [
+          13,
+          23
+        ],
+        [
+          14,
+          23
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 23,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0381",
+      "caps": [
+        [
+          4,
+          49
+        ],
+        [
+          5,
+          49
+        ],
+        [
+          8,
+          31
+        ],
+        [
+          12,
+          42
+        ],
+        [
+          17,
+          44
+        ],
+        [
+          22,
+          35
+        ],
+        [
+          27,
+          39
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 49,
+          "cap_edges": [
+            4,
+            5
+          ],
+          "remaining_incident_supports": [
+            3,
+            6,
+            10
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "generated_0382",
+      "caps": [
+        [
+          5,
+          22
+        ],
+        [
+          11,
+          25
+        ],
+        [
+          17,
+          27
+        ],
+        [
+          18,
+          27
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 27,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0390",
+      "caps": [
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          31
+        ],
+        [
+          8,
+          23
+        ],
+        [
+          12,
+          26
+        ],
+        [
+          15,
+          32
+        ],
+        [
+          19,
+          29
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 31,
+          "cap_edges": [
+            2,
+            3
+          ],
+          "remaining_incident_supports": [
+            1,
+            4
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "generated_0391",
+      "caps": [
+        [
+          2,
+          10
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          6,
+          11
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 11,
+          "cap_edges": [
+            5,
+            6
+          ],
+          "remaining_incident_supports": [
+            4,
+            7
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        5,
+        6
+      ]
+    },
+    {
+      "name": "generated_0392",
+      "caps": [
+        [
+          4,
+          42
+        ],
+        [
+          8,
+          44
+        ],
+        [
+          12,
+          45
+        ],
+        [
+          17,
+          48
+        ],
+        [
+          21,
+          50
+        ],
+        [
+          24,
+          51
+        ],
+        [
+          30,
+          60
+        ],
+        [
+          31,
+          60
+        ],
+        [
+          35,
+          55
+        ],
+        [
+          38,
+          57
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 60,
+          "cap_edges": [
+            30,
+            31
+          ],
+          "remaining_incident_supports": [
+            29,
+            32
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        30,
+        31
+      ]
+    },
+    {
+      "name": "generated_0402",
+      "caps": [
+        [
+          3,
+          17
+        ],
+        [
+          8,
+          21
+        ],
+        [
+          9,
+          21
+        ],
+        [
+          14,
+          20
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 21,
+          "cap_edges": [
+            8,
+            9
+          ],
+          "remaining_incident_supports": [
+            7,
+            10
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        8,
+        9
+      ]
+    },
+    {
+      "name": "generated_0418",
+      "caps": [
+        [
+          4,
+          41
+        ],
+        [
+          9,
+          56
+        ],
+        [
+          13,
+          43
+        ],
+        [
+          17,
+          45
+        ],
+        [
+          20,
+          59
+        ],
+        [
+          24,
+          48
+        ],
+        [
+          28,
+          60
+        ],
+        [
+          29,
+          60
+        ],
+        [
+          33,
+          52
+        ],
+        [
+          38,
+          66
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 60,
+          "cap_edges": [
+            28,
+            29
+          ],
+          "remaining_incident_supports": [
+            27,
+            30
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        28,
+        29
+      ]
+    },
+    {
+      "name": "generated_0420",
+      "caps": [
+        [
+          2,
+          27
+        ],
+        [
+          7,
+          28
+        ],
+        [
+          8,
+          28
+        ],
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 28,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        7,
+        8
+      ]
+    },
+    {
+      "name": "generated_0427",
+      "caps": [
+        [
+          2,
+          26
+        ],
+        [
+          7,
+          28
+        ],
+        [
+          13,
+          31
+        ],
+        [
+          18,
+          36
+        ],
+        [
+          19,
+          36
+        ],
+        [
+          22,
+          37
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 36,
+          "cap_edges": [
+            18,
+            19
+          ],
+          "remaining_incident_supports": [
+            17,
+            20
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        18,
+        19
+      ]
+    },
+    {
+      "name": "generated_0435",
+      "caps": [
+        [
+          4,
+          37
+        ],
+        [
+          8,
+          40
+        ],
+        [
+          11,
+          42
+        ],
+        [
+          15,
+          50
+        ],
+        [
+          16,
+          50
+        ],
+        [
+          22,
+          46
+        ],
+        [
+          26,
+          48
+        ],
+        [
+          29,
+          49
+        ],
+        [
+          32,
+          51
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 50,
+          "cap_edges": [
+            15,
+            16
+          ],
+          "remaining_incident_supports": [
+            14,
+            17
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        15,
+        16
+      ]
+    },
+    {
+      "name": "generated_0458",
+      "caps": [
+        [
+          2,
+          34
+        ],
+        [
+          7,
+          37
+        ],
+        [
+          10,
+          39
+        ],
+        [
+          13,
+          48
+        ],
+        [
+          18,
+          42
+        ],
+        [
+          21,
+          44
+        ],
+        [
+          24,
+          46
+        ],
+        [
+          29,
+          49
+        ],
+        [
+          30,
+          49
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 49,
+          "cap_edges": [
+            29,
+            30
+          ],
+          "remaining_incident_supports": [
+            28,
+            31
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "generated_0474",
+      "caps": [
+        [
+          5,
+          33
+        ],
+        [
+          10,
+          35
+        ],
+        [
+          17,
+          38
+        ],
+        [
+          20,
+          40
+        ],
+        [
+          24,
+          42
+        ],
+        [
+          29,
+          50
+        ],
+        [
+          30,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 50,
+          "cap_edges": [
+            29,
+            30
+          ],
+          "remaining_incident_supports": [
+            28,
+            31
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "generated_0475",
+      "caps": [
+        [
+          5,
+          34
+        ],
+        [
+          9,
+          36
+        ],
+        [
+          15,
+          38
+        ],
+        [
+          18,
+          47
+        ],
+        [
+          23,
+          41
+        ],
+        [
+          29,
+          48
+        ],
+        [
+          30,
+          48
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 48,
+          "cap_edges": [
+            29,
+            30
+          ],
+          "remaining_incident_supports": [
+            28,
+            31
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        29,
+        30
+      ]
+    },
+    {
+      "name": "generated_0482",
+      "caps": [
+        [
+          6,
+          43
+        ],
+        [
+          9,
+          44
+        ],
+        [
+          16,
+          45
+        ],
+        [
+          21,
+          56
+        ],
+        [
+          22,
+          56
+        ],
+        [
+          26,
+          50
+        ],
+        [
+          32,
+          52
+        ],
+        [
+          38,
+          54
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 56,
+          "cap_edges": [
+            21,
+            22
+          ],
+          "remaining_incident_supports": [
+            20,
+            23
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        21,
+        22
+      ]
+    },
+    {
+      "name": "generated_0488",
+      "caps": [
+        [
+          2,
+          40
+        ],
+        [
+          5,
+          41
+        ],
+        [
+          8,
+          42
+        ],
+        [
+          18,
+          52
+        ],
+        [
+          19,
+          52
+        ],
+        [
+          23,
+          53
+        ],
+        [
+          26,
+          46
+        ],
+        [
+          30,
+          48
+        ],
+        [
+          35,
+          54
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 52,
+          "cap_edges": [
+            18,
+            19
+          ],
+          "remaining_incident_supports": [
+            17,
+            20
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        18,
+        19
+      ]
+    },
+    {
+      "name": "generated_0492",
+      "caps": [
+        [
+          2,
+          29
+        ],
+        [
+          3,
+          29
+        ],
+        [
+          8,
+          30
+        ],
+        [
+          13,
+          26
+        ],
+        [
+          18,
+          28
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 29,
+          "cap_edges": [
+            2,
+            3
+          ],
+          "remaining_incident_supports": [
+            1,
+            4
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "generated_0513",
+      "caps": [
+        [
+          4,
+          32
+        ],
+        [
+          7,
+          34
+        ],
+        [
+          13,
+          43
+        ],
+        [
+          14,
+          43
+        ],
+        [
+          20,
+          38
+        ],
+        [
+          25,
+          39
+        ],
+        [
+          28,
+          40
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 43,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0516",
+      "caps": [
+        [
+          3,
+          20
+        ],
+        [
+          7,
+          27
+        ],
+        [
+          8,
+          27
+        ],
+        [
+          12,
+          24
+        ],
+        [
+          16,
+          26
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 27,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        7,
+        8
+      ]
+    },
+    {
+      "name": "generated_0538",
+      "caps": [
+        [
+          2,
+          20
+        ],
+        [
+          7,
+          23
+        ],
+        [
+          8,
+          23
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 23,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        8,
+        7
+      ]
+    },
+    {
+      "name": "generated_0545",
+      "caps": [
+        [
+          2,
+          14
+        ],
+        [
+          6,
+          15
+        ],
+        [
+          9,
+          17
+        ],
+        [
+          10,
+          17
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 17,
+          "cap_edges": [
+            9,
+            10
+          ],
+          "remaining_incident_supports": [
+            8,
+            11
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        9,
+        10
+      ]
+    },
+    {
+      "name": "generated_0550",
+      "caps": [
+        [
+          2,
+          35
+        ],
+        [
+          12,
+          38
+        ],
+        [
+          16,
+          46
+        ],
+        [
+          17,
+          46
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          24,
+          42
+        ],
+        [
+          32,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 46,
+          "cap_edges": [
+            16,
+            17
+          ],
+          "remaining_incident_supports": [
+            15,
+            18
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        16,
+        17
+      ]
+    },
+    {
+      "name": "generated_0570",
+      "caps": [
+        [
+          3,
+          34
+        ],
+        [
+          6,
+          27
+        ],
+        [
+          12,
+          37
+        ],
+        [
+          17,
+          38
+        ],
+        [
+          18,
+          38
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 38,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0607",
+      "caps": [
+        [
+          2,
+          26
+        ],
+        [
+          6,
+          28
+        ],
+        [
+          10,
+          30
+        ],
+        [
+          14,
+          39
+        ],
+        [
+          15,
+          39
+        ],
+        [
+          19,
+          34
+        ],
+        [
+          22,
+          36
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 39,
+          "cap_edges": [
+            14,
+            15
+          ],
+          "remaining_incident_supports": [
+            13,
+            16
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        14,
+        15
+      ]
+    },
+    {
+      "name": "generated_0621",
+      "caps": [
+        [
+          4,
+          39
+        ],
+        [
+          5,
+          39
+        ],
+        [
+          13,
+          33
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          22,
+          36
+        ],
+        [
+          28,
+          43
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 39,
+          "cap_edges": [
+            4,
+            5
+          ],
+          "remaining_incident_supports": [
+            3,
+            6
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "generated_0635",
+      "caps": [
+        [
+          5,
+          33
+        ],
+        [
+          8,
+          34
+        ],
+        [
+          11,
+          36
+        ],
+        [
+          15,
+          39
+        ],
+        [
+          22,
+          41
+        ],
+        [
+          27,
+          48
+        ],
+        [
+          28,
+          48
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 48,
+          "cap_edges": [
+            27,
+            28
+          ],
+          "remaining_incident_supports": [
+            26,
+            29
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        27,
+        28
+      ]
+    },
+    {
+      "name": "generated_0645",
+      "caps": [
+        [
+          4,
+          22
+        ],
+        [
+          10,
+          23
+        ],
+        [
+          13,
+          27
+        ],
+        [
+          17,
+          29
+        ],
+        [
+          18,
+          29
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 29,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0652",
+      "caps": [
+        [
+          2,
+          35
+        ],
+        [
+          5,
+          36
+        ],
+        [
+          9,
+          39
+        ],
+        [
+          13,
+          47
+        ],
+        [
+          14,
+          47
+        ],
+        [
+          20,
+          42
+        ],
+        [
+          23,
+          44
+        ],
+        [
+          32,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 47,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0657",
+      "caps": [
+        [
+          2,
+          30
+        ],
+        [
+          5,
+          32
+        ],
+        [
+          11,
+          35
+        ],
+        [
+          14,
+          37
+        ],
+        [
+          18,
+          46
+        ],
+        [
+          19,
+          46
+        ],
+        [
+          23,
+          40
+        ],
+        [
+          26,
+          42
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 46,
+          "cap_edges": [
+            18,
+            19
+          ],
+          "remaining_incident_supports": [
+            17,
+            20
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        18,
+        19
+      ]
+    },
+    {
+      "name": "generated_0659",
+      "caps": [
+        [
+          2,
+          30
+        ],
+        [
+          3,
+          30
+        ],
+        [
+          8,
+          31
+        ],
+        [
+          11,
+          25
+        ],
+        [
+          15,
+          34
+        ],
+        [
+          18,
+          27
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 30,
+          "cap_edges": [
+            2,
+            3
+          ],
+          "remaining_incident_supports": [
+            1,
+            4
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "generated_0669",
+      "caps": [
+        [
+          2,
+          30
+        ],
+        [
+          8,
+          33
+        ],
+        [
+          14,
+          35
+        ],
+        [
+          20,
+          42
+        ],
+        [
+          21,
+          42
+        ],
+        [
+          26,
+          38
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 42,
+          "cap_edges": [
+            20,
+            21
+          ],
+          "remaining_incident_supports": [
+            19,
+            22
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        20,
+        21
+      ]
+    },
+    {
+      "name": "generated_0688",
+      "caps": [
+        [
+          4,
+          34
+        ],
+        [
+          8,
+          46
+        ],
+        [
+          9,
+          46
+        ],
+        [
+          13,
+          38
+        ],
+        [
+          16,
+          39
+        ],
+        [
+          19,
+          41
+        ],
+        [
+          25,
+          43
+        ],
+        [
+          31,
+          50
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 46,
+          "cap_edges": [
+            8,
+            9
+          ],
+          "remaining_incident_supports": [
+            7,
+            10
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        8,
+        9
+      ]
+    },
+    {
+      "name": "generated_0708",
+      "caps": [
+        [
+          1,
+          15
+        ],
+        [
+          4,
+          17
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          10,
+          20
+        ],
+        [
+          11,
+          20
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 20,
+          "cap_edges": [
+            10,
+            11
+          ],
+          "remaining_incident_supports": [
+            9,
+            12
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        10,
+        11
+      ]
+    },
+    {
+      "name": "generated_0735",
+      "caps": [
+        [
+          2,
+          42
+        ],
+        [
+          7,
+          58
+        ],
+        [
+          10,
+          43
+        ],
+        [
+          17,
+          46
+        ],
+        [
+          20,
+          47
+        ],
+        [
+          24,
+          60
+        ],
+        [
+          25,
+          60
+        ],
+        [
+          28,
+          51
+        ],
+        [
+          32,
+          53
+        ],
+        [
+          38,
+          55
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 60,
+          "cap_edges": [
+            24,
+            25
+          ],
+          "remaining_incident_supports": [
+            23,
+            26
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        24,
+        25
+      ]
+    },
+    {
+      "name": "generated_0748",
+      "caps": [
+        [
+          2,
+          30
+        ],
+        [
+          4,
+          42
+        ],
+        [
+          9,
+          44
+        ],
+        [
+          12,
+          45
+        ],
+        [
+          13,
+          45
+        ],
+        [
+          17,
+          35
+        ],
+        [
+          20,
+          37
+        ],
+        [
+          24,
+          40
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 45,
+          "cap_edges": [
+            12,
+            13
+          ],
+          "remaining_incident_supports": [
+            11,
+            14
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        12,
+        13
+      ]
+    },
+    {
+      "name": "generated_0761",
+      "caps": [
+        [
+          2,
+          20
+        ],
+        [
+          3,
+          20
+        ],
+        [
+          6,
+          17
+        ],
+        [
+          9,
+          21
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 20,
+          "cap_edges": [
+            2,
+            3
+          ],
+          "remaining_incident_supports": [
+            1,
+            4
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "generated_0763",
+      "caps": [
+        [
+          2,
+          19
+        ],
+        [
+          5,
+          24
+        ],
+        [
+          6,
+          24
+        ],
+        [
+          10,
+          21
+        ],
+        [
+          15,
+          26
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 24,
+          "cap_edges": [
+            5,
+            6
+          ],
+          "remaining_incident_supports": [
+            4,
+            7
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        5,
+        6
+      ]
+    },
+    {
+      "name": "generated_0765",
+      "caps": [
+        [
+          5,
+          23
+        ],
+        [
+          10,
+          26
+        ],
+        [
+          13,
+          30
+        ],
+        [
+          14,
+          30
+        ],
+        [
+          18,
+          29
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 30,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0778",
+      "caps": [
+        [
+          2,
+          37
+        ],
+        [
+          6,
+          39
+        ],
+        [
+          9,
+          40
+        ],
+        [
+          14,
+          47
+        ],
+        [
+          15,
+          47
+        ],
+        [
+          19,
+          48
+        ],
+        [
+          26,
+          49
+        ],
+        [
+          33,
+          53
+        ],
+        [
+          34,
+          53
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 47,
+          "cap_edges": [
+            14,
+            15
+          ],
+          "remaining_incident_supports": [
+            13,
+            16
+          ]
+        },
+        {
+          "node": 53,
+          "cap_edges": [
+            33,
+            34
+          ],
+          "remaining_incident_supports": [
+            11,
+            32,
+            35
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        33,
+        34,
+        14,
+        15
+      ]
+    },
+    {
+      "name": "generated_0788",
+      "caps": [
+        [
+          2,
+          30
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          11,
+          35
+        ],
+        [
+          14,
+          37
+        ],
+        [
+          18,
+          40
+        ],
+        [
+          21,
+          42
+        ],
+        [
+          25,
+          44
+        ],
+        [
+          26,
+          44
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 44,
+          "cap_edges": [
+            25,
+            26
+          ],
+          "remaining_incident_supports": [
+            24,
+            27
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        25,
+        26
+      ]
+    },
+    {
+      "name": "generated_0813",
+      "caps": [
+        [
+          1,
+          13
+        ],
+        [
+          4,
+          17
+        ],
+        [
+          5,
+          17
+        ],
+        [
+          9,
+          16
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 17,
+          "cap_edges": [
+            4,
+            5
+          ],
+          "remaining_incident_supports": [
+            3,
+            6
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        4,
+        5
+      ]
+    },
+    {
+      "name": "generated_0828",
+      "caps": [
+        [
+          2,
+          41
+        ],
+        [
+          7,
+          54
+        ],
+        [
+          8,
+          54
+        ],
+        [
+          14,
+          45
+        ],
+        [
+          17,
+          47
+        ],
+        [
+          21,
+          48
+        ],
+        [
+          27,
+          57
+        ],
+        [
+          33,
+          51
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 54,
+          "cap_edges": [
+            7,
+            8
+          ],
+          "remaining_incident_supports": [
+            6,
+            9
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        7,
+        8
+      ]
+    },
+    {
+      "name": "generated_0853",
+      "caps": [
+        [
+          4,
+          38
+        ],
+        [
+          12,
+          41
+        ],
+        [
+          18,
+          52
+        ],
+        [
+          19,
+          52
+        ],
+        [
+          26,
+          45
+        ],
+        [
+          29,
+          46
+        ],
+        [
+          34,
+          49
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 52,
+          "cap_edges": [
+            18,
+            19
+          ],
+          "remaining_incident_supports": [
+            17,
+            20
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        18,
+        19
+      ]
+    },
+    {
+      "name": "generated_0854",
+      "caps": [
+        [
+          8,
+          45
+        ],
+        [
+          11,
+          34
+        ],
+        [
+          17,
+          46
+        ],
+        [
+          18,
+          46
+        ],
+        [
+          24,
+          40
+        ],
+        [
+          30,
+          42
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 46,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0859",
+      "caps": [
+        [
+          4,
+          29
+        ],
+        [
+          8,
+          32
+        ],
+        [
+          11,
+          45
+        ],
+        [
+          15,
+          33
+        ],
+        [
+          21,
+          36
+        ],
+        [
+          25,
+          42
+        ],
+        [
+          26,
+          42
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 42,
+          "cap_edges": [
+            25,
+            26
+          ],
+          "remaining_incident_supports": [
+            24,
+            27
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        25,
+        26
+      ]
+    },
+    {
+      "name": "generated_0873",
+      "caps": [
+        [
+          2,
+          19
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          9,
+          24
+        ],
+        [
+          13,
+          26
+        ],
+        [
+          14,
+          26
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 26,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0894",
+      "caps": [
+        [
+          5,
+          18
+        ],
+        [
+          10,
+          24
+        ],
+        [
+          11,
+          24
+        ],
+        [
+          14,
+          22
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 24,
+          "cap_edges": [
+            10,
+            11
+          ],
+          "remaining_incident_supports": [
+            9,
+            12
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        10,
+        11
+      ]
+    },
+    {
+      "name": "generated_0895",
+      "caps": [
+        [
+          5,
+          44
+        ],
+        [
+          6,
+          44
+        ],
+        [
+          11,
+          36
+        ],
+        [
+          15,
+          39
+        ],
+        [
+          18,
+          41
+        ],
+        [
+          22,
+          48
+        ],
+        [
+          25,
+          42
+        ],
+        [
+          28,
+          43
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 44,
+          "cap_edges": [
+            5,
+            6
+          ],
+          "remaining_incident_supports": [
+            4,
+            7
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        5,
+        6
+      ]
+    },
+    {
+      "name": "generated_0896",
+      "caps": [
+        [
+          3,
+          24
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          17,
+          32
+        ],
+        [
+          18,
+          32
+        ],
+        [
+          22,
+          33
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 32,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0901",
+      "caps": [
+        [
+          4,
+          33
+        ],
+        [
+          7,
+          44
+        ],
+        [
+          11,
+          46
+        ],
+        [
+          12,
+          46
+        ],
+        [
+          18,
+          35
+        ],
+        [
+          22,
+          38
+        ],
+        [
+          25,
+          39
+        ],
+        [
+          29,
+          41
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 46,
+          "cap_edges": [
+            11,
+            12
+          ],
+          "remaining_incident_supports": [
+            10,
+            13
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        11,
+        12
+      ]
+    },
+    {
+      "name": "generated_0921",
+      "caps": [
+        [
+          2,
+          18
+        ],
+        [
+          5,
+          19
+        ],
+        [
+          10,
+          23
+        ],
+        [
+          11,
+          23
+        ],
+        [
+          14,
+          22
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 23,
+          "cap_edges": [
+            10,
+            11
+          ],
+          "remaining_incident_supports": [
+            9,
+            12
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        10,
+        11
+      ]
+    },
+    {
+      "name": "generated_0930",
+      "caps": [
+        [
+          2,
+          33
+        ],
+        [
+          6,
+          44
+        ],
+        [
+          7,
+          44
+        ],
+        [
+          12,
+          36
+        ],
+        [
+          16,
+          38
+        ],
+        [
+          24,
+          41
+        ],
+        [
+          30,
+          43
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 44,
+          "cap_edges": [
+            6,
+            7
+          ],
+          "remaining_incident_supports": [
+            5,
+            8
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        6,
+        7
+      ]
+    },
+    {
+      "name": "generated_0933",
+      "caps": [
+        [
+          2,
+          26
+        ],
+        [
+          7,
+          28
+        ],
+        [
+          11,
+          29
+        ],
+        [
+          17,
+          35
+        ],
+        [
+          18,
+          35
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 35,
+          "cap_edges": [
+            17,
+            18
+          ],
+          "remaining_incident_supports": [
+            16,
+            19
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "generated_0953",
+      "caps": [
+        [
+          2,
+          33
+        ],
+        [
+          5,
+          34
+        ],
+        [
+          14,
+          38
+        ],
+        [
+          19,
+          41
+        ],
+        [
+          22,
+          43
+        ],
+        [
+          27,
+          47
+        ],
+        [
+          28,
+          47
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 47,
+          "cap_edges": [
+            27,
+            28
+          ],
+          "remaining_incident_supports": [
+            26,
+            29
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        27,
+        28
+      ]
+    },
+    {
+      "name": "generated_0957",
+      "caps": [
+        [
+          2,
+          38
+        ],
+        [
+          11,
+          42
+        ],
+        [
+          17,
+          44
+        ],
+        [
+          25,
+          47
+        ],
+        [
+          30,
+          54
+        ],
+        [
+          31,
+          54
+        ],
+        [
+          36,
+          56
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 54,
+          "cap_edges": [
+            30,
+            31
+          ],
+          "remaining_incident_supports": [
+            29,
+            32
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        30,
+        31
+      ]
+    },
+    {
+      "name": "generated_0964",
+      "caps": [
+        [
+          2,
+          39
+        ],
+        [
+          5,
+          40
+        ],
+        [
+          9,
+          42
+        ],
+        [
+          15,
+          45
+        ],
+        [
+          18,
+          47
+        ],
+        [
+          25,
+          51
+        ],
+        [
+          32,
+          53
+        ],
+        [
+          33,
+          53
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 53,
+          "cap_edges": [
+            32,
+            33
+          ],
+          "remaining_incident_supports": [
+            31,
+            34
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        32,
+        33
+      ]
+    },
+    {
+      "name": "generated_0982",
+      "caps": [
+        [
+          2,
+          32
+        ],
+        [
+          5,
+          33
+        ],
+        [
+          8,
+          35
+        ],
+        [
+          13,
+          43
+        ],
+        [
+          14,
+          43
+        ],
+        [
+          17,
+          44
+        ],
+        [
+          23,
+          40
+        ],
+        [
+          26,
+          42
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 43,
+          "cap_edges": [
+            13,
+            14
+          ],
+          "remaining_incident_supports": [
+            12,
+            15
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "generated_0990",
+      "caps": [
+        [
+          2,
+          14
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          9,
+          17
+        ],
+        [
+          10,
+          17
+        ]
+      ],
+      "shared_events": [
+        {
+          "node": 17,
+          "cap_edges": [
+            9,
+            10
+          ],
+          "remaining_incident_supports": [
+            8,
+            11
+          ]
+        }
+      ],
+      "all_cap_selection_removes_adjacent_support": [
+        9,
+        10
+      ]
+    }
+  ]
+}

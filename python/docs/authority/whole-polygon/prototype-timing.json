@@ -1,0 +1,121 @@
+{
+  "scope": "Developer Python whole-polygon backend only, same process, no addon UI or process startup; one import measurement and first call plus three repeats per input; not a production speed gate",
+  "worker_sha256": "4e5d4e7ed01f161aac2b4e6168f3d95eb7f274b385b0784c3d471e93e99ad0d2",
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "import_ms": 140.8724000211805,
+  "rows": [
+    {
+      "category": "structured_orthogonal",
+      "name": "orthogonal_U_0",
+      "vertices": 8,
+      "first_call_ms": 154.8895000014454,
+      "warm_calls_ms": [
+        146.70809998642653,
+        150.38829995319247,
+        172.40140005014837
+      ]
+    },
+    {
+      "category": "structured_orthogonal",
+      "name": "cross_0",
+      "vertices": 12,
+      "first_call_ms": 103.41300000436604,
+      "warm_calls_ms": [
+        93.23110000696033,
+        87.32910000253469,
+        131.22789992485195
+      ]
+    },
+    {
+      "category": "structured_orthogonal",
+      "name": "staircase_0",
+      "vertices": 14,
+      "first_call_ms": 255.00250002369285,
+      "warm_calls_ms": [
+        259.1069999616593,
+        227.4320999858901,
+        254.29650000296533
+      ]
+    },
+    {
+      "category": "structured_orthogonal",
+      "name": "comb_0",
+      "vertices": 20,
+      "first_call_ms": 260.8159000519663,
+      "warm_calls_ms": [
+        291.84419999364763,
+        273.9529999671504,
+        254.93599998299032
+      ]
+    },
+    {
+      "category": "structured_orthogonal",
+      "name": "grid_40_0",
+      "vertices": 40,
+      "first_call_ms": 1432.871300028637,
+      "warm_calls_ms": [
+        1427.84399993252,
+        1462.7499000634998,
+        1401.1381999589503
+      ]
+    },
+    {
+      "category": "structured_orthogonal",
+      "name": "residential_multi_reflex_0",
+      "vertices": 12,
+      "first_call_ms": 161.9104000274092,
+      "warm_calls_ms": [
+        182.6118000317365,
+        185.2903999388218,
+        179.09520003013313
+      ]
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0024",
+      "vertices": 8,
+      "first_call_ms": 149.70219996757805,
+      "warm_calls_ms": [
+        174.42570009734482,
+        174.99829991720617,
+        157.32400002889335
+      ]
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0000",
+      "vertices": 22,
+      "first_call_ms": 1222.940499894321,
+      "warm_calls_ms": [
+        1231.9363000569865,
+        1236.9914000155404,
+        1238.1668000016361
+      ]
+    },
+    {
+      "category": "nonuniform_orthogonal",
+      "name": "generated_0001",
+      "vertices": 40,
+      "first_call_ms": 1472.1836000680923,
+      "warm_calls_ms": [
+        1500.0351999187842,
+        1724.747100030072,
+        2543.82469994016
+      ]
+    },
+    {
+      "category": "orthogonal_grid_stress",
+      "name": "generated_0685",
+      "vertices": 10,
+      "first_call_ms": 63.65959998220205,
+      "warm_calls_ms": [
+        79.4105000095442,
+        80.39230003487319,
+        91.54149994719774
+      ]
+    }
+  ],
+  "warm_median_ms": 206.36124996235594,
+  "warm_max_ms": 2543.82469994016,
+  "measurement_context": "Concurrent bounded-grid batch; descriptive timing only, not an isolated A/B benchmark or addon interaction measurement"
+}
