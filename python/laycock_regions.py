@@ -314,7 +314,9 @@ def main():
     for record in data['inputs']:
         row = inspect(record)
         rows.append(row)
-        draw(row,args.output_dir/record['name'])
+        # Keep paper-derived coordinate probes as data, without retaining images.
+        if 'trace of paper' not in record.get('scope','').lower():
+            draw(row,args.output_dir/record['name'])
         print(record['name'],row['classification'],len(row['atoms']),len(row.get('guides',[])),flush=True)
     out = {'scope':'diagnostic steps 1-5 only; no RoofGraph; unspecified growth/priority tested as declared variants',
            'skeleton_backend':{'package':'py_straight_skeleton','version':importlib.metadata.version('py_straight_skeleton')},

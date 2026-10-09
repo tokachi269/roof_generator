@@ -10,13 +10,11 @@
     "version": "0.1.0"
   },
   "files": {
-    "python/laycock_regions.py": "7a579a74cd8eed947cd32333bd2293d48b8089739acac11cf73247b547364136",
+    "python/laycock_regions.py": "f161b9eb7416a7548137549eaff12d3040c6fba5afa50223b5a4b678f06a5948",
     "python/tests/fixtures/laycock_inputs_v1.json": "92244921278090824e4186df70d34cb1c720f7913b81e36aa727194f42f66dc9",
     "python/tests/test_laycock_regions.py": "e6ab19fabffa6377e399e36924878176ffe4ae0617988c4f44eef22244ee1261",
     "python/requirements-laycock.txt": "a87723ebc3367f9e3a6a0ccefd628e45bf1178f6639f6d7750ca9ff617800a66",
     "python/docs/authority/laycock/figure4-check.json": "c02ad4b85760f6d205e7a41abd0e1de9e496a002a83bf1106eb6195d9f8b0e4b",
-    "python/docs/authority/laycock/figure4_trace.png": "2700a1c2bfb24f35afc90cecd7e19f176bc8e8cae911895c2dbed4a66c0ae526",
-    "python/docs/authority/laycock/figure4_trace.svg": "e8f78a4971839fdceeab581e4dd1030d4c33eb5967267402e26c91306173aba9",
     "python/docs/authority/laycock/report.json.gz": "611f886b3112f6d973857fc2e9198952b8cd926105824a0d9b0efbb1b74262d1",
     "python/docs/authority/laycock/S_staggered_reference.png": "195c0df8faafdc7aaa12ec3d34abc6efb61bb6683bbc39a1444341c158a1f12e",
     "python/docs/authority/laycock/S_staggered_reference.svg": "669ef5ed091343adc3969fb93fdc3d67499a12e922b8d69cdb7334e31c2d9e0d",
@@ -28,5 +26,6 @@
     "python/docs/authority/laycock/user_image_3_band_and_lower_corner.svg": "10ba8786b8680ffca54b8f2e81fe4931b6b68711577cdab880026a7ff4b9170c",
     "python/docs/authority/laycock/user_image_4_two_staggered_rectangles.png": "ef6030721e1ca46cb76a05868d70fb952d094172829b67162a0458e943a29493",
     "python/docs/authority/laycock/user_image_4_two_staggered_rectangles.svg": "6fe002e2bf910ebe40d96c6e61b3bc54c6ecfcc35226c26e113cc5006542e8fa"
-  }
+  },
+  "image_scope": "Repository-generated diagrams only; paper-derived Figure 4 trace images removed. Numerical comparison data retained."
 }

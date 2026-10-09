@@ -89,8 +89,9 @@ Other screenshot diagnostics:
 [2](authority/laycock/user_image_2_three_staggered_bands.png),
 [3](authority/laycock/user_image_3_band_and_lower_corner.png).
 Additional sanity checks:
-[S reference](authority/laycock/S_staggered_reference.png),
-[Figure 4 trace](authority/laycock/figure4_trace.png).
+[S reference](authority/laycock/S_staggered_reference.png).
+Paper-derived trace images are not retained. The Figure 4 comparison above is
+recorded as numerical diagnostic data only.
 
 An earlier intermediate claim that screenshot 3's elementary rectangle crossed
 a minimum Cell was a subdivision numerical artifact. Correcting the ray endpoint
