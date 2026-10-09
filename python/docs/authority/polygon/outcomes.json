@@ -1,0 +1,33 @@
+{
+  "orthogonal_grid_stress": {
+    "supported": 673,
+    "unsupported": 250,
+    "incomplete": 77,
+    "censored": 60
+  },
+  "nonuniform_orthogonal": {
+    "supported": 145,
+    "unsupported": 4,
+    "incomplete": 1,
+    "censored": 0
+  },
+  "structured_orthogonal": {
+    "supported": 100,
+    "unsupported": 3,
+    "incomplete": 0,
+    "censored": 0
+  },
+  "structured_branch_network": {
+    "supported": 100,
+    "unsupported": 0,
+    "incomplete": 0,
+    "censored": 0
+  },
+  "_classification_note": {
+    "correction": "one typed WavefrontBudget was previously counted as unsupported; raw run records preserved unchanged",
+    "inputs": [
+      "generated_0468"
+    ],
+    "new_audit": "typed wavefront budget -> search/incomplete"
+  }
+}

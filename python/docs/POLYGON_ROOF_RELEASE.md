@@ -61,7 +61,8 @@ comparison tests, not fallback generators.
 
 ## Verified release evidence
 
-- Full suite: 221 tests pass, including preserved old restricted-model proofs
+- Full suite: 221 tests pass before the reporting-only budget classification repair;
+  the additional focused audit test passes, including preserved old restricted-model proofs
   and migrated canonical authority/seed/mesh invariants.
 - Installed ZIP operator: 13/13 representative cases, including four screenshot
   approximations, L/T/U/Cross, staircase, comb, Residential and Grid14/40.
@@ -71,12 +72,18 @@ comparison tests, not fallback generators.
   branch family.
 - Runtime structured: 100/103 mesh; nonuniform: 145/150 mesh. These are the
   normalized runtime results, not the prototype's 101/103 and 148/150.
-- Runtime grid 1000: bounded audit is still running. No completed-prefix rate
-  is used as full coverage.
+- Installed ZIP corpus conversion: 145/145 core-success nonuniform and 100/100
+  core-success structured roofs pass Blender mesh/UV/material validation. The
+  other eight inputs were not attempted in Blender, not Blender failures.
+- Runtime grid: all 1000 inputs attempted; 673 supported, 250 unsupported,
+  77 incomplete (60 wall-budget censored, 16 cap work limits, one wavefront limit).
+  Completed-prefix rates were never used as full coverage.
+- Nonuniform outcomes: 145 supported, four unsupported, one incomplete.
+  Structured outcomes: 100 supported, three unsupported, none incomplete.
 
 The final ZIP and installed operator evidence match the recorded source hashes.
 Completed runtime corpus and timing reports precede the invalid face-cycle
-fail-fast guard; valid roof incidence is unchanged by that guard. The ongoing
+fail-fast guard; valid roof incidence is unchanged by that guard. The completed
 grid run spans that guard addition and retains earlier timeouts as censored.
 Source/evidence hashes and these scopes are recorded under
 `authority/polygon/`. Blender images are native operator outputs, not simulated
@@ -96,3 +103,39 @@ Unresolved simultaneous/antiparallel dependency events, finite end-model
 coverage, large candidate pools and expensive unsuccessful embedding remain
 limits. Timeout/work exhaustion is incomplete, not a negative roof-existence
 proof. Nonorthogonal compound and new hip/shed families were not added.
+
+The [paired cause diagram](authority/polygon/factory-causes.svg) shows minimum
+Cells, historical separate roofs, declared continuous support and actual
+installed-operator features for all four screenshot approximations. All internal
+features identify their region and incident source-eave facets.
+
+One profiled Grid20 generation spends 12.96 of 13.43 seconds in eight fixed
+embeddings. Profiling overhead and concurrent jobs preclude comparing this to
+unprofiled latency. It identifies embedding work rather than skeleton/candidate
+discovery as the cost in that case; no new performance rewrite was made.
+
+## Native base restoration (1.4.1)
+
+The upstream-authoritative merge `3a47b78` removed the separately developed
+`base_mesh.py` / `base_roof.py` and the Building panel. This was a migration
+regression, not a missing Geometry Nodes editor context. Restored native bases
+now call the current canonical `generate_footprint_mesh` API, not the removed
+roof model. No dependency installer or fallback roof generator was restored.
+Blender 5.2 modifier inputs use its typed RNA input values; 4.3–5.1 use the
+existing ID-property API. The current backend marker invalidates saved legacy
+roof caches.
+
+The installed 1.4.1 ZIP verifies four analytic roof families, eight compound
+shape differentials, a 16-building demo, height/roof toggles without unnecessary
+cache regeneration, failed roofs preserving bases and walls, and clean
+disable/re-enable handler registration. Roof surfaces match the canonical mesh
+coordinates, faces and feature tags. Use View3D > Sidebar > Building > Create
+Base Meshes.
+
+The 1.4.0 operator/corpus evidence above remains a separate checkpoint. 1.4.1
+changes the native-base adapter and UI; the polygon model/solver algorithm is
+unchanged. Grid Blender conversion was not measured across all 1000 inputs.
+
+The raw completed grid receipt counted one typed `WavefrontBudget` as
+unsupported. `outcomes.json` corrects that classification to incomplete and
+identifies the input; original raw measurements are preserved unchanged.

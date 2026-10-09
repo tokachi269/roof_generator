@@ -11,6 +11,17 @@ from python.audit_coverage import inspect
 
 
 class CoverageAuditTests(unittest.TestCase):
+    def test_wavefront_budget_is_incomplete_not_a_negative_roof_proof(self):
+        from roof_generator.core.wavefront import WavefrontBudget
+        with patch('python.audit_coverage.polygon_candidates',
+                   side_effect=WavefrontBudget('roof wavefront work budget exhausted')):
+            row = inspect({'name': 'bounded', 'footprint': ((0, 0), (12, 0), (12, 6), (0, 6))})
+        self.assertTrue(row['success']['footprint'])
+        self.assertTrue(row['incomplete_search'])
+        self.assertEqual(row['failure_owner'], 'search')
+        self.assertEqual(row['failure']['code'], 'incomplete_search')
+        self.assertFalse(row['success']['mesh'])
+
     def test_frozen_categories_are_simple_and_nonuniform_is_not_uniform_scaling(self):
         p = Path(__file__).parents[1] / "docs/canonical/coverage_inputs_v1.json.gz"
         data = json.loads(gzip.decompress(p.read_bytes()))

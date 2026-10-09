@@ -1,0 +1,33 @@
+Scope: one canonical grid20 generation, concurrent grid audit; not a speedup claim
+Elapsed ms 13437.171899946406
+         18512081 function calls (18508833 primitive calls) in 12.903 seconds
+
+   Ordered by: cumulative time
+   List reduced from 959 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   13.429   13.429 generation.py:99(generate_roof)
+        1    0.000    0.000   13.419   13.419 generation.py:77(prepare_generation)
+        1    0.001    0.001   13.234   13.234 polygon_generation.py:111(candidates)
+        8    0.000    0.000   12.958    1.620 solve.py:339(solve)
+        8    0.001    0.000   12.828    1.603 solve.py:314(embed)
+        8    0.025    0.003   12.819    1.602 optimization.py:132(optimize)
+     2584    0.198    0.000   10.350    0.004 optimization.py:141(residuals)
+    45612    2.716    0.000    8.441    0.000 optimization.py:19(covariance_plane)
+1031625/1029138    2.180    0.000    4.951    0.000 {built-in method builtins.sum}
+       56    0.002    0.000    2.129    0.038 optimization.py:195(<listcomp>)
+     1232    0.035    0.000    2.126    0.002 optimization.py:196(<listcomp>)
+    45612    0.159    0.000    1.845    0.000 optimization.py:23(<listcomp>)
+   136836    0.439    0.000    1.686    0.000 optimization.py:24(<listcomp>)
+    51966    0.184    0.000    1.339    0.000 {method 'extend' of 'list' objects}
+  5161424    1.247    0.000    1.247    0.000 optimization.py:196(<genexpr>)
+   345195    0.470    0.000    1.113    0.000 {built-in method builtins.max}
+   216100    0.340    0.000    0.806    0.000 optimization.py:151(<genexpr>)
+    45612    0.409    0.000    0.681    0.000 optimization.py:22(<listcomp>)
+  2344032    0.649    0.000    0.649    0.000 optimization.py:24(<genexpr>)
+   966858    0.472    0.000    0.628    0.000 optimization.py:29(<lambda>)
+   182448    0.179    0.000    0.577    0.000 optimization.py:21(<genexpr>)
+     2592    0.108    0.000    0.375    0.000 optimization.py:114(unpack)
+   258848    0.184    0.000    0.285    0.000 optimization.py:146(<genexpr>)
+   859344    0.272    0.000    0.272    0.000 optimization.py:22(<genexpr>)
+    45612    0.137    0.000    0.252    0.000 optimization.py:27(<listcomp>)

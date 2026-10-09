@@ -30,7 +30,7 @@ width-step continuation and partial-end contacts remain explicit research limits
 
 ## Installation and use
 
-1. Download [`roof_generator-1.4.0.zip`](packages/roof_generator-1.4.0.zip) with **Download raw file**.
+1. Download [`roof_generator-1.4.1.zip`](packages/roof_generator-1.4.1.zip) with **Download raw file**.
 2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
 3. Select filled planar footprint meshes in Object Mode.
 4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
@@ -61,7 +61,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.1.zip
 ```
 
 `addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains
@@ -76,3 +76,8 @@ distribution must satisfy the GPL's license and source requirements. Runtime
 requires only Blender and Python's standard library. Development-only NumPy and
 Shapely/GEOS have their own license conditions. See [LICENSING.md](LICENSING.md)
 and [third-party notices](addon/roof_generator/THIRD_PARTY_NOTICES.md).
+
+Native base generation is available at **View3D > Sidebar > Building > Create
+Base Meshes**. The modifier keeps editable dimensions, seed, height and a Roof
+toggle. Roof generation uses the canonical Python API; an unsupported roof
+keeps the native base and walls visible.

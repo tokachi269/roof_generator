@@ -1,6 +1,6 @@
 {
   "blender": "5.2.2 LTS",
-  "archive_sha256": "d6f81297088ad712c629d40612dbd6d4835bc8aa040467ee30512b2803c5d317",
+  "archive_sha256": "fa72c43212015b7375f6b5fcc634944759709a6eccef88c9afe59c16460a49cf",
   "addon_module": "python/out/authority/polygon-profile-final/scripts/addons/roof_generator/__init__.py",
   "image_scope": "Blender camera render of installed operator output; colored overlay reads actual mesh edge attributes",
   "cases": [

@@ -27,7 +27,7 @@ parallel、幅違い・軸ずれcontinuation、partial-endは明示的な研究�
 
 ## インストールと使い方
 
-1. [`roof_generator-1.4.0.zip`](packages/roof_generator-1.4.0.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.4.1.zip`](packages/roof_generator-1.4.1.zip) を **Download raw file** で保存します。
 2. **Edit → Preferences → Add-ons → Install from Disk**でインストールし、**Roof Generator**を有効にします。
 3. Object Modeで、面を張った平面footprint meshを選択します。
 4. サイドバー（**N**）→ **Roof**で屋根種別、勾配、軒高offset、seedを設定し、**Generate roofs**を押します。
@@ -38,7 +38,10 @@ parallel、幅違い・軸ずれcontinuation、partial-endは明示的な研究�
 pipや外部wheelの導入は不要です。footprintごとに共有頂点・UV・マテリアルと
 `roof_cell_i` / `roof_feature_i`のprovenance属性を持つ通常mesh objectを出力します。
 回転・移動・非一様scaleはApplyせず扱えます。batchは全入力を検証してからsceneを変更します。
-変換ボタンはUndoに対応します。Geometry Nodesとしての生成は未実装です。
+変換ボタンはUndoに対応します。屋根自体をGeometry Nodes内で計算する方式は未実装です。
+土台のGeometry Nodes生成は、**N → Building → Create Base Meshes**から利用できます。
+Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると現在の屋根生成APIへ接続します。
+屋根が未対応でも土台と壁は残ります。
 
 同じ入力・設定・seedなら同じ候補を選びます。Blenderではsource objectのlocal方向を
 参照方向に使います。座標APIで同じ物理的選択を保つには、footprintと一緒に
@@ -56,7 +59,7 @@ pipや外部wheelの導入は不要です。footprintごとに共有頂点・UV�
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.0.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.1.zip
 ```
 
 `addon/roof_generator/core/`が生成pipelineを所有します。Blender adapterは

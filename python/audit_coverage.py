@@ -26,6 +26,7 @@ from roof_generator.core.generation import GenerationSettings
 from roof_generator.core.architecture_models import ArchitecturalPartGraph
 from roof_generator.core.cells import decompose
 from roof_generator.core.polygon_generation import candidates as polygon_candidates, PolygonCandidates
+from roof_generator.core.wavefront import WavefrontBudget
 
 STAGES = (
     "footprint",
@@ -213,6 +214,9 @@ def inspect(record):
         RoofMesh(selected.graph, vertices)
         completed("mesh")
     except (UnsupportedRoofError, ValueError) as exc:
+        if isinstance(exc, WavefrontBudget):
+            row['incomplete_search'] = True
+            owner = 'search'
         row["failure_owner"] = owner
         row["reason"] = str(exc)
         row["failure"] = {
