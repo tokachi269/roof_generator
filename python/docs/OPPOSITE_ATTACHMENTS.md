@@ -54,7 +54,7 @@ equal-width-middle rejections remain covered by the older tests.
 
 Left: actual supports crossing minimum Cells. Right: installed Blender 5.2.2
 LTS roof. Red ridge, blue valley, yellow hip. This is explicit proposal API
-acceptance, not default footprint operator acceptance. Full 166-test suite
+acceptance, not default footprint operator acceptance. Full 167-test suite
 passed. Both image 2 and image 4 rendered from an isolated installed ZIP.
 
 The end-choice iterator is now consumed only up to the remaining work budget.
@@ -182,3 +182,23 @@ python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof
 python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/opposite-region-roofs.json
 python python/region_diagrams.py --report python/out/authority/source-history-roofs.json --output-dir python/out/authority/source-history-diagrams
 ```
+
+## Serial performance check
+
+Candidate generation was measured serially on the read-only `0e65abc` snapshot
+and current code, 3 samples after 1 warmup, 24 mixed buildings. All six measured
+family fingerprints and seeded IDs match. These six cases exclude the new
+`generated_0356` input and do not imply identical global coverage.
+
+| Case | Before median ms | After median ms |
+| --- | ---: | ---: |
+| U | 18.63 | 15.73 |
+| Cross | 23.94 | 17.05 |
+| Residential | 21.98 | 12.33 |
+| Grid14 | 57.68 | 50.94 |
+| Grid20 | 120.56 | 109.58 |
+| Grid40 | 2138.43 | 2196.99 |
+
+The bounded immutable member-layout cache exists in both versions. First-run
+timings are recorded separately in the saved reports. Short samples on one
+host do not establish a general speedup; Grid40 remains around 2.2 seconds.

@@ -33,7 +33,7 @@
     "addon/roof_generator/core/region_generation.py": "eed023cee8fc1d262c46c069ab204ce902b08b7e9c04983802343ff96ce4d9c3",
     "python/tests/test_region_generation.py": "3291c9dfdb544c3289f6e483c2b540d4cd2175e2af4862a4852bbd7a1fe0de6a",
     "python/probe_receiver_regions.py": "80162a230e33300b451f581747d771e39e5893da9734260ea89c423dbe06ac62",
-    "python/docs/OPPOSITE_ATTACHMENTS.md": "5e56369934cbb3414bd4a3ba06ffd16c2a551326d20fac6a4e5da6d4d813f0b6",
+    "python/docs/OPPOSITE_ATTACHMENTS.md": "ceb25c0334570faaa0c6d24db8172fda5867863a7eebd48c300a5d058423dec9",
     "python/docs/authority/source-history/roofs.json": "e1143d1d749a893f5a9cf29e128b5cf89cc555c1062939c5af2e64e7ae698a9e",
     "python/docs/authority/source-history/all-receivers.json": "20d27d1dc69679edd2065bcb6a5be91db415f3a7ffa05249a18c4581547e457e",
     "python/docs/authority/source-history/blender.json": "1eeca728293b941036cc25035547ee238a9ec32ff80cd36a1b120f1fd4d138cb",
