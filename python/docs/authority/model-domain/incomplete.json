@@ -1,0 +1,69 @@
+{
+  "scope": "Bounded coordinate-rectangle covers, before any production proposal policy.\n\nNo minimum-Cell authority, owner repair or appearance ranking. Search atoms\nare temporary coordinate rectangles; accepted supports are actual polygons.\nAll complete covers up to the explicit member/work budgets are examined.\nRelation-domain filtering only skips combinations already unsupported by the\ncurrent grammar. End-state and composition rejection remain separately visible.\n",
+  "cases": [
+    {
+      "name": "user_image_3_band_and_lower_corner",
+      "input": {
+        "name": "user_image_3_band_and_lower_corner",
+        "image": "user-images/image-3.png",
+        "footprint": [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "coordinate_scope": "Image grid ratios; absolute scale is unknown"
+      },
+      "search": {
+        "work": 2,
+        "complete": false,
+        "covers": 0,
+        "atom_count": 7,
+        "rectangle_count": 17
+      },
+      "max_members": 10,
+      "axis_assignments": 0,
+      "end_configurations": 0,
+      "graphs": 0,
+      "failures": {},
+      "end_valid": [],
+      "scope": "2D supports/global ends/composition only; no embedding or valid-roof claim"
+    }
+  ]
+}

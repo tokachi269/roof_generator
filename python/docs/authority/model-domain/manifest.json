@@ -1,0 +1,37 @@
+{
+  "base_head": "45a8964",
+  "scope": "Bounded model-domain diagnostic only; no production algorithm or usable scenario change",
+  "cover_counts": [
+    149,
+    13,
+    34,
+    5
+  ],
+  "end_choices": [
+    0,
+    12,
+    0,
+    4
+  ],
+  "graph_counts": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "graphs_match_recorded_explicit_proposals": true,
+  "checks": [
+    "four bounded exhaustive coordinate-cover searches complete",
+    "work budget1 returns incomplete",
+    "public polygon coverage contract for every complete cover",
+    "actual end/symmetry and composition contracts",
+    "py_compile passed"
+  ],
+  "four_case_gate": "unmet",
+  "files": {
+    "python/probe_region_covers.py": "551931fedb53eda05c888a337022cc6e3a3a3fbf49e67365066fae103ebb9185",
+    "python/docs/REGION_MODEL_DOMAIN.md": "68271958cba7713d4e95bdd9d60c15711d5b4384705eea9347addeb892549580",
+    "python/docs/authority/model-domain/covers.json": "f9f1518b963d6dd62bd107d65b0560c3a8b9efdd2dd02397b1457b17e65eb42c",
+    "python/docs/authority/model-domain/incomplete.json": "4283c854dc5af8da3c69dcba61ad83fccb4411fd2bc801c096380b5492ff7e59"
+  }
+}
