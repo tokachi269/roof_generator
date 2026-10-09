@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Declared polygon proposals to globally resolved, embedded roof candidates."""
 from dataclasses import dataclass
-from itertools import product
+from itertools import product, islice
 
 from .architecture import resolve
 from .architecture_selection import symmetry_clusters
@@ -137,7 +137,11 @@ def region_candidates(proposals,settings=GenerationSettings()):
                 return pool(False,'region model/end search budget exhausted')
             try:
                 authority=resolve(architecture,axes)
-                ends=tuple(roof_configurations(authority,symmetry_clusters(authority.analysis())))
+                # Materialize only the remaining bounded end search. The end
+                # generator can otherwise enumerate exponentially many choices
+                # before the caller has a chance to enforce its work budget.
+                ends=tuple(islice(roof_configurations(authority,symmetry_clusters(authority.analysis())),
+                                  settings.max_axis_assignments-work+2))
                 if not ends:
                     raise UnsupportedRoofError('global end constraints have no solution')
             except UnsupportedRoofError as exc:

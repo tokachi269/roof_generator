@@ -4,6 +4,7 @@ from dataclasses import replace
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'addon'))
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.footprint import analyze
@@ -62,6 +63,21 @@ class RegionGenerationProof(unittest.TestCase):
         candidate=generate_region_roof((proposal,)).generation.selected
         with self.assertRaises(UnsupportedRoofError):
             replace(candidate,axes=(1,1,1))
+
+    def test_end_generator_is_bounded_before_materialization(self):
+        from roof_generator.core.region_generation import roof_configurations
+        proposal=propose_regions(analyze(OUTLINE),REGIONS,source='explicit')
+        yielded=[]
+        def repeating(authority,clusters):
+            first=next(roof_configurations(authority,clusters))
+            while True:
+                yielded.append(first)
+                yield first
+        with patch('roof_generator.core.region_generation.roof_configurations',repeating):
+            pool=region_candidates((proposal,),GenerationSettings(max_axis_assignments=8))
+        self.assertFalse(pool.complete)
+        self.assertLessEqual(len(yielded),9)
+        with self.assertRaises(UnsupportedRoofError):pool.select(0)
 
 
 if __name__=='__main__':unittest.main()
