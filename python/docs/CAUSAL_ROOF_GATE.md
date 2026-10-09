@@ -45,6 +45,17 @@ longitudinal alignment/centering/offset, complete-side versus partial-side
 contact, and same-Part versus inter-Part ownership. Retain per-building raw
 counts and summarize building incidence.
 
+The latest correction additionally requires producer-specific parallel-free
+alternatives. For minimum and receiver families, record modeled assignments,
+whether any declared contact arrangement avoids parallel, and that alternative's
+maximum reached stage (including actual mesh success). `no_modeled_candidate`
+is distinct from `parallel_unavoidable_in_modeled_family`. Incomplete families
+cannot establish unavoidability. Contact kinds and Part grouping here refer to
+the proposed architecture before end consumption, not nonexistent final roofs.
+Measure receiver parallel-free alternatives where minimum has none; do not use
+reject incidence to measure improvement. Recursive proposals remain a separate
+diagnostic and must not be silently classified as absent in all possible models.
+
 ## Finite cover oracle
 
 Select exactly 100 frozen inputs by boundary vertex count and stable corpus
