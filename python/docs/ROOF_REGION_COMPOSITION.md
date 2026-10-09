@@ -4,6 +4,9 @@ This is implementation and embedding evidence, not completion of the four
 screenshot production gate. No further user authorization is needed to work
 on that gate.
 
+The table below is this phase's frozen evidence. A subsequent applicability
+repair also embeds image 2; see [opposite-eave proof](OPPOSITE_ATTACHMENTS.md).
+
 ## Authority
 
 `RoofRegionCandidate → MemberLayout → RegionPartGraph → resolved axes/ends →

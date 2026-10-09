@@ -20,7 +20,7 @@
     ],
     "existing_operator_smoke": "passed"
   },
-  "coverage": "full frozen audit in progress; no completion claim",
+  "coverage": "completed shared-layout baseline: grid3/1000 nonuniform0/150 structured13/103 quad48/48; see coverage.json; not current opposite-eave audit",
   "performance": {
     "serial": true,
     "samples": 3,

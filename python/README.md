@@ -21,6 +21,8 @@ python python/inspect_region_candidates.py --report python/docs/authority/laycoc
 python -m unittest discover -s python/tests -p test_roof_regions.py
 python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/region-roofs.json
 python -m unittest discover -s python/tests -p test_region_generation.py
+python -m unittest discover -s python/tests -p test_opposite_attachments.py
+python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/receiver-probe.json
 ```
 
 The current run used the existing development Shapely/Matplotlib and installed

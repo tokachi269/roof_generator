@@ -279,18 +279,29 @@ def _mixed_plan(d, primitives, relations):
     slots = sorted(
         tuple(sorted(coordinate(d.vertices[i]) for i in r.shared)) for r in middles
     )
-    blocked = []
-    for r in terminals:
-        near = coordinate(primitives[host].vertices[r.host_port].seed)
-        reach = max(r.host_width, r.branch_width)
-        blocked.append(
-            (bounds[0], bounds[0] + reach)
-            if abs(near - bounds[0]) < EPS
-            else (bounds[1] - reach, bounds[1])
-        )
-    if any(a[1] + EPS >= b[0] for a, b in zip(slots, slots[1:])) or any(
-        a[0] < b[1] + EPS and b[0] < a[1] + EPS for a in slots for b in blocked
-    ):
+    conflict=any(a[1] + EPS >= b[0] for a,b in zip(slots,slots[1:]))
+    for middle in middles:
+        slot=tuple(sorted(coordinate(d.vertices[i]) for i in middle.shared))
+        for terminal in terminals:
+            near=coordinate(primitives[host].vertices[terminal.host_port].seed)
+            at_start=abs(near-bounds[0])<EPS
+            if ((middle.host_side-terminal.host_side)%4==2
+                and terminal.branch_width < terminal.host_width-4*EPS):
+                # A strictly lower shared corner on the opposite eave leaves
+                # this slope's outer-corner hip at 45 degrees. The branch
+                # ridge ends half its transverse width inward from its eave.
+                # Its apex must lie strictly beyond that hip, in the same
+                # receiving slope. This is an incidence applicability proof,
+                # not a height solve or a sequential junction rewrite.
+                apex=sum(slot)/2
+                reach=middle.branch_width/2
+                conflict |= (apex <= bounds[0]+reach+4*EPS if at_start
+                             else apex >= bounds[1]-reach-4*EPS)
+            else:
+                reach=max(terminal.host_width,terminal.branch_width)
+                blocked=(bounds[0],bounds[0]+reach) if at_start else (bounds[1]-reach,bounds[1])
+                conflict |= slot[0]<blocked[1]+EPS and blocked[0]<slot[1]+EPS
+    if conflict:
         raise UnsupportedRoofError(
             "mixed junction neighborhoods interact",
             issues=(GenerationIssue("junction", "interacting_slots"),),

@@ -1,0 +1,39 @@
+{
+  "base_head": "0e65abc",
+  "scope": "Existing opposite-eave mixed incidence applicability; explicit proposal acceptance; default discovery remains minimum-based",
+  "tests": {
+    "command": "python -m unittest discover -s python/tests",
+    "count": 166,
+    "passed": true,
+    "seconds": 83.634
+  },
+  "embedded_counts": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "blender_version": "5.2.2 LTS",
+  "blender_hash": "d13f752e3b9c",
+  "blender_installed_explicit_api": true,
+  "default_operator_gate": "unmet",
+  "frozen_audit": "new full audit running; previous baseline64 mesh successes converted with this branch predicate",
+  "source_algorithms": {
+    "maximal_receiver": "diagnostic only, not complete general roof-region decomposition",
+    "straight_skeleton": "no runtime dependency or final graph backend"
+  },
+  "files": {
+    "addon/roof_generator/core/junctions.py": "f20312b765c30131013c06b754beb63be3bd6a6bcc21a4538537606b5a81debd",
+    "addon/roof_generator/core/region_generation.py": "b2434e716da419c46de98d10de020cf129393f88954b181b59cde23a7f95c4c1",
+    "python/tests/test_opposite_attachments.py": "7417dcf3433ed94a89045ab967417ff224d7e9dabebff6ea90343bb84f0af540",
+    "python/tests/test_region_generation.py": "d2973de09599c892393d59a7e9a8c383bea9908c65ded214107407d5ae57b3b0",
+    "python/probe_opposite_attachments.py": "03e8e9dcc7448d250b862a12f0a60fedf06115c215cc3ef19550fd70faa7f6a0",
+    "python/probe_receiver_regions.py": "cf4c02cd7196ddd95efec028300e8b49bd50d042b9aa2dea9355acd0c7de0570",
+    "python/docs/OPPOSITE_ATTACHMENTS.md": "fce393a1a9d8045ff0bdba20ea40c344e3d77bc8a68af36a1b28a809a74f0ca9",
+    "python/docs/authority/opposite-attachments/roofs.json": "23cfa689b6182814a89ccb75964d21e7852d35a3a48927a035aef00b31b0b4e6",
+    "python/docs/authority/opposite-attachments/receivers.json": "e201aead03e459c4b901df20a2c429639dd5b6965257da1cd96bec1ed26e6802",
+    "python/docs/authority/opposite-attachments/blender.json": "db4839c48a9606049f09a0f2ef2250efe307f45a8af2eb80d87dcd69517370b5",
+    "python/docs/authority/opposite-attachments/image-2.png": "ee75b3adfc45223df06cc7463f5a11d940e46f7d5206a5cf3e89f852c376379e",
+    "packages/roof_generator-1.3.0.zip": "15941560bd1cf033461fee0cc6a5f28500a27e7d56d544a5ca88399a79e24355"
+  }
+}
