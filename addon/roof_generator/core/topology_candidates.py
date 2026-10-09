@@ -105,9 +105,14 @@ def partition_id(decomposition, reference_direction=(1, 0)):
     )
 
 
-def _candidate_id(architecture, composition, axes, identity):
-    d = architecture.decomposition
-    cells = tuple(_cell_id(d, c, identity) for c in d.cells)
+def candidate_id(architecture, composition, axes, identity):
+    if isinstance(architecture,ArchitecturalPartGraph):
+        d=architecture.decomposition
+        supports=d.cells
+    else:
+        d=architecture.layout
+        supports=d.supports
+    cells = tuple(_cell_id(d, c, identity) for c in supports)
     graph = composition.graph
     keys = tuple((identity(v.seed), v.role) for v in graph.vertices)
     faces = []
@@ -124,9 +129,9 @@ def _candidate_id(architecture, composition, axes, identity):
             (tuple(sorted(keys[i] for i in e.vertices)), e.kind) for e in graph.edges
         )
     )
-    groups = tuple(
-        sorted(tuple(sorted(cells[c] for c in p.cells)) for p in architecture.parts)
-    )
+    owners=architecture.owners
+    groups=tuple(sorted(tuple(sorted(cells[i] for i,owner in enumerate(owners) if owner==p.id))
+                        for p in architecture.parts))
     return derive(
         0, "topology_id", (graph.roof_type, groups, tuple(sorted(faces)), edges)
     )
@@ -297,7 +302,7 @@ def build_candidates(
                         composition = compose(authority, roof_type, shed_edge=shed_edge)
                         stage = "geometry_problem"
                         geometry = problem(composition.graph, pitch, eave_height / d.footprint.frame.scale)
-                        stable_id = _candidate_id(authority.architecture, composition, axes, identity)
+                        stable_id = candidate_id(authority.architecture, composition, axes, identity)
                         stage = "graph_validation"
                         valid.setdefault(stable_id, TopologyCandidate(
                             stable_id, authority.architecture, axes, composition, geometry, score, ends))
@@ -364,7 +369,7 @@ def _quadrilateral_candidates(
                 graph = quadrilateral_graph(fp, roof_type, eave=eave)
                 composition = primitive_composition(graph)
                 geometry = problem(graph, pitch, eave_height / fp.frame.scale)
-                stable_id = _candidate_id(architecture, composition, (), identity)
+                stable_id = candidate_id(architecture, composition, (), identity)
                 valid[stable_id] = TopologyCandidate(
                     stable_id, architecture, (), composition, geometry, 0
                 )

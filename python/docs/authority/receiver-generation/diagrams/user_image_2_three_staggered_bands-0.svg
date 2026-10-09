@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+<rect width="1440" height="900" fill="white"/>
+<g font-family="sans-serif" font-size="14" fill="#17212b">
+<text x="30" y="25">user_image_2_three_staggered_bands: recorded authority, not inferred roof semantics</text>
+<text x="40" y="55">Minimum Cells (provenance only)</text>
+<text x="520" y="55">Actual Regions / resolved Parts</text>
+<text x="1000" y="55">Solved graph / recorded feature causes</text>
+<polygon points="40.00,275.00 280.00,275.00 280.00,155.00 40.00,155.00" fill="#d9e9fa" stroke="#637080" stroke-width="1.5"/>
+<text x="160.00" y="215.00" text-anchor="middle">Cell 0</text>
+<polygon points="80.00,395.00 320.00,395.00 320.00,275.00 80.00,275.00" fill="#f8e3ce" stroke="#637080" stroke-width="1.5"/>
+<text x="200.00" y="335.00" text-anchor="middle">Cell 1</text>
+<polygon points="80.00,155.00 320.00,155.00 320.00,75.00 80.00,75.00" fill="#dcefd8" stroke="#637080" stroke-width="1.5"/>
+<text x="200.00" y="115.00" text-anchor="middle">Cell 2</text>
+<polygon points="520.00,275.00 560.00,275.00 560.00,155.00 520.00,155.00" fill="#d9e9fa" stroke="#637080" stroke-width="1.5"/>
+<text x="540.00" y="215.00" text-anchor="middle">M0 / P0</text>
+<text x="520" y="455">M0: intersects source Cell 0</text>
+<polygon points="560.00,395.00 760.00,395.00 760.00,75.00 560.00,75.00" fill="#f8e3ce" stroke="#637080" stroke-width="1.5"/>
+<text x="660.00" y="235.00" text-anchor="middle">M1 / P1</text>
+<text x="520" y="475">M1: intersects source Cell 0+1+2</text>
+<polygon points="760.00,395.00 800.00,395.00 800.00,275.00 760.00,275.00" fill="#f8e3ce" stroke="#637080" stroke-width="1.5"/>
+<text x="780.00" y="335.00" text-anchor="middle">M2 / P1</text>
+<text x="520" y="495">M2: intersects source Cell 1</text>
+<polygon points="760.00,155.00 800.00,155.00 800.00,75.00 760.00,75.00" fill="#f8e3ce" stroke="#637080" stroke-width="1.5"/>
+<text x="780.00" y="115.00" text-anchor="middle">M3 / P1</text>
+<text x="520" y="515">M3: intersects source Cell 2</text>
+<polygon points="1000.00,275.00 1040.00,275.00 1100.00,215.00 1000.00,215.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1100.00,215.00 1040.00,155.00 1000.00,155.00 1000.00,215.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1240.00,275.00 1240.00,155.00 1200.00,115.00 1140.00,175.00 1140.00,295.00 1180.00,335.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1140.00,175.00 1040.00,75.00 1040.00,155.00 1100.00,215.00 1040.00,275.00 1040.00,395.00 1140.00,295.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1040.00,395.00 1280.00,395.00 1280.00,335.00 1180.00,335.00 1140.00,295.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1280.00,335.00 1280.00,275.00 1240.00,275.00 1180.00,335.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1240.00,155.00 1280.00,155.00 1280.00,115.00 1200.00,115.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<polygon points="1280.00,115.00 1280.00,75.00 1040.00,75.00 1140.00,175.00 1200.00,115.00" fill="#f2eee5" stroke="#637080" stroke-width="1.5"/>
+<line x1="1240.00" y1="155.00" x2="1280.00" y2="155.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1240.00" y1="155.00" x2="1240.00" y2="275.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1240.00" y1="155.00" x2="1200.00" y2="115.00" stroke="#1768c1" stroke-width="2.5"/>
+<line x1="1280.00" y1="155.00" x2="1280.00" y2="115.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1280.00" y1="75.00" x2="1040.00" y2="75.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1280.00" y1="75.00" x2="1280.00" y2="115.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="75.00" x2="1040.00" y2="155.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="75.00" x2="1140.00" y2="175.00" stroke="#dc9517" stroke-width="2.5"/>
+<line x1="1040.00" y1="155.00" x2="1000.00" y2="155.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="155.00" x2="1100.00" y2="215.00" stroke="#1768c1" stroke-width="2.5"/>
+<line x1="1000.00" y1="155.00" x2="1000.00" y2="215.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1000.00" y1="275.00" x2="1040.00" y2="275.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1000.00" y1="275.00" x2="1000.00" y2="215.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="275.00" x2="1040.00" y2="395.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="275.00" x2="1100.00" y2="215.00" stroke="#1768c1" stroke-width="2.5"/>
+<line x1="1040.00" y1="395.00" x2="1280.00" y2="395.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1040.00" y1="395.00" x2="1140.00" y2="295.00" stroke="#dc9517" stroke-width="2.5"/>
+<line x1="1280.00" y1="395.00" x2="1280.00" y2="335.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1280.00" y1="275.00" x2="1240.00" y2="275.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1280.00" y1="275.00" x2="1280.00" y2="335.00" stroke="#777" stroke-width="2.5"/>
+<line x1="1240.00" y1="275.00" x2="1180.00" y2="335.00" stroke="#1768c1" stroke-width="2.5"/>
+<line x1="1000.00" y1="215.00" x2="1100.00" y2="215.00" stroke="#c62035" stroke-width="2.5"/>
+<line x1="1280.00" y1="335.00" x2="1180.00" y2="335.00" stroke="#c62035" stroke-width="2.5"/>
+<line x1="1280.00" y1="115.00" x2="1200.00" y2="115.00" stroke="#c62035" stroke-width="2.5"/>
+<line x1="1140.00" y1="295.00" x2="1180.00" y2="335.00" stroke="#dc9517" stroke-width="2.5"/>
+<line x1="1140.00" y1="295.00" x2="1140.00" y2="175.00" stroke="#c62035" stroke-width="2.5"/>
+<line x1="1140.00" y1="175.00" x2="1200.00" y2="115.00" stroke="#dc9517" stroke-width="2.5"/>
+<text x="1220.00" y="131.00">F0</text>
+<text x="30" y="565">F0 valley: Parts [1]; members [1, 3]; terminal; relation [1, 3]</text>
+<text x="1090.00" y="121.00">F1</text>
+<text x="735" y="565">F1 hip: Parts [1]; members [1, 3]; terminal; relation [1, 3]</text>
+<text x="1070.00" y="181.00">F2</text>
+<text x="30" y="588">F2 valley: Parts [0, 1]; members [1, 0]; middle; relation [0, 1]</text>
+<text x="1070.00" y="241.00">F3</text>
+<text x="735" y="588">F3 valley: Parts [0, 1]; members [1, 0]; middle; relation [0, 1]</text>
+<text x="1090.00" y="341.00">F4</text>
+<text x="30" y="611">F4 hip: Parts [1]; members [1, 2]; terminal; relation [1, 2]</text>
+<text x="1210.00" y="301.00">F5</text>
+<text x="735" y="611">F5 valley: Parts [1]; members [1, 2]; terminal; relation [1, 2]</text>
+<text x="1050.00" y="211.00">F6</text>
+<text x="30" y="634">F6 ridge: Parts [0, 1]; members [1, 0]; middle; relation [0, 1]</text>
+<text x="1230.00" y="331.00">F7</text>
+<text x="735" y="634">F7 ridge: Parts [1]; members [1, 2]; terminal; relation [1, 2]</text>
+<text x="1240.00" y="111.00">F8</text>
+<text x="30" y="657">F8 ridge: Parts [1]; members [1, 3]; terminal; relation [1, 3]</text>
+<text x="1160.00" y="311.00">F9</text>
+<text x="735" y="657">F9 hip: Parts [1]; members [1, 2]; terminal; relation [1, 2]</text>
+<text x="1140.00" y="231.00">F10</text>
+<text x="30" y="680">F10 ridge: Parts [1]; members [1]; member_axis; relation None</text>
+<text x="1170.00" y="141.00">F11</text>
+<text x="735" y="680">F11 hip: Parts [1]; members [1, 3]; terminal; relation [1, 3]</text>
+</g></svg>

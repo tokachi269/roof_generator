@@ -1,0 +1,245 @@
+{
+  "source_sha": "5706c501971345b37858c808da8ccfc1dcc0d18c",
+  "source_dirty": true,
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "generator_version": 1,
+  "seed": 382901,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "inputs": 1000,
+      "success": {
+        "footprint": 1000,
+        "partition": 1000,
+        "architecture": 1000,
+        "RoofGraph": 5,
+        "GeometryProblem": 5,
+        "solve": 5,
+        "mesh": 5,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 995
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.inter_part_parallel": 999,
+        "relation.inter_part_partial_end": 802,
+        "composition.region_candidate": 34,
+        "relation.internal_parallel": 389,
+        "relation.internal_partial_end": 201,
+        "junction.inter_part_offset_continuation": 38,
+        "junction.corner_extension": 38,
+        "junction.attachment_applicability": 19,
+        "model.region_candidate": 55,
+        "ends.region_candidate": 32,
+        "junction.branch_width": 4,
+        "junction.equal_width_ports": 2,
+        "junction.interacting_slots": 2,
+        "embedding.region_candidate": 1
+      },
+      "conditional_sole_assignment_blocker": {
+        "relation.inter_part_parallel": 943,
+        "relation.inter_part_partial_end": 73,
+        "composition.region_candidate": 29,
+        "relation.internal_partial_end": 13,
+        "relation.internal_parallel": 41,
+        "junction.inter_part_offset_continuation": 37,
+        "model.region_candidate": 55,
+        "ends.region_candidate": 31,
+        "junction.corner_extension": 25,
+        "junction.equal_width_ports": 2,
+        "junction.interacting_slots": 1,
+        "junction.attachment_applicability": 1,
+        "junction.branch_width": 1
+      },
+      "failure_reasons": {
+        "no valid topology": 978,
+        "topology axis-assignment budget exhausted": 17
+      },
+      "total_ms": 917269.282098161,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 36196,
+        "constructible_topology_candidate_count": 6,
+        "architectural_preferred_assignment_count": 4424,
+        "architectural_assignment_count": 320454
+      }
+    },
+    "nonuniform_orthogonal": {
+      "inputs": 150,
+      "success": {
+        "footprint": 150,
+        "partition": 150,
+        "architecture": 150,
+        "RoofGraph": 1,
+        "GeometryProblem": 1,
+        "solve": 1,
+        "mesh": 1,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 149
+      },
+      "issue_building_incidence_nonexclusive": {
+        "relation.inter_part_parallel": 150,
+        "relation.inter_part_partial_end": 110,
+        "composition.region_candidate": 4,
+        "relation.internal_parallel": 47,
+        "relation.internal_partial_end": 26,
+        "junction.attachment_applicability": 1,
+        "junction.corner_extension": 1,
+        "junction.inter_part_offset_continuation": 2,
+        "model.region_candidate": 9,
+        "ends.region_candidate": 3
+      },
+      "conditional_sole_assignment_blocker": {
+        "relation.inter_part_parallel": 130,
+        "composition.region_candidate": 3,
+        "junction.inter_part_offset_continuation": 2,
+        "model.region_candidate": 9,
+        "ends.region_candidate": 3,
+        "relation.inter_part_partial_end": 1,
+        "relation.internal_parallel": 1,
+        "relation.internal_partial_end": 1
+      },
+      "failure_reasons": {
+        "no valid topology": 149
+      },
+      "total_ms": 72929.50290080626,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 5318,
+        "constructible_topology_candidate_count": 1,
+        "architectural_preferred_assignment_count": 395,
+        "architectural_assignment_count": 5324
+      }
+    },
+    "structured_orthogonal": {
+      "inputs": 103,
+      "success": {
+        "footprint": 103,
+        "partition": 103,
+        "architecture": 103,
+        "RoofGraph": 32,
+        "GeometryProblem": 32,
+        "solve": 32,
+        "mesh": 32,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 71
+      },
+      "issue_building_incidence_nonexclusive": {
+        "ends.region_candidate": 14,
+        "relation.inter_part_parallel": 88,
+        "composition.region_candidate": 60,
+        "junction.corner_extension": 19,
+        "junction.branch_width": 9,
+        "junction.attachment_applicability": 15,
+        "relation.inter_part_partial_end": 34,
+        "junction.interacting_slots": 4,
+        "relation.internal_partial_end": 11,
+        "relation.internal_parallel": 27,
+        "junction.inter_part_offset_continuation": 1
+      },
+      "conditional_sole_assignment_blocker": {
+        "junction.branch_width": 7,
+        "composition.region_candidate": 31,
+        "ends.region_candidate": 6,
+        "relation.inter_part_parallel": 63,
+        "junction.interacting_slots": 4,
+        "relation.internal_parallel": 2,
+        "junction.inter_part_offset_continuation": 1,
+        "relation.inter_part_partial_end": 1
+      },
+      "failure_reasons": {
+        "no valid topology": 71
+      },
+      "total_ms": 20902.256900677457,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 1284,
+        "constructible_topology_candidate_count": 54,
+        "architectural_preferred_assignment_count": 346,
+        "architectural_assignment_count": 1409
+      }
+    },
+    "convex_quadrilateral": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 48,
+        "architecture": 48,
+        "RoofGraph": 48,
+        "GeometryProblem": 48,
+        "solve": 48,
+        "mesh": 48,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 668.165699695237,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 48,
+        "constructible_topology_candidate_count": 96,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "structured_oblique": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 43
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 43
+      },
+      "total_ms": 12.00540002901107,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "general_simple_polygon_probe": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 40
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 40
+      },
+      "total_ms": 9.00629989337176,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    }
+  }
+}

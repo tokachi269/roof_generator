@@ -121,7 +121,8 @@ def main():
             assert candidate.id == row["candidate"]
             row["inspection"] = {
                 "input": record, "status": "supported", "selected_candidate": candidate.id,
-                "partition": candidate.architecture.decomposition.inspect(),
+                "partition": generation.interpretation.search.candidates[0].inspect(),
+                "partition_scope": "first minimum source for provenance; actual support authority is architecture",
                 "architecture": candidate.architecture.inspect(),
                 "architecture_scope": "actual installed operator preparation",
                 "graph": candidate.graph.inspect(),

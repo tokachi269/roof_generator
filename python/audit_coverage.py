@@ -17,10 +17,13 @@ sys.path.insert(0, str(ROOT))
 from roof_generator.core.footprint import analyze
 from roof_generator.core.partition_candidates import candidates
 from roof_generator.core.architecture_selection import recommend, Policy
-from roof_generator.core.topology_candidates import build_candidates, partition_id
+from roof_generator.core.topology_candidates import partition_id
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.solve import embed
 from roof_generator.core.mesh import RoofMesh
+from roof_generator.core.roof_candidates import roof_candidates,RoofCandidates
+from roof_generator.core.generation import GenerationSettings
+from roof_generator.core.architecture_models import ArchitecturalPartGraph
 
 STAGES = (
     "footprint",
@@ -41,12 +44,17 @@ def classify(pool):
     graph. Otherwise these remain joint B/C/F questions pending research; they
     are NOT automatically classified C. Downstream solve is censored.
     """
-    good = {partition_id(c.architecture.decomposition) for c in pool.valid}
+    good = {partition_id(c.architecture.decomposition) for c in pool.valid
+            if isinstance(c.architecture,ArchitecturalPartGraph)}
+    regional_success=any(not isinstance(c.architecture,ArchitecturalPartGraph) for c in pool.valid)
     result = []
     for r in pool.rejected:
         for issue in r.issues:
             key = issue.stage + "." + issue.code
-            if pool.valid:
+            if pool.valid and regional_success and r.partition not in good:
+                category='C_candidate_region_alternative'
+                evidence='another region/model family has an embedded roof; abandoned Cell contacts are not inferred junctions'
+            elif pool.valid:
                 category = "B" if r.partition in good else "A"
                 evidence = (
                     "another axis/interpretation succeeds"
@@ -64,7 +72,8 @@ def classify(pool):
                     "code": key,
                     "category": category,
                     "owner": (
-                        "architecture" if issue.stage == "relation" else "topology"
+                        "architecture" if issue.stage in {"relation","ends","model","architecture"} else
+                        "geometry" if issue.stage == "embedding" else "topology"
                     ),
                     "cells": issue.cells,
                     "partition": r.partition,
@@ -117,37 +126,49 @@ def inspect(record):
         owner = "partition"
         search = candidates(fp)
         row["incomplete_search"] = not search.complete
-        if not search.complete or not search.candidates:
-            raise UnsupportedRoofError(search.reason or "no complete partition")
-        completed("partition")
+        if search.complete and search.candidates:
+            completed("partition")
+        else:
+            row['timings_ms']['partition']=(time.perf_counter()-t)*1000
+            t=time.perf_counter()
         row["partition_count"] = len(search.candidates)
         owner = "architecture"
         interpretation = recommend(search, Policy(), defer_ranking=True)
-        if not interpretation.retained:
-            raise UnsupportedRoofError("no architectural interpretation")
-        completed("architecture")
+        if interpretation.retained:completed("architecture")
         row["interpretation_count"] = len(interpretation.retained)
         row["architecturally_retained_candidate_count"] = len(interpretation.retained)
         owner = "topology"
-        pool = build_candidates(interpretation)
+        pool = roof_candidates(fp,interpretation,GenerationSettings())
+        if not interpretation.retained and isinstance(pool,RoofCandidates) and pool.regions.architectural:
+            row['success']['architecture']=True
         row["issues"] = classify(pool)
         row["valid_graph_count"] = len(pool.valid)
         row["constructible_topology_candidate_count"] = len(pool.constructible)
-        row["architectural_preferred_assignment_count"] = len(pool.inspect_ranking()["architectural_preferred_assignments"])
+        ranking=pool.minimum.inspect_ranking() if isinstance(pool,RoofCandidates) else pool.inspect_ranking()
+        row["architectural_preferred_assignment_count"] = len(ranking["architectural_preferred_assignments"])
         row["architectural_assignment_count"] = len(pool.architectural)
+        if isinstance(pool,RoofCandidates):
+            row['region_proposal_count']=len(pool.regions.proposals)
+            row['region_architectural_assignment_count']=len(pool.regions.architectural)
+            row['region_embedded_candidate_count']=len(pool.regions.valid)
+            row['candidate_validation_scope']='all orthogonal gable families embedded before selection'
         row["ambiguity"] = len(pool.valid) > 1
         if pool.valid:
             completed("RoofGraph")
             completed("GeometryProblem")
         if not pool.complete or not pool.valid:
             row["incomplete_search"] = not pool.complete
+            if not search.complete:owner='partition'
             raise UnsupportedRoofError(pool.reason or "no valid topology")
         selected = pool.select(0)
         row["selected_id"] = selected.id
         row["timings_ms"]["seed"] = (time.perf_counter() - t) * 1000
         t = time.perf_counter()
         owner = "solve"
-        vertices = embed(selected.graph, selected.geometry)
+        vertices = (pool.mesh(selected).vertices if isinstance(pool,RoofCandidates)
+                    else embed(selected.graph, selected.geometry))
+        if isinstance(pool,RoofCandidates):
+            row['solve_timing_scope']='embedding occurs inside RoofGraph candidate validation; solve stage reads cached proof'
         completed("solve")
         owner = "mesh"
         # Constructor validates exactly the solved graph; no triangulation/repair.

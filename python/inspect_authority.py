@@ -20,11 +20,14 @@ def main():
     from roof_generator.core.architecture_selection import recommend, Policy
     from roof_generator.core.topology_candidates import build_candidates
     from roof_generator.core.solve import solve
+    from roof_generator.core.generation import GenerationSettings
+    from roof_generator.core.roof_candidates import roof_candidates,RoofCandidates
 
     rows = []
     for record in json.loads(args.inputs.read_text(encoding="utf-8"))["inputs"]:
-        recommendation = recommend(candidates(analyze(record["footprint"])), Policy(), defer_ranking=True)
-        pool = build_candidates(recommendation)
+        fp=analyze(record['footprint'])
+        recommendation = recommend(candidates(fp), Policy(), defer_ranking=True)
+        pool = roof_candidates(fp,recommendation,GenerationSettings())
         candidate = pool.select(record.get("seed", 0)) if pool.complete and pool.valid else None
         architecture = candidate.architecture if candidate else recommendation.retained[0][1]
         row = {
@@ -32,7 +35,8 @@ def main():
             "status": "supported" if candidate else "unsupported" if pool.complete else "incomplete",
             "selected_candidate": candidate.id if candidate else None,
             "resolved_ends": candidate.ends.inspect() if candidate and getattr(candidate, "ends", None) else None,
-            "partition": architecture.decomposition.inspect(),
+            "partition": recommendation.search.candidates[0].inspect(),
+            "partition_scope": "first minimum source for provenance; supports are selected architecture",
             "architecture": architecture.inspect(),
             "architecture_scope": "selected" if candidate else "first diagnostic partition; no selected roof",
             "rejected": [asdict(r) for r in pool.rejected],
@@ -44,7 +48,7 @@ def main():
             "independent_cell_roof_graphs": len(candidate.composition.primitives) if candidate else None,
         }
         if candidate:
-            mesh = solve(candidate.graph, candidate.geometry)
+            mesh = pool.mesh(candidate) if isinstance(pool,RoofCandidates) else solve(candidate.graph, candidate.geometry)
             row["solved_vertices"] = mesh.vertices
             row["solver_preserved_graph"] = mesh.graph is candidate.graph
         rows.append(row)

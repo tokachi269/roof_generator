@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Declared polygon proposals to globally resolved, embedded roof candidates."""
-from dataclasses import dataclass
+from dataclasses import dataclass,asdict
 from itertools import product, islice
 
 from .architecture import resolve
@@ -10,10 +10,10 @@ from .generation import GenerationSettings
 from .region_architecture import interpret_regions
 from .roof_ends import roof_configurations
 from .roof_regions import parallel_recommendation
-from .seed import choose, derive
+from .seed import choose, point_identity
 from .solve import problem, solve
 from .topology import compose
-from .topology_candidates import validate_authority
+from .topology_candidates import validate_authority, candidate_id
 
 
 @dataclass(frozen=True)
@@ -75,8 +75,8 @@ class RegionPool:
             'proposal_sources':tuple({'region_id':p.id,'source':p.source,
                                      'regions':p.inspect()['regions']} for p in self.proposals),
             'architectural_assignments':len(self.architectural),
-            'preferred_known_assignments':tuple(c for c in known if c.recommendation.score==best),
-            'unscored_assignments':tuple(c for c in self.architectural if c.recommendation.score is None),
+            'preferred_known_assignments':tuple(asdict(c) for c in known if c.recommendation.score==best),
+            'unscored_assignments':tuple(asdict(c) for c in self.architectural if c.recommendation.score is None),
             'constructible_ids':tuple(c.id for c in self.valid),
             'selectable_ids':tuple(c.id for c in self.selectable()),
             'complete':self.complete,
@@ -115,7 +115,7 @@ class RegionRoof:
     mesh: object
 
 
-def region_candidates(proposals,settings=GenerationSettings()):
+def region_candidates(proposals,settings=GenerationSettings(),*,model=interpret_regions):
     """All producers enter together. No runtime fallback or skeleton backend."""
     if settings.roof_type!='gable':
         raise UnsupportedRoofError('declared region model family currently supports gable only')
@@ -137,7 +137,7 @@ def region_candidates(proposals,settings=GenerationSettings()):
         return RegionPool(tuple(valid[k] for k in sorted(valid)),tuple(rejected),complete,reason,tuple(choices),sources)
     for region_id in sorted(unique):
         proposal=unique[region_id]
-        try:architecture=interpret_regions(proposal)
+        try:architecture=model(proposal)
         except UnsupportedRoofError as exc:
             rejected.append(RegionRejection(region_id,(),'model',str(exc)));continue
         for axes in product(*(m.axes for m in architecture.members)):
@@ -169,8 +169,8 @@ def region_candidates(proposals,settings=GenerationSettings()):
                     stage='composition';composition=compose(resolved)
                     stage='geometry_problem';geometry=problem(composition.graph,settings.pitch,settings.eave_height/fp.frame.scale)
                     stage='embedding';mesh=solve(composition.graph,geometry)
-                    identity=derive(0,'region_roof_topology',(region_id,axes,
-                        tuple((j.cells,j.kind) for j in configuration.joints)))
+                    identity=candidate_id(resolved.architecture,composition,axes,
+                                          point_identity(fp,settings.reference_direction))
                     valid.setdefault(identity,RegionRoofCandidate(identity,resolved.architecture,axes,
                         composition,geometry,mesh,recommendation,configuration))
                 except UnsupportedRoofError as exc:

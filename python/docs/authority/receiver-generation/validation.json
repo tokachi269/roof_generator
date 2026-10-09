@@ -1,0 +1,8 @@
+{
+  "command": "python -m unittest discover -s python/tests",
+  "tests": 177,
+  "seconds": 90.915,
+  "exit_code": 0,
+  "zip_python_sources_match_normalized_checkout": true,
+  "source_scope": "receiver integration worktree before commit"
+}

@@ -39,6 +39,7 @@ class RoofAcceptanceTests(unittest.TestCase):
             "unequal_width_join",
             "terminating_ridge",
             "valley_join",
+            "residential_multi_reflex",
         }
         topology_supported = mesh_supported
         for row in json.loads(FIXTURES.read_text()):

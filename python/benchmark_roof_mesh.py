@@ -36,7 +36,12 @@ def measured(record):
     if pool.complete and pool.valid:
         c = pool.select(0)
         start = time.perf_counter()
-        if len(c.architecture.members) > 1:
+        if callable(getattr(pool,'mesh',None)):
+            mesh=pool.mesh(c)
+            row['cached_mesh_read']=(time.perf_counter()-start)*1000
+            # Embedding is already included in canonical candidate validation.
+            # Re-running optimize would double count work absent from generation.
+        elif len(c.architecture.members) > 1:
             embedding = optimize(c.geometry)
             row["solve"] = (time.perf_counter() - start) * 1000
             start = time.perf_counter()
@@ -57,6 +62,7 @@ out = {
     "python": platform.python_version(),
     "profiled": False,
     "persistent_cache": False,
+    "candidate_embedding_scope": "included in canonical candidate validation when meshes are cached",
     "seed_selection_samples": [0, 1, 7, 42],
     "cases": {},
 }

@@ -14,9 +14,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "addon"))
 from roof_generator.core.architecture_selection import Policy
 from roof_generator.core.partition_candidates import signature
-from roof_generator.core.topology_candidates import build_candidates
 from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.generation import GenerationSettings, generate_roof
+import importlib.util
+from roof_generator.core.topology_candidates import build_candidates
+if importlib.util.find_spec('roof_generator.core.roof_candidates') is not None:
+    from roof_generator.core.roof_candidates import roof_candidates
+else:
+    roof_candidates=None  # explicit older-code measurement capability
+from roof_generator.core.footprint import analyze
 from benchmark_architectural_parts import measure as measure_architecture
 from inspect_architectural_parts import fixture
 from measurements import stats
@@ -35,7 +41,8 @@ def measure(record):
     start = time.perf_counter()
     row, recommendation = measure_architecture(record, Policy(), defer_ranking=True)
     t = time.perf_counter()
-    pool = build_candidates(recommendation)
+    pool = (roof_candidates(analyze(record['footprint']),recommendation,GenerationSettings())
+            if roof_candidates is not None else build_candidates(recommendation))
     row["roof_topology_candidates"] = (time.perf_counter() - t) * 1000
     t = time.perf_counter()
     choices = []
@@ -51,7 +58,7 @@ def fingerprint(recommendation, pool, choices):
         "partitions": [signature(d) for d in recommendation.search.candidates],
         "architecture": recommendation.inspect(),
         "valid": [
-            (c.id, c.axes, c.score, c.graph.inspect(), c.geometry.__dict__)
+            (c.id, c.axes, getattr(c,'score',None), c.graph.inspect(), c.geometry.__dict__)
             for c in pool.valid
         ],
         "rejected": [(r.partition, r.axes, r.reason) for r in pool.rejected],
@@ -87,6 +94,8 @@ def main():
         "profiled": False,
         "persistent_cache": False,
         "seed_samples": [0, 1, 7, 42],
+        "candidate_validation_scope": ("canonical families; orthogonal gable embedding precedes seed"
+            if roof_candidates is not None else "older code: minimum topology/problem only"),
         "cases": {},
     }
     for name, record in records.items():
@@ -124,7 +133,7 @@ def main():
         "total_ms": (time.perf_counter() - t) * 1000,
         "geometry_problem_supported": successful,
         "unsupported": args.buildings - successful,
-        "final_mesh_generated": False,
+        "final_mesh_generated": roof_candidates is not None,
     }
     t = time.perf_counter()
     for i in range(args.buildings):

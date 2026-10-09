@@ -180,6 +180,8 @@ def main():
     for record in acceptance:
         if record["name"] in {"parallelogram", "trapezoid", "general_convex_quad"}:
             fixtures.append((record["name"], record["footprint"], "gable"))
+        if record['name']=='residential_multi_reflex':
+            fixtures.append((record['name'],record['footprint'],'gable'))
     for i, (name, points, kind) in enumerate(fixtures):
         src = source(name, points)
         # Exhibit spacing must accommodate the 32-unit branch network; source
@@ -236,11 +238,9 @@ def main():
     materials = set(bpy.data.materials)
     unsupported = source(
         "unsupported_compound",
-        next(
-            r["footprint"]
-            for r in acceptance
-            if r["name"] == "residential_multi_reflex"
-        ),
+        next(r['footprint'] for r in json.loads(
+            (ROOT/'python/tests/fixtures/user_roof_images_v1.json').read_text(encoding='utf-8'))['inputs']
+            if r['name']=='user_image_3_band_and_lower_corner'),
     )
     before = set(bpy.data.objects)
     materials = set(bpy.data.materials)

@@ -1,0 +1,642 @@
+{
+  "blender": "5.2.2 LTS",
+  "seed": 0,
+  "runtime_source": "installed ZIP",
+  "archive_sha256": "a52776d72876f6847cb7be509b8d5dba21977179e2a440a8cca1ed7cab363cc0",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "attempted": 5,
+      "success": 5,
+      "not_attempted": 995
+    },
+    "nonuniform_orthogonal": {
+      "attempted": 1,
+      "success": 1,
+      "not_attempted": 149
+    },
+    "structured_orthogonal": {
+      "attempted": 32,
+      "success": 32,
+      "not_attempted": 71
+    },
+    "convex_quadrilateral": {
+      "attempted": 48,
+      "success": 48,
+      "not_attempted": 0
+    },
+    "structured_oblique": {
+      "attempted": 0,
+      "success": 0,
+      "not_attempted": 43
+    },
+    "general_simple_polygon_probe": {
+      "attempted": 0,
+      "success": 0,
+      "not_attempted": 40
+    }
+  },
+  "cases": [
+    {
+      "corpus": "orthogonal_grid_stress",
+      "name": "generated_0024",
+      "success": true,
+      "faces": 6,
+      "candidate": "788566b912f133339d24c6bc7a310ee9"
+    },
+    {
+      "corpus": "orthogonal_grid_stress",
+      "name": "generated_0220",
+      "success": true,
+      "faces": 8,
+      "candidate": "8ecaa0acc96fe3013c8c827b28c9d916"
+    },
+    {
+      "corpus": "orthogonal_grid_stress",
+      "name": "generated_0356",
+      "success": true,
+      "faces": 6,
+      "candidate": "e71360e4d564055e811ce16e6b6a9ed5"
+    },
+    {
+      "corpus": "orthogonal_grid_stress",
+      "name": "generated_0391",
+      "success": true,
+      "faces": 6,
+      "candidate": "707f05f495e6f27b86a465a905f9f7a2"
+    },
+    {
+      "corpus": "orthogonal_grid_stress",
+      "name": "generated_0499",
+      "success": true,
+      "faces": 4,
+      "candidate": "5d22003398059c5c9f011ed47a387107"
+    },
+    {
+      "corpus": "nonuniform_orthogonal",
+      "name": "generated_0024",
+      "success": true,
+      "faces": 6,
+      "candidate": "b2f76711f5bdc1181088846ba738f2ed"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_0",
+      "success": true,
+      "faces": 4,
+      "candidate": "6e13d52f0597b4cebf7ce28bfed90654"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_1",
+      "success": true,
+      "faces": 4,
+      "candidate": "ba953c147ac185ec9e716099396714fe"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_2",
+      "success": true,
+      "faces": 4,
+      "candidate": "059133cf6cc483396e0d605656bce0b1"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_3",
+      "success": true,
+      "faces": 4,
+      "candidate": "d4556da86176bb044f22e30c220ae687"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_4",
+      "success": true,
+      "faces": 4,
+      "candidate": "ade0f6a40e7225868d2883e09de4aaa5"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_5",
+      "success": true,
+      "faces": 4,
+      "candidate": "b2f977824c58f41cff1c84075fe0f48f"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_6",
+      "success": true,
+      "faces": 4,
+      "candidate": "884d9ffb3721d42d913f4eab0d2cd800"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_7",
+      "success": true,
+      "faces": 4,
+      "candidate": "b5cabfd443c28c945ebf6bf1689b548e"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_8",
+      "success": true,
+      "faces": 4,
+      "candidate": "5cc819060deaab336d453552f0bd6a91"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_L_9",
+      "success": true,
+      "faces": 4,
+      "candidate": "0ff1abc59ae2f1b3d28ed32dc00ac9da"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_T_0",
+      "success": true,
+      "faces": 4,
+      "candidate": "205ba21e4a6cbba95f345f0af7df77bd"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_0",
+      "success": true,
+      "faces": 6,
+      "candidate": "65ba0d73fd5e248bbdad0cc6d303c56a"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_1",
+      "success": true,
+      "faces": 6,
+      "candidate": "d6ec87c2aabaad78a949e338d81bcfec"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_2",
+      "success": true,
+      "faces": 6,
+      "candidate": "a5caf866423f1f608c1f4d3723cb22ac"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_3",
+      "success": true,
+      "faces": 6,
+      "candidate": "65fab1045d0ed5c3e8df9d2a47883261"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_4",
+      "success": true,
+      "faces": 6,
+      "candidate": "d5e87734edd778aa4358ba86f4ac732a"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_5",
+      "success": true,
+      "faces": 6,
+      "candidate": "63a4c14da0c5dae9016264e3bfe5826b"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_6",
+      "success": true,
+      "faces": 6,
+      "candidate": "4372733b5e08eb58f0e9e8c44fde74c9"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_7",
+      "success": true,
+      "faces": 6,
+      "candidate": "75fb5cc334bb2cca5ed93a37beb40a47"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_8",
+      "success": true,
+      "faces": 6,
+      "candidate": "024cfba324f2aa41708994ce5dc98b8f"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "orthogonal_U_9",
+      "success": true,
+      "faces": 6,
+      "candidate": "6141673365b9797f0f395f9379330bc9"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "comb_3",
+      "success": true,
+      "faces": 10,
+      "candidate": "6ced3b19037bc309e995891830227391"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "comb_5",
+      "success": true,
+      "faces": 10,
+      "candidate": "4267aaabd54c6f2a8c1548a6224aa95c"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "comb_8",
+      "success": true,
+      "faces": 10,
+      "candidate": "91ac75587486316befefb4d058eff167"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "residential_multi_reflex_1",
+      "success": true,
+      "faces": 8,
+      "candidate": "6170de33dcf8bc02f089289468788b88"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "residential_multi_reflex_3",
+      "success": true,
+      "faces": 8,
+      "candidate": "6b7b32be8da3bbf79082cf6d47868cac"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "residential_multi_reflex_5",
+      "success": true,
+      "faces": 8,
+      "candidate": "3bc711e415b636a4d0d0754a4c179c3e"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "residential_multi_reflex_8",
+      "success": true,
+      "faces": 8,
+      "candidate": "5bc5b1a694c6bbb1b7d52394a32afbee"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "residential_multi_reflex_9",
+      "success": true,
+      "faces": 8,
+      "candidate": "6496a02da38afeddac798f7a48b0d8cf"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "unequal_width_join",
+      "success": true,
+      "faces": 4,
+      "candidate": "3cc5202d433850aae1373a7ae61c2bce"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "terminating_ridge",
+      "success": true,
+      "faces": 4,
+      "candidate": "416927004ed9c70a917999fd300382e2"
+    },
+    {
+      "corpus": "structured_orthogonal",
+      "name": "valley_join",
+      "success": true,
+      "faces": 4,
+      "candidate": "ed458c4c45b9a2948ab51f86a76530d4"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "parallelogram",
+      "success": true,
+      "faces": 2,
+      "candidate": "b93ba189af1303a194e6f6b601384705"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "trapezoid",
+      "success": true,
+      "faces": 2,
+      "candidate": "8ed0885dd5fa09503f1cfbe297dc1b0c"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "general_convex_quad",
+      "success": true,
+      "faces": 2,
+      "candidate": "f0f38e0d837d5516ff963f6163398210"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_0",
+      "success": true,
+      "faces": 2,
+      "candidate": "4cb7959e17c71279873aec33125df415"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_1",
+      "success": true,
+      "faces": 2,
+      "candidate": "35f491e2db53d04d466ecbb400188da8"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_2",
+      "success": true,
+      "faces": 2,
+      "candidate": "cd26535baef09249c35d62eab535d0c7"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_3",
+      "success": true,
+      "faces": 2,
+      "candidate": "fc16d4291d764c2906ba41c03a2f14bd"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_4",
+      "success": true,
+      "faces": 2,
+      "candidate": "12fc2153ecbe399f2401a33bfd838415"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_5",
+      "success": true,
+      "faces": 2,
+      "candidate": "dc2ce842a802084b66091f82c603e5cb"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_6",
+      "success": true,
+      "faces": 2,
+      "candidate": "23c4cdc8e199598ef900cfd1d0985b34"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_7",
+      "success": true,
+      "faces": 2,
+      "candidate": "ca896c2393b07062015b817dbe12719a"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_8",
+      "success": true,
+      "faces": 2,
+      "candidate": "27d29bbcb272886c856575e832e14e30"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_9",
+      "success": true,
+      "faces": 2,
+      "candidate": "cabc58b89f73387db83403e51c5a6e12"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_10",
+      "success": true,
+      "faces": 2,
+      "candidate": "a5f153c0087179e2c1dca9306772d9f5"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_11",
+      "success": true,
+      "faces": 2,
+      "candidate": "14a8824bfb54bf5a4271e0271f2e78c3"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_12",
+      "success": true,
+      "faces": 2,
+      "candidate": "1e7bf138c55238ab192a6a33a6ffce36"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_13",
+      "success": true,
+      "faces": 2,
+      "candidate": "18ea7bd84b6a613d3d88101dcfff6059"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_14",
+      "success": true,
+      "faces": 2,
+      "candidate": "0b72fe831289ef9f772aee908e6661f0"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_15",
+      "success": true,
+      "faces": 2,
+      "candidate": "f730397be22b2faf43b0988087ba77da"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_16",
+      "success": true,
+      "faces": 2,
+      "candidate": "26b6412a11acf4c2fa7962580e83a96d"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_17",
+      "success": true,
+      "faces": 2,
+      "candidate": "e05fccce2f8f420309df73fef9eabc07"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_18",
+      "success": true,
+      "faces": 2,
+      "candidate": "f296a175fd9abb5509156ede62b2651e"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_19",
+      "success": true,
+      "faces": 2,
+      "candidate": "17b4f161cce07b8cdeda158eeb514945"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_20",
+      "success": true,
+      "faces": 2,
+      "candidate": "28f270ea4d23b0e608537416321a2cc9"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_21",
+      "success": true,
+      "faces": 2,
+      "candidate": "557424fd0786a65fb280e052e916c60a"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_22",
+      "success": true,
+      "faces": 2,
+      "candidate": "1a81b8dffce558c9372d74639b5dd4f8"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_23",
+      "success": true,
+      "faces": 2,
+      "candidate": "02a6ffe5406ed62223406a90f869509d"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_24",
+      "success": true,
+      "faces": 2,
+      "candidate": "e79c1e552d58af1d64de36b04f88796c"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_25",
+      "success": true,
+      "faces": 2,
+      "candidate": "839b69471d62ccce5da693daaca0111d"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_26",
+      "success": true,
+      "faces": 2,
+      "candidate": "e32bad54b55ce42db254566064980397"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_27",
+      "success": true,
+      "faces": 2,
+      "candidate": "c04e944d5e21976bca7358abb9cdb038"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_28",
+      "success": true,
+      "faces": 2,
+      "candidate": "0bdc5f27f77eccb6c42ac1371038b0bc"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_29",
+      "success": true,
+      "faces": 2,
+      "candidate": "cee4f8595b3eaf1b9c089fad4dfeab13"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_30",
+      "success": true,
+      "faces": 2,
+      "candidate": "f028729410ba82eb3378057d88faf93a"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_31",
+      "success": true,
+      "faces": 2,
+      "candidate": "c663566f8c413639d779cac79f42b83a"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_32",
+      "success": true,
+      "faces": 2,
+      "candidate": "e79ea4c85ed7587275cea19d8f741dd0"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_33",
+      "success": true,
+      "faces": 2,
+      "candidate": "63fafac4432b5b606351fba939c7c30b"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_34",
+      "success": true,
+      "faces": 2,
+      "candidate": "abe795107ce055f22471135f233523dd"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_35",
+      "success": true,
+      "faces": 2,
+      "candidate": "31e97fb5266e5b58e68d29873bc1864c"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_36",
+      "success": true,
+      "faces": 2,
+      "candidate": "69f952a15286b3cca07a6c5f44df4afc"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_37",
+      "success": true,
+      "faces": 2,
+      "candidate": "ba53012dc849f2bb450dda712ac89fae"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_38",
+      "success": true,
+      "faces": 2,
+      "candidate": "33ade089dea74dd03c5e61ba49d5607f"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_39",
+      "success": true,
+      "faces": 2,
+      "candidate": "32515fcd7c6433c48b8cf79cb6dbeab6"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_40",
+      "success": true,
+      "faces": 2,
+      "candidate": "6b1fa2e59169e80e72af9b4c8a6553ee"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_41",
+      "success": true,
+      "faces": 2,
+      "candidate": "c50988607c3e7ff55ccc5d4f3eb1c1b0"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_42",
+      "success": true,
+      "faces": 2,
+      "candidate": "d073e47501676afb9964ac0e8854ae1d"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_43",
+      "success": true,
+      "faces": 2,
+      "candidate": "e31c27351b7be26b8d7621c6a94373bb"
+    },
+    {
+      "corpus": "convex_quadrilateral",
+      "name": "quad_44",
+      "success": true,
+      "faces": 2,
+      "candidate": "deceb00655f3ace99f3dcfc622156507"
+    }
+  ]
+}

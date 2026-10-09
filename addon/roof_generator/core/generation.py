@@ -3,13 +3,17 @@
 
 from dataclasses import dataclass
 import math
+from typing import TYPE_CHECKING
 from .footprint import analyze, Footprint
 from .partition_candidates import candidates
 from .architecture_selection import recommend, Recommendation, Policy
-from .topology_candidates import build_candidates, TopologyCandidate, TopologyCandidates
+from .topology_candidates import TopologyCandidate, TopologyCandidates
 from .solve import solve
 from .mesh import RoofMesh
 from .seed import derive
+if TYPE_CHECKING:
+    from .roof_candidates import RoofCandidates
+    from .region_generation import RegionRoofCandidate
 
 
 @dataclass(frozen=True)
@@ -55,8 +59,8 @@ class Generation:
     footprint: Footprint
     settings: GenerationSettings
     interpretation: Recommendation
-    candidates: TopologyCandidates
-    selected: TopologyCandidate
+    candidates: "TopologyCandidates | RoofCandidates"
+    selected: "TopologyCandidate | RegionRoofCandidate"
 
     @property
     def geometry_problem(self):
@@ -82,18 +86,15 @@ def prepare_generation(points, settings=GenerationSettings()):
         else Policy(metres_per_unit=settings.metres_per_unit)
     )
     interpretation = recommend(search, policy, defer_ranking=True)
-    pool = build_candidates(
-        interpretation,
-        settings.roof_type,
-        reference_direction=settings.reference_direction,
-        pitch=settings.pitch,
-        eave_height=settings.eave_height,
-        max_axis_assignments=settings.max_axis_assignments,
-    )
+    from .roof_candidates import roof_candidates
+    pool = roof_candidates(fp,interpretation,settings)
     return Generation(fp, settings, interpretation, pool, pool.select(settings.seed))
 
 
 def generate_roof(points, settings=GenerationSettings()):
     generation = prepare_generation(points, settings)
-    mesh = solve(generation.selected.graph, generation.geometry_problem)
+    from .roof_candidates import RoofCandidates
+    mesh = (generation.candidates.mesh(generation.selected)
+            if isinstance(generation.candidates,RoofCandidates)
+            else solve(generation.selected.graph, generation.geometry_problem))
     return GeneratedRoof(generation, mesh)

@@ -32,7 +32,8 @@ class RegionPartGraph:
         for model,region in zip(self.members,self.layout.candidate.regions):
             bounds=(min(p[0] for p in region.boundary),min(p[1] for p in region.boundary),
                     max(p[0] for p in region.boundary),max(p[1] for p in region.boundary))
-            if any(abs(a-b)>4*EPS for a,b in zip(bounds,model.bounds)) or model.axes!=(0,1):
+            if (any(abs(a-b)>4*EPS for a,b in zip(bounds,model.bounds))
+                or not model.axes or any(a not in (0,1) for a in model.axes)):
                 raise UnsupportedRoofError('rectangular gable model changes polygon support/domain')
 
     @property
@@ -101,3 +102,34 @@ def interpret_regions(candidate):
     relations=relation_options(layout.vertices,layout.supports,
         tuple((a.members,a.sides,a.interval) for a in layout.adjacency),models)
     return build_region_parts(layout,Analysis(tuple(models),relations))
+
+
+def interpret_receiver(candidate):
+    """Declared receiver/leaf family; no area priority or guessed ridge axis."""
+    from dataclasses import replace
+    architecture=interpret_regions(candidate)
+    n=len(architecture.members)
+    neighbors={i:set() for i in range(n)}
+    directions={}
+    for contact in architecture.layout.adjacency:
+        a,b=contact.members
+        neighbors[a].add(b);neighbors[b].add(a)
+        points=[architecture.layout.vertices[v] for v in contact.interval]
+        directions[a,b]=int(abs(points[1][1]-points[0][1])>EPS)
+    domains=[set() for _ in range(n)]
+    for root in range(n):
+        if len(neighbors[root])!=n-1 or any(len(neighbors[i])!=1 for i in range(n) if i!=root):continue
+        bounds=architecture.members[root].bounds
+        lengths=(bounds[2]-bounds[0],bounds[3]-bounds[1])
+        for axis in (0,1):
+            if lengths[axis]+4*EPS<lengths[1-axis]:continue
+            if any(direction!=axis for pair,direction in directions.items() if root in pair):continue
+            domains[root].add(axis)
+            for leaf in range(n):
+                if leaf!=root:domains[leaf].add(1-axis)
+    if any(not domain for domain in domains):
+        raise UnsupportedRoofError('no long-axis receiver with perpendicular exterior leaves')
+    members=tuple(replace(m,axes=tuple(sorted(domain))) for m,domain in zip(architecture.members,domains))
+    relations=relation_options(architecture.layout.vertices,architecture.layout.supports,
+        tuple((a.members,a.sides,a.interval) for a in architecture.layout.adjacency),members)
+    return build_region_parts(architecture.layout,Analysis(members,relations))

@@ -1,8 +1,9 @@
 # Polygon-authoritative region candidate contract
 
 The polygon contract now reaches the shared composer through explicit region
-models. The default footprint generator still proposes minimum partitions;
-the skeleton diagnostic is not a runtime generator. The four-case production
+models. The default footprint generator now combines minimum and receiver
+families; see [canonical receiver generation](RECEIVER_GENERATION.md).
+The skeleton diagnostic is not a runtime generator. The four-case production
 gate remains unmet. See [composition evidence](ROOF_REGION_COMPOSITION.md).
 
 ## Authority and stages
@@ -77,8 +78,8 @@ bounds equal Cell bounds and Part boundaries equal canceled Cell boundaries.
 The new regression accepts screenshot 4's central `(1,0)`–`(6,6)` rectangle
 plus its left/right attachments. The central region's area is 30 input-unit²,
 with 15 unit² from each of the two unchanged minimum Cells. This configuration
-now has one embedded shared-end roof through the explicit proposal API; it is
-not yet discovered by the default footprint generator.
+now has one embedded shared-end roof through both the explicit proposal API
+and the default receiver-region generator.
 
 The four screenshot sources pass through the same core contract:
 
@@ -111,8 +112,8 @@ Ten focused regressions cover partial Cell provenance, source/order-independent
 geometry identity, the common producer contract, missing/overlapping/outside
 area, a narrow gap, disconnected/self-touching input and score applicability.
 The shared composer now reads indexed member supports. The explicit API was
-also tested from an isolated installed ZIP; default candidate discovery is
-still minimum-based.
+also tested from an isolated installed ZIP. Default candidate discovery now
+combines minimum and receiver-region families; see [canonical integration](RECEIVER_GENERATION.md).
 
 ## Next production gate
 
