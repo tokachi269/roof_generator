@@ -172,5 +172,15 @@ class PolygonAngles(unittest.TestCase):
         self.assertTrue(available)
         self.assertEqual(set(available),set(blocked))
 
+    def test_developer_inspection_uses_the_canonical_oblique_model(self):
+        from python.inspect_roof import inspect
+        from python.inspect_architectural_parts import fixture
+        for kind in ('gable','hip'):
+            data,pool=inspect(fixture('oblique_L'),17,kind)
+            self.assertEqual(data['status'],'mesh')
+            self.assertEqual(data['selected'],generate_roof(acceptance('oblique_L'),
+                             GenerationSettings(kind,seed=17)).generation.selected.id)
+            self.assertTrue(pool.valid)
+
 
 if __name__=='__main__':unittest.main()

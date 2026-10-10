@@ -20,6 +20,7 @@ parser.add_argument('--code-root', type=Path, default=Path(__file__).resolve().p
 parser.add_argument('--samples', type=int, default=5)
 parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--profile', action='store_true')
+parser.add_argument('--inputs', type=Path, help='JSON polygon-model records with name, footprint and roof_type')
 args = parser.parse_args()
 if args.samples < 1:
     parser.error('--samples must be positive')
@@ -79,8 +80,10 @@ def stage_probe():
             setattr(owner, name, original)
 
 
-def run(raw):
-    return pg.candidates(analyze(raw), GenerationSettings())
+def run(raw, roof_type='gable'):
+    if roof_type not in ('gable','hip'):
+        raise ValueError('polygon embedding benchmark requires gable or hip intent')
+    return pg.candidates(analyze(raw), GenerationSettings(roof_type))
 
 
 def snapshot(pool):
@@ -103,18 +106,20 @@ output = {
     'stage_scope': 'one separate instrumented sample; inclusive stages contain their children',
     'cases': {},
 }
-for name in ('orthogonal_L', 'orthogonal_T', 'orthogonal_U', 'cross', 'residential_multi_reflex',
-             'grid_14', 'grid_20', 'grid_40'):
-    raw = fixture(name)['footprint']
+records=(json.loads(args.inputs.read_text()) if args.inputs else
+         [fixture(name) for name in ('orthogonal_L','orthogonal_T','orthogonal_U','cross',
+                                    'residential_multi_reflex','grid_14','grid_20','grid_40')])
+for record in records:
+    name=record['name'];raw=record['footprint'];roof_type=record.get('roof_type','gable')
     times = []
     try:
         for i in range(args.samples + 1):
             started = time.perf_counter()
-            pool = run(raw)
+            pool = run(raw,roof_type)
             if i:
                 times.append((time.perf_counter() - started) * 1000)
         with stage_probe() as stages:
-            pool = run(raw)
+            pool = run(raw,roof_type)
         output['cases'][name] = {'footprint': raw, 'latency': stats(times), 'stages': stages,
                                  'snapshot': snapshot(pool)}
     except UnsupportedRoofError as exc:
@@ -125,6 +130,7 @@ args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_bytes(gzip.compress((json.dumps(output, separators=(',', ':')) + '\n').encode(), mtime=0))
 if args.profile:
     profiler = cProfile.Profile()
-    profiler.runcall(run, fixture('grid_20')['footprint'])
+    record=next((r for r in records if r['name']=='grid_20'),records[0])
+    profiler.runcall(run,record['footprint'],record.get('roof_type','gable'))
     with args.output.with_suffix('.profile.txt').open('w') as f:
         pstats.Stats(profiler, stream=f).sort_stats('cumtime').print_stats(40)

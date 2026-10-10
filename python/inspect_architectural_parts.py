@@ -28,9 +28,12 @@ def fixture(name):
     record = next((r for r in rows if r["name"] == name), None)
     if record is None:
         p = ROOT / "python/docs/partition" / f"{name}.json"
-        if not p.is_file():
-            raise ValueError("unknown inspection fixture")
-        record = json.loads(p.read_text(encoding="utf-8"))["input"]
+        if p.is_file():
+            record = json.loads(p.read_text(encoding="utf-8"))["input"]
+        else:
+            acceptance=json.loads((ROOT/'python/tests/fixtures/roof_acceptance.json').read_text(encoding='utf-8'))
+            record=next((r for r in acceptance if r['name']==name),None)
+            if record is None:raise ValueError("unknown inspection fixture")
     return record
 
 

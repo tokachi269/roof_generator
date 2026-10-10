@@ -8,14 +8,15 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "addon"))
 from roof_generator.core.footprint import analyze
 from roof_generator.core.partition_candidates import candidates
 from roof_generator.core.architecture_selection import recommend, Policy
 from roof_generator.core.topology_candidates import build_candidates
 from roof_generator.core.errors import UnsupportedRoofError
-from inspect_architectural_parts import fixture
-from roof_diagrams import svg
+from python.inspect_architectural_parts import fixture
+from python.roof_diagrams import svg
 from roof_generator.core.polygon_generation import candidates as polygon_candidates, PolygonCandidates
 from roof_generator.core.generation import GenerationSettings, uses_polygon_model
 
