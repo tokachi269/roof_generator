@@ -316,20 +316,12 @@ def embed(graph, geometry):
     if geometry.faces != tuple(f.loop for f in graph.faces):
         raise UnsupportedRoofError("solve problem changes roof incidence")
     if graph.roof_type == "flat" or (
-        rectangle(graph.outline) and all(f.cells == (0,) for f in graph.faces)
+        graph.roof_type in {"shed", "gable"} and rectangle(graph.outline)
+        and all(f.cells == (0,) for f in graph.faces)
     ):
         # The already anchored primitive has an exact embedding. The pitch is
         # read from its explicit height constraints, not selected by the solver.
-        if graph.roof_type in {"flat", "shed", "gable"}:
-            return geometry.initial_vertices
-        heights = dict(geometry.fixed_z)
-        eave = min(heights.values())
-        width = min(
-            math.dist(a, b)
-            for a, b in zip(graph.outline, graph.outline[1:] + graph.outline[:1])
-        )
-        pitch = 2 * (max(heights.values()) - eave) / width
-        return rectangle_vertices(graph, pitch, eave)
+        return geometry.initial_vertices
     from .constraints import has_fixed_planes
     if has_fixed_planes(geometry):
         from .plane_embedding import embed_planes

@@ -76,7 +76,7 @@ class GeneratedRoof:
 
 def prepare_generation(points, settings=GenerationSettings()):
     fp = analyze(points)
-    if fp.orthogonal and settings.roof_type=='gable':
+    if settings.roof_type=='hip' or (fp.orthogonal and settings.roof_type=='gable'):
         from .polygon_generation import candidates as polygon_candidates
         pool=polygon_candidates(fp,settings)
         return Generation(fp,settings,pool.interpretation,pool,pool.select(settings.seed))

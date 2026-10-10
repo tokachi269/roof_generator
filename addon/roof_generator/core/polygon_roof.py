@@ -19,16 +19,20 @@ class PolygonRoof:
     """
     footprint: Footprint
     gable_edges: tuple[int, ...]
+    roof_type: str = 'gable'
 
     def __post_init__(self):
         n = len(self.footprint.vertices)
-        if not self.footprint.orthogonal or not self.gable_edges or \
+        if self.roof_type not in ('gable','hip') or \
+           (self.roof_type == 'gable' and not self.gable_edges) or \
+           (self.roof_type == 'hip' and self.gable_edges) or \
            tuple(sorted(set(self.gable_edges))) != self.gable_edges or \
            any(isinstance(e,bool) or not isinstance(e,int) or not 0<=e<n for e in self.gable_edges):
-            raise UnsupportedRoofError('polygon roof requires explicit orthogonal gable ends')
+            raise UnsupportedRoofError('polygon roof requires explicit gable ends or all-eave hip intent')
 
     def inspect(self):
-        return {'model':'continuous polygon roof with terminal gable ends',
+        return {'model':('continuous polygon roof with terminal gable ends' if self.roof_type=='gable'
+                         else 'continuous polygon roof with all-eave hip intent'),
                 'regions':[self.footprint.vertices],
                 'ends':[{'edge':e,'shape':'gable' if e in self.gable_edges else 'eave'}
                         for e in range(len(self.footprint.vertices))],
@@ -40,8 +44,6 @@ def topology(structure, incidence):
         raise TypeError('polygon topology requires a resolved PolygonRoof model')
     fp = structure.footprint
     selected_caps = frozenset(structure.gable_edges)
-    if not fp.orthogonal:
-        raise UnsupportedRoofError('whole-polygon probe requires orthogonal input')
     seeds = list(incidence.points)
     loops = list(incidence.faces)
     n = len(fp.vertices)
@@ -56,7 +58,7 @@ def topology(structure, incidence):
     seeds[:n] = fp.vertices
     caps = [(support,loop[2]) for support,loop in zip(supports,loops)
             if len(loop)==3 and loop[2]>=n]
-    if not caps:
+    if selected_caps and not caps:
         raise UnsupportedRoofError('no terminal triangular face for published gable adjustment')
     available_caps = {edge for edge,node in caps}
     if not selected_caps <= available_caps:
@@ -201,6 +203,6 @@ def topology(structure, incidence):
     graph = graph_api.make_graph(fp.vertices,fp.source_edges,
         tuple(seeds[i] for i in used),{remap[i]:point for i,point in locations.items() if i in remap},
         tuple(roles[i] for i in used),faces,
-        {tuple(sorted((remap[a],remap[b]))):kind for (a,b),kind in semantics.items()},'gable')
+        {tuple(sorted((remap[a],remap[b]))):kind for (a,b),kind in semantics.items()},structure.roof_type)
     return graph, {'cap_edges':sorted(cap_edges), 'skeleton_nodes':len(seeds),
                    'policy':'oriented terminal-cap disk replacement; preserve shared events; no appearance ranking'}

@@ -105,10 +105,12 @@ class QuadProof(unittest.TestCase):
             )
             self.assertEqual(actual, expected)
 
-    def test_shed_flat_share_cell_contract_and_hip_has_explicit_scope(self):
+    def test_shed_flat_share_cell_contract_and_hip_uses_all_eave_polygon(self):
         raw = [(0, 0), (13.8, 0), (11.7, 7.4), (1.2, 7.4)]
         for kind in ("shed", "flat"):
             r = generate_roof(raw, GenerationSettings(kind))
             self.assertEqual(len(r.mesh.faces), 1)
-        with self.assertRaisesRegex(UnsupportedRoofError, "nonrectangular primitive"):
-            prepare_generation(raw, GenerationSettings("hip"))
+        r=generate_roof(raw,GenerationSettings('hip'))
+        self.assertEqual(len(r.mesh.faces),4)
+        self.assertEqual(r.generation.selected.architecture.gable_edges,())
+        self.assertTrue(all(e.kind=='eave' for e in r.mesh.graph.edges if e.boundary))

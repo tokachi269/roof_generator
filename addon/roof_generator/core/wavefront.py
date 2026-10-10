@@ -38,8 +38,6 @@ _lock = Lock()
 
 
 def wavefront(fp, *, max_work=65536):
-    if not fp.orthogonal:
-        raise UnsupportedRoofError('polygon wavefront requires orthogonal input')
     if max_work < 1:
         raise ValueError('positive wavefront work budget required')
     trace = Events(max_work)

@@ -34,7 +34,8 @@ class PolygonTopology:
     def __post_init__(self):
         fp=self.architecture.footprint
         if self.graph.outline!=fp.vertices or self.graph.source_edges!=fp.source_edges or \
-           self.geometry.faces!=tuple(f.loop for f in self.graph.faces):
+           self.geometry.faces!=tuple(f.loop for f in self.graph.faces) or \
+           self.graph.roof_type!=self.architecture.roof_type:
             raise UnsupportedRoofError('polygon geometry contradicts resolved support')
         for edge in self.graph.edges:
             if edge.boundary is not None:
@@ -110,6 +111,9 @@ class PolygonCandidates:
 
 def candidates(fp, settings):
     incidence=wavefront(fp,max_work=settings.max_work)
+    if settings.roof_type=='hip':
+        interpretation=PolygonInterpretation(fp,(),(PolygonRoof(fp,(),'hip'),))
+        return _embed_models(interpretation,incidence,settings,{():[]},{},work=incidence.work)
     available,conflicts,blocked=cap_domain(fp,incidence)
     decomposition=decompose(fp)
     minimum=minimum_regions(decomposition)
@@ -118,7 +122,7 @@ def candidates(fp, settings):
     proposals=(minimum,*receiver.proposals) if receiver.complete else (minimum,)
     complete=receiver.complete;reason=receiver.reason;work=incidence.work
     layouts={p.id:member_layout(p) for p in proposals}
-    configurations={};rejected=[]
+    configurations={}
     # Every source enters before any construction; incomplete sources forbid
     # seed selection even if another source produces a verified roof.
     for proposal in proposals:
@@ -135,18 +139,29 @@ def candidates(fp, settings):
             complete=False;reason='polygon roof candidate budget exhausted';break
     models=tuple(PolygonRoof(fp,ends) for ends in sorted(configurations))
     interpretation=PolygonInterpretation(fp,proposals,models)
+    return _embed_models(interpretation,incidence,settings,configurations,layouts,
+                         complete=complete,reason=reason,work=work)
+
+
+def _embed_models(interpretation, incidence, settings, configurations, layouts, *,
+                  complete=True, reason=None, work=0):
+    """One publisher validates every resolved polygon model before seed selection."""
+    fp=interpretation.footprint
     identity=point_identity(fp,settings.reference_direction)
-    outline=tuple(identity(p) for p in fp.vertices);valid=[];constructed=[]
-    for model in models:
+    outline=tuple(identity(p) for p in fp.vertices);valid=[];constructed=[];rejected=[]
+    for model in interpretation.models:
         ends=model.gable_edges;aliases=configurations[ends]
         stage='topology'
         try:
-            guide=min(aliases,key=lambda g:(g.proposal.id,g.proposal.source,g.axes))
-            intent=RoofIntent.from_caps(layouts[guide.proposal.id],tuple(a[0] for a in guide.axes),ends)
-            graph,_=topology(model,incidence);intent.verify(graph)
+            if aliases:
+                guide=min(aliases,key=lambda g:(g.proposal.id,g.proposal.source,g.axes))
+                intent=RoofIntent.from_caps(layouts[guide.proposal.id],tuple(a[0] for a in guide.axes),ends)
+            graph,_=topology(model,incidence)
+            if aliases:intent.verify(graph)
             stage='geometry_problem';geometry=problem(graph,settings.pitch,settings.eave_height/fp.frame.scale)
             boundary=tuple(sorted(tuple(sorted((outline[e],outline[(e+1)%len(outline)]))) for e in ends))
-            code=derive(0,'global_roof',json.dumps((tuple(sorted(outline)),boundary)))
+            namespace='global_roof' if model.roof_type=='gable' else 'global_roof_hip'
+            code=derive(0,namespace,json.dumps((tuple(sorted(outline)),boundary)))
             constructed.append(PolygonTopology(code,model,tuple(aliases),graph,geometry))
             stage='embedding';check_planes(geometry);mesh=solve(graph,geometry)
             valid.append(PolygonCandidate(code,model,tuple(aliases),graph,geometry,mesh))
