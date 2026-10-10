@@ -25,12 +25,15 @@ intentional perimeter boundary; walls and thickness are separate modeling tasks.
 Roof junctions are constructed globally before fixed embedding.
 The [staged coverage report](python/docs/END_TO_END_EVALUATION.md) separates
 RoofGraph availability from actual solve, validated mesh and Blender conversion.
-Connected-grid stress is one corpus, not overall coverage. Parallel, offset/
-width-step continuation and partial-end contacts remain explicit research limits.
+Connected-grid stress is one corpus, not overall coverage. Unresolved polygon
+events, finite gable-end model coverage and incomplete searches remain limits.
+Fully declared face planes use a linear fixed-topology embedding; the generic
+covariance optimizer remains for problems with unspecified planes. See
+[embedding performance and proofs](python/docs/PLANE_EMBEDDING.md).
 
 ## Installation and use
 
-1. Download [`roof_generator-1.4.1.zip`](packages/roof_generator-1.4.1.zip) with **Download raw file**.
+1. Download [`roof_generator-1.4.2.zip`](packages/roof_generator-1.4.2.zip) with **Download raw file**.
 2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
 3. Select filled planar footprint meshes in Object Mode.
 4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
@@ -61,7 +64,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.1.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.2.zip
 ```
 
 `addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains

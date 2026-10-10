@@ -23,11 +23,14 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 屋根接続は建物全体で構成してから、決定済みのGraphを固定してsolveします。
 [段階別coverage](python/docs/END_TO_END_EVALUATION.md)でRoofGraph、solve、mesh、
 実際のBlender変換を分けて報告します。grid stress corpusは全体coverageではありません。
-parallel、幅違い・軸ずれcontinuation、partial-endは明示的な研究・対応限界として残ります。
+未解決のpolygon event、対応するgable end modelの範囲、探索未完了が制約として残ります。
+全faceのsupport planeとpitchが明示された問題は、topologyを固定して線形solveします。
+planeが未指定の問題では汎用covariance optimizerを使います。
+[embeddingの性能と検証](python/docs/PLANE_EMBEDDING.md)を参照してください。
 
 ## インストールと使い方
 
-1. [`roof_generator-1.4.1.zip`](packages/roof_generator-1.4.1.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.4.2.zip`](packages/roof_generator-1.4.2.zip) を **Download raw file** で保存します。
 2. **Edit → Preferences → Add-ons → Install from Disk**でインストールし、**Roof Generator**を有効にします。
 3. Object Modeで、面を張った平面footprint meshを選択します。
 4. サイドバー（**N**）→ **Roof**で屋根種別、勾配、軒高offset、seedを設定し、**Generate roofs**を押します。
@@ -59,7 +62,7 @@ Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると�
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.1.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.2.zip
 ```
 
 `addon/roof_generator/core/`が生成pipelineを所有します。Blender adapterは

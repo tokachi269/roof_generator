@@ -49,7 +49,7 @@ def build(output, check=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", default="dist/roof_generator-1.4.1.zip")
+    parser.add_argument("--output", default="dist/roof_generator-1.4.2.zip")
     parser.add_argument(
         "--check",
         action="store_true",

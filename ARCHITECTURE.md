@@ -55,9 +55,12 @@ equivariance, including perfectly symmetric shapes. Different random namespaces
 do not consume a common PRNG stream.
 
 Geometry solves fixed incidence; it cannot pick topology, roles or candidate
-axes. Analytic rectangle embedding handles gable/hip/shed/flat. Compound topology
-uses the Ren covariance planarity objective, explicit eave/pitch constraints and
-fixed-variable nonlinear embedding. Convex quad gable has geometric directions
+axes. Analytic rectangle embedding handles gable/hip/shed/flat. When all face
+eave/pitch planes are declared, fixed topology uses constrained linear embedding,
+including fixed XY/Z anchors, ridge directions and minimum XY displacement.
+Problems without a complete plane contract retain the Ren covariance nonlinear
+optimizer. Solver choice follows constraints, never failure fallback. Convex quad
+gable has geometric directions
 and equal-pitch boundary ports; nonparallel eaves can yield a sloping ridge.
 No optimizer changes incidence or retries another architectural candidate. Mesh validation checks
 fixed boundary, projection, shared vertices, positive faces and planarity.
@@ -88,7 +91,9 @@ addon/roof_generator/
     generation.py             canonical orchestration and settings
     initialization.py         topology-preserving 2D coordinate initializer
     solve.py                  GeometryProblem, explicit constraints, exact embedding
-    optimization.py           covariance objective and stdlib nonlinear embedding
+    plane_embedding.py        fixed planes, hard anchors/directions, minimum XY movement
+    constraints.py            explicit plane equations and necessary feasibility
+    optimization.py           covariance objective for incomplete plane contracts
     mesh.py                   fixed graph-to-mesh contract and validation
     errors.py                 UnsupportedRoofError
   mesh_frame.py, mesh_input.py planar source validation and coordinate transport
@@ -182,9 +187,10 @@ inspectable. Multi-cell hip/shed and non-orthogonal compound decomposition are u
 A GeometryProblem provides fixed face cycles, boundary anchors, internal XY/Z
 variables and ridge directions. A receiver ridge with both exterior ports
 consumed receives its equal-pitch height anchor from the declared opposite eaves;
-its XY remains variable. Its initializer is not a solved mesh or a
-nonlinear convergence certificate. The covariance nonlinear optimizer consumes
-explicit eave/pitch constraints and validates convergence before mesh creation.
+its XY remains variable. Its initializer is not a solved mesh or an
+embedding certificate. Fully declared planes have an affine coordinate solution;
+unconstrained face planes require covariance optimization. Both keep fixed
+incidence and validate their geometric constraints before mesh creation.
 Mesh validation independently checks the unchanged face cycles and projection.
 The adapter exports solved vertices, UVs, materials and provenance; it cannot
 repair an invalid graph or a failed solve.

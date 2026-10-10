@@ -1,6 +1,6 @@
 # Roof Generator addon
 
-Install the repository's `packages/roof_generator-1.4.1.zip` in Blender 4.3+.
+Install the repository's `packages/roof_generator-1.4.2.zip` in Blender 4.3+.
 No external Python packages are required.
 
 The Roof sidebar conversion button creates ordinary editable meshes with UVs,
