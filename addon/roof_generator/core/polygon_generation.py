@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Polygon support and resolved ends to complete, embedded, seeded roofs."""
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 import json
 
 from .cells import decompose
@@ -8,7 +8,7 @@ from .errors import UnsupportedRoofError, GenerationIssue
 from .member_layout import member_layout
 from .polygon_roof import PolygonRoof, topology
 from .receiver_regions import receiver_regions
-from .roof_intent import RoofIntent, cap_domain
+from .roof_intent import RoofIntent, cap_domain, terminal_configurations, TerminalDomain, opposed_supports
 from .roof_preference import recommend
 from .roof_regions import minimum_regions
 from .seed import choose, derive, point_identity
@@ -72,12 +72,16 @@ class PolygonInterpretation:
     footprint: object
     guides: tuple
     models: tuple[PolygonRoof, ...]
+    terminal_domain: TerminalDomain | None = None
 
     def inspect(self):
-        return {'support':self.footprint.vertices,
+        result={'support':self.footprint.vertices,
                 'guides':[p.inspect() for p in self.guides],
                 'resolved_models':[m.inspect() for m in self.models],
                 'authority':'whole polygon models and explicit exterior ends'}
+        if self.terminal_domain is not None:
+            result['terminal_domain']=asdict(self.terminal_domain)
+        return result
 
 
 @dataclass(frozen=True)
@@ -105,8 +109,10 @@ class PolygonCandidates:
                 'constructible_candidate_ids':[c.id for c in self.constructible],
                 'available_embedded_candidate_ids':[c.id for c in self.valid],
                 'selectable_candidate_ids':[c.id for c in self.valid] if self.complete else [],
-                'selection_rule':'soft componentwise long-axis preference; maximal compatible gable ends per model; deduplicate then seed',
-                'scope':'continuous polygon roof; rectangular proposals guide exterior ends, not independent roof parts'}
+                'selection_rule':('soft componentwise long-axis preference; maximal compatible gable ends per model; deduplicate then seed'
+                                  if self.interpretation.guides else
+                                  'all-eave hip or maximal opposed-support terminal sets; validated then seed'),
+                'scope':'continuous polygon roof; exterior intent is not independent Cell roof parts'}
 
 
 def candidates(fp, settings):
@@ -115,6 +121,23 @@ def candidates(fp, settings):
         interpretation=PolygonInterpretation(fp,(),(PolygonRoof(fp,(),'hip'),))
         return _embed_models(interpretation,incidence,settings,{():[]},{},work=incidence.work)
     available,conflicts,blocked=cap_domain(fp,incidence)
+    if not fp.orthogonal:
+        domain=TerminalDomain(tuple(e for e in range(len(fp.vertices)) if opposed_supports(fp,e)),
+                              available,conflicts,blocked)
+        remaining=settings.max_work-incidence.work
+        if remaining<1:
+            return PolygonCandidates(PolygonInterpretation(fp,(),(),domain),(),(),False,
+                                     'combined polygon work budget exhausted',incidence.work,())
+        pool=terminal_configurations(available,conflicts,blocked,max_work=remaining,
+                                     max_candidates=settings.max_candidates)
+        models=tuple(PolygonRoof(fp,c.selected) for c in pool.configurations)
+        interpretation=PolygonInterpretation(fp,(),models,domain)
+        result=_embed_models(interpretation,incidence,settings,{m.gable_edges:[] for m in models},{},
+                            complete=pool.complete,reason=pool.reason,work=incidence.work+pool.work)
+        if pool.complete and not models:
+            rejected=(PolygonRejection('architecture','no opposed-support terminal gable cap'),)
+            return PolygonCandidates(interpretation,(),rejected,True,rejected[0].reason,result.work,())
+        return result
     decomposition=decompose(fp)
     minimum=minimum_regions(decomposition)
     receiver=receiver_regions(fp,max_work=settings.max_work,max_candidates=settings.max_candidates,

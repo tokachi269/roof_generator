@@ -7,6 +7,7 @@ from . import graph as graph_api
 from .footprint import Footprint
 from .provenance import BoundaryPoint
 from .errors import UnsupportedRoofError
+from .roof_intent import opposed_supports
 
 
 @dataclass(frozen=True)
@@ -87,13 +88,7 @@ def topology(structure, incidence):
             extensions[pair] = k
         # Adjacent support normals must be opposed, so their equality locus
         # passes through both the midpoint and the preserved event.
-        left,right = (edge-1)%n,(edge+1)%n
-        vectors = []
-        for support in (left,right):
-            p,q = fp.vertices[support],fp.vertices[(support+1)%n]
-            size = math.dist(p,q)
-            vectors.append((-(q[1]-p[1])/size,(q[0]-p[0])/size))
-        if math.dist(vectors[0],tuple(-x for x in vectors[1]))>1e-8:
+        if not opposed_supports(fp,edge):
             raise UnsupportedRoofError('terminal cap is not bounded by opposed slope supports')
     def extend(loop):
         result=[]

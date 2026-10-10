@@ -45,6 +45,24 @@ class CapPool:
 
 
 @dataclass(frozen=True)
+class TerminalDomain:
+    opposed_edges: tuple[int, ...]
+    triangular_caps: tuple[int, ...]
+    conflicts: tuple[tuple[int, int], ...]
+    blocked_caps: tuple[int, ...]
+
+
+def opposed_supports(fp, edge):
+    """Actual neighboring inward normals; numerical allowance, no rectification."""
+    normals=[]
+    for support in ((edge-1)%len(fp.vertices),(edge+1)%len(fp.vertices)):
+        a,b=fp.vertices[support],fp.vertices[(support+1)%len(fp.vertices)]
+        size=math.dist(a,b)
+        normals.append((-(b[1]-a[1])/size,(b[0]-a[0])/size))
+    return math.dist(normals[0],tuple(-x for x in normals[1]))<=1e-8
+
+
+@dataclass(frozen=True)
 class RoofIntent:
     region_id: str
     source: str
@@ -212,12 +230,7 @@ def cap_domain(fp, skeleton):
     caps = {f[0]:f[2] for f in loops if len(f)==3 and f[2]>=n}
     conflicts = set(); blocked = set()
     for edge,node in caps.items():
-        vectors=[]
-        for support in ((edge-1)%n,(edge+1)%n):
-            a,b=fp.vertices[support],fp.vertices[(support+1)%n]
-            size=math.dist(a,b)
-            vectors.append((-(b[1]-a[1])/size,(b[0]-a[0])/size))
-        if math.dist(vectors[0],tuple(-x for x in vectors[1]))>1e-8:
+        if not opposed_supports(fp,edge):
             blocked.add(edge)
         for pair in ((node,(edge+1)%n),(edge,node)):
             owners=[f[0] for f in loops if f[0]!=edge and pair in tuple(zip(f,f[1:]+f[:1]))]
@@ -226,6 +239,43 @@ def cap_domain(fp, skeleton):
             elif owners[0] in caps:
                 conflicts.add(tuple(sorted((edge,owners[0]))))
     return tuple(sorted(caps)),tuple(sorted(conflicts)),tuple(sorted(blocked))
+
+
+def terminal_configurations(available, conflicts=(), blocked=(), *, max_work=65536, max_candidates=4096):
+    """All maximal compatible terminal ends, without rectangular axis guesses.
+
+    Bron–Kerbosch enumerates maximal cliques in the compatibility graph, hence
+    maximal independent sets in the disk conflict graph. Maximality is the same
+    componentwise gable-over-hip order as the rectangular intent producer.
+    Budgets invalidate the entire family, never expose a selectable prefix.
+    """
+    if max_work<1 or max_candidates<1:
+        raise ValueError('positive terminal model budgets required')
+    vertices=set(available)-set(blocked)
+    neighbors={v:vertices-{v} for v in vertices}
+    for a,b in conflicts:
+        if a in vertices and b in vertices:
+            neighbors[a].discard(b);neighbors[b].discard(a)
+    result=[];work=0;reason=None
+
+    def visit(selected, pending, excluded):
+        nonlocal work, reason
+        work+=1
+        if work>max_work:
+            reason='terminal model work budget exhausted';return
+        if not pending and not excluded:
+            if selected:
+                result.append(CapConfiguration(tuple(sorted(selected)),()))
+                if len(result)>max_candidates:reason='terminal roof candidate budget exhausted'
+            return
+        pivot=min(pending|excluded,key=lambda v:(-len(pending&neighbors[v]),v))
+        for vertex in sorted(pending-neighbors[pivot]):
+            visit(selected|{vertex},pending&neighbors[vertex],excluded&neighbors[vertex])
+            if reason:return
+            pending.remove(vertex);excluded.add(vertex)
+
+    visit(set(),set(vertices),set())
+    return CapPool(() if reason else tuple(sorted(result,key=lambda c:c.selected)),not bool(reason),work,reason)
 
 
 def subtract_domain(domain, removed):

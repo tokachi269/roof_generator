@@ -76,7 +76,7 @@ class GeneratedRoof:
 
 def prepare_generation(points, settings=GenerationSettings()):
     fp = analyze(points)
-    if settings.roof_type=='hip' or (fp.orthogonal and settings.roof_type=='gable'):
+    if uses_polygon_model(fp,settings.roof_type):
         from .polygon_generation import candidates as polygon_candidates
         pool=polygon_candidates(fp,settings)
         return Generation(fp,settings,pool.interpretation,pool,pool.select(settings.seed))
@@ -94,6 +94,12 @@ def prepare_generation(points, settings=GenerationSettings()):
     from .roof_candidates import roof_candidates
     pool = roof_candidates(fp,interpretation,settings)
     return Generation(fp, settings, interpretation, pool, pool.select(settings.seed))
+
+
+def uses_polygon_model(fp, roof_type):
+    """Input/model dispatch shared with staged inspection, never failure retry."""
+    return roof_type=='hip' or (roof_type=='gable' and
+           (fp.orthogonal or len(fp.vertices)!=4 or bool(fp.reflex)))
 
 
 def generate_roof(points, settings=GenerationSettings()):
