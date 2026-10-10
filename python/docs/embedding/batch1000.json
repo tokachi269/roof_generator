@@ -1,0 +1,334 @@
+{
+  "source_sha": "64e5576a567de81ba5db8cef2b063092b5caab4c",
+  "source_dirty": true,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "profiled": false,
+  "persistent_cache": true,
+  "seed_samples": [
+    0,
+    1,
+    7,
+    42
+  ],
+  "candidate_validation_scope": "canonical families; orthogonal gable embedding precedes seed",
+  "cases": {
+    "orthogonal_U": {
+      "vertices": 8,
+      "candidates": 2,
+      "work": 39,
+      "retained_interpretations": 1,
+      "valid_topologies": 1,
+      "rejected_assignments": 0,
+      "fingerprint": "6fed745941bc78707db05358ed85e888da999392d3f5b8f1d598fa50d05593e6",
+      "seed_choices": [
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0"
+      ],
+      "stages": {
+        "footprint": {
+          "median_ms": 0.32583200004410173,
+          "p95_ms": 0.3875413998230215,
+          "samples_ms": [
+            0.394397999798457,
+            0.14158699991639878,
+            0.32583200004410173
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 8.2886249999774,
+          "p95_ms": 10.056192600154645,
+          "samples_ms": [
+            10.25258900017434,
+            8.2886249999774,
+            7.074629000044297
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.11861399980261922,
+          "p95_ms": 0.13723049999043724,
+          "samples_ms": [
+            0.1392990000113059,
+            0.11861399980261922,
+            0.03267700003561913
+          ]
+        },
+        "total": {
+          "median_ms": 8.55038099984995,
+          "p95_ms": 10.564134599894714,
+          "samples_ms": [
+            10.787884999899688,
+            8.55038099984995,
+            7.434717000023738
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint": 0.2277600001434621,
+        "roof_topology_candidates": 12.698663000037413,
+        "seed_selection": 0.04732099978355109,
+        "total": 12.975508000181435
+      }
+    },
+    "cross": {
+      "vertices": 12,
+      "candidates": 3,
+      "work": 669,
+      "retained_interpretations": 7,
+      "valid_topologies": 7,
+      "rejected_assignments": 0,
+      "fingerprint": "ea2050c3162f5a285cdcb5270531ee8c3a4cb11593e91ad09650674fcfeae1a1",
+      "seed_choices": [
+        "4800b66ac74e39017da399a8dacacf80",
+        "64502d6326def47e4634d5ae14b6be0a",
+        "60d3ab3ec816f003db077e966631fe5b",
+        "c341c3141a37504feadbda54f37890af"
+      ],
+      "stages": {
+        "footprint": {
+          "median_ms": 0.5037779999383929,
+          "p95_ms": 1.436489400020946,
+          "samples_ms": [
+            1.5401240000301186,
+            0.5037779999383929,
+            0.2797159997953713
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 37.98027400011961,
+          "p95_ms": 40.00778770014222,
+          "samples_ms": [
+            33.9717809999911,
+            40.23306700014473,
+            37.98027400011961
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.17988900003729213,
+          "p95_ms": 0.2566275000845053,
+          "samples_ms": [
+            0.17143399986707664,
+            0.2651540000897512,
+            0.17988900003729213
+          ]
+        },
+        "total": {
+          "median_ms": 38.44142200000533,
+          "p95_ms": 40.747494700099196,
+          "samples_ms": [
+            35.684974000105285,
+            41.003725000109625,
+            38.44142200000533
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint": 0.21175599999878614,
+        "roof_topology_candidates": 34.75505200003681,
+        "seed_selection": 0.30536500003108813,
+        "total": 35.27394699995057
+      }
+    },
+    "residential_multi_reflex": {
+      "vertices": 12,
+      "candidates": 2,
+      "work": 47,
+      "retained_interpretations": 1,
+      "valid_topologies": 1,
+      "rejected_assignments": 0,
+      "fingerprint": "099c76d3253742700f37b289486bfa03f98e2539adff2ef170307643c8af7cf2",
+      "seed_choices": [
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f"
+      ],
+      "stages": {
+        "footprint": {
+          "median_ms": 0.21336800000426592,
+          "p95_ms": 0.23698579989286372,
+          "samples_ms": [
+            0.21241300009933184,
+            0.2396099998804857,
+            0.21336800000426592
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 12.12649500007501,
+          "p95_ms": 13.201884300065103,
+          "samples_ms": [
+            11.858050999990155,
+            12.12649500007501,
+            13.321372000064002
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.03917799995178939,
+          "p95_ms": 0.1845531999833838,
+          "samples_ms": [
+            0.2007059999868943,
+            0.03917799995178939,
+            0.03623699990384921
+          ]
+        },
+        "total": {
+          "median_ms": 12.40669899993918,
+          "p95_ms": 13.455892899878563,
+          "samples_ms": [
+            12.272804000076576,
+            12.40669899993918,
+            13.572469999871828
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint": 0.4477410000163218,
+        "roof_topology_candidates": 14.123580000159563,
+        "seed_selection": 0.04083900012119557,
+        "total": 14.61378799990598
+      }
+    },
+    "grid_14": {
+      "vertices": 14,
+      "candidates": 1,
+      "work": 34,
+      "retained_interpretations": 2,
+      "valid_topologies": 2,
+      "rejected_assignments": 0,
+      "fingerprint": "ec55d65cb56e332dea41d76698e67d0a686749143a5c2d5570269346c95d3f32",
+      "seed_choices": [
+        "8af468581221e33011862cc31e1c4100",
+        "8af468581221e33011862cc31e1c4100",
+        "efe7f64d677ec89b44614606278194e8",
+        "8af468581221e33011862cc31e1c4100"
+      ],
+      "stages": {
+        "footprint": {
+          "median_ms": 0.34176100007243804,
+          "p95_ms": 0.44552020003720827,
+          "samples_ms": [
+            0.25765100008356967,
+            0.45704900003329385,
+            0.34176100007243804
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 18.174296000097456,
+          "p95_ms": 19.292024900073557,
+          "samples_ms": [
+            19.4162170000709,
+            18.174296000097456,
+            17.325610000170855
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.0777379998453398,
+          "p95_ms": 0.10535360001995286,
+          "samples_ms": [
+            0.0777379998453398,
+            0.10842200003935432,
+            0.05192799994802044
+          ]
+        },
+        "total": {
+          "median_ms": 18.741244000011648,
+          "p95_ms": 19.65197199990598,
+          "samples_ms": [
+            19.75316399989424,
+            18.741244000011648,
+            17.720723000138605
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint": 0.7692579999911686,
+        "roof_topology_candidates": 22.251408000101947,
+        "seed_selection": 0.13686499983123213,
+        "total": 23.159197000040876
+      }
+    },
+    "grid_20": {
+      "vertices": 20,
+      "candidates": 1,
+      "work": 257,
+      "retained_interpretations": 8,
+      "valid_topologies": 8,
+      "rejected_assignments": 0,
+      "fingerprint": "ce362eeb6eab4b12b53cf89a87f2b866cfe7739a3344ce7e1636b58abe8edcc9",
+      "seed_choices": [
+        "5a6ff7004beab1430844e64f84fc3c27",
+        "f9dfa77f4816cf8dfb80da56731bf67a",
+        "ba8de162a20070398ba9a2eb775ab16d",
+        "ba8de162a20070398ba9a2eb775ab16d"
+      ],
+      "stages": {
+        "footprint": {
+          "median_ms": 0.44892000005347654,
+          "p95_ms": 0.5731946999731008,
+          "samples_ms": [
+            0.5870029999641702,
+            0.44892000005347654,
+            0.4042629998366465
+          ]
+        },
+        "roof_topology_candidates": {
+          "median_ms": 112.4937750000754,
+          "p95_ms": 118.77599820006708,
+          "samples_ms": [
+            119.47402300006615,
+            97.34088699997301,
+            112.4937750000754
+          ]
+        },
+        "seed_selection": {
+          "median_ms": 0.15226400000756257,
+          "p95_ms": 0.2642491999495178,
+          "samples_ms": [
+            0.12951099984093162,
+            0.15226400000756257,
+            0.27669199994306837
+          ]
+        },
+        "total": {
+          "median_ms": 113.1762830000298,
+          "p95_ms": 119.49087469986353,
+          "samples_ms": [
+            120.19249599984505,
+            97.9441089998545,
+            113.1762830000298
+          ]
+        }
+      },
+      "first_stages_ms": {
+        "footprint": 0.5622599999242084,
+        "roof_topology_candidates": 92.84041799992337,
+        "seed_selection": 0.11952699992434646,
+        "total": 93.52396700001009
+      }
+    },
+    "grid_40": {
+      "unsupported": true,
+      "reason": "unresolved polygon roof event: Can't determine bisector direction for opposite edges.",
+      "first_total_ms": 20.324788999914745
+    }
+  },
+  "member_layout_cache_after_cases": {
+    "hits": 0,
+    "misses": 0,
+    "maxsize": 64,
+    "currsize": 0
+  },
+  "mixed_buildings": {
+    "count": 1000,
+    "total_ms": 37710.27498000012,
+    "geometry_problem_supported": 834,
+    "unsupported": 166,
+    "final_mesh_generated": true
+  },
+  "rectangle_mesh_buildings": {
+    "count": 1000,
+    "total_ms": 3660.3612359999715
+  }
+}

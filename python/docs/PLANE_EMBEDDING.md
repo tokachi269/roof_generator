@@ -187,3 +187,11 @@ goal; fixed Graph construction and projection/intersection validation now domina
 Candidate counts and validity checks were preserved. Non-orthogonal compound
 decomposition, unresolved polygon events and incomplete model searches are not
 solved by this numerical change.
+
+The [unprofiled 1000-building batch](embedding/batch1000.json) cycles U, Cross,
+Residential and Grid14/20/40: 37.710 seconds including all candidate proofs and
+seed decisions, with 834 valid meshes and 166 unchanged Grid40 rejections. This
+is six repeated fixtures, not unknown-building coverage, and was not rerun as a
+1000-building nonlinear baseline. Separately, 1000 rectangle meshes with varying
+seeds take 3.660 seconds. Large compound batches still need further work; the
+solver reduction alone does not make city-scale generation instantaneous.
