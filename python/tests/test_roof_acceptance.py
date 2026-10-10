@@ -40,6 +40,7 @@ class RoofAcceptanceTests(unittest.TestCase):
             "terminating_ridge",
             "valley_join",
             "residential_multi_reflex",
+            "oblique_L",
         }
         topology_supported = mesh_supported
         for row in json.loads(FIXTURES.read_text()):

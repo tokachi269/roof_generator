@@ -17,13 +17,13 @@ from roof_generator.core.errors import UnsupportedRoofError
 from inspect_architectural_parts import fixture
 from roof_diagrams import svg
 from roof_generator.core.polygon_generation import candidates as polygon_candidates, PolygonCandidates
-from roof_generator.core.generation import GenerationSettings
+from roof_generator.core.generation import GenerationSettings, uses_polygon_model
 
 
 def inspect(record, seed=0, roof_type="gable"):
     fp = analyze(record["footprint"])
-    if fp.orthogonal and roof_type=='gable':
-        pool=polygon_candidates(fp,GenerationSettings(seed=seed))
+    if uses_polygon_model(fp,roof_type):
+        pool=polygon_candidates(fp,GenerationSettings(roof_type,seed=seed))
         output={'input':record,'seed':seed,'roof_type':roof_type,
                 'architecture':pool.interpretation.inspect(),'ranking':pool.inspect_ranking(),
                 'valid_candidates':[{'id':c.id,'architectural_parts':c.architecture.inspect(),

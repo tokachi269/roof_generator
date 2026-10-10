@@ -22,7 +22,7 @@ from roof_generator.core.errors import UnsupportedRoofError
 from roof_generator.core.solve import embed
 from roof_generator.core.mesh import RoofMesh
 from roof_generator.core.roof_candidates import roof_candidates,RoofCandidates
-from roof_generator.core.generation import GenerationSettings
+from roof_generator.core.generation import GenerationSettings, uses_polygon_model
 from roof_generator.core.architecture_models import ArchitecturalPartGraph
 from roof_generator.core.cells import decompose
 from roof_generator.core.polygon_generation import candidates as polygon_candidates, PolygonCandidates
@@ -49,7 +49,7 @@ def classify(pool):
     """
     if isinstance(pool,PolygonCandidates):
         return [{'code':'polygon.'+r.stage,'category':'D' if r.stage=='embedding' else 'unresolved_C_D_F',
-                 'owner':'geometry' if r.stage=='embedding' else 'topology',
+                 'owner':'geometry' if r.stage in ('embedding','geometry_problem') else r.stage,
                  'gable_edges':r.gable_edges,'evidence':r.reason,
                  'authority_evidence':'resolved continuous polygon model; no Cell junction inference'} for r in pool.rejected]
     good = {partition_id(c.architecture.decomposition) for c in pool.valid
@@ -129,16 +129,22 @@ def inspect(record):
         t = now
 
     try:
+        settings=GenerationSettings(record.get('roof_type','gable'))
+        row['roof_type']=settings.roof_type
         fp = analyze(record["footprint"])
         completed("footprint")
         owner = "partition"
-        if fp.orthogonal:
-            decompose(fp)
+        if uses_polygon_model(fp,settings.roof_type):
+            row['partition_required']=fp.orthogonal and settings.roof_type=='gable'
+            if row['partition_required']:decompose(fp)
             completed('partition')
-            row['partition_count']=1
-            row['partition_scope']='classical minimum guide; polygon models own topology'
+            row['partition_count']=1 if row['partition_required'] else 0
+            row['partition_scope']=('classical minimum guide; polygon models own topology' if row['partition_required']
+                                    else 'not required; continuous polygon model, no Cell decomposition')
             owner='topology'
-            pool=polygon_candidates(fp,GenerationSettings())
+            pool=polygon_candidates(fp,settings)
+            if pool.interpretation.terminal_domain is not None:
+                row['terminal_domain']=pool.interpretation.inspect()['terminal_domain']
             row['success']['architecture']=bool(pool.interpretation.models)
             row['interpretation_count']=len(pool.interpretation.models)
             row['architecturally_retained_candidate_count']=len(pool.interpretation.models)
@@ -154,7 +160,8 @@ def inspect(record):
             if pool.constructible:
                 completed('RoofGraph');completed('GeometryProblem')
             if not pool.complete or not pool.valid:
-                if pool.constructible and pool.complete:owner='solve'
+                if pool.complete:
+                    owner='solve' if pool.constructible else ('topology' if pool.interpretation.models else 'architecture')
                 raise UnsupportedRoofError(pool.reason or 'no valid polygon roof')
             selected=pool.select(0);row['selected_id']=selected.id
             owner='solve';vertices=pool.mesh(selected).vertices
@@ -172,12 +179,12 @@ def inspect(record):
             t=time.perf_counter()
         row["partition_count"] = len(search.candidates)
         owner = "architecture"
-        interpretation = recommend(search, Policy(), defer_ranking=True)
+        interpretation = recommend(search, None if settings.roof_type=='flat' else Policy(), defer_ranking=True)
         if interpretation.retained:completed("architecture")
         row["interpretation_count"] = len(interpretation.retained)
         row["architecturally_retained_candidate_count"] = len(interpretation.retained)
         owner = "topology"
-        pool = roof_candidates(fp,interpretation,GenerationSettings())
+        pool = roof_candidates(fp,interpretation,settings)
         if not interpretation.retained and isinstance(pool,RoofCandidates) and pool.regions.architectural:
             row['success']['architecture']=True
         row["issues"] = classify(pool)

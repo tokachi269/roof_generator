@@ -38,7 +38,7 @@ class CoverageAuditTests(unittest.TestCase):
             len({round(b - a, 5) for a, b in zip(intervals, intervals[1:])}), 1
         )
 
-    def test_valid_oblique_input_is_partition_failure_not_invalid_footprint(self):
+    def test_valid_oblique_uses_polygon_model_without_rectangle_partition(self):
         row = inspect(
             {
                 "name": "probe",
@@ -46,11 +46,37 @@ class CoverageAuditTests(unittest.TestCase):
             }
         )
         self.assertTrue(row["success"]["footprint"])
-        self.assertFalse(row["success"]["partition"])
-        self.assertEqual(row["failure_owner"], "partition")
-        self.assertEqual(row["failure"]["code"], "unsupported_decomposition")
-        self.assertEqual(row["failure"]["categories"], ["F"])
+        self.assertTrue(row["success"]["partition"])
+        self.assertFalse(row['partition_required'])
+        self.assertEqual(row['partition_count'],0)
+        self.assertTrue(row['success']['mesh'])
+        self.assertIsNone(row['failure_owner'])
         self.assertFalse(row["Blender_measured"])
+
+    def test_oblique_without_opposed_caps_is_architecture_failure(self):
+        row=inspect({'name':'nonparallel','footprint':[(0,0),(12,0),(13.2,4),(5,4.7),(6.8,10),(2,9.3)]})
+        self.assertTrue(row['success']['footprint'])
+        self.assertTrue(row['success']['partition'])
+        self.assertFalse(row['partition_required'])
+        self.assertEqual(row['terminal_domain']['opposed_edges'],())
+        self.assertEqual(row["failure_owner"], "architecture")
+        self.assertEqual(row["failure"]["code"], "no_valid_candidate")
+        self.assertFalse(row["Blender_measured"])
+
+    def test_angle_inputs_are_frozen_simple_and_roof_type_is_observed(self):
+        from python.generate_angle_corpus import corpus
+        path=Path(__file__).parents[1]/'docs/canonical/angle_inputs_v1.json.gz'
+        stored=json.loads(gzip.decompress(path.read_bytes()))
+        self.assertEqual(stored,json.loads(json.dumps(corpus())))
+        for category,records in stored['corpora'].items():
+            for record in records:
+                polygon=Polygon(record['footprint'])
+                self.assertTrue(polygon.is_valid and polygon.area>0,(category,record['name']))
+        record=stored['corpora']['oblique_acceptance_hip'][0]
+        result=inspect(record)
+        self.assertEqual(result['roof_type'],'hip')
+        self.assertTrue(result['success']['mesh'])
+        self.assertFalse(result['partition_required'])
 
     def test_graph_is_not_final_mesh_support(self):
         from python.inspect_architectural_parts import fixture
