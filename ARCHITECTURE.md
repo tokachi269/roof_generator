@@ -5,6 +5,8 @@ The canonical pipeline is:
 ```text
 Footprint
   -> orthogonal gable: polygon/region guides -> resolved PolygonRoof end models
+  -> arbitrary-angle hip: all-eave PolygonRoof
+  -> nonorthogonal compound gable: opposed-support terminal PolygonRoof models
   -> other supported types: certified decomposition -> architectural interpretation
   -> complete RoofGraph and GeometryProblem candidates
   -> validated fixed embedding
@@ -24,6 +26,14 @@ roof supports or instructions to retain their shared boundaries. A single
 global wavefront supplies incidence. Terminal gable disk replacements preserve
 shared events and all other facets. An incomplete proposal/end family forbids
 seed selection. There is no retry through the old rectangle grammar.
+
+Hip requests declare an all-eave PolygonRoof for simple polygons at arbitrary
+angles. Other nonorthogonal compound gable requests use the local opposed-support
+terminal-cap domain, with no rectangular decomposition. All maximal compatible
+end sets are retained, fully embedded and validated, then seeded. Inspection
+separates opposed boundary supports, triangular caps, blocked caps and disk
+conflicts. Single convex-quad gable/shed/flat retains its existing primitive
+contract, including nonparallel eaves. These are input/model domains, not fallback.
 
 `polygon_generation.py` owns the model pool; `roof_intent.py` and
 `roof_preference.py` own end constraints and soft axis preference.
@@ -55,7 +65,9 @@ equivariance, including perfectly symmetric shapes. Different random namespaces
 do not consume a common PRNG stream.
 
 Geometry solves fixed incidence; it cannot pick topology, roles or candidate
-axes. Analytic rectangle embedding handles gable/hip/shed/flat. When all face
+axes. Analytic rectangle embedding handles gable/shed/flat. Hip and other fully
+specified pitched graphs use declared planes, including polygon junctions with
+no preassigned height. When all face
 eave/pitch planes are declared, fixed topology uses constrained linear embedding,
 including fixed XY/Z anchors, ridge directions and minimum XY displacement.
 Problems without a complete plane contract retain the Ren covariance nonlinear
@@ -64,6 +76,10 @@ gable has geometric directions
 and equal-pitch boundary ports; nonparallel eaves can yield a sloping ridge.
 No optimizer changes incidence or retries another architectural candidate. Mesh validation checks
 fixed boundary, projection, shared vertices, positive faces and planarity.
+Bounded float32 direction noise never rectifies an oblique footprint: terminal
+ports use the actual equal-distance locus, ridge directions use incident planes,
+and nonparallel eaves do not receive a constant-width height anchor. See
+[arbitrary-angle model contract](python/docs/ARBITRARY_ANGLE_ROOFS.md).
 
 Runtime core and Blender adapters require no external Python packages. Independent
 development oracles may use NumPy/Shapely, declared separately from runtime.

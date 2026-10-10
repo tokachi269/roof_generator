@@ -1,6 +1,10 @@
-# Current orthogonal gable route
-The 1.4.2 addon uses a continuous polygon roof model. Rectangle decompositions
+# Current polygon roof route
+The 1.5.0 addon uses a continuous polygon roof model. Rectangle decompositions
 guide exterior end choices; they do not define independently completed roofs.
+Arbitrary-angle hip uses all-eave intent; nonorthogonal compounds can use the
+opposed-support terminal-cap domain without rectangular decomposition. Existing
+single convex-quad gable/shed/flat retains its primitive contract.
+See [arbitrary-angle contract and proofs](docs/ARBITRARY_ANGLE_ROOFS.md).
 Fully declared face planes use a fixed-topology linear embedding; generic
 partially specified plane problems retain the covariance optimizer. See
 [embedding contract and performance](docs/PLANE_EMBEDDING.md).
@@ -12,6 +16,9 @@ and limits. The older restricted-model probes below remain comparison tools.
 ```bash
 python python/benchmark_embedding.py --samples 7 --profile --output python/out/embedding.json.gz
 python python/verify_plane_witnesses.py --output python/out/plane-witnesses.json
+python python/generate_angle_corpus.py --output python/out/angle-inputs.json.gz
+python python/audit_coverage.py --corpus python/docs/canonical/angle_inputs_v1.json.gz --seconds 15 --output python/out/angles.json --details python/out/angles.jsonl.gz
+python python/inspect_roof.py --fixture oblique_L --roof-type gable --output python/out/oblique.json
 ```
 
 The benchmark keeps all candidate models and seed IDs and measures nonlinear or
@@ -54,7 +61,7 @@ only `py_straight_skeleton==0.1.0` with `--no-deps` into that directory.
 python -m pip install -r python/requirements.txt
 python -m unittest discover -s python/tests
 python python/build_addon.py
-python python/build_addon.py --check --output packages/roof_generator-1.4.2.zip
+python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
 python python/inspect_rectangular_partition.py --help
 python python/inspect_architectural_parts.py --help
 python python/inspect_roof.py --fixture cross --seed 7 --output python/out/cross.json
@@ -64,8 +71,8 @@ python python/benchmark_roof_mesh.py --samples 3 --buildings 24 --output python/
 python python/inspect_authority.py --inputs python/tests/fixtures/authority_inputs_v1.json --output python/out/authority/inspection.json
 python python/authority_diagrams.py --before python/out/authority/inspection-before.json --after python/out/authority/inspection-after.json --output-dir python/out/authority/diagrams
 python python/roof_gallery.py --before python/out/authority/blender-end-state-before --after python/out/authority/blender-end-state-final --output-dir python/docs/authority/end-state/gallery
-blender -b --factory-startup --python-exit-code 1 --python python/blender_authority_acceptance.py -- --zip packages/roof_generator-1.4.2.zip --inputs python/tests/fixtures/authority_inputs_v1.json --output-dir python/out/authority/blender
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.4.2.zip --output-dir python/out/addon
+blender -b --factory-startup --python-exit-code 1 --python python/blender_authority_acceptance.py -- --zip packages/roof_generator-1.5.0.zip --inputs python/tests/fixtures/authority_inputs_v1.json --output-dir python/out/authority/blender
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.5.0.zip --output-dir python/out/addon
 ```
 
 `inspect_roof.py` reports all validated alternatives, rejected assignments,
@@ -121,7 +128,7 @@ Staged fixed-corpus coverage and independent Blender conversion:
 ```bash
 python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --output python/out/coverage.json --details python/out/coverage.jsonl.gz
 blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-coverage.json
-blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --zip packages/roof_generator-1.4.2.zip --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-installed-coverage.json
+blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --zip packages/roof_generator-1.5.0.zip --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-installed-coverage.json
 python python/benchmark_roof_mesh.py --output python/out/core-budget.json
 python python/profile_partitions.py --output python/out/partition-profile.json
 ```
@@ -136,5 +143,5 @@ See [current results](docs/END_TO_END_EVALUATION.md),
 Installed native-base/live-roof acceptance:
 
 ```powershell
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.4.2.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.5.0.zip
 ```

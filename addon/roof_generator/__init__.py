@@ -4,7 +4,7 @@
 bl_info = {
     "name": "Roof Generator",
     "author": "tokachi269",
-    "version": (1, 4, 2),
+    "version": (1, 5, 0),
     "blender": (4, 3, 0),
     "location": "View3D > Sidebar > Roof",
     "description": "Convert a planar footprint to an editable connected roof mesh",

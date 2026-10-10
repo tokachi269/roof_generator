@@ -20,13 +20,13 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: python -m pip install -r python/requirements.txt
       - run: python -m unittest discover -s python/tests
-      - run: python python/build_addon.py --check --output packages/roof_generator-1.4.2.zip
+      - run: python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
       - run: python python/build_addon.py
       - uses: actions/upload-artifact@v4
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
         with:
           name: roof-generator-addon
-          path: dist/roof_generator-1.4.2.zip
+          path: dist/roof_generator-1.5.0.zip
   installed-blender-addon:
     runs-on: ubuntu-latest
     steps:
@@ -41,17 +41,17 @@ jobs:
           curl -fL https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz -o /tmp/blender.tar.xz
           mkdir -p /tmp/roof-blender
           tar -xJf /tmp/blender.tar.xz -C /tmp/roof-blender --strip-components=1
-      - run: python python/build_addon.py --check --output packages/roof_generator-1.4.2.zip
+      - run: python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
       - name: Install ZIP, generate canonical meshes, unwrap and validate
         env:
           BLENDER_USER_SCRIPTS: ${{ github.workspace }}/python/out/ci-addon-scripts
-        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.4.2.zip --output-dir python/out/addon
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.5.0.zip --output-dir python/out/addon
       - name: Generate source meshes and exercise footprint CLI
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --output-dir python/out/source-smoke
       - name: Verify native bases and live canonical roofs from installed ZIP
         env:
           BLENDER_USER_SCRIPTS: ${{ github.workspace }}/python/out/ci-base-scripts
-        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.4.2.zip
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.5.0.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:

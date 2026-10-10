@@ -15,8 +15,10 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 | 穴なしsimple直交polygon（concaveを含む） | 一体のflat屋根face |
 | 対応するsimple直交footprint、ずれた帯形状、branch network | solve済みの一体gable mesh。hip面が残る場合があります |
 | 凸の平行四辺形・台形・一般四辺形 | gable・shed・flat mesh。gable方向はseedで選択 |
+| 対応する任意角度のsimple polygon（concaveを含む） | 全外周をeaveとするhip mesh |
+| 対応する非直交compound footprint。隣接軒supportが平行・逆向きのterminal capを持つもの | 一体のgable/hip混合mesh。極大な互換gable端の候補集合をseedで選択 |
 
-未解決のpolygon event、未対応のgable端、複合hip/shed、非直交concaveの分割は未対応です。
+未解決のpolygon event、非terminal・partial・非平行supportのcompound gable端、複合shedは未対応です。
 穴、接触・自己交差した境界、非平面入力、探索未完了も明示的に失敗します。
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
@@ -27,10 +29,13 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 全faceのsupport planeとpitchが明示された問題は、topologyを固定して線形solveします。
 planeが未指定の問題では汎用covariance optimizerを使います。
 [embeddingの性能と検証](python/docs/PLANE_EMBEDDING.md)を参照してください。
+[任意角度の対応範囲と実測](python/docs/ARBITRARY_ANGLE_ROOFS.md)ではhip・terminal gable・単一四辺形を別corpusで検証しています。
+terminalモデルには、隣接する軒supportの平行・逆向き関係と三角capのincidenceが必要です。
+平行な辺の組すべてをgableと解釈する方式ではありません。
 
 ## インストールと使い方
 
-1. [`roof_generator-1.4.2.zip`](packages/roof_generator-1.4.2.zip) を **Download raw file** で保存します。
+1. [`roof_generator-1.5.0.zip`](packages/roof_generator-1.5.0.zip) を **Download raw file** で保存します。
 2. **Edit → Preferences → Add-ons → Install from Disk**でインストールし、**Roof Generator**を有効にします。
 3. Object Modeで、面を張った平面footprint meshを選択します。
 4. サイドバー（**N**）→ **Roof**で屋根種別、勾配、軒高offset、seedを設定し、**Generate roofs**を押します。
@@ -62,7 +67,7 @@ Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると�
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.2.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.5.0.zip
 ```
 
 `addon/roof_generator/core/`が生成pipelineを所有します。Blender adapterは

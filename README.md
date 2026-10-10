@@ -16,9 +16,11 @@ candidates; unsupported topology produces an explicit error.
 | Hole-free simple orthogonal polygon, including concave outlines | One unified flat roof face |
 | Supported simple orthogonal footprints, including offset bands and branch networks | One solved continuous gable roof; hip facets can remain |
 | Convex parallelogram, trapezoid or general quadrilateral | Gable, shed or flat mesh; gable directions vary by seed |
+| Supported simple polygons at arbitrary angles, including concave outlines | Hip mesh with all exterior edges as eaves |
+| Supported nonorthogonal compound footprints with opposed-support terminal caps | One mixed gable/hip mesh; maximal compatible gable-end sets are seeded |
 
-Unresolved polygon events, unsupported gable ends, compound hip/shed roofs and
-non-orthogonal concave decomposition are unsupported. Holes, touching/self-intersecting boundaries,
+Unresolved polygon events, nonterminal/partial or nonparallel-support compound
+gable ends and compound shed roofs are unsupported. Holes, touching/self-intersecting boundaries,
 nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
 intentional perimeter boundary; walls and thickness are separate modeling tasks.
 
@@ -30,10 +32,14 @@ events, finite gable-end model coverage and incomplete searches remain limits.
 Fully declared face planes use a linear fixed-topology embedding; the generic
 covariance optimizer remains for problems with unspecified planes. See
 [embedding performance and proofs](python/docs/PLANE_EMBEDDING.md).
+See [arbitrary-angle scope and measured outcomes](python/docs/ARBITRARY_ANGLE_ROOFS.md)
+for separate hip, terminal-gable and single-quadrilateral corpora. The terminal
+model requires opposed neighboring eave supports and triangular cap incidence;
+it does not infer a gable from every parallel edge pair.
 
 ## Installation and use
 
-1. Download [`roof_generator-1.4.2.zip`](packages/roof_generator-1.4.2.zip) with **Download raw file**.
+1. Download [`roof_generator-1.5.0.zip`](packages/roof_generator-1.5.0.zip) with **Download raw file**.
 2. Use **Edit → Preferences → Add-ons → Install from Disk**, then enable **Roof Generator**.
 3. Select filled planar footprint meshes in Object Mode.
 4. Open the sidebar (**N**) → **Roof**, set type, pitch, eave offset and seed, then **Generate roofs**.
@@ -64,7 +70,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests
 python python/build_addon.py
-blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.4.2.zip
+blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip dist/roof_generator-1.5.0.zip
 ```
 
 `addon/roof_generator/core/` owns the pipeline. `addon/roof_generator/` contains
