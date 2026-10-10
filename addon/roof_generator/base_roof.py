@@ -129,8 +129,8 @@ def settings(modifier):
 
 
 def key(values):
-    # Saved envelopes produced by the removed backend are not current proofs.
-    return ("canonical-polygon-v1",) + tuple(values[name] for name in KEY_INPUTS)
+    # A cached proof must match the current model scope and candidate identity.
+    return ("canonical-polygon-v2",) + tuple(values[name] for name in KEY_INPUTS)
 
 
 def regenerate(obj):

@@ -182,6 +182,12 @@ def main():
             fixtures.append((record["name"], record["footprint"], "gable"))
         if record['name']=='residential_multi_reflex':
             fixtures.append((record['name'],record['footprint'],'gable'))
+        if record['name']=='oblique_L':
+            fixtures.extend((('oblique_compound_'+kind,record['footprint'],kind) for kind in ('gable','hip')))
+        if record['name']=='general_convex_quad':
+            fixtures.append(('general_convex_quad_hip',record['footprint'],'hip'))
+    fixtures.append(('angled_branch',((0,0),(18,0),(19.6,4),(12.6,4),
+                                     (16.2,13),(12.2,13),(8.6,4),(1.6,4)),'gable'))
     for i, (name, points, kind) in enumerate(fixtures):
         src = source(name, points)
         # Exhibit spacing must accommodate the 32-unit branch network; source
@@ -238,7 +244,7 @@ def main():
     materials = set(bpy.data.materials)
     unsupported = source(
         "unsupported_compound",
-        ((0,0),(12,0),(12.8,4),(4.8,4),(6,10),(2,10)),
+        ((0,0),(12,0),(13.2,4),(5,4.7),(6.8,10),(2,9.3)),
     )
     before = set(bpy.data.objects)
     materials = set(bpy.data.materials)

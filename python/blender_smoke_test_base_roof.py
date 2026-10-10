@@ -141,7 +141,7 @@ bpy.data.meshes.remove(data)
 bpy.data.node_groups.remove(group)
 cache = input_values(modifier)["Roof Mesh"]
 legacy_data = cache.data
-cache["building_base_key"] = "legacy backend cache"
+cache["building_base_key"] = json.dumps(("canonical-polygon-v1",)+base_roof.key(base_roof.settings(modifier))[1:])
 base_roof.sync(obj)
 assert cache.data != legacy_data, "legacy cache was accepted as current roof proof"
 cached_data = cache.data
