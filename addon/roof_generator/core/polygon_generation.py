@@ -142,7 +142,7 @@ def candidates(fp, settings):
         stage='topology'
         try:
             guide=min(aliases,key=lambda g:(g.proposal.id,g.proposal.source,g.axes))
-            intent=RoofIntent.from_caps(member_layout(guide.proposal),tuple(a[0] for a in guide.axes),ends)
+            intent=RoofIntent.from_caps(layouts[guide.proposal.id],tuple(a[0] for a in guide.axes),ends)
             graph,_=topology(model,incidence);intent.verify(graph)
             stage='geometry_problem';geometry=problem(graph,settings.pitch,settings.eave_height/fp.frame.scale)
             boundary=tuple(sorted(tuple(sorted((outline[e],outline[(e+1)%len(outline)]))) for e in ends))

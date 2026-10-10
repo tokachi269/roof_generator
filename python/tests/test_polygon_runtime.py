@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'addon'))
 from roof_generator.core.footprint import analyze
@@ -21,6 +22,16 @@ from roof_generator.vendor.straight_skeleton.vector_math import Vector2
 
 
 class PolygonRuntime(unittest.TestCase):
+    def test_models_reuse_the_same_immutable_layout_as_end_recommendations(self):
+        from roof_generator.core import polygon_generation as producer
+        from roof_generator.core.generation import GenerationSettings
+        from python.inspect_architectural_parts import fixture
+
+        with patch.object(producer, 'member_layout', wraps=producer.member_layout) as layouts:
+            pool = producer.candidates(analyze(fixture('grid_20')['footprint']), GenerationSettings())
+        self.assertEqual(len(pool.valid), 8)
+        self.assertEqual(layouts.call_count, len(pool.interpretation.guides))
+
     def test_invalid_foreign_face_cycle_is_bounded_without_geometry_repair(self):
         points=((0,0),(1,0),(1,1),(2,1),(1.5,2))
         nodes=[SimpleNamespace(_skn_id=i,position=Vector2(*p),time=0 if i<2 else 1)
