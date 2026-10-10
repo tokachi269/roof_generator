@@ -330,6 +330,10 @@ def embed(graph, geometry):
         )
         pitch = 2 * (max(heights.values()) - eave) / width
         return rectangle_vertices(graph, pitch, eave)
+    from .constraints import has_fixed_planes
+    if has_fixed_planes(geometry):
+        from .plane_embedding import embed_planes
+        return embed_planes(geometry)
     from .optimization import optimize
 
     embedding = optimize(geometry)
