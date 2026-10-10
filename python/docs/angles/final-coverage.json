@@ -1,0 +1,264 @@
+{
+  "source_sha": "93d8ea6c4f03f66391149fdcfc50782f865550b3",
+  "source_dirty": true,
+  "corpus_sha256": "fa07fec9e40fe08fd88340b983e76724d6e3195d5e827913b3157e4a0d83257d",
+  "generator_version": 1,
+  "seed": 982143,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "convex_quad_gable": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 48,
+        "architecture": 48,
+        "RoofGraph": 48,
+        "GeometryProblem": 48,
+        "solve": 48,
+        "mesh": 48,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 1555.0387719995342,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 48,
+        "constructible_topology_candidate_count": 96,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "convex_quad_hip": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 48,
+        "architecture": 48,
+        "RoofGraph": 48,
+        "GeometryProblem": 48,
+        "solve": 48,
+        "mesh": 48,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 740.3970880332054,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 48,
+        "constructible_topology_candidate_count": 48,
+        "architectural_preferred_assignment_count": 48,
+        "architectural_assignment_count": 48
+      }
+    },
+    "mixed_angle_gable": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 43,
+        "architecture": 43,
+        "RoofGraph": 43,
+        "GeometryProblem": 43,
+        "solve": 43,
+        "mesh": 43,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 916.0695590035175,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 43,
+        "constructible_topology_candidate_count": 43,
+        "architectural_preferred_assignment_count": 43,
+        "architectural_assignment_count": 43
+      }
+    },
+    "mixed_angle_hip": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 43,
+        "architecture": 43,
+        "RoofGraph": 43,
+        "GeometryProblem": 43,
+        "solve": 43,
+        "mesh": 43,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 650.2999790245667,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 43,
+        "constructible_topology_candidate_count": 43,
+        "architectural_preferred_assignment_count": 43,
+        "architectural_assignment_count": 43
+      }
+    },
+    "general_simple_gable": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 40,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "architecture": 40
+      },
+      "issue_building_incidence_nonexclusive": {
+        "polygon.architecture": 40
+      },
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "no opposed-support terminal gable cap": 40
+      },
+      "total_ms": 257.9360699673998,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "general_simple_hip": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 40,
+        "architecture": 40,
+        "RoofGraph": 40,
+        "GeometryProblem": 40,
+        "solve": 40,
+        "mesh": 40,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 892.1238330076449,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 40,
+        "constructible_topology_candidate_count": 40,
+        "architectural_preferred_assignment_count": 40,
+        "architectural_assignment_count": 40
+      }
+    },
+    "oblique_acceptance_gable": {
+      "inputs": 1,
+      "success": {
+        "footprint": 1,
+        "partition": 1,
+        "architecture": 1,
+        "RoofGraph": 1,
+        "GeometryProblem": 1,
+        "solve": 1,
+        "mesh": 1,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 15.639243996702135,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 1,
+        "constructible_topology_candidate_count": 1,
+        "architectural_preferred_assignment_count": 1,
+        "architectural_assignment_count": 1
+      }
+    },
+    "oblique_acceptance_hip": {
+      "inputs": 1,
+      "success": {
+        "footprint": 1,
+        "partition": 1,
+        "architecture": 1,
+        "RoofGraph": 1,
+        "GeometryProblem": 1,
+        "solve": 1,
+        "mesh": 1,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 9.69350199738983,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 1,
+        "constructible_topology_candidate_count": 1,
+        "architectural_preferred_assignment_count": 1,
+        "architectural_assignment_count": 1
+      }
+    },
+    "two_direction_gable": {
+      "inputs": 64,
+      "success": {
+        "footprint": 64,
+        "partition": 64,
+        "architecture": 63,
+        "RoofGraph": 63,
+        "GeometryProblem": 63,
+        "solve": 63,
+        "mesh": 63,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 1
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "unresolved polygon roof event: Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 1
+      },
+      "total_ms": 1088.5724580075475,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 63,
+        "constructible_topology_candidate_count": 63,
+        "architectural_preferred_assignment_count": 63,
+        "architectural_assignment_count": 63
+      }
+    },
+    "two_direction_hip": {
+      "inputs": 64,
+      "success": {
+        "footprint": 64,
+        "partition": 64,
+        "architecture": 63,
+        "RoofGraph": 63,
+        "GeometryProblem": 63,
+        "solve": 63,
+        "mesh": 63,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 1
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "unresolved polygon roof event: Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 1
+      },
+      "total_ms": 2048.046185031126,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 63,
+        "constructible_topology_candidate_count": 63,
+        "architectural_preferred_assignment_count": 63,
+        "architectural_assignment_count": 63
+      }
+    }
+  }
+}

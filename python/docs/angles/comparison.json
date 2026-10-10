@@ -1,0 +1,95 @@
+{
+  "baseline_sha": "21bd06ab39fcb119583ba63e9c30bec8fab4c7f6",
+  "final_sha": "16e8050be330aef2e2c38747a72b57d657636d6c",
+  "orthogonal_cases": {
+    "orthogonal_L": {
+      "candidates": 1,
+      "seed_ids": [
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930"
+      ],
+      "before_median_ms": 13.307681001606397,
+      "after_median_ms": 34.09324400126934
+    },
+    "orthogonal_T": {
+      "candidates": 1,
+      "seed_ids": [
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d"
+      ],
+      "before_median_ms": 34.65671800222481,
+      "after_median_ms": 34.74593000282766
+    },
+    "orthogonal_U": {
+      "candidates": 1,
+      "seed_ids": [
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0"
+      ],
+      "before_median_ms": 27.07800699863583,
+      "after_median_ms": 88.4052920009708
+    },
+    "cross": {
+      "candidates": 7,
+      "seed_ids": [
+        "4800b66ac74e39017da399a8dacacf80",
+        "64502d6326def47e4634d5ae14b6be0a",
+        "60d3ab3ec816f003db077e966631fe5b",
+        "c341c3141a37504feadbda54f37890af"
+      ],
+      "before_median_ms": 73.7054769997485,
+      "after_median_ms": 214.8587579940795
+    },
+    "residential_multi_reflex": {
+      "candidates": 1,
+      "seed_ids": [
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f"
+      ],
+      "before_median_ms": 32.77032500045607,
+      "after_median_ms": 45.06317400227999
+    },
+    "grid_14": {
+      "candidates": 2,
+      "seed_ids": [
+        "8af468581221e33011862cc31e1c4100",
+        "8af468581221e33011862cc31e1c4100",
+        "efe7f64d677ec89b44614606278194e8",
+        "8af468581221e33011862cc31e1c4100"
+      ],
+      "before_median_ms": 48.43796099885367,
+      "after_median_ms": 89.35582599951886
+    },
+    "grid_20": {
+      "candidates": 8,
+      "seed_ids": [
+        "5a6ff7004beab1430844e64f84fc3c27",
+        "f9dfa77f4816cf8dfb80da56731bf67a",
+        "ba8de162a20070398ba9a2eb775ab16d",
+        "ba8de162a20070398ba9a2eb775ab16d"
+      ],
+      "before_median_ms": 312.1351820009295,
+      "after_median_ms": 202.1276859959471
+    },
+    "grid_40": {
+      "unsupported": "unresolved polygon roof event: Can't determine bisector direction for opposite edges."
+    }
+  },
+  "coordinate_max": 0.0,
+  "all_candidate_contracts_equal": true,
+  "final_angle_audit_matches_pre_rounding_audit": {
+    "inputs": 392,
+    "same_stages": true,
+    "same_selected_ids": true,
+    "same_valid_candidate_counts": true,
+    "same_terminal_domains": true
+  }
+}

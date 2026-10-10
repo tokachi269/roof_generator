@@ -1,0 +1,1123 @@
+{
+  "input": {
+    "name": "oblique_L",
+    "footprint": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        13,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "roof_type": "gable",
+    "pitch": 0.5
+  },
+  "seed": 0,
+  "roof_type": "gable",
+  "architecture": {
+    "support": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.08923337641238036,
+        0.0
+      ],
+      [
+        0.04724119927714254,
+        0.16796870854095125
+      ],
+      [
+        0.17846675282476074,
+        0.1784667528247607
+      ],
+      [
+        0.14697261997333239,
+        0.3044432842304742
+      ],
+      [
+        -0.06298826570285672,
+        0.2519530628114269
+      ]
+    ],
+    "guides": [],
+    "resolved_models": [
+      {
+        "model": "continuous polygon roof with terminal gable ends",
+        "regions": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.08923337641238036,
+              0.0
+            ],
+            [
+              0.04724119927714254,
+              0.16796870854095125
+            ],
+            [
+              0.17846675282476074,
+              0.1784667528247607
+            ],
+            [
+              0.14697261997333239,
+              0.3044432842304742
+            ],
+            [
+              -0.06298826570285672,
+              0.2519530628114269
+            ]
+          ]
+        ],
+        "ends": [
+          {
+            "edge": 0,
+            "shape": "gable"
+          },
+          {
+            "edge": 1,
+            "shape": "eave"
+          },
+          {
+            "edge": 2,
+            "shape": "eave"
+          },
+          {
+            "edge": 3,
+            "shape": "eave"
+          },
+          {
+            "edge": 4,
+            "shape": "eave"
+          },
+          {
+            "edge": 5,
+            "shape": "eave"
+          }
+        ],
+        "authority": "polygon support and resolved exterior ends; no Cell roof primitives"
+      }
+    ],
+    "authority": "whole polygon models and explicit exterior ends",
+    "terminal_domain": {
+      "opposed_edges": [
+        0,
+        4
+      ],
+      "triangular_caps": [
+        0,
+        3
+      ],
+      "conflicts": [],
+      "blocked_caps": [
+        3
+      ]
+    }
+  },
+  "ranking": {
+    "complete": true,
+    "reason": null,
+    "proposal_sources": [],
+    "constructible_candidate_ids": [
+      "66bad0236f48b663eed63cf8a97f51a7"
+    ],
+    "available_embedded_candidate_ids": [
+      "66bad0236f48b663eed63cf8a97f51a7"
+    ],
+    "selectable_candidate_ids": [
+      "66bad0236f48b663eed63cf8a97f51a7"
+    ],
+    "selection_rule": "all-eave hip or maximal opposed-support terminal sets; validated then seed",
+    "scope": "continuous polygon roof; exterior intent is not independent Cell roof parts"
+  },
+  "valid_candidates": [
+    {
+      "id": "66bad0236f48b663eed63cf8a97f51a7",
+      "architectural_parts": {
+        "model": "continuous polygon roof with terminal gable ends",
+        "regions": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.08923337641238036,
+              0.0
+            ],
+            [
+              0.04724119927714254,
+              0.16796870854095125
+            ],
+            [
+              0.17846675282476074,
+              0.1784667528247607
+            ],
+            [
+              0.14697261997333239,
+              0.3044432842304742
+            ],
+            [
+              -0.06298826570285672,
+              0.2519530628114269
+            ]
+          ]
+        ],
+        "ends": [
+          {
+            "edge": 0,
+            "shape": "gable"
+          },
+          {
+            "edge": 1,
+            "shape": "eave"
+          },
+          {
+            "edge": 2,
+            "shape": "eave"
+          },
+          {
+            "edge": 3,
+            "shape": "eave"
+          },
+          {
+            "edge": 4,
+            "shape": "eave"
+          },
+          {
+            "edge": 5,
+            "shape": "eave"
+          }
+        ],
+        "authority": "polygon support and resolved exterior ends; no Cell roof primitives"
+      },
+      "graph": {
+        "roof_type": "gable",
+        "outline": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.08923337641238036,
+            0.0
+          ],
+          [
+            0.04724119927714254,
+            0.16796870854095125
+          ],
+          [
+            0.17846675282476074,
+            0.1784667528247607
+          ],
+          [
+            0.14697261997333239,
+            0.3044432842304742
+          ],
+          [
+            -0.06298826570285672,
+            0.2519530628114269
+          ]
+        ],
+        "source_edges": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            0
+          ]
+        ],
+        "vertices": [
+          {
+            "seed": [
+              0.0,
+              0.0
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 0,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 0,
+            "degree": 2
+          },
+          {
+            "seed": [
+              0.08923337641238036,
+              0.0
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 1,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 1,
+            "degree": 2
+          },
+          {
+            "seed": [
+              0.04724119927714254,
+              0.16796870854095125
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 2,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 2,
+            "degree": 3
+          },
+          {
+            "seed": [
+              0.17846675282476074,
+              0.1784667528247607
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 3,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 3,
+            "degree": 3
+          },
+          {
+            "seed": [
+              0.14697261997333239,
+              0.3044432842304742
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 4,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 4,
+            "degree": 3
+          },
+          {
+            "seed": [
+              -0.06298826570285672,
+              0.2519530628114269
+            ],
+            "role": "corner",
+            "boundary": {
+              "edge": 5,
+              "t": 0.0
+            },
+            "cells": [
+              0
+            ],
+            "id": 5,
+            "degree": 3
+          },
+          {
+            "seed": [
+              -0.007143503640558102,
+              0.20704076738699312
+            ],
+            "role": "junction",
+            "boundary": null,
+            "cells": [
+              0
+            ],
+            "id": 6,
+            "degree": 3
+          },
+          {
+            "seed": [
+              -0.0014176169966218259,
+              0.21501067358768594
+            ],
+            "role": "junction",
+            "boundary": null,
+            "cells": [
+              0
+            ],
+            "id": 7,
+            "degree": 3
+          },
+          {
+            "seed": [
+              0.10364122188268858,
+              0.2322242874127345
+            ],
+            "role": "junction",
+            "boundary": null,
+            "cells": [
+              0
+            ],
+            "id": 8,
+            "degree": 3
+          },
+          {
+            "seed": [
+              0.04461668820619018,
+              0.0
+            ],
+            "role": "ridge_end",
+            "boundary": {
+              "edge": 0,
+              "t": 0.5
+            },
+            "cells": [
+              0
+            ],
+            "id": 9,
+            "degree": 3
+          }
+        ],
+        "faces": [
+          {
+            "loop": [
+              1,
+              2,
+              6,
+              9
+            ],
+            "cells": [
+              0
+            ],
+            "eaves": [
+              1
+            ],
+            "support": 1,
+            "id": 0
+          },
+          {
+            "loop": [
+              2,
+              3,
+              8,
+              7,
+              6
+            ],
+            "cells": [
+              0
+            ],
+            "eaves": [
+              2
+            ],
+            "support": 2,
+            "id": 1
+          },
+          {
+            "loop": [
+              3,
+              4,
+              8
+            ],
+            "cells": [
+              0
+            ],
+            "eaves": [
+              3
+            ],
+            "support": 3,
+            "id": 2
+          },
+          {
+            "loop": [
+              4,
+              5,
+              7,
+              8
+            ],
+            "cells": [
+              0
+            ],
+            "eaves": [
+              4
+            ],
+            "support": 4,
+            "id": 3
+          },
+          {
+            "loop": [
+              0,
+              9,
+              6,
+              7,
+              5
+            ],
+            "cells": [
+              0
+            ],
+            "eaves": [
+              5
+            ],
+            "support": 5,
+            "id": 4
+          }
+        ],
+        "edges": [
+          {
+            "vertices": [
+              0,
+              5
+            ],
+            "faces": [
+              4
+            ],
+            "kind": "eave",
+            "boundary": {
+              "edge": 5,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                0
+              ]
+            }
+          },
+          {
+            "vertices": [
+              0,
+              9
+            ],
+            "faces": [
+              4
+            ],
+            "kind": "gable_end",
+            "boundary": {
+              "edge": 0,
+              "interval": [
+                0.0,
+                0.5
+              ],
+              "original_edges": [
+                1
+              ]
+            }
+          },
+          {
+            "vertices": [
+              1,
+              2
+            ],
+            "faces": [
+              0
+            ],
+            "kind": "eave",
+            "boundary": {
+              "edge": 1,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                2
+              ]
+            }
+          },
+          {
+            "vertices": [
+              1,
+              9
+            ],
+            "faces": [
+              0
+            ],
+            "kind": "gable_end",
+            "boundary": {
+              "edge": 0,
+              "interval": [
+                0.5,
+                1.0
+              ],
+              "original_edges": [
+                1
+              ]
+            }
+          },
+          {
+            "vertices": [
+              2,
+              3
+            ],
+            "faces": [
+              1
+            ],
+            "kind": "eave",
+            "boundary": {
+              "edge": 2,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                3
+              ]
+            }
+          },
+          {
+            "vertices": [
+              2,
+              6
+            ],
+            "faces": [
+              0,
+              1
+            ],
+            "kind": "valley",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              3,
+              4
+            ],
+            "faces": [
+              2
+            ],
+            "kind": "eave",
+            "boundary": {
+              "edge": 3,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                4
+              ]
+            }
+          },
+          {
+            "vertices": [
+              3,
+              8
+            ],
+            "faces": [
+              1,
+              2
+            ],
+            "kind": "hip",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              4,
+              5
+            ],
+            "faces": [
+              3
+            ],
+            "kind": "eave",
+            "boundary": {
+              "edge": 4,
+              "interval": [
+                0.0,
+                1.0
+              ],
+              "original_edges": [
+                5
+              ]
+            }
+          },
+          {
+            "vertices": [
+              4,
+              8
+            ],
+            "faces": [
+              2,
+              3
+            ],
+            "kind": "hip",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              5,
+              7
+            ],
+            "faces": [
+              3,
+              4
+            ],
+            "kind": "hip",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              6,
+              7
+            ],
+            "faces": [
+              1,
+              4
+            ],
+            "kind": "hip",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              6,
+              9
+            ],
+            "faces": [
+              0,
+              4
+            ],
+            "kind": "ridge",
+            "boundary": null
+          },
+          {
+            "vertices": [
+              7,
+              8
+            ],
+            "faces": [
+              1,
+              3
+            ],
+            "kind": "hip",
+            "boundary": null
+          }
+        ],
+        "features": {
+          "eave": 5,
+          "gable_end": 2,
+          "valley": 1,
+          "hip": 5,
+          "ridge": 1
+        },
+        "face_adjacency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "geometry_problem": {
+        "initial_vertices": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.08923337641238036,
+            0.0,
+            0.0
+          ],
+          [
+            0.04724119927714254,
+            0.16796870854095125,
+            0.0
+          ],
+          [
+            0.17846675282476074,
+            0.1784667528247607,
+            0.0
+          ],
+          [
+            0.14697261997333239,
+            0.3044432842304742,
+            0.0
+          ],
+          [
+            -0.06298826570285672,
+            0.2519530628114269,
+            0.0
+          ],
+          [
+            -0.007143503640558102,
+            0.20704076738699312,
+            0.021642272722279043
+          ],
+          [
+            -0.0014176169966218259,
+            0.21501067358768594,
+            0.021642272722279043
+          ],
+          [
+            0.10364122188268858,
+            0.2322242874127345,
+            0.021642272722279043
+          ],
+          [
+            0.04461668820619018,
+            0.0,
+            0.021642272722279043
+          ]
+        ],
+        "faces": [
+          [
+            1,
+            2,
+            6,
+            9
+          ],
+          [
+            2,
+            3,
+            8,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8
+          ],
+          [
+            4,
+            5,
+            7,
+            8
+          ],
+          [
+            0,
+            9,
+            6,
+            7,
+            5
+          ]
+        ],
+        "variable_xy": [
+          6,
+          7,
+          8
+        ],
+        "variable_z": [
+          6,
+          7,
+          8
+        ],
+        "fixed_z": [
+          [
+            0,
+            0.0
+          ],
+          [
+            1,
+            0.0
+          ],
+          [
+            2,
+            0.0
+          ],
+          [
+            3,
+            0.0
+          ],
+          [
+            4,
+            0.0
+          ],
+          [
+            5,
+            0.0
+          ],
+          [
+            9,
+            0.021642272722279043
+          ]
+        ],
+        "ridge_directions": [
+          [
+            [
+              6,
+              9
+            ],
+            [
+              -0.242535625036333,
+              0.970142500145332
+            ]
+          ]
+        ],
+        "slope_constraints": [
+          [
+            0,
+            [
+              0.08923337641238036,
+              0.0,
+              0.0
+            ],
+            [
+              -0.970142500145332,
+              -0.242535625036333
+            ],
+            0.5
+          ],
+          [
+            1,
+            [
+              0.04724119927714254,
+              0.16796870854095125,
+              0.0
+            ],
+            [
+              -0.07974522228289004,
+              0.996815278536125
+            ],
+            0.5
+          ],
+          [
+            2,
+            [
+              0.17846675282476074,
+              0.1784667528247607,
+              0.0
+            ],
+            [
+              -0.9701425001453319,
+              -0.24253562503633286
+            ],
+            0.5
+          ],
+          [
+            3,
+            [
+              0.14697261997333239,
+              0.3044432842304742,
+              0.0
+            ],
+            [
+              0.2425356250363331,
+              -0.9701425001453319
+            ],
+            0.5
+          ],
+          [
+            4,
+            [
+              -0.06298826570285672,
+              0.2519530628114269,
+              0.0
+            ],
+            [
+              0.9701425001453319,
+              0.24253562503633297
+            ],
+            0.5
+          ]
+        ]
+      },
+      "features": [
+        {
+          "vertices": [
+            2,
+            6
+          ],
+          "kind": "valley",
+          "region": 0,
+          "source_eaves": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            3,
+            8
+          ],
+          "kind": "hip",
+          "region": 0,
+          "source_eaves": [
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            4,
+            8
+          ],
+          "kind": "hip",
+          "region": 0,
+          "source_eaves": [
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            5,
+            7
+          ],
+          "kind": "hip",
+          "region": 0,
+          "source_eaves": [
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "kind": "hip",
+          "region": 0,
+          "source_eaves": [
+            [
+              2
+            ],
+            [
+              5
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            6,
+            9
+          ],
+          "kind": "ridge",
+          "region": 0,
+          "source_eaves": [
+            [
+              1
+            ],
+            [
+              5
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        },
+        {
+          "vertices": [
+            7,
+            8
+          ],
+          "kind": "hip",
+          "region": 0,
+          "source_eaves": [
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "operation": "global source-facet incidence"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "complete": true,
+  "status": "mesh",
+  "selected": "66bad0236f48b663eed63cf8a97f51a7",
+  "selected_ends": [
+    {
+      "edge": 0,
+      "shape": "gable"
+    },
+    {
+      "edge": 1,
+      "shape": "eave"
+    },
+    {
+      "edge": 2,
+      "shape": "eave"
+    },
+    {
+      "edge": 3,
+      "shape": "eave"
+    },
+    {
+      "edge": 4,
+      "shape": "eave"
+    },
+    {
+      "edge": 5,
+      "shape": "eave"
+    }
+  ]
+}
