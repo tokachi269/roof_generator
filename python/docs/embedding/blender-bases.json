@@ -1,0 +1,39 @@
+{
+  "archive_sha256": "79da6bc74e3693561c21f1d94e84ba775fd27f248ff80e473a5bfd411c0e3f3a",
+  "analytic_rectangles": 4,
+  "multi_part_differentials": [
+    [
+      11,
+      11
+    ],
+    [
+      11,
+      11
+    ],
+    [
+      11,
+      11
+    ],
+    [
+      11,
+      11
+    ],
+    [
+      11,
+      11
+    ],
+    [
+      9,
+      9
+    ],
+    [
+      11,
+      11
+    ]
+  ],
+  "unsupported_seed_differentials": [
+    0
+  ],
+  "demo_buildings": 16,
+  "flag_height_live_updates_failure": "passed"
+}

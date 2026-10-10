@@ -1,0 +1,94 @@
+{
+  "meshes": [
+    {
+      "case": "rectangle_gable",
+      "faces": 2,
+      "candidate": "f5b2b2e2e06f4d6160f1c55dae237d83",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_hip",
+      "faces": 4,
+      "candidate": "25cad4c74b2ca052161764fa4079287d",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_shed",
+      "faces": 1,
+      "candidate": "ef03ab3ee70d967600fcca9af75f94da",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "rectangle_flat",
+      "faces": 1,
+      "candidate": "a4d6f17e51692542b250944a9ac4f2fe",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "compound_flat",
+      "faces": 1,
+      "candidate": "78430db6b9a1a770600b698928e9b8d9",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "compound_gable_U",
+      "faces": 6,
+      "candidate": "23e058843df5876d1f953fb260dd863a",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "compound_gable_cross",
+      "faces": 8,
+      "candidate": "9b7692b3e234acb0c92d3f3a13813d4d",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "mixed_branch_network",
+      "faces": 6,
+      "candidate": "23fb3cfeb8c8d3ba9af0f5d731f797ba",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "parallelogram",
+      "faces": 2,
+      "candidate": "af1d1c2c501b3eb1e7c2bc042b2f0a9f",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "trapezoid",
+      "faces": 2,
+      "candidate": "8ed0885dd5fa09503f1cfbe297dc1b0c",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "general_convex_quad",
+      "faces": 2,
+      "candidate": "f0f38e0d837d5516ff963f6163398210",
+      "uv": true,
+      "material": true
+    },
+    {
+      "case": "residential_multi_reflex",
+      "faces": 10,
+      "candidate": "ea1284998b3e66ad5ad8dc22ab4a554a",
+      "uv": true,
+      "material": true
+    }
+  ],
+  "square_seed_variation": {
+    "552f4e931fbe8a1e3bf3ac1c23e603e0": 0,
+    "3369c670ad8d32b2f6a4de22da13c683": 3
+  },
+  "compound_failure_atomic": true,
+  "cli": true
+}

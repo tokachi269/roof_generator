@@ -1,0 +1,208 @@
+{
+  "source_sha": "c44c6f4f60c6c7fb6d8f0a6b2c6bea83c0899c39",
+  "source_dirty": true,
+  "corpus_sha256": "c10977302f63aa3d1c10c9c876664800ee36cf63d76f07a0c88f19a7c9ccb534",
+  "generator_version": 1,
+  "seed": 382901,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "inputs": 1000,
+      "success": {
+        "footprint": 999,
+        "partition": 999,
+        "architecture": 732,
+        "RoofGraph": 732,
+        "GeometryProblem": 732,
+        "solve": 732,
+        "mesh": 732,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 266,
+        "search": 2
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "unresolved polygon roof event: Parallel segments, can't determine if the bisector is inside the left-polygon.": 1,
+        "unresolved polygon roof event: Can't determine bisector direction for opposite edges.": 41,
+        "unresolved polygon roof event: Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 173,
+        "unresolved polygon roof event: All vertices are overlapping, can't get a safe prev vertex.": 6,
+        "unresolved polygon roof event: float division by zero": 4,
+        "unresolved polygon roof event: Ran to an original node SKN(13, 0.000, -0.100, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(8, 0.000, 0.100, 0.00000) not part of the initiating edge.": 2,
+        "cap dominance work budget exhausted": 16,
+        "unresolved polygon roof event: Zero time should have called `_find_skeleton_node()` instead.": 7,
+        "unresolved polygon roof event: Ran to an original node SKN(16, 0.000, 0.075, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(9, -0.100, 0.050, 0.00000) not part of the initiating edge.": 1,
+        "roof wavefront work budget exhausted": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(22, 0.069, 0.052, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(11, -0.050, 0.200, 0.00000) not part of the initiating edge.": 1,
+        "per-input wall budget exhausted": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(25, -0.029, -0.118, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Nodes at the same position but different time: VertexInfo(id=113, position=Vector2(0.027, -0.009), lav=36, processed=False, reflex=N/A, [prev=None, next=None] vs SKN(35, 0.027, -0.009, 0.00893)\n  new time:0.044643 vs old time:0.008929 (diff=0.035714)\n  new position     : 0.026785714285714284, \t-0.008928571428571428\n  vs node position : 0.026785714285714284, \t-0.008928571428571428\n  diff             : 0.0, \t0.0": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(9, -0.042, 0.083, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: prev(prev(Va)) == Vb, but prev(Va) != next(Vb)": 3,
+        "unresolved polygon roof event: Ran to an original node SKN(25, -0.029, 0.059, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(11, -0.067, 0.133, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(17, -0.025, 0.050, 0.00000) not part of the initiating edge.": 1,
+        "unresolved polygon roof event: Nodes at the same position but different time: VertexInfo(id=45, position=Vector2(-0.025, -0.075), lav=21, processed=False, reflex=N/A, [prev=None, next=None] vs SKN(22, -0.025, -0.075, 0.02500)\n  new time:0.125 vs old time:0.025 (diff=0.1)\n  new position     : -0.025, \t-0.07499999999999998\n  vs node position : -0.025, \t-0.07500000000000001\n  diff             : 0.0, \t2.7755575615628914e-17": 1,
+        "unresolved polygon roof event: Ran to an original node SKN(29, 0.000, -0.075, 0.00000) not part of the initiating edge.": 1
+      },
+      "total_ms": 135883.3827869957,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 2692,
+        "constructible_topology_candidate_count": 2692,
+        "architectural_preferred_assignment_count": 2692,
+        "architectural_assignment_count": 2692
+      }
+    },
+    "nonuniform_orthogonal": {
+      "inputs": 150,
+      "success": {
+        "footprint": 150,
+        "partition": 150,
+        "architecture": 147,
+        "RoofGraph": 146,
+        "GeometryProblem": 146,
+        "solve": 145,
+        "mesh": 145,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 4,
+        "solve": 1
+      },
+      "issue_building_incidence_nonexclusive": {
+        "polygon.embedding": 1,
+        "polygon.topology": 1
+      },
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "unresolved polygon roof event: Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 1,
+        "cap dominance work budget exhausted": 1,
+        "unresolved polygon roof event: Can't determine bisector direction for opposite edges.": 1,
+        "no valid polygon roof": 2
+      },
+      "total_ms": 10922.829468001282,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 158,
+        "constructible_topology_candidate_count": 157,
+        "architectural_preferred_assignment_count": 158,
+        "architectural_assignment_count": 158
+      }
+    },
+    "structured_orthogonal": {
+      "inputs": 103,
+      "success": {
+        "footprint": 103,
+        "partition": 103,
+        "architecture": 101,
+        "RoofGraph": 100,
+        "GeometryProblem": 100,
+        "solve": 100,
+        "mesh": 100,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "topology": 3
+      },
+      "issue_building_incidence_nonexclusive": {
+        "polygon.topology": 1
+      },
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "unresolved polygon roof event: Antiparallel segments, can't determine if the bisector is inside the left-polygon.": 2,
+        "no valid polygon roof": 1
+      },
+      "total_ms": 4080.799061000107,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 138,
+        "constructible_topology_candidate_count": 137,
+        "architectural_preferred_assignment_count": 138,
+        "architectural_assignment_count": 138
+      }
+    },
+    "convex_quadrilateral": {
+      "inputs": 48,
+      "success": {
+        "footprint": 48,
+        "partition": 48,
+        "architecture": 48,
+        "RoofGraph": 48,
+        "GeometryProblem": 48,
+        "solve": 48,
+        "mesh": 48,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 168.04381399902013,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 48,
+        "constructible_topology_candidate_count": 96,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "structured_oblique": {
+      "inputs": 43,
+      "success": {
+        "footprint": 43,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 43
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 43
+      },
+      "total_ms": 20.375230000126976,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    },
+    "general_simple_polygon_probe": {
+      "inputs": 40,
+      "success": {
+        "footprint": 40,
+        "partition": 0,
+        "architecture": 0,
+        "RoofGraph": 0,
+        "GeometryProblem": 0,
+        "solve": 0,
+        "mesh": 0,
+        "Blender": 0
+      },
+      "failure_owner": {
+        "partition": 40
+      },
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {
+        "generalized decomposition currently requires a convex quadrilateral": 40
+      },
+      "total_ms": 20.05090299985568,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 0,
+        "constructible_topology_candidate_count": 0,
+        "architectural_preferred_assignment_count": 0,
+        "architectural_assignment_count": 0
+      }
+    }
+  }
+}

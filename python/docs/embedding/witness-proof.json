@@ -1,0 +1,17 @@
+{
+  "scope": "995 historical successful meshes; not latest runtime coverage",
+  "inputs": {
+    "whole-polygon-split-grid.json.gz": "0289ea1d130286c9fd87c406cd384ff6d7287c996c8286db291b3f88a1e59d39",
+    "whole-polygon-split-nonuniform.json.gz": "17233bc22de806d5fa8fab1a3a8bbf908a8e436ed942bfcc4335f2f079a14d0f",
+    "whole-polygon-split-structured.json.gz": "4562cebbd39554a9a7211c94f44bbe2c09d2dcc836fe81ac5a8291fa09b20597",
+    "whole-polygon-split-images.json.gz": "6f4d6766b16ab4a9e0057a73ca9c57b696d4f07ff89774e7869e6ebd2c1893aa"
+  },
+  "cases": {
+    "grid": 741,
+    "nonuniform": 149,
+    "structured": 101,
+    "images": 4
+  },
+  "max_vertex_distance": 3.1031676915590914e-17,
+  "failures": []
+}

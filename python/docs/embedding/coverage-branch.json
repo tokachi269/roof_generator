@@ -1,0 +1,34 @@
+{
+  "source_sha": "ffb777f8f3f1106c607837443f2287dae527f9b6",
+  "source_dirty": true,
+  "corpus_sha256": "2817415aabf47cc40fcfa00b7822ef4167b5bede31f65cb306aad9fa93d7f356",
+  "generator_version": 1,
+  "seed": 69712,
+  "Blender": "not measured; see Blender smoke report",
+  "corpora": {
+    "structured_branch_network": {
+      "inputs": 100,
+      "success": {
+        "footprint": 100,
+        "partition": 100,
+        "architecture": 100,
+        "RoofGraph": 100,
+        "GeometryProblem": 100,
+        "solve": 100,
+        "mesh": 100,
+        "Blender": 0
+      },
+      "failure_owner": {},
+      "issue_building_incidence_nonexclusive": {},
+      "conditional_sole_assignment_blocker": {},
+      "failure_reasons": {},
+      "total_ms": 3385.782588000211,
+      "candidate_counts": {
+        "architecturally_retained_candidate_count": 100,
+        "constructible_topology_candidate_count": 100,
+        "architectural_preferred_assignment_count": 100,
+        "architectural_assignment_count": 100
+      }
+    }
+  }
+}

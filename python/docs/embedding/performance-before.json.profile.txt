@@ -1,0 +1,48 @@
+         61165291 function calls (61162392 primitive calls) in 30.664 seconds
+
+   Ordered by: cumulative time
+   List reduced from 500 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001   31.762   31.762 /workspace/roof_generator/python/benchmark_embedding.py:80(run)
+        1    0.003    0.003   31.759   31.759 /workspace/roof_embedding_baseline/addon/roof_generator/core/polygon_generation.py:111(candidates)
+        8    0.002    0.000   31.578    3.947 /workspace/roof_embedding_baseline/addon/roof_generator/core/solve.py:339(solve)
+        8    0.001    0.000   31.453    3.932 /workspace/roof_embedding_baseline/addon/roof_generator/core/solve.py:314(embed)
+        8    0.328    0.041   31.451    3.931 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:132(optimize)
+     8840    0.606    0.000   26.099    0.003 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:141(residuals)
+   155364    8.561    0.000   21.286    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:19(covariance_plane)
+3504853/3502366    6.646    0.000   12.156    0.000 {built-in method builtins.sum}
+   174220    0.507    0.000    3.350    0.000 {method 'extend' of 'list' objects}
+  1116794    1.550    0.000    3.209    0.000 {built-in method builtins.max}
+ 17952700    2.403    0.000    2.403    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:196(<genexpr>)
+   621456    0.532    0.000    1.822    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:21(<genexpr>)
+   739292    0.754    0.000    1.820    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:151(<genexpr>)
+  3272874    1.141    0.000    1.632    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:29(<lambda>)
+  7984224    1.310    0.000    1.310    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:24(<genexpr>)
+     8848    0.301    0.000    0.901    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:114(unpack)
+   885536    0.557    0.000    0.866    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:146(<genexpr>)
+  4447370    0.718    0.000    0.718    0.000 {built-in method builtins.abs}
+  2927088    0.571    0.000    0.571    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:49(<genexpr>)
+  2927088    0.560    0.000    0.560    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:22(<genexpr>)
+  2631595    0.527    0.000    0.527    0.000 {built-in method builtins.len}
+  2191356    0.376    0.000    0.376    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:155(<genexpr>)
+   936368    0.364    0.000    0.364    0.000 {built-in method math.atan2}
+   176196    0.242    0.000    0.334    0.000 {built-in method builtins.min}
+  1690968    0.330    0.000    0.330    0.000 {built-in method math.sqrt}
+   935627    0.257    0.000    0.257    0.000 {built-in method math.cos}
+  1632640    0.247    0.000    0.247    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:119(<genexpr>)
+   935828    0.245    0.000    0.245    0.000 {built-in method math.sin}
+   237728    0.120    0.000    0.156    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:162(<genexpr>)
+   621456    0.154    0.000    0.154    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:46(<genexpr>)
+      192    0.081    0.000    0.128    0.001 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:53(_linear_solve)
+        8    0.004    0.000    0.124    0.016 /workspace/roof_embedding_baseline/addon/roof_generator/core/mesh.py:19(__post_init__)
+   812000    0.118    0.000    0.118    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:194(<genexpr>)
+        8    0.016    0.002    0.105    0.013 /workspace/roof_embedding_baseline/addon/roof_generator/core/initialization.py:11(_valid_drawing)
+14263/13875    0.012    0.000    0.092    0.000 {built-in method builtins.any}
+   466092    0.092    0.000    0.092    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:45(<lambda>)
+   320112    0.084    0.000    0.084    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:48(<genexpr>)
+   327376    0.075    0.000    0.075    0.000 /workspace/roof_embedding_baseline/addon/roof_generator/core/optimization.py:125(<genexpr>)
+        8    0.013    0.002    0.052    0.006 /workspace/roof_embedding_baseline/addon/roof_generator/core/polygon_roof.py:38(topology)
+        9    0.011    0.001    0.044    0.005 /workspace/roof_embedding_baseline/addon/roof_generator/core/member_layout.py:65(member_layout)
+
+

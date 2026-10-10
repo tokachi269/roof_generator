@@ -1,0 +1,48 @@
+         462517 function calls (462098 primitive calls) in 0.284 seconds
+
+   Ordered by: cumulative time
+   List reduced from 479 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.290    0.290 /workspace/roof_generator/python/benchmark_embedding.py:82(run)
+        1    0.001    0.001    0.286    0.286 /workspace/roof_generator/addon/roof_generator/core/polygon_generation.py:111(candidates)
+        8    0.000    0.000    0.154    0.019 /workspace/roof_generator/addon/roof_generator/core/solve.py:343(solve)
+        8    0.003    0.000    0.118    0.015 /workspace/roof_generator/addon/roof_generator/core/mesh.py:19(__post_init__)
+        8    0.014    0.002    0.102    0.013 /workspace/roof_generator/addon/roof_generator/core/initialization.py:11(_valid_drawing)
+14271/13883    0.014    0.000    0.092    0.000 {built-in method builtins.any}
+    10173    0.013    0.000    0.042    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:55(_intersects)
+        8    0.008    0.001    0.042    0.005 /workspace/roof_generator/addon/roof_generator/core/polygon_roof.py:38(topology)
+        8    0.001    0.000    0.036    0.005 /workspace/roof_generator/addon/roof_generator/core/solve.py:314(embed)
+        8    0.001    0.000    0.035    0.004 /workspace/roof_generator/addon/roof_generator/core/plane_embedding.py:38(embed_planes)
+      468    0.002    0.000    0.035    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:41(inside)
+    12385    0.020    0.000    0.029    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:32(on_segment)
+        8    0.003    0.000    0.028    0.004 /workspace/roof_generator/addon/roof_generator/core/graph.py:206(make_graph)
+    21364    0.013    0.000    0.027    0.000 {built-in method builtins.max}
+     9828    0.005    0.000    0.026    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:42(<genexpr>)
+        8    0.008    0.001    0.026    0.003 /workspace/roof_generator/addon/roof_generator/core/plane_embedding.py:9(_reduce)
+    22376    0.014    0.000    0.024    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:60(<genexpr>)
+        1    0.000    0.000    0.022    0.022 /workspace/roof_generator/addon/roof_generator/core/wavefront.py:40(wavefront)
+5437/5430    0.010    0.000    0.021    0.000 {built-in method builtins.sum}
+        1    0.000    0.000    0.019    0.019 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/__init__.py:8(compute_skeleton)
+        1    0.000    0.000    0.019    0.019 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/algorithm.py:944(compute_skeleton)
+        1    0.000    0.000    0.019    0.019 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/algorithm.py:873(_compute_skeleton_impl)
+        8    0.008    0.001    0.018    0.002 /workspace/roof_generator/addon/roof_generator/core/graph.py:50(__post_init__)
+        8    0.006    0.001    0.015    0.002 /workspace/roof_generator/addon/roof_generator/core/constraints.py:19(check_planes)
+        1    0.000    0.000    0.014    0.014 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/algorithm.py:539(_initialize_from)
+       38    0.000    0.000    0.014    0.000 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/algorithm.py:486(_queue_vertex_events)
+       37    0.002    0.000    0.011    0.000 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/algorithm.py:300(_compute_split_events)
+        8    0.002    0.000    0.010    0.001 /workspace/roof_generator/addon/roof_generator/core/solve.py:108(problem)
+        1    0.000    0.000    0.008    0.008 /workspace/roof_generator/addon/roof_generator/core/roof_regions.py:174(minimum_regions)
+        1    0.000    0.000    0.008    0.008 /workspace/roof_generator/addon/roof_generator/core/roof_regions.py:115(propose_regions)
+        1    0.000    0.000    0.008    0.008 /workspace/roof_generator/addon/roof_generator/core/cells.py:55(decompose)
+      116    0.000    0.000    0.008    0.000 /workspace/roof_generator/addon/roof_generator/core/initialization.py:15(<genexpr>)
+        1    0.000    0.000    0.007    0.007 /workspace/roof_generator/addon/roof_generator/core/roof_preference.py:19(recommend)
+    20640    0.006    0.000    0.007    0.000 {built-in method builtins.min}
+    18258    0.005    0.000    0.007    0.000 /workspace/roof_generator/addon/roof_generator/core/plane_embedding.py:21(<lambda>)
+4826/4802    0.003    0.000    0.007    0.000 {built-in method builtins.sorted}
+        1    0.000    0.000    0.006    0.006 /workspace/roof_generator/addon/roof_generator/core/partition.py:457(partition)
+    30890    0.006    0.000    0.006    0.000 /workspace/roof_generator/addon/roof_generator/core/footprint.py:17(sub)
+    42436    0.006    0.000    0.006    0.000 {built-in method builtins.abs}
+      714    0.002    0.000    0.006    0.000 /workspace/roof_generator/addon/roof_generator/vendor/straight_skeleton/vector_math.py:117(of_vec_with_respect_to)
+
+

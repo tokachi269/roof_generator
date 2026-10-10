@@ -1,0 +1,101 @@
+{
+  "baseline_sha": "2e68c8b348720fc561b9efb1658449323862a962",
+  "final_benchmark_sha": "64e5576a567de81ba5db8cef2b063092b5caab4c",
+  "cases": {
+    "orthogonal_L": {
+      "before_ms": 48.45234800006892,
+      "after_ms": 10.194411999918884,
+      "valid_candidates": 1,
+      "seed_ids": [
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930",
+        "79ee998176f6a561bc9c5283875ca930"
+      ]
+    },
+    "orthogonal_T": {
+      "before_ms": 31.063164999977744,
+      "after_ms": 10.30358699995304,
+      "valid_candidates": 1,
+      "seed_ids": [
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d",
+        "03ffeb1d8f482aafb4a9c0f6b52aa54d"
+      ]
+    },
+    "orthogonal_U": {
+      "before_ms": 97.83282399996551,
+      "after_ms": 10.007944000108182,
+      "valid_candidates": 1,
+      "seed_ids": [
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0",
+        "8d762f6da61f6affedfa3ccbec5ef0f0"
+      ]
+    },
+    "cross": {
+      "before_ms": 370.3297570000359,
+      "after_ms": 45.22893200010003,
+      "valid_candidates": 7,
+      "seed_ids": [
+        "4800b66ac74e39017da399a8dacacf80",
+        "64502d6326def47e4634d5ae14b6be0a",
+        "60d3ab3ec816f003db077e966631fe5b",
+        "c341c3141a37504feadbda54f37890af"
+      ]
+    },
+    "residential_multi_reflex": {
+      "before_ms": 249.75010800005748,
+      "after_ms": 17.38018000014563,
+      "valid_candidates": 1,
+      "seed_ids": [
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f",
+        "81ab216e26c4562df0682ec500b3140f"
+      ]
+    },
+    "grid_14": {
+      "before_ms": 535.9291979999625,
+      "after_ms": 24.871700999938184,
+      "valid_candidates": 2,
+      "seed_ids": [
+        "8af468581221e33011862cc31e1c4100",
+        "8af468581221e33011862cc31e1c4100",
+        "efe7f64d677ec89b44614606278194e8",
+        "8af468581221e33011862cc31e1c4100"
+      ]
+    },
+    "grid_20": {
+      "before_ms": 9715.223981999998,
+      "after_ms": 103.0902170000445,
+      "valid_candidates": 8,
+      "seed_ids": [
+        "5a6ff7004beab1430844e64f84fc3c27",
+        "f9dfa77f4816cf8dfb80da56731bf67a",
+        "ba8de162a20070398ba9a2eb775ab16d",
+        "ba8de162a20070398ba9a2eb775ab16d"
+      ]
+    },
+    "grid_40": {
+      "unsupported": "unresolved polygon roof event: Can't determine bisector direction for opposite edges."
+    }
+  },
+  "coordinate_max": 2.7755575615628914e-17,
+  "all_candidate_contracts_equal": true,
+  "all_seed_ids_equal": true,
+  "historical_grid_comparison": {
+    "baseline_meshed": 673,
+    "retained_meshed": 673,
+    "retained_seed0_ids": 673,
+    "new_meshes": 60,
+    "new_mesh_previous_reasons": [
+      "per-input wall budget exhausted"
+    ],
+    "bounded_run_meshes": 732,
+    "rechecked_budget_case": "generated_0608",
+    "verified_meshes_including_recheck": 733
+  }
+}

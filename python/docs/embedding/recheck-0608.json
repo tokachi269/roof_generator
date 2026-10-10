@@ -1,0 +1,40 @@
+{
+  "name": "generated_0608",
+  "success": {
+    "footprint": true,
+    "partition": true,
+    "architecture": true,
+    "RoofGraph": true,
+    "GeometryProblem": true,
+    "solve": true,
+    "mesh": true,
+    "Blender": false
+  },
+  "failure_owner": null,
+  "reason": null,
+  "issues": [],
+  "timings_ms": {
+    "footprint": 1.6563980000228185,
+    "partition": 5.1278500000080385,
+    "RoofGraph": 355.4139150000992,
+    "GeometryProblem": 0.0010219998785032658,
+    "solve": 0.19837100012409792,
+    "mesh": 11.115428999801225,
+    "total": 373.5204039999189
+  },
+  "Blender_measured": false,
+  "partition_count": 1,
+  "partition_scope": "classical minimum guide; polygon models own topology",
+  "interpretation_count": 16,
+  "architecturally_retained_candidate_count": 16,
+  "architectural_preferred_assignment_count": 16,
+  "architectural_assignment_count": 16,
+  "valid_graph_count": 16,
+  "constructible_topology_candidate_count": 16,
+  "region_proposal_count": 1,
+  "ambiguity": true,
+  "incomplete_search": false,
+  "candidate_validation_scope": "all preferred polygon end models embedded before selection",
+  "selected_id": "7da9e6abccf33056b8ab1384b8957cb6",
+  "solve_timing_scope": "embedding occurs during candidate validation; solve stage reads cached proof"
+}
