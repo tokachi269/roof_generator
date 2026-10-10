@@ -181,7 +181,9 @@ def problem(graph, pitch=0.5, eave_height=0.0):
         )
         size = math.hypot(*directions[0])
         if abs(cross(*directions)) > 1e-8 * size * math.hypot(*directions[1]):
-            raise UnsupportedRoofError("interior ridge has nonparallel receiving eaves")
+            # Nonparallel declared planes give a sloping intersection, not a
+            # constant-width height anchor. Leave Z to those actual equations.
+            continue
         width = abs(cross(sub(b, a), directions[0])) / size
         if width <= EPS:
             raise UnsupportedRoofError("interior ridge has coincident receiving eaves")
@@ -215,6 +217,15 @@ def problem(graph, pitch=0.5, eave_height=0.0):
                 vector = sub(
                     graph.outline[(eave + 1) % len(graph.outline)], graph.outline[eave]
                 )
+                other=_support(graph.faces[edge.faces[1]])
+                other_vector=sub(graph.outline[(other+1)%len(graph.outline)],graph.outline[other])
+                if abs(cross(vector,other_vector))>1e-8*math.hypot(*vector)*math.hypot(*other_vector):
+                    # Projected equal-height locus of the two real pitch planes.
+                    first=(-vector[1]/math.hypot(*vector),vector[0]/math.hypot(*vector))
+                    second=(-other_vector[1]/math.hypot(*other_vector),other_vector[0]/math.hypot(*other_vector))
+                    actual=(-(first[1]-second[1]),first[0]-second[0])
+                    if sum(a*b for a,b in zip(actual,vector))<0:actual=tuple(-x for x in actual)
+                    vector=actual
             size = math.hypot(*vector)
             directions.append((edge.vertices, tuple(v / size for v in vector)))
     slopes = []

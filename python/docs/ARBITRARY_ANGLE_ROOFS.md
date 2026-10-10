@@ -13,7 +13,8 @@ Two polygon model classes use the same incidence and downstream pipeline:
   rectangular partition or axis preference is involved.
 - **Terminal gable:** selected exterior edges replace oriented triangular caps
   by their two incident slope sectors. Each cap must have two unique sectors,
-  and their inward unit normals must be opposed within `1e-8`. Other exterior
+  and their inward unit normals must be opposed within the bounded numerical
+  allowance below. Other exterior
   edges are explicitly eaves. This is a mixed hip/gable model, not a promise
   of pure gables at every building end.
 
@@ -23,6 +24,23 @@ the supports. A straight cap edge joining the supports meets that line at its
 midpoint even when oblique. The preserved skeleton event lies on the same
 locus. Thus the existing disk replacement and BoundaryPoint(edge, 0.5) remain
 geometrically derived, without changing incidence after geometry solving.
+
+Blender stores vertex coordinates in float32: a nominally parallel branch with
+decimal coordinates can have neighboring directions differing by about `1e-7`.
+The normal allowance is `min(1e-6, max(1e-8, 8*EPS*(1/length_left +
+1/length_right)))` in normalized perimeter units, where `EPS=2e-9`. The
+length-dependent bound reflects coordinate noise; its ceiling prevents a short
+edge from admitting meaningful angle changes. A 0.1-degree eave difference is
+outside this allowance. No support vector or footprint vertex is rotated.
+
+For bounded rounding, use the actual equal-distance cap parameter
+`t=d_right(a)/(d_left(b)+d_right(a))`; exactly parallel supports give `t=0.5`.
+Its boundary XY remains fixed. Form ridge direction from the real incident plane
+equations and leave ridge Z variable where nonparallel eaves do not justify a
+constant-width height anchor. The linear solver consumes these constraints
+unchanged; it does not infer a different topology. This small GeometryProblem
+extension is necessary to use real Blender inputs without snapping oblique
+supports or accepting nonplanar output.
 
 Triangular incidence is a separate condition: opposed neighboring boundary
 supports alone do not guarantee a triangular terminal cap. Unavailable or

@@ -7,7 +7,7 @@ from . import graph as graph_api
 from .footprint import Footprint
 from .provenance import BoundaryPoint
 from .errors import UnsupportedRoofError
-from .roof_intent import opposed_supports
+from .roof_intent import opposed_supports, cap_parameter
 
 
 @dataclass(frozen=True)
@@ -76,9 +76,10 @@ def topology(structure, incidence):
         # k-node ridge retains the original event and every other incidence.
         # Across the cap edges the neighboring loops run node->b and a->node.
         k = len(seeds)
-        seeds.append(tuple((a[i]+b[i])/2 for i in (0,1)))
+        t=cap_parameter(fp,edge)
+        seeds.append(tuple((a[i]+b[i])/2 if t==.5 else a[i]+t*(b[i]-a[i]) for i in (0,1)))
         roles.append('ridge_end')
-        locations[k] = BoundaryPoint(edge,0.5)
+        locations[k] = BoundaryPoint(edge,t)
         for pair in ((node,(edge+1)%n),(edge,node)):
             owners = [loop for support,loop in zip(supports,loops)
                       if support not in cap_edges and
@@ -86,8 +87,9 @@ def topology(structure, incidence):
             if len(owners)!=1 or pair in extensions:
                 raise UnsupportedRoofError('terminal cap lacks two uniquely incident slope sectors')
             extensions[pair] = k
-        # Adjacent support normals must be opposed, so their equality locus
-        # passes through both the midpoint and the preserved event.
+        # Opposed support normals make a terminal gable. Exact parallel lines
+        # meet at the midpoint; bounded rounding uses their actual equality
+        # locus. No support plane or footprint coordinate is rectified.
         if not opposed_supports(fp,edge):
             raise UnsupportedRoofError('terminal cap is not bounded by opposed slope supports')
     def extend(loop):

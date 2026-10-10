@@ -18,6 +18,7 @@ from roof_generator.core.wavefront import wavefront
 from roof_generator.core.roof_intent import cap_domain, terminal_configurations
 from roof_generator.core.solve import problem, solve
 from roof_generator.core.errors import UnsupportedRoofError
+from roof_generator.mesh_input import generate_footprint_mesh
 
 
 def acceptance(name):
@@ -142,6 +143,34 @@ class PolygonAngles(unittest.TestCase):
         # A gable request does not become the otherwise supported triangular hip.
         with self.assertRaisesRegex(UnsupportedRoofError,'no opposed-support terminal'):
             generate_roof(((0,0),(8,0),(2,6)))
+
+    def test_oblique_branch_keeps_two_ridges_and_two_valleys(self):
+        points=((0,0),(18,0),(19.6,4),(12.6,4),(16.2,13),(12.2,13),(8.6,4),(1.6,4))
+        result=generate_roof(points)
+        self.assertFalse(result.generation.footprint.orthogonal)
+        self.assertEqual(result.mesh.graph.inspect()['features'],
+                         {'eave':5,'gable_end':6,'valley':2,'ridge':2})
+        witness(self,result.mesh.graph,result.mesh)
+        self.assertEqual(len(result.generation.selected.architecture.gable_edges),3)
+
+    def test_float32_branch_uses_actual_planes_without_shape_rectification(self):
+        points=np.asarray(((0,0),(18,0),(19.6,4),(12.6,4),(16.2,13),
+                           (12.2,13),(8.6,4),(1.6,4)),dtype=np.float32)
+        for kind in ('gable','hip'):
+            result=generate_footprint_mesh(tuple((float(x),float(y),0.) for x,y in points),
+                                          (tuple(range(8)),),GenerationSettings(kind))
+            roof=result.roof
+            witness(self,roof.mesh.graph,roof.mesh)
+            self.assertFalse(roof.generation.footprint.orthogonal)
+            self.assertEqual(sum(e.kind=='valley' for e in roof.mesh.graph.edges),2)
+            # Core projection covers the actual quantized boundary, not an ideal T.
+            self.assertLess(unary_union([Polygon(np.asarray(result.spec.vertices)[list(f),:2])
+                                         for f in result.spec.faces]).symmetric_difference(Polygon(points)).area,1e-8)
+        # A real eave angle difference is not absorbed as float32 rounding.
+        fp=analyze(((0,0),(12,0),(12,4.02),(0,4)))
+        available,_,blocked=cap_domain(fp,wavefront(fp))
+        self.assertTrue(available)
+        self.assertEqual(set(available),set(blocked))
 
 
 if __name__=='__main__':unittest.main()

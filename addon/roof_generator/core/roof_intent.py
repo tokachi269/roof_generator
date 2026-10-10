@@ -54,12 +54,32 @@ class TerminalDomain:
 
 def opposed_supports(fp, edge):
     """Actual neighboring inward normals; numerical allowance, no rectification."""
-    normals=[]
+    from .footprint import EPS
+    normals=[];lengths=[]
     for support in ((edge-1)%len(fp.vertices),(edge+1)%len(fp.vertices)):
         a,b=fp.vertices[support],fp.vertices[(support+1)%len(fp.vertices)]
         size=math.dist(a,b)
+        lengths.append(size)
         normals.append((-(b[1]-a[1])/size,(b[0]-a[0])/size))
-    return math.dist(normals[0],tuple(-x for x in normals[1]))<=1e-8
+    # Coordinate noise induces an angle error inversely proportional to edge
+    # length. Bound it by the existing positional allowance and a float32-scale
+    # ceiling; this never rotates a support line or rectifies an input corner.
+    tolerance=min(1e-6,max(1e-8,8*EPS*sum(1/size for size in lengths)))
+    return math.dist(normals[0],tuple(-x for x in normals[1]))<=tolerance
+
+
+def cap_parameter(fp, edge):
+    """Equal-distance locus on the actual cap, including bounded input rounding."""
+    from .footprint import sub, cross
+    from .errors import UnsupportedRoofError
+    n=len(fp.vertices);a,b=fp.vertices[edge],fp.vertices[(edge+1)%n]
+    left=sub(a,fp.vertices[(edge-1)%n]);right=sub(fp.vertices[(edge+2)%n],b)
+    dl=cross(left,sub(b,a))/math.hypot(*left)
+    dr=cross(right,sub(a,b))/math.hypot(*right)
+    if dl<=0 or dr<=0:
+        raise UnsupportedRoofError('terminal cap lacks positive interior support distances')
+    if abs(dl-dr)<=1e-12*max(dl,dr):return .5
+    return dr/(dl+dr)
 
 
 @dataclass(frozen=True)
