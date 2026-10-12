@@ -126,6 +126,18 @@ class LineWavefront(unittest.TestCase):
         for record in (expected,actual):record.pop('predicates')
         self.assertEqual(expected,actual)
 
+    def test_collinear_source_subdivision_keeps_geometry_and_all_provenance(self):
+        base=construct(*model(((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4)))
+        split=construct(*model(((0,0),(4,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(2,5)))
+        witness(self,split)
+        self.assertEqual(len(split.patches),len(base.patches))
+        self.assertEqual(len(split.events),len(base.events))
+        self.assertTrue(any({'edge0','edge1'}<=set(p.sources) for p in split.patches))
+        def polygons(r):
+            xyz=r.coordinates()
+            return sorted(tuple(sorted(tuple(round(x,8) for x in xyz[v]) for v in p.loop)) for p in r.patches+r.walls)
+        self.assertEqual(polygons(base),polygons(split))
+
     def test_all_full_edge_assignments_on_a_concave_polygon(self):
         p=((0,0),(8,0),(8,3),(3,3),(3,8),(0,8))
         valid=invalid=0
