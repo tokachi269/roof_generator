@@ -250,8 +250,22 @@ class Precision:
         return min(products),max(products)
 
     def approximate(self,value):
-        a,b=self.rational_interval(value)
-        return float((a+b)/2)
+        value=scalar(value)
+        rational=value.rational()
+        if rational is not None:return float(rational)
+        bits=min(128,self.max_bits)
+        while bits<=self.max_bits:
+            a,b=self.rational_interval(value,bits)
+            left,right=float(a),float(b)
+            if left==right:return left
+            if math.nextafter(left,math.inf)==right:
+                midpoint=(Q(left)+Q(right))/2
+                comparison=self.compare(value,midpoint)
+                if comparison<0:return left
+                if comparison>0:return right
+                return float(midpoint)  # Python's correctly rounded ties-to-even.
+            bits*=2
+        raise PrecisionLimit('floating-point rounding is not certified within the precision budget')
 
     def inspect(self):
         return {k:getattr(self,k) for k in ('double_signs','rational_signs','refinements','exact_zeros','bits_used')}

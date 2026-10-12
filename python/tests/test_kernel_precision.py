@@ -34,6 +34,17 @@ class KernelPrecision(unittest.TestCase):
         with self.assertRaises(PrecisionLimit):Precision(max_bits=128).sign(tiny)
         self.assertEqual(p.sign(Surd.root(Q(1,10**900))),1)
 
+    def test_export_rounding_is_certified_including_halfway_values(self):
+        midpoint=Q(1)+Q(1,1<<53)
+        hidden=Scalar(Surd.root(2)*midpoint,Surd.root(2))
+        tiny=Scalar.number(Surd.root(1+Q(1,1<<300))-1)
+        p=Precision()
+        self.assertEqual(p.approximate(hidden),1.)
+        self.assertEqual(p.approximate(hidden+tiny),1.+2.**-52)
+        self.assertEqual(p.approximate(hidden-tiny),1.)
+        with self.assertRaises(PrecisionLimit):Precision(max_bits=128).approximate(hidden+tiny)
+        self.assertEqual(Precision(max_bits=64).approximate(Surd.root(2)),float(Decimal(2).sqrt()))
+
     def test_random_enclosures_against_decimal_and_rational_square_bounds(self):
         rng=random.Random(721)
         p=Precision()
