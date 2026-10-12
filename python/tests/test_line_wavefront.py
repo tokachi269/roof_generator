@@ -116,15 +116,18 @@ class LineWavefront(unittest.TestCase):
     def test_memos_are_not_correctness_dependencies(self):
         class NoMemo(Wavefront):
             def at(self,*args):
+                self.registry.aliases.clear();self.precision.roots.clear()
                 self.positions.clear();return super().at(*args)
             def contains(self,*args):
                 self.intervals.clear();return super().contains(*args)
             def split(self,*args):
                 self.subdivisions.clear();return super().split(*args)
-        path,intent=model(((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4))
-        expected=construct(path,intent).inspect();actual=NoMemo(path,intent).run().inspect()
-        for record in (expected,actual):record.pop('predicates')
-        self.assertEqual(expected,actual)
+        for points,ends in ((((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4)),
+                            (((0,0),(8,2),(9,7),(1,5)),(1,3))):
+            path,intent=model(points,ends)
+            expected=construct(path,intent).inspect();actual=NoMemo(path,intent).run().inspect()
+            for record in (expected,actual):record.pop('predicates')
+            self.assertEqual(expected,actual)
 
     def test_collinear_source_subdivision_keeps_geometry_and_all_provenance(self):
         base=construct(*model(((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4)))

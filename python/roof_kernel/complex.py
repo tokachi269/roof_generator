@@ -70,18 +70,27 @@ class RoofComplex:
 class Registry:
     def __init__(self,precision):
         self.precision=precision;self.points=[];self.groups=[];self.parents=[]
+        self.aliases={}
 
     def group(self,time):
-        if self.groups and self.precision.compare(self.groups[-1][0],time)==0:return self.groups[-1][1]
+        if self.groups and (self.groups[-1][0] is time or self.precision.compare(self.groups[-1][0],time)==0):
+            return self.groups[-1][1]
         group=[];self.groups.append((time,group));return group
 
     def register(self,p,time,parents):
         group=self.group(time)
+        # at() returns immutable coordinate tuples. Repeated endpoints can
+        # reuse their established node; unfamiliar tuples still use the exact
+        # comparison below. Retain p so its object identity cannot be recycled.
+        key=(id(group),id(p))
+        if key in self.aliases:
+            i=self.aliases[key][1];self.parents[i].update(parents);return i
         for i in group:
             old=self.points[i][0]
             if all(self.precision.compare(a,b)==0 for a,b in zip(old,p)):
-                self.parents[i].update(parents);return i
+                self.parents[i].update(parents);self.aliases[key]=(p,i);return i
         i=len(self.points);self.points.append((p,time));self.parents.append(set(parents));group.append(i)
+        self.aliases[key]=(p,i)
         return i
 
 

@@ -11,6 +11,9 @@ from dataclasses import dataclass,field
 from fractions import Fraction as Q
 import math
 
+ZERO_Q=Q(0)
+ONE_Q=Q(1)
+
 
 class PrecisionLimit(RuntimeError):
     """Execution incomplete; never an invalid footprint/intent diagnosis."""
@@ -29,11 +32,12 @@ class Surd:
     def make(cls,terms):
         result=[]
         for q,c in terms:
-            q,c=Q(q),Q(c)
+            q=q if isinstance(q,Q) else Q(q)
+            c=c if isinstance(c,Q) else Q(c)
             if not c or not q:continue
             if q<0:raise ValueError('real positive radicals required')
-            root=square_root(q)
-            if root is not None:q,c=Q(1),c*root
+            root=ONE_Q if q==1 else square_root(q)
+            if root is not None:q,c=ONE_Q,c*root
             for i,(r,a) in enumerate(result):
                 ratio=square_root(q/r)
                 if ratio is not None:
@@ -45,13 +49,17 @@ class Surd:
     @classmethod
     def number(cls,value):
         if not isinstance(value,Q):value=Q(value)
-        return cls(((Q(1),value),)) if value else cls()
+        return cls(((ONE_Q,value),)) if value else cls()
 
     @classmethod
     def root(cls,value):return cls.make(((Q(value),Q(1)),))
 
     def __add__(self,other):
         other=other if isinstance(other,Surd) else Surd.number(other)
+        if not self.terms:return other
+        if not other.terms:return self
+        if len(self.terms)==len(other.terms)==1 and self.terms[0][0]==other.terms[0][0]==1:
+            return Surd.number(self.terms[0][1]+other.terms[0][1])
         return Surd.make(self.terms+other.terms)
 
     __radd__=__add__
@@ -60,6 +68,11 @@ class Surd:
     def __rsub__(self,other):return coerce(other)+-self
     def __mul__(self,other):
         other=coerce(other)
+        if not self.terms or not other.terms:return Surd()
+        if len(other.terms)==1 and other.terms[0][0]==1:
+            coefficient=other.terms[0][1]
+            return Surd(tuple((q,c*coefficient) for q,c in self.terms))
+        if len(self.terms)==1 and self.terms[0][0]==1:return other*self
         return Surd.make((q*r,a*b) for q,a in self.terms for r,b in other.terms)
 
     __rmul__=__mul__
@@ -90,9 +103,9 @@ class Scalar:
     @classmethod
     def number(cls,value):return cls(coerce(value))
     def rational(self):
-        if not self.numerator.terms:return Q(0)
+        if not self.numerator.terms:return ZERO_Q
         if len(self.numerator.terms)==1 and self.numerator.terms[0][0]==1 and \
-           self.denominator.terms==((Q(1),Q(1)),):return self.numerator.terms[0][1]
+           self.denominator.terms==ONE.terms:return self.numerator.terms[0][1]
         return None
     def __neg__(self):return Scalar(-self.numerator,self.denominator)
     def __add__(self,other):
@@ -191,6 +204,10 @@ class Precision:
 
     def sign(self,value):
         if isinstance(value,Scalar):
+            rational=value.rational()
+            if rational is not None:
+                if not rational:self.exact_zeros+=1;return 0
+                self.rational_signs+=1;return 1 if rational>0 else -1
             if not value.numerator.terms:
                 self.exact_zeros+=1;return 0
             return self.sign(value.numerator)*self.sign(value.denominator)
@@ -214,7 +231,13 @@ class Precision:
             bits*=2
         raise PrecisionLimit('nonzero radical sign exceeded the precision budget')
 
-    def compare(self,a,b):return self.sign(scalar(a)-scalar(b))
+    def compare(self,a,b):
+        a,b=scalar(a),scalar(b)
+        x,y=a.rational(),b.rational()
+        if x is not None and y is not None:
+            if x==y:self.exact_zeros+=1;return 0
+            self.rational_signs+=1;return 1 if x>y else -1
+        return self.sign(a-b)
 
     def rational_interval(self,value,bits=128):
         value=scalar(value)
