@@ -19,7 +19,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import python
-from roof_generator.core.footprint import analyze, inside
+from roof_generator.core.footprint import inside
+from python.roof_kernel.boundary import Line, BoundaryPath, RoofIntent
 
 TOL = 2e-9  # Perimeter-normalized proof tolerance, not an exact-predicate claim.
 
@@ -30,53 +31,6 @@ class ProofDomainError(ValueError):
 
 class ProofBudget(RuntimeError):
     """No incomplete vertex/patch prefix may be returned."""
-
-
-@dataclass(frozen=True)
-class Line:
-    id: str
-    start: tuple[float, float]
-    end: tuple[float, float]
-
-    def evaluate(self, t):
-        if not 0 <= t <= 1:
-            raise ValueError('source parameter outside [0,1]')
-        return tuple(a + t * (b-a) for a,b in zip(self.start,self.end))
-
-
-@dataclass(frozen=True)
-class BoundaryPath:
-    sources: tuple[Line, ...]
-
-    def __post_init__(self):
-        if len(self.sources) < 3 or any(not isinstance(s,Line) for s in self.sources):
-            raise ValueError('closed Line source path required by this proof')
-        if any(not s.id or not isinstance(s.id,str) for s in self.sources) or \
-           len({s.id for s in self.sources}) != len(self.sources):
-            raise ValueError('unique nonempty caller source IDs required')
-        if any(a.end != b.start for a,b in zip(self.sources,self.sources[1:]+self.sources[:1])):
-            raise ValueError('source path is not continuous and closed')
-        # Boundary validity only. Do not use normalized/snap/collinear-removal
-        # output as our source path or discard an intent transition.
-        analyze(self.outline)
-
-    @property
-    def outline(self):
-        return tuple(s.start for s in self.sources)
-
-
-@dataclass(frozen=True)
-class RoofIntent:
-    roles: tuple[tuple[str, str], ...]
-
-    def bind(self, path):
-        mapping=dict(self.roles)
-        if len(mapping)!=len(self.roles) or set(mapping)!={s.id for s in path.sources} \
-           or any(role not in ('EAVE','GABLE') for role in mapping.values()):
-            raise ValueError('full source role coverage required')
-        if 'EAVE' not in mapping.values():
-            raise ValueError('no inclined source: all-gable intent cannot close a roof')
-        return mapping
 
 
 @dataclass(frozen=True)
@@ -106,7 +60,7 @@ class EventCluster:
 
 
 @dataclass(frozen=True)
-class RoofComplex:
+class ConvexWitness:
     boundary: BoundaryPath
     intent: RoofIntent
     vertices: tuple[Vertex, ...]
@@ -231,7 +185,7 @@ def construct(path,intent,*,max_work=100000):
         if not groups or abs(time-groups[-1][0])>TOL*scale*4:
             groups.append((time,[contact]))
         else:groups[-1][1].append(contact)
-    result=RoofComplex(path,intent,vertices,patches,
+    result=ConvexWitness(path,intent,vertices,patches,
                        tuple(EventCluster(t,tuple(cs)) for t,cs in groups),work)
     _validate(result)
     return result
