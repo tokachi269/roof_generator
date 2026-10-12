@@ -15,6 +15,7 @@ from python.roof_kernel.boundary import BoundaryPath,Line,RoofIntent
 from python.roof_kernel.wavefront import construct,Wavefront
 from python.roof_kernel.admissibility import InconsistentIntent
 from python.roof_kernel.complex import KernelLimit
+from python.roof_kernel.mesh import view,WallRequired,MeshResolutionError
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -135,6 +136,46 @@ class LineWavefront(unittest.TestCase):
                 self.assertTrue(exc.certificate);invalid+=1
             else:witness(self,result);valid+=1
         self.assertEqual((valid,invalid),(59,4))
+
+    def test_simultaneous_contact_valence_and_actual_component_split(self):
+        hexagon=((5,Q(5,2)),(0,Q(25,4)),(-5,Q(5,2)),(-5,-Q(5,2)),(0,-Q(25,4)),(5,-Q(5,2)))
+        r=construct(*model(hexagon));witness(self,r)
+        self.assertEqual(len(r.events),1)
+        self.assertEqual([len(r.vertices[v].sources) for v in r.events[0].contacts],[6])
+        rectangle=construct(*model(((0,0),(8,0),(8,4),(0,4))))
+        self.assertEqual(len(rectangle.events),1)
+        self.assertEqual(len(rectangle.events[0].contacts),2)
+        neck=((0,0),(4,0),(4,2),(8,2),(8,0),(12,0),(12,6),(8,6),(8,4),(4,4),(4,6),(0,6))
+        r=construct(*model(neck));witness(self,r)
+        self.assertEqual([(e.components_before,e.components_after) for e in r.events],[(1,2),(2,0)])
+
+    def test_close_event_times_are_not_merged_by_float_equality(self):
+        r=construct(*model(((0,0),(8,Q(1,10**20)),(8,4),(0,4))))
+        self.assertEqual(len(r.events),2)
+        self.assertLess(r.precision.compare(r.events[0].time,r.events[1].time),0)
+        self.assertEqual(r.precision.approximate(r.events[0].time),r.precision.approximate(r.events[1].time))
+        witness(self,r)
+
+    def test_certified_seam_compaction_preserves_real_events_and_float_mesh(self):
+        from python.audit_line_kernel import record_model,oracle
+        r=construct(*record_model(json.loads((ROOT/'python/tests/fixtures/kernel_float_sections.json').read_text())))
+        oracle(r);mesh=view(r)
+        self.assertLess(len(mesh.vertices),len(r.vertices))
+        self.assertTrue(all(v in mesh.source_vertices for e in r.events for v in e.contacts))
+        self.assertEqual(mesh.faces,tuple(tuple(mesh.source_vertices.index(v) for v in p.loop) for p in r.patches))
+
+    def test_internal_stationary_step_is_not_silently_omitted(self):
+        r=construct(*model(((0,0),(8,0),(8,3),(3,3),(3,8),(0,8)),(0,1,3,4)))
+        witness(self,r)
+        with self.assertRaises(WallRequired):view(r)
+        shell=view(r,include_walls=True)
+        self.assertEqual(len(shell.faces),len(r.patches)+len(r.walls))
+        normal=construct(*model(((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4)))
+        self.assertEqual(len(view(normal).faces),len(normal.patches))
+
+    def test_exact_kernel_does_not_guarantee_float_mesh_resolution(self):
+        r=construct(*model(((0,0),(1,0),(1,Q(1,10**400)),(0,Q(1,10**400))), (1,3)))
+        with self.assertRaises(MeshResolutionError):view(r)
 
 
 if __name__=='__main__':unittest.main()

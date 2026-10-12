@@ -12,6 +12,7 @@ from functools import cmp_to_key
 from .boundary import point,sub,dot,cross
 from .precision import scalar
 from .complex import KernelFailure
+from .directions import direction,geometry
 
 
 def _connected(adjacency):
@@ -28,6 +29,33 @@ def _rational(value):
     if len(value.numerator.terms)==1 and value.numerator.terms[0][0]==1 and \
        value.denominator.terms==((Q(1),Q(1)),):return value.numerator.terms[0][1]
     raise KernelFailure('base boundary did not retain exact rational coordinates')
+
+
+def simple_cycle(loop,vectors,project,precision):
+    """Certify nonadjacent segments neither cross nor touch in patch coordinates.
+
+    Use source-derived edge tangents: products of three unrelated event-time
+    quotients are unnecessary for this orientation predicate.
+    """
+    points=[project(v) for v in loop]
+    n=len(loop)
+    def side(i,p):
+        a=points[i];v=vectors[i]
+        return precision.sign(scalar(v[0])*(p[1]-a[1])-scalar(v[1])*(p[0]-a[0]))
+    def on(i,p):
+        v=vectors[i];a,b=points[i],points[(i+1)%n]
+        # direction() oriented the tangent along a -> b.
+        along=lambda x:sum((scalar(v[k])*(x[k]-a[k]) for k in (0,1)),scalar(0))
+        value=along(p)
+        return precision.sign(value)>=0 and precision.compare(value,along(b))<=0
+    for i in range(n):
+        for j in range(i+1,n):
+            if j in ((i+1)%n,(i-1)%n):continue
+            a,b=side(i,points[j]),side(i,points[(j+1)%n])
+            c,d=side(j,points[i]),side(j,points[(i+1)%n])
+            if (a*b<0 and c*d<0) or any(s==0 and on(edge,p) for s,edge,p in (
+                (a,i,points[j]),(b,i,points[(j+1)%n]),(c,j,points[i]),(d,j,points[(i+1)%n]))):
+                raise KernelFailure('source patch boundary self-crosses or touches')
 
 
 def validate(complex):
@@ -48,18 +76,22 @@ def validate(complex):
             x,y=project(a),project(b)
             return precision.compare(x[0],y[0]) or precision.compare(x[1],y[1])
         minimum=min(patch.loop,key=cmp_to_key(cmp));j=patch.loop.index(minimum)
-        a,b,c=(project(patch.loop[k%len(patch.loop)]) for k in (j-1,j,j+1))
-        turn=(b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0])
-        # Collinear subdivision can occur at the extreme; choose a genuine
-        # extreme corner by suppressing only identical projected line runs.
-        if precision.sign(turn)==0:
-            prev=j-1;next_=j+1
-            while prev>j-len(patch.loop) and precision.sign(turn)==0:
-                prev-=1;a=project(patch.loop[prev%len(patch.loop)])
-                turn=(b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0])
-            while next_<j+len(patch.loop) and precision.sign(turn)==0:
-                next_+=1;c=project(patch.loop[next_%len(patch.loop)])
-                turn=(b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0])
+        source_geometry={sid:geometry(p) for p in complex.planes for sid in p.sources}
+        def vector(a,b):
+            common={source_geometry[s] for s in complex.vertices[a].sources}& \
+                   {source_geometry[s] for s in complex.vertices[b].sources}
+            candidates=[p for p in complex.planes if geometry(p) in common]
+            return direction(plane,candidates,a,b,complex.vertices[a].time,complex.vertices[b].time,project,precision)
+        vectors=[vector(a,b) for a,b in zip(patch.loop,patch.loop[1:]+patch.loop[:1])]
+        simple_cycle(patch.loop,vectors,project,precision)
+        previous=vector(patch.loop[j-1],minimum);following=vector(minimum,patch.loop[(j+1)%len(patch.loop)])
+        turn=scalar(previous[0])*scalar(following[1])-scalar(previous[1])*scalar(following[0])
+        offset=1
+        while precision.sign(turn)==0 and offset<len(patch.loop):
+            offset+=1
+            previous=vector(patch.loop[(j-offset)%len(patch.loop)],minimum)
+            following=vector(minimum,patch.loop[(j+offset)%len(patch.loop)])
+            turn=scalar(previous[0])*scalar(following[1])-scalar(previous[1])*scalar(following[0])
         if precision.sign(turn)<=0:raise KernelFailure('source patch lacks positive oriented planar area')
         for k,index in enumerate(patch.loop):
             used.add(index);vertex=complex.vertices[index]
@@ -84,18 +116,18 @@ def validate(complex):
             if precision.sign(va.time)!=0 or precision.sign(vb.time)!=0:
                 raise KernelFailure('complete source shell has a non-base open boundary')
             p,q=tuple(_rational(x) for x in va.xy),tuple(_rational(x) for x in vb.xy)
-            direction=sub(q,p);length=dot(direction,direction)
+            edge_vector=sub(q,p);length=dot(edge_vector,edge_vector)
             if not length:raise KernelFailure('zero-length boundary edge')
             intervals=[]
             for source in complex.boundary.sources:
                 s,t=point(source.start),point(source.end)
-                if cross(direction,sub(s,p)) or cross(direction,sub(t,p)):continue
-                x,y=sorted((dot(sub(s,p),direction)/length,dot(sub(t,p),direction)/length))
+                if cross(edge_vector,sub(s,p)) or cross(edge_vector,sub(t,p)):continue
+                x,y=sorted((dot(sub(s,p),edge_vector)/length,dot(sub(t,p),edge_vector)/length))
                 lo,hi=max(Q(0),x),min(Q(1),y)
                 if lo>=hi:continue
                 intervals.append((lo,hi))
                 ds=sub(t,s);size=dot(ds,ds)
-                ends=tuple(tuple(p[k]+v*direction[k] for k in (0,1)) for v in (lo,hi))
+                ends=tuple(tuple(p[k]+v*edge_vector[k] for k in (0,1)) for v in (lo,hi))
                 coverage[source.id].append(tuple(sorted(dot(sub(e,s),ds)/size for e in ends)))
             previous=Q(0)
             for lo,hi in sorted(intervals):

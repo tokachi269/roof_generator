@@ -15,6 +15,7 @@ from python.roof_kernel.wavefront import construct
 from python.roof_kernel.admissibility import InconsistentIntent
 from python.roof_kernel.precision import PrecisionLimit
 from python.roof_kernel.complex import KernelFailure,KernelLimit
+from python.roof_kernel.mesh import view,MeshResolutionError
 
 
 def record_model(record):
@@ -72,8 +73,11 @@ def main():
                 result=construct(path,intent)
                 row.update(completed_complex=True,vertices=len(result.vertices),roof_patches=len(result.patches),
                            walls=len(result.walls),events=len(result.events),work=result.work,predicates=result.precision.inspect())
-                if args.oracle:row['oracle']=oracle(result);row['independent_validation']=True
                 counts['completed_complex']+=1
+                mesh=view(result,include_walls=True)
+                row.update(float_mesh=True,mesh_vertices=len(mesh.vertices),mesh_faces=len(mesh.faces))
+                counts['float_mesh']+=1
+                if args.oracle:row['oracle']=oracle(result);row['independent_validation']=True
                 if args.oracle:counts['independent_validation']+=1
             except InvalidBoundary as exc:row.update(owner='input_geometry',reason=str(exc))
             except InvalidIntent as exc:row.update(owner='intent_syntax',reason=str(exc))
@@ -81,6 +85,8 @@ def main():
             except UnspecifiedModel as exc:row.update(owner='model_rule',reason=str(exc))
             except (PrecisionLimit,KernelLimit) as exc:row.update(owner='execution_incomplete',reason=str(exc))
             except KernelFailure as exc:row.update(owner='kernel_bug',reason=str(exc))
+            except MeshResolutionError as exc:row.update(owner='mesh_resolution',reason=str(exc))
+            except AssertionError as exc:row.update(owner='independent_validation_failure',reason=str(exc))
             except Exception as exc:row.update(owner='unexpected_bug',reason=type(exc).__name__+': '+str(exc))
             row['total_ms']=(time.perf_counter()-begin)*1000
             counts['inputs']+=1;counts['footprint']+=row['footprint']

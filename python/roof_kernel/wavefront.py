@@ -13,7 +13,7 @@ from .precision import Precision, Surd, Scalar, scalar
 from .boundary import dot,cross
 from .sources import prepare,trajectory,Plane
 from .admissibility import necessary_coverage,InconsistentIntent
-from .complex import KernelFailure,KernelLimit,Registry,patch_cycles,Vertex,Event,RoofComplex
+from .complex import KernelFailure,KernelLimit,Registry,patch_cycles,compact,Vertex,Event,RoofComplex
 from .rotation import cyclic_link
 
 
@@ -227,6 +227,7 @@ class Wavefront:
             self.events.append(Event(time,contacts,before,len(cycles)))
             self.cycles=cycles;self.current=time
         patches=patch_cycles(self.strips,self.planes,self.registry,self.precision)
+        patches=compact(patches,self.planes,self.registry,self.precision)
         vertices=tuple(Vertex(self.frame.world(p),t*self.frame.scale,
                               tuple(sorted({s for pid in self.registry.parents[i] for s in self.planes[pid].sources})))
                        for i,(p,t) in enumerate(self.registry.points))
