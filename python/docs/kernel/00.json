@@ -1,0 +1,238 @@
+{
+  "boundary": {
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          9.0,
+          0.0
+        ]
+      },
+      {
+        "id": "edge1",
+        "start": [
+          9.0,
+          0.0
+        ],
+        "end": [
+          11.0,
+          3.0
+        ]
+      },
+      {
+        "id": "edge2",
+        "start": [
+          11.0,
+          3.0
+        ],
+        "end": [
+          8.0,
+          7.0
+        ]
+      },
+      {
+        "id": "edge3",
+        "start": [
+          8.0,
+          7.0
+        ],
+        "end": [
+          1.0,
+          6.0
+        ]
+      },
+      {
+        "id": "edge4",
+        "start": [
+          1.0,
+          6.0
+        ],
+        "end": [
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  "intent": {
+    "roles": [
+      [
+        "edge0",
+        "EAVE"
+      ],
+      [
+        "edge1",
+        "GABLE"
+      ],
+      [
+        "edge2",
+        "EAVE"
+      ],
+      [
+        "edge3",
+        "GABLE"
+      ],
+      [
+        "edge4",
+        "GABLE"
+      ]
+    ]
+  },
+  "vertices": [
+    {
+      "xy": [
+        0.0,
+        0.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge0",
+        "edge4"
+      ]
+    },
+    {
+      "xy": [
+        7.999999999999998,
+        7.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge2",
+        "edge3"
+      ]
+    },
+    {
+      "xy": [
+        9.0,
+        0.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge0",
+        "edge1"
+      ]
+    },
+    {
+      "xy": [
+        11.0,
+        2.9999999999999987
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge1",
+        "edge2"
+      ]
+    },
+    {
+      "xy": [
+        10.0625,
+        1.5937499999999991
+      ],
+      "time": 1.5937499999999991,
+      "sources": [
+        "edge0",
+        "edge1",
+        "edge2"
+      ]
+    },
+    {
+      "xy": [
+        1.0,
+        6.0
+      ],
+      "time": 6.0,
+      "sources": [
+        "edge0",
+        "edge3",
+        "edge4"
+      ]
+    },
+    {
+      "xy": [
+        1.1944444444444442,
+        6.027777777777779
+      ],
+      "time": 6.027777777777779,
+      "sources": [
+        "edge0",
+        "edge2",
+        "edge3"
+      ]
+    }
+  ],
+  "patches": [
+    {
+      "source": "edge0",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        0,
+        2,
+        4,
+        6,
+        5
+      ]
+    },
+    {
+      "source": "edge2",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        4,
+        3,
+        1,
+        6
+      ]
+    }
+  ],
+  "events": [
+    {
+      "time": 1.5937499999999991,
+      "contacts": [
+        {
+          "vertex": 4,
+          "sources": [
+            "edge0",
+            "edge1",
+            "edge2"
+          ]
+        }
+      ]
+    },
+    {
+      "time": 6.0,
+      "contacts": [
+        {
+          "vertex": 5,
+          "sources": [
+            "edge0",
+            "edge3",
+            "edge4"
+          ]
+        }
+      ]
+    },
+    {
+      "time": 6.027777777777779,
+      "contacts": [
+        {
+          "vertex": 6,
+          "sources": [
+            "edge0",
+            "edge2",
+            "edge3"
+          ]
+        }
+      ]
+    }
+  ],
+  "work": 20
+}

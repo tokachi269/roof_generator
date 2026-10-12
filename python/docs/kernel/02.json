@@ -1,0 +1,196 @@
+{
+  "boundary": {
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          8.0,
+          0.0
+        ]
+      },
+      {
+        "id": "edge1",
+        "start": [
+          8.0,
+          0.0
+        ],
+        "end": [
+          8.0,
+          8.0
+        ]
+      },
+      {
+        "id": "edge2",
+        "start": [
+          8.0,
+          8.0
+        ],
+        "end": [
+          0.0,
+          8.0
+        ]
+      },
+      {
+        "id": "edge3",
+        "start": [
+          0.0,
+          8.0
+        ],
+        "end": [
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  "intent": {
+    "roles": [
+      [
+        "edge0",
+        "EAVE"
+      ],
+      [
+        "edge1",
+        "EAVE"
+      ],
+      [
+        "edge2",
+        "EAVE"
+      ],
+      [
+        "edge3",
+        "EAVE"
+      ]
+    ]
+  },
+  "vertices": [
+    {
+      "xy": [
+        0.0,
+        0.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge0",
+        "edge3"
+      ]
+    },
+    {
+      "xy": [
+        0.0,
+        8.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge2",
+        "edge3"
+      ]
+    },
+    {
+      "xy": [
+        8.0,
+        0.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge0",
+        "edge1"
+      ]
+    },
+    {
+      "xy": [
+        8.0,
+        8.0
+      ],
+      "time": 0.0,
+      "sources": [
+        "edge1",
+        "edge2"
+      ]
+    },
+    {
+      "xy": [
+        4.0,
+        4.0
+      ],
+      "time": 4.0,
+      "sources": [
+        "edge0",
+        "edge1",
+        "edge2",
+        "edge3"
+      ]
+    }
+  ],
+  "patches": [
+    {
+      "source": "edge0",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "source": "edge1",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "source": "edge2",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "source": "edge3",
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "loop": [
+        0,
+        4,
+        1
+      ]
+    }
+  ],
+  "events": [
+    {
+      "time": 4.0,
+      "contacts": [
+        {
+          "vertex": 4,
+          "sources": [
+            "edge0",
+            "edge1",
+            "edge2",
+            "edge3"
+          ]
+        }
+      ]
+    }
+  ],
+  "work": 10
+}

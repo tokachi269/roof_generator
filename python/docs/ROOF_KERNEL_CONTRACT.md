@@ -191,6 +191,19 @@ No third-party algorithm source is copied. No new dependency or production fallb
 is introduced. License/build information is not proof that a backend accepts all
 zero-speed intents.
 
+Concrete source inspection also distinguishes a cluster implementation from a
+robustness guarantee. In campskeleton's
+[HeightCollision.process](https://github.com/twak/campskeleton/blob/c5e88c9c7f1d0fb600e99efce43f60d47690f6a6/src/org/twak/camp/HeightCollision.java),
+same-height collisions are grouped by location, chains are discovered and
+validated before removals resume, then horizontal chains are processed. Spatial
+grouping uses a fixed `0.01` distance, so this code cannot be assumed to meet the
+proposed scale-independent predicate contract unchanged. It is useful researched
+state handling, not a license to port its tolerances as certified predicates.
+Surfer2 revision `c42f9a7f969cd661d060481cd3b8bac2bdfb8dfa` documents its CGAL/C++
+build, including native arithmetic/library dependencies. Its weighted/zero-speed
+domain and Windows distribution have not been verified here. Source-read receipts
+are in [kernel/research-receipt.json](kernel/research-receipt.json).
+
 ## Acceptance and migration gates
 
 The first independent proof uses arbitrary convex line paths with full-edge roles,
@@ -215,3 +228,81 @@ Do not switch the addon until a complete line-domain implementation and packagin
 proof exist. Keep 1.5.0 as its checkpoint; do not extend its local cap grammar as a
 substitute. Arc propagation follows only after the line model and event kernel
 are established, with its own splice convention and approximation/error contract.
+
+## Executed first proof
+
+Start SHA: `65a90cbab75560b7f70a1f6c6e3e652835a2a744`.
+Contract commit: `01dbe51`; independent construction commit: `1929e5d`.
+
+[roof_kernel_proof.py](../roof_kernel_proof.py) is a development-only independent
+oracle. It enumerates the vertices of the convex space-time body above by triples
+of supporting constraints and extracts oriented inclined facets. A global time
+cluster retains all contacts and all incident source IDs. It does **not** implement
+an iterative event queue, reflex split or general contact rewrite. It uses bounded
+floating-point algebra, not certified exact predicates. Its `O(n^4)` worst-case
+enumeration is intended for small proofs and must not become the production kernel.
+
+The original source path survives validation: no role transition is removed by
+the current footprint analyzer. Full source identity/parameter range, EAVE/GABLE
+role and event time are distinct data. Inclined patches alone enter the proof
+mesh; stationary wall patches are not exported. All heights are event-derived,
+without the ordinary skeleton, terminal-cap code or embedding solver.
+
+The new five-edge nonparallel example is rejected by 1.5.0's automatic gable
+selection (`no opposed-support terminal gable cap`). The explicitly declared
+boundary proof produces two inclined facets, with nonconstant ridge height. This
+compares construction capability, not identical architectural candidate policies:
+1.5.0 has no equivalent explicit mixed boundary input API.
+
+Independent tests exhaust all **498** nonempty eave subsets on convex 3–8-edge
+paths. They check source-plane height, SVD planarity, positive normals, polygon
+union, no interior overlap and event incidence. Square and regular hexagon
+contacts preserve four/six incident source identities; rectangle contacts at the
+same time remain two distinct locations. Source-aware winding/cyclic/rotation/
+translation and repeated-run proofs pass. Budget exhaustion returns no prefix.
+The concave single-eave counterexample has its own nonexistence certificate;
+concave construction and partial collinear transitions are **outside this proof**,
+not classified as mathematically invalid by a scope rejection.
+
+The frozen [input records](../tests/fixtures/kernel_line_proofs_v1.json) yield
+five completed convex construction proofs, one nonexistence witness and two
+unresolved construction/model probes. Local full suite: **246 tests pass**.
+Blender 4.3.2 turns all five proof complexes directly into editable meshes with
+planarity, manifold disk, normal, UV, material and source-provenance checks. Face
+cycles and vertex count stay unchanged; no mesh repair is used. These are
+development proof meshes, **not new addon-supported cases**.
+
+| Proof input | Vertices | Patches | Positive-time clusters | Median ms (9 warm samples) |
+| --- | ---: | ---: | ---: | ---: |
+| Nonparallel full gables | 7 | 2 | 3 | 0.537 |
+| Convex single eave | 5 | 1 | 3 | 0.349 |
+| Square, all eave | 5 | 4 | 1 | 0.217 |
+| Hexagon, all eave | 7 | 6 | 1 | 0.903 |
+| Rectangle, two opposite gables | 6 | 2 | 1 | 0.268 |
+
+Exact counts and raw timing samples are in [kernel/report.json](kernel/report.json).
+These tiny convex-oracle timings are neither production performance nor a
+comparison to the existing generator's full candidate pipeline.
+
+[Nonparallel boundary proof](kernel/00.svg) and
+[nonexistence witness](kernel/05.svg) distinguish eaves (blue), gables (red) and
+event contacts. The [Blender evidence](kernel/blender-report.json) corresponds to
+the image below. Render positions are for display only.
+
+![Five independent proof roofs](kernel/blender-meshes.png)
+
+```bash
+python python/probe_roof_kernel.py --output python/out/kernel-proof
+python -m unittest python.tests.test_roof_kernel_proof -v
+python -m unittest discover -s python/tests
+blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel_proof.py -- --output python/out/kernel-proof/blender
+python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
+```
+
+The next production gate remains a researched complete line-wavefront engine:
+admitted concave mixed-role intents, simultaneous/reflex/overlap contact incidence,
+zero-speed remnants, precision refinement and partial-interval closure. The
+necessary half-plane condition is not substituted for a sufficient admissibility
+criterion. Arc splice/weighted-role behavior needs a separate model proof. Until
+these are resolved, the universal kernel is unfinished and production remains at
+1.5.0. No "nonparallel cap" patch or solver-based rescue has been introduced.

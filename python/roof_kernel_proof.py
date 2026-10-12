@@ -6,8 +6,9 @@ Full Line sources with declared EAVE/GABLE roles define a bounded convex body in
 ordinary skeleton, a cap rewrite, a polygon overlay or an embedding optimizer.
 This oracle intentionally has no concave/partial/curve construction path.
 """
-from collections import Counter, defaultdict
+from collections import defaultdict
 from dataclasses import asdict, dataclass
+from html import escape
 from itertools import combinations
 import argparse
 import json
@@ -278,6 +279,41 @@ def export(result,output,*,pitch=.5,eave_height=0.):
     obj.extend('v '+' '.join(format(x,'.17g') for x in p) for p in coordinates)
     obj.extend('f '+' '.join(str(i+1) for i in p.loop) for p in result.patches)
     output.with_suffix('.obj').write_text('\n'.join(obj)+'\n')
+    output.with_suffix('.svg').write_text(drawing(result.boundary,result.intent,result=result))
+
+
+def drawing(path,intent,*,result=None,witness=None):
+    """Read declared sources and proof incidence; never generate roof edges."""
+    lo=tuple(min(p[k] for p in path.outline) for k in (0,1))
+    hi=tuple(max(p[k] for p in path.outline) for k in (0,1))
+    scale=420/max(hi[k]-lo[k] for k in (0,1))
+    def xy(p):return 80+scale*(p[0]-lo[0]),500-scale*(p[1]-lo[1])
+    def pairs(points):return ' '.join(f'{x:.5f},{y:.5f}' for x,y in map(xy,points))
+    svg=['<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">',
+         '<rect width="600" height="600" fill="white"/>',
+         '<text x="18" y="24" font-family="sans-serif" font-size="15">Independent boundary-conditioned proof</text>']
+    if result:
+        colors=('#a9d2ed','#edc1a9','#bfd6a3','#d7b8de','#eedb9a','#a9dad3')
+        for i,patch in enumerate(result.patches):
+            points=[result.vertices[v].xy for v in patch.loop]
+            svg.append(f'<polygon points="{pairs(points)}" fill="{colors[i%len(colors)]}" stroke="#444" stroke-width="1.5"/>')
+        for v in result.vertices:
+            if v.time<=TOL:continue
+            x,y=xy(v.xy)
+            svg.append(f'<circle cx="{x:.5f}" cy="{y:.5f}" r="4" fill="#252"/>')
+            svg.append(f'<text x="{x+6:.5f}" y="{y-8:.5f}" font-size="11">t={v.time:.4g}</text>')
+    roles=intent.bind(path)
+    for s in path.sources:
+        color='#157cb8' if roles[s.id]=='EAVE' else '#bb3b45'
+        svg.append(f'<polyline points="{pairs((s.start,s.end))}" fill="none" stroke="{color}" stroke-width="4"/>')
+        x,y=xy(s.evaluate(.5))
+        svg.append(f'<text x="{x+5:.5f}" y="{y+15:.5f}" font-family="sans-serif" font-size="11">{escape(s.id)} {roles[s.id]}</text>')
+    if witness:
+        x,y=xy(witness['point'])
+        svg.append(f'<circle cx="{x:.5f}" cy="{y:.5f}" r="6" fill="#bd0000"/>')
+        svg.append(f'<text x="{x+8:.5f}" y="{y-8:.5f}" font-size="12">below every eave plane</text>')
+    svg.append('<text x="18" y="575" font-family="sans-serif" font-size="13">Blue: EAVE; red: GABLE; green: contact / event time</text></svg>')
+    return '\n'.join(svg)+'\n'
 
 
 def main():

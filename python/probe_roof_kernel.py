@@ -10,7 +10,7 @@ import time
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from python.roof_kernel_proof import construct, export, from_record, nonexistence_witness, ProofDomainError
+from python.roof_kernel_proof import construct, drawing, export, from_record, nonexistence_witness, ProofDomainError
 
 
 def run(records,output,*,samples=9):
@@ -24,6 +24,7 @@ def run(records,output,*,samples=9):
             certificate=nonexistence_witness(path,intent,record['witness'])
             if certificate is None:raise AssertionError('nonexistence certificate disappeared')
             row.update(status='inconsistent intent',certificate=certificate)
+            (output/f'{index:02d}.svg').write_text(drawing(path,intent,witness=certificate))
         else:
             try:
                 result=construct(path,intent)

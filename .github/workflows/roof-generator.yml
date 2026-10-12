@@ -52,6 +52,8 @@ jobs:
         env:
           BLENDER_USER_SCRIPTS: ${{ github.workspace }}/python/out/ci-base-scripts
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.5.0.zip
+      - name: Validate independent boundary-conditioned convex proof meshes
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel_proof.py -- --output python/out/kernel-proof/blender
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -60,3 +62,4 @@ jobs:
             python/out/addon/
             python/out/source-smoke/
             python/out/base_roofs/
+            python/out/kernel-proof/blender/

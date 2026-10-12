@@ -1,0 +1,51 @@
+{
+  "repositories": [
+    {
+      "repository": "twak/campskeleton",
+      "ref": "stable",
+      "sha": "c5e88c9c7f1d0fb600e99efce43f60d47690f6a6"
+    },
+    {
+      "repository": "cgalab/surfer2",
+      "ref": "master",
+      "sha": "c42f9a7f969cd661d060481cd3b8bac2bdfb8dfa"
+    }
+  ],
+  "read_sources": [
+    {
+      "file": "arcs.pdf",
+      "sha256": "24b1ad7c16d6ed4792b995a23fdade48502ab6c5a4daf23d196c5287c8f2e096",
+      "bytes": 1509819
+    },
+    {
+      "file": "campskeleton-HeightCollision.java",
+      "sha256": "e610730e391277d6657f1313dc79463d95cadf956ba99e0cab4570937229c6f1",
+      "bytes": 9695
+    },
+    {
+      "file": "campskeleton-README.md",
+      "sha256": "81ad67a0b943593905d53f6c3f9db7870b18a2dcd1d1d08e7d39cf338e5c6a1b",
+      "bytes": 2574
+    },
+    {
+      "file": "campskeleton-pom.xml",
+      "sha256": "e247461afe9921ad1ada299c64b42d1418e557fcc780c0a1fb1f1f3d424cbf1e",
+      "bytes": 2394
+    },
+    {
+      "file": "pslg.pdf",
+      "sha256": "a2d298564939617b306bc9b7b96204c4561a2e4612b4ca78438047874ccc5bd8",
+      "bytes": 1173004
+    },
+    {
+      "file": "surfer2-README.md",
+      "sha256": "72d94038bbb0b43fbd013a3c3f7e63248870ffc46fd2d1bd2ce478ed63e18984",
+      "bytes": 4947
+    },
+    {
+      "file": "weighted.pdf",
+      "sha256": "994bd7c1646cd192c0761c81102730acb7f0d8b805b4f3979b20aa305a690b5a",
+      "bytes": 508379
+    }
+  ]
+}

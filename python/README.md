@@ -29,9 +29,23 @@ successful comparison meshes; they are not a current runtime coverage count.
 The resolved end-state model, proof boundaries and remaining unsupported
 combinations are described in [roof-end authority](docs/ROOF_END_CONSTRAINTS.md).
 
-All tools use the distributable `roof_generator.core` under `addon/`.
+Production inspection tools use the distributable `roof_generator.core` under `addon/`.
 Runtime needs Python's standard library. `requirements.txt` declares development
 oracles only; Blender installs the ZIP without pip or external wheels.
+
+The next boundary-conditioned kernel has a separate
+[mathematical contract and construction proof](docs/ROOF_KERNEL_CONTRACT.md).
+`roof_kernel_proof.py` is an independent convex space-time oracle, not a new addon
+generator or general wavefront implementation. It binds full Line source roles
+before construction, retains event time/source incidence, and exports five frozen
+proof meshes. The 498 convex role assignments do not establish concave, partial
+or curved-boundary coverage. The distributed generator remains at 1.5.0.
+
+```bash
+python python/probe_roof_kernel.py --output python/out/kernel-proof
+python -m unittest python.tests.test_roof_kernel_proof -v
+blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel_proof.py -- --output python/out/kernel-proof/blender
+```
 
 The optional `laycock_regions.py` diagnostic uses only footprint/partition APIs
 and external skeleton/polygon oracles; it creates no RoofGraph. It probes section
@@ -96,9 +110,10 @@ problem = prepare_generation(((0, 0), (12, 0), (12, 6), (0, 6)), settings).geome
 
 Mesh coordinates are in the normalized intrinsic frame. Use the generation's
 `footprint.frame.world_xyz` to return to input units. The Blender adapter supplies
-its own metric plane frame. Supported compound gable graphs use fixed-topology
-covariance embedding; general convex quadrilaterals use the same solve/mesh
-contracts. Unsupported incidence or failed convergence raises `UnsupportedRoofError`.
+its own metric plane frame. Complete declared source-plane problems use linear
+fixed-topology embedding; partially specified problems retain covariance
+optimization. General convex quadrilaterals use the same solve/mesh contracts.
+Unsupported incidence or failed convergence raises `UnsupportedRoofError`.
 
 Proofs cover minimum certificates, independent small-polygon/exact-cover
 oracles, hundreds of unknown connected-grid shapes, Cell coverage/provenance,

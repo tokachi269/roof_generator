@@ -1,0 +1,479 @@
+{
+  "version": 1,
+  "method": "convex space-time body enumeration, independent proof only",
+  "runtime_adoption": false,
+  "records": [
+    {
+      "name": "nonparallel_full_gables",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "GABLE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "GABLE"
+          ],
+          [
+            "edge4",
+            "GABLE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "convex construction proof",
+      "vertices": 7,
+      "patches": 2,
+      "event_clusters": [
+        {
+          "time": 1.5937499999999991,
+          "contacts": [
+            {
+              "vertex": 4,
+              "sources": [
+                "edge0",
+                "edge1",
+                "edge2"
+              ]
+            }
+          ]
+        },
+        {
+          "time": 6.0,
+          "contacts": [
+            {
+              "vertex": 5,
+              "sources": [
+                "edge0",
+                "edge3",
+                "edge4"
+              ]
+            }
+          ]
+        },
+        {
+          "time": 6.027777777777779,
+          "contacts": [
+            {
+              "vertex": 6,
+              "sources": [
+                "edge0",
+                "edge2",
+                "edge3"
+              ]
+            }
+          ]
+        }
+      ],
+      "work": 20,
+      "median_ms": 0.5369850000533916,
+      "samples_ms": [
+        0.6273839999266784,
+        0.5369850000533916,
+        0.998338000044896,
+        0.49510400003782706,
+        0.8052870000483381,
+        0.7441760001256625,
+        0.4000320000159263,
+        0.47995300019465503,
+        0.3619040001012763
+      ]
+    },
+    {
+      "name": "one_eave_convex",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "GABLE"
+          ],
+          [
+            "edge2",
+            "GABLE"
+          ],
+          [
+            "edge3",
+            "GABLE"
+          ],
+          [
+            "edge4",
+            "GABLE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "convex construction proof",
+      "vertices": 5,
+      "patches": 1,
+      "event_clusters": [
+        {
+          "time": 2.9999999999999987,
+          "contacts": [
+            {
+              "vertex": 2,
+              "sources": [
+                "edge0",
+                "edge1",
+                "edge2"
+              ]
+            }
+          ]
+        },
+        {
+          "time": 6.0,
+          "contacts": [
+            {
+              "vertex": 3,
+              "sources": [
+                "edge0",
+                "edge3",
+                "edge4"
+              ]
+            }
+          ]
+        },
+        {
+          "time": 7.0,
+          "contacts": [
+            {
+              "vertex": 4,
+              "sources": [
+                "edge0",
+                "edge2",
+                "edge3"
+              ]
+            }
+          ]
+        }
+      ],
+      "work": 20,
+      "median_ms": 0.34884899991993734,
+      "samples_ms": [
+        0.5419359999905282,
+        0.3437709999616345,
+        0.26099799993062334,
+        0.25351799990858126,
+        0.2876439998544811,
+        0.37999699998181313,
+        0.5439379999643279,
+        0.6319500000699918,
+        0.34884899991993734
+      ]
+    },
+    {
+      "name": "square_cluster",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "EAVE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "EAVE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "convex construction proof",
+      "vertices": 5,
+      "patches": 4,
+      "event_clusters": [
+        {
+          "time": 4.0,
+          "contacts": [
+            {
+              "vertex": 4,
+              "sources": [
+                "edge0",
+                "edge1",
+                "edge2",
+                "edge3"
+              ]
+            }
+          ]
+        }
+      ],
+      "work": 10,
+      "median_ms": 0.21688700007871375,
+      "samples_ms": [
+        0.21688700007871375,
+        0.20498799995039008,
+        0.23247600006470748,
+        0.17021899998326262,
+        0.23049899982652278,
+        0.21045000016783888,
+        0.17037599991454044,
+        0.28101899988541845,
+        0.4540269999324664
+      ]
+    },
+    {
+      "name": "hexagon_cluster",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "EAVE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "EAVE"
+          ],
+          [
+            "edge4",
+            "EAVE"
+          ],
+          [
+            "edge5",
+            "EAVE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "convex construction proof",
+      "vertices": 7,
+      "patches": 6,
+      "event_clusters": [
+        {
+          "time": 5.196152422706629,
+          "contacts": [
+            {
+              "vertex": 6,
+              "sources": [
+                "edge0",
+                "edge1",
+                "edge2",
+                "edge3",
+                "edge4",
+                "edge5"
+              ]
+            }
+          ]
+        }
+      ],
+      "work": 35,
+      "median_ms": 0.9027020000758057,
+      "samples_ms": [
+        0.7534300000315852,
+        1.784785999916494,
+        2.5518209999972896,
+        0.5233110000517627,
+        0.9027020000758057,
+        1.2397929999679036,
+        0.808151999990514,
+        1.0228490000372403,
+        0.6934199998340773
+      ]
+    },
+    {
+      "name": "rectangle_two_contacts",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "GABLE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "GABLE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "convex construction proof",
+      "vertices": 6,
+      "patches": 2,
+      "event_clusters": [
+        {
+          "time": 3.0,
+          "contacts": [
+            {
+              "vertex": 5,
+              "sources": [
+                "edge0",
+                "edge1",
+                "edge2"
+              ]
+            },
+            {
+              "vertex": 4,
+              "sources": [
+                "edge0",
+                "edge2",
+                "edge3"
+              ]
+            }
+          ]
+        }
+      ],
+      "work": 10,
+      "median_ms": 0.2682510000795446,
+      "samples_ms": [
+        0.2682510000795446,
+        0.15360900010819023,
+        0.3496170002108556,
+        0.26205399990431033,
+        0.49709800009622995,
+        0.6141880000996025,
+        0.22982500013313256,
+        0.23193100014395895,
+        0.2752870000222174
+      ]
+    },
+    {
+      "name": "concave_single_eave",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "GABLE"
+          ],
+          [
+            "edge1",
+            "GABLE"
+          ],
+          [
+            "edge2",
+            "GABLE"
+          ],
+          [
+            "edge3",
+            "EAVE"
+          ],
+          [
+            "edge4",
+            "GABLE"
+          ],
+          [
+            "edge5",
+            "GABLE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "inconsistent intent",
+      "certificate": {
+        "point": [
+          6,
+          1
+        ],
+        "inward_distances": {
+          "edge3": -3.0
+        },
+        "reason": "every available eave plane is below the common eave height"
+      }
+    },
+    {
+      "name": "concave_admissibility_unproved",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "EAVE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "EAVE"
+          ],
+          [
+            "edge4",
+            "EAVE"
+          ],
+          [
+            "edge5",
+            "EAVE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "outside independent proof domain",
+      "reason": "concave path is outside the convex construction proof",
+      "intent_admissibility": "not decided by this tool"
+    },
+    {
+      "name": "partial_collinear_transition",
+      "footprint_valid": true,
+      "intent": {
+        "roles": [
+          [
+            "edge0",
+            "EAVE"
+          ],
+          [
+            "edge1",
+            "GABLE"
+          ],
+          [
+            "edge2",
+            "EAVE"
+          ],
+          [
+            "edge3",
+            "EAVE"
+          ],
+          [
+            "edge4",
+            "EAVE"
+          ]
+        ]
+      },
+      "input_class": "independent construction proof; not production corpus coverage",
+      "status": "outside independent proof domain",
+      "reason": "collinear role/source transition requires its own model rule",
+      "intent_admissibility": "not decided by this tool"
+    }
+  ]
+}

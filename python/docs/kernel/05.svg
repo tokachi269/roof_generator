@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+<rect width="600" height="600" fill="white"/>
+<text x="18" y="24" font-family="sans-serif" font-size="15">Independent boundary-conditioned proof</text>
+<polyline points="80.00000,500.00000 500.00000,500.00000" fill="none" stroke="#bb3b45" stroke-width="4"/>
+<text x="295.00000" y="515.00000" font-family="sans-serif" font-size="11">edge0 GABLE</text>
+<polyline points="500.00000,500.00000 500.00000,342.50000" fill="none" stroke="#bb3b45" stroke-width="4"/>
+<text x="505.00000" y="436.25000" font-family="sans-serif" font-size="11">edge1 GABLE</text>
+<polyline points="500.00000,342.50000 237.50000,342.50000" fill="none" stroke="#bb3b45" stroke-width="4"/>
+<text x="373.75000" y="357.50000" font-family="sans-serif" font-size="11">edge2 GABLE</text>
+<polyline points="237.50000,342.50000 237.50000,80.00000" fill="none" stroke="#157cb8" stroke-width="4"/>
+<text x="242.50000" y="226.25000" font-family="sans-serif" font-size="11">edge3 EAVE</text>
+<polyline points="237.50000,80.00000 80.00000,80.00000" fill="none" stroke="#bb3b45" stroke-width="4"/>
+<text x="163.75000" y="95.00000" font-family="sans-serif" font-size="11">edge4 GABLE</text>
+<polyline points="80.00000,80.00000 80.00000,500.00000" fill="none" stroke="#bb3b45" stroke-width="4"/>
+<text x="85.00000" y="305.00000" font-family="sans-serif" font-size="11">edge5 GABLE</text>
+<circle cx="395.00000" cy="447.50000" r="6" fill="#bd0000"/>
+<text x="403.00000" y="439.50000" font-size="12">below every eave plane</text>
+<text x="18" y="575" font-family="sans-serif" font-size="13">Blue: EAVE; red: GABLE; green: contact / event time</text></svg>

@@ -1,0 +1,60 @@
+{
+  "production_adapter": false,
+  "meshes": [
+    {
+      "name": "nonparallel_full_gables",
+      "vertices": 7,
+      "faces": 2,
+      "planar_manifold_disk": true,
+      "normals": true,
+      "uv": true,
+      "materials": true,
+      "source_provenance": true,
+      "topology_modified": false
+    },
+    {
+      "name": "one_eave_convex",
+      "vertices": 5,
+      "faces": 1,
+      "planar_manifold_disk": true,
+      "normals": true,
+      "uv": true,
+      "materials": true,
+      "source_provenance": true,
+      "topology_modified": false
+    },
+    {
+      "name": "square_cluster",
+      "vertices": 5,
+      "faces": 4,
+      "planar_manifold_disk": true,
+      "normals": true,
+      "uv": true,
+      "materials": true,
+      "source_provenance": true,
+      "topology_modified": false
+    },
+    {
+      "name": "hexagon_cluster",
+      "vertices": 7,
+      "faces": 6,
+      "planar_manifold_disk": true,
+      "normals": true,
+      "uv": true,
+      "materials": true,
+      "source_provenance": true,
+      "topology_modified": false
+    },
+    {
+      "name": "rectangle_two_contacts",
+      "vertices": 6,
+      "faces": 2,
+      "planar_manifold_disk": true,
+      "normals": true,
+      "uv": true,
+      "materials": true,
+      "source_provenance": true,
+      "topology_modified": false
+    }
+  ]
+}
