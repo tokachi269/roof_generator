@@ -17,14 +17,6 @@ from .complex import KernelFailure,KernelLimit,Registry,patch_cycles,Vertex,Even
 from .rotation import cyclic_link
 
 
-def _vector_cmp(a,b):
-    ha=0 if a[1]>0 or (a[1]==0 and a[0]>=0) else 1
-    hb=0 if b[1]>0 or (b[1]==0 and b[0]>=0) else 1
-    if ha!=hb:return -1 if ha<hb else 1
-    c=cross(a,b)
-    return -1 if c>0 else 1 if c<0 else 0
-
-
 class Wavefront:
     def __init__(self,path,intent,*,max_work=65536,max_bits=4096):
         self.path=path;self.intent=intent
@@ -37,6 +29,7 @@ class Wavefront:
         self.max_work=max_work;self.work=0
         self.trajectories={};self.contacts={};self.strips=[];self.events=[]
         self.positions={}
+        self.intervals={};self.subdivisions={}
 
     def merge_sources(self,a,b):
         p,q=self.planes[a],self.planes[b]
@@ -75,9 +68,12 @@ class Wavefront:
         return sum((p[k]*plane.direction[k] for k in (0,1)),Scalar.number(0))
 
     def contains(self,p,fragment,time):
-        plane,a,b=fragment;plane=self.planes[plane]
+        pid,a,b=fragment;plane=self.planes[pid]
         x=self.projected(p,plane)
-        start=self.projected(self.at(a,time),plane);end=self.projected(self.at(b,time),plane)
+        key=(pid,id(a),id(b),id(time))
+        if key not in self.intervals:
+            self.intervals[key]=(time,self.projected(self.at(a,time),plane),self.projected(self.at(b,time),plane))
+        _,start,end=self.intervals[key]
         return self.precision.compare(x,start)>=0 and self.precision.compare(end,x)>=0
 
     def contact_time(self,a,b,c):
@@ -105,8 +101,16 @@ class Wavefront:
                     if result is None or self.precision.compare(t,result)<0:result=t
         if result is None:
             if all(self.planes[p].role=='GABLE' for cycle in self.cycles for p in cycle):
+                polygons=[]
+                for cycle in self.cycles:
+                    points=[]
+                    for j,p in enumerate(cycle):
+                        v=self.vertex(cycle[j-1],p)
+                        points.append(tuple(str(v[k].origin*self.frame.scale+self.frame.origin[k]) for k in (0,1)))
+                    polygons.append(points)
                 certificate={'kind':'stationary_remaining_front','time':self.precision.approximate(self.current),
-                             'cycles':[tuple(self.planes[p].sources for p in cycle) for cycle in self.cycles]}
+                             'cycles':[tuple(self.planes[p].sources for p in cycle) for cycle in self.cycles],
+                             'exact_polygons':polygons}
                 raise InconsistentIntent('stationary positive-area front cannot complete a finite roof',certificate)
             raise KernelFailure('moving positive-area front has no predicted future contact')
         return result
@@ -119,14 +123,21 @@ class Wavefront:
 
     def split(self,fragment,time,group):
         p,a,b=fragment;plane=self.planes[p]
+        key=(p,id(a),id(b),id(time),len(group))
+        if key in self.subdivisions:return self.subdivisions[key][1]
         result=[]
         for node in group:
             xy=self.registry.points[node][0]
-            value=sum((xy[k]*plane.normal[k] for k in (0,1)),Scalar.number(0))-plane.offset-scalar(plane.speed)*time
-            if self.precision.sign(value)==0 and self.contains(xy,fragment,time):
+            on_plane=p in self.registry.parents[node]
+            if not on_plane:
+                value=sum((xy[k]*plane.normal[k] for k in (0,1)),Scalar.number(0))-plane.offset-scalar(plane.speed)*time
+                on_plane=self.precision.sign(value)==0
+            if on_plane and self.contains(xy,fragment,time):
                 self.registry.parents[node].add(p);result.append(node)
-        return sorted(result,key=cmp_to_key(lambda x,y:self.precision.compare(
+        result=sorted(result,key=cmp_to_key(lambda x,y:self.precision.compare(
             self.projected(self.registry.points[x][0],plane),self.projected(self.registry.points[y][0],plane))))
+        self.subdivisions[key]=(time,result)
+        return result
 
     def strip(self,fragment,time,lower,upper):
         p,_,_=fragment

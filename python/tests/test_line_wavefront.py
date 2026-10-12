@@ -12,7 +12,7 @@ import numpy as np
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 from python.roof_kernel.boundary import BoundaryPath,Line,RoofIntent
-from python.roof_kernel.wavefront import construct
+from python.roof_kernel.wavefront import construct,Wavefront
 from python.roof_kernel.admissibility import InconsistentIntent
 from python.roof_kernel.complex import KernelLimit
 
@@ -111,6 +111,30 @@ class LineWavefront(unittest.TestCase):
             construct(*model(((0,0),(8,0),(8,3),(3,3),(3,8),(0,8)),(0,1,2,4,5)))
         self.assertEqual(error.exception.certificate['kind'],'no_nonnegative_source_plane')
         with self.assertRaises(KernelLimit):construct(*model(((0,0),(8,0),(8,8),(0,8))),max_work=1)
+
+    def test_memos_are_not_correctness_dependencies(self):
+        class NoMemo(Wavefront):
+            def at(self,*args):
+                self.positions.clear();return super().at(*args)
+            def contains(self,*args):
+                self.intervals.clear();return super().contains(*args)
+            def split(self,*args):
+                self.subdivisions.clear();return super().split(*args)
+        path,intent=model(((0,0),(10,0),(10,3),(3,3),(3,9),(0,9)),(1,4))
+        expected=construct(path,intent).inspect();actual=NoMemo(path,intent).run().inspect()
+        for record in (expected,actual):record.pop('predicates')
+        self.assertEqual(expected,actual)
+
+    def test_all_full_edge_assignments_on_a_concave_polygon(self):
+        p=((0,0),(8,0),(8,3),(3,3),(3,8),(0,8))
+        valid=invalid=0
+        for mask in range(1,64):
+            gables=tuple(i for i in range(6) if not mask&(1<<i))
+            try:result=construct(*model(p,gables))
+            except InconsistentIntent as exc:
+                self.assertTrue(exc.certificate);invalid+=1
+            else:witness(self,result);valid+=1
+        self.assertEqual((valid,invalid),(59,4))
 
 
 if __name__=='__main__':unittest.main()

@@ -44,7 +44,7 @@ class Surd:
 
     @classmethod
     def number(cls,value):
-        value=Q(value)
+        if not isinstance(value,Q):value=Q(value)
         return cls(((Q(1),value),)) if value else cls()
 
     @classmethod
@@ -70,19 +70,22 @@ class Surd:
 def coerce(value):return value if isinstance(value,Surd) else Surd.number(value)
 
 
+ONE=Surd.number(1)  # Immutable arithmetic identity, not mutable cached state.
+
+
 @dataclass(frozen=True,eq=False)
 class Scalar:
     numerator: Surd
-    denominator: Surd = field(default_factory=lambda:Surd(((Q(1),Q(1)),)))
+    denominator: Surd = field(default_factory=lambda:ONE)
 
     def __post_init__(self):
         if not self.denominator.terms:raise ZeroDivisionError('zero radical denominator')
         if not self.numerator.terms:
-            object.__setattr__(self,'denominator',Surd.number(1))
+            object.__setattr__(self,'denominator',ONE)
         elif len(self.denominator.terms)==1 and self.denominator.terms[0][0]==1:
             d=self.denominator.terms[0][1]
-            object.__setattr__(self,'numerator',Surd(tuple((q,c/d) for q,c in self.numerator.terms)))
-            object.__setattr__(self,'denominator',Surd.number(1))
+            if d!=1:object.__setattr__(self,'numerator',Surd(tuple((q,c/d) for q,c in self.numerator.terms)))
+            object.__setattr__(self,'denominator',ONE)
 
     @classmethod
     def number(cls,value):return cls(coerce(value))

@@ -71,5 +71,8 @@ class RoofIntent:
         if len(mapping)!=len(self.roles) or set(mapping)!={s.id for s in path.sources} or \
            any(role not in ('EAVE','GABLE') for role in mapping.values()):
             raise InvalidIntent('complete disjoint full-source EAVE/GABLE roles required')
-        if 'EAVE' not in mapping.values():raise InvalidIntent('all stationary sources cannot close a roof')
+        if 'EAVE' not in mapping.values():
+            from .admissibility import InconsistentIntent
+            raise InconsistentIntent('all stationary sources cannot close a finite pitched roof',
+                                     {'kind':'no_moving_source','sources':tuple(sorted(mapping))})
         return mapping
