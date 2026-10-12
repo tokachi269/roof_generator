@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "name": "nonparallel_full_gables",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "GABLE",
+        "EAVE",
+        "GABLE",
+        "GABLE"
+      ],
+      "proof": "construction"
+    },
+    {
+      "name": "one_eave_convex",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "GABLE",
+        "GABLE",
+        "GABLE",
+        "GABLE"
+      ],
+      "proof": "construction"
+    },
+    {
+      "name": "square_cluster",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE"
+      ],
+      "proof": "construction"
+    },
+    {
+      "name": "hexagon_cluster",
+      "footprint": [
+        [
+          6.0,
+          0.0
+        ],
+        [
+          3.000000000000001,
+          5.196152422706632
+        ],
+        [
+          -2.9999999999999987,
+          5.196152422706632
+        ],
+        [
+          -6.0,
+          7.347880794884119e-16
+        ],
+        [
+          -3.0000000000000027,
+          -5.19615242270663
+        ],
+        [
+          3.000000000000001,
+          -5.196152422706632
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE"
+      ],
+      "proof": "construction"
+    },
+    {
+      "name": "rectangle_two_contacts",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "GABLE",
+        "EAVE",
+        "GABLE"
+      ],
+      "proof": "construction"
+    },
+    {
+      "name": "concave_single_eave",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "roles": [
+        "GABLE",
+        "GABLE",
+        "GABLE",
+        "EAVE",
+        "GABLE",
+        "GABLE"
+      ],
+      "proof": "nonexistence",
+      "witness": [
+        6,
+        1
+      ]
+    },
+    {
+      "name": "concave_admissibility_unproved",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE",
+        "EAVE"
+      ],
+      "proof": "unresolved"
+    },
+    {
+      "name": "partial_collinear_transition",
+      "footprint": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "roles": [
+        "EAVE",
+        "GABLE",
+        "EAVE",
+        "EAVE",
+        "EAVE"
+      ],
+      "proof": "unresolved"
+    }
+  ]
+}
