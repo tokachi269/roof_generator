@@ -33,6 +33,8 @@ class Line:
     start: tuple[float,float]
     end: tuple[float,float]
     def __post_init__(self):
+        object.__setattr__(self,'start',tuple(self.start))
+        object.__setattr__(self,'end',tuple(self.end))
         if not isinstance(self.id,str) or not self.id:raise InvalidBoundary('nonempty source ID required')
         if point(self.start)==point(self.end):raise InvalidBoundary('zero-length source')
     def evaluate(self,t):
@@ -44,6 +46,7 @@ class Line:
 class BoundaryPath:
     sources: tuple[Line,...]
     def __post_init__(self):
+        object.__setattr__(self,'sources',tuple(self.sources))
         if len(self.sources)<3 or not all(isinstance(s,Line) for s in self.sources):
             raise InvalidBoundary('closed full-Line path required')
         if len({s.id for s in self.sources})!=len(self.sources):raise InvalidBoundary('duplicate source ID')
@@ -66,6 +69,8 @@ class BoundaryPath:
 @dataclass(frozen=True)
 class RoofIntent:
     roles: tuple[tuple[str,str],...]
+    def __post_init__(self):
+        object.__setattr__(self,'roles',tuple(tuple(role) for role in self.roles))
     def bind(self,path):
         mapping=dict(self.roles)
         if len(mapping)!=len(self.roles) or set(mapping)!={s.id for s in path.sources} or \

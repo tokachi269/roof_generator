@@ -60,6 +60,17 @@ def witness(test,result):
 
 
 class LineWavefront(unittest.TestCase):
+    def test_boundary_and_role_containers_are_immutable_snapshots(self):
+        points=[[0,0],[8,0],[8,4],[0,4]]
+        sources=[Line(f'edge{i}',a,b) for i,(a,b) in enumerate(zip(points,points[1:]+points[:1]))]
+        roles=[[s.id,'EAVE'] for s in sources]
+        path=BoundaryPath(sources);intent=RoofIntent(roles)
+        points[0][0]=999;sources.clear();roles[0][1]='GABLE'
+        self.assertEqual(path.outline,((0,0),(8,0),(8,4),(0,4)))
+        self.assertEqual(intent.roles[0],('edge0','EAVE'))
+        witness(self,construct(path,intent))
+
+
     def test_concave_inputs_do_not_call_cap_solver_or_polygon_boolean(self):
         points=((0,0),(10,0),(10,3),(3,3),(3,9),(0,9))
         with (patch('roof_generator.core.wavefront.compute_skeleton',side_effect=AssertionError('ordinary skeleton')),
