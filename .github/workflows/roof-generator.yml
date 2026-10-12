@@ -54,6 +54,8 @@ jobs:
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test_base_roof.py -- --zip packages/roof_generator-1.5.0.zip
       - name: Validate independent boundary-conditioned convex proof meshes
         run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel_proof.py -- --output python/out/kernel-proof/blender
+      - name: Validate concave full-Line source complexes as editable meshes
+        run: /tmp/roof-blender/blender -b --factory-startup --python-exit-code 1 --python python/blender_line_kernel.py -- --output python/out/line-kernel/blender
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -63,3 +65,4 @@ jobs:
             python/out/source-smoke/
             python/out/base_roofs/
             python/out/kernel-proof/blender/
+            python/out/line-kernel/blender/
