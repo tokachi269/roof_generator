@@ -70,7 +70,6 @@ class LineWavefront(unittest.TestCase):
         self.assertEqual(intent.roles[0],('edge0','EAVE'))
         witness(self,construct(path,intent))
 
-
     def test_concave_inputs_do_not_call_cap_solver_or_polygon_boolean(self):
         points=((0,0),(10,0),(10,3),(3,3),(3,9),(0,9))
         with (patch('roof_generator.core.wavefront.compute_skeleton',side_effect=AssertionError('ordinary skeleton')),
@@ -139,7 +138,6 @@ class LineWavefront(unittest.TestCase):
         self.assertEqual({tuple(map(Q,p)) for p in certificate['exact_polygons'][0]},
                          {(Q(0),Q(0)),(Q(3),Q(0)),(Q(3),Q(8)),(Q(0),Q(8))})
 
-
     def test_memos_are_not_correctness_dependencies(self):
         class NoMemo(Wavefront):
             def at(self,*args):
@@ -205,6 +203,14 @@ class LineWavefront(unittest.TestCase):
         self.assertLess(len(mesh.vertices),len(r.vertices))
         self.assertTrue(all(v in mesh.source_vertices for e in r.events for v in e.contacts))
         self.assertEqual(mesh.faces,tuple(tuple(mesh.source_vertices.index(v) for v in p.loop) for p in r.patches))
+
+    def test_projected_step_contacts_have_an_independent_area_coverage_proof(self):
+        from python.audit_line_kernel import record_model,oracle
+        record=json.loads((ROOT/'python/tests/fixtures/kernel_projected_walls.json').read_text())
+        r=construct(*record_model(record));proof=oracle(r)
+        self.assertLess(proof['coverage_error'],1e-8)
+        self.assertLess(proof['outside_error'],1e-8);self.assertLess(proof['overlap_error'],1e-8)
+        self.assertEqual(len(view(r,include_walls=True).faces),len(r.patches)+len(r.walls))
 
     def test_internal_stationary_step_is_not_silently_omitted(self):
         r=construct(*model(((0,0),(8,0),(8,3),(3,3),(3,8),(0,8)),(0,1,3,4)))

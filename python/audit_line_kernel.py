@@ -15,7 +15,7 @@ from python.roof_kernel.wavefront import construct
 from python.roof_kernel.admissibility import InconsistentIntent
 from python.roof_kernel.precision import PrecisionLimit
 from python.roof_kernel.complex import KernelFailure,KernelLimit
-from python.roof_kernel.mesh import view,MeshResolutionError
+from python.roof_kernel.mesh import view,MeshResolutionError,WallRequired
 
 
 def record_model(record):
@@ -42,11 +42,18 @@ def oracle(result):
             if not shape.is_valid or shape.area<=0:raise AssertionError('independent projected face is invalid')
             projected.append(shape)
     union=unary_union(projected)
-    error=union.symmetric_difference(original).area
-    overlap=sum(p.area for p in projected)-union.area
+    raw_union_error=union.symmetric_difference(original).area
+    # GEOS floating overlay can mis-node nearly collinear projected step walls.
+    # An equivalent coverage proof avoids relying on that one union operation:
+    # containment + pairwise disjoint interiors + equal total area imply coverage.
+    error=abs(sum(p.area for p in projected)-original.area)
+    outside=sum(p.difference(original).area for p in projected)
+    overlap=sum(p.intersection(q).area for i,p in enumerate(projected) for q in projected[:i])
     tolerance=1e-9*max(original.area,1)
-    if error>tolerance or abs(overlap)>tolerance:raise AssertionError('independent projected coverage/overlap mismatch')
-    return {'coverage_error':error,'overlap_error':overlap,'roof_patches':len(projected)}
+    if error>tolerance or outside>tolerance or overlap>tolerance:
+        raise AssertionError('independent projected coverage/containment/overlap mismatch')
+    return {'coverage_error':error,'outside_error':outside,'overlap_error':overlap,
+            'raw_union_error':raw_union_error,'roof_patches':len(projected)}
 
 
 def main():
@@ -77,11 +84,17 @@ def main():
                 mesh=view(result,include_walls=True)
                 row.update(float_mesh=True,mesh_vertices=len(mesh.vertices),mesh_faces=len(mesh.faces))
                 counts['float_mesh']+=1
+                try:
+                    view(result);row['roof_only_mesh']=True;counts['roof_only_mesh']+=1
+                except WallRequired as exc:
+                    row.update(roof_only_mesh=False,roof_profile_reason=str(exc));counts['requires_internal_walls']+=1
                 if args.oracle:row['oracle']=oracle(result);row['independent_validation']=True
                 if args.oracle:counts['independent_validation']+=1
             except InvalidBoundary as exc:row.update(owner='input_geometry',reason=str(exc))
             except InvalidIntent as exc:row.update(owner='intent_syntax',reason=str(exc))
-            except InconsistentIntent as exc:row.update(owner='intent_nonexistence',reason=str(exc),certificate=exc.certificate)
+            except InconsistentIntent as exc:
+                owner='intent_nontermination' if exc.certificate['kind']=='stationary_remaining_front' else 'intent_nonexistence'
+                row.update(owner=owner,reason=str(exc),certificate=exc.certificate)
             except UnspecifiedModel as exc:row.update(owner='model_rule',reason=str(exc))
             except (PrecisionLimit,KernelLimit) as exc:row.update(owner='execution_incomplete',reason=str(exc))
             except KernelFailure as exc:row.update(owner='kernel_bug',reason=str(exc))
