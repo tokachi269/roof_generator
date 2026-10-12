@@ -1,0 +1,35 @@
+Mon Oct 12 10:18:17 2026    python/out/kernel-research/timing-completed.pstats
+
+         2428813 function calls (2428691 primitive calls) in 1.881 seconds
+
+   Ordered by: cumulative time
+   List reduced from 189 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    2.022    2.022 wavefront.py:245(construct)
+        1    0.001    0.001    1.904    1.904 wavefront.py:209(run)
+      256    0.028    0.000    0.931    0.004 wavefront.py:125(split)
+       74    0.001    0.000    0.810    0.011 wavefront.py:143(strip)
+     9915    0.033    0.000    0.751    0.000 {built-in method builtins.sum}
+    65659    0.077    0.000    0.605    0.000 precision.py:103(number)
+    16469    0.044    0.000    0.436    0.000 precision.py:122(__mul__)
+    21989    0.058    0.000    0.409    0.000 precision.py:111(__add__)
+        1    0.017    0.017    0.401    0.401 validation.py:61(validate)
+    10707    0.020    0.000    0.390    0.000 precision.py:120(__sub__)
+    84746    0.078    0.000    0.359    0.000 fractions.py:613(forward)
+        4    0.009    0.002    0.332    0.083 wavefront.py:88(next_time)
+    75048    0.058    0.000    0.280    0.000 precision.py:83(coerce)
+    68282    0.042    0.000    0.242    0.000 precision.py:139(scalar)
+      641    0.005    0.000    0.216    0.000 wavefront.py:70(contains)
+     9831    0.014    0.000    0.213    0.000 wavefront.py:134(<genexpr>)
+    69938    0.105    0.000    0.212    0.000 precision.py:49(number)
+     1445    0.004    0.000    0.185    0.000 wavefront.py:67(projected)
+    78330    0.125    0.000    0.183    0.000 precision.py:94(__post_init__)
+     1936    0.013    0.000    0.177    0.000 wavefront.py:79(contact_time)
+      456    0.005    0.000    0.141    0.000 directions.py:24(direction)
+        7    0.002    0.000    0.129    0.018 wavefront.py:168(resolve)
+        1    0.020    0.020    0.127    0.127 complex.py:136(patch_cycles)
+    94639    0.087    0.000    0.127    0.000 precision.py:105(rational)
+   343317    0.091    0.000    0.125    0.000 {built-in method builtins.isinstance}
+
+

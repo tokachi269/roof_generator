@@ -66,6 +66,12 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md), and
 [canonical measurements](python/docs/END_TO_END_EVALUATION.md).
 
+The standalone [full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)
+constructs source-labelled concave EAVE/GABLE complexes with certified event
+arithmetic. Its [evaluation](python/docs/LINE_KERNEL_EVALUATION.md) separates
+inclined roof surfaces from complexes that need internal vertical patches.
+This kernel is not yet the packaged addon's generation path.
+
 ```bash
 python -m pip install -r python/requirements.txt  # development oracles only
 python -m unittest discover -s python/tests

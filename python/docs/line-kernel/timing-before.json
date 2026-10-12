@@ -1,0 +1,375 @@
+{
+  "scope": "explicit full-edge intent; no architectural search or nonlinear solve",
+  "timing": "unprofiled warm samples; exclusive stage timings are separate instrumented observations",
+  "cases": [
+    {
+      "name": "orthogonal_L",
+      "corners": 6,
+      "events": 2,
+      "construction_median_ms": 45.59835600230144,
+      "construction_samples_ms": [
+        40.650805000041146,
+        46.12313999678008,
+        45.240653002110776,
+        47.95687200021348,
+        45.59835600230144
+      ],
+      "mesh_median_ms": 1.2988099988433532,
+      "mesh_samples_ms": [
+        1.1833959979412612,
+        1.5306709974538535,
+        1.2988099988433532,
+        1.590127001691144,
+        1.1740440022549592
+      ],
+      "stages_ms": {
+        "intent_sources": 0.7870589979575016,
+        "noding": 18.668355991394492,
+        "certificates": 5.714476999855833,
+        "swept_strips": 0.0649819994578138,
+        "contact_link": 0.20577400573529303,
+        "patch_cycles": 3.8475099972856697,
+        "seam_compaction": 1.1111309977422934,
+        "validation": 25.706567997985985,
+        "remaining": 1.1614000104600564
+      },
+      "fingerprint": "69688b1c7cbf6de7cfce0874e0a97075f2a0e76fe3c7fc8d877bf5098026cf61",
+      "work": 35,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 976,
+        "refinements": 0,
+        "exact_zeros": 348,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "orthogonal_T",
+      "corners": 8,
+      "events": 2,
+      "construction_median_ms": 73.24825000250712,
+      "construction_samples_ms": [
+        76.01871900260448,
+        73.24825000250712,
+        64.44124599875067,
+        74.4306790002156,
+        67.9114730010042
+      ],
+      "mesh_median_ms": 3.526246000546962,
+      "mesh_samples_ms": [
+        3.526246000546962,
+        2.1829549987160135,
+        5.325576003087917,
+        2.0238519973645452,
+        6.053047000023071
+      ],
+      "stages_ms": {
+        "intent_sources": 2.846201001375448,
+        "noding": 29.368063991569215,
+        "certificates": 11.456220996478805,
+        "swept_strips": 0.08850999802234583,
+        "contact_link": 0.367181004548911,
+        "patch_cycles": 7.029398999293335,
+        "seam_compaction": 0.9793680001166649,
+        "validation": 27.614313999947626,
+        "remaining": 2.0030620107718278
+      },
+      "fingerprint": "3669cb1e1449b2c4116f174cc4931296b0268ed385ca6d5d66a8ddc1c8f634ff",
+      "work": 59,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 1394,
+        "refinements": 0,
+        "exact_zeros": 436,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "orthogonal_U",
+      "corners": 8,
+      "events": 3,
+      "construction_median_ms": 140.4163079969294,
+      "construction_samples_ms": [
+        140.4163079969294,
+        277.48110499669565,
+        136.09323900163872,
+        160.54595699824858,
+        136.25630000024103
+      ],
+      "mesh_median_ms": 3.293647001555655,
+      "mesh_samples_ms": [
+        9.313993999967352,
+        3.293647001555655,
+        3.0166620017553214,
+        4.74769200081937,
+        2.0939169990015216
+      ],
+      "stages_ms": {
+        "intent_sources": 2.3228800018841866,
+        "noding": 67.7652330014098,
+        "certificates": 29.73650200146949,
+        "swept_strips": 0.40764501682133414,
+        "contact_link": 1.1673279987007845,
+        "patch_cycles": 13.625831001263577,
+        "seam_compaction": 4.365755998151144,
+        "validation": 26.449572000274202,
+        "remaining": 4.735342979984125
+      },
+      "fingerprint": "6201172919dad92311234983e9a79ac04bb18d4a2f1be53324e7cbb4271bb220",
+      "work": 105,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 2234,
+        "refinements": 0,
+        "exact_zeros": 669,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "four_terminal_ports",
+      "corners": 12,
+      "events": 1,
+      "construction_median_ms": 124.3926899987855,
+      "construction_samples_ms": [
+        111.76318299840204,
+        110.43023300226196,
+        127.20051100041019,
+        127.23633100176812,
+        124.3926899987855
+      ],
+      "mesh_median_ms": 5.059126997366548,
+      "mesh_samples_ms": [
+        3.3378689986420795,
+        5.059126997366548,
+        5.076493998785736,
+        8.126867000100901,
+        3.281728000729345
+      ],
+      "stages_ms": {
+        "intent_sources": 2.7172339978278615,
+        "noding": 36.312907985120546,
+        "certificates": 39.71040900069056,
+        "swept_strips": 0.27446800595498644,
+        "contact_link": 0.030727009288966656,
+        "patch_cycles": 7.534582000516821,
+        "seam_compaction": 0.0383910009986721,
+        "validation": 29.239348998089554,
+        "remaining": 2.206079003371997
+      },
+      "fingerprint": "c88d951630631b3eb7d33e7bd98dd8822ca461aa33f53bc542c330af49425457",
+      "work": 121,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 2040,
+        "refinements": 0,
+        "exact_zeros": 558,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "nearly_collinear_event_sections",
+      "corners": 6,
+      "events": 3,
+      "construction_median_ms": 649.5411489995604,
+      "construction_samples_ms": [
+        498.1722560005437,
+        649.5411489995604,
+        599.4470559999172,
+        855.8136870015005,
+        1357.8491330008546
+      ],
+      "mesh_median_ms": 13.872668001567945,
+      "mesh_samples_ms": [
+        15.450078000867506,
+        7.53770200026338,
+        5.709444001695374,
+        16.356241001631133,
+        13.872668001567945
+      ],
+      "stages_ms": {
+        "intent_sources": 2.315467998414533,
+        "noding": 397.1018470147101,
+        "certificates": 146.27275800012285,
+        "swept_strips": 1.1325459890940692,
+        "contact_link": 6.748098989191931,
+        "patch_cycles": 188.14951300009852,
+        "seam_compaction": 65.28188299853355,
+        "validation": 234.55203900084598,
+        "remaining": 20.76246900833212
+      },
+      "fingerprint": "a9873927b9f4a70b854e96014c2f39f226569a44eb72bc13beae74208e7fde90",
+      "work": 68,
+      "predicates": {
+        "double_signs": 1032,
+        "rational_signs": 447,
+        "refinements": 9,
+        "exact_zeros": 492,
+        "bits_used": 64
+      }
+    },
+    {
+      "name": "grid_14",
+      "corners": 14,
+      "events": 2,
+      "construction_median_ms": 167.8408740008308,
+      "construction_samples_ms": [
+        285.61555100168334,
+        162.67507199881948,
+        173.54612900089705,
+        148.18570300121792,
+        167.8408740008308
+      ],
+      "mesh_median_ms": 1.9734620000235736,
+      "mesh_samples_ms": [
+        2.1750189989688806,
+        1.8735719968390185,
+        1.9734620000235736,
+        3.0475519997708034,
+        1.906375000544358
+      ],
+      "stages_ms": {
+        "intent_sources": 9.233648001099937,
+        "noding": 79.91318000858882,
+        "certificates": 47.961463998944964,
+        "swept_strips": 0.3205199827789329,
+        "contact_link": 0.2845570015779231,
+        "patch_cycles": 10.775681999803055,
+        "seam_compaction": 2.5629589981690515,
+        "validation": 35.198016001231736,
+        "remaining": 3.5360930087335873
+      },
+      "fingerprint": "d36232b4463f6674e157134b8bd279e3416ad078c9e801498aa12024fa895a38",
+      "work": 195,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 3498,
+        "refinements": 0,
+        "exact_zeros": 771,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "grid_20",
+      "corners": 20,
+      "events": 3,
+      "construction_median_ms": 323.8187499991909,
+      "construction_samples_ms": [
+        424.29819099925226,
+        328.6146430000372,
+        289.13517800174304,
+        323.8187499991909,
+        321.098565000284
+      ],
+      "mesh_median_ms": 3.4423350007273257,
+      "mesh_samples_ms": [
+        5.070399998658104,
+        3.5868440027115867,
+        3.304182002466405,
+        3.4423350007273257,
+        2.3396329997922294
+      ],
+      "stages_ms": {
+        "intent_sources": 12.309789999562781,
+        "noding": 140.6938179898134,
+        "certificates": 51.54162300095777,
+        "swept_strips": 0.27736701304093003,
+        "contact_link": 1.7108490028476808,
+        "patch_cycles": 18.085710999002913,
+        "seam_compaction": 3.618748000008054,
+        "validation": 66.75298900154303,
+        "remaining": 7.773017990984954
+      },
+      "fingerprint": "6e4127d8d474fd7c93d7eea097850cde491995e0e3437a109abbf851a1731562",
+      "work": 453,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 7474,
+        "refinements": 0,
+        "exact_zeros": 1317,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "grid_40",
+      "corners": 40,
+      "events": 4,
+      "construction_median_ms": 835.8877050013689,
+      "construction_samples_ms": [
+        835.8877050013689,
+        842.0966619996761,
+        809.1320890016505,
+        850.3555019997293,
+        780.200737000996
+      ],
+      "mesh_median_ms": 5.086501001642318,
+      "mesh_samples_ms": [
+        4.847083997447044,
+        4.531368002062663,
+        8.062148001044989,
+        5.622425000183284,
+        5.086501001642318
+      ],
+      "stages_ms": {
+        "intent_sources": 24.52594699934707,
+        "noding": 409.93608100689016,
+        "certificates": 175.15248700146913,
+        "swept_strips": 1.1415679764468223,
+        "contact_link": 2.7291380138194654,
+        "patch_cycles": 35.39834600087488,
+        "seam_compaction": 9.51544200142962,
+        "validation": 140.76572100020712,
+        "remaining": 13.015789998462424
+      },
+      "fingerprint": "a1eeb6db6d9938e51edfef9abbf72ce736fe1cdbab611fda4fa454d6cc819ad5",
+      "work": 1943,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 27024,
+        "refinements": 0,
+        "exact_zeros": 3323,
+        "bits_used": 0
+      }
+    },
+    {
+      "name": "internal_stationary_step",
+      "corners": 6,
+      "events": 1,
+      "construction_median_ms": 26.784522997331806,
+      "construction_samples_ms": [
+        26.337088998843683,
+        34.0310989995487,
+        27.621317000011913,
+        26.784522997331806,
+        25.62331100125448
+      ],
+      "mesh_median_ms": 0.5650899984175339,
+      "mesh_samples_ms": [
+        0.5650899984175339,
+        0.43514200297067873,
+        0.45060800039209425,
+        0.5708640019292943,
+        0.768085999879986
+      ],
+      "stages_ms": {
+        "intent_sources": 0.9758410014910623,
+        "noding": 8.481572003802285,
+        "certificates": 3.563877999113174,
+        "swept_strips": 0.18813899077940732,
+        "contact_link": 0.019025999790756032,
+        "patch_cycles": 3.922375002730405,
+        "seam_compaction": 0.02204200063715689,
+        "validation": 15.99868300036178,
+        "remaining": 0.6737379990227055
+      },
+      "fingerprint": "ca072acd0e2e7b83b268ba3edeea80033e0c221485ccfd403fc021faeba955f6",
+      "work": 25,
+      "predicates": {
+        "double_signs": 0,
+        "rational_signs": 638,
+        "refinements": 0,
+        "exact_zeros": 230,
+        "bits_used": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,594 @@
+{
+  "input": {
+    "name": "orthogonal_U",
+    "footprint": [
+      [
+        0,
+        0
+      ],
+      [
+        17.4,
+        0
+      ],
+      [
+        17.4,
+        13.2
+      ],
+      [
+        12,
+        13.2
+      ],
+      [
+        12,
+        5.2
+      ],
+      [
+        5.4,
+        5.2
+      ],
+      [
+        5.4,
+        13.2
+      ],
+      [
+        0,
+        13.2
+      ]
+    ],
+    "roof_type": "gable",
+    "pitch": 0.5,
+    "roles": [
+      "EAVE",
+      "EAVE",
+      "GABLE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "GABLE",
+      "EAVE"
+    ]
+  },
+  "complex": {
+    "authority": "global full-Line boundary-conditioned wavefront",
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0,
+          0
+        ],
+        "end": [
+          17.4,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge1",
+        "start": [
+          17.4,
+          0
+        ],
+        "end": [
+          17.4,
+          13.2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge2",
+        "start": [
+          17.4,
+          13.2
+        ],
+        "end": [
+          12,
+          13.2
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge3",
+        "start": [
+          12,
+          13.2
+        ],
+        "end": [
+          12,
+          5.2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge4",
+        "start": [
+          12,
+          5.2
+        ],
+        "end": [
+          5.4,
+          5.2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge5",
+        "start": [
+          5.4,
+          5.2
+        ],
+        "end": [
+          5.4,
+          13.2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge6",
+        "start": [
+          5.4,
+          13.2
+        ],
+        "end": [
+          0,
+          13.2
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge7",
+        "start": [
+          0,
+          13.2
+        ],
+        "end": [
+          0,
+          0
+        ],
+        "role": "EAVE"
+      }
+    ],
+    "vertices": [
+      {
+        "id": 0,
+        "xy": [
+          0.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge7"
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          17.4,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          17.4,
+          13.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          12.0,
+          13.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 4,
+        "xy": [
+          12.0,
+          5.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge3",
+          "edge4"
+        ]
+      },
+      {
+        "id": 5,
+        "xy": [
+          5.4,
+          5.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 6,
+        "xy": [
+          5.4,
+          13.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 7,
+        "xy": [
+          0.0,
+          13.2
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 8,
+        "xy": [
+          2.6,
+          2.6
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge0",
+          "edge7"
+        ]
+      },
+      {
+        "id": 9,
+        "xy": [
+          14.799999999999999,
+          2.6
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 10,
+        "xy": [
+          14.799999999999999,
+          13.2
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 11,
+        "xy": [
+          14.6,
+          13.2
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 12,
+        "xy": [
+          14.6,
+          2.6
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge0",
+          "edge3",
+          "edge4"
+        ]
+      },
+      {
+        "id": 13,
+        "xy": [
+          2.8000000000000003,
+          2.6
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge0",
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 14,
+        "xy": [
+          2.8000000000000003,
+          13.2
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 15,
+        "xy": [
+          2.6,
+          13.2
+        ],
+        "time": 2.6,
+        "sources": [
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 16,
+        "xy": [
+          2.6999999999999993,
+          2.6999999999999993
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge0",
+          "edge7"
+        ]
+      },
+      {
+        "id": 17,
+        "xy": [
+          2.700000000000001,
+          2.6999999999999993
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge0",
+          "edge5"
+        ]
+      },
+      {
+        "id": 18,
+        "xy": [
+          2.700000000000001,
+          13.2
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 19,
+        "xy": [
+          2.6999999999999993,
+          13.2
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 20,
+        "xy": [
+          14.7,
+          2.6999999999999993
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge0",
+          "edge1",
+          "edge3"
+        ]
+      },
+      {
+        "id": 21,
+        "xy": [
+          14.7,
+          13.2
+        ],
+        "time": 2.6999999999999993,
+        "sources": [
+          "edge1",
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 22,
+        "xy": [
+          2.7,
+          2.7
+        ],
+        "time": 2.7,
+        "sources": [
+          "edge0",
+          "edge5",
+          "edge7"
+        ]
+      },
+      {
+        "id": 23,
+        "xy": [
+          2.7,
+          13.2
+        ],
+        "time": 2.7,
+        "sources": [
+          "edge5",
+          "edge6",
+          "edge7"
+        ]
+      }
+    ],
+    "patches": [
+      {
+        "plane": 0,
+        "sources": [
+          "edge0"
+        ],
+        "loop": [
+          0,
+          1,
+          20,
+          12,
+          13,
+          22
+        ]
+      },
+      {
+        "plane": 1,
+        "sources": [
+          "edge1"
+        ],
+        "loop": [
+          1,
+          2,
+          21,
+          20
+        ]
+      },
+      {
+        "plane": 3,
+        "sources": [
+          "edge3"
+        ],
+        "loop": [
+          3,
+          4,
+          12,
+          20,
+          21
+        ]
+      },
+      {
+        "plane": 4,
+        "sources": [
+          "edge4"
+        ],
+        "loop": [
+          4,
+          5,
+          13,
+          12
+        ]
+      },
+      {
+        "plane": 5,
+        "sources": [
+          "edge5"
+        ],
+        "loop": [
+          5,
+          6,
+          23,
+          22,
+          13
+        ]
+      },
+      {
+        "plane": 7,
+        "sources": [
+          "edge7"
+        ],
+        "loop": [
+          0,
+          22,
+          23,
+          7
+        ]
+      }
+    ],
+    "walls": [
+      {
+        "plane": 2,
+        "sources": [
+          "edge2"
+        ],
+        "loop": [
+          2,
+          3,
+          21
+        ]
+      },
+      {
+        "plane": 6,
+        "sources": [
+          "edge6"
+        ],
+        "loop": [
+          6,
+          7,
+          23
+        ]
+      }
+    ],
+    "events": [
+      {
+        "time": 2.6,
+        "contacts": [
+          12,
+          13
+        ],
+        "components_before": 1,
+        "components_after": 2
+      },
+      {
+        "time": 2.6999999999999993,
+        "contacts": [
+          20,
+          21
+        ],
+        "components_before": 2,
+        "components_after": 1
+      },
+      {
+        "time": 2.7,
+        "contacts": [
+          22,
+          23
+        ],
+        "components_before": 1,
+        "components_after": 0
+      }
+    ],
+    "work": 105,
+    "predicates": {
+      "double_signs": 0,
+      "rational_signs": 863,
+      "refinements": 0,
+      "exact_zeros": 323,
+      "bits_used": 0
+    }
+  },
+  "oracle": {
+    "coverage_error": 2.842170943040401e-14,
+    "outside_error": 0.0,
+    "overlap_error": 0.0,
+    "raw_union_error": 0.0,
+    "roof_patches": 6
+  }
+}

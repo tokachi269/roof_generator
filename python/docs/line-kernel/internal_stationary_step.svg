@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+<rect width="520" height="520" fill="white"/>
+<polygon points="460.00000,302.50000 197.50000,302.50000 197.50000,460.00000 460.00000,460.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge2&#x27;,)</title></polygon>
+<polygon points="40.00000,460.00000 197.50000,460.00000 197.50000,40.00000 40.00000,40.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge5&#x27;,)</title></polygon>
+<polyline points="40.00000,460.00000 460.00000,460.00000 460.00000,460.00000 197.50000,460.00000" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge0&#x27;,)</title></polyline>
+<polyline points="460.00000,460.00000 460.00000,302.50000 460.00000,460.00000" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge1&#x27;,)</title></polyline>
+<polyline points="197.50000,302.50000 197.50000,40.00000 197.50000,40.00000 197.50000,460.00000" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge3&#x27;,)</title></polyline>
+<polyline points="197.50000,40.00000 40.00000,40.00000 197.50000,40.00000" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge4&#x27;,)</title></polyline>
+<polyline points="40.00000,460.00000 460.00000,460.00000" fill="none" stroke="#bd3441" stroke-width="3"><title>edge0 GABLE</title></polyline>
+<polyline points="460.00000,460.00000 460.00000,302.50000" fill="none" stroke="#bd3441" stroke-width="3"><title>edge1 GABLE</title></polyline>
+<polyline points="460.00000,302.50000 197.50000,302.50000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge2 EAVE</title></polyline>
+<polyline points="197.50000,302.50000 197.50000,40.00000" fill="none" stroke="#bd3441" stroke-width="3"><title>edge3 GABLE</title></polyline>
+<polyline points="197.50000,40.00000 40.00000,40.00000" fill="none" stroke="#bd3441" stroke-width="3"><title>edge4 GABLE</title></polyline>
+<polyline points="40.00000,40.00000 40.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge5 EAVE</title></polyline>
+<circle cx="197.50000" cy="460.00000" r="3" fill="#222"><title>time 3; (&#x27;edge0&#x27;, &#x27;edge2&#x27;, &#x27;edge3&#x27;, &#x27;edge5&#x27;)</title></circle>
+<circle cx="460.00000" cy="460.00000" r="3" fill="#222"><title>time 3; (&#x27;edge0&#x27;, &#x27;edge1&#x27;, &#x27;edge2&#x27;)</title></circle>
+<circle cx="197.50000" cy="40.00000" r="3" fill="#222"><title>time 3; (&#x27;edge3&#x27;, &#x27;edge4&#x27;, &#x27;edge5&#x27;)</title></circle>
+<text x="20" y="505" font-size="12">blue: EAVE; red: GABLE; orange: stationary patches; dots: contacts</text></svg>

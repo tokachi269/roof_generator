@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+<rect width="520" height="520" fill="white"/>
+<polygon points="40.00000,460.00000 460.00000,460.00000 394.82759,394.82759 392.41379,397.24138 107.58621,397.24138 105.17241,394.82759" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge0&#x27;,)</title></polygon>
+<polygon points="460.00000,460.00000 460.00000,141.37931 394.82759,141.37931 394.82759,394.82759" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge1&#x27;,)</title></polygon>
+<polygon points="329.65517,141.37931 329.65517,334.48276 392.41379,397.24138 394.82759,394.82759 394.82759,141.37931" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge3&#x27;,)</title></polygon>
+<polygon points="329.65517,334.48276 170.34483,334.48276 107.58621,397.24138 392.41379,397.24138" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge4&#x27;,)</title></polygon>
+<polygon points="170.34483,334.48276 170.34483,141.37931 105.17241,141.37931 105.17241,394.82759 107.58621,397.24138" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge5&#x27;,)</title></polygon>
+<polygon points="40.00000,460.00000 105.17241,394.82759 105.17241,141.37931 40.00000,141.37931" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge7&#x27;,)</title></polygon>
+<polyline points="460.00000,141.37931 329.65517,141.37931 394.82759,141.37931" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge2&#x27;,)</title></polyline>
+<polyline points="170.34483,141.37931 40.00000,141.37931 105.17241,141.37931" fill="none" stroke="#e29322" stroke-dasharray="4 3"><title>stationary patch (&#x27;edge6&#x27;,)</title></polyline>
+<polyline points="40.00000,460.00000 460.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge0 EAVE</title></polyline>
+<polyline points="460.00000,460.00000 460.00000,141.37931" fill="none" stroke="#206aa7" stroke-width="3"><title>edge1 EAVE</title></polyline>
+<polyline points="460.00000,141.37931 329.65517,141.37931" fill="none" stroke="#bd3441" stroke-width="3"><title>edge2 GABLE</title></polyline>
+<polyline points="329.65517,141.37931 329.65517,334.48276" fill="none" stroke="#206aa7" stroke-width="3"><title>edge3 EAVE</title></polyline>
+<polyline points="329.65517,334.48276 170.34483,334.48276" fill="none" stroke="#206aa7" stroke-width="3"><title>edge4 EAVE</title></polyline>
+<polyline points="170.34483,334.48276 170.34483,141.37931" fill="none" stroke="#206aa7" stroke-width="3"><title>edge5 EAVE</title></polyline>
+<polyline points="170.34483,141.37931 40.00000,141.37931" fill="none" stroke="#bd3441" stroke-width="3"><title>edge6 GABLE</title></polyline>
+<polyline points="40.00000,141.37931 40.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge7 EAVE</title></polyline>
+<circle cx="392.41379" cy="397.24138" r="3" fill="#222"><title>time 2.6; (&#x27;edge0&#x27;, &#x27;edge3&#x27;, &#x27;edge4&#x27;)</title></circle>
+<circle cx="107.58621" cy="397.24138" r="3" fill="#222"><title>time 2.6; (&#x27;edge0&#x27;, &#x27;edge4&#x27;, &#x27;edge5&#x27;)</title></circle>
+<circle cx="394.82759" cy="394.82759" r="3" fill="#222"><title>time 2.7; (&#x27;edge0&#x27;, &#x27;edge1&#x27;, &#x27;edge3&#x27;)</title></circle>
+<circle cx="394.82759" cy="141.37931" r="3" fill="#222"><title>time 2.7; (&#x27;edge1&#x27;, &#x27;edge2&#x27;, &#x27;edge3&#x27;)</title></circle>
+<circle cx="105.17241" cy="394.82759" r="3" fill="#222"><title>time 2.7; (&#x27;edge0&#x27;, &#x27;edge5&#x27;, &#x27;edge7&#x27;)</title></circle>
+<circle cx="105.17241" cy="141.37931" r="3" fill="#222"><title>time 2.7; (&#x27;edge5&#x27;, &#x27;edge6&#x27;, &#x27;edge7&#x27;)</title></circle>
+<text x="20" y="505" font-size="12">blue: EAVE; red: GABLE; orange: stationary patches; dots: contacts</text></svg>

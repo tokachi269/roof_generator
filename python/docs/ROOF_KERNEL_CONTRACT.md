@@ -1,8 +1,11 @@
 # Boundary-conditioned roof kernel
 
-Status: mathematical contract and independent construction proof. The distributed
-1.5.0 generator remains the checkpoint. This document does not declare a universal
-kernel implemented or promote the proof program into the addon.
+Status: full-Line source-wavefront implementation with certified arithmetic,
+concave mixed-role construction and independent mesh proofs. The distributed
+1.5.0 generator remains the checkpoint. The current implementation, wall-profile
+distinction and remaining universal/migration obligations are in
+[LINE_KERNEL_IMPLEMENTATION.md](LINE_KERNEL_IMPLEMENTATION.md). Finite corpus
+success is not an unconditional completeness theorem or an addon promotion.
 
 ## Objective and authority
 
@@ -303,10 +306,11 @@ blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel
 python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
 ```
 
-The next production gate remains a researched complete line-wavefront engine:
-admitted concave mixed-role intents, simultaneous/reflex/overlap contact incidence,
-zero-speed remnants, precision refinement and partial-interval closure. The
-necessary half-plane condition is not substituted for a sufficient admissibility
-criterion. Arc splice/weighted-role behavior needs a separate model proof. Until
-these are resolved, the universal kernel is unfinished and production remains at
-1.5.0. No "nonparallel cap" patch or solver-based rescue has been introduced.
+The full-Line implementation now covers concave mixed-role propagation,
+simultaneous contact incidence, stationary-remnant certificates and precision
+refinement. The next production gates are universal zero-speed/completion
+obligations, a sufficient admissibility/automatic intent policy, and addon
+authority transfer. Partial-interval closure and Arc evolution remain later model
+work. The necessary half-plane condition is not substituted for a sufficient
+admissibility criterion. Production remains at 1.5.0; no "nonparallel cap" patch
+or solver-based rescue has been introduced.

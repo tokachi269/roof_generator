@@ -1,0 +1,54 @@
+{
+  "scope": "full-Line kernel, separate frozen corpora; not production addon coverage",
+  "wall_model": "stationary source wall patches are separate from inclined roof patches",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "completed_complex": 1000,
+      "float_mesh": 1000,
+      "roof_only_mesh": 1000,
+      "independent_validation": 1000,
+      "inputs": 1000,
+      "footprint": 1000
+    },
+    "nonuniform_orthogonal": {
+      "completed_complex": 150,
+      "float_mesh": 150,
+      "roof_only_mesh": 150,
+      "independent_validation": 150,
+      "inputs": 150,
+      "footprint": 150
+    },
+    "structured_orthogonal": {
+      "completed_complex": 103,
+      "float_mesh": 103,
+      "roof_only_mesh": 103,
+      "independent_validation": 103,
+      "inputs": 103,
+      "footprint": 103
+    },
+    "convex_quadrilateral": {
+      "completed_complex": 48,
+      "float_mesh": 48,
+      "roof_only_mesh": 48,
+      "independent_validation": 48,
+      "inputs": 48,
+      "footprint": 48
+    },
+    "structured_oblique": {
+      "completed_complex": 43,
+      "float_mesh": 43,
+      "roof_only_mesh": 43,
+      "independent_validation": 43,
+      "inputs": 43,
+      "footprint": 43
+    },
+    "general_simple_polygon_probe": {
+      "completed_complex": 40,
+      "float_mesh": 40,
+      "roof_only_mesh": 40,
+      "independent_validation": 40,
+      "inputs": 40,
+      "footprint": 40
+    }
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "input": {
+    "name": "internal_stationary_step",
+    "footprint": [
+      [
+        0,
+        0
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        0,
+        8
+      ]
+    ],
+    "roles": [
+      "GABLE",
+      "GABLE",
+      "EAVE",
+      "GABLE",
+      "GABLE",
+      "EAVE"
+    ],
+    "include_walls": true
+  },
+  "complex": {
+    "authority": "global full-Line boundary-conditioned wavefront",
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0,
+          0
+        ],
+        "end": [
+          8,
+          0
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge1",
+        "start": [
+          8,
+          0
+        ],
+        "end": [
+          8,
+          3
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge2",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          3,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge3",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          3,
+          8
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge4",
+        "start": [
+          3,
+          8
+        ],
+        "end": [
+          0,
+          8
+        ],
+        "role": "GABLE"
+      },
+      {
+        "id": "edge5",
+        "start": [
+          0,
+          8
+        ],
+        "end": [
+          0,
+          0
+        ],
+        "role": "EAVE"
+      }
+    ],
+    "vertices": [
+      {
+        "id": 0,
+        "xy": [
+          0.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge5"
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          8.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          8.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          3.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 4,
+        "xy": [
+          3.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge3",
+          "edge4"
+        ]
+      },
+      {
+        "id": 5,
+        "xy": [
+          0.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 6,
+        "xy": [
+          3.0,
+          0.0
+        ],
+        "time": 3.0,
+        "sources": [
+          "edge0",
+          "edge2",
+          "edge3",
+          "edge5"
+        ]
+      },
+      {
+        "id": 7,
+        "xy": [
+          8.0,
+          0.0
+        ],
+        "time": 3.0,
+        "sources": [
+          "edge0",
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 8,
+        "xy": [
+          3.0,
+          8.0
+        ],
+        "time": 3.0,
+        "sources": [
+          "edge3",
+          "edge4",
+          "edge5"
+        ]
+      }
+    ],
+    "patches": [
+      {
+        "plane": 2,
+        "sources": [
+          "edge2"
+        ],
+        "loop": [
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "plane": 5,
+        "sources": [
+          "edge5"
+        ],
+        "loop": [
+          0,
+          6,
+          8,
+          5
+        ]
+      }
+    ],
+    "walls": [
+      {
+        "plane": 0,
+        "sources": [
+          "edge0"
+        ],
+        "loop": [
+          0,
+          1,
+          7,
+          6
+        ]
+      },
+      {
+        "plane": 1,
+        "sources": [
+          "edge1"
+        ],
+        "loop": [
+          1,
+          2,
+          7
+        ]
+      },
+      {
+        "plane": 3,
+        "sources": [
+          "edge3"
+        ],
+        "loop": [
+          3,
+          4,
+          8,
+          6
+        ]
+      },
+      {
+        "plane": 4,
+        "sources": [
+          "edge4"
+        ],
+        "loop": [
+          4,
+          5,
+          8
+        ]
+      }
+    ],
+    "events": [
+      {
+        "time": 3.0,
+        "contacts": [
+          6,
+          7,
+          8
+        ],
+        "components_before": 1,
+        "components_after": 0
+      }
+    ],
+    "work": 25,
+    "predicates": {
+      "double_signs": 0,
+      "rational_signs": 268,
+      "refinements": 0,
+      "exact_zeros": 134,
+      "bits_used": 0
+    }
+  },
+  "oracle": {
+    "coverage_error": 0.0,
+    "outside_error": 0.0,
+    "overlap_error": 0.0,
+    "raw_union_error": 0.0,
+    "roof_patches": 2
+  }
+}

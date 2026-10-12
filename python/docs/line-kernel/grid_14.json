@@ -1,0 +1,803 @@
+{
+  "input": {
+    "name": "grid_14",
+    "footprint": [
+      [
+        0,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "roles": [
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE"
+    ]
+  },
+  "complex": {
+    "authority": "global full-Line boundary-conditioned wavefront",
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0,
+          0
+        ],
+        "end": [
+          4,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge1",
+        "start": [
+          4,
+          0
+        ],
+        "end": [
+          4,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge2",
+        "start": [
+          4,
+          3
+        ],
+        "end": [
+          5,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge3",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          5,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge4",
+        "start": [
+          5,
+          5
+        ],
+        "end": [
+          4,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge5",
+        "start": [
+          4,
+          5
+        ],
+        "end": [
+          4,
+          4
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge6",
+        "start": [
+          4,
+          4
+        ],
+        "end": [
+          3,
+          4
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge7",
+        "start": [
+          3,
+          4
+        ],
+        "end": [
+          3,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge8",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          2,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge9",
+        "start": [
+          2,
+          3
+        ],
+        "end": [
+          2,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge10",
+        "start": [
+          2,
+          2
+        ],
+        "end": [
+          1,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge11",
+        "start": [
+          1,
+          2
+        ],
+        "end": [
+          1,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge12",
+        "start": [
+          1,
+          1
+        ],
+        "end": [
+          0,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge13",
+        "start": [
+          0,
+          1
+        ],
+        "end": [
+          0,
+          0
+        ],
+        "role": "EAVE"
+      }
+    ],
+    "vertices": [
+      {
+        "id": 0,
+        "xy": [
+          0.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge13"
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          4.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          4.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          5.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 4,
+        "xy": [
+          5.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge3",
+          "edge4"
+        ]
+      },
+      {
+        "id": 5,
+        "xy": [
+          4.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 6,
+        "xy": [
+          4.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 7,
+        "xy": [
+          3.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 8,
+        "xy": [
+          3.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge7",
+          "edge8"
+        ]
+      },
+      {
+        "id": 9,
+        "xy": [
+          2.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge8",
+          "edge9"
+        ]
+      },
+      {
+        "id": 10,
+        "xy": [
+          2.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge10",
+          "edge9"
+        ]
+      },
+      {
+        "id": 11,
+        "xy": [
+          1.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge10",
+          "edge11"
+        ]
+      },
+      {
+        "id": 12,
+        "xy": [
+          1.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge11",
+          "edge12"
+        ]
+      },
+      {
+        "id": 13,
+        "xy": [
+          0.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge12",
+          "edge13"
+        ]
+      },
+      {
+        "id": 14,
+        "xy": [
+          0.5,
+          0.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge12",
+          "edge13"
+        ]
+      },
+      {
+        "id": 15,
+        "xy": [
+          3.5,
+          0.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 16,
+        "xy": [
+          3.5,
+          3.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge1",
+          "edge2",
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 17,
+        "xy": [
+          4.5,
+          3.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge2",
+          "edge3",
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 18,
+        "xy": [
+          4.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge3",
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 19,
+        "xy": [
+          3.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge1",
+          "edge7",
+          "edge8"
+        ]
+      },
+      {
+        "id": 20,
+        "xy": [
+          2.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge8",
+          "edge9"
+        ]
+      },
+      {
+        "id": 21,
+        "xy": [
+          2.5,
+          1.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge10",
+          "edge9"
+        ]
+      },
+      {
+        "id": 22,
+        "xy": [
+          1.5,
+          1.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge10",
+          "edge11"
+        ]
+      },
+      {
+        "id": 23,
+        "xy": [
+          1.5,
+          0.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge11",
+          "edge12"
+        ]
+      },
+      {
+        "id": 24,
+        "xy": [
+          2.0,
+          1.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge0",
+          "edge10",
+          "edge11"
+        ]
+      },
+      {
+        "id": 25,
+        "xy": [
+          3.0,
+          1.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge0",
+          "edge1",
+          "edge10",
+          "edge9"
+        ]
+      },
+      {
+        "id": 26,
+        "xy": [
+          3.0,
+          2.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge1",
+          "edge8",
+          "edge9"
+        ]
+      }
+    ],
+    "patches": [
+      {
+        "plane": 0,
+        "sources": [
+          "edge0"
+        ],
+        "loop": [
+          0,
+          1,
+          25,
+          24,
+          23,
+          14
+        ]
+      },
+      {
+        "plane": 1,
+        "sources": [
+          "edge1"
+        ],
+        "loop": [
+          1,
+          2,
+          16,
+          19,
+          26,
+          25
+        ]
+      },
+      {
+        "plane": 6,
+        "sources": [
+          "edge2"
+        ],
+        "loop": [
+          2,
+          3,
+          17,
+          16
+        ]
+      },
+      {
+        "plane": 7,
+        "sources": [
+          "edge3"
+        ],
+        "loop": [
+          3,
+          4,
+          18,
+          17
+        ]
+      },
+      {
+        "plane": 8,
+        "sources": [
+          "edge4"
+        ],
+        "loop": [
+          4,
+          5,
+          18
+        ]
+      },
+      {
+        "plane": 9,
+        "sources": [
+          "edge5"
+        ],
+        "loop": [
+          5,
+          6,
+          17,
+          18
+        ]
+      },
+      {
+        "plane": 10,
+        "sources": [
+          "edge6"
+        ],
+        "loop": [
+          6,
+          7,
+          16,
+          17
+        ]
+      },
+      {
+        "plane": 11,
+        "sources": [
+          "edge7"
+        ],
+        "loop": [
+          7,
+          8,
+          19,
+          16
+        ]
+      },
+      {
+        "plane": 12,
+        "sources": [
+          "edge8"
+        ],
+        "loop": [
+          8,
+          9,
+          26,
+          19
+        ]
+      },
+      {
+        "plane": 13,
+        "sources": [
+          "edge9"
+        ],
+        "loop": [
+          9,
+          10,
+          25,
+          26
+        ]
+      },
+      {
+        "plane": 2,
+        "sources": [
+          "edge10"
+        ],
+        "loop": [
+          10,
+          11,
+          24,
+          25
+        ]
+      },
+      {
+        "plane": 3,
+        "sources": [
+          "edge11"
+        ],
+        "loop": [
+          11,
+          12,
+          23,
+          24
+        ]
+      },
+      {
+        "plane": 4,
+        "sources": [
+          "edge12"
+        ],
+        "loop": [
+          12,
+          13,
+          14,
+          23
+        ]
+      },
+      {
+        "plane": 5,
+        "sources": [
+          "edge13"
+        ],
+        "loop": [
+          0,
+          14,
+          13
+        ]
+      }
+    ],
+    "walls": [],
+    "events": [
+      {
+        "time": 0.5,
+        "contacts": [
+          14,
+          16,
+          17,
+          18,
+          19,
+          23
+        ],
+        "components_before": 1,
+        "components_after": 1
+      },
+      {
+        "time": 1.0,
+        "contacts": [
+          24,
+          25,
+          26
+        ],
+        "components_before": 1,
+        "components_after": 0
+      }
+    ],
+    "work": 195,
+    "predicates": {
+      "double_signs": 0,
+      "rational_signs": 1286,
+      "refinements": 0,
+      "exact_zeros": 424,
+      "bits_used": 0
+    }
+  },
+  "oracle": {
+    "coverage_error": 0.0,
+    "outside_error": 0.0,
+    "overlap_error": 0.0,
+    "raw_union_error": 0.0,
+    "roof_patches": 14
+  }
+}

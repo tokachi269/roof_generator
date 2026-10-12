@@ -1,0 +1,171 @@
+{
+  "cases": [
+    {
+      "name": "orthogonal_L",
+      "corners": 6,
+      "vertices": 10,
+      "faces": 4,
+      "events": 2,
+      "work": 35,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 4
+      },
+      "include_walls": false
+    },
+    {
+      "name": "orthogonal_T",
+      "corners": 8,
+      "vertices": 12,
+      "faces": 4,
+      "events": 2,
+      "work": 59,
+      "oracle": {
+        "coverage_error": 2.842170943040401e-14,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 4
+      },
+      "include_walls": false
+    },
+    {
+      "name": "orthogonal_U",
+      "corners": 8,
+      "vertices": 14,
+      "faces": 6,
+      "events": 3,
+      "work": 105,
+      "oracle": {
+        "coverage_error": 2.842170943040401e-14,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 6
+      },
+      "include_walls": false
+    },
+    {
+      "name": "four_terminal_ports",
+      "corners": 12,
+      "vertices": 17,
+      "faces": 8,
+      "events": 1,
+      "work": 121,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 8
+      },
+      "include_walls": false
+    },
+    {
+      "name": "nearly_collinear_event_sections",
+      "corners": 6,
+      "vertices": 10,
+      "faces": 6,
+      "events": 3,
+      "work": 68,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 6
+      },
+      "include_walls": false
+    },
+    {
+      "name": "grid_14",
+      "corners": 14,
+      "vertices": 23,
+      "faces": 14,
+      "events": 2,
+      "work": 195,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 14
+      },
+      "include_walls": false
+    },
+    {
+      "name": "grid_20",
+      "corners": 20,
+      "vertices": 36,
+      "faces": 20,
+      "events": 3,
+      "work": 453,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 20
+      },
+      "include_walls": false
+    },
+    {
+      "name": "grid_40",
+      "corners": 40,
+      "vertices": 67,
+      "faces": 37,
+      "events": 4,
+      "work": 1943,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 37
+      },
+      "include_walls": false
+    },
+    {
+      "name": "internal_stationary_step",
+      "corners": 6,
+      "vertices": 9,
+      "faces": 6,
+      "events": 1,
+      "work": 25,
+      "oracle": {
+        "coverage_error": 0.0,
+        "outside_error": 0.0,
+        "overlap_error": 0.0,
+        "raw_union_error": 0.0,
+        "roof_patches": 2
+      },
+      "include_walls": true
+    },
+    {
+      "name": "projected_stationary_wall_contacts",
+      "corners": 9,
+      "vertices": 16,
+      "faces": 9,
+      "events": 7,
+      "work": 209,
+      "oracle": {
+        "coverage_error": 1.4210854715202004e-14,
+        "outside_error": 4.907846096578557e-16,
+        "overlap_error": 0.0,
+        "raw_union_error": 2.5416098756396246,
+        "roof_patches": 6
+      },
+      "include_walls": true
+    }
+  ],
+  "independent_convex_roles": {
+    "assignments": 308,
+    "source_region_comparison": true,
+    "kernel_failures": 0,
+    "runtime_revision": "5c49695",
+    "note": "independent convex-region audit; later arithmetic changes preserve exact values"
+  }
+}

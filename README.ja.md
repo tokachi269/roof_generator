@@ -63,6 +63,11 @@ Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると�
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md)、実測は
 [canonical measurements](python/docs/END_TO_END_EVALUATION.md)を参照してください。
 
+独立した[full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)では、明示した
+EAVE/GABLEから凹形状のcomplexを厳密なevent演算で構築します。
+[検証結果](python/docs/LINE_KERNEL_EVALUATION.md)は、傾斜面だけの屋根と内部の垂直面が
+必要なcomplexを区別しています。配布addonの生成経路にはまだ組み込んでいません。
+
 ```bash
 python -m pip install -r python/requirements.txt  # 開発用oracleのみ
 python -m unittest discover -s python/tests

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+<rect width="520" height="520" fill="white"/>
+<polygon points="40.00000,292.00000 124.00000,292.00000 187.00000,229.00000 145.00000,229.00000 103.00000,271.00000 61.00000,271.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge0&#x27;,)</title></polygon>
+<polygon points="124.00000,292.00000 124.00000,334.00000 166.00000,376.00000 208.00000,334.00000 208.00000,250.00000 187.00000,229.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge1&#x27;,)</title></polygon>
+<polygon points="124.00000,334.00000 82.00000,334.00000 124.00000,376.00000 166.00000,376.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge2&#x27;,)</title></polygon>
+<polygon points="82.00000,334.00000 82.00000,418.00000 124.00000,376.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge3&#x27;,)</title></polygon>
+<polygon points="166.00000,418.00000 166.00000,460.00000 187.00000,439.00000 187.00000,397.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge5&#x27;,)</title></polygon>
+<polygon points="166.00000,460.00000 208.00000,460.00000 187.00000,439.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge6&#x27;,)</title></polygon>
+<polygon points="208.00000,460.00000 208.00000,418.00000 187.00000,397.00000 187.00000,439.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge7&#x27;,)</title></polygon>
+<polygon points="82.00000,418.00000 166.00000,418.00000 187.00000,397.00000 208.00000,418.00000 250.00000,418.00000 271.00000,397.00000 208.00000,334.00000 166.00000,376.00000 124.00000,376.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge4&#x27;, &#x27;edge8&#x27;)</title></polygon>
+<polygon points="250.00000,418.00000 250.00000,460.00000 271.00000,439.00000 271.00000,397.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge9&#x27;,)</title></polygon>
+<polygon points="250.00000,460.00000 292.00000,460.00000 271.00000,439.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge10&#x27;,)</title></polygon>
+<polygon points="292.00000,376.00000 334.00000,376.00000 313.00000,355.00000 271.00000,355.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge12&#x27;,)</title></polygon>
+<polygon points="334.00000,376.00000 334.00000,334.00000 313.00000,355.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge13&#x27;,)</title></polygon>
+<polygon points="334.00000,334.00000 292.00000,334.00000 271.00000,355.00000 313.00000,355.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge14&#x27;,)</title></polygon>
+<polygon points="292.00000,460.00000 292.00000,376.00000 271.00000,355.00000 292.00000,334.00000 292.00000,292.00000 229.00000,229.00000 208.00000,250.00000 208.00000,334.00000 271.00000,397.00000 271.00000,439.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge11&#x27;, &#x27;edge15&#x27;)</title></polygon>
+<polygon points="292.00000,292.00000 376.00000,292.00000 397.00000,271.00000 355.00000,229.00000 229.00000,229.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge16&#x27;,)</title></polygon>
+<polygon points="376.00000,292.00000 376.00000,376.00000 397.00000,355.00000 397.00000,271.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge17&#x27;,)</title></polygon>
+<polygon points="376.00000,376.00000 418.00000,376.00000 397.00000,355.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge18&#x27;,)</title></polygon>
+<polygon points="418.00000,250.00000 460.00000,250.00000 439.00000,229.00000 397.00000,229.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge20&#x27;,)</title></polygon>
+<polygon points="460.00000,250.00000 460.00000,208.00000 439.00000,229.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge21&#x27;,)</title></polygon>
+<polygon points="460.00000,208.00000 418.00000,208.00000 397.00000,229.00000 439.00000,229.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge22&#x27;,)</title></polygon>
+<polygon points="418.00000,376.00000 418.00000,250.00000 397.00000,229.00000 418.00000,208.00000 418.00000,166.00000 355.00000,229.00000 397.00000,271.00000 397.00000,355.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge19&#x27;, &#x27;edge23&#x27;)</title></polygon>
+<polygon points="418.00000,166.00000 292.00000,166.00000 229.00000,229.00000 355.00000,229.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge24&#x27;,)</title></polygon>
+<polygon points="292.00000,166.00000 292.00000,124.00000 271.00000,103.00000 271.00000,145.00000 229.00000,187.00000 229.00000,229.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge25&#x27;,)</title></polygon>
+<polygon points="292.00000,124.00000 334.00000,124.00000 292.00000,82.00000 271.00000,103.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge26&#x27;,)</title></polygon>
+<polygon points="334.00000,124.00000 334.00000,40.00000 292.00000,82.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge27&#x27;,)</title></polygon>
+<polygon points="334.00000,40.00000 250.00000,40.00000 292.00000,82.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge28&#x27;,)</title></polygon>
+<polygon points="250.00000,40.00000 250.00000,124.00000 271.00000,145.00000 271.00000,103.00000 292.00000,82.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge29&#x27;,)</title></polygon>
+<polygon points="250.00000,124.00000 166.00000,124.00000 229.00000,187.00000 271.00000,145.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge30&#x27;,)</title></polygon>
+<polygon points="166.00000,124.00000 166.00000,166.00000 229.00000,229.00000 229.00000,187.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge31&#x27;,)</title></polygon>
+<polygon points="166.00000,166.00000 82.00000,166.00000 61.00000,187.00000 103.00000,187.00000 145.00000,229.00000 187.00000,229.00000 208.00000,250.00000 229.00000,229.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge32&#x27;,)</title></polygon>
+<polygon points="82.00000,166.00000 82.00000,124.00000 61.00000,145.00000 61.00000,187.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge33&#x27;,)</title></polygon>
+<polygon points="82.00000,124.00000 40.00000,124.00000 61.00000,145.00000" fill="#dbab70" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge34&#x27;,)</title></polygon>
+<polygon points="40.00000,124.00000 40.00000,208.00000 61.00000,187.00000 61.00000,145.00000" fill="#aacb7b" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge35&#x27;,)</title></polygon>
+<polygon points="40.00000,208.00000 82.00000,208.00000 103.00000,187.00000 61.00000,187.00000" fill="#bd8cb9" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge36&#x27;,)</title></polygon>
+<polygon points="82.00000,208.00000 82.00000,250.00000 103.00000,271.00000 145.00000,229.00000 103.00000,187.00000" fill="#cebe79" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge37&#x27;,)</title></polygon>
+<polygon points="82.00000,250.00000 40.00000,250.00000 61.00000,271.00000 103.00000,271.00000" fill="#94b7ab" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge38&#x27;,)</title></polygon>
+<polygon points="40.00000,292.00000 61.00000,271.00000 40.00000,250.00000" fill="#7bb6cf" fill-opacity=".65" stroke="#333" stroke-width="1.5"><title>(&#x27;edge39&#x27;,)</title></polygon>
+<polyline points="40.00000,292.00000 124.00000,292.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge0 EAVE</title></polyline>
+<polyline points="124.00000,292.00000 124.00000,334.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge1 EAVE</title></polyline>
+<polyline points="124.00000,334.00000 82.00000,334.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge2 EAVE</title></polyline>
+<polyline points="82.00000,334.00000 82.00000,418.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge3 EAVE</title></polyline>
+<polyline points="82.00000,418.00000 166.00000,418.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge4 EAVE</title></polyline>
+<polyline points="166.00000,418.00000 166.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge5 EAVE</title></polyline>
+<polyline points="166.00000,460.00000 208.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge6 EAVE</title></polyline>
+<polyline points="208.00000,460.00000 208.00000,418.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge7 EAVE</title></polyline>
+<polyline points="208.00000,418.00000 250.00000,418.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge8 EAVE</title></polyline>
+<polyline points="250.00000,418.00000 250.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge9 EAVE</title></polyline>
+<polyline points="250.00000,460.00000 292.00000,460.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge10 EAVE</title></polyline>
+<polyline points="292.00000,460.00000 292.00000,376.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge11 EAVE</title></polyline>
+<polyline points="292.00000,376.00000 334.00000,376.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge12 EAVE</title></polyline>
+<polyline points="334.00000,376.00000 334.00000,334.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge13 EAVE</title></polyline>
+<polyline points="334.00000,334.00000 292.00000,334.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge14 EAVE</title></polyline>
+<polyline points="292.00000,334.00000 292.00000,292.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge15 EAVE</title></polyline>
+<polyline points="292.00000,292.00000 376.00000,292.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge16 EAVE</title></polyline>
+<polyline points="376.00000,292.00000 376.00000,376.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge17 EAVE</title></polyline>
+<polyline points="376.00000,376.00000 418.00000,376.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge18 EAVE</title></polyline>
+<polyline points="418.00000,376.00000 418.00000,250.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge19 EAVE</title></polyline>
+<polyline points="418.00000,250.00000 460.00000,250.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge20 EAVE</title></polyline>
+<polyline points="460.00000,250.00000 460.00000,208.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge21 EAVE</title></polyline>
+<polyline points="460.00000,208.00000 418.00000,208.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge22 EAVE</title></polyline>
+<polyline points="418.00000,208.00000 418.00000,166.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge23 EAVE</title></polyline>
+<polyline points="418.00000,166.00000 292.00000,166.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge24 EAVE</title></polyline>
+<polyline points="292.00000,166.00000 292.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge25 EAVE</title></polyline>
+<polyline points="292.00000,124.00000 334.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge26 EAVE</title></polyline>
+<polyline points="334.00000,124.00000 334.00000,40.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge27 EAVE</title></polyline>
+<polyline points="334.00000,40.00000 250.00000,40.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge28 EAVE</title></polyline>
+<polyline points="250.00000,40.00000 250.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge29 EAVE</title></polyline>
+<polyline points="250.00000,124.00000 166.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge30 EAVE</title></polyline>
+<polyline points="166.00000,124.00000 166.00000,166.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge31 EAVE</title></polyline>
+<polyline points="166.00000,166.00000 82.00000,166.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge32 EAVE</title></polyline>
+<polyline points="82.00000,166.00000 82.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge33 EAVE</title></polyline>
+<polyline points="82.00000,124.00000 40.00000,124.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge34 EAVE</title></polyline>
+<polyline points="40.00000,124.00000 40.00000,208.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge35 EAVE</title></polyline>
+<polyline points="40.00000,208.00000 82.00000,208.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge36 EAVE</title></polyline>
+<polyline points="82.00000,208.00000 82.00000,250.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge37 EAVE</title></polyline>
+<polyline points="82.00000,250.00000 40.00000,250.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge38 EAVE</title></polyline>
+<polyline points="40.00000,250.00000 40.00000,292.00000" fill="none" stroke="#206aa7" stroke-width="3"><title>edge39 EAVE</title></polyline>
+<circle cx="61.00000" cy="271.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge0&#x27;, &#x27;edge38&#x27;, &#x27;edge39&#x27;)</title></circle>
+<circle cx="103.00000" cy="397.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge3&#x27;, &#x27;edge4&#x27;, &#x27;edge8&#x27;)</title></circle>
+<circle cx="187.00000" cy="397.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge4&#x27;, &#x27;edge5&#x27;, &#x27;edge7&#x27;, &#x27;edge8&#x27;)</title></circle>
+<circle cx="187.00000" cy="439.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge5&#x27;, &#x27;edge6&#x27;, &#x27;edge7&#x27;)</title></circle>
+<circle cx="271.00000" cy="397.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge11&#x27;, &#x27;edge15&#x27;, &#x27;edge4&#x27;, &#x27;edge8&#x27;, &#x27;edge9&#x27;)</title></circle>
+<circle cx="271.00000" cy="439.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge10&#x27;, &#x27;edge11&#x27;, &#x27;edge9&#x27;)</title></circle>
+<circle cx="271.00000" cy="355.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge11&#x27;, &#x27;edge12&#x27;, &#x27;edge14&#x27;, &#x27;edge15&#x27;)</title></circle>
+<circle cx="313.00000" cy="355.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge12&#x27;, &#x27;edge13&#x27;, &#x27;edge14&#x27;)</title></circle>
+<circle cx="271.00000" cy="271.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge11&#x27;, &#x27;edge15&#x27;, &#x27;edge16&#x27;)</title></circle>
+<circle cx="397.00000" cy="271.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge16&#x27;, &#x27;edge17&#x27;, &#x27;edge19&#x27;, &#x27;edge23&#x27;)</title></circle>
+<circle cx="397.00000" cy="355.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge17&#x27;, &#x27;edge18&#x27;, &#x27;edge19&#x27;)</title></circle>
+<circle cx="397.00000" cy="229.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge19&#x27;, &#x27;edge20&#x27;, &#x27;edge22&#x27;, &#x27;edge23&#x27;)</title></circle>
+<circle cx="439.00000" cy="229.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge20&#x27;, &#x27;edge21&#x27;, &#x27;edge22&#x27;)</title></circle>
+<circle cx="397.00000" cy="187.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge19&#x27;, &#x27;edge23&#x27;, &#x27;edge24&#x27;)</title></circle>
+<circle cx="271.00000" cy="103.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge25&#x27;, &#x27;edge26&#x27;, &#x27;edge29&#x27;)</title></circle>
+<circle cx="271.00000" cy="145.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge25&#x27;, &#x27;edge29&#x27;, &#x27;edge30&#x27;)</title></circle>
+<circle cx="61.00000" cy="187.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge32&#x27;, &#x27;edge33&#x27;, &#x27;edge35&#x27;, &#x27;edge36&#x27;)</title></circle>
+<circle cx="61.00000" cy="145.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge33&#x27;, &#x27;edge34&#x27;, &#x27;edge35&#x27;)</title></circle>
+<circle cx="103.00000" cy="187.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge32&#x27;, &#x27;edge36&#x27;, &#x27;edge37&#x27;)</title></circle>
+<circle cx="103.00000" cy="271.00000" r="3" fill="#222"><title>time 0.5; (&#x27;edge0&#x27;, &#x27;edge37&#x27;, &#x27;edge38&#x27;)</title></circle>
+<circle cx="166.00000" cy="376.00000" r="3" fill="#222"><title>time 1; (&#x27;edge1&#x27;, &#x27;edge2&#x27;, &#x27;edge4&#x27;, &#x27;edge8&#x27;)</title></circle>
+<circle cx="124.00000" cy="376.00000" r="3" fill="#222"><title>time 1; (&#x27;edge2&#x27;, &#x27;edge3&#x27;, &#x27;edge4&#x27;, &#x27;edge8&#x27;)</title></circle>
+<circle cx="292.00000" cy="82.00000" r="3" fill="#222"><title>time 1; (&#x27;edge26&#x27;, &#x27;edge27&#x27;, &#x27;edge28&#x27;, &#x27;edge29&#x27;)</title></circle>
+<circle cx="145.00000" cy="229.00000" r="3" fill="#222"><title>time 1.5; (&#x27;edge0&#x27;, &#x27;edge32&#x27;, &#x27;edge37&#x27;)</title></circle>
+<circle cx="187.00000" cy="229.00000" r="3" fill="#222"><title>time 1.5; (&#x27;edge0&#x27;, &#x27;edge1&#x27;, &#x27;edge32&#x27;)</title></circle>
+<circle cx="229.00000" cy="229.00000" r="3" fill="#222"><title>time 1.5; (&#x27;edge11&#x27;, &#x27;edge15&#x27;, &#x27;edge16&#x27;, &#x27;edge24&#x27;, &#x27;edge25&#x27;, &#x27;edge31&#x27;, &#x27;edge32&#x27;)</title></circle>
+<circle cx="355.00000" cy="229.00000" r="3" fill="#222"><title>time 1.5; (&#x27;edge16&#x27;, &#x27;edge19&#x27;, &#x27;edge23&#x27;, &#x27;edge24&#x27;)</title></circle>
+<circle cx="229.00000" cy="187.00000" r="3" fill="#222"><title>time 1.5; (&#x27;edge25&#x27;, &#x27;edge30&#x27;, &#x27;edge31&#x27;)</title></circle>
+<circle cx="208.00000" cy="250.00000" r="3" fill="#222"><title>time 2; (&#x27;edge1&#x27;, &#x27;edge11&#x27;, &#x27;edge15&#x27;, &#x27;edge32&#x27;)</title></circle>
+<circle cx="208.00000" cy="334.00000" r="3" fill="#222"><title>time 2; (&#x27;edge1&#x27;, &#x27;edge11&#x27;, &#x27;edge15&#x27;, &#x27;edge4&#x27;, &#x27;edge8&#x27;)</title></circle>
+<text x="20" y="505" font-size="12">blue: EAVE; red: GABLE; orange: stationary patches; dots: contacts</text></svg>

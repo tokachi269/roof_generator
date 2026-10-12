@@ -1,0 +1,69 @@
+{
+  "scope": "full-Line kernel, separate frozen corpora; not production addon coverage",
+  "wall_model": "stationary source wall patches are separate from inclined roof patches",
+  "corpora": {
+    "orthogonal_grid_stress": {
+      "completed_complex": 90,
+      "float_mesh": 90,
+      "requires_internal_walls": 87,
+      "independent_validation": 90,
+      "inputs": 120,
+      "footprint": 120,
+      "intent_nontermination": 26,
+      "intent_nonexistence": 4,
+      "roof_only_mesh": 3
+    },
+    "nonuniform_orthogonal": {
+      "completed_complex": 95,
+      "float_mesh": 95,
+      "requires_internal_walls": 92,
+      "independent_validation": 95,
+      "inputs": 120,
+      "footprint": 120,
+      "intent_nontermination": 21,
+      "intent_nonexistence": 4,
+      "roof_only_mesh": 3
+    },
+    "structured_orthogonal": {
+      "completed_complex": 101,
+      "float_mesh": 101,
+      "requires_internal_walls": 62,
+      "independent_validation": 101,
+      "inputs": 120,
+      "footprint": 120,
+      "roof_only_mesh": 39,
+      "intent_nontermination": 13,
+      "intent_nonexistence": 6
+    },
+    "convex_quadrilateral": {
+      "completed_complex": 120,
+      "float_mesh": 120,
+      "roof_only_mesh": 120,
+      "independent_validation": 120,
+      "inputs": 120,
+      "footprint": 120
+    },
+    "structured_oblique": {
+      "completed_complex": 98,
+      "float_mesh": 98,
+      "roof_only_mesh": 48,
+      "independent_validation": 98,
+      "inputs": 120,
+      "footprint": 120,
+      "requires_internal_walls": 50,
+      "intent_nonexistence": 6,
+      "intent_nontermination": 16
+    },
+    "general_simple_polygon_probe": {
+      "completed_complex": 109,
+      "float_mesh": 109,
+      "roof_only_mesh": 48,
+      "independent_validation": 109,
+      "inputs": 120,
+      "footprint": 120,
+      "requires_internal_walls": 61,
+      "intent_nonexistence": 5,
+      "intent_nontermination": 6
+    }
+  }
+}

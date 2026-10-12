@@ -1,0 +1,2399 @@
+{
+  "input": {
+    "name": "grid_40",
+    "footprint": [
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        10,
+        6
+      ],
+      [
+        9,
+        6
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        10
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "roles": [
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE",
+      "EAVE"
+    ]
+  },
+  "complex": {
+    "authority": "global full-Line boundary-conditioned wavefront",
+    "sources": [
+      {
+        "id": "edge0",
+        "start": [
+          0,
+          4
+        ],
+        "end": [
+          2,
+          4
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge1",
+        "start": [
+          2,
+          4
+        ],
+        "end": [
+          2,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge2",
+        "start": [
+          2,
+          3
+        ],
+        "end": [
+          1,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge3",
+        "start": [
+          1,
+          3
+        ],
+        "end": [
+          1,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge4",
+        "start": [
+          1,
+          1
+        ],
+        "end": [
+          3,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge5",
+        "start": [
+          3,
+          1
+        ],
+        "end": [
+          3,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge6",
+        "start": [
+          3,
+          0
+        ],
+        "end": [
+          4,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge7",
+        "start": [
+          4,
+          0
+        ],
+        "end": [
+          4,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge8",
+        "start": [
+          4,
+          1
+        ],
+        "end": [
+          5,
+          1
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge9",
+        "start": [
+          5,
+          1
+        ],
+        "end": [
+          5,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge10",
+        "start": [
+          5,
+          0
+        ],
+        "end": [
+          6,
+          0
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge11",
+        "start": [
+          6,
+          0
+        ],
+        "end": [
+          6,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge12",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          7,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge13",
+        "start": [
+          7,
+          2
+        ],
+        "end": [
+          7,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge14",
+        "start": [
+          7,
+          3
+        ],
+        "end": [
+          6,
+          3
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge15",
+        "start": [
+          6,
+          3
+        ],
+        "end": [
+          6,
+          4
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge16",
+        "start": [
+          6,
+          4
+        ],
+        "end": [
+          8,
+          4
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge17",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge18",
+        "start": [
+          8,
+          2
+        ],
+        "end": [
+          9,
+          2
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge19",
+        "start": [
+          9,
+          2
+        ],
+        "end": [
+          9,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge20",
+        "start": [
+          9,
+          5
+        ],
+        "end": [
+          10,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge21",
+        "start": [
+          10,
+          5
+        ],
+        "end": [
+          10,
+          6
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge22",
+        "start": [
+          10,
+          6
+        ],
+        "end": [
+          9,
+          6
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge23",
+        "start": [
+          9,
+          6
+        ],
+        "end": [
+          9,
+          7
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge24",
+        "start": [
+          9,
+          7
+        ],
+        "end": [
+          6,
+          7
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge25",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          6,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge26",
+        "start": [
+          6,
+          8
+        ],
+        "end": [
+          7,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge27",
+        "start": [
+          7,
+          8
+        ],
+        "end": [
+          7,
+          10
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge28",
+        "start": [
+          7,
+          10
+        ],
+        "end": [
+          5,
+          10
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge29",
+        "start": [
+          5,
+          10
+        ],
+        "end": [
+          5,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge30",
+        "start": [
+          5,
+          8
+        ],
+        "end": [
+          3,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge31",
+        "start": [
+          3,
+          8
+        ],
+        "end": [
+          3,
+          7
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge32",
+        "start": [
+          3,
+          7
+        ],
+        "end": [
+          1,
+          7
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge33",
+        "start": [
+          1,
+          7
+        ],
+        "end": [
+          1,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge34",
+        "start": [
+          1,
+          8
+        ],
+        "end": [
+          0,
+          8
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge35",
+        "start": [
+          0,
+          8
+        ],
+        "end": [
+          0,
+          6
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge36",
+        "start": [
+          0,
+          6
+        ],
+        "end": [
+          1,
+          6
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge37",
+        "start": [
+          1,
+          6
+        ],
+        "end": [
+          1,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge38",
+        "start": [
+          1,
+          5
+        ],
+        "end": [
+          0,
+          5
+        ],
+        "role": "EAVE"
+      },
+      {
+        "id": "edge39",
+        "start": [
+          0,
+          5
+        ],
+        "end": [
+          0,
+          4
+        ],
+        "role": "EAVE"
+      }
+    ],
+    "vertices": [
+      {
+        "id": 0,
+        "xy": [
+          0.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge39"
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          2.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          2.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          1.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 4,
+        "xy": [
+          1.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge3",
+          "edge4"
+        ]
+      },
+      {
+        "id": 5,
+        "xy": [
+          3.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge4",
+          "edge5"
+        ]
+      },
+      {
+        "id": 6,
+        "xy": [
+          3.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge5",
+          "edge6"
+        ]
+      },
+      {
+        "id": 7,
+        "xy": [
+          4.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 8,
+        "xy": [
+          4.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge7",
+          "edge8"
+        ]
+      },
+      {
+        "id": 9,
+        "xy": [
+          5.0,
+          1.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge8",
+          "edge9"
+        ]
+      },
+      {
+        "id": 10,
+        "xy": [
+          5.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge10",
+          "edge9"
+        ]
+      },
+      {
+        "id": 11,
+        "xy": [
+          6.0,
+          0.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge10",
+          "edge11"
+        ]
+      },
+      {
+        "id": 12,
+        "xy": [
+          6.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge11",
+          "edge12"
+        ]
+      },
+      {
+        "id": 13,
+        "xy": [
+          7.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge12",
+          "edge13"
+        ]
+      },
+      {
+        "id": 14,
+        "xy": [
+          7.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge13",
+          "edge14"
+        ]
+      },
+      {
+        "id": 15,
+        "xy": [
+          6.0,
+          3.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge14",
+          "edge15"
+        ]
+      },
+      {
+        "id": 16,
+        "xy": [
+          6.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge15",
+          "edge16"
+        ]
+      },
+      {
+        "id": 17,
+        "xy": [
+          8.0,
+          4.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge16",
+          "edge17"
+        ]
+      },
+      {
+        "id": 18,
+        "xy": [
+          8.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge17",
+          "edge18"
+        ]
+      },
+      {
+        "id": 19,
+        "xy": [
+          9.0,
+          2.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge18",
+          "edge19"
+        ]
+      },
+      {
+        "id": 20,
+        "xy": [
+          9.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge19",
+          "edge20"
+        ]
+      },
+      {
+        "id": 21,
+        "xy": [
+          10.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge20",
+          "edge21"
+        ]
+      },
+      {
+        "id": 22,
+        "xy": [
+          10.0,
+          6.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge21",
+          "edge22"
+        ]
+      },
+      {
+        "id": 23,
+        "xy": [
+          9.0,
+          6.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge22",
+          "edge23"
+        ]
+      },
+      {
+        "id": 24,
+        "xy": [
+          9.0,
+          7.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge23",
+          "edge24"
+        ]
+      },
+      {
+        "id": 25,
+        "xy": [
+          6.0,
+          7.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge24",
+          "edge25"
+        ]
+      },
+      {
+        "id": 26,
+        "xy": [
+          6.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge25",
+          "edge26"
+        ]
+      },
+      {
+        "id": 27,
+        "xy": [
+          7.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge26",
+          "edge27"
+        ]
+      },
+      {
+        "id": 28,
+        "xy": [
+          7.0,
+          10.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge27",
+          "edge28"
+        ]
+      },
+      {
+        "id": 29,
+        "xy": [
+          5.0,
+          10.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge28",
+          "edge29"
+        ]
+      },
+      {
+        "id": 30,
+        "xy": [
+          5.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge29",
+          "edge30"
+        ]
+      },
+      {
+        "id": 31,
+        "xy": [
+          3.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge30",
+          "edge31"
+        ]
+      },
+      {
+        "id": 32,
+        "xy": [
+          3.0,
+          7.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge31",
+          "edge32"
+        ]
+      },
+      {
+        "id": 33,
+        "xy": [
+          1.0,
+          7.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge32",
+          "edge33"
+        ]
+      },
+      {
+        "id": 34,
+        "xy": [
+          1.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge33",
+          "edge34"
+        ]
+      },
+      {
+        "id": 35,
+        "xy": [
+          0.0,
+          8.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge34",
+          "edge35"
+        ]
+      },
+      {
+        "id": 36,
+        "xy": [
+          0.0,
+          6.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge35",
+          "edge36"
+        ]
+      },
+      {
+        "id": 37,
+        "xy": [
+          1.0,
+          6.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge36",
+          "edge37"
+        ]
+      },
+      {
+        "id": 38,
+        "xy": [
+          1.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge37",
+          "edge38"
+        ]
+      },
+      {
+        "id": 39,
+        "xy": [
+          0.0,
+          5.0
+        ],
+        "time": 0.0,
+        "sources": [
+          "edge38",
+          "edge39"
+        ]
+      },
+      {
+        "id": 40,
+        "xy": [
+          0.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge38",
+          "edge39"
+        ]
+      },
+      {
+        "id": 41,
+        "xy": [
+          2.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 42,
+        "xy": [
+          2.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge1",
+          "edge2"
+        ]
+      },
+      {
+        "id": 43,
+        "xy": [
+          1.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge2",
+          "edge3"
+        ]
+      },
+      {
+        "id": 44,
+        "xy": [
+          1.5,
+          1.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge3",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 45,
+        "xy": [
+          3.5,
+          1.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge4",
+          "edge5",
+          "edge7",
+          "edge8"
+        ]
+      },
+      {
+        "id": 46,
+        "xy": [
+          3.5,
+          0.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge5",
+          "edge6",
+          "edge7"
+        ]
+      },
+      {
+        "id": 47,
+        "xy": [
+          5.5,
+          1.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge4",
+          "edge8",
+          "edge9"
+        ]
+      },
+      {
+        "id": 48,
+        "xy": [
+          5.5,
+          0.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge10",
+          "edge11",
+          "edge9"
+        ]
+      },
+      {
+        "id": 49,
+        "xy": [
+          5.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge11",
+          "edge12",
+          "edge14",
+          "edge15"
+        ]
+      },
+      {
+        "id": 50,
+        "xy": [
+          6.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge12",
+          "edge13",
+          "edge14"
+        ]
+      },
+      {
+        "id": 51,
+        "xy": [
+          5.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge16"
+        ]
+      },
+      {
+        "id": 52,
+        "xy": [
+          8.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge16",
+          "edge17",
+          "edge19",
+          "edge23"
+        ]
+      },
+      {
+        "id": 53,
+        "xy": [
+          8.5,
+          2.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge17",
+          "edge18",
+          "edge19"
+        ]
+      },
+      {
+        "id": 54,
+        "xy": [
+          8.5,
+          5.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge19",
+          "edge20",
+          "edge22",
+          "edge23"
+        ]
+      },
+      {
+        "id": 55,
+        "xy": [
+          9.5,
+          5.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge20",
+          "edge21",
+          "edge22"
+        ]
+      },
+      {
+        "id": 56,
+        "xy": [
+          8.5,
+          6.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge19",
+          "edge23",
+          "edge24"
+        ]
+      },
+      {
+        "id": 57,
+        "xy": [
+          5.5,
+          6.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge24",
+          "edge25"
+        ]
+      },
+      {
+        "id": 58,
+        "xy": [
+          5.5,
+          8.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge25",
+          "edge26",
+          "edge29"
+        ]
+      },
+      {
+        "id": 59,
+        "xy": [
+          6.5,
+          8.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge26",
+          "edge27"
+        ]
+      },
+      {
+        "id": 60,
+        "xy": [
+          6.5,
+          9.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge27",
+          "edge28"
+        ]
+      },
+      {
+        "id": 61,
+        "xy": [
+          5.5,
+          9.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge28",
+          "edge29"
+        ]
+      },
+      {
+        "id": 62,
+        "xy": [
+          5.5,
+          7.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge25",
+          "edge29",
+          "edge30"
+        ]
+      },
+      {
+        "id": 63,
+        "xy": [
+          3.5,
+          7.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge30",
+          "edge31"
+        ]
+      },
+      {
+        "id": 64,
+        "xy": [
+          3.5,
+          6.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge31",
+          "edge32"
+        ]
+      },
+      {
+        "id": 65,
+        "xy": [
+          0.5,
+          6.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge32",
+          "edge33",
+          "edge35",
+          "edge36"
+        ]
+      },
+      {
+        "id": 66,
+        "xy": [
+          0.5,
+          7.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge33",
+          "edge34",
+          "edge35"
+        ]
+      },
+      {
+        "id": 67,
+        "xy": [
+          1.5,
+          6.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge32",
+          "edge36",
+          "edge37"
+        ]
+      },
+      {
+        "id": 68,
+        "xy": [
+          1.5,
+          4.5
+        ],
+        "time": 0.5,
+        "sources": [
+          "edge0",
+          "edge37",
+          "edge38"
+        ]
+      },
+      {
+        "id": 69,
+        "xy": [
+          2.0,
+          5.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge0",
+          "edge37"
+        ]
+      },
+      {
+        "id": 70,
+        "xy": [
+          3.0,
+          5.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge0",
+          "edge1"
+        ]
+      },
+      {
+        "id": 71,
+        "xy": [
+          3.0,
+          2.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge1",
+          "edge2",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 72,
+        "xy": [
+          2.0,
+          2.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge2",
+          "edge3",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 73,
+        "xy": [
+          5.0,
+          2.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 74,
+        "xy": [
+          5.0,
+          5.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge16"
+        ]
+      },
+      {
+        "id": 75,
+        "xy": [
+          8.0,
+          5.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge16",
+          "edge19",
+          "edge23"
+        ]
+      },
+      {
+        "id": 76,
+        "xy": [
+          8.0,
+          6.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge19",
+          "edge23",
+          "edge24"
+        ]
+      },
+      {
+        "id": 77,
+        "xy": [
+          5.0,
+          6.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge24",
+          "edge25"
+        ]
+      },
+      {
+        "id": 78,
+        "xy": [
+          5.0,
+          7.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge25",
+          "edge30"
+        ]
+      },
+      {
+        "id": 79,
+        "xy": [
+          4.0,
+          7.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge30",
+          "edge31"
+        ]
+      },
+      {
+        "id": 80,
+        "xy": [
+          4.0,
+          6.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge31",
+          "edge32"
+        ]
+      },
+      {
+        "id": 81,
+        "xy": [
+          2.0,
+          6.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge32",
+          "edge37"
+        ]
+      },
+      {
+        "id": 82,
+        "xy": [
+          6.0,
+          9.0
+        ],
+        "time": 1.0,
+        "sources": [
+          "edge26",
+          "edge27",
+          "edge28",
+          "edge29"
+        ]
+      },
+      {
+        "id": 83,
+        "xy": [
+          2.5,
+          5.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge0",
+          "edge32",
+          "edge37"
+        ]
+      },
+      {
+        "id": 84,
+        "xy": [
+          3.5,
+          5.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge0",
+          "edge1",
+          "edge32"
+        ]
+      },
+      {
+        "id": 85,
+        "xy": [
+          3.5,
+          2.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge1",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 86,
+        "xy": [
+          4.5,
+          2.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge4",
+          "edge8"
+        ]
+      },
+      {
+        "id": 87,
+        "xy": [
+          4.5,
+          5.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge11",
+          "edge15",
+          "edge16",
+          "edge24",
+          "edge25",
+          "edge31",
+          "edge32"
+        ]
+      },
+      {
+        "id": 88,
+        "xy": [
+          7.5,
+          5.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge16",
+          "edge19",
+          "edge23",
+          "edge24"
+        ]
+      },
+      {
+        "id": 89,
+        "xy": [
+          4.5,
+          6.5
+        ],
+        "time": 1.5,
+        "sources": [
+          "edge25",
+          "edge30",
+          "edge31"
+        ]
+      },
+      {
+        "id": 90,
+        "xy": [
+          4.0,
+          5.0
+        ],
+        "time": 2.0,
+        "sources": [
+          "edge1",
+          "edge11",
+          "edge15",
+          "edge32"
+        ]
+      },
+      {
+        "id": 91,
+        "xy": [
+          4.0,
+          3.0
+        ],
+        "time": 2.0,
+        "sources": [
+          "edge1",
+          "edge11",
+          "edge15",
+          "edge4",
+          "edge8"
+        ]
+      }
+    ],
+    "patches": [
+      {
+        "plane": 0,
+        "sources": [
+          "edge0"
+        ],
+        "loop": [
+          0,
+          1,
+          84,
+          83,
+          68,
+          40
+        ]
+      },
+      {
+        "plane": 1,
+        "sources": [
+          "edge1"
+        ],
+        "loop": [
+          1,
+          2,
+          71,
+          91,
+          90,
+          84
+        ]
+      },
+      {
+        "plane": 12,
+        "sources": [
+          "edge2"
+        ],
+        "loop": [
+          2,
+          3,
+          72,
+          71
+        ]
+      },
+      {
+        "plane": 23,
+        "sources": [
+          "edge3"
+        ],
+        "loop": [
+          3,
+          4,
+          72
+        ]
+      },
+      {
+        "plane": 35,
+        "sources": [
+          "edge5"
+        ],
+        "loop": [
+          5,
+          6,
+          46,
+          45
+        ]
+      },
+      {
+        "plane": 36,
+        "sources": [
+          "edge6"
+        ],
+        "loop": [
+          6,
+          7,
+          46
+        ]
+      },
+      {
+        "plane": 37,
+        "sources": [
+          "edge7"
+        ],
+        "loop": [
+          7,
+          8,
+          45,
+          46
+        ]
+      },
+      {
+        "plane": 40,
+        "sources": [
+          "edge4",
+          "edge8"
+        ],
+        "loop": [
+          4,
+          5,
+          45,
+          8,
+          9,
+          47,
+          91,
+          71,
+          72
+        ]
+      },
+      {
+        "plane": 39,
+        "sources": [
+          "edge9"
+        ],
+        "loop": [
+          9,
+          10,
+          48,
+          47
+        ]
+      },
+      {
+        "plane": 2,
+        "sources": [
+          "edge10"
+        ],
+        "loop": [
+          10,
+          11,
+          48
+        ]
+      },
+      {
+        "plane": 4,
+        "sources": [
+          "edge12"
+        ],
+        "loop": [
+          12,
+          13,
+          50,
+          49
+        ]
+      },
+      {
+        "plane": 5,
+        "sources": [
+          "edge13"
+        ],
+        "loop": [
+          13,
+          14,
+          50
+        ]
+      },
+      {
+        "plane": 6,
+        "sources": [
+          "edge14"
+        ],
+        "loop": [
+          14,
+          15,
+          49,
+          50
+        ]
+      },
+      {
+        "plane": 41,
+        "sources": [
+          "edge11",
+          "edge15"
+        ],
+        "loop": [
+          11,
+          12,
+          49,
+          15,
+          16,
+          87,
+          90,
+          91,
+          47,
+          48
+        ]
+      },
+      {
+        "plane": 8,
+        "sources": [
+          "edge16"
+        ],
+        "loop": [
+          16,
+          17,
+          52,
+          88,
+          87
+        ]
+      },
+      {
+        "plane": 9,
+        "sources": [
+          "edge17"
+        ],
+        "loop": [
+          17,
+          18,
+          53,
+          52
+        ]
+      },
+      {
+        "plane": 10,
+        "sources": [
+          "edge18"
+        ],
+        "loop": [
+          18,
+          19,
+          53
+        ]
+      },
+      {
+        "plane": 13,
+        "sources": [
+          "edge20"
+        ],
+        "loop": [
+          20,
+          21,
+          55,
+          54
+        ]
+      },
+      {
+        "plane": 14,
+        "sources": [
+          "edge21"
+        ],
+        "loop": [
+          21,
+          22,
+          55
+        ]
+      },
+      {
+        "plane": 15,
+        "sources": [
+          "edge22"
+        ],
+        "loop": [
+          22,
+          23,
+          54,
+          55
+        ]
+      },
+      {
+        "plane": 42,
+        "sources": [
+          "edge19",
+          "edge23"
+        ],
+        "loop": [
+          19,
+          20,
+          54,
+          23,
+          24,
+          88,
+          52,
+          53
+        ]
+      },
+      {
+        "plane": 17,
+        "sources": [
+          "edge24"
+        ],
+        "loop": [
+          24,
+          25,
+          87,
+          88
+        ]
+      },
+      {
+        "plane": 18,
+        "sources": [
+          "edge25"
+        ],
+        "loop": [
+          25,
+          26,
+          58,
+          62,
+          89,
+          87
+        ]
+      },
+      {
+        "plane": 19,
+        "sources": [
+          "edge26"
+        ],
+        "loop": [
+          26,
+          27,
+          82,
+          58
+        ]
+      },
+      {
+        "plane": 20,
+        "sources": [
+          "edge27"
+        ],
+        "loop": [
+          27,
+          28,
+          82
+        ]
+      },
+      {
+        "plane": 21,
+        "sources": [
+          "edge28"
+        ],
+        "loop": [
+          28,
+          29,
+          82
+        ]
+      },
+      {
+        "plane": 22,
+        "sources": [
+          "edge29"
+        ],
+        "loop": [
+          29,
+          30,
+          62,
+          58,
+          82
+        ]
+      },
+      {
+        "plane": 24,
+        "sources": [
+          "edge30"
+        ],
+        "loop": [
+          30,
+          31,
+          89,
+          62
+        ]
+      },
+      {
+        "plane": 25,
+        "sources": [
+          "edge31"
+        ],
+        "loop": [
+          31,
+          32,
+          87,
+          89
+        ]
+      },
+      {
+        "plane": 26,
+        "sources": [
+          "edge32"
+        ],
+        "loop": [
+          32,
+          33,
+          65,
+          67,
+          83,
+          84,
+          90,
+          87
+        ]
+      },
+      {
+        "plane": 27,
+        "sources": [
+          "edge33"
+        ],
+        "loop": [
+          33,
+          34,
+          66,
+          65
+        ]
+      },
+      {
+        "plane": 28,
+        "sources": [
+          "edge34"
+        ],
+        "loop": [
+          34,
+          35,
+          66
+        ]
+      },
+      {
+        "plane": 29,
+        "sources": [
+          "edge35"
+        ],
+        "loop": [
+          35,
+          36,
+          65,
+          66
+        ]
+      },
+      {
+        "plane": 30,
+        "sources": [
+          "edge36"
+        ],
+        "loop": [
+          36,
+          37,
+          67,
+          65
+        ]
+      },
+      {
+        "plane": 31,
+        "sources": [
+          "edge37"
+        ],
+        "loop": [
+          37,
+          38,
+          68,
+          83,
+          67
+        ]
+      },
+      {
+        "plane": 32,
+        "sources": [
+          "edge38"
+        ],
+        "loop": [
+          38,
+          39,
+          40,
+          68
+        ]
+      },
+      {
+        "plane": 33,
+        "sources": [
+          "edge39"
+        ],
+        "loop": [
+          0,
+          40,
+          39
+        ]
+      }
+    ],
+    "walls": [],
+    "events": [
+      {
+        "time": 0.5,
+        "contacts": [
+          40,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          62,
+          65,
+          66,
+          67,
+          68
+        ],
+        "components_before": 1,
+        "components_after": 2
+      },
+      {
+        "time": 1.0,
+        "contacts": [
+          71,
+          72,
+          82
+        ],
+        "components_before": 2,
+        "components_after": 1
+      },
+      {
+        "time": 1.5,
+        "contacts": [
+          83,
+          84,
+          87,
+          88,
+          89
+        ],
+        "components_before": 1,
+        "components_after": 1
+      },
+      {
+        "time": 2.0,
+        "contacts": [
+          90,
+          91
+        ],
+        "components_before": 1,
+        "components_after": 0
+      }
+    ],
+    "work": 1943,
+    "predicates": {
+      "double_signs": 0,
+      "rational_signs": 9172,
+      "refinements": 0,
+      "exact_zeros": 1760,
+      "bits_used": 0
+    }
+  },
+  "oracle": {
+    "coverage_error": 0.0,
+    "outside_error": 0.0,
+    "overlap_error": 0.0,
+    "raw_union_error": 0.0,
+    "roof_patches": 37
+  }
+}
