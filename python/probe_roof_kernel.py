@@ -23,15 +23,15 @@ def run(records,output,*,samples=9):
         if record['proof']=='nonexistence':
             certificate=nonexistence_witness(path,intent,record['witness'])
             if certificate is None:raise AssertionError('nonexistence certificate disappeared')
-            row.update(status='inconsistent intent',certificate=certificate)
+            row.update(status='inconsistent intent',owner='intent',certificate=certificate)
             (output/f'{index:02d}.svg').write_text(drawing(path,intent,witness=certificate))
         else:
             try:
                 result=construct(path,intent)
             except ProofDomainError as exc:
                 if record['proof']!='unresolved':raise
-                row.update(status='outside independent proof domain',reason=str(exc),
-                           intent_admissibility='not decided by this tool')
+                row.update(status='outside independent proof domain',owner='proof_scope',reason=str(exc),
+                           intent_admissibility=record.get('admissibility','not decided by this tool'))
             else:
                 if record['proof']!='construction':raise AssertionError('proof scope changed')
                 timings=[]

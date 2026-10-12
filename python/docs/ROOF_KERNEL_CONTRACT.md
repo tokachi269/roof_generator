@@ -266,7 +266,11 @@ not classified as mathematically invalid by a scope rejection.
 
 The frozen [input records](../tests/fixtures/kernel_line_proofs_v1.json) yield
 five completed convex construction proofs, one nonexistence witness and two
-unresolved construction/model probes. Local full suite: **246 tests pass**.
+construction/model probes outside the convex oracle. The concave all-eave input
+has a known classical roof: its owner is proof/construction scope, not invalid or
+ambiguous intent. The collinear partial-role input instead has an unspecified
+model rule. The report keeps this distinction explicitly. Local full suite:
+**246 tests pass**.
 Blender 4.3.2 turns all five proof complexes directly into editable meshes with
 planarity, manifold disk, normal, UV, material and source-provenance checks. Face
 cycles and vertex count stay unchanged; no mesh repair is used. These are
@@ -274,11 +278,11 @@ development proof meshes, **not new addon-supported cases**.
 
 | Proof input | Vertices | Patches | Positive-time clusters | Median ms (9 warm samples) |
 | --- | ---: | ---: | ---: | ---: |
-| Nonparallel full gables | 7 | 2 | 3 | 0.537 |
-| Convex single eave | 5 | 1 | 3 | 0.349 |
-| Square, all eave | 5 | 4 | 1 | 0.217 |
-| Hexagon, all eave | 7 | 6 | 1 | 0.903 |
-| Rectangle, two opposite gables | 6 | 2 | 1 | 0.268 |
+| Nonparallel full gables | 7 | 2 | 3 | 0.571 |
+| Convex single eave | 5 | 1 | 3 | 0.376 |
+| Square, all eave | 5 | 4 | 1 | 0.392 |
+| Hexagon, all eave | 7 | 6 | 1 | 0.794 |
+| Rectangle, two opposite gables | 6 | 2 | 1 | 0.185 |
 
 Exact counts and raw timing samples are in [kernel/report.json](kernel/report.json).
 These tiny convex-oracle timings are neither production performance nor a

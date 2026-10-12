@@ -204,7 +204,8 @@
       ]
     },
     {
-      "name": "concave_admissibility_unproved",
+      "name": "concave_all_eave_construction_unproved",
+      "admissibility": "classical all-eave model exists; this convex oracle does not construct it",
       "footprint": [
         [
           0,
@@ -243,6 +244,7 @@
     },
     {
       "name": "partial_collinear_transition",
+      "admissibility": "partial speed-transition closure is not yet specified",
       "footprint": [
         [
           0,
