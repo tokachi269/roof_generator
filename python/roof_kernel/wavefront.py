@@ -9,7 +9,7 @@ operation; there are no building-shape or junction-template handlers.
 from collections import defaultdict
 from functools import cmp_to_key
 from fractions import Fraction as Q
-from .precision import Precision, Surd, Scalar, scalar
+from .precision import Precision, PrecisionLimit, Surd, Scalar, scalar
 from .boundary import dot,cross
 from .sources import prepare,trajectory,Plane
 from .admissibility import necessary_coverage,InconsistentIntent
@@ -108,9 +108,17 @@ class Wavefront:
                         v=self.vertex(cycle[j-1],p)
                         points.append(tuple(str(v[k].origin*self.frame.scale+self.frame.origin[k]) for k in (0,1)))
                     polygons.append(points)
-                certificate={'kind':'stationary_remaining_front','time':self.precision.approximate(self.current),
+                time=self.current*self.frame.scale
+                exact_time={'numerator':[(str(q),str(c)) for q,c in time.numerator.terms],
+                            'denominator':[(str(q),str(c)) for q,c in time.denominator.terms]}
+                certificate={'kind':'stationary_remaining_front','exact_time':exact_time,
+                             'scope':'finite causal active-source wavefront, not arbitrary source-plane roofs',
                              'cycles':[tuple(self.planes[p].sources for p in cycle) for cycle in self.cycles],
                              'exact_polygons':polygons}
+                # Numeric time is presentation only. The exact physical-unit
+                # expression remains available outside floating-point range.
+                try:certificate['time']=self.precision.approximate(time)
+                except (OverflowError,PrecisionLimit):pass
                 raise InconsistentIntent('stationary positive-area front cannot complete a finite roof',certificate)
             raise KernelFailure('moving positive-area front has no predicted future contact')
         return result

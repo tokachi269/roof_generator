@@ -124,6 +124,22 @@ class LineWavefront(unittest.TestCase):
         self.assertEqual(error.exception.certificate['kind'],'no_nonnegative_source_plane')
         with self.assertRaises(KernelLimit):construct(*model(((0,0),(8,0),(8,8),(0,8))),max_work=1)
 
+    def test_stationary_remainder_is_a_scoped_model_certificate(self):
+        points=((0,0),(8,0),(8,3),(3,3),(3,8),(0,8))
+        # The right EAVE's plane 8-x is nonnegative everywhere. Passing that
+        # necessary plane condition does not establish causal-front completion.
+        self.assertTrue(all(8-x>=0 for x,y in points))
+        wf=Wavefront(*model(points,(0,3,4,5)))
+        with self.assertRaises(InconsistentIntent) as error:wf.run()
+        certificate=error.exception.certificate
+        self.assertEqual(certificate['kind'],'stationary_remaining_front')
+        self.assertEqual(certificate['time'],3.)
+        self.assertEqual(certificate['exact_time'],{'numerator':[('1','3')],'denominator':[('1','1')]})
+        self.assertIn('not arbitrary source-plane roofs',certificate['scope'])
+        self.assertEqual({tuple(map(Q,p)) for p in certificate['exact_polygons'][0]},
+                         {(Q(0),Q(0)),(Q(3),Q(0)),(Q(3),Q(8)),(Q(0),Q(8))})
+
+
     def test_memos_are_not_correctness_dependencies(self):
         class NoMemo(Wavefront):
             def at(self,*args):
