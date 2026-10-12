@@ -2,7 +2,6 @@
 """Exact full-Line path and explicit role ownership, without roof parts."""
 from dataclasses import dataclass
 from fractions import Fraction as Q
-import math
 
 
 class InvalidBoundary(ValueError):pass
@@ -11,8 +10,9 @@ class UnspecifiedModel(ValueError):pass
 
 
 def point(p):
-    if len(p)!=2 or not all(math.isfinite(x) for x in p):raise InvalidBoundary('finite XY required')
-    return tuple(Q(x) for x in p)
+    if len(p)!=2:raise InvalidBoundary('finite XY required')
+    try:return tuple(Q(x) for x in p)
+    except (ValueError,TypeError,OverflowError) as exc:raise InvalidBoundary('finite rational XY required') from exc
 
 
 def cross(a,b):return a[0]*b[1]-a[1]*b[0]

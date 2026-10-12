@@ -61,7 +61,8 @@ def view(complex,*,pitch=.5,eave_height=0.,include_walls=False):
     patches=complex.patches+complex.walls if include_walls else complex.patches
     used=tuple(sorted({v for patch in patches for v in patch.loop}))
     indices={old:i for i,old in enumerate(used)}
-    coordinates=complex.coordinates(pitch=pitch,eave_height=eave_height)
+    try:coordinates=complex.coordinates(pitch=pitch,eave_height=eave_height)
+    except OverflowError as exc:raise MeshResolutionError('exact coordinates exceed floating-point range') from exc
     vertices=tuple(coordinates[i] for i in used)
     faces=tuple(tuple(indices[v] for v in patch.loop) for patch in patches)
     if any(not math.isfinite(x) for v in vertices for x in v) or len(set(vertices))!=len(vertices):

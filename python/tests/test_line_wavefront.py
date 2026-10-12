@@ -176,6 +176,9 @@ class LineWavefront(unittest.TestCase):
     def test_exact_kernel_does_not_guarantee_float_mesh_resolution(self):
         r=construct(*model(((0,0),(1,0),(1,Q(1,10**400)),(0,Q(1,10**400))), (1,3)))
         with self.assertRaises(MeshResolutionError):view(r)
+        huge=10**400
+        translated=construct(*model(((huge,0),(huge+8,0),(huge+8,4),(huge,4)),(1,3)))
+        with self.assertRaises(MeshResolutionError):view(translated)
 
 
 if __name__=='__main__':unittest.main()
