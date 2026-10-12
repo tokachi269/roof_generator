@@ -43,7 +43,9 @@ class Surd:
         return cls(tuple(sorted((q,c) for q,c in result if c)))
 
     @classmethod
-    def number(cls,value):return cls.make(((Q(1),Q(value)),))
+    def number(cls,value):
+        value=Q(value)
+        return cls(((Q(1),value),)) if value else cls()
 
     @classmethod
     def root(cls,value):return cls.make(((Q(value),Q(1)),))
@@ -75,13 +77,26 @@ class Scalar:
 
     def __post_init__(self):
         if not self.denominator.terms:raise ZeroDivisionError('zero radical denominator')
+        if not self.numerator.terms:
+            object.__setattr__(self,'denominator',Surd.number(1))
+        elif len(self.denominator.terms)==1 and self.denominator.terms[0][0]==1:
+            d=self.denominator.terms[0][1]
+            object.__setattr__(self,'numerator',Surd(tuple((q,c/d) for q,c in self.numerator.terms)))
+            object.__setattr__(self,'denominator',Surd.number(1))
 
     @classmethod
     def number(cls,value):return cls(coerce(value))
+    def rational(self):
+        if not self.numerator.terms:return Q(0)
+        if len(self.numerator.terms)==1 and self.numerator.terms[0][0]==1 and \
+           self.denominator.terms==((Q(1),Q(1)),):return self.numerator.terms[0][1]
+        return None
     def __neg__(self):return Scalar(-self.numerator,self.denominator)
     def __add__(self,other):
         other=scalar(other)
-        if self.denominator==other.denominator:
+        a,b=self.rational(),other.rational()
+        if a is not None and b is not None:return Scalar.number(a+b)
+        if self.denominator.terms==other.denominator.terms or self.denominator==other.denominator:
             return Scalar(self.numerator+other.numerator,self.denominator)
         return Scalar(self.numerator*other.denominator+other.numerator*self.denominator,
                       self.denominator*other.denominator)
@@ -90,11 +105,16 @@ class Scalar:
     def __rsub__(self,other):return scalar(other)+-self
     def __mul__(self,other):
         other=scalar(other)
+        a,b=self.rational(),other.rational()
+        if a is not None and b is not None:return Scalar.number(a*b)
+        if not self.numerator.terms or not other.numerator.terms:return Scalar.number(0)
         return Scalar(self.numerator*other.numerator,self.denominator*other.denominator)
     __rmul__=__mul__
     def __truediv__(self,other):
         other=scalar(other)
         if not other.numerator.terms:raise ZeroDivisionError('exact zero scalar')
+        a,b=self.rational(),other.rational()
+        if a is not None and b is not None:return Scalar.number(a/b)
         return Scalar(self.numerator*other.denominator,self.denominator*other.numerator)
     def __eq__(self,other):return not (self-scalar(other)).numerator.terms
     __hash__=None
@@ -115,7 +135,7 @@ class Precision:
     def __init__(self,*,max_bits=4096):
         if max_bits<64:raise ValueError('precision budget must be at least 64 bits')
         self.max_bits=max_bits
-        self.double_signs=self.refinements=self.exact_zeros=0
+        self.double_signs=self.rational_signs=self.refinements=self.exact_zeros=0
         self.bits_used=0
         self.roots={}
 
@@ -174,6 +194,8 @@ class Precision:
         value=coerce(value)
         if not value.terms:
             self.exact_zeros+=1;return 0
+        if len(value.terms)==1 and value.terms[0][0]==1:
+            self.rational_signs+=1;return 1 if value.terms[0][1]>0 else -1
         try:
             lo,hi=self._double_interval(value)
             if lo>0:self.double_signs+=1;return 1
@@ -206,4 +228,4 @@ class Precision:
         return float((a+b)/2)
 
     def inspect(self):
-        return {k:getattr(self,k) for k in ('double_signs','refinements','exact_zeros','bits_used')}
+        return {k:getattr(self,k) for k in ('double_signs','rational_signs','refinements','exact_zeros','bits_used')}
