@@ -23,7 +23,7 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
 屋根接続は建物全体で構成してから、決定済みのGraphを固定してsolveします。
-[段階別coverage](python/docs/END_TO_END_EVALUATION.md)でRoofGraph、solve、mesh、
+[配布版の契約](python/docs/current/README.md)でRoofGraph、solve、mesh、
 実際のBlender変換を分けて報告します。grid stress corpusは全体coverageではありません。
 未解決のpolygon event、対応するgable end modelの範囲、探索未完了が制約として残ります。
 全faceのsupport planeとpitchが明示された問題は、topologyを固定して線形solveします。
@@ -61,7 +61,7 @@ Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると�
 現在の構成は [ARCHITECTURE.md](ARCHITECTURE.md)、ツールとテストは
 [python/README.md](python/README.md)、研究との対応は
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md)、実測は
-[canonical measurements](python/docs/END_TO_END_EVALUATION.md)を参照してください。
+[release contract](python/docs/current/README.md)を参照してください。
 
 独立した[full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)では、明示した
 EAVE/GABLEから凹形状のcomplexを厳密なevent演算で構築します。

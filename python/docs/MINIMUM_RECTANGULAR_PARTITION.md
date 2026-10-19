@@ -2,9 +2,8 @@
 
 ## Scope and sources
 
-Starting SHA: `9bec1849254ee12c303378a85966c769d4f3b7a0`.
-This work replaces only the graph-first partition prototype. The production
-plane/envelope route, its harness and roof topology composition remain unchanged.
+Applies to the minimum certificate used by packaged 1.5.0 analysis.
+This layer partitions geometry; it does not construct roof topology.
 Input is a normalized, hole-free, simple orthogonal polygon, including arbitrary
 reflex count and rigid rotations via its intrinsic frame. Holes, point touching,
 self intersections and nonorthogonal boundaries are rejected. The partition
@@ -147,29 +146,20 @@ both select one asymmetric minimum and be exactly equivariant under every
 symmetry: applying the symmetry leaves the input unchanged but rotates the
 selected partition. For these cases compare partitions modulo the outline's
 actual rotational automorphisms, while still requiring the same minimum count,
-coverage and provenance. A caller-supplied architectural axis would remove that
-ambiguity in a future task; no silent heuristic can remove the mathematical
-limitation. Exact physical-cut identity is still tested on asymmetric footprints.
+coverage and provenance. The candidate family retains symmetry alternatives; generation uses an explicit
+reference direction for physical seed choices. No silent heuristic can remove
+the mathematical limitation of unlabelled outlines. Exact physical-cut identity is still tested on asymmetric footprints.
 
-## Implementation sequence and primary proof
 
-Keep enumeration, matching, cut completion/face extraction and Cell assembly as
-small functions, with intermediate inspectable output. A certificate records
-reflex IDs, all diagonals, conflicts, matching, selected independent-set IDs,
-completion segments and expected minimum count. RoofGraph generation is not
-needed to partition or validate input.
+## Candidate-family scope
 
-Tests fix literal minimum counts for small shapes independently, use separate
-geometry and exhaustive combinatorial oracles, and build test-only connected
-cell outlines with one simple boundary. Hundreds of seeded unknown grid shapes,
-long collinear runs, same-coordinate reflexes, endpoint conflicts, Steiner hits,
-and 14–40-corner cases must pass rectangle/disjoint union, interval ownership,
-adjacency, no dangling/reflex and cardinality proofs. Test generation and Shapely
-remain outside the new runtime. Existing rectangle primitives and terminal-graft
-proof stay; multi-cell roof composition and nonlinear solving are out of scope.
+The construction above describes one certified optimum. `partition_candidates`
+retains maximum independent-set alternatives, both completion axes in canonical
+free-reflex order and footprint symmetry images, under explicit work/count
+limits. It does not claim every possible reflex processing order. Every retained
+partition attains the same minimum certificate. These partitions guide exterior
+intent in the polygon route; internal cuts do not prescribe roof junctions.
 
-Retire the old single-reflex candidate selector only after the generic method
-proves the same L has two valid cells and supplies that cell graph to the existing
-terminal graft. Measure analysis, diagonal enumeration, intersection/matching,
-completion/subdivision, Cell assembly and total uncached partition separately,
-then a 1000-building batch. Stop at the proved generic cell graph.
+[Original implementation plan](history/MINIMUM_PARTITION_PLAN.md) and
+[partition evaluation](RECTANGULAR_PARTITION_EVALUATION.md) preserve the older
+phase boundaries and proof measurements.

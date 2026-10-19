@@ -8,8 +8,8 @@ See [arbitrary-angle contract and proofs](docs/ARBITRARY_ANGLE_ROOFS.md).
 Fully declared face planes use a fixed-topology linear embedding; generic
 partially specified plane problems retain the covariance optimizer. See
 [embedding contract and performance](docs/PLANE_EMBEDDING.md).
-See [the migration report](docs/POLYGON_ROOF_RELEASE.md) for current validation
-and limits. The older restricted-model probes below remain comparison tools.
+See [the release contract](docs/current/README.md) for current domains and limits,
+and [the documentation index](docs/README.md) for the separate kernel status. The older restricted-model probes below remain comparison tools.
 
 # Tools and verification
 
@@ -33,8 +33,9 @@ Production inspection tools use the distributable `roof_generator.core` under `a
 Runtime needs Python's standard library. `requirements.txt` declares development
 oracles only; Blender installs the ZIP without pip or external wheels.
 
-The next boundary-conditioned kernel has a separate
-[mathematical contract and construction proof](docs/ROOF_KERNEL_CONTRACT.md).
+The unpackaged full-Line kernel has a separate
+[mathematical contract](docs/ROOF_KERNEL_CONTRACT.md) and
+[concave implementation](docs/LINE_KERNEL_IMPLEMENTATION.md).
 `roof_kernel_proof.py` is an independent convex space-time oracle, not a new addon
 generator or general wavefront implementation. It binds full Line source roles
 before construction, retains event time/source incidence, and exports five frozen
@@ -151,7 +152,7 @@ python python/profile_partitions.py --output python/out/partition-profile.json
 Grid stress, nonuniform orthogonal, structured orthogonal, convex quad, structured
 oblique and general polygon probe results are separate. The additional
 `branch_network_inputs_v1.json.gz` proves separated terminal/middle operations.
-See [current results](docs/END_TO_END_EVALUATION.md),
+See [current release scope](docs/current/README.md),
 [solver contract](docs/SGA21_SOLVER.md), and
 [nonorthogonal boundary](docs/NON_ORTHOGONAL.md).
 

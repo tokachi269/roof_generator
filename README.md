@@ -25,8 +25,8 @@ nonplanar inputs and incomplete searches fail explicitly. A roof surface has an
 intentional perimeter boundary; walls and thickness are separate modeling tasks.
 
 Roof junctions are constructed globally before fixed embedding.
-The [staged coverage report](python/docs/END_TO_END_EVALUATION.md) separates
-RoofGraph availability from actual solve, validated mesh and Blender conversion.
+The [documentation index](python/docs/README.md) separates the packaged release,
+unpackaged kernel, frozen evaluation and remaining adoption gates.
 Connected-grid stress is one corpus, not overall coverage. Unresolved polygon
 events, finite gable-end model coverage and incomplete searches remain limits.
 Fully declared face planes use a linear fixed-topology embedding; the generic
@@ -64,7 +64,7 @@ symmetric outlines.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
 [research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md), and
-[canonical measurements](python/docs/END_TO_END_EVALUATION.md).
+[release contract](python/docs/current/README.md).
 
 The standalone [full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)
 constructs source-labelled concave EAVE/GABLE complexes with certified event

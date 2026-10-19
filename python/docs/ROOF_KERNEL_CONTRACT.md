@@ -27,7 +27,7 @@ An ordinary all-eave skeleton is one instance of this model, not a fallback for 
 failed gable request. No new cap/junction exceptions will be added to 1.5.0 as part
 of this work.
 
-## The existence condition needs correction
+## Necessary existence condition and proved convex domain
 
 A simple footprint with at least one eave is **not** enough to guarantee the
 requested roof under the proposed constant-pitch, no-additional-source model.
@@ -150,9 +150,11 @@ coincident endpoints and collinear overlap are changes to this one state.
    closed, correctly oriented front. A collapsed segment is a ridge trace, not
    a surviving zero-area polygon.
 
-This is a required implementation contract, not an assertion that a particular
-unimplemented contact pairing works. Kinetic triangulation is a researched
-candidate for state/certificate management; an event queue alone is insufficient.
+The current full-Line implementation nodes and reconnects common-time fragments
+by exact cyclic links; see [implementation](LINE_KERNEL_IMPLEMENTATION.md).
+This explicit rule and finite validation do not by themselves prove universal
+zero-speed exhaustiveness or termination. Kinetic triangulation is a researched
+alternative state/certificate mechanism, not a current runtime dependency.
 Candidate priority or dictionary order must not choose an arbitrary post-event
 pairing. Shared events are not split into fixture-specific templates.
 
@@ -179,138 +181,41 @@ This domain cannot be defined as "whatever the current backend succeeds on".
 Automatic intent generation must produce admitted intents by construction, or
 expose the model ambiguity; it cannot silently substitute all-eave hip.
 
-## Research and implementation reuse
+## Current implementation boundary
 
-| Primary source | Relevant mechanism / limitation | Mapping and decision |
-| --- | --- | --- |
-| [Held & Palfrader, 2017, sections 3.1–3.2, 4.1–4.3, Fig. 12](https://arxiv.org/html/1604.03362) | Finite delayed motion, vertical patches, non-elementary events; an edge that disappears before starting yields a gable without cap postprocessing. | Source speed schedule, event time and wall/roof separation. Permanent zero speed is not automatically covered by the finite-collapse premise; do not choose an arbitrary huge finite delay. |
-| [Biedl et al., Weighted straight skeletons in the plane, sections 3–5](https://research-explorer.ista.ac.at/download/1584/5292) | Explicit weighted-event definition and degeneracies; the analyzed multiplicative model excludes zero weights. Negative weights can lose ordinary skeleton properties. | Keep only nonnegative speeds; treat zero-speed and parallel contacts as explicit obligations rather than importing a theorem for strictly positive weights. |
-| [Huber & Held, 2011](https://www.sthu.org/research/publications/files/HuHe11.pdf) | Generalized motorcycle graph for PSLGs and global wavefront computation. | Global source lineage and degenerate-event research, not a ready stdlib Python weighted backend. |
-| [Weiß, Jüttler & Aurenhammer, 2021, sections 2–4](https://www.ag.jku.at/pubs/2021wj.pdf) | Circular-arc offsets have vanish, terminal, contact and splice events; a splice requires a continuation convention. | Arc sources need an actual geometric evolution and curved patches. Retaining primitive IDs during tessellation alone does not implement this algorithm or prove weighted-gable correctness. |
-| [Surfer2 source/build/license](https://github.com/cgalab/surfer2) | Triangulation-based CGAL/C++ implementation, GPLv3, native toolchain and arithmetic dependencies. | Strong event/arithmetic reference; candidate external proof backend. Windows builds and bundled Blender binaries would need validation; no native runtime dependency is added here. |
-| [campskeleton source/build/license](https://github.com/twak/campskeleton) | Weighted Java engine, collision handling and per-edge machines; Apache-2.0, Maven/JVM dependencies. | Inspect complete same-height collision handling as a reference. A JVM adapter is not a stdlib Blender installation and its robustness must be tested, not presumed. |
+`python/roof_kernel/` constructs full-Line, simple hole-free boundaries with
+explicit full geometric-edge EAVE/GABLE roles, including concave paths and
+nonparallel supports. Source identities and redundant same-role collinear
+vertices retain provenance. Partial collinear role transitions, Arc/Curve, holes,
+negative speeds and independently varying pitches are not admitted model inputs.
+Exact radical arithmetic, common-time contact closure, source-patch extraction,
+complex validation and certified float export are implemented. No rectangle
+primitive, ordinary-skeleton cap rewrite or embedding optimizer is called.
 
-No third-party algorithm source is copied. No new dependency or production fallback
-is introduced. License/build information is not proof that a backend accepts all
-zero-speed intents.
+Internal stationary patches can be necessary. A validated wall-inclusive complex
+is not necessarily a continuous inclined-only roof: `mesh.view()` raises
+`WallRequired` rather than discard an internal wall. Float export can separately
+raise `MeshResolutionError`. Neither is a nonexistence proof. Necessary negative
+plane witnesses and stationary-remnant certificates have the scoped meanings
+explained in [the implementation](LINE_KERNEL_IMPLEMENTATION.md).
 
-Concrete source inspection also distinguishes a cluster implementation from a
-robustness guarantee. In campskeleton's
-[HeightCollision.process](https://github.com/twak/campskeleton/blob/c5e88c9c7f1d0fb600e99efce43f60d47690f6a6/src/org/twak/camp/HeightCollision.java),
-same-height collisions are grouped by location, chains are discovered and
-validated before removals resume, then horizontal chains are processed. Spatial
-grouping uses a fixed `0.01` distance, so this code cannot be assumed to meet the
-proposed scale-independent predicate contract unchanged. It is useful researched
-state handling, not a license to port its tolerances as certified predicates.
-Surfer2 revision `c42f9a7f969cd661d060481cd3b8bac2bdfb8dfa` documents its CGAL/C++
-build, including native arithmetic/library dependencies. Its weighted/zero-speed
-domain and Windows distribution have not been verified here. Source-read receipts
-are in [kernel/research-receipt.json](kernel/research-receipt.json).
+## Adoption and extension gates
 
-## Acceptance and migration gates
+| Next obligation | Completion evidence required |
+| --- | --- |
+| Universal full-Line claim | A sufficient independent admissibility criterion and zero-speed contact exhaustiveness/termination argument; finite successful corpora alone do not suffice. |
+| Automatic architectural intent | Produce admitted intents or expose ambiguity, with an explicit inclined-only versus wall-inclusive profile; never substitute hip after gable failure. |
+| Addon authority transfer | One declared canonical route, input/frame/provenance and failure mapping, installed ZIP/Blender and packaging proof; standalone mesh export is not integration. |
+| Partial EAVE/GABLE transitions | Define the time-zero connector/evolution rule before implementation and independent proofs. |
+| Arc, then general curves | Define actual offset/contact/splice evolution and curved-surface approximation/error contracts; sampled line chords are not that kernel. |
+| Performance | Measure construction, predicates/noding, validation and export separately with unchanged complex signatures; no unmeasured latency claim. |
 
-The first independent proof uses arbitrary convex line paths with full-edge roles,
-including nonparallel eaves and degree-four/six collision clusters. It checks the
-kinematic equations and exact source/time incidence without using the 1.5.0 cap
-generator or optimizer as an oracle. It is a proof domain, not a promotion gate by
-itself.
+The packaged addon remains 1.5.0 until the adoption gates are met. SGA21 remains
+an independent graph-editing capability; do not remove its optimizer merely
+because this constructor derives event coordinates directly.
 
-The eventual line kernel must additionally pass all-eave and admitted mixed-role
-concave inputs, simultaneous/reflex/overlap events, and frozen angled/nonuniform
-grid corpora. Record boundary validity, intent admissibility, completed complex,
-planar view, mesh and Blender separately. Random successes do not prove universal
-coverage. Add independent invariants, fixed counterexamples and transformations.
-
-Measure intent, certificates, cluster processing, complex extraction, validation
-and mesh separately. Event-derived heights eliminate the existing complete-plane
-solve for this model; SGA21 remains a separate graph-editing capability, not a
-required postprocess of a complete wavefront roof. Optimizer removal must wait for
-authority transfer, not be bundled into this research commit.
-
-Do not switch the addon until a complete line-domain implementation and packaging
-proof exist. Keep 1.5.0 as its checkpoint; do not extend its local cap grammar as a
-substitute. Arc propagation follows only after the line model and event kernel
-are established, with its own splice convention and approximation/error contract.
-
-## Executed first proof
-
-Start SHA: `65a90cbab75560b7f70a1f6c6e3e652835a2a744`.
-Contract commit: `01dbe51`; independent construction commit: `1929e5d`.
-
-[roof_kernel_proof.py](../roof_kernel_proof.py) is a development-only independent
-oracle. It enumerates the vertices of the convex space-time body above by triples
-of supporting constraints and extracts oriented inclined facets. A global time
-cluster retains all contacts and all incident source IDs. It does **not** implement
-an iterative event queue, reflex split or general contact rewrite. It uses bounded
-floating-point algebra, not certified exact predicates. Its `O(n^4)` worst-case
-enumeration is intended for small proofs and must not become the production kernel.
-
-The original source path survives validation: no role transition is removed by
-the current footprint analyzer. Full source identity/parameter range, EAVE/GABLE
-role and event time are distinct data. Inclined patches alone enter the proof
-mesh; stationary wall patches are not exported. All heights are event-derived,
-without the ordinary skeleton, terminal-cap code or embedding solver.
-
-The new five-edge nonparallel example is rejected by 1.5.0's automatic gable
-selection (`no opposed-support terminal gable cap`). The explicitly declared
-boundary proof produces two inclined facets, with nonconstant ridge height. This
-compares construction capability, not identical architectural candidate policies:
-1.5.0 has no equivalent explicit mixed boundary input API.
-
-Independent tests exhaust all **498** nonempty eave subsets on convex 3–8-edge
-paths. They check source-plane height, SVD planarity, positive normals, polygon
-union, no interior overlap and event incidence. Square and regular hexagon
-contacts preserve four/six incident source identities; rectangle contacts at the
-same time remain two distinct locations. Source-aware winding/cyclic/rotation/
-translation and repeated-run proofs pass. Budget exhaustion returns no prefix.
-The concave single-eave counterexample has its own nonexistence certificate;
-concave construction and partial collinear transitions are **outside this proof**,
-not classified as mathematically invalid by a scope rejection.
-
-The frozen [input records](../tests/fixtures/kernel_line_proofs_v1.json) yield
-five completed convex construction proofs, one nonexistence witness and two
-construction/model probes outside the convex oracle. The concave all-eave input
-has a known classical roof: its owner is proof/construction scope, not invalid or
-ambiguous intent. The collinear partial-role input instead has an unspecified
-model rule. The report keeps this distinction explicitly. Local full suite:
-**246 tests pass**.
-Blender 4.3.2 turns all five proof complexes directly into editable meshes with
-planarity, manifold disk, normal, UV, material and source-provenance checks. Face
-cycles and vertex count stay unchanged; no mesh repair is used. These are
-development proof meshes, **not new addon-supported cases**.
-
-| Proof input | Vertices | Patches | Positive-time clusters | Median ms (9 warm samples) |
-| --- | ---: | ---: | ---: | ---: |
-| Nonparallel full gables | 7 | 2 | 3 | 0.571 |
-| Convex single eave | 5 | 1 | 3 | 0.376 |
-| Square, all eave | 5 | 4 | 1 | 0.392 |
-| Hexagon, all eave | 7 | 6 | 1 | 0.794 |
-| Rectangle, two opposite gables | 6 | 2 | 1 | 0.185 |
-
-Exact counts and raw timing samples are in [kernel/report.json](kernel/report.json).
-These tiny convex-oracle timings are neither production performance nor a
-comparison to the existing generator's full candidate pipeline.
-
-[Nonparallel boundary proof](kernel/00.svg) and
-[nonexistence witness](kernel/05.svg) distinguish eaves (blue), gables (red) and
-event contacts. The [Blender evidence](kernel/blender-report.json) corresponds to
-the image below. Render positions are for display only.
-
-![Five independent proof roofs](kernel/blender-meshes.png)
-
-```bash
-python python/probe_roof_kernel.py --output python/out/kernel-proof
-python -m unittest python.tests.test_roof_kernel_proof -v
-python -m unittest discover -s python/tests
-blender -b --factory-startup --python-exit-code 1 --python python/blender_kernel_proof.py -- --output python/out/kernel-proof/blender
-python python/build_addon.py --check --output packages/roof_generator-1.5.0.zip
-```
-
-The full-Line implementation now covers concave mixed-role propagation,
-simultaneous contact incidence, stationary-remnant certificates and precision
-refinement. The next production gates are universal zero-speed/completion
-obligations, a sufficient admissibility/automatic intent policy, and addon
-authority transfer. Partial-interval closure and Arc evolution remain later model
-work. The necessary half-plane condition is not substituted for a sufficient
-admissibility criterion. Production remains at 1.5.0; no "nonparallel cap" patch
-or solver-based rescue has been introduced.
+[Implementation](LINE_KERNEL_IMPLEMENTATION.md) owns algorithm and numeric detail.
+[Full-Line evaluation](LINE_KERNEL_EVALUATION.md) owns measured corpus/Blender
+results. [Initial convex proof](history/KERNEL_CONVEX_PROOF.md) and
+[source research](research/KERNEL_RESEARCH.md) retain the earlier evidence and
+rationale without constraining the current implementation to the convex oracle.

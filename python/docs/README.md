@@ -22,6 +22,23 @@ applicability remain in the report. A research record is not asserted to be a
 complete current specification. Current and kernel specifications will be
 consolidated before relocation; historical results will retain their scope.
 
+## Current state (code checked at `62809e7`)
+
+| Item | State | Authority |
+| --- | --- | --- |
+| Distributed addon 1.5.0 | Ordinary polygon incidence + declared terminal-gable choices, fixed embedding; native bases and editable meshes | [Release contract](current/README.md) |
+| Full-Line kernel | Concave full-edge EAVE/GABLE source propagation, exact events and validated source complexes implemented | [Kernel contract](ROOF_KERNEL_CONTRACT.md), [algorithm](LINE_KERNEL_IMPLEMENTATION.md) |
+| Verified but not packaged | 1384 all-EAVE inputs and 720 fixed mixed-role assignments have frozen independent observations; 10 source complexes exported in Blender | [Evaluation](LINE_KERNEL_EVALUATION.md); finite evidence, not universal coverage |
+| Mathematical obligations | Sufficient independent admissibility and zero-speed exhaustiveness/termination remain unproved | [Adoption gates](ROOF_KERNEL_CONTRACT.md#adoption-and-extension-gates) |
+| Product obligations | Automatic architectural intent/profile and installed-addon authority transfer remain unimplemented | Same adoption gates; standalone Blender export is not integration |
+| Later model work | Partial collinear role transitions, Arc/Curve evolution, broader speed/pitch domains | Same adoption gates; not inferred from a successful Line mesh |
+| Performance | Measured kernel construction still exceeds single-digit milliseconds; release and kernel timings measure different work | [Kernel evaluation](LINE_KERNEL_EVALUATION.md#performance) |
+
+Next work is to settle the admissibility/profile contract and automatic intent,
+then prove addon migration with packaging and installed-Blender checks. Detailed
+completion evidence for each obligation is in the kernel contract. Documentation
+reorganization does not satisfy those algorithm/product gates.
+
 ## Complete inventory
 
 | Original document | Class / planned destination | Last edit | Declared revisions | Successor authority |

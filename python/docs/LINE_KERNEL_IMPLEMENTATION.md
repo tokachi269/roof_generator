@@ -49,22 +49,8 @@ trajectories. A vertex/contact time is a quotient of rational sums of square
 roots. Positions are evaluated from these equations; neither an embedding
 optimizer nor plane-envelope topology discovery participates.
 
-## Published mechanisms and their mapping
-
-| Source | Actual mechanism | Implementation |
-| --- | --- | --- |
-| Held & Palfrader 2017, sections 3.1–3.2 and 4.1–4.3 | Source schedules, space-time surfaces, weakly z-monotone roofs with vertical facets, simultaneous non-elementary events | `sources.py` defines inclined and stationary source equations; `complex.py` separates inclined patches from walls. Permanent zero speed needs the explicit rules below; the paper's finite-delay premise is not claimed as a theorem for it. |
-| Biedl et al., *Weighted straight skeletons in the plane*, sections 3–5 | Global front fragments and source identities; degeneracies depend on the speed domain | Active cyclic supports in `wavefront.py`. Only unit inward EAVE speed and zero GABLE speed are used. No negative weights or general weighted-roof guarantee is imported. |
-| campskeleton, `HeightCollision.process`, `CoSitedCollision.findChains/processChains` | Gather coheight/co-sited contacts, discover all chains before mutation, remove collapsed chains, reconnect the surviving chains by angular order | Every current fragment is noded at the certified common time; coincident atomic intervals are resolved together; `rotation.py` constructs their planar cyclic link. The fixed 0.01 spatial grouping in the Java implementation is replaced by exact equality, not copied. |
-| Huber & Held 2011, PSLG wavefront/motorcycle model | Global rather than shape-template processing of reflex and degenerate contacts | Vertex/fragment certificates include reflex contacts and components across the entire front. No motorcycle or native backend is called; the current implementation deliberately uses a small-input exhaustive certificate scan. |
-| Surfer2, kinetic triangulation implementation | Native certified geometric state and event management | Inspected as a robustness reference. It is not a Blender runtime dependency: CGAL/native deployment and its exact zero-speed domain have not been validated here. |
-
-No third-party algorithm source has been copied. campskeleton's Apache-2.0 Java
-build needs a JVM; Surfer2 is GPLv3 with CGAL/C++ dependencies. The separately
-inspected Python grassfire implementation uses MIT code but requires `tri`,
-`geompreds` and `oseq`, and includes fixed near-zero/angle decisions. None is
-presumed to satisfy this numeric contract without verification. The engine here
-is GPL-3.0-or-later, matching repository licensing.
+Published mechanisms, inspected implementations and license/adaptation limits
+are recorded in [kernel research](research/KERNEL_RESEARCH.md).
 
 ## Contact operation
 
@@ -170,16 +156,8 @@ and nonadjacent-segment predicates certify patch simplicity without a generic
 polygon Boolean library. Positive inclined projection and the base boundary give
 projection degree one; stationary patches have zero projected area.
 
-Development-only NumPy SVD and Shapely containment/intersection predicates
-independently test planarity, footprint coverage and interior overlap. Containment
-of each patch, pairwise disjoint interiors and equal total area imply coverage;
-this avoids depending on one floating union overlay. A frozen step-wall case
-demonstrates a raw GEOS union losing area despite those three checks and a
-bounded-precision overlay agreeing. Raw union error stays in the diagnostic
-record. No production coordinates are snapped for this test.
-Those packages are not imported by the
-kernel or its Blender script. The numerical oracle is evidence independent of
-the contact rewrite; it is not a runtime fallback.
+Independent oracle methods and frozen cases belong to
+[the evaluation](LINE_KERNEL_EVALUATION.md), not the runtime dependency contract.
 
 A floating-point mesh is a further representation gate. Exact vertices may be
 unrepresentable or collapse at float precision. `MeshResolutionError` reports
@@ -191,31 +169,10 @@ fixed 128-bit interval midpoint is adequately rounded. Presentation time in a
 stationary-remnant certificate uses physical units and is optional outside float
 range; its exact radical quotient is always retained.
 
-The fixed tests include an actual component split, two distinct contacts at the
-same time, a six-source event, all 63 nonempty EAVE subsets on a concave L,
-nonparallel full gables, exact rational rigid transforms, winding/cyclic changes,
-collinear subdivision, limits, cache independence and numeric range failures.
-All 63 L assignments yield 59 validated complexes, two negative-plane witnesses
-and two scoped stationary-front certificates, with no kernel failure. Two distinct exact event times may round
-to the same double and are still processed separately.
+## Evaluation and outstanding obligations
 
-The frozen multi-corpus and mixed-role results, timings, SVGs and Blender evidence
-are reported in [LINE_KERNEL_EVALUATION.md](LINE_KERNEL_EVALUATION.md). A successful
-finite corpus does **not** prove universal completeness for every degenerate
-simple polygon. The source/contact rules and postconditions are explicit, but
-formal exhaustiveness/termination of the zero-speed contact model and a
-sufficient independent admissibility criterion remain obligations before an
-unconditional universal guarantee is advertised.
-
-## Remaining gates
-
-- Establish those universal zero-speed/completion obligations and automatic
-  admitted intent generation, including an inclined-only architectural profile. A necessary plane check alone
-  is not that policy.
-- Transfer kernel authority into the addon and verify packaging/input transforms;
-  the current standalone Blender script is not that integration.
-- Define collinear partial transitions before accepting them.
-- Implement actual Arc evolution/splice conventions, then general curves. Sampling
-  straight chords is not a curve-source kernel.
-- Continue performance work on the measured exact-predicate/noding costs.
-  Existing nonlinear solve timings are not this kernel's construction budget.
+Finite corpus outcomes, timings and installed Blender observations are in
+[the evaluation](LINE_KERNEL_EVALUATION.md). The
+[kernel contract](ROOF_KERNEL_CONTRACT.md#adoption-and-extension-gates) owns the
+current adoption/extension gates. This implementation does not claim a universal
+completeness theorem, an automatic architectural intent policy or addon integration.

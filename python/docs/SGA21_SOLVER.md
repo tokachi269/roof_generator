@@ -49,7 +49,9 @@ original face cycles. No triangulation, topology rewrite or fallback occurs.
 
 Flat and individual rectangular primitives have exact analytic embeddings.
 Choosing that solver from the known primitive contract is not a fallback after
-optimization failure. Compound pitched graphs use the nonlinear solver.
+optimization failure. Only problems without a complete declared face-plane contract use this nonlinear
+solver. Complete planes use [linear embedding](PLANE_EMBEDDING.md); solver dispatch
+is owned by `solve.embed`, before any failure, not a retry.
 
 ## Explicit pitch constraint
 
