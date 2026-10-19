@@ -109,7 +109,7 @@ coverage, large candidate pools and expensive unsuccessful embedding remain
 limits. Timeout/work exhaustion is incomplete, not a negative roof-existence
 proof. Nonorthogonal compound and new hip/shed families were not added.
 
-The [paired cause diagram](../authority/polygon/factory-causes.svg) shows minimum
+The [paired cause diagram](../evidence/results/authority/polygon/factory-causes.svg) shows minimum
 Cells, historical separate roofs, declared continuous support and actual
 installed-operator features for all four screenshot approximations. All internal
 features identify their region and incident source-eave facets.

@@ -17,7 +17,7 @@ def corpora():
     rng = random.Random(SEED)
     grid = json.loads(
         gzip.decompress(
-            (ROOT / "python/docs/canonical/support_grid.json.gz").read_bytes()
+            (ROOT / "python/docs/evidence/inputs/corpora/support_grid.json.gz").read_bytes()
         )
     )
     result = {"orthogonal_grid_stress": grid}

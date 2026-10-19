@@ -12,7 +12,7 @@ SEED=982143
 
 
 def corpus():
-    saved=json.loads(gzip.decompress((ROOT/'python/docs/canonical/coverage_inputs_v1.json.gz').read_bytes()))
+    saved=json.loads(gzip.decompress((ROOT/'python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz').read_bytes()))
     acceptance=json.loads((ROOT/'python/tests/fixtures/roof_acceptance.json').read_text())
     rng=random.Random(SEED)
     categories={}

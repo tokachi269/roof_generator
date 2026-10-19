@@ -11,9 +11,9 @@ connected, planar, valid mesh incidence does not establish architectural unity.
 
 ## Inputs and observed outputs
 
-[The four screenshots](../authority/user-images/image-1.png) are preserved, alongside
-[image 2](../authority/user-images/image-2.png), [image 3](../authority/user-images/image-3.png)
-and [image 4](../authority/user-images/image-4.png). The ordered XY approximations are
+[The four screenshots](../evidence/results/authority/user-images/image-1.png) are preserved, alongside
+[image 2](../evidence/results/authority/user-images/image-2.png), [image 3](../evidence/results/authority/user-images/image-3.png)
+and [image 4](../evidence/results/authority/user-images/image-4.png). The ordered XY approximations are
 in [a separate fixture](../../tests/fixtures/user_roof_images_v1.json). They use grid
 ratios from the screenshots. Absolute scale, exact original vertices, source
 face connectivity and the loaded addon revision have not been recovered.
@@ -39,12 +39,12 @@ The resulting meshes pass that version's mesh validator.
 | 3 | 3 | 3 | 2 | 2 |
 | 4 | 2 | 2 | 1 | 0 |
 
-The [recorded historical meshes](../authority/user-images/historical-core.json)
+The [recorded historical meshes](../evidence/results/authority/user-images/historical-core.json)
 were transported unchanged into Blender and rendered from above:
-[1](../authority/user-images/historical-image-1.png),
-[2](../authority/user-images/historical-image-2.png),
-[3](../authority/user-images/historical-image-3.png),
-[4](../authority/user-images/historical-image-4.png).
+[1](../evidence/results/authority/user-images/historical-image-1.png),
+[2](../evidence/results/authority/user-images/historical-image-2.png),
+[3](../evidence/results/authority/user-images/historical-image-3.png),
+[4](../evidence/results/authority/user-images/historical-image-4.png).
 These are renders of historical core results, not proof that the historical
 installed operator was running in the user's live Blender session.
 
@@ -67,8 +67,8 @@ adopting the boundary as a roof junction.
 
 Both the task's starting canonical revision `0210d79` and current production
 `38657f6` reject all four approximations in actual installed-ZIP Blender operator
-tests. See [starting operator](../authority/user-images/operator-baseline.json)
-and [current operator](../authority/user-images/operator-current.json).
+tests. See [starting operator](../evidence/results/authority/user-images/operator-baseline.json)
+and [current operator](../evidence/results/authority/user-images/operator-current.json).
 Each rejection is atomic; no roof object was created. Parallel contacts block
 all four inputs, with an additional partial-end contact in image 3.
 
@@ -86,8 +86,8 @@ roof interpretation. The surveyed references do not establish a complete indexed
 offset RoofGraph rule, so no arbitrary connection was added. Natural roof
 generation for this input remains incomplete.
 
-The current [partition and relation records](../authority/user-images/inspection-current.json)
+The current [partition and relation records](../evidence/results/authority/user-images/inspection-current.json)
 are diagnostic partitions without a selected final roof. They must not be shown
 as an accepted ArchitecturalPart solution. The
-[starting records](../authority/user-images/inspection-baseline.json) likewise have
+[starting records](../evidence/results/authority/user-images/inspection-baseline.json) likewise have
 no selected roof.

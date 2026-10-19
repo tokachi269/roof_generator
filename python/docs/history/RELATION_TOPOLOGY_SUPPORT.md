@@ -88,7 +88,7 @@ nonlinear geometry solver or a Blender compound-mesh fallback.
 
 ## Baseline findings
 
-See [canonical/support_before.json](../canonical/support_before.json). The unknown
+See [canonical/support_before.json](../evidence/results/canonical/support_before.json). The unknown
 corpus has 2 supported, 986 unsupported and 12 incomplete-budget buildings.
 Unsupported-building incidence: parallel 981, continuation 790, partial_end 790;
 these counts overlap. All 284,324 continuation occurrences have width-step or
@@ -125,7 +125,7 @@ subsequent height-anchor tests preserve those valid topology candidates.
 | 1000 unique unknown connected-grid outlines | 2 / 986 / 12 | 3 / 985 / 12 |
 
 The unknown corpus contains 6–40 vertices, seed 92821, 3m grid units, and is frozen
-in [support_grid.json.gz](../canonical/support_grid.json.gz). Its decompressed SHA256
+in [support_grid.json.gz](../evidence/inputs/corpora/support_grid.json.gz). Its decompressed SHA256
 is `50fdc2041478650e165efea5ea2089e8e176635aa7b6e66dd04e3a438562479c`.
 This is coverage testing, not a claim about the frequency of actual house roofs.
 
@@ -150,13 +150,13 @@ therefore do **not** forecast actual successful roofs.
 The U fixture retains one valid candidate from two architectural interpretations:
 6 slope faces, 3 ridge edges, 2 valleys and 4 hips. Both receiver end caps and
 artificial partition cuts are consumed. Its main ridge connects internal joints,
-not exterior gable ports. See [U inspection](../canonical/u.json) and
-[U Graph diagram](../canonical/u-candidate-0.svg). The remaining interpretation is
+not exterior gable ports. See [U inspection](../evidence/results/canonical/u.json) and
+[U Graph diagram](../evidence/results/canonical/u-candidate-0.svg). The remaining interpretation is
 explicitly rejected. Receiver is a side/port role; the two locally wider neighbors
 retain their higher ridge junctions. There is no global largest-area main rule.
 
-The newly supported unknown case is [generated_0024](../canonical/generated-0024.json),
-an 8-vertex offset outline, with [its unified Graph](../canonical/generated-0024.svg).
+The newly supported unknown case is [generated_0024](../evidence/results/canonical/generated-0024.json),
+an 8-vertex offset outline, with [its unified Graph](../evidence/results/canonical/generated-0024.svg).
 It uses exactly the same distinct-end operation; no shape label is inspected.
 The other fixed Residential/Grid14/Grid20/Grid40 cases remain unsupported for
 gable topology. Cross keeps its two valid seedable architectural alternatives.
@@ -174,8 +174,8 @@ witness coverage in tests uses those development oracles.
 
 ## Performance and reproducibility
 
-[Before stage timings](../canonical/support_performance_before.json) and
-[after stage timings](../canonical/support_performance_after.json) use two warmups
+[Before stage timings](../evidence/results/canonical/support_performance_before.json) and
+[after stage timings](../evidence/results/canonical/support_performance_after.json) use two warmups
 and nine unprofiled calls to `benchmark_generation.measure` on the same inputs.
 Each seed-selection stage samples four seeds. These are observations, not an
 optimization claim; this series increases operation support and diagnostics.
@@ -192,8 +192,8 @@ optimization claim; this series increases operation support and diagnostics.
 | grid_20 | 27.090 → 25.602 | 2.823 → 2.467 | 42.756 → 36.086 |
 | grid_40 | 183.181 → 138.839 | 48.646 → 38.340 | 300.052 → 232.153 |
 
-Final stage samples include the receiver-height-anchor correction. The separate existing [1000-building benchmark before](../canonical/support_benchmark_before.json)
-and [after](../canonical/support_benchmark_after.json) measure the repeated six-fixture
+Final stage samples include the receiver-height-anchor correction. The separate existing [1000-building benchmark before](../evidence/results/canonical/support_benchmark_before.json)
+and [after](../evidence/results/canonical/support_benchmark_after.json) measure the repeated six-fixture
 batch, not 1000 unique random shapes. The final status counts are as above.
 Benchmark clocks are taken before the final receiver-height-anchor correction;
 that correction only adds solve-input constraints and its planar witnesses.
@@ -207,7 +207,7 @@ proof was used to obtain the measured values.
 Reproduce the coverage audit with the fixed corpus:
 
 ```bash
-python python/audit_roof_support.py --corpus python/docs/canonical/support_grid.json.gz --output python/out/support/audit.json --details python/out/support/assignments.jsonl
+python python/audit_roof_support.py --corpus python/docs/evidence/inputs/corpora/support_grid.json.gz --output python/out/support/audit.json --details python/out/support/assignments.jsonl
 python python/benchmark_generation.py --samples 9 --warmup 2 --buildings 1000 --output python/out/support/benchmark.json
 python -m unittest discover -s python/tests
 ```

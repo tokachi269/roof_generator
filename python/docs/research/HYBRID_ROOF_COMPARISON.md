@@ -100,8 +100,8 @@ camera/render path. All twenty renders were inspected. Red is ridge, blue
 valley and yellow hip. These are exported prototype meshes, not addon operator
 acceptance.
 
-- [First five pairs](../authority/hybrid/hybrid-pairs-1.png)
-- [Next five pairs](../authority/hybrid/hybrid-pairs-2.png)
+- [First five pairs](../evidence/results/authority/hybrid/hybrid-pairs-1.png)
+- [Next five pairs](../evidence/results/authority/hybrid/hybrid-pairs-2.png)
 
 Local composition removes hips and produces continuous gables in several
 paired examples, including U and screenshot approximations 2/4. Cross is
@@ -196,11 +196,11 @@ this project's cap postprocess or supply a working weighted dependency.
 From the repository root:
 
 ```powershell
-python python/hybrid_batch.py --code-root . --inputs python/docs/authority/causal/causal-small-inputs.json --output python/out/authority/hybrid-small-bounded.json
-python python/hybrid_batch.py --code-root . --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/hybrid-structured-bounded.json
-python python/hybrid_batch.py --code-root . --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category nonuniform_orthogonal --output python/out/authority/hybrid-nonuniform-bounded.json
+python python/hybrid_batch.py --code-root . --inputs python/docs/evidence/results/authority/causal/causal-small-inputs.json --output python/out/authority/hybrid-small-bounded.json
+python python/hybrid_batch.py --code-root . --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/hybrid-structured-bounded.json
+python python/hybrid_batch.py --code-root . --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category nonuniform_orthogonal --output python/out/authority/hybrid-nonuniform-bounded.json
 python python/probe_hybrid_roofs.py --code-root . --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/hybrid-images.json
-python python/probe_cap_choices.py --code-root . --deps python/out/laycock-deps --corpus python/docs/canonical/coverage_inputs_v1.json.gz --frontier python/docs/authority/whole-polygon/multiple-cap-frontier.json --output python/out/authority/cap-choices.json
+python python/probe_cap_choices.py --code-root . --deps python/out/laycock-deps --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --frontier python/docs/evidence/results/authority/whole-polygon/multiple-cap-frontier.json --output python/out/authority/cap-choices.json
 python -m unittest python.tests.test_hybrid_roofs python.tests.test_whole_polygon_roofs
 python -m unittest discover -s python/tests
 ```

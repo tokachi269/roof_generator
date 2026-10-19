@@ -84,15 +84,15 @@ middle branch. It was inspected numerically and in Blender before updating the
 old acceptance matrix. The smoke test now treats it as positive and retains
 batch atomic-failure proof on the still-unsupported screenshot 3 approximation.
 
-![Default operator screenshot 4](../authority/receiver-generation/image-4.png)
+![Default operator screenshot 4](../evidence/results/authority/receiver-generation/image-4.png)
 
-![Default operator Residential](../authority/receiver-generation/residential.png)
+![Default operator Residential](../evidence/results/authority/receiver-generation/residential.png)
 
-[Screenshot 2 authority diagram](../authority/receiver-generation/diagrams/user_image_2_three_staggered_bands-0.svg)
-and [screenshot 4 authority diagram](../authority/receiver-generation/diagrams/user_image_4_two_staggered_rectangles-0.svg)
+[Screenshot 2 authority diagram](../evidence/results/authority/receiver-generation/diagrams/user_image_2_three_staggered_bands-0.svg)
+and [screenshot 4 authority diagram](../evidence/results/authority/receiver-generation/diagrams/user_image_4_two_staggered_rectangles-0.svg)
 place minimum Cells, actual model regions/Parts and solved features with their
 recorded architectural causes side by side. The newly successful nonuniform
-`generated_0024` has an [installed operator image](../authority/receiver-generation/nonuniform.png).
+`generated_0024` has an [installed operator image](../evidence/results/authority/receiver-generation/nonuniform.png).
 
 These are real installed-operator renders. Screenshot inputs remain grid-ratio
 approximations, not recovered source meshes. No result claims all orthogonal
@@ -130,11 +130,11 @@ selected IDs and selectable counts unchanged, and installed Blender 100/100.
 | Branch 100 | 100 | 100 | 100 | 100 |
 | Convex quadrilateral 48 | 48 | 48 | 48 | 48 |
 
-[Core counts](../authority/receiver-generation/coverage.json) and
-[Blender conversions](../authority/receiver-generation/blender-coverage.json)
+[Core counts](../evidence/results/authority/receiver-generation/coverage.json) and
+[Blender conversions](../evidence/results/authority/receiver-generation/blender-coverage.json)
 record their separate stages. This remains partial general-orthogonal coverage.
 The full audit predates the inspection-only constructibility separation and
-the preallocation budget guard; [source receipts](../authority/receiver-generation/sources.json)
+the preallocation budget guard; [source receipts](../evidence/results/authority/receiver-generation/sources.json)
 identify that boundary. Neither change alters accepted model or mesh incidence.
 
 ## Performance cost
@@ -156,8 +156,8 @@ member-layout cache. No performance rewrite was made.
 | Grid20 | 157.73 (unsupported) | 155.38 (unsupported) |
 | Grid40 | 2635.82 (unsupported) | 2591.00 (unsupported) |
 
-Raw [before](../authority/receiver-generation/mesh-before.json) and
-[after](../authority/receiver-generation/mesh-after.json) include timings and
+Raw [before](../evidence/results/authority/receiver-generation/mesh-before.json) and
+[after](../evidence/results/authority/receiver-generation/mesh-after.json) include timings and
 candidate fingerprints. Short single-host measurements do not establish a
 speedup. U/Cross cost rose materially, Residential now performs real embedding,
 and Grid40 remains far above a sub-second repeated-generation target.
@@ -165,7 +165,7 @@ and Grid40 remains far above a sub-second repeated-generation target.
 ```sh
 python -m unittest discover -s python/tests -p test_receiver_generation.py
 python -m unittest discover -s python/tests
-python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --output python/out/authority/receiver-coverage.json --details python/out/authority/receiver-coverage.jsonl.gz
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --output python/out/authority/receiver-coverage.json --details python/out/authority/receiver-coverage.jsonl.gz
 python python/build_addon.py --output packages/roof_generator-1.3.0.zip
 blender -b --factory-startup --python-exit-code 1 --python python/blender_authority_acceptance.py -- --zip packages/roof_generator-1.3.0.zip --inputs python/tests/fixtures/user_roof_images_v1.json --output-dir python/out/authority/blender-receiver-default
 ```

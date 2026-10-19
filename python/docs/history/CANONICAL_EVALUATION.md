@@ -95,7 +95,7 @@ batch regress in these runs; the changes are not claimed to accelerate every
 input. No candidate removal or weaker validation compensates for this result.
 The 1,000 mixed attempts are not 1,000 generated roofs. Raw samples, p95,
 full-family fingerprints and environment metadata are in
-[before](../canonical/performance-before.json) and [after](../canonical/performance-after.json).
+[before](../evidence/results/canonical/performance-before.json) and [after](../evidence/results/canonical/performance-after.json).
 
 ## Candidate generation profile
 
@@ -134,14 +134,14 @@ Remaining cost is 48 distinct subdivision/Cell materializations and geometric
 cycle/provenance work, followed by architectural symmetry evaluation and part
 construction. MIS enumeration is negligible. No broad redesign or candidate
 pruning is justified by these measurements alone. Detailed probe and cProfile
-files are in [canonical/](../canonical).
+files are in [canonical/](../evidence/results/canonical).
 
 ## Capability and visual results
 
-[Capability diagnostics](../canonical/capabilities.json) preserve every original
+[Capability diagnostics](../evidence/results/canonical/capabilities.json) preserve every original
 U/Cross/residential/grid status and the exact unsupported reasons. Cross has
-[2 inspected valid graphs](../canonical/cross.json), with
-[candidate 0](../canonical/cross-0.svg) and [candidate 1](../canonical/cross-1.svg).
+[2 inspected valid graphs](../evidence/results/canonical/cross.json), with
+[candidate 0](../evidence/results/canonical/cross-0.svg) and [candidate 1](../evidence/results/canonical/cross-1.svg).
 The retained main/branch arrangement is seedable; their physical four-arm equal-width
 roof geometry is equivalent. Square gable gives actual perpendicular-ridge mesh
 variation: seed 0 `cffcb8c9df7ceec969d180541a6c6fca`, seed 1
@@ -151,8 +151,8 @@ Blender 4.3.2 source and installed-ZIP smoke pass. The installed ZIP needs no pi
 or binary dependencies. It creates four rectangle types and concave flat mesh,
 unwraps UVs, assigns material, checks transformed/nonuniformly scaled input,
 finds both square roof axes, exercises the footprint CLI and verifies atomic
-compound-solve failure. [Rendered mesh evidence](../canonical/blender-meshes.png)
-was visually inspected; [smoke report](../canonical/blender-smoke.json) records
+compound-solve failure. [Rendered mesh evidence](../evidence/results/canonical/blender-meshes.png)
+was visually inspected; [smoke report](../evidence/results/canonical/blender-smoke.json) records
 the generated candidate IDs. Full unittest suite: **99 tests passed**.
 
 ## Remaining capabilities

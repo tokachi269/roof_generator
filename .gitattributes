@@ -6,3 +6,5 @@
 *.yml text eol=lf
 LICENSE text eol=lf
 *.zip binary
+# Evidence receipts retain exact Git bytes across Windows/Linux checkouts.
+python/docs/evidence/** -text

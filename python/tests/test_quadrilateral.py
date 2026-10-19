@@ -55,7 +55,7 @@ class QuadProof(unittest.TestCase):
         return r
 
     def test_all_frozen_convex_quad_probes_are_real_solved_meshes(self):
-        path = Path(__file__).parents[1] / "docs/canonical/coverage_inputs_v1.json.gz"
+        path = Path(__file__).parents[1] / "docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz"
         records = json.loads(gzip.decompress(path.read_bytes()))["corpora"][
             "convex_quadrilateral"
         ]

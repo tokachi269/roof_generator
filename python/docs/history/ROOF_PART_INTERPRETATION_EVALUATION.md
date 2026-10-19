@@ -163,7 +163,7 @@ to solve every compound unit's roof.
 
 ### Visual and serialized evidence
 
-[Overview PNG](../interpretation/overview.png) separates the original minimum
+[Overview PNG](../evidence/results/interpretation/overview.png) separates the original minimum
 partition, a retained interpretation and an alternative inspection view.
 U/Cross show distinct retained directions. Green dotted lines are consumed
 cuts, gray dashed lines are retained analytic boundaries and teal arrows are
@@ -171,12 +171,12 @@ conditional receiver relations. None is a roof ridge.
 
 | Input | All candidate/grouped diagrams | Full inspection data |
 | --- | --- | --- |
-| U | [SVG](../interpretation/orthogonal_U.svg) | [JSON](../interpretation/orthogonal_U.json) |
-| Cross | [SVG](../interpretation/cross.svg) | [JSON](../interpretation/cross.json) |
-| Residential | [SVG](../interpretation/residential_multi_reflex.svg) | [JSON](../interpretation/residential_multi_reflex.json) |
-| Grid 14 | [SVG](../interpretation/grid_14.svg) | [JSON](../interpretation/grid_14.json) |
-| Grid 20 | [SVG](../interpretation/grid_20.svg) | [JSON](../interpretation/grid_20.json) |
-| Grid 40 | [SVG](../interpretation/grid_40.svg) | [JSON](../interpretation/grid_40.json) |
+| U | [SVG](../evidence/results/interpretation/orthogonal_U.svg) | [JSON](../evidence/results/interpretation/orthogonal_U.json) |
+| Cross | [SVG](../evidence/results/interpretation/cross.svg) | [JSON](../evidence/results/interpretation/cross.json) |
+| Residential | [SVG](../evidence/results/interpretation/residential_multi_reflex.svg) | [JSON](../evidence/results/interpretation/residential_multi_reflex.json) |
+| Grid 14 | [SVG](../evidence/results/interpretation/grid_14.svg) | [JSON](../evidence/results/interpretation/grid_14.json) |
+| Grid 20 | [SVG](../evidence/results/interpretation/grid_20.svg) | [JSON](../evidence/results/interpretation/grid_20.json) |
+| Grid 40 | [SVG](../evidence/results/interpretation/grid_40.svg) | [JSON](../evidence/results/interpretation/grid_40.json) |
 
 Each SVG includes the full minimum candidate gallery and every retained grouped
 graph, rather than just a favorable chosen partition. The JSON retains all
@@ -216,7 +216,7 @@ New tests for the new path do not claim final multi-cell Blender acceptance.
 
 Python 3.12.14/Linux, 25 measured samples after 3 warmups, no cache or profiler;
 input generation is excluded. All candidate analysis/evaluation is included.
-[Performance JSON](../interpretation/performance.json) records source, policy,
+[Performance JSON](../evidence/results/interpretation/performance.json) records source, policy,
 candidate counts, statuses, stage medians and p95. Times are milliseconds.
 
 | Input | Footprint | Candidate generation | Interpretation | Evaluation | Retained graph build | Total median | Total p95 |

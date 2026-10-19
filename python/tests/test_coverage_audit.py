@@ -23,7 +23,7 @@ class CoverageAuditTests(unittest.TestCase):
         self.assertFalse(row['success']['mesh'])
 
     def test_frozen_categories_are_simple_and_nonuniform_is_not_uniform_scaling(self):
-        p = Path(__file__).parents[1] / "docs/canonical/coverage_inputs_v1.json.gz"
+        p = Path(__file__).parents[1] / "docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz"
         data = json.loads(gzip.decompress(p.read_bytes()))
         self.assertEqual(data["version"], 1)
         self.assertEqual(len(data["corpora"]), 6)
@@ -65,7 +65,7 @@ class CoverageAuditTests(unittest.TestCase):
 
     def test_angle_inputs_are_frozen_simple_and_roof_type_is_observed(self):
         from python.generate_angle_corpus import corpus
-        path=Path(__file__).parents[1]/'docs/canonical/angle_inputs_v1.json.gz'
+        path=Path(__file__).parents[1]/'docs/evidence/inputs/corpora/angle_inputs_v1.json.gz'
         stored=json.loads(gzip.decompress(path.read_bytes()))
         self.assertEqual(stored,json.loads(json.dumps(corpus())))
         for category,records in stored['corpora'].items():
@@ -111,7 +111,7 @@ class CoverageAuditTests(unittest.TestCase):
     def test_supplemental_branch_network_inputs_are_frozen_and_simple(self):
         from python.branch_network_corpus import corpus
 
-        p = Path(__file__).parents[1] / "docs/canonical/branch_network_inputs_v1.json.gz"
+        p = Path(__file__).parents[1] / "docs/evidence/inputs/corpora/branch_network_inputs_v1.json.gz"
         stored = json.loads(gzip.decompress(p.read_bytes()))
         self.assertEqual(stored, json.loads(json.dumps(corpus())))
         rows = stored["corpora"]["structured_branch_network"]

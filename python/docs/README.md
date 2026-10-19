@@ -17,10 +17,11 @@ statements apply only to the recorded phase, not to present work.
 
 The inventory below records all 36 original documents at the start of this reorganization.
 `Last edit` identifies the document snapshot, not necessarily the measured code.
-`Declared revisions` are revisions explicitly cited by its author; ranges and
-applicability remain in the report. A research record is not asserted to be a
-complete current specification. Current and kernel specifications will be
-consolidated at the start of this reorganization; historical results will retain their scope.
+`Declared revisions` shows up to five revision pointers explicitly cited by the
+author, not an exhaustive measurement range; complete ranges and applicability
+remain in the report. A research record is not asserted to be a
+complete current specification. Current and kernel specifications are
+consolidated; historical results retain their recorded scope and revisions.
 
 ## Current state (code checked at `62809e7`)
 
@@ -38,6 +39,25 @@ Next work is to settle the admissibility/profile contract and automatic intent,
 then prove addon migration with packaging and installed-Blender checks. Detailed
 completion evidence for each obligation is in the kernel contract. Documentation
 reorganization does not satisfy those algorithm/product gates.
+
+## Adopted conclusions and superseded approaches
+
+| Research / decision | What remains authoritative now |
+| --- | --- |
+| [Classical partition](current/MINIMUM_RECTANGULAR_PARTITION.md), [part interpretation](research/ROOF_PART_INTERPRETATION_RESEARCH.md) | Minimum Cells are analysis/provenance; the partition certificate does not prescribe a roof per Cell. |
+| [Roof composition](research/ROOF_COMPOSITION_RESEARCH.md) | Published relation labels and recommendation penalties are not sufficient construction rules. The release resolves complete models before fixed embedding. |
+| [Laycock aggregation](research/LAYCOCK_AGGREGATION_SCOPE.md), [ownership selection](research/ROOF_REGION_SELECTION.md) | Whole-Cell unions cannot express every candidate region. Paper-underspecified ownership orders were not adopted as automatic architectural truth. |
+| [Causal gate](history/CAUSAL_ROOF_GATE.md), [whole-polygon comparison](research/WHOLE_POLYGON_COMPARISON.md) | The historical stop gate was resolved by the polygon-model migration. It does not suspend current kernel work. Its old coverage counts do not describe 1.5.0. |
+| [Hybrid comparison](research/HYBRID_ROOF_COMPARISON.md) | Rectangle interpretations guide exterior intent in 1.5.0; independent completed roofs plus local merge are not its canonical construction. |
+| [Kernel source mapping](research/KERNEL_RESEARCH.md) | Explicit source roles, global contact incidence and certified arithmetic are implemented in the standalone kernel. Universal zero-speed guarantees and addon promotion remain gated. |
+
+## Evidence and maintenance
+
+[Evidence retention](evidence/README.md) distinguishes immutable corpus inputs,
+historical receipts, reproducible outputs and duplicate review candidates.
+[The catalog](evidence/catalog.json) maps every original artifact path to its new
+location and preserves baseline hashes. Nothing was deleted. Run
+`python python/check_docs.py` after changing links or evidence locations.
 
 ## Complete inventory
 

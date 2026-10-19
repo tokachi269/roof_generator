@@ -13,11 +13,19 @@ and [the documentation index](docs/README.md) for the separate kernel status. Th
 
 # Tools and verification
 
+Start with [the documentation index](docs/README.md): it owns current status,
+release/kernel separation and the remaining adoption gates. Commands below also
+include historical comparison tools; their linked reports define revision scope.
+
+```bash
+python python/check_docs.py
+```
+
 ```bash
 python python/benchmark_embedding.py --samples 7 --profile --output python/out/embedding.json.gz
 python python/verify_plane_witnesses.py --output python/out/plane-witnesses.json
 python python/generate_angle_corpus.py --output python/out/angle-inputs.json.gz
-python python/audit_coverage.py --corpus python/docs/canonical/angle_inputs_v1.json.gz --seconds 15 --output python/out/angles.json --details python/out/angles.jsonl.gz
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/angle_inputs_v1.json.gz --seconds 15 --output python/out/angles.json --details python/out/angles.jsonl.gz
 python python/inspect_roof.py --fixture oblique_L --roof-type gable --output python/out/oblique.json
 ```
 
@@ -57,10 +65,10 @@ into an isolated directory, then inspect the declared growth/priority variants:
 python -m pip install --target python/out/laycock-deps -r python/requirements-laycock.txt
 python python/laycock_regions.py --inputs python/tests/fixtures/laycock_inputs_v1.json --output-dir python/out/laycock
 python -m unittest discover -s python/tests -p test_laycock_regions.py
-python python/audit_region_ownership.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
-python python/inspect_region_candidates.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/region-contract.json
+python python/audit_region_ownership.py --report python/docs/evidence/results/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
+python python/inspect_region_candidates.py --report python/docs/evidence/results/authority/laycock/report.json.gz --output python/out/authority/region-contract.json
 python -m unittest discover -s python/tests -p test_roof_regions.py
-python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/region-roofs.json
+python python/inspect_region_roofs.py --input python/docs/evidence/results/authority/regions/candidates.json --output python/out/authority/region-roofs.json
 python -m unittest discover -s python/tests -p test_region_generation.py
 python -m unittest discover -s python/tests -p test_opposite_attachments.py
 python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/receiver-probe.json
@@ -85,7 +93,7 @@ python python/benchmark_generation.py --samples 3 --warmup 1 --buildings 24 --ou
 python python/benchmark_roof_mesh.py --samples 3 --buildings 24 --output python/out/authority/mesh-performance.json
 python python/inspect_authority.py --inputs python/tests/fixtures/authority_inputs_v1.json --output python/out/authority/inspection.json
 python python/authority_diagrams.py --before python/out/authority/inspection-before.json --after python/out/authority/inspection-after.json --output-dir python/out/authority/diagrams
-python python/roof_gallery.py --before python/out/authority/blender-end-state-before --after python/out/authority/blender-end-state-final --output-dir python/docs/authority/end-state/gallery
+python python/roof_gallery.py --before python/out/authority/blender-end-state-before --after python/out/authority/blender-end-state-final --output-dir python/docs/evidence/results/authority/end-state/gallery
 blender -b --factory-startup --python-exit-code 1 --python python/blender_authority_acceptance.py -- --zip packages/roof_generator-1.5.0.zip --inputs python/tests/fixtures/authority_inputs_v1.json --output-dir python/out/authority/blender
 blender -b --factory-startup --python-exit-code 1 --python python/blender_smoke_test.py -- --zip packages/roof_generator-1.5.0.zip --output-dir python/out/addon
 ```
@@ -142,9 +150,9 @@ whole-footprint support verdict. See [relation audit and scope](docs/history/REL
 Staged fixed-corpus coverage and independent Blender conversion:
 
 ```bash
-python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --output python/out/coverage.json --details python/out/coverage.jsonl.gz
-blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-coverage.json
-blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --zip packages/roof_generator-1.5.0.zip --corpus python/docs/canonical/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-installed-coverage.json
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --output python/out/coverage.json --details python/out/coverage.jsonl.gz
+blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-coverage.json
+blender -b --factory-startup --python-exit-code 1 --python python/blender_audit_coverage.py -- --zip packages/roof_generator-1.5.0.zip --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --details python/out/coverage.jsonl.gz --output python/out/blender-installed-coverage.json
 python python/benchmark_roof_mesh.py --output python/out/core-budget.json
 python python/profile_partitions.py --output python/out/partition-profile.json
 ```

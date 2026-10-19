@@ -58,7 +58,7 @@ none is an entire internal zero-height seam between independent roof models.
 Graph incidence, semantics and geometry-problem face cycles are unchanged by
 the solver. This is a screenshot approximation, not recovered original mesh.
 
-![Image 4 support polygons and integrated roof](../authority/region-composition/image-4.png)
+![Image 4 support polygons and integrated roof](../evidence/results/authority/region-composition/image-4.png)
 
 Left: actual proposed supports. Right: installed Blender mesh; red ridge,
 blue valley, yellow hip. This invokes the installed core explicit proposal API
@@ -115,11 +115,11 @@ this is a measured cost of the current integration, not a performance fix.
 Reproduction uses saved proposals as diagnostic inputs, never runtime assets:
 
 ```sh
-python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/region-roofs.json
+python python/inspect_region_roofs.py --input python/docs/evidence/results/authority/regions/candidates.json --output python/out/authority/region-roofs.json
 python -m unittest discover -s python/tests -p test_region_generation.py
 python -m unittest discover -s python/tests
 python python/build_addon.py --output python/out/authority/region-probe.zip
-blender -b --factory-startup --python-exit-code 1 --python python/blender_region_probe.py -- --zip python/out/authority/region-probe.zip --proposals python/docs/authority/regions/candidates.json --output-dir python/out/authority/blender-region-probe
+blender -b --factory-startup --python-exit-code 1 --python python/blender_region_probe.py -- --zip python/out/authority/region-probe.zip --proposals python/docs/evidence/results/authority/regions/candidates.json --output-dir python/out/authority/blender-region-probe
 ```
 
 Set `BLENDER_USER_SCRIPTS` and `BLENDER_USER_CONFIG` to existing isolated

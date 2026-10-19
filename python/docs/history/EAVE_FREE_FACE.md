@@ -34,9 +34,9 @@ The equal-width case produced five faces and preserved its graph through solve.
 The actual operator report and camera render are saved below. These are camera
 renders of Blender mesh output, not live viewport captures.
 
-- [Installed operator report](../authority/eave-free/operator.json)
-- [Equal-width roof render](../authority/eave-free/equal_corner_T.png)
-- [Cells, Parts, end decisions and final features](../authority/eave-free/equal_corner_T.svg)
+- [Installed operator report](../evidence/results/authority/eave-free/operator.json)
+- [Equal-width roof render](../evidence/results/authority/eave-free/equal_corner_T.png)
+- [Cells, Parts, end decisions and final features](../evidence/results/authority/eave-free/equal_corner_T.svg)
 
 The paired diagram compares seed 0 on `a99ad3b` and this repair. The earlier
 revision could already generate the shared L option for this footprint; it
@@ -54,8 +54,8 @@ repair separately and does not show broader footprint coverage.
 The frozen branch corpus re-audit completed on this production source: 100/100
 through RoofGraph, GeometryProblem, solve and mesh, and 100/100 actual installed
 ZIP Blender conversions. This remains a separated-branch result, not general
-orthogonal coverage. [Core report](../authority/eave-free/branch.json),
-[Blender report](../authority/eave-free/blender-branch.json).
+orthogonal coverage. [Core report](../evidence/results/authority/eave-free/branch.json),
+[Blender report](../evidence/results/authority/eave-free/blender-branch.json).
 
 ## Frozen corpus re-audit
 
@@ -78,10 +78,10 @@ incomplete searches are not counted as proven unsupported. Oblique 43 and
 general-polygon 40 probes remain unsupported at partition, outside this repair.
 This remains incomplete general orthogonal support.
 
-[Core stages](../authority/eave-free/coverage-eave-free.json),
-[installed Blender stages](../authority/eave-free/blender-coverage-eave-free.json),
-[outcome classification](../authority/eave-free/outcomes.json), and
-[source/archive manifest](../authority/eave-free/manifest.json) preserve this stage.
+[Core stages](../evidence/results/authority/eave-free/coverage-eave-free.json),
+[installed Blender stages](../evidence/results/authority/eave-free/blender-coverage-eave-free.json),
+[outcome classification](../evidence/results/authority/eave-free/outcomes.json), and
+[source/archive manifest](../evidence/results/authority/eave-free/manifest.json) preserve this stage.
 
 ## Serial performance comparison
 
@@ -103,8 +103,8 @@ Unsupported timings do not include successful embedding and must not be called
 finished-mesh performance. The small sample describes this run; it does not
 prove an optimization caused the U difference. Candidate evaluation and global
 constraints remain costly. Raw measurements:
-[before](../authority/eave-free/mesh-performance-before.json),
-[after](../authority/eave-free/mesh-performance-eave-free.json).
+[before](../evidence/results/authority/eave-free/mesh-performance-before.json),
+[after](../evidence/results/authority/eave-free/mesh-performance-eave-free.json).
 The baseline raw `source_sha` is the enclosing checkout HEAD, not the extracted
 code-root revision. The general audit likewise started before the production
 commit; the manifest declares its actual production source and archive hash.
@@ -128,6 +128,6 @@ proof-backed operations remain unchanged.
 
 The four screenshot approximations were also attempted with this installed ZIP.
 All four remain unsupported at `inter_part_parallel`, with atomic scene failure.
-[Actual operator report](../authority/eave-free/user-images-operator.json).
+[Actual operator report](../evidence/results/authority/eave-free/user-images-operator.json).
 This confirms that the new equal-width corner-T choice has not repaired their
 long-side aggregation; it must not be advertised as the factory-roof fix.

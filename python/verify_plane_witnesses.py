@@ -36,7 +36,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    root = ROOT / 'python/docs/authority/whole-polygon'
+    root = ROOT / 'python/docs/evidence/results/authority/whole-polygon'
     result = {'scope': '995 historical successful meshes; not latest runtime coverage',
               'inputs': {}, 'cases': {}, 'max_vertex_distance': 0., 'failures': []}
     counts = Counter()

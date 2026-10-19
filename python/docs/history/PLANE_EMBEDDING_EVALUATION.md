@@ -28,7 +28,7 @@ Baseline source is `2e68c8b`; linear embedding is `c44c6f4`, local immutable lay
 reuse is `ffb777f`, and the final benchmark driver is `64e5576`. Measurements use
 Python 3.12.14 on the same Linux workspace. Final benchmark has nine unprofiled
 samples after one warm-up; baseline has three. Raw candidate snapshots and
-separate profiles are in [embedding evidence](../embedding). Source dirty flags
+separate profiles are in [embedding evidence](../evidence/results/embedding). Source dirty flags
 record documentation, tooling and release preparation present during measurement.
 
 | Fixture | Valid candidates | Baseline median ms | Final median ms |
@@ -47,7 +47,7 @@ embedded and mesh-validated before seed selection. Across all seven successful
 fixtures, all 21 candidate graphs, GeometryProblems, model/rejection records,
 completion/work fields, candidate IDs and seed decisions for 0/1/7/42 are exactly
 unchanged. Maximum coordinate distance is `2.7755575615628914e-17`.
-[Comparison](../embedding/comparison.json) retains the assertions' results.
+[Comparison](../evidence/results/embedding/comparison.json) retains the assertions' results.
 
 A separate instrumented Grid20 sample measures all eight embeddings at 12.997 ms,
 mesh validation at 41.971 ms, Graph construction at 32.813 ms, necessary plane
@@ -65,7 +65,7 @@ produced their end recommendations, without a persistent cache or candidate prun
 
 ## Correctness and actual support
 
-The [historical witness proof](../embedding/witness-proof.json) confirms all 995
+The [historical witness proof](../evidence/results/embedding/witness-proof.json) confirms all 995
 saved successful meshes: 741 grid, 149 nonuniform, 101 structured and four image
 approximations. Face cycles remain identical, every reconstructed mesh passes
 current validation, and the maximum vertex distance is `3.1031676915590914e-17`.
@@ -74,7 +74,7 @@ This is a coordinate comparison to independent stored results, not a claim about
 
 The frozen current corpus was separately run with the existing 15-second
 per-input process budget. Raw stage counts are retained in
-[coverage](../embedding/coverage.json) and [all rows](../embedding/coverage.jsonl.gz).
+[coverage](../evidence/results/embedding/coverage.json) and [all rows](../evidence/results/embedding/coverage.jsonl.gz).
 All Blender columns are unmeasured in this Python audit.
 
 | Corpus | Inputs | Footprint | Partition | Architecture | Graph / problem | Solve / mesh |
@@ -89,7 +89,7 @@ All Blender columns are unmeasured in this Python audit.
 
 One grid input (`generated_0608`) is wall-budget censored in that raw run: its
 false stage flags mean unobserved, not invalid footprint. A separate
-[recheck](../embedding/recheck-0608.json) completes in 373.520 ms with all 16 candidates
+[recheck](../evidence/results/embedding/recheck-0608.json) completes in 373.520 ms with all 16 candidates
 and the identical historical seed-0 choice. Including that recorded recheck gives
 733 verified grid meshes, 1000 valid footprints and 1000 completed partitions.
 All 673 previously successful grid inputs retain their selected ID and final mesh;
@@ -116,9 +116,9 @@ passes four rectangle roof types, seven compound differentials, unsupported-seed
 agreement, 16 demo buildings, and live flag/height updates. These selected Blender
 cases do not imply conversion was measured for every corpus member.
 
-![Installed roof meshes](../embedding/blender-meshes.png)
+![Installed roof meshes](../evidence/results/embedding/blender-meshes.png)
 
-![Native bases with canonical roofs](../embedding/blender-bases.png)
+![Native bases with canonical roofs](../evidence/results/embedding/blender-bases.png)
 
 ## Reproduction and limits
 
@@ -127,8 +127,8 @@ git worktree add --detach /tmp/roof-baseline 2e68c8b
 python python/benchmark_embedding.py --code-root /tmp/roof-baseline --samples 3 --profile --output python/out/before.json.gz
 python python/benchmark_embedding.py --samples 9 --profile --output python/out/after.json.gz
 python python/verify_plane_witnesses.py --output python/out/witnesses.json
-python python/audit_coverage.py --corpus python/docs/canonical/coverage_inputs_v1.json.gz --seconds 15 --output python/out/coverage.json --details python/out/coverage.jsonl.gz
-python python/audit_coverage.py --corpus python/docs/canonical/branch_network_inputs_v1.json.gz --seconds 15 --output python/out/branches.json --details python/out/branches.jsonl.gz
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --seconds 15 --output python/out/coverage.json --details python/out/coverage.jsonl.gz
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/branch_network_inputs_v1.json.gz --seconds 15 --output python/out/branches.json --details python/out/branches.jsonl.gz
 python python/benchmark_generation.py --samples 3 --buildings 1000 --output python/out/batch.json
 python -m unittest discover -s python/tests
 python python/build_addon.py --check --output packages/roof_generator-1.4.2.zip
@@ -142,7 +142,7 @@ Candidate counts and validity checks were preserved. Non-orthogonal compound
 decomposition, unresolved polygon events and incomplete model searches are not
 solved by this numerical change.
 
-The [unprofiled 1000-building batch](../embedding/batch1000.json) cycles U, Cross,
+The [unprofiled 1000-building batch](../evidence/results/embedding/batch1000.json) cycles U, Cross,
 Residential and Grid14/20/40: 37.710 seconds including all candidate proofs and
 seed decisions, with 834 valid meshes and 166 unchanged Grid40 rejections. This
 is six repeated fixtures, not unknown-building coverage, and was not rerun as a

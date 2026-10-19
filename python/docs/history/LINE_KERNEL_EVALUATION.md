@@ -12,6 +12,10 @@ export rounding and diagnostic changes are separated into reviewable commits.
 Implementation and model conventions are in
 [LINE_KERNEL_IMPLEMENTATION.md](../kernel/LINE_KERNEL_IMPLEMENTATION.md).
 
+[Extracted implementation proof notes](LINE_KERNEL_PROOFS.md) preserve the
+original `62809e7` independent-oracle and fixed-regression scope separately from
+the live implementation specification.
+
 ## What is generated
 
 The constructor receives the original source path and full-edge roles. It builds
@@ -31,7 +35,7 @@ combined as one practical-roof support percentage.
 ## Frozen all-EAVE assignments
 
 The input geometry is the existing separately categorized
-[coverage_inputs_v1.json.gz](../canonical/coverage_inputs_v1.json.gz). Every edge is
+[coverage_inputs_v1.json.gz](../evidence/inputs/corpora/coverage_inputs_v1.json.gz). Every edge is
 explicitly declared EAVE for this test. This is not substitution after a failed
 gable request.
 
@@ -44,8 +48,8 @@ gable request.
 | Structured oblique | 43 | 43 | 43 | 43 |
 | General simple polygon probe | 40 | 40 | 40 | 40 |
 
-[Summary](../line-kernel/all-eave-report.json) and
-[per-input outcomes](../line-kernel/all-eave-cases.jsonl.gz) preserve stage counts,
+[Summary](../evidence/results/line-kernel/all-eave-report.json) and
+[per-input outcomes](../evidence/results/line-kernel/all-eave-cases.jsonl.gz) preserve stage counts,
 work, predicates and individual inputs on failure. Grid stress is one category;
 it is not overall project coverage. Blender has not been run over this entire
 corpus.
@@ -91,8 +95,8 @@ wall-inclusive outcomes. Random role assignments are not an architectural gable
 producer. In particular, those 352 must not be reported as ordinary roof-surface
 support. Independent validation succeeds for all 613 in the final run.
 
-[Summary](../line-kernel/mixed-report.json) and
-[per-assignment outcomes](../line-kernel/mixed-cases.jsonl.gz) also distinguish
+[Summary](../evidence/results/line-kernel/mixed-report.json) and
+[per-assignment outcomes](../evidence/results/line-kernel/mixed-cases.jsonl.gz) also distinguish
 wall-inclusive mesh from inclined-only mesh. The latter is the relevant profile
 for an ordinary roof surface. Kernel failures and incomplete executions have
 separate owners; no prefix is published as completed.
@@ -140,16 +144,16 @@ object creation, vertex sharing, manifold disk, planarity, positive inclined
 normals, UV unwrapping, materials and source provenance. Stored polygon cycles
 and vertex count remain identical after UV operations.
 
-[Machine report](../line-kernel/blender-report.json),
-[SVG/JSON/OBJ cases](../line-kernel/report.json) and CI's `blender-addon-evidence`
+[Machine report](../evidence/results/line-kernel/blender-report.json),
+[SVG/JSON/OBJ cases](../evidence/results/line-kernel/report.json) and CI's `blender-addon-evidence`
 artifact allow inspection. The smoke saves `complexes.blend`; source `.blend`
 files are build artifacts rather than repository inputs.
 
-![Completed source complexes in Blender](../line-kernel/blender-meshes.png)
+![Completed source complexes in Blender](../evidence/results/line-kernel/blender-meshes.png)
 
-[U](../line-kernel/orthogonal_U.svg), [four ports](../line-kernel/four_terminal_ports.svg),
-[Grid20](../line-kernel/grid_20.svg), [Grid40](../line-kernel/grid_40.svg) and
-[internal step](../line-kernel/internal_stationary_step.svg) distinguish declared
+[U](../evidence/results/line-kernel/orthogonal_U.svg), [four ports](../evidence/results/line-kernel/four_terminal_ports.svg),
+[Grid20](../evidence/results/line-kernel/grid_20.svg), [Grid40](../evidence/results/line-kernel/grid_40.svg) and
+[internal step](../evidence/results/line-kernel/internal_stationary_step.svg) distinguish declared
 EAVEs/GABLEs, source patches, stationary traces and contact nodes. Display scale
 and object rotation do not influence construction.
 
@@ -160,8 +164,8 @@ intent, not the addon's complete architectural candidate search. They are
 unprofiled warm construction samples, with mesh conversion measured separately.
 Instrumented exclusive stages and cProfile are separate observations.
 
-[Before](../line-kernel/timing-before.json) and
-[after](../line-kernel/timing-after.json) preserve raw samples and complex signatures.
+[Before](../evidence/results/line-kernel/timing-before.json) and
+[after](../evidence/results/line-kernel/timing-after.json) preserve raw samples and complex signatures.
 The optimization removes avoidable rational allocation/canonicalization and
 repeated immutable endpoint registration. No source family, geometry candidate
 or validation condition is pruned. Cache-disabled construction remains equivalent.
@@ -188,7 +192,7 @@ export, and current conversion correctness is separately regression-tested.
 Single-digit milliseconds are **not achieved**. Exact arithmetic, contact
 noding and validation remain significant. Profile those costs before changing
 representation; the old optimizer's seconds are not the new kernel's budget.
-Detailed stage values are in the timing files. [cProfile](../line-kernel/profile-after.txt)
+Detailed stage values are in the timing files. [cProfile](../evidence/results/line-kernel/profile-after.txt)
 still attributes most work to split/noding and swept strips, rational scalar
 operations, contact prediction and complete validation. The 40-corner unprofiled
 construction median is about 482 ms, not a single-digit result.

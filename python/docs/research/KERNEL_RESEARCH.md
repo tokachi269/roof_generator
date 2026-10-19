@@ -28,7 +28,7 @@ state handling, not a license to port its tolerances as certified predicates.
 Surfer2 revision `c42f9a7f969cd661d060481cd3b8bac2bdfb8dfa` documents its CGAL/C++
 build, including native arithmetic/library dependencies. Its weighted/zero-speed
 domain and Windows distribution have not been verified here. Source-read receipts
-are in [kernel/research-receipt.json](../kernel/research-receipt.json).
+are in [kernel/research-receipt.json](../evidence/results/kernel/research-receipt.json).
 
 
 ## Published mechanisms and their mapping

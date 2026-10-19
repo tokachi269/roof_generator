@@ -24,7 +24,7 @@ still do not determine red versus blue ownership of 3; no order reproduces the
 printed complete result while covering the footprint. A drawing-consistent
 interpretation cannot establish an area-first general rule.
 [Publisher paper](https://dspace.zcu.cz/bitstream/11025/991/1/G67.pdf),
-[diagnostic receipt](../authority/laycock/figure4-check.json).
+[diagnostic receipt](../evidence/results/authority/laycock/figure4-check.json).
 
 **Hu et al. 2017**, sections 3.3–3.6 and 5.2:
 partition scores penalize fragments (-1) and parallel contacts (-2), and reward
@@ -116,7 +116,7 @@ All fully enumerated alternatives cover their footprints in 2D. This says
 nothing about their roof incidence. In particular, screenshot 4's larger
 central rectangle is not a completed natural-roof proof. Its attached residual
 regions still need explicit models and merge decisions.
-[Full 13-input check](../authority/laycock/ownership-geometry.json).
+[Full 13-input check](../evidence/results/authority/laycock/ownership-geometry.json).
 
 ## Representation decision
 
@@ -138,5 +138,5 @@ Production, skeleton implementation and installed ZIP are unchanged by this
 research. No new usable roof scenario is claimed. Reproduction:
 
 ```bash
-python python/audit_region_ownership.py --report python/docs/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
+python python/audit_region_ownership.py --report python/docs/evidence/results/authority/laycock/report.json.gz --output python/out/authority/ownership-geometry.json
 ```

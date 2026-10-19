@@ -43,7 +43,7 @@ aggregation as a necessary stage; this review does not establish a permitted
 general offset RoofGraph implementation for the current backend.
 
 The read receipt is in
-[the research record](../authority/user-images/laycock-review.json). Current
+[the research record](../evidence/results/authority/user-images/laycock-review.json). Current
 [factory-roof evidence](../history/USER_FACTORY_ROOF_EVIDENCE.md) remains a historical
 reproduction, not a completed natural-roof repair.
 

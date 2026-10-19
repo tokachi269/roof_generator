@@ -7,8 +7,8 @@
 
 この報告の初回全corpus・性能の表はproduction `449fe1d`の測定である。
 その後の[one-line適用範囲の修正](ROOF_END_CONSTRAINTS.md)では、ずれた短辺接触を
-端制約生成前に拒否した。production `38657f6`の[全corpus再監査](../authority/offset-end-gate/coverage-offset-end-gate.json)
-と[更新ZIPのBlender変換](../authority/offset-end-gate/blender-coverage-offset-end-gate.json)が完了し、
+端制約生成前に拒否した。production `38657f6`の[全corpus再監査](../evidence/results/authority/offset-end-gate/coverage-offset-end-gate.json)
+と[更新ZIPのBlender変換](../evidence/results/authority/offset-end-gate/blender-coverage-offset-end-gate.json)が完了し、
 以下の成功数はすべて前段階と同じだった。診断コード・候補数・性能はrevisionごとの記録を参照する。
 
 最新production `c47ffe9`では、等幅corner-Tの軒に直接接しない5面目を保つために
@@ -19,14 +19,14 @@ frozen core / installed ZIP Blenderの成功数と164件の選択candidate IDが
 適用範囲修正後は139 tests（79.678s）が成功した。更新ZIPの19入力を
 実operatorで検証し、前段階の成功11入力のcandidate IDはすべて同一だった。
 offsetのtall入力は、後段のjunctionではなく端制約生成で拒否される。
-[追加検証の記録](../authority/offset-end-gate/verification.json)と
-[operator結果](../authority/offset-end-gate/operator.json)は前段階の測定と分けて保存した。
+[追加検証の記録](../evidence/results/authority/offset-end-gate/verification.json)と
+[operator結果](../evidence/results/authority/offset-end-gate/operator.json)は前段階の測定と分けて保存した。
 
-適用範囲修正後のbranch corpusは[core](../authority/offset-end-gate/branch-offset-end-gate.json)
-と[更新ZIPのBlender変換](../authority/offset-end-gate/blender-branch-offset-end-gate.json)が
+適用範囲修正後のbranch corpusは[core](../evidence/results/authority/offset-end-gate/branch-offset-end-gate.json)
+と[更新ZIPのBlender変換](../evidence/results/authority/offset-end-gate/blender-branch-offset-end-gate.json)が
 100/100。標準`inspect_roof.py`にも各候補と選択結果の端状態を記録する。
 
-最新の[supported / unsupported / incomplete集計](../authority/offset-end-gate/outcomes.json)は、
+最新の[supported / unsupported / incomplete集計](../evidence/results/authority/offset-end-gate/outcomes.json)は、
 gridが3 / 980 / 17、nonuniformが0 / 150 / 0、structuredが13 / 90 / 0。
 `offset_continuation`を含む建物はgrid809件、nonuniform120件、structured41件で、
 他のblockerも併存し得る。これを809件の生成改善や新junction不足とは数えない。
@@ -81,7 +81,7 @@ cornerというanalytic relationにはshared/Tの候補を保持する。selecte
 
 `test_roof_ends.py`は生成器から期待値を作らず、同一端のone-line/L競合、対称な選択、端configurationの正本、narrow corner-Tのliteral4面、solverへのGraph同一性を検証した。旧candidate集合は残し、その集合のseed契約を維持した。新しい構成を加えた全体集合では、同じseedの出力が変わり得る。
 
-代表[10ケースのoperator比較](../authority/end-state/gallery/index.html)は、Cells・Parts・resolved choices・最終Graphを並べる。各valleyのrelationだけでなく、そのrelationで選択されたshared/T状態をJSONと図で追える。画像を候補の採点には使わない。
+代表[10ケースのoperator比較](../evidence/results/authority/end-state/gallery/index.html)は、Cells・Parts・resolved choices・最終Graphを並べる。各valleyのrelationだけでなく、そのrelationで選択されたshared/T状態をJSONと図で追える。画像を候補の採点には使わない。
 
 独立に固定したnarrow corner-T例は、outline `(0,0),(12,0),(12,6),(4,6),(4,12),(0,12)`、seed2。beforeはshared（hip2/valley1）、afterはextension（hip0/valley2）。receiver ridgeを保ち、branch ridgeをreceiver slopeで終端する。この変更は「谷を減らした」証拠ではなく、以前作れなかった研究対応の構成を作れた証拠である。
 
@@ -91,7 +91,7 @@ cornerというanalytic relationにはshared/Tの候補を保持する。selecte
 
 wide probeのoutlineは `(0,0),(12,0),(12,6),(16,6),(16,12),(4,12),(4,6),(0,6)`。下の12×6矩形と上の12×6矩形が長辺の一部で接する。1面と、共有辺をnode化した2面の両方を実operatorで検証した。tall/mixedも含む6入力はbefore/afterともunsupported、失敗時のsceneはatomic。wideはparallel、tallはcontinuation、mixedはpartial_endで止まる。
 
-選択されたRoofGraphがないので、before/after Graphや「不要featureが消えた原因」は提示できない。[operator全件記録](../authority/end-state/operator-after.json)と[診断partition](../authority/end-state/inspection-end-state.json)を保存した。診断のfirst partitionをselected architectureと誤表示しない。factory regressionが修正済みという受け入れ条件は未達。
+選択されたRoofGraphがないので、before/after Graphや「不要featureが消えた原因」は提示できない。[operator全件記録](../evidence/results/authority/end-state/operator-after.json)と[診断partition](../evidence/results/authority/end-state/inspection-end-state.json)を保存した。診断のfirst partitionをselected architectureと誤表示しない。factory regressionが修正済みという受け入れ条件は未達。
 
 ## Coverage
 
@@ -107,7 +107,7 @@ wide probeのoutlineは `(0,0),(12,0),(12,6),(16,6),(16,12),(4,12),(4,6),(0,6)`�
 | general_simple_polygon_probe (40) | 0 | 0 | 0 | 0 | 0 |
 | branch network (100) | 100 | 100 | 100 | 100 | 100 |
 
-supported / unsupported / incompleteの全件集計は[outcomes](../authority/end-state/outcomes.json)。candidate集合の集計は[coverage](../authority/end-state/coverage-end-state.json)。branch100は[別corpus](../authority/end-state/branch-end-state.json)。生のJSONLは再生成可能なignored出力に置き、manifestにhashを保存する。
+supported / unsupported / incompleteの全件集計は[outcomes](../evidence/results/authority/end-state/outcomes.json)。candidate集合の集計は[coverage](../evidence/results/authority/end-state/coverage-end-state.json)。branch100は[別corpus](../evidence/results/authority/end-state/branch-end-state.json)。生のJSONLは再生成可能なignored出力に置き、manifestにhashを保存する。
 
 ## Remaining blockers
 
@@ -141,10 +141,10 @@ architectural scoreとend configurationをoperation availabilityより先に記�
 | grid_20 | 62.72 | 136.32 | 62.72 | 136.32 | False / False |
 | grid_40 | 376.75 | 2740.09 | 376.75 | 2740.09 | False / False |
 
-計測raw dataは[before](../authority/end-state/mesh-performance-end-before-serial.json) / [after](../authority/end-state/mesh-performance-end-after-serial.json)。候補評価・全体制約によるコスト増はそのまま報告する。永続cacheやspeedupのためのarchitecture変更は加えていない。端の組合せは有限だが組合せ的で、yield前の競合候補の探索budgetは今後の課題。
+計測raw dataは[before](../evidence/results/authority/end-state/mesh-performance-end-before-serial.json) / [after](../evidence/results/authority/end-state/mesh-performance-end-after-serial.json)。候補評価・全体制約によるコスト増はそのまま報告する。永続cacheやspeedupのためのarchitecture変更は加えていない。端の組合せは有限だが組合せ的で、yield前の競合候補の探索budgetは今後の課題。
 
 production `38657f6`でも同じbenchmarkを再測定した
-([raw data](../authority/offset-end-gate/mesh-performance-offset-end-gate.json))。
+([raw data](../evidence/results/authority/offset-end-gate/mesh-performance-offset-end-gate.json))。
 core_totalの中央値はU362.18ms、Cross80.95ms、residential12.04ms、
 grid14 53.49ms、grid20 119.60ms、grid40 2721.01ms。
 U/Cross以外はunsupportedなので、後4値を完成meshの性能とは扱わない。
@@ -173,7 +173,7 @@ U/Cross以外はunsupportedなので、後4値を完成meshの性能とは扱わ
 - baselineのCI全5 job成功は開始時の情報。今回のCIは未実行、pushなし。
 - 最終evidence/package commitと作業treeの状態は対話の最終報告に記す。既存untracked `.serena/` と `.roof-deps/` は保存した。
 
-旧boundary-stage evidenceは`authority/manifest.json`、end-state後は[新manifest](../authority/end-state/manifest.json)。rawのsource_shaが実行時の親checkout HEADを指すことがあるため、source stageとarchive hashを併記し、baseline snapshotのrevisionと混同しない。
+旧boundary-stage evidenceは`authority/manifest.json`、end-state後は[新manifest](../evidence/results/authority/end-state/manifest.json)。rawのsource_shaが実行時の親checkout HEADを指すことがあるため、source stageとarchive hashを併記し、baseline snapshotのrevisionと混同しない。
 
-適用範囲修正後の[manifest](../authority/offset-end-gate/manifest.json)には更新ZIPのhash、
+適用範囲修正後の[manifest](../evidence/results/authority/offset-end-gate/manifest.json)には更新ZIPのhash、
 full auditのstage、JSONLのhashを記録した。旧版の数値や画像を現在の実測へ読み替えない。

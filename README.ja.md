@@ -23,13 +23,14 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 屋根表面には意図した外周境界があります。壁や厚みは別途作成します。
 
 屋根接続は建物全体で構成してから、決定済みのGraphを固定してsolveします。
-[配布版の契約](python/docs/current/README.md)でRoofGraph、solve、mesh、
-実際のBlender変換を分けて報告します。grid stress corpusは全体coverageではありません。
+[文書索引](python/docs/README.md)で配布版・未統合kernel・過去の評価を区別し、
+現状と残る統合条件を確認できます。grid stress corpusは全体coverageではありません。
 未解決のpolygon event、対応するgable end modelの範囲、探索未完了が制約として残ります。
 全faceのsupport planeとpitchが明示された問題は、topologyを固定して線形solveします。
 planeが未指定の問題では汎用covariance optimizerを使います。
-[embeddingの性能と検証](python/docs/current/PLANE_EMBEDDING.md)を参照してください。
-[任意角度の対応範囲と実測](python/docs/current/ARBITRARY_ANGLE_ROOFS.md)ではhip・terminal gable・単一四辺形を別corpusで検証しています。
+[embedding契約](python/docs/current/PLANE_EMBEDDING.md)と、そこから参照する評価を確認してください。
+[任意角度の対応範囲](python/docs/current/ARBITRARY_ANGLE_ROOFS.md)と
+[実測結果](python/docs/history/ARBITRARY_ANGLE_EVALUATION.md)を分けています。
 terminalモデルには、隣接する軒supportの平行・逆向き関係と三角capのincidenceが必要です。
 平行な辺の組すべてをgableと解釈する方式ではありません。
 

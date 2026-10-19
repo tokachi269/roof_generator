@@ -81,9 +81,9 @@ architectural interpretations and generic compound incidence are still missing.
 On all 103 frozen structured inputs, the bounded 2D search completes with
 proposals on 93 and reports incomplete on 10. This is **not** 93 successful
 roofs: the global architecture/graph/embedding stages have not been supplied by
-this producer. [Structured evidence](../authority/recursive/structured.json),
-[four-input structures](../authority/recursive/images.json) and
-[old grammar comparison](../authority/recursive/old-grammar.json) record the scopes.
+this producer. [Structured evidence](../evidence/results/authority/recursive/structured.json),
+[four-input structures](../evidence/results/authority/recursive/images.json) and
+[old grammar comparison](../evidence/results/authority/recursive/old-grammar.json) record the scopes.
 
 Seven focused tests fix recursive residual handling, polygon ownership exactly
 once, retained ancestry ambiguity, real cross-links, explicit budget failure,
@@ -142,5 +142,5 @@ the broad corpus blockers before adding further connection rules.
 ```sh
 python -m unittest discover -s python/tests -p test_recursive_regions.py
 python python/probe_recursive_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/recursive-images.json
-python python/probe_recursive_regions.py --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/recursive-structured.json
+python python/probe_recursive_regions.py --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/recursive-structured.json
 ```

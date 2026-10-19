@@ -59,16 +59,16 @@ development proof meshes, **not new addon-supported cases**.
 | Hexagon, all eave | 7 | 6 | 1 | 0.794 |
 | Rectangle, two opposite gables | 6 | 2 | 1 | 0.185 |
 
-Exact counts and raw timing samples are in [kernel/report.json](../kernel/report.json).
+Exact counts and raw timing samples are in [kernel/report.json](../evidence/results/kernel/report.json).
 These tiny convex-oracle timings are neither production performance nor a
 comparison to the existing generator's full candidate pipeline.
 
-[Nonparallel boundary proof](../kernel/00.svg) and
-[nonexistence witness](../kernel/05.svg) distinguish eaves (blue), gables (red) and
-event contacts. The [Blender evidence](../kernel/blender-report.json) corresponds to
+[Nonparallel boundary proof](../evidence/results/kernel/00.svg) and
+[nonexistence witness](../evidence/results/kernel/05.svg) distinguish eaves (blue), gables (red) and
+event contacts. The [Blender evidence](../evidence/results/kernel/blender-report.json) corresponds to
 the image below. Render positions are for display only.
 
-![Five independent proof roofs](../kernel/blender-meshes.png)
+![Five independent proof roofs](../evidence/results/kernel/blender-meshes.png)
 
 ```bash
 python python/probe_roof_kernel.py --output python/out/kernel-proof

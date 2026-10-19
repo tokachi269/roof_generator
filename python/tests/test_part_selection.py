@@ -29,7 +29,7 @@ def inputs():
     }
     for name in ("grid_14", "grid_20", "grid_40"):
         result[name] = json.loads(
-            (ROOT / f"python/docs/partition/{name}.json").read_text()
+            (ROOT / f"python/docs/evidence/inputs/partition/{name}.json").read_text()
         )["input"]["footprint"]
     return result
 

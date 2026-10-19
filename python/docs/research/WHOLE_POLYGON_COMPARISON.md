@@ -133,7 +133,7 @@ The two declared supports must be opposed; their equal-height locus includes
 both `j` and `k`. Uniquely incident slope sectors are required. This is a
 specific incidence operation, not coincident vertex duplication or jitter.
 
-![Raw incidence, failed relocation and cap-disk replacement](../authority/whole-polygon/cap-disk-comparison.png)
+![Raw incidence, failed relocation and cap-disk replacement](../evidence/results/authority/whole-polygon/cap-disk-comparison.png)
 
 Ordinary degree-three cap events reduce to a degree-two straight ridge point,
 which the existing incidence normalization suppresses. A multi-facet event
@@ -254,16 +254,16 @@ yet provide the existing generator's seed-selected architectural alternatives.
 Commands (from repository root):
 
 ```powershell
-python python/whole_polygon_roofs.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/authority/causal/causal-small-inputs.json --output python/out/authority/whole-polygon-small.json
-python python/probe_recursive_roofs.py --code-root python/out/authority/causal-recursive-c53a815 --source-sha c53a815bdff00e47c43dcd45b82f04baa6015e70 --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/causal-recursive-structured.json
+python python/whole_polygon_roofs.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/evidence/results/authority/causal/causal-small-inputs.json --output python/out/authority/whole-polygon-small.json
+python python/probe_recursive_roofs.py --code-root python/out/authority/causal-recursive-c53a815 --source-sha c53a815bdff00e47c43dcd45b82f04baa6015e70 --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category structured_orthogonal --output python/out/authority/causal-recursive-structured.json
 blender -b --factory-startup --python-exit-code 1 --python python/blender_topology_probe.py -- --report python/out/authority/whole-polygon-images.json --output-dir python/out/authority/blender-whole-polygon-images --limit 4
 python -m unittest python.tests.test_whole_polygon_roofs python.tests.test_causal_frontier
-python python/audit_gable_caps.py --report python/docs/authority/whole-polygon/whole-polygon-small.json.gz --output python/out/authority/gable-cap-frontier.json
-python python/whole_polygon_batch.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category orthogonal_grid_stress --resume python/out/authority/whole-polygon-grid.json --seconds 15 --output python/out/authority/whole-polygon-grid-bounded.json
-python python/whole_polygon_batch.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/canonical/coverage_inputs_v1.json.gz --category orthogonal_grid_stress --seconds 15 --output python/out/authority/whole-polygon-split-grid.json
-python python/trace_skeleton_events.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --small-inputs python/docs/authority/causal/causal-small-inputs.json --corpus python/docs/canonical/coverage_inputs_v1.json.gz --reports python/docs/authority/whole-polygon/whole-polygon-small.json.gz python/docs/authority/whole-polygon/whole-polygon-structured.json.gz python/docs/authority/whole-polygon/whole-polygon-nonuniform.json.gz --categories per-row structured_orthogonal nonuniform_orthogonal --output python/out/authority/skeleton-events.json
+python python/audit_gable_caps.py --report python/docs/evidence/results/authority/whole-polygon/whole-polygon-small.json.gz --output python/out/authority/gable-cap-frontier.json
+python python/whole_polygon_batch.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category orthogonal_grid_stress --resume python/out/authority/whole-polygon-grid.json --seconds 15 --output python/out/authority/whole-polygon-grid-bounded.json
+python python/whole_polygon_batch.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --inputs python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --category orthogonal_grid_stress --seconds 15 --output python/out/authority/whole-polygon-split-grid.json
+python python/trace_skeleton_events.py --code-root python/out/authority/causal-baseline-486abd6 --deps python/out/laycock-deps --small-inputs python/docs/evidence/results/authority/causal/causal-small-inputs.json --corpus python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz --reports python/docs/evidence/results/authority/whole-polygon/whole-polygon-small.json.gz python/docs/evidence/results/authority/whole-polygon/whole-polygon-structured.json.gz python/docs/evidence/results/authority/whole-polygon/whole-polygon-nonuniform.json.gz --categories per-row structured_orthogonal nonuniform_orthogonal --output python/out/authority/skeleton-events.json
 python python/audit_polygon_mesh.py --reports python/out/authority/whole-polygon-split-small.json python/out/authority/whole-polygon-split-structured.json python/out/authority/whole-polygon-split-nonuniform.json python/out/authority/whole-polygon-split-images.json --output python/out/authority/polygon-mesh-semantics.json
-python python/plot_cap_event.py --trace python/docs/authority/whole-polygon/skeleton-events.json --before python/docs/authority/whole-polygon/whole-polygon-small.json.gz --after python/docs/authority/whole-polygon/whole-polygon-split-small.json.gz --category orthogonal_grid_stress --name generated_0685 --output python/docs/authority/whole-polygon/cap-disk-comparison.png
+python python/plot_cap_event.py --trace python/docs/evidence/results/authority/whole-polygon/skeleton-events.json --before python/docs/evidence/results/authority/whole-polygon/whole-polygon-small.json.gz --after python/docs/evidence/results/authority/whole-polygon/whole-polygon-split-small.json.gz --category orthogonal_grid_stress --name generated_0685 --output python/docs/evidence/results/authority/whole-polygon/cap-disk-comparison.png
 ```
 
 The first unbounded grid probe stopped advancing on the twentieth input for

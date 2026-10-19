@@ -39,7 +39,7 @@ Figure 4's printed Step 4 lists omit elementary rectangle 3, although the
 Step 5 drawing appears to include it in the red rectangle. We record that
 source inconsistency rather than silently repairing it. Matching the raw
 collections does not establish which collection should own shared rectangles.
-[Raw collection comparison](../authority/laycock/figure4-check.json).
+[Raw collection comparison](../evidence/results/authority/laycock/figure4-check.json).
 
 For every fully resolved growth probe with at most eight distinct collections,
 all ordered first-claim set-difference permutations are enumerated. No priority
@@ -87,14 +87,14 @@ returns the original two rectangles and can use whole Cells. Choosing that
 priority merely because the current schema can express it would substitute
 implementation convenience for the missing architectural decision.
 
-![Screenshot 4 region diagnostic](../authority/laycock/user_image_4_two_staggered_rectangles.png)
+![Screenshot 4 region diagnostic](../evidence/results/authority/laycock/user_image_4_two_staggered_rectangles.png)
 
 Other screenshot diagnostics:
-[1](../authority/laycock/user_image_1_four_staggered_bands.png),
-[2](../authority/laycock/user_image_2_three_staggered_bands.png),
-[3](../authority/laycock/user_image_3_band_and_lower_corner.png).
+[1](../evidence/results/authority/laycock/user_image_1_four_staggered_bands.png),
+[2](../evidence/results/authority/laycock/user_image_2_three_staggered_bands.png),
+[3](../evidence/results/authority/laycock/user_image_3_band_and_lower_corner.png).
 Additional sanity checks:
-[S reference](../authority/laycock/S_staggered_reference.png).
+[S reference](../evidence/results/authority/laycock/S_staggered_reference.png).
 Paper-derived trace images are not retained. The Figure 4 comparison above is
 recorded as numerical diagnostic data only.
 
@@ -136,9 +136,9 @@ subdivision coverage, exact boundary intersection, partial-Cell rejection,
 ownership nonconfluence and conditional enumeration. All seven passed.
 Skeleton validity was checked separately by the full 13-input diagnostic run.
 
-[Compressed full report](../authority/laycock/report.json.gz) includes all inputs,
+[Compressed full report](../evidence/results/authority/laycock/report.json.gz) includes all inputs,
 elementary rectangles, skeleton nodes/arcs, guides, growth domains, collections,
 union variants, all retained minimum partitions and priority configurations.
-[Manifest](../authority/laycock/manifest.json) pins source, fixture and evidence
+[Manifest](../evidence/results/authority/laycock/manifest.json) pins source, fixture and evidence
 hashes and dependency versions. Optional diagnostic dependencies remain outside
 the addon and package archive.

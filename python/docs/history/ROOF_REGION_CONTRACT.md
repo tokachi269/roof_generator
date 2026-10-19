@@ -100,7 +100,7 @@ diagnostic family; they do not increase the distinct counts. Rejected
 disconnected collections are not silently reinterpreted as separate regions.
 The input frame, source minimum partition, actual boundaries, intersection
 areas, source histories and recommendation probes are saved in
-[the inspection report](../authority/regions/candidates.json).
+[the inspection report](../evidence/results/authority/regions/candidates.json).
 
 Screenshot 4 also exposes a remaining architecture problem: its old two
 rectangles have one long-side contact (-2). Assigning independent long-axis

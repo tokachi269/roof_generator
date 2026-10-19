@@ -31,8 +31,9 @@ Connected-grid stress is one corpus, not overall coverage. Unresolved polygon
 events, finite gable-end model coverage and incomplete searches remain limits.
 Fully declared face planes use a linear fixed-topology embedding; the generic
 covariance optimizer remains for problems with unspecified planes. See
-[embedding performance and proofs](python/docs/current/PLANE_EMBEDDING.md).
-See [arbitrary-angle scope and measured outcomes](python/docs/current/ARBITRARY_ANGLE_ROOFS.md)
+[embedding contract](python/docs/current/PLANE_EMBEDDING.md) and its linked evaluation.
+See [arbitrary-angle scope](python/docs/current/ARBITRARY_ANGLE_ROOFS.md) and
+[measured outcomes](python/docs/history/ARBITRARY_ANGLE_EVALUATION.md)
 for separate hip, terminal-gable and single-quadrilateral corpora. The terminal
 model requires opposed neighboring eave supports and triangular cap incidence;
 it does not infer a gable from every parallel edge pair.

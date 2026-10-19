@@ -16,7 +16,7 @@ Boolean, polygon library or completed-roof candidate.
 
 Starting SHA: `9bec1849254ee12c303378a85966c769d4f3b7a0`.
 Clean measured implementation SHA: `e95bdb88996ac65b0716322f66b3c8f975c234d1` (also recorded in the
-[performance JSON](../partition/performance.json)). Later commits add an explicit
+[performance JSON](../evidence/results/partition/performance.json)). Later commits add an explicit
 Steiner proof and evaluation evidence only; the task report gives the final SHA.
 
 The addon, distribution ZIP, production generator, original acceptance tests,
@@ -102,7 +102,7 @@ that physical cut orientation is uniquely determined for all symmetric buildings
 
 ## Concrete results and inspectable certificates
 
-[Partition overview](../partition/partitions.png) was generated from actual inspection
+[Partition overview](../evidence/results/partition/partitions.png) was generated from actual inspection
 JSON and visually checked. Each [inspection CLI](../../inspect_rectangle_partition.py)
 can also take an arbitrary ordered XY polygon; fixture names are tool inputs only
 and never reach the algorithm.
@@ -126,11 +126,11 @@ and never reach the algorithm.
 | Interior Steiner example | 10 | 3 | 1 | 0 | `[0]` / 1 | 1 | 3 |
 
 Full diagonals, matching pairs and selected coordinates are in the
-[T](../partition/orthogonal_T.json), [U](../partition/orthogonal_U.json),
-[residential](../partition/residential_multi_reflex.json), [cross](../partition/cross.json),
-[comb 40](../partition/comb_40.json), [grid 14](../partition/grid_14.json),
-[grid 20](../partition/grid_20.json), [grid 40](../partition/grid_40.json) and
-[Steiner](../partition/interior_steiner.json) outputs, with companion SVGs.
+[T](../evidence/results/partition/orthogonal_T.json), [U](../evidence/results/partition/orthogonal_U.json),
+[residential](../evidence/results/partition/residential_multi_reflex.json), [cross](../evidence/results/partition/cross.json),
+[comb 40](../evidence/results/partition/comb_40.json), [grid 14](../evidence/results/partition/grid_14.json),
+[grid 20](../evidence/results/partition/grid_20.json), [grid 40](../evidence/results/partition/grid_40.json) and
+[Steiner](../evidence/results/partition/interior_steiner.json) outputs, with companion SVGs.
 Cross conflicts all occur at original shared endpoints; testing only proper
 crossings would yield the wrong minimum. Boundary reflex edges are not good
 diagonals and long same-coordinate chords cannot pass through other boundary
@@ -146,7 +146,7 @@ extra cells and losing optimality.
 
 ### Existing graph-first L integration
 
-The [L partition](../partition/orthogonal_L.json) still gives the same two physical
+The [L partition](../evidence/results/partition/orthogonal_L.json) still gives the same two physical
 rectangles: `[5.2,14.2] × [0,5.6]` and `[0,5.2] × [0,12.8]`, with shared
 interval `(5.2,0) → (5.2,5.6)` and all six exterior source edges. Passing those
 Cells directly to the unchanged terminal graft gives 4 roof faces, 2 ridges,
@@ -168,7 +168,7 @@ from existing roof harnesses:
   sets, catching incomplete augmenting paths/cardinality errors.
 - 500 unknown connected-grid shapes, seed 92821: 8–40 normalized corners,
   minimum cell counts 2–15, diagonal counts 0–14, matching sizes 0–7.
-  [Distribution/proof summary](../partition/generated-proof.json). There are 21
+  [Distribution/proof summary](../evidence/results/partition/generated-proof.json). There are 21
   14-corner, 37 20-corner and 39 40-corner shapes in this primary set.
 - Every generated output is checked for four right-angle corners, positive
   simple rectangles, disjoint interiors, exact union, opposite directed internal
@@ -193,7 +193,7 @@ installed-addon and source Blender smoke; no existing gate is weakened.
 
 ## Unprofiled performance
 
-[Measurement JSON](../partition/performance.json) records clean source SHA, Python
+[Measurement JSON](../evidence/results/partition/performance.json) records clean source SHA, Python
 3.12.14, Linux x86-64, 101 samples after 5 warmups, no profiler and no cache.
 The final run preceded other compute-heavy checks. Input generation is explicitly
 excluded; analysis and all partition guards/records are included. The raw output

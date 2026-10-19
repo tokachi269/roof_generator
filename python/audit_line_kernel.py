@@ -58,7 +58,7 @@ def oracle(result):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--corpus',type=Path,default=ROOT/'python/docs/canonical/coverage_inputs_v1.json.gz')
+    parser.add_argument('--corpus',type=Path,default=ROOT/'python/docs/evidence/inputs/corpora/coverage_inputs_v1.json.gz')
     parser.add_argument('--category',action='append')
     parser.add_argument('--limit',type=int)
     parser.add_argument('--output',type=Path,required=True)

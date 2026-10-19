@@ -55,7 +55,7 @@ An equal-width terminal counterexample stays outside the strict lower-branch
 proof and rejects before composition. Existing same-side near-end and
 equal-width-middle rejections remain covered by the older tests.
 
-![Image 2 actual support polygons and installed roof](../authority/opposite-attachments/image-2.png)
+![Image 2 actual support polygons and installed roof](../evidence/results/authority/opposite-attachments/image-2.png)
 
 Left: actual supports crossing minimum Cells. Right: installed Blender 5.2.2
 LTS roof. Red ridge, blue valley, yellow hip. This is explicit proposal API
@@ -160,7 +160,7 @@ has the analytic junctions `(10.5,4.5,2.25)`, `(7.5,1.5,.75)` and
 metric junctions, unchanged graph/mesh incidence and no entire internal valley
 at height zero. The installed footprint operator also generates and renders it.
 
-![New default-generator grid scenario](../authority/opposite-audit/grid-0356.png)
+![New default-generator grid scenario](../evidence/results/authority/opposite-audit/grid-0356.png)
 
 This is a new usable frozen-corpus scenario, rather than an added test on an
 already passing case. It is not one of the user's unrecovered original meshes.
@@ -172,7 +172,7 @@ The newer proposal inspection records actual source Cell intersections,
 resolved region geometry, connection records and every feature cause. The
 diagram puts all three layers in the same intrinsic frame:
 
-![Image 2 Cells, actual Regions/Parts and solved feature causes](../authority/source-history/user_image_2_three_staggered_bands-0.png)
+![Image 2 Cells, actual Regions/Parts and solved feature causes](../evidence/results/authority/source-history/user_image_2_three_staggered_bands-0.png)
 
 The middle is not a recoloring of minimum Cells: its central member intersects
 three source Cells. Feature records refer to model members/Parts and resolved
@@ -184,7 +184,7 @@ also hold. Cell intersections are provenance, not topology instructions.
 python python/probe_opposite_attachments.py
 python -m unittest discover -s python/tests -p test_opposite_attachments.py
 python python/probe_receiver_regions.py --inputs python/tests/fixtures/user_roof_images_v1.json --output python/out/authority/receiver-probe.json
-python python/inspect_region_roofs.py --input python/docs/authority/regions/candidates.json --output python/out/authority/opposite-region-roofs.json
+python python/inspect_region_roofs.py --input python/docs/evidence/results/authority/regions/candidates.json --output python/out/authority/opposite-region-roofs.json
 python python/region_diagrams.py --report python/out/authority/source-history-roofs.json --output-dir python/out/authority/source-history-diagrams
 ```
 

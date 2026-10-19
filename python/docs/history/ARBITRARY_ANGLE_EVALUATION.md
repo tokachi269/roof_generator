@@ -17,7 +17,7 @@ nonparallel compound-gable grammar.
 
 ### Frozen input families
 
-[angle_inputs_v1.json.gz](../canonical/angle_inputs_v1.json.gz) contains 392 requests,
+[angle_inputs_v1.json.gz](../evidence/inputs/corpora/angle_inputs_v1.json.gz) contains 392 requests,
 generator version 1 and seed 982143. Each geometry family is audited separately
 for gable and hip. The two-direction generator applies different invertible
 shears, stretches and rotations to parameterized building structures. This is
@@ -41,7 +41,7 @@ The audit's historical `partition` success flag is eligibility at the model
 stage. Polygon requests explicitly record `partition_required=false`, count zero
 and scope "not required"; they do not perform Cell decomposition. Convex-quad
 gable retains its one-Cell primitive contract. See the
-[full summary](../angles/final-coverage.json) and [all records](../angles/final-coverage.jsonl.gz).
+[full summary](../evidence/results/angles/final-coverage.json) and [all records](../evidence/results/angles/final-coverage.jsonl.gz).
 Blender is unmeasured in this Python corpus audit, not a failed conversion.
 
 The 40 general gable requests have no admissible opposed-support terminal cap:
@@ -60,8 +60,8 @@ it does not enter the terminal-cap domain. The resolved model has one gable end
 and five eaves, with five facets, one ridge, one valley and five hips. Its all-eave
 hip has six facets, one ridge, one valley and seven hips. Both are planar,
 connected disk surfaces. They are inspectable as
-[gable Graph](../angles/inspection-gable.json) / [drawing](../angles/inspection-gable-candidate-0.svg)
-and [hip Graph](../angles/inspection-hip.json) / [drawing](../angles/inspection-hip-candidate-0.svg).
+[gable Graph](../evidence/results/angles/inspection-gable.json) / [drawing](../evidence/results/angles/inspection-gable-candidate-0.svg)
+and [hip Graph](../evidence/results/angles/inspection-hip.json) / [drawing](../evidence/results/angles/inspection-hip-candidate-0.svg).
 
 The oblique three-ended branch has three gable ends, four merged slope facets,
 two retained ridges and two valleys, with no independent internal gable cap.
@@ -76,13 +76,13 @@ the rotated reference direction. Exhaustive small conflict-graph oracles verify
 the maximal-set producer, including blocked ends and invalidation of budget-limited
 prefixes. Failed events never retry through convex-quad generation or change type.
 
-[Orthogonal comparison](../angles/comparison.json) preserves all 21 baseline
+[Orthogonal comparison](../evidence/results/angles/comparison.json) preserves all 21 baseline
 candidates across L/T/U/Cross/Residential/Grid14/20: model/rejection records,
 completion/work fields, indexed Graphs, GeometryProblems and four seed decisions
 are exactly identical, with zero coordinate difference. Grid40 has the same
 explicit event rejection. Final angle audit preserves all stage results, selected
 IDs, valid candidate counts and terminal domains from the pre-rounding audit.
-The [995 historical mesh comparison](../angles/witnesses.json) still passes all
+The [995 historical mesh comparison](../evidence/results/angles/witnesses.json) still passes all
 cases, with maximum coordinate distance `3.1031676915590914e-17`.
 
 The complete local 239-test suite passes; the final developer inspection proof
@@ -92,7 +92,7 @@ failure. Native-base smoke passes four rectangle types, seven compound
 differentials, saved-v1 cache invalidation and live updates. Cache proof namespace
 is now `canonical-polygon-v2` because the hip model scope and candidate IDs changed.
 
-![Installed arbitrary-angle roofs](../angles/blender-meshes.png)
+![Installed arbitrary-angle roofs](../evidence/results/angles/blender-meshes.png)
 
 ### Unprofiled performance
 
@@ -112,7 +112,7 @@ sample and must not be added to the unprofiled median.
 
 One valid candidate is materialized per measured request. Raw samples, all stage
 timings and candidate/seed snapshots are in
-[angle performance](../angles/angle-performance.json.gz). Observed sample spread is
+[angle performance](../evidence/results/angles/angle-performance.json.gz). Observed sample spread is
 substantial; this is not a hard interactive latency guarantee. Raw orthogonal
 before/final measurements are retained with the comparison rather than claiming
 a performance gain for this input-scope extension. No candidate pruning or
@@ -120,8 +120,8 @@ validation weakening was used.
 
 ```bash
 python python/generate_angle_corpus.py --output python/out/angle-inputs.json.gz
-python python/audit_coverage.py --corpus python/docs/canonical/angle_inputs_v1.json.gz --seconds 15 --output python/out/angles.json --details python/out/angles.jsonl.gz
-python python/benchmark_embedding.py --inputs python/docs/angles/performance-inputs.json --samples 9 --output python/out/angle-performance.json.gz
+python python/audit_coverage.py --corpus python/docs/evidence/inputs/corpora/angle_inputs_v1.json.gz --seconds 15 --output python/out/angles.json --details python/out/angles.jsonl.gz
+python python/benchmark_embedding.py --inputs python/docs/evidence/results/angles/performance-inputs.json --samples 9 --output python/out/angle-performance.json.gz
 python python/inspect_roof.py --fixture oblique_L --roof-type gable --output python/out/oblique.json
 python python/verify_plane_witnesses.py --output python/out/witnesses.json
 python -m unittest discover -s python/tests

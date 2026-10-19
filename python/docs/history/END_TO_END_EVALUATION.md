@@ -27,7 +27,7 @@ Baseline and current aggregate results are stored separately, with source SHA
 and dirty-source metadata. Raw detailed diagnostics stream to compressed JSONL.
 Historical measurement files remain dated evidence, not current capability claims.
 Exact executed `source_sha` values map to the byte-identical canonical revisions
-in [measurement_revision_map.json](../canonical/measurement_revision_map.json).
+in [measurement_revision_map.json](../evidence/results/canonical/measurement_revision_map.json).
 
 ## Stage coverage
 
@@ -129,7 +129,7 @@ It verifies transformed objects, seed variation, UV/material/provenance and
 atomic rejection. Output surfaces intentionally have an exterior boundary;
 walls/thickness are separate modeling tasks.
 
-![Installed Blender meshes](../canonical/embedding-blender-meshes.png)
+![Installed Blender meshes](../evidence/results/canonical/embedding-blender-meshes.png)
 
 ## Non-orthogonal scope
 
