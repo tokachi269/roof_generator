@@ -1,0 +1,47 @@
+# Staged coverage
+
+> Historical phase record frozen from document revision `303d088` (inventory `62809e7`).
+> Stop instructions, status and next-step statements below apply to that recorded phase.
+> Current authority: [packaged release](../current/README.md), [kernel contract](../kernel/ROOF_KERNEL_CONTRACT.md);
+> [index](../README.md) records successors and current adoption gates.
+
+`coverage_inputs_v1.json.gz` freezes six separate corpora (generator
+`coverage_corpora.py`, version 1, seed 382901). The grid input is the existing
+1000-shape connected-grid stress corpus, not project-wide coverage or a sample
+of real houses. Nonuniform orthogonal intervals are independently randomized;
+oblique affine variants are stress inputs, not Euclidean equivalence tests.
+
+`audit_coverage.py` measures footprint validity, completed partition search,
+architectural interpretation, valid RoofGraph, GeometryProblem, solve and
+validated mesh separately. Partial valid graph existence is counted even when
+the search is incomplete; such a pool cannot select a seed or attempt solve.
+Blender is **unmeasured** in a CPython audit; actual
+conversion evidence is provided by `blender_audit_coverage.py` for every core-valid
+corpus mesh and by installed-addon smoke. Unmeasured is not
+an observed failure. The seed is fixed at zero. The audit does not retry a
+failed chosen candidate with another seed.
+
+The baseline `canonical/coverage_baseline.json` uses HEAD bcc4213 production
+behavior (analytic rectangular solve only). Its failure owners prevent a valid
+Graph being reported as a final roof. Detailed all-candidate diagnostic records
+are streamed to compressed JSONL, rather than retained in memory.
+
+## Evidence-based blocker classes
+
+A: another retained minimum partition succeeds. B: another assignment of the
+same partition succeeds. These are **observed alternative success**, not a
+claim that every such rejected graph is repairable. C: a known junction
+operation's restricted applicability fails. D: fixed topology cannot currently
+be solved. E: several valid choices are retained and selected by seed; this is
+not a reject. F: a relation has no justified definition within the declared
+input/architectural contract. A relation string alone cannot establish C or F:
+`unresolved_B_C_F` explicitly records the missing evidence until research and
+local geometry distinguish interpretation from operation insufficiency.
+Downstream junction and solve failures are censored when an earlier relation
+rejects an assignment. Conditional sole blockers are not promised coverage gains.
+
+The separate `canonical/branch_network_inputs_v1.json.gz` (version 1, seed 69712)
+adds 100 dimension-randomized separated terminal/middle port networks. It is a
+targeted operation proof, not a replacement for unknown-grid stress. See
+[current end-to-end results](END_TO_END_EVALUATION.md) for all stage counts,
+actual Blender attempts, research boundaries and separate 2D/solver timings.

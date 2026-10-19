@@ -83,12 +83,12 @@ fixed boundary, projection, shared vertices, positive faces and planarity.
 Bounded float32 direction noise never rectifies an oblique footprint: terminal
 ports use the actual equal-distance locus, ridge directions use incident planes,
 and nonparallel eaves do not receive a constant-width height anchor. See
-[arbitrary-angle model contract](../ARBITRARY_ANGLE_ROOFS.md).
+[arbitrary-angle model contract](../current/ARBITRARY_ANGLE_ROOFS.md).
 
 Runtime core and Blender adapters require no external Python packages. Independent
 development oracles may use NumPy/Shapely, declared separately from runtime.
-See [the migration contract](../CANONICAL_MIGRATION.md) for the inventory
-and [the research mapping](../ROOF_PART_INTERPRETATION_RESEARCH.md) for
+See [the migration contract](CANONICAL_MIGRATION.md) for the inventory
+and [the research mapping](../research/ROOF_PART_INTERPRETATION_RESEARCH.md) for
 published operations and their adaptation limits.
 
 ## Module responsibilities

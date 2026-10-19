@@ -24,7 +24,7 @@ and two scoped stationary-front certificates, with no kernel failure. Two distin
 to the same double and are still processed separately.
 
 The frozen multi-corpus and mixed-role results, timings, SVGs and Blender evidence
-are reported in [LINE_KERNEL_EVALUATION.md](../LINE_KERNEL_EVALUATION.md). A successful
+are reported in [LINE_KERNEL_EVALUATION.md](LINE_KERNEL_EVALUATION.md). A successful
 finite corpus does **not** prove universal completeness for every degenerate
 simple polygon. The source/contact rules and postconditions are explicit, but
 formal exhaustiveness/termination of the zero-speed contact model and a

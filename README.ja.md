@@ -28,8 +28,8 @@ Blender 4.3以降で、面を張った平面footprintから編集可能な屋根
 未解決のpolygon event、対応するgable end modelの範囲、探索未完了が制約として残ります。
 全faceのsupport planeとpitchが明示された問題は、topologyを固定して線形solveします。
 planeが未指定の問題では汎用covariance optimizerを使います。
-[embeddingの性能と検証](python/docs/PLANE_EMBEDDING.md)を参照してください。
-[任意角度の対応範囲と実測](python/docs/ARBITRARY_ANGLE_ROOFS.md)ではhip・terminal gable・単一四辺形を別corpusで検証しています。
+[embeddingの性能と検証](python/docs/current/PLANE_EMBEDDING.md)を参照してください。
+[任意角度の対応範囲と実測](python/docs/current/ARBITRARY_ANGLE_ROOFS.md)ではhip・terminal gable・単一四辺形を別corpusで検証しています。
 terminalモデルには、隣接する軒supportの平行・逆向き関係と三角capのincidenceが必要です。
 平行な辺の組すべてをgableと解釈する方式ではありません。
 
@@ -60,12 +60,12 @@ Width・Depth・Seed・Heightをmodifierで編集でき、RoofをONにすると�
 
 現在の構成は [ARCHITECTURE.md](ARCHITECTURE.md)、ツールとテストは
 [python/README.md](python/README.md)、研究との対応は
-[research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md)、実測は
+[research mapping](python/docs/research/ROOF_PART_INTERPRETATION_RESEARCH.md)、実測は
 [release contract](python/docs/current/README.md)を参照してください。
 
-独立した[full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)では、明示した
+独立した[full-Line kernel](python/docs/kernel/LINE_KERNEL_IMPLEMENTATION.md)では、明示した
 EAVE/GABLEから凹形状のcomplexを厳密なevent演算で構築します。
-[検証結果](python/docs/LINE_KERNEL_EVALUATION.md)は、傾斜面だけの屋根と内部の垂直面が
+[検証結果](python/docs/history/LINE_KERNEL_EVALUATION.md)は、傾斜面だけの屋根と内部の垂直面が
 必要なcomplexを区別しています。配布addonの生成経路にはまだ組み込んでいません。
 
 ```bash

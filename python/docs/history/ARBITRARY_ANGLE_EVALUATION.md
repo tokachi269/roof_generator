@@ -12,7 +12,7 @@ from actual supports. `uses_polygon_model` is the single input/model dispatch
 owner shared by generation and staged inspection. No new runtime dependency,
 alternate-generator retry or generalized rectangular partition was introduced.
 The cap operation extends the existing terminal-end adaptation documented in
-[roof-end constraints](../ROOF_END_CONSTRAINTS.md); it does not claim a general
+[roof-end constraints](ROOF_END_CONSTRAINTS.md); it does not claim a general
 nonparallel compound-gable grammar.
 
 ### Frozen input families

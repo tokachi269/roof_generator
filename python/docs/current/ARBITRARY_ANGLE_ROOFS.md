@@ -1,0 +1,93 @@
+# Arbitrary-angle polygon roofs
+
+## Geometry and model contract
+
+Applies to packaged 1.5.0. Footprint analysis, indexed Graph incidence, declared
+support planes and fixed-plane embedding use actual geometric directions.
+The bounded bundled Straight Skeleton accepts normalized simple polygons,
+including nonorthogonal input in the model domains below.
+
+Two polygon model classes use the same incidence and downstream pipeline:
+
+- **Hip:** every exterior edge is explicitly an eave. No gable selection,
+  rectangular partition or axis preference is involved.
+- **Terminal gable:** selected exterior edges replace oriented triangular caps
+  by their two incident slope sectors. Each cap must have two unique sectors,
+  and their inward unit normals must be opposed within the bounded numerical
+  allowance below. Other exterior
+  edges are explicitly eaves. This is a mixed hip/gable model, not a promise
+  of pure gables at every building end.
+
+The local condition involves parallel support lines, not a 90-degree corner.
+For equal pitch and eave height, their equality locus is the line midway between
+the supports. A straight cap edge joining the supports meets that line at its
+midpoint even when oblique. The preserved skeleton event lies on the same
+locus. Thus the existing disk replacement and BoundaryPoint(edge, 0.5) remain
+geometrically derived, without changing incidence after geometry solving.
+
+Blender stores vertex coordinates in float32: a nominally parallel branch with
+decimal coordinates can have neighboring directions differing by about `1e-7`.
+The normal allowance is `min(1e-6, max(1e-8, 8*EPS*(1/length_left +
+1/length_right)))` in normalized perimeter units, where `EPS=2e-9`. The
+length-dependent bound reflects coordinate noise; its ceiling prevents a short
+edge from admitting meaningful angle changes. A 0.1-degree eave difference is
+outside this allowance. No support vector or footprint vertex is rotated.
+
+For bounded rounding, use the actual equal-distance cap parameter
+`t=d_right(a)/(d_left(b)+d_right(a))`; exactly parallel supports give `t=0.5`.
+Its boundary XY remains fixed. Form ridge direction from the real incident plane
+equations and leave ridge Z variable where nonparallel eaves do not justify a
+constant-width height anchor. The linear solver consumes these constraints
+unchanged; it does not infer a different topology. This small GeometryProblem
+extension is necessary to use real Blender inputs without snapping oblique
+supports or accepting nonplanar output.
+
+Triangular incidence is a separate condition: opposed neighboring boundary
+supports alone do not guarantee a triangular terminal cap. Unavailable or
+conflicting disks must remain inspectable. No coordinate perturbation,
+rectification, Boolean, alternate seed or runtime retry repairs a failed event.
+
+## Exterior interpretation
+
+Orthogonal gable requests retain the current rectangular guide and componentwise
+axis preference, with unchanged candidate family and IDs. Single convex-quad
+gable requests retain their existing two-direction primitive contract, including
+nonparallel eaves. Neither minimum rectangle partition nor its cells are
+generalized to arbitrary angles.
+
+For other nonorthogonal gable requests, the architectural domain is explicitly
+restricted to opposed-support terminal caps. Enumerate every maximal compatible
+cap set, meaning no further admissible gable can be added without consuming
+another cap's required slope sector. This uses the existing componentwise
+gable-over-hip preference, without inventing long-axis or weighted scores.
+Maximal independent sets of the cap conflict graph can be enumerated as maximal
+cliques of its complement, using bounded Bron–Kerbosch traversal. All surviving
+models must produce and validate Graph, GeometryProblem and mesh before stable
+seed selection. Incomplete enumeration exposes no selectable prefix.
+
+Inspect both geometric eligibility and backend feasibility. A polygon with no
+opposed-support terminal cap fails a gable request; it is not converted to hip.
+Hip is generated only when explicitly requested.
+
+## Responsibility boundaries
+
+`wavefront` produces bounded immutable incidence for a normalized simple polygon.
+`PolygonRoof` declares exterior ends and roof type. Cap-domain selection operates
+on exterior support relations and disk conflicts. `polygon_roof.topology` applies
+the existing disk replacement, facet aggregation and indexed incidence contract.
+`GeometryProblem` declares real source planes; `plane_embedding` solves fixed
+coordinates. `RoofMesh` validates the unchanged cycles. Blender only exports them.
+
+The rectangular hip analytic shortcut currently assumes a pre-anchored primitive
+apex. A polygon-incidence square has a junction with no such preassigned height.
+Fully declared hip planes must therefore use the existing linear embedding;
+the geometry solver must not infer pitch from incomplete height initialization.
+The independent rectangle hip witness remains a regression contract.
+
+## Verification ownership
+
+The fixed invariants are equal-pitch source planes, fixed incidence and boundary,
+positive projection and planarity. Model and event failures remain explicit;
+incomplete enumeration cannot select a seed. Finite corpus counts, measured
+performance, commands and installed Blender observations are frozen in
+[the angle evaluation](../history/ARBITRARY_ANGLE_EVALUATION.md).

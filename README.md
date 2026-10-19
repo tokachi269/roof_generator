@@ -31,8 +31,8 @@ Connected-grid stress is one corpus, not overall coverage. Unresolved polygon
 events, finite gable-end model coverage and incomplete searches remain limits.
 Fully declared face planes use a linear fixed-topology embedding; the generic
 covariance optimizer remains for problems with unspecified planes. See
-[embedding performance and proofs](python/docs/PLANE_EMBEDDING.md).
-See [arbitrary-angle scope and measured outcomes](python/docs/ARBITRARY_ANGLE_ROOFS.md)
+[embedding performance and proofs](python/docs/current/PLANE_EMBEDDING.md).
+See [arbitrary-angle scope and measured outcomes](python/docs/current/ARBITRARY_ANGLE_ROOFS.md)
 for separate hip, terminal-gable and single-quadrilateral corpora. The terminal
 model requires opposed neighboring eave supports and triangular cap incidence;
 it does not infer a gable from every parallel edge pair.
@@ -63,12 +63,12 @@ symmetric outlines.
 ## Architecture and development
 
 See [ARCHITECTURE.md](ARCHITECTURE.md), [tools and tests](python/README.md),
-[research mapping](python/docs/ROOF_PART_INTERPRETATION_RESEARCH.md), and
+[research mapping](python/docs/research/ROOF_PART_INTERPRETATION_RESEARCH.md), and
 [release contract](python/docs/current/README.md).
 
-The standalone [full-Line kernel](python/docs/LINE_KERNEL_IMPLEMENTATION.md)
+The standalone [full-Line kernel](python/docs/kernel/LINE_KERNEL_IMPLEMENTATION.md)
 constructs source-labelled concave EAVE/GABLE complexes with certified event
-arithmetic. Its [evaluation](python/docs/LINE_KERNEL_EVALUATION.md) separates
+arithmetic. Its [evaluation](python/docs/history/LINE_KERNEL_EVALUATION.md) separates
 inclined roof surfaces from complexes that need internal vertical patches.
 This kernel is not yet the packaged addon's generation path.
 

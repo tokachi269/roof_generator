@@ -4,10 +4,10 @@ guide exterior end choices; they do not define independently completed roofs.
 Arbitrary-angle hip uses all-eave intent; nonorthogonal compounds can use the
 opposed-support terminal-cap domain without rectangular decomposition. Existing
 single convex-quad gable/shed/flat retains its primitive contract.
-See [arbitrary-angle contract and proofs](docs/ARBITRARY_ANGLE_ROOFS.md).
+See [arbitrary-angle contract and proofs](docs/current/ARBITRARY_ANGLE_ROOFS.md).
 Fully declared face planes use a fixed-topology linear embedding; generic
 partially specified plane problems retain the covariance optimizer. See
-[embedding contract and performance](docs/PLANE_EMBEDDING.md).
+[embedding contract and performance](docs/current/PLANE_EMBEDDING.md).
 See [the release contract](docs/current/README.md) for current domains and limits,
 and [the documentation index](docs/README.md) for the separate kernel status. The older restricted-model probes below remain comparison tools.
 
@@ -27,15 +27,15 @@ supports an isolated baseline checkout. The witness tool checks all 995 saved
 successful comparison meshes; they are not a current runtime coverage count.
 
 The resolved end-state model, proof boundaries and remaining unsupported
-combinations are described in [roof-end authority](docs/ROOF_END_CONSTRAINTS.md).
+combinations are described in [roof-end authority](docs/history/ROOF_END_CONSTRAINTS.md).
 
 Production inspection tools use the distributable `roof_generator.core` under `addon/`.
 Runtime needs Python's standard library. `requirements.txt` declares development
 oracles only; Blender installs the ZIP without pip or external wheels.
 
 The unpackaged full-Line kernel has a separate
-[mathematical contract](docs/ROOF_KERNEL_CONTRACT.md) and
-[concave implementation](docs/LINE_KERNEL_IMPLEMENTATION.md).
+[mathematical contract](docs/kernel/ROOF_KERNEL_CONTRACT.md) and
+[concave implementation](docs/kernel/LINE_KERNEL_IMPLEMENTATION.md).
 `roof_kernel_proof.py` is an independent convex space-time oracle, not a new addon
 generator or general wavefront implementation. It binds full Line source roles
 before construction, retains event time/source incidence, and exports five frozen
@@ -136,7 +136,7 @@ python python/audit_roof_support.py --corpus python/out/support/corpus.json --ou
 `inspect_roof.py --fixture orthogonal_U` inspects all canonical retained
 interpretations and the supported unified RoofGraph. `inspect_junctions.py`
 inspects one fixed minimum partition/orientation only, so its rejection is not a
-whole-footprint support verdict. See [relation audit and scope](docs/RELATION_TOPOLOGY_SUPPORT.md).
+whole-footprint support verdict. See [relation audit and scope](docs/history/RELATION_TOPOLOGY_SUPPORT.md).
 
 
 Staged fixed-corpus coverage and independent Blender conversion:
@@ -153,8 +153,8 @@ Grid stress, nonuniform orthogonal, structured orthogonal, convex quad, structur
 oblique and general polygon probe results are separate. The additional
 `branch_network_inputs_v1.json.gz` proves separated terminal/middle operations.
 See [current release scope](docs/current/README.md),
-[solver contract](docs/SGA21_SOLVER.md), and
-[nonorthogonal boundary](docs/NON_ORTHOGONAL.md).
+[solver contract](docs/current/SGA21_SOLVER.md), and
+[nonorthogonal boundary](docs/history/NON_ORTHOGONAL.md).
 
 Installed native-base/live-roof acceptance:
 

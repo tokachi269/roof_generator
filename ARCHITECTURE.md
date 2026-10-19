@@ -6,7 +6,7 @@ There are two deliberately separate generation systems:
 | System | Code owner | Specification authority |
 | --- | --- | --- |
 | Packaged 1.5.0 addon | `addon/roof_generator/` | [Release contract](python/docs/current/README.md) |
-| Unpackaged full-Line kernel | `python/roof_kernel/` | [Kernel contract](python/docs/ROOF_KERNEL_CONTRACT.md) |
+| Unpackaged full-Line kernel | `python/roof_kernel/` | [Kernel contract](python/docs/kernel/ROOF_KERNEL_CONTRACT.md) |
 
 The addon resolves models, constructs RoofGraph incidence, embeds fixed geometry,
 then validates and exports a mesh. The kernel receives explicit boundary roles

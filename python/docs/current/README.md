@@ -24,8 +24,8 @@ These are model domains, not a universal-success claim for the bundled event
 implementation. No eligible terminal gable does not authorize a hip substitute.
 Nonterminal, partial-edge and genuinely nonparallel-support compound gables,
 holes and general compound shed remain outside this release. See
-[angle model details](../ARBITRARY_ANGLE_ROOFS.md) and
-[partition analysis](../MINIMUM_RECTANGULAR_PARTITION.md).
+[angle model details](ARBITRARY_ANGLE_ROOFS.md) and
+[partition analysis](MINIMUM_RECTANGULAR_PARTITION.md).
 
 ## Generation and authority
 
@@ -58,8 +58,8 @@ physical equivariance, including symmetric footprints.
 
 `GeometryProblem` freezes incidence, variables, boundary/height anchors, ridge
 directions and slope planes. `solve.embed` uses anchored analytic primitives,
-then [linear embedding](../PLANE_EMBEDDING.md) when planes are complete, otherwise
-the [covariance solver](../SGA21_SOLVER.md). This is constraint-based dispatch;
+then [linear embedding](PLANE_EMBEDDING.md) when planes are complete, otherwise
+the [covariance solver](SGA21_SOLVER.md). This is constraint-based dispatch;
 geometry cannot discover a different roof or retopologize a failed one.
 
 Mesh validation preserves face cycles and checks planarity, positive projection,
@@ -76,7 +76,7 @@ development oracles. Installation and UI controls are in the root README.
 Versioned measurements are reports, not this contract. Read
 [1.5.0 angle evaluation](../history/ARBITRARY_ANGLE_EVALUATION.md),
 [embedding evaluation](../history/PLANE_EMBEDDING_EVALUATION.md) and
-[the older polygon migration](../POLYGON_ROOF_RELEASE.md) with their recorded
+[the older polygon migration](../history/POLYGON_ROOF_RELEASE.md) with their recorded
 revisions. Older restricted-grammar coverage does not describe this release.
 Finite corpora and installed-addon smoke do not imply universal coverage or a
 hard latency guarantee. Package installation, standalone kernel export and actual
